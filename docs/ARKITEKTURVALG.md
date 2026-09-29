@@ -1,8 +1,8 @@
 # Arkitekturvalg efter første kortlægning
 
-Status: beslutningsgrundlag, ikke godkendt arkitektur. Brugerfladens React + TypeScript + Vite + shadcn/ui er allerede valgt.
+Status: React + TypeScript + Vite + shadcn/ui samt TypeScript-beregningsmotor er valgt (B-002/B-014). Typst videreføres med bevarede rapportdata (B-012/B-013). Hosting, adgang, datalagring og Word-eksportens fremtid er endnu ikke besluttet.
 
-**Rapportretning efter afprøvning:** Brugeren overvejer PDF som primært format. [Typst-afprøvningen](TYPST_AFPROEVNING.md) gør TypeScript + Typst til en relevant kandidat uden Word/LibreOffice i PDF-vejen. Hvis Word fortsat er primært, er TypeScript-DOCX med LibreOffice en alternativ kandidat, jf. [rapportevalueringen](RAPPORT_EVALUERING.md). Ingen arkitektur eller fjernelse af Word er godkendt.
+**Rapportretning efter afprøvning:** Brugeren overvejer PDF som primært format. [Typst-afprøvningen](TYPST_AFPROEVNING.md) gør TypeScript + Typst til en relevant kandidat uden Word/LibreOffice i PDF-vejen. Hvis Word fortsat er primært, er TypeScript-DOCX med LibreOffice en alternativ kandidat, jf. [rapportevalueringen](RAPPORT_EVALUERING.md). Fjernelse af Word er ikke godkendt. Beregningsmotorens TypeScript-omskrivning er særskilt godkendt i B-014.
 
 ## Hvad kildegennemgangen viser
 
@@ -22,10 +22,12 @@ Vite har en officiel React/TypeScript-skabelon, og shadcn/ui dokumenterer instal
 | B — TypeScript-beregning, bevaret rapportmotor | Flyttes til TypeScript og testes mod Python-referencen | Eksisterende Python-rapportkode isoleres som en tjeneste med aftalt dataformat | Fjerner Streamlit fra brugerfladen og flytter beregningerne; Python bevares til rapporter |
 | C — ny brugerflade, bevaret Python-faglogik | Eksisterende beregning og sammensætning udstilles gennem en tjeneste | Eksisterende rapportkode bevares | Mindst samtidig ændring af beregninger og rapporter; opfylder ikke et mål om at fjerne Python |
 
-Min vurdering: **A kan kombineres med Typst til PDF**, hvis den PDF-centrerede retning vælges. En eventuel Word-generator bør bruge de samme rapportdata. **B er en mulig reservevej**, hvis rapportporteringen giver uacceptable forskelle eller omkostninger. **C ændrer mindst i den eksisterende faglogik.** Ingen af mulighederne er valgt endnu.
+Min vurdering: **A kan kombineres med Typst til PDF**, hvis den PDF-centrerede retning vælges. En eventuel Word-generator bør bruge de samme rapportdata. **B er en mulig reservevej**, hvis rapportporteringen giver uacceptable forskelle eller omkostninger. **C ændrer mindst i den eksisterende faglogik.** B-014 vælger TypeScript til beregningerne; mulighed C er derfor ikke den valgte vej. Der arbejdes videre mod A med Typst, mens Word-behov og produktionsdrift fortsat afklares.
 
 Mulighed B kræver kontrol af, at rapporten anvender de samme beregningsresultater som brugerfladen. En rapporttjeneste må ikke genberegne med afvigende data eller indstillinger. Alle muligheder kræver fortsat kontrol mod de fastlåste cases og visuel godkendelse af figurer/rapporter.
 
-## Det, der kan gøres inden beslutningen
+## Videre arbejde efter B-014
 
 Udbyg referencecases, kortlæg resterende redigerings- og rapportforløb, fastlæg serialiserbare dataformater og vis konkrete designudkast efter afklaring af identiteten. Ingen alternativ beregningsmetode, fælles datalagring eller ny PDF-gengivelse indføres uden afklaring.
+
+Beregningsmotorens aktuelle implementation, præcisionskontrol og resterende arbejde er beskrevet i [BEREGNINGSMOTOR.md](BEREGNINGSMOTOR.md). Motoren kan køres uden Python, Streamlit eller Typst og modtager aktive tabeller/indstillinger som input. Rapportprototypen bruger stadig originale færdige rapporttekster; den er ikke automatisk tilkoblet motoren.

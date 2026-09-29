@@ -68,3 +68,9 @@ Reference: `a330cfd`, indbyggede standardværdier. Alle kildehenvisninger er rel
 ## Færdigkriterium for hvert ID
 
 Et ID kan først afsluttes, når relevant originaladfærd er registreret, ny implementation er koblet til casen, automatisk/manuel kontrol er gennemført og eventuelle afvigelser har en konkret godkendelse. Ingen ID'er er afsluttet som migreret.
+
+## TypeScript-status efter B-014
+
+Beregningsdelene er nu implementeret og kontrolleret for F-02.2/3/5–10, F-03.2/3, F-04.1/2, F-05, F-06, F-07, F-08, F-10.1 og rapportdata i F-12.1. Den præcise kobling mellem filer, cases og resterende opgaver fremgår af [BEREGNINGSMOTOR.md](BEREGNINGSMOTOR.md). Alle 2.062 core-cases, 255 ekstra grænsetilfælde og 17 sammensatte dimensioneringscases matcher uden tolerance.
+
+Det afslutter ikke de samlede brugerfunktioner i tabellerne ovenfor: React-kontroller, tilstand, beskedvisning, redigering, diagramomdannelse, import/gemning og figurer skal stadig flyttes og afprøves. Standarddata er bevaret; det er ikke det samme som at have porteret alle redigeringsfunktioner i `core/data.py`.

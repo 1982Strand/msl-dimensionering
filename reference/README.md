@@ -62,7 +62,7 @@ En anden kildecheckout kan angives med `--legacy-repo PATH`; den skal indeholde 
 
 Standardkørsel sammenligner med de eksisterende forventninger. `--record` opretter en ny referencefil og afviser at overskrive en eksisterende fil. Der er ingen automatisk accept/update-funktion. Ændringer af godkendte forventninger skal være synlige i Git og begrundet i beslutningsloggen. Den statiske inventarliste kan derimod regenereres.
 
-Ved genkørsel accepteres ingen numerisk tolerance. JSON-objekters rækkefølge ignoreres; værdier, typer og lister sammenlignes. Et senere TypeScript-kontrolværktøj skal genoprette typer eksplicit, herunder numeriske tabelnøgler, frem for at kalde Pythonfunktionerne direkte med ubehandlede JSON-nøgler.
+Ved genkørsel accepteres ingen numerisk tolerance. JSON-objekters rækkefølge ignoreres; værdier, typer og lister sammenlignes. TypeScript-kontrollen i `tests/` sammenligner direkte med de frosne JSON-forventninger. Den kører ingen Pythonkode; originale Python-genkørsler gendanner fortsat numeriske tabelnøgler eksplicit.
 
 ## Begrænsninger og resterende arbejde
 
@@ -70,6 +70,23 @@ Ved genkørsel accepteres ingen numerisk tolerance. JSON-objekters rækkefølge 
 - Standardmeddelelser og rapportens beregningstekster er registreret. Alle specialbyggede HTML-advarsler er endnu ikke registreret i en samlet tekstkontrol.
 - Datatabelredigering, dubletter/slettede materialer, ugyldig JSON, alle indstillingskombinationer, sortering, hjælpelinks og eksportknapper mangler fuld forløbskontrol.
 - Rapport-siden er kørt uden et gyldigt beregningsresultat; rapportens tabeller/tekster er testet direkte på gyldige dimensioneringer. Den isolerede rapportprototype har desuden dannet ti originale DOCX/Word-PDF'er og ti Typst-PDF'er med indholdskontrol. Standard-casens sider er visuelt gennemgået i begge motorer. Rapportsidens samlede billed-/downloadforløb og LibreOffice er stadig ikke verificeret.
-- Brugerens accept af de repræsentative cases udestår. Ingen TypeScript-motor findes endnu, så tallene er ikke en bestået migreringskontrol.
+- Brugerens samlede accept af de repræsentative cases udestår. TypeScript-motorens automatiske migreringskontrol består for det registrerede omfang, jf. `docs/BEREGNINGSMOTOR.md`. Browseradfærd og komplet app er ikke dermed godkendt.
 
 Kontrolværktøjet har desuden fire egne tests: ændret tykkelse afvises, boolesk/numerisk typeforveksling afvises, eksisterende forventninger kan ikke overskrives, og objektfelters rækkefølge giver ikke falske forskelle.
+
+## TypeScript-kontrol efter B-014
+
+- `engine-boundaries.json`: 255 yderligere originale Python-forventninger for afrunding, formatering, normalisering, klassegrænser og redigerede/manglende tabelværdier. Optagelsen overskriver ikke eksisterende forventninger.
+- `src/engine/defaults.json`: indbyggede konstanter fra referencecommitten; ingen lokale brugerdata eller forventede beregningsresultater bruges som programlogik. Kontrolleres med `tools/export_engine_data.py --check`.
+- `tests/engine-reference.test.ts`: alle 2.062 originale cases og kontrol af uændrede input/defaults.
+- `tests/engine-boundaries.test.ts`: alle 255 ekstra cases.
+- `tests/dimensionering.test.ts`: gendanner input fra de 17 aktive dimensioneringssnapshots og sammenligner hele resultatet inklusive rapportdata. De syv snapshots på andre sider er ikke selvstændige beregningskørsler.
+- Node 24.19.0: 2.337 tests består. Ingen numerisk tolerance eller omskrivning af de oprindelige forventninger. Se `typescript-engine-results.json`.
+
+```powershell
+npm ci
+npm run typecheck
+npm test
+& C:\geonet_beregning\.venv\Scripts\python.exe tools/capture_engine_boundaries.py
+& C:\geonet_beregning\.venv\Scripts\python.exe tools/export_engine_data.py --check
+```

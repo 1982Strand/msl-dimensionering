@@ -4,24 +4,25 @@ Oprettet 29. september 2026. Faser og acceptkriterier er foreslåede, medmindre 
 
 ## Status efter første udførelse
 
-- **Fase 0, delvist udført:** kildeversion fastlagt; brugeren har valgt indbyggede standarder (B-008). Adgang, personlige/fælles data og arkitektur er ikke besluttet.
+- **Fase 0, delvist udført:** kildeversion fastlagt; brugeren har valgt indbyggede standarder (B-008). TypeScript-beregningsmotor er valgt i B-014. Adgang og personlige/fælles data er ikke besluttet.
 - **Fase 1, i gang:** 13 aktive Python-filer er statisk registreret med 426 funktioner og 98 widget-kald. Alle otte navigationssider er besøgt i appens testmiljø. Detaljeret funktionsmatrix og konkrete fund foreligger. Datatabelredigering, samtlige hjælpelinks og alle rapportvalg kræver yderligere kontrol.
 - **Fase 2, i gang:** 2.062 core-cases og 24 snapshots af appforløb er registreret og genkørt uden forskelle. Desuden er 8 originale figurers data registreret fra 4 scenarier. Ti rapportcases er dannet som original DOCX/Word-PDF og prototype-PDF gennem TypeScript/Typst. Dynamisk indhold er kontrolleret; Standard-casens tre sider i begge motorer er visuelt gennemgået. Tolerancer er ikke indført. Browserkontrol, øvrige rapporters visuelle kontrol og LibreOffice/servertest udestår.
-- **Fase 3–5:** afventer de relevante beslutninger; ingen nye visuelle løsninger er godkendt, og intet er offentliggjort.
+- **Fase 4, beregningsmotor i gang:** TypeScript-kernen og sammensætningen af Standard/Brugerdefineret matcher referencecases. 2.337 tests og streng typekontrol består; se `BEREGNINGSMOTOR.md`. Redigering/lagring, resterende app-logik, brugerflade og figurpipeline udestår.
+- **Fase 3 og 5:** appdesign/opbygningsfigurer og samlet accept udestår; intet er offentliggjort.
 
-Næste afhængige valg er arkitektur, jf. `ARKITEKTURVALG.md`. Rapportvurderingen foreligger i `RAPPORT_EVALUERING.md` og `TYPST_AFPROEVNING.md`. PDF som muligt primært format, Word-behovet og et konkret rapportdesign skal afklares før endelig implementation. Der kan fortsat arbejdes på referencecases og kortlægning uafhængigt af dette valg.
+Beregningsmotoren flyttes til TypeScript, jf. B-014. Næste implementeringstrin er de resterende data-/indstillingsforløb og React/Vite/shadcn-grundlaget med motoren tilkoblet. Visuel retning og opbygningsfigurer godkendes særskilt. Typst videreføres; rapportfinpudsning er udskudt af brugeren i B-013. Word-behov, adgang og lagring er fortsat åbne.
 
 Efter B-012 arbejdes videre med Typst og bevarede rapportdata: firmaprofil/layout er adskilt, eksporten arkiverer data, skabelon, billeder og PDF, og de ti referencecases har nu samme tekstlinjer og sidefordeling som Word. Syv prototypetests består. Redigeringsmuligheder og afgrænsning fremgår af `RAPPORTSKABELON.md`; dette er fortsat ikke endelig visuel accept.
 
 ## Mål og afgrænsning
 
-Den eksisterende app omskrives til en brugerflade med React, TypeScript, Vite og shadcn/ui. Beregninger og funktionalitet skal bevares. Om beregningsmotoren også skal flyttes fra Python til TypeScript, er et åbent arkitekturvalg.
+Den eksisterende app omskrives til en brugerflade med React, TypeScript, Vite og shadcn/ui. Beregninger og funktionalitet skal bevares. Beregningsmotoren flyttes fra Python til TypeScript efter B-014; Python fastholdes som uafhængig reference.
 
 Migreringens første leverance er dokumenteret overensstemmelse med den godkendte gamle app. Forbedringer vurderes enkeltvis sammen med brugeren og skal kunne spores til en konkret godkendelse.
 
 ## Fase 0 — reference og rammer
 
-Udført: brugeren har valgt den aktuelle gamle app efter commit/push som reference (`a330cfd6734ac2478be1304a362c69f94e412d25`). Kildearkiv, eksisterende lokale JSON-data, miljøoplysninger og kontrolsummer er bevaret lokalt under `reference-private/a330cfd/`. Brugeren ønsker arkitekturvalget afklaret efter kortlægningen. De øvrige punkter nedenfor er fortsat åbne.
+Udført: brugeren har valgt den aktuelle gamle app efter commit/push som reference (`a330cfd6734ac2478be1304a362c69f94e412d25`). Kildearkiv, eksisterende lokale JSON-data, miljøoplysninger og kontrolsummer er bevaret lokalt under `reference-private/a330cfd/`. Efter kortlægningen har brugeren valgt TypeScript-beregningsmotor (B-014). De øvrige punkter nedenfor er fortsat åbne.
 
 - Vælg referenceversion: lokal arbejdskopi, GitHub-version eller en bestemt version.
 - Medtag relevante brugerdefinerede materialer, diagrammer, korrelationer og indstillinger i beslutningen. En Git-commit alene beskriver ikke den aktuelle lokale app.

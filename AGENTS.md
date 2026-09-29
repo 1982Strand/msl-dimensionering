@@ -25,6 +25,8 @@
 
 ## Kodesøgning
 
+Brug både Serena og Semble, jf. B-015. Aktivér Serena for `C:\MSL-Dimensionering`; brug TypeScript- og Python-sprogserverne til symboler, referencer og projekthukommelse. Semble bruges først til at lokalisere implementeringer. Den gamle app må fortsat kun læses som reference.
+
 Brug `mcp__semble__search` til at finde implementeringer. Læs derefter direkte ved den returnerede fil og linje. Brug `content="docs"`, `content="config"` eller `content="all"` ved søgning uden for kode. Brug ikke grep til at genfinde det samme indhold. Grep kan bruges, når alle forekomster af en konkret streng er nødvendige.
 
 CLI-fallback: `semble search "beskrivelse" C:\MSL-Dimensionering --max-snippet-lines 10`. Hvis Semble ikke findes på PATH: `uvx --from "semble[mcp]==0.6.0" semble`.
