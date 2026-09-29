@@ -2,7 +2,7 @@
 
 Migrering af det eksisterende Streamlit-værktøj til React, TypeScript, Vite og shadcn/ui.
 
-Status: planlægning. Ingen beregningsmotor eller brugerflade er implementeret endnu.
+Status: kortlægning og referencekontrol er i gang. 2.062 beregningscases og 24 trin i brugerforløb er registreret fra den uændrede reference og genkørt med samme resultater. Ingen ny beregningsmotor eller brugerflade er implementeret endnu.
 
 - Arbejdsmappe: `C:\MSL-Dimensionering`
 - Nyt repository: https://github.com/1982Strand/msl-dimensionering
@@ -18,7 +18,12 @@ Beregninger, datagrundlag og funktionalitet skal bevares. Ændringer af eksister
 - [Migrationsplan](docs/MIGRATIONSPLAN.md) — forslag til faser, leverancer og godkendelser.
 - [Foreløbig funktionskortlægning](docs/FUNKTIONSKORTLAEGNING.md) — kendte områder og kontrolpunkter.
 - [Beslutningslog](docs/BESLUTNINGER.md) — aftaler, åbne spørgsmål og ændringsforslag.
-- [Observeret kildegrundlag](docs/REFERENCESTATUS.md) — status ved opstart; endnu ikke en godkendt referenceversion.
+- [Fastlagt kildegrundlag](docs/REFERENCESTATUS.md) — referenceversion, standarddata og kontrolstatus.
 - [Arbejdsregler](AGENTS.md) — bindende rammer for kommende udvikling.
+- [Detaljeret funktionsmatrix](docs/FUNKTIONSMATRIX.md) — underfunktioner, standarder, kilder og kontroldækning.
+- [Referencekontrol](reference/README.md) — reproducerbare kørsler, resultater og begrænsninger.
+- [Fund til afklaring](docs/FUND.md) — observeret adfærd, som ikke må ændres stiltiende.
+- [Arkitekturvalg](docs/ARKITEKTURVALG.md) — konkrete muligheder efter kortlægningen.
+- [Evaluering af rapportgenerering i TypeScript](docs/RAPPORT_EVALUERING.md) — Word/PDF, LibreOffice, mulige forbedringer og afprøvningskriterier.
 
 Referenceversionen er fastlagt til den committede og pushede gamle app, commit `a330cfd6734ac2478be1304a362c69f94e412d25`. Valg af beregningsmotor afklares efter kortlægningen. Planen er et udkast til fælles gennemgang, ikke en allerede godkendt implementeringsplan.

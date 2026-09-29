@@ -1,0 +1,344 @@
+{
+  "source_commit": "a330cfd6734ac2478be1304a362c69f94e412d25",
+  "template": "assets/rapport_skabelon.docx",
+  "sha256": "6307516f10da7ec8d7bbf002c3f9554cb6ca6d3ad8ed65baff7feb7151e710d2",
+  "bytes": 73451,
+  "report_sections": [
+    "oplyste_forudsaetninger",
+    "generelle_forudsaetninger",
+    "krav_komprimering",
+    "dim_sikkerhed",
+    "udfoerelse",
+    "kontrolplan",
+    "projekteringsansvar"
+  ],
+  "parts": [
+    {
+      "name": "[Content_Types].xml",
+      "bytes": 3181,
+      "sha256": "83da69756d7160819efcba5f61f61b45753226444d4bd05fbbc91f0abec33aec"
+    },
+    {
+      "name": "_rels/.rels",
+      "bytes": 736,
+      "sha256": "c338a3826b3429b89a283d9ff441f064e7f8cac1ba94c60fa5b7aa23c5adb676"
+    },
+    {
+      "name": "customXml/_rels/item1.xml.rels",
+      "bytes": 295,
+      "sha256": "1ca6c9a64edcebe24ee703a54403611b322d96da33371779e742d2d3f7ed7a6c"
+    },
+    {
+      "name": "customXml/_rels/item2.xml.rels",
+      "bytes": 295,
+      "sha256": "435eae789df4fbec2fa6bcb6c79d825d4ca93036d43a819aa05e3d5e5f5586be"
+    },
+    {
+      "name": "customXml/_rels/item3.xml.rels",
+      "bytes": 295,
+      "sha256": "71ab67aa89fdda4d23a4d4ce376af7ff14ce3a4098e3a9a4d71f1f7c0a183ad8"
+    },
+    {
+      "name": "customXml/_rels/item4.xml.rels",
+      "bytes": 295,
+      "sha256": "b4b50a37d675225476941f58a3ae4333d3d5d74557ca97d87587547a3256c784"
+    },
+    {
+      "name": "customXml/item1.xml",
+      "bytes": 15177,
+      "sha256": "f5ced5ca60c80caf048a4b67073be48821e6676a2f734fd183c30ac0204b14ac"
+    },
+    {
+      "name": "customXml/item2.xml",
+      "bytes": 219,
+      "sha256": "5efcaf9ad70d9c29f406ee438f8f428b021a881d2c5afff0e53b00b1f67ae51e"
+    },
+    {
+      "name": "customXml/item3.xml",
+      "bytes": 587,
+      "sha256": "f0fe092346986f2f639fc96ed0b8959d6ff8b03a91395a9ac99fdbd876eac8c8"
+    },
+    {
+      "name": "customXml/item4.xml",
+      "bytes": 306,
+      "sha256": "64a56efd64d49e759fe8705700562e79a4792fc7885a1351e30e5f3651f7247c"
+    },
+    {
+      "name": "customXml/itemProps1.xml",
+      "bytes": 1149,
+      "sha256": "e11a7810f2a6a377dea9e5fc5d035972988111ac2afb8e768e63b51f3d42f9b8"
+    },
+    {
+      "name": "customXml/itemProps2.xml",
+      "bytes": 335,
+      "sha256": "17fa90e4ba48dd3357eec252ba761077247364ab25d9b69705c223ccf2ccb9bb"
+    },
+    {
+      "name": "customXml/itemProps3.xml",
+      "bytes": 547,
+      "sha256": "36309a68b1e6d43279913af6ec0cdd273a8a9e77b6511abcc6886eef804dfbd4"
+    },
+    {
+      "name": "customXml/itemProps4.xml",
+      "bytes": 341,
+      "sha256": "e51aa60199f06a701ddc04ce75e7887c0e43872fce05528e0104aeb655877504"
+    },
+    {
+      "name": "docProps/app.xml",
+      "bytes": 991,
+      "sha256": "37cc4fe9b0fe23cbdf0d57224328e834c812c59d09790797f33239b4aa70f250"
+    },
+    {
+      "name": "docProps/core.xml",
+      "bytes": 750,
+      "sha256": "eb6082baefc2658154a0cb5870ba6bff4c7c17c46eb00610afeed76045b0c7f3"
+    },
+    {
+      "name": "docProps/custom.xml",
+      "bytes": 639,
+      "sha256": "4c122745a1a078b2d788ff2e025f88af919c5a4dafb83e53af95ecc628bf495e"
+    },
+    {
+      "name": "word/_rels/document.xml.rels",
+      "bytes": 2558,
+      "sha256": "4873f0bcf6a8daa9964828974251af6150d9d9b38074010649b34272363209a7"
+    },
+    {
+      "name": "word/_rels/header2.xml.rels",
+      "bytes": 289,
+      "sha256": "f506b4d8a8992a8851d24c90dbf352e1035a592fad1d436f511fa6336773f617"
+    },
+    {
+      "name": "word/document.xml",
+      "bytes": 37312,
+      "sha256": "9cff835d53916516a927b867b0b948d0b9bfbc6056d04c332f49860a4768ebdd"
+    },
+    {
+      "name": "word/endnotes.xml",
+      "bytes": 3050,
+      "sha256": "13efa5b4fbda9dbe4a6e53359fa1340684b034e1c59aa8e06d67a0c3b4825678"
+    },
+    {
+      "name": "word/fontTable.xml",
+      "bytes": 3927,
+      "sha256": "6517d05913e9d4dcb9f27182e9993a406211d19ef0d0df399c800d2f20232fb0"
+    },
+    {
+      "name": "word/footer1.xml",
+      "bytes": 2766,
+      "sha256": "ed698a91b1581ff24f7ed121048a42c9309326e2b0b9f2068124cf01a98e4093"
+    },
+    {
+      "name": "word/footer2.xml",
+      "bytes": 19785,
+      "sha256": "89bbca67cae71d3247eb5473650500f0186997ad1b9b0b57b95b4a777aa2e77c"
+    },
+    {
+      "name": "word/footer3.xml",
+      "bytes": 2766,
+      "sha256": "c22eb81a63cd7d48428bceb059a83fb4f97b886db72aaa34970dce6c3553757e"
+    },
+    {
+      "name": "word/footnotes.xml",
+      "bytes": 3056,
+      "sha256": "0262edcd33a03d624de232fb1f16c33a802e1996e00bfed6e521623deadf8ee7"
+    },
+    {
+      "name": "word/header1.xml",
+      "bytes": 2768,
+      "sha256": "e0baf092895fb763d35c2a76473b53db309d07bb4b1af20dcf51869aa0292df6"
+    },
+    {
+      "name": "word/header2.xml",
+      "bytes": 11406,
+      "sha256": "5328dd1f0f93ccaa29d580957b7d19ee312c9e5a45b33d4c7ea06a35e57aebe0"
+    },
+    {
+      "name": "word/header3.xml",
+      "bytes": 2768,
+      "sha256": "8c41784a8b954d2065ca0d9fa42d4c5ace032988085558fcc6c8bfde9205876a"
+    },
+    {
+      "name": "word/media/image1.jpeg",
+      "bytes": 43504,
+      "sha256": "dc7c52209bf48ae4671557c176d8b5a1561915a65458b7944b39b9675ee08f99"
+    },
+    {
+      "name": "word/numbering.xml",
+      "bytes": 8411,
+      "sha256": "09861f906d5dbac5133a71fc98bd34530c980ebe51c36bd5d4874a988a0b2889"
+    },
+    {
+      "name": "word/settings.xml",
+      "bytes": 6505,
+      "sha256": "86323552da8afb829d70fb871dd5c5222e1782e69c77d6e6c0dc1676ca64d9c8"
+    },
+    {
+      "name": "word/styles.xml",
+      "bytes": 35391,
+      "sha256": "93103e55cd99e896b3cbafea780aebccf83a164225bf1bd6940546a415b19017"
+    },
+    {
+      "name": "word/theme/theme1.xml",
+      "bytes": 6794,
+      "sha256": "8f359e7d24f142de9aa8013416492e6b7aea91d90f6f1828d66120b35a2f9d1b"
+    },
+    {
+      "name": "word/webSettings.xml",
+      "bytes": 1885,
+      "sha256": "1d6b62dcea7d85eb61040a9774c1806a29c66eba90ed07c8abe22770007834de"
+    }
+  ],
+  "placeholders": [
+    {
+      "part": "word/document.xml",
+      "tag": "{{ projekt }}"
+    },
+    {
+      "part": "word/document.xml",
+      "tag": "{{ beskrivelse }}"
+    },
+    {
+      "part": "word/document.xml",
+      "tag": "{{ omfang }}"
+    },
+    {
+      "part": "word/document.xml",
+      "tag": "{{ udfoeres_for }}"
+    },
+    {
+      "part": "word/document.xml",
+      "tag": "{{ sagsbehandler }}"
+    },
+    {
+      "part": "word/document.xml",
+      "tag": "{{ kontrol }}"
+    },
+    {
+      "part": "word/document.xml",
+      "tag": "{{ tekst_oplyste_forudsaetninger }}"
+    },
+    {
+      "part": "word/document.xml",
+      "tag": "{%tr for r in dim_grundlag %}"
+    },
+    {
+      "part": "word/document.xml",
+      "tag": "{{ r.label }}"
+    },
+    {
+      "part": "word/document.xml",
+      "tag": "{{ r.vaerdi }}"
+    },
+    {
+      "part": "word/document.xml",
+      "tag": "{%tr endfor %}"
+    },
+    {
+      "part": "word/document.xml",
+      "tag": "{{ tekst_generelle_forudsaetninger }}"
+    },
+    {
+      "part": "word/document.xml",
+      "tag": "{%tr for r in dim_resultat %}"
+    },
+    {
+      "part": "word/document.xml",
+      "tag": "{{ r.label}}"
+    },
+    {
+      "part": "word/document.xml",
+      "tag": "{{ r.vaerdi }}"
+    },
+    {
+      "part": "word/document.xml",
+      "tag": "{%tr endfor %}"
+    },
+    {
+      "part": "word/document.xml",
+      "tag": "{{ visualisering }}"
+    },
+    {
+      "part": "word/document.xml",
+      "tag": "{{ designdiagram }}"
+    },
+    {
+      "part": "word/document.xml",
+      "tag": "{{ tekst_krav_komprimering }}"
+    },
+    {
+      "part": "word/document.xml",
+      "tag": "{{ tekst_dim_sikkerhed }}"
+    },
+    {
+      "part": "word/document.xml",
+      "tag": "{{ tekst_udfoerelse }}"
+    },
+    {
+      "part": "word/document.xml",
+      "tag": "{{ tekst_kontrolplan }}"
+    },
+    {
+      "part": "word/document.xml",
+      "tag": "{{ tekst_projekteringsansvar }}"
+    },
+    {
+      "part": "word/document.xml",
+      "tag": "{{ dato }}"
+    },
+    {
+      "part": "word/document.xml",
+      "tag": "{{ sagsbehandler }}"
+    },
+    {
+      "part": "word/document.xml",
+      "tag": "{{ sagsbehandler_mail }}"
+    }
+  ],
+  "tables": [
+    {
+      "rows": 1,
+      "dynamic_rows": [
+        "{%tr for r in dim_grundlag %}{{ r.label }}{{ r.vaerdi }}{%tr endfor %}"
+      ]
+    },
+    {
+      "rows": 1,
+      "dynamic_rows": [
+        "{%tr for r in dim_resultat %}{{ r.label}}{{ r.vaerdi }}{%tr endfor %}"
+      ]
+    }
+  ],
+  "page_setup": [
+    {
+      "pgSz": {
+        "w": "11906",
+        "h": "16838"
+      },
+      "pgMar": {
+        "top": "1701",
+        "right": "1134",
+        "bottom": "1560",
+        "left": "1134",
+        "header": "709",
+        "footer": "981",
+        "gutter": "0"
+      },
+      "cols": {
+        "space": "708"
+      }
+    }
+  ],
+  "fonts": [
+    "Courier New",
+    "HelveticaNeueLT Std Lt",
+    "HelveticaNeueLT Std Lt Cn",
+    "HelveticaNeueLTStd-Bd",
+    "HelveticaNeueLTStd-Roman",
+    "Symbol",
+    "Wingdings"
+  ],
+  "limitations": [
+    "Structural inspection only; no rendering or performance measurement"
+  ]
+}

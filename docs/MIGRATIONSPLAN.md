@@ -2,6 +2,15 @@
 
 Oprettet 29. september 2026. Faser og acceptkriterier er foreslåede, medmindre de fremgår som aftalt i beslutningsloggen.
 
+## Status efter første udførelse
+
+- **Fase 0, delvist udført:** kildeversion fastlagt; brugeren har valgt indbyggede standarder (B-008). Adgang, personlige/fælles data og arkitektur er ikke besluttet.
+- **Fase 1, i gang:** 13 aktive Python-filer er statisk registreret med 426 funktioner og 98 widget-kald. Alle otte navigationssider er besøgt i appens testmiljø. Detaljeret funktionsmatrix og konkrete fund foreligger. Datatabelredigering, samtlige hjælpelinks og alle rapportvalg kræver yderligere kontrol.
+- **Fase 2, i gang:** 2.062 core-cases og 24 snapshots af appforløb er registreret og genkørt uden forskelle. Desuden er 8 originale figurers data registreret fra 4 scenarier. Tolerancer er ikke indført. Visuel kontrol i browseren og faktiske Word/PDF-filer udestår.
+- **Fase 3–5:** afventer de relevante beslutninger; ingen nye visuelle løsninger er godkendt, og intet er offentliggjort.
+
+Næste afhængige valg er arkitektur, jf. `ARKITEKTURVALG.md`. Brugeren har bedt om en evaluering af TypeScript-rapporter før valget; den foreligger i `RAPPORT_EVALUERING.md` med forslag til en afgrænset prototype og sammenligning. Der kan fortsat arbejdes på referencecases og kortlægning uafhængigt af dette valg.
+
 ## Mål og afgrænsning
 
 Den eksisterende app omskrives til en brugerflade med React, TypeScript, Vite og shadcn/ui. Beregninger og funktionalitet skal bevares. Om beregningsmotoren også skal flyttes fra Python til TypeScript, er et åbent arkitekturvalg.

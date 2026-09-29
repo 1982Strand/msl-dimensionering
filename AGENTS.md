@@ -5,6 +5,7 @@
 - React + TypeScript + Vite + shadcn/ui er valgt til den nye brugerflade.
 - Arbejd i `C:\MSL-Dimensionering`. Den gamle app i `C:\geonet_beregning` er reference og må ikke ændres som led i migreringen uden særskilt instruktion.
 - Bevar alle beregninger, funktioner, standardværdier, gyldighedsområder, enheder, afrundinger, advarsler, fejltilstande og datagrundlag fra den godkendte reference.
+- Den nye app skal starte med den gamle apps indbyggede standardværdier, jf. B-008. Lokale brugerdefinerede JSON-filer må ikke blive nye standarder.
 - Ingen ændring i gammel virkemåde må indføres uden brugerens udtrykkelige godkendelse, heller ikke en tilsyneladende forbedring eller fejlrettelse.
 - Design og visualiseringer af opbygninger kræver brugerens godkendelse. Vis konkrete udkast med realistiske data før endelig implementering.
 - Stil afklarende spørgsmål, når et valg påvirker faglighed, funktionalitet, arbejdsgang eller visuel fremstilling. Fortsæt samtidig uafhængigt arbejde, når det er muligt.

@@ -14,6 +14,11 @@
 
 ## Foreløbige praktiske valg
 
+Supplerende aftaler den 29. september 2026:
+
+- **B-008:** Den gamle apps indbyggede standardværdier bevares. Brugerens svar: »Bevar den gamle apps standard værdier. Gå igang med planen«.
+- **B-009:** Arbejdet med planens kortlægning og referencegrundlag er igangsat efter samme besked. Arkitekturvalg, funktionelle afvigelser og visuelle løsninger kræver fortsat afklaring/godkendelse.
+
 | ID | Valg | Status |
 | --- | --- | --- |
 | P-001 | Repository oprettes privat under den tilgængelige konto `1982Strand` | Reversibelt opstartsvalg meddelt brugeren; offentliggørelse er ikke besluttet |
@@ -28,7 +33,7 @@
 
 ## Næste afklaringer
 
-- Hvilke lokale materialer, diagrammer, korrelationer og indstillinger hører til referencegrundlaget?
+- Standardgrundlaget er afklaret i B-008; gamle lokale tilpasninger er bevaret særskilt og bruges ikke som nye standardværdier.
 - Skal den nuværende visuelle identitet videreføres, eller ønskes en ny MSL-identitet?
 - Hvem skal have adgang til appen og til redigering af grunddata? Skal indstillinger være personlige eller fælles?
 - Skal appen kunne bruges offline, og hvilke browsere/skærmstørrelser skal understøttes?
@@ -50,3 +55,11 @@ Spørgsmålene tages i mindre grupper på det relevante tidspunkt. Ingen svar el
 - Status: foreslået / godkendt / afvist / implementeret / kontrolleret.
 
 Der er endnu ingen godkendte funktionelle afvigelser eller visuelle løsninger.
+
+## Forelagt under kortlægningen
+
+- **A-003:** Visuel retning: nyt MSL-design, videreført Byggros-identitet eller senere afklaring. Afventer svar.
+- **A-004:** Adgang: offentlig uden login, login for alle eller senere afklaring. Afventer svar. Dette spørgsmål afgør ikke i sig selv, om redigerede grunddata skal være fælles eller personlige.
+- **A-005:** Arkitekturvalg efter den første kortlægning: se `ARKITEKTURVALG.md`. Ikke besluttet.
+- **B-010:** Brugeren ønsker en særskilt evaluering af rapportgenerering i TypeScript og forskelle/optimeringsmuligheder i forhold til Python og LibreOffice, før der vælges. Evaluering: `RAPPORT_EVALUERING.md`. Svaret er ikke en godkendelse af en ny rapportmotor eller et nyt layout.
+- **FUND-001:** Produktvalg i Standard nulstilles ved navigation via Materialer. Se `FUND.md`. Registreret eksisterende adfærd; ingen rettelse godkendt.
