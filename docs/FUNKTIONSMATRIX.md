@@ -74,3 +74,7 @@ Et ID kan først afsluttes, når relevant originaladfærd er registreret, ny imp
 Beregningsdelene er nu implementeret og kontrolleret for F-02.2/3/5–10, F-03.2/3, F-04.1/2, F-05, F-06, F-07, F-08, F-10.1 og rapportdata i F-12.1. Den præcise kobling mellem filer, cases og resterende opgaver fremgår af [BEREGNINGSMOTOR.md](BEREGNINGSMOTOR.md). Alle 2.062 core-cases, 255 ekstra grænsetilfælde og 17 sammensatte dimensioneringscases matcher uden tolerance.
 
 Det afslutter ikke de samlede brugerfunktioner i tabellerne ovenfor: React-kontroller, tilstand, beskedvisning, redigering, diagramomdannelse, import/gemning og figurer skal stadig flyttes og afprøves. Standarddata er bevaret; det er ikke det samme som at have porteret alle redigeringsfunktioner i `core/data.py`.
+
+## Supplerende data- og korrelationskontrol
+
+F-03.1, databehandlingen i F-04.3, F-11.1/3/4 samt korrelations-/trafikbetegnelser har nu TypeScript-implementation i `editing.ts`, `input-values.ts` og `correlation.ts`. 150 originale editor/JSON-cases og 86 korrelations-/beregningsforløb matcher. Se `DATAREDIGERING.md`. Interaktive kontroller, CSV og fysisk lagring mangler stadig; hele funktionerne er ikke afsluttet som migreret. R-001–005 er forslag, ikke godkendte ændringer.

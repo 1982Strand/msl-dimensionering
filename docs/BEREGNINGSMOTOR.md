@@ -16,7 +16,7 @@ Implementeret efter brugerens B-014 den 29. september 2026. Reference: `a330cfd6
 
 Motoren har ingen afhængighed af Python, Streamlit, React eller Typst. `dimensioner()` modtager input, aktive tabeller, materialer og indstillinger og returnerer samme dimensioneringsdata som den gamle app. Et blokeret forløb returnerer `null`; den kommende tilstandsstyring skal dermed rydde det gamle resultat som originalen. Inputobjekter ændres ikke af beregningen.
 
-Programmets standarddata indeholder ikke testcasenes forventede resultater. Redigerede tabeller kan sendes direkte til motoren, men selve redigering, omdannelse fra kurvepunkter og gemning er endnu ikke flyttet.
+Programmets standarddata indeholder ikke testcasenes forventede resultater. Redigerede tabeller kan sendes direkte til motoren. Normalisering, kurveinterpolation, tabelopbygning, JSON-indlæsning og beslutninger om gemning er nu flyttet til rene funktioner; se `DATAREDIGERING.md`. React-editor og fysisk lagring udestår.
 
 ## Præcision og bevis
 
@@ -31,7 +31,7 @@ Referenceforventningerne ændres ikke for at få TypeScript til at bestå. Kontr
 
 ## Resterende arbejde
 
-1. Flyt øvrig datalogik: omdannelse og normalisering af redigerede diagramkurver, materialer og VejDim-tabeller samt import/nulstilling/gemning. Udbyg originale cases før tilsvarende portering.
+1. Tilslut de porterede datafunktioner til React-editor, nulstilling og den aftalte lagring. Normalisering, tabelopbygning, JSON-indlæsning og korrelationer er kontrolleret mod 236 nye forventninger; samlet 2.575 tests består. CSV og UI-forløb udestår.
 2. Flyt tilstandsstyring, navigation, referencegrupper og appens samlede status-/forklaringstekster. De 17 tests genskaber beregningerne, men betjener ingen React-kontroller.
 3. Kontroller flere kombinationer af indstillinger i hele forløbet, herunder under-minimum-valg, slettede materialer, produktfallback og ustabil phi-kobling. De enkelte kernemoduler har bredere dækning end de sammensatte forløb.
 4. Byg React/Vite/shadcn-grundlaget og gennemfør browserkontrol. Visuelle udkast og figurgeometri kræver særskilt accept.
@@ -50,3 +50,7 @@ serena memories check C:\MSL-Dimensionering
 ```
 
 På Windows kan CLI-output kræve `PYTHONIOENCODING=utf-8`, fordi Serenas kontrolresultat indeholder Unicode-tegn.
+
+## Supplerende dataleverance
+
+`editing.ts`, `input-values.ts` og `correlation.ts` flytter reglerne for materialer, diagramtabeller, VejDim-rækker og indstillinger. Se [DATAREDIGERING.md](DATAREDIGERING.md) for referencegrundlag og præcis afgrænsning. De 2.337 tests ovenfor beskriver første motorleverance; samlet består nu 2.575.

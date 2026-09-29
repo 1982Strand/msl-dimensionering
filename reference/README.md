@@ -90,3 +90,7 @@ npm test
 & C:\geonet_beregning\.venv\Scripts\python.exe tools/capture_engine_boundaries.py
 & C:\geonet_beregning\.venv\Scripts\python.exe tools/export_engine_data.py --check
 ```
+
+## Supplerende dataredigering
+
+`editing-cases.json` indeholder 150 forventninger fra uændrede originale datafunktioner og isoleret filindlæsning/gemning. `data-flow-cases.json` indeholder 86 forventninger for korrelationer, trafiktekster og redigerede data gennem beregningsmotoren. `tests/editing.test.ts` og `tests/data-flow.test.ts` matcher dem præcist og kontrollerer uændrede input. Samlet består 2.575 tests inklusive dækningskontroller. Se `docs/DATAREDIGERING.md` for omfang, genkørsel og begrænsninger. Den tidligere `typescript-engine-results.json` bevares som dokumentation for første motorleverance; den nye kontrol ligger i `editing-results.json`.

@@ -1,0 +1,8 @@
+# Redigerbare grunddata
+- src/engine/editing.ts normaliserer materialer, diagrammer, VejDim-rækker og indstillinger. JSON-loaders modtager tekst/null. gem_*-funktionerne returnerer write/delete-handlinger; de udfører ikke fysisk lagring eller vælger personlige/fælles data.
+- Tom diagramcelle er null, ikke 0 og ikke et signal om interpolation. Diagrammetadata låses til originalens seks standarddiagrammer. Redigerede rækker bliver direkte til opslagstabel.
+- VejDim-normalisering supplerer manglende standard-T/Eu-rækker; samme T/Eu flere gange bevares i listen, mens opslaget bruger sidste række. Afledte totaler genberegnes. Standardidentisk VejDim gemning betyder delete.
+- Materialenavne bruger Python Unicode-casefold fra python-casefold.json. Manglende maskekrav kan udfyldes fra standarden ved indlæsning. Bevar Python-afrunding og skellet mellem tomme, ugyldige og numeriske input.
+- tools/capture_editing_reference.py kører uændrede AST-funktionskroppe og originale filoperationer i midlertidigt kildearkiv. tools/capture_data_flow_reference.py supplerer med korrelation og sammensatte redigeret-data-til-beregning-cases. Begge nægter at overskrive forventninger.
+- Arbejdsgangsændringer R-001–005 er beskrevet i docs/REDIGERINGSFORSLAG.md. Tjek docs/BESLUTNINGER.md for godkendelse før kladde/gemmetidspunkt/fortryd indføres. Et ønske om forslag er ikke en ændringsgodkendelse.
+- Generelle rammer: `mem:core`. Kontroller: `mem:task_completion`.

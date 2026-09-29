@@ -1,0 +1,41 @@
+{
+  "source_commit": "a330cfd6734ac2478be1304a362c69f94e412d25",
+  "date": "2026-09-29",
+  "runtime": "Node 24.19.0",
+  "platform": "Windows",
+  "comparison": "deep strict equality; no migration tolerance",
+  "tests": {
+    "previous_tests": 2337,
+    "editing_expectations": 150,
+    "data_flow_expectations": 86,
+    "new_coverage_guards": 2,
+    "total_pass": 2575,
+    "fail": 0
+  },
+  "checks": {
+    "strict_typescript": "passed",
+    "prettier": "passed",
+    "original_editing_recapture": "passed",
+    "original_data_flow_recapture": "passed",
+    "legacy_checkout": "clean and unchanged"
+  },
+  "limitations": [
+    "No React editor/browser test yet",
+    "No physical storage adapter chosen",
+    "CSV and UI reset/navigation flows remain",
+    "Editing improvement proposals are not implemented"
+  ],
+  "hash_encoding": "UTF-8 normalized to LF before SHA-256",
+  "sha256": {
+    "reference/editing-cases.json": "c524c53fa4c337154e53d4aea88f2e96fe1a660e7e9518b68d50cbdd31c2f72b",
+    "reference/data-flow-cases.json": "1a2d75653bbf05068ada8036aaf5f5347972830ee13940204e3c959e687619c2",
+    "src/engine/editing.ts": "9a305d83675e4a330ccc946a6dc815b0874a735ce8bef27a55bb5cdaefefe4a9",
+    "src/engine/input-values.ts": "9b465b1f070a41d5cacedeef72a8330ea735f2b3266095e926d57e44c8f8b435",
+    "src/engine/correlation.ts": "9edd302a5934cf8d0a001f48cbcf3a9fe01e98025092d52d07b15fa1bc9cddf6",
+    "src/engine/python-casefold.json": "c566066b159bde79e5ecce0bbd2b53b22c74c534e5fe42a8d477e7a6741cd88c",
+    "tests/editing.test.ts": "190b47976b7f26a839f6d4c9a6500153b938341cbb5ce78890dbdfc4591e5468",
+    "tests/data-flow.test.ts": "bffbc787b11d5037e1a201f983b0e2106fe4e920a6c2ed51e176b0669083dbea",
+    "tools/capture_editing_reference.py": "7a8acd03784608c883cc3ca28b7f1680ad19848b7e2650b179776ab9d60237bd",
+    "tools/capture_data_flow_reference.py": "0269bc9bafdf853616275fa32c2c4deeb6f9def922f9cdbd811b48e59cf43c3a"
+  }
+}
