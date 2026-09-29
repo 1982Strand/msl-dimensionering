@@ -35,3 +35,5 @@ Lokale brugerfiler er bevaret uden at blive uploadet. Det skal stadig aftales, h
 4. Registrer brugerens accept af cases og eventuelle numeriske tolerancer.
 
 Den første referencekontrol er nu kørt og genkørt: 2.062 cases fra beregningsmodulerne og 24 registrerede trin i appens brugerforløb giver samme resultater ved genkørsel. Se `reference/README.md`. Kørslerne anvender en ny midlertidig udpakning af Git-committen uden brugerdefinerede filer. Ti rapportcases er desuden genereret med originalen og en isoleret TypeScript/Typst-prototype; deres dynamiske tekstindhold er kontrolleret. Standard-eksemplets tre PDF-sider er visuelt gennemgået i begge motorer. Øvrige rapporters visuelle kontrol, LibreOffice, browserforløb og alle redigeringsforløb udestår. Der findes endnu ingen ny beregningsmotor.
+
+Formateringstilpasningen er registreret særskilt i `reference/report-format-results.json`: ti cases med samme tekstlinjer og sidefordeling som Word-referencen. De oprindelige referenceforventninger er uændrede. Rapportdata og skabelonversion gemmes med PDF'en lokalt; se `docs/RAPPORTSKABELON.md`.

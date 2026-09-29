@@ -11,6 +11,8 @@ Oprettet 29. september 2026. Faser og acceptkriterier er foreslåede, medmindre 
 
 Næste afhængige valg er arkitektur, jf. `ARKITEKTURVALG.md`. Rapportvurderingen foreligger i `RAPPORT_EVALUERING.md` og `TYPST_AFPROEVNING.md`. PDF som muligt primært format, Word-behovet og et konkret rapportdesign skal afklares før endelig implementation. Der kan fortsat arbejdes på referencecases og kortlægning uafhængigt af dette valg.
 
+Efter B-012 arbejdes videre med Typst og bevarede rapportdata: firmaprofil/layout er adskilt, eksporten arkiverer data, skabelon, billeder og PDF, og de ti referencecases har nu samme tekstlinjer og sidefordeling som Word. Syv prototypetests består. Redigeringsmuligheder og afgrænsning fremgår af `RAPPORTSKABELON.md`; dette er fortsat ikke endelig visuel accept.
+
 ## Mål og afgrænsning
 
 Den eksisterende app omskrives til en brugerflade med React, TypeScript, Vite og shadcn/ui. Beregninger og funktionalitet skal bevares. Om beregningsmotoren også skal flyttes fra Python til TypeScript, er et åbent arkitekturvalg.

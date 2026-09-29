@@ -6,7 +6,10 @@ Isoleret afprøvning, ikke produktionskode eller godkendt rapportdesign. Beregni
 
 - `prepare_reference.py`: kører den uændrede gamle Word-bygger med ti syntetiske cases og observerer dens faktiske skabelondata. Manglende/tomme tekster behandles af originalen. Resultatet sammenlignes med `reference/report-contexts.json`; `--record` afviser overskrivning.
 - `compile.ts`: valideret JSON → separat midlertidig mappe pr. job → Typst → PDF. Ingen eksterne TypeScript-pakker; afprøvet med Node 24.19.0 og indbygget TypeScript-understøttelse. Der er endnu ikke en separat `tsc`-kontrol.
-- `report.typ`: foreløbig sideopsætning med den eksisterende rapports rækkefølge, tekst og brand som sammenligningsgrundlag. Layout, skrifter og sideskift er ikke en identisk portering.
+- `report.typ`: indlæser rapportdata og firmaprofil og kalder `layout.typ`.
+- `theme.json`: versionsmærket firmaprofil, logo, skrifter, margener og afsluttende afsnit. `layout.typ` indeholder selve layoutreglerne. Se `docs/RAPPORTSKABELON.md` for redigering og aktuelle afvigelser.
+- `archive.ts`: gemmer PDF, data, skabelon og billeder samlet med kontrolsummer i nye pakker uden at overskrive tidligere rapporter. Ikke et produktionsklart backupsystem.
+- `check_layout.py`: sammenligner tekstlinjer, sider og positioner med Word-referencen; måler forskelle uden at indføre beregningstolerancer.
 - `compile.test.ts`: inputkontrakt, stier, tekst som data, gentagelighed og adskillelse af samtidige job.
 - `check_pdfs.py`: sammenholder PDF-tekst med alle dynamiske tekst-/tabelværdier. Kun blanktegn, soft hyphens og eksakt kendt sidehoved/-fod normaliseres. Desuden kontrolleres de to Typst-figurers afkodede RGB-pixels mod inputbillederne.
 - `export-word-pdf.ps1`: referencekonvertering via en separat skjult Word-instans. Input åbnes skrivebeskyttet og lukkes uden at blive gemt. Ingen igangværende Word-dokumenter tilgås. Scriptet har endnu ingen ekstern watchdog ved en fastlåst COM-konvertering og er kun et lokalt referenceværktøj.
@@ -22,6 +25,7 @@ Kør fra `C:\MSL-Dimensionering`. `NODE_BIN` og `ARTIFACT_PYTHON` nedenfor beteg
 & $NODE_BIN spikes/report-typescript/compile.ts
 & $NODE_BIN --test spikes/report-typescript/compile.test.ts
 & $ARTIFACT_PYTHON spikes/report-typescript/check_pdfs.py
+& $ARTIFACT_PYTHON spikes/report-typescript/check_layout.py
 ```
 
 Compilerprogrammet gemmes kun under `.local`, versionsfastlåst til 0.15.1 med SHA-256 fra GitHubs releaseasset. Ingen global installation eller Typst-cloudkonto bruges. JSON, billeder, DOCX, PDF og målinger ligger under `.local/report-prototype/`; kun syntetiske referenceforventninger og kontrolresultater indgår i Git.

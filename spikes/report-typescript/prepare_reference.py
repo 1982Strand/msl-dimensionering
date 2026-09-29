@@ -77,7 +77,11 @@ def prepare(output: Path, record: bool = False):
             fixture = {'schema_version':1, 'source_commit':COMMIT, 'case':name, 'snapshot':snapshot,
                        'context':captured, 'sections':rapport.SECTION_TITLER,
                        'scope':'Report assembly only. Formatted strings from original Python; images reused from original UI fixtures, not a test of report image selection.'}
-            write_json(output/'inputs'/f'{name}.json', fixture)
+            write_json(output/'inputs'/f'{name}.json', {**fixture, 'source_data': {
+                'dimensioning':data['dim'], 'metadata':data['metadata'],
+                'report_choices':data['valg'], 'edited_texts':data['tekster'],
+                'settings':deepcopy(snapshots[snapshot]['settings']),
+            }})
             contexts.append(fixture)
             index.append({'case':name, 'snapshot':snapshot, 'docx_ms':elapsed})
             print(name, flush=True)

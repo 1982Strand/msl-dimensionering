@@ -1,0 +1,960 @@
+{
+  "date": "2026-09-29",
+  "source_commit": "a330cfd6734ac2478be1304a362c69f94e412d25",
+  "reference_renderer": "Microsoft Word 16.0 on Windows",
+  "typst": "0.15.1",
+  "node": "24.19.0",
+  "theme_version": 2,
+  "source_sha256": {
+    "spikes/report-typescript/compile.ts": "c9164c56947a14f2ec92c0a1f97930c7dfe043686ef8410d195d2645fd8dac15",
+    "spikes/report-typescript/archive.ts": "a7e93f2bae466654b87d46fcbc6a3f9d757751fa1d3766ebc9246216d38c1c9a",
+    "spikes/report-typescript/report.typ": "457f92622f770469c41ff6b90fd962b92b99ed3fa24d1974a6f8246cf15f477f",
+    "spikes/report-typescript/layout.typ": "07cd225e381950cde39c0be1710182eea50cca9b07119ef77e76fc5128db1eb3",
+    "spikes/report-typescript/theme.json": "ed35855306f6e03735e37065ed8e74133547ddf6c14428e5294c8049387888d2"
+  },
+  "layout": [
+    {
+      "case": "standard",
+      "pages_original": 3,
+      "pages_typst": 3,
+      "body_lines_original": 74,
+      "body_lines_typst": 74,
+      "identical_lines": 74,
+      "identical_lines_on_other_page": 0,
+      "max_x_shift_pt": 0.04,
+      "max_y_shift_pt": 0.53,
+      "different_linebreaks": []
+    },
+    {
+      "case": "two-layers",
+      "pages_original": 3,
+      "pages_typst": 3,
+      "body_lines_original": 74,
+      "body_lines_typst": 74,
+      "identical_lines": 74,
+      "identical_lines_on_other_page": 0,
+      "max_x_shift_pt": 0.04,
+      "max_y_shift_pt": 0.53,
+      "different_linebreaks": []
+    },
+    {
+      "case": "nx850",
+      "pages_original": 3,
+      "pages_typst": 3,
+      "body_lines_original": 74,
+      "body_lines_typst": 74,
+      "identical_lines": 74,
+      "identical_lines_on_other_page": 0,
+      "max_x_shift_pt": 0.04,
+      "max_y_shift_pt": 0.53,
+      "different_linebreaks": []
+    },
+    {
+      "case": "traffic",
+      "pages_original": 3,
+      "pages_typst": 3,
+      "body_lines_original": 75,
+      "body_lines_typst": 75,
+      "identical_lines": 75,
+      "identical_lines_on_other_page": 0,
+      "max_x_shift_pt": 0.04,
+      "max_y_shift_pt": 0.53,
+      "different_linebreaks": []
+    },
+    {
+      "case": "custom-three",
+      "pages_original": 3,
+      "pages_typst": 3,
+      "body_lines_original": 76,
+      "body_lines_typst": 76,
+      "identical_lines": 76,
+      "identical_lines_on_other_page": 0,
+      "max_x_shift_pt": 0.04,
+      "max_y_shift_pt": 0.53,
+      "different_linebreaks": []
+    },
+    {
+      "case": "manual-phi",
+      "pages_original": 3,
+      "pages_typst": 3,
+      "body_lines_original": 76,
+      "body_lines_typst": 76,
+      "identical_lines": 76,
+      "identical_lines_on_other_page": 0,
+      "max_x_shift_pt": 0.04,
+      "max_y_shift_pt": 0.53,
+      "different_linebreaks": []
+    },
+    {
+      "case": "centimetres",
+      "pages_original": 3,
+      "pages_typst": 3,
+      "body_lines_original": 76,
+      "body_lines_typst": 76,
+      "identical_lines": 76,
+      "identical_lines_on_other_page": 0,
+      "max_x_shift_pt": 0.04,
+      "max_y_shift_pt": 0.53,
+      "different_linebreaks": []
+    },
+    {
+      "case": "empty-text",
+      "pages_original": 2,
+      "pages_typst": 2,
+      "body_lines_original": 30,
+      "body_lines_typst": 30,
+      "identical_lines": 30,
+      "identical_lines_on_other_page": 0,
+      "max_x_shift_pt": 0.0,
+      "max_y_shift_pt": 0.53,
+      "different_linebreaks": []
+    },
+    {
+      "case": "no-basis",
+      "pages_original": 3,
+      "pages_typst": 3,
+      "body_lines_original": 69,
+      "body_lines_typst": 69,
+      "identical_lines": 69,
+      "identical_lines_on_other_page": 0,
+      "max_x_shift_pt": 0.04,
+      "max_y_shift_pt": 0.53,
+      "different_linebreaks": []
+    },
+    {
+      "case": "long-text",
+      "pages_original": 3,
+      "pages_typst": 3,
+      "body_lines_original": 87,
+      "body_lines_typst": 87,
+      "identical_lines": 87,
+      "identical_lines_on_other_page": 0,
+      "max_x_shift_pt": 0.0,
+      "max_y_shift_pt": 0.53,
+      "different_linebreaks": []
+    }
+  ],
+  "content_checks": [
+    {
+      "case": "standard",
+      "baseline-pdf": {
+        "pages": 3,
+        "bytes": 459924,
+        "missing": [],
+        "expected_figure_pixels_present": false,
+        "expected_figures": 2,
+        "basis_heading": true,
+        "page_sizes": [
+          [
+            0.0,
+            0.0,
+            595.32,
+            841.92
+          ],
+          [
+            0.0,
+            0.0,
+            595.32,
+            841.92
+          ],
+          [
+            0.0,
+            0.0,
+            595.32,
+            841.92
+          ]
+        ],
+        "fonts": [
+          "/BCDEEE+Calibri",
+          "/BCDFEE+ArialMT",
+          "/BCDGEE+Arial-ItalicMT",
+          "/BCDHEE+Calibri",
+          "/BCDIEE+Calibri-Bold",
+          "/BCDJEE+Calibri-Italic",
+          "/BCDKEE+Calibri-Bold"
+        ],
+        "sha256": "7a3e2d232868612d3eef563d8f87ce91362903b76ca9545ec816449b60b78f45"
+      },
+      "typst": {
+        "pages": 3,
+        "bytes": 306150,
+        "missing": [],
+        "expected_figure_pixels_present": true,
+        "expected_figures": 2,
+        "basis_heading": true,
+        "page_sizes": [
+          [
+            0.0,
+            0.0,
+            595.3,
+            841.9
+          ],
+          [
+            0.0,
+            0.0,
+            595.3,
+            841.9
+          ],
+          [
+            0.0,
+            0.0,
+            595.3,
+            841.9
+          ]
+        ],
+        "fonts": [
+          "/AKORHK+Calibri",
+          "/DTWYIX+Calibri-Italic",
+          "/TJYTGB+Calibri-Bold",
+          "/UWJSMI+Arial-ItalicMT",
+          "/VYPNLR+ArialMT"
+        ],
+        "sha256": "4243f6244bc2349393c56730aa03ad642df1049f0257293b6470cd06881892e1"
+      }
+    },
+    {
+      "case": "two-layers",
+      "baseline-pdf": {
+        "pages": 3,
+        "bytes": 361884,
+        "missing": [],
+        "expected_figure_pixels_present": true,
+        "expected_figures": 0,
+        "basis_heading": true,
+        "page_sizes": [
+          [
+            0.0,
+            0.0,
+            595.32,
+            841.92
+          ],
+          [
+            0.0,
+            0.0,
+            595.32,
+            841.92
+          ],
+          [
+            0.0,
+            0.0,
+            595.32,
+            841.92
+          ]
+        ],
+        "fonts": [
+          "/BCDEEE+Calibri",
+          "/BCDFEE+ArialMT",
+          "/BCDGEE+Arial-ItalicMT",
+          "/BCDHEE+Calibri",
+          "/BCDIEE+Calibri-Bold",
+          "/BCDJEE+Calibri-Italic",
+          "/BCDKEE+Calibri-Bold"
+        ],
+        "sha256": "2c22d1cd8cf848c4a1bf1d0592576b694c95abacf90f6f7113f48fd587c0ecaa"
+      },
+      "typst": {
+        "pages": 3,
+        "bytes": 156876,
+        "missing": [],
+        "expected_figure_pixels_present": true,
+        "expected_figures": 0,
+        "basis_heading": true,
+        "page_sizes": [
+          [
+            0.0,
+            0.0,
+            595.3,
+            841.9
+          ],
+          [
+            0.0,
+            0.0,
+            595.3,
+            841.9
+          ],
+          [
+            0.0,
+            0.0,
+            595.3,
+            841.9
+          ]
+        ],
+        "fonts": [
+          "/DTWYIX+Calibri-Italic",
+          "/FZLICH+Calibri",
+          "/SCNDXM+Calibri-Bold",
+          "/UWJSMI+Arial-ItalicMT",
+          "/VYPNLR+ArialMT"
+        ],
+        "sha256": "9162f8055603e8d2fbeae4d5ac84485ca6ac59762b7aebd713fcded79ded1760"
+      }
+    },
+    {
+      "case": "nx850",
+      "baseline-pdf": {
+        "pages": 3,
+        "bytes": 366639,
+        "missing": [],
+        "expected_figure_pixels_present": true,
+        "expected_figures": 0,
+        "basis_heading": true,
+        "page_sizes": [
+          [
+            0.0,
+            0.0,
+            595.32,
+            841.92
+          ],
+          [
+            0.0,
+            0.0,
+            595.32,
+            841.92
+          ],
+          [
+            0.0,
+            0.0,
+            595.32,
+            841.92
+          ]
+        ],
+        "fonts": [
+          "/BCDEEE+Calibri",
+          "/BCDFEE+ArialMT",
+          "/BCDGEE+Arial-ItalicMT",
+          "/BCDHEE+Calibri",
+          "/BCDIEE+Calibri-Bold",
+          "/BCDJEE+Calibri-Italic",
+          "/BCDKEE+Calibri-Bold"
+        ],
+        "sha256": "ff32bbff875650c6d3f619765ddcd8695f781ab84f2b7421efdeeec69b414517"
+      },
+      "typst": {
+        "pages": 3,
+        "bytes": 157610,
+        "missing": [],
+        "expected_figure_pixels_present": true,
+        "expected_figures": 0,
+        "basis_heading": true,
+        "page_sizes": [
+          [
+            0.0,
+            0.0,
+            595.3,
+            841.9
+          ],
+          [
+            0.0,
+            0.0,
+            595.3,
+            841.9
+          ],
+          [
+            0.0,
+            0.0,
+            595.3,
+            841.9
+          ]
+        ],
+        "fonts": [
+          "/CQYZGV+Calibri-Bold",
+          "/DTWYIX+Calibri-Italic",
+          "/QGZXIY+Calibri",
+          "/UWJSMI+Arial-ItalicMT",
+          "/VYPNLR+ArialMT"
+        ],
+        "sha256": "0b45c4f2af75063b40fcbc4b8b638dae67e66f761537b0450d3fea310b167c12"
+      }
+    },
+    {
+      "case": "traffic",
+      "baseline-pdf": {
+        "pages": 3,
+        "bytes": 362210,
+        "missing": [],
+        "expected_figure_pixels_present": true,
+        "expected_figures": 0,
+        "basis_heading": true,
+        "page_sizes": [
+          [
+            0.0,
+            0.0,
+            595.32,
+            841.92
+          ],
+          [
+            0.0,
+            0.0,
+            595.32,
+            841.92
+          ],
+          [
+            0.0,
+            0.0,
+            595.32,
+            841.92
+          ]
+        ],
+        "fonts": [
+          "/BCDEEE+Calibri",
+          "/BCDFEE+ArialMT",
+          "/BCDGEE+Arial-ItalicMT",
+          "/BCDHEE+Calibri",
+          "/BCDIEE+Calibri-Bold",
+          "/BCDJEE+Calibri-Italic",
+          "/BCDKEE+Calibri-Bold"
+        ],
+        "sha256": "17891b5700847d25fb6fbcae6bbd726ae52c0abf1ea0bb914ca9241d494d7b11"
+      },
+      "typst": {
+        "pages": 3,
+        "bytes": 157714,
+        "missing": [],
+        "expected_figure_pixels_present": true,
+        "expected_figures": 0,
+        "basis_heading": true,
+        "page_sizes": [
+          [
+            0.0,
+            0.0,
+            595.3,
+            841.9
+          ],
+          [
+            0.0,
+            0.0,
+            595.3,
+            841.9
+          ],
+          [
+            0.0,
+            0.0,
+            595.3,
+            841.9
+          ]
+        ],
+        "fonts": [
+          "/DTWYIX+Calibri-Italic",
+          "/OVVBLG+Calibri",
+          "/UWJSMI+Arial-ItalicMT",
+          "/VYPNLR+ArialMT",
+          "/YTCNUF+Calibri-Bold"
+        ],
+        "sha256": "7f0a45bd8289e5cfa577b8093c681e5662477fb0f4afc799331e9d5b4a27ae18"
+      }
+    },
+    {
+      "case": "custom-three",
+      "baseline-pdf": {
+        "pages": 3,
+        "bytes": 362539,
+        "missing": [],
+        "expected_figure_pixels_present": true,
+        "expected_figures": 0,
+        "basis_heading": true,
+        "page_sizes": [
+          [
+            0.0,
+            0.0,
+            595.32,
+            841.92
+          ],
+          [
+            0.0,
+            0.0,
+            595.32,
+            841.92
+          ],
+          [
+            0.0,
+            0.0,
+            595.32,
+            841.92
+          ]
+        ],
+        "fonts": [
+          "/BCDEEE+Calibri",
+          "/BCDFEE+ArialMT",
+          "/BCDGEE+Arial-ItalicMT",
+          "/BCDHEE+Calibri",
+          "/BCDIEE+Calibri-Bold",
+          "/BCDJEE+Calibri-Italic",
+          "/BCDKEE+Calibri-Bold"
+        ],
+        "sha256": "102f47799289bf1dfc2c5f9cbbbf356b49754831a6240a274b8ae98b923b9c16"
+      },
+      "typst": {
+        "pages": 3,
+        "bytes": 157495,
+        "missing": [],
+        "expected_figure_pixels_present": true,
+        "expected_figures": 0,
+        "basis_heading": true,
+        "page_sizes": [
+          [
+            0.0,
+            0.0,
+            595.3,
+            841.9
+          ],
+          [
+            0.0,
+            0.0,
+            595.3,
+            841.9
+          ],
+          [
+            0.0,
+            0.0,
+            595.3,
+            841.9
+          ]
+        ],
+        "fonts": [
+          "/DTWYIX+Calibri-Italic",
+          "/EZRNVT+Calibri-Bold",
+          "/RFSHPG+Calibri",
+          "/UWJSMI+Arial-ItalicMT",
+          "/VYPNLR+ArialMT"
+        ],
+        "sha256": "6890a30fcf2015cc5ca1b88e1090e469a6ac17137913b3dc58177a6da5659c79"
+      }
+    },
+    {
+      "case": "manual-phi",
+      "baseline-pdf": {
+        "pages": 3,
+        "bytes": 362535,
+        "missing": [],
+        "expected_figure_pixels_present": true,
+        "expected_figures": 0,
+        "basis_heading": true,
+        "page_sizes": [
+          [
+            0.0,
+            0.0,
+            595.32,
+            841.92
+          ],
+          [
+            0.0,
+            0.0,
+            595.32,
+            841.92
+          ],
+          [
+            0.0,
+            0.0,
+            595.32,
+            841.92
+          ]
+        ],
+        "fonts": [
+          "/BCDEEE+Calibri",
+          "/BCDFEE+ArialMT",
+          "/BCDGEE+Arial-ItalicMT",
+          "/BCDHEE+Calibri",
+          "/BCDIEE+Calibri-Bold",
+          "/BCDJEE+Calibri-Italic",
+          "/BCDKEE+Calibri-Bold"
+        ],
+        "sha256": "33fbf3a1af4d7c337e0d9ff59c012038256324d6bccf1fcb84ae0acebfdeced7"
+      },
+      "typst": {
+        "pages": 3,
+        "bytes": 157483,
+        "missing": [],
+        "expected_figure_pixels_present": true,
+        "expected_figures": 0,
+        "basis_heading": true,
+        "page_sizes": [
+          [
+            0.0,
+            0.0,
+            595.3,
+            841.9
+          ],
+          [
+            0.0,
+            0.0,
+            595.3,
+            841.9
+          ],
+          [
+            0.0,
+            0.0,
+            595.3,
+            841.9
+          ]
+        ],
+        "fonts": [
+          "/CZCBTT+Calibri-Bold",
+          "/DTWYIX+Calibri-Italic",
+          "/NETXSH+Calibri",
+          "/UWJSMI+Arial-ItalicMT",
+          "/VYPNLR+ArialMT"
+        ],
+        "sha256": "d0179c8de1116f5bc1c1974b113395c2e46a8b5680f2a2f54112cf5ede2d228e"
+      }
+    },
+    {
+      "case": "centimetres",
+      "baseline-pdf": {
+        "pages": 3,
+        "bytes": 362541,
+        "missing": [],
+        "expected_figure_pixels_present": true,
+        "expected_figures": 0,
+        "basis_heading": true,
+        "page_sizes": [
+          [
+            0.0,
+            0.0,
+            595.32,
+            841.92
+          ],
+          [
+            0.0,
+            0.0,
+            595.32,
+            841.92
+          ],
+          [
+            0.0,
+            0.0,
+            595.32,
+            841.92
+          ]
+        ],
+        "fonts": [
+          "/BCDEEE+Calibri",
+          "/BCDFEE+ArialMT",
+          "/BCDGEE+Arial-ItalicMT",
+          "/BCDHEE+Calibri",
+          "/BCDIEE+Calibri-Bold",
+          "/BCDJEE+Calibri-Italic",
+          "/BCDKEE+Calibri-Bold"
+        ],
+        "sha256": "9171dacd74cf9b5a4845063e6da9cc1072f3a3d053b0fc724b5280d3d2cd342c"
+      },
+      "typst": {
+        "pages": 3,
+        "bytes": 157468,
+        "missing": [],
+        "expected_figure_pixels_present": true,
+        "expected_figures": 0,
+        "basis_heading": true,
+        "page_sizes": [
+          [
+            0.0,
+            0.0,
+            595.3,
+            841.9
+          ],
+          [
+            0.0,
+            0.0,
+            595.3,
+            841.9
+          ],
+          [
+            0.0,
+            0.0,
+            595.3,
+            841.9
+          ]
+        ],
+        "fonts": [
+          "/DTWYIX+Calibri-Italic",
+          "/GXQTNC+Calibri",
+          "/KMJQZY+Calibri-Bold",
+          "/UWJSMI+Arial-ItalicMT",
+          "/VYPNLR+ArialMT"
+        ],
+        "sha256": "c10309e730756d37a6dd4028730fc27ff04ddcf19f38cecd1b82408fda62b9e7"
+      }
+    },
+    {
+      "case": "empty-text",
+      "baseline-pdf": {
+        "pages": 2,
+        "bytes": 346444,
+        "missing": [],
+        "expected_figure_pixels_present": true,
+        "expected_figures": 0,
+        "basis_heading": true,
+        "page_sizes": [
+          [
+            0.0,
+            0.0,
+            595.32,
+            841.92
+          ],
+          [
+            0.0,
+            0.0,
+            595.32,
+            841.92
+          ]
+        ],
+        "fonts": [
+          "/BCDEEE+Calibri",
+          "/BCDFEE+ArialMT",
+          "/BCDGEE+Arial-ItalicMT",
+          "/BCDHEE+Calibri",
+          "/BCDIEE+Calibri-Bold",
+          "/BCDJEE+Calibri-Italic",
+          "/BCDKEE+Calibri-Bold"
+        ],
+        "sha256": "bf42ede015ae247992c48b3db287f518a7504ee1acb85db63c330bd1f21f0c17"
+      },
+      "typst": {
+        "pages": 2,
+        "bytes": 147838,
+        "missing": [],
+        "expected_figure_pixels_present": true,
+        "expected_figures": 0,
+        "basis_heading": true,
+        "page_sizes": [
+          [
+            0.0,
+            0.0,
+            595.3,
+            841.9
+          ],
+          [
+            0.0,
+            0.0,
+            595.3,
+            841.9
+          ]
+        ],
+        "fonts": [
+          "/AAJWFE+ArialMT",
+          "/DTWYIX+Calibri-Italic",
+          "/NVYOVV+Calibri",
+          "/RIUUXG+Calibri-Bold",
+          "/UWJSMI+Arial-ItalicMT"
+        ],
+        "sha256": "0c94b4b6b0b0ec8053df67501c1b12c4ffe3b2ec2c960b1d761a53351022ff49"
+      }
+    },
+    {
+      "case": "no-basis",
+      "baseline-pdf": {
+        "pages": 3,
+        "bytes": 345337,
+        "missing": [],
+        "expected_figure_pixels_present": true,
+        "expected_figures": 0,
+        "basis_heading": false,
+        "page_sizes": [
+          [
+            0.0,
+            0.0,
+            595.32,
+            841.92
+          ],
+          [
+            0.0,
+            0.0,
+            595.32,
+            841.92
+          ],
+          [
+            0.0,
+            0.0,
+            595.32,
+            841.92
+          ]
+        ],
+        "fonts": [
+          "/BCDEEE+Calibri",
+          "/BCDFEE+ArialMT",
+          "/BCDGEE+Arial-ItalicMT",
+          "/BCDHEE+Calibri",
+          "/BCDIEE+Calibri-Bold",
+          "/BCDJEE+Calibri-Italic",
+          "/BCDKEE+Calibri-Bold"
+        ],
+        "sha256": "f399c07fbbe6570761fa414bf0f2566c880289ffc95b2235c5f03e50e61b008f"
+      },
+      "typst": {
+        "pages": 3,
+        "bytes": 150938,
+        "missing": [],
+        "expected_figure_pixels_present": true,
+        "expected_figures": 0,
+        "basis_heading": false,
+        "page_sizes": [
+          [
+            0.0,
+            0.0,
+            595.3,
+            841.9
+          ],
+          [
+            0.0,
+            0.0,
+            595.3,
+            841.9
+          ],
+          [
+            0.0,
+            0.0,
+            595.3,
+            841.9
+          ]
+        ],
+        "fonts": [
+          "/EUFUHS+Calibri",
+          "/QMOTDH+Calibri-Bold",
+          "/UWJSMI+Arial-ItalicMT",
+          "/VAALMM+Calibri-Italic",
+          "/VYPNLR+ArialMT"
+        ],
+        "sha256": "125d3040bea08fe96e08f1a0a3647540609b151535e3d057b50be559d301aca0"
+      }
+    },
+    {
+      "case": "long-text",
+      "baseline-pdf": {
+        "pages": 3,
+        "bytes": 359093,
+        "missing": [],
+        "expected_figure_pixels_present": true,
+        "expected_figures": 0,
+        "basis_heading": true,
+        "page_sizes": [
+          [
+            0.0,
+            0.0,
+            595.32,
+            841.92
+          ],
+          [
+            0.0,
+            0.0,
+            595.32,
+            841.92
+          ],
+          [
+            0.0,
+            0.0,
+            595.32,
+            841.92
+          ]
+        ],
+        "fonts": [
+          "/BCDEEE+Calibri",
+          "/BCDFEE+ArialMT",
+          "/BCDGEE+Arial-ItalicMT",
+          "/BCDHEE+Calibri",
+          "/BCDIEE+Calibri-Bold",
+          "/BCDJEE+Calibri-Italic",
+          "/BCDKEE+Calibri-Bold"
+        ],
+        "sha256": "088beb777711a686a43ff0154b35718dbbbba70652ee9ee9b574067fff2182d9"
+      },
+      "typst": {
+        "pages": 3,
+        "bytes": 156370,
+        "missing": [],
+        "expected_figure_pixels_present": true,
+        "expected_figures": 0,
+        "basis_heading": true,
+        "page_sizes": [
+          [
+            0.0,
+            0.0,
+            595.3,
+            841.9
+          ],
+          [
+            0.0,
+            0.0,
+            595.3,
+            841.9
+          ],
+          [
+            0.0,
+            0.0,
+            595.3,
+            841.9
+          ]
+        ],
+        "fonts": [
+          "/DTWYIX+Calibri-Italic",
+          "/IXYCAP+Calibri",
+          "/UWJSMI+Arial-ItalicMT",
+          "/VTFLBX+Calibri-Bold",
+          "/VYPNLR+ArialMT"
+        ],
+        "sha256": "f1c8658517b4cfe38b7750da536c2102a3e3948bdfd2a11a18b76e4de4bdf002"
+      }
+    }
+  ],
+  "exports": [
+    {
+      "case": "standard",
+      "milliseconds": 446.08089999999993,
+      "sha256": "4243f6244bc2349393c56730aa03ad642df1049f0257293b6470cd06881892e1",
+      "bundle": "ec204bfb005a665db578f3560710f0065a5a0cf11be7a52ce70d0135671fa77e"
+    },
+    {
+      "case": "two-layers",
+      "milliseconds": 389.29190000000006,
+      "sha256": "9162f8055603e8d2fbeae4d5ac84485ca6ac59762b7aebd713fcded79ded1760",
+      "bundle": "e52cac3d5c5ae174e5d6438e228b317a95fcb81ea0174bb4eb27ae1371f499c0"
+    },
+    {
+      "case": "nx850",
+      "milliseconds": 199.71399999999994,
+      "sha256": "0b45c4f2af75063b40fcbc4b8b638dae67e66f761537b0450d3fea310b167c12",
+      "bundle": "32a38d4aef2c602be1ace2fb69ed0fd0999b66121bb79f224f05c27f308fb2de"
+    },
+    {
+      "case": "traffic",
+      "milliseconds": 199.50060000000008,
+      "sha256": "7f0a45bd8289e5cfa577b8093c681e5662477fb0f4afc799331e9d5b4a27ae18",
+      "bundle": "7e7a4b0ebe0ca4ab4eb0f93cf659d2c8226926d9661abef12a7d48c27307eab7"
+    },
+    {
+      "case": "custom-three",
+      "milliseconds": 203.23199999999997,
+      "sha256": "6890a30fcf2015cc5ca1b88e1090e469a6ac17137913b3dc58177a6da5659c79",
+      "bundle": "4452f9417b301ac808c53bee38e32201f38571852e525df2f8675435dd83fcd6"
+    },
+    {
+      "case": "manual-phi",
+      "milliseconds": 199.29280000000017,
+      "sha256": "d0179c8de1116f5bc1c1974b113395c2e46a8b5680f2a2f54112cf5ede2d228e",
+      "bundle": "302a94e931a0f3f4e6a257a0d70c273b9f2bfd21f02e6e60014cf1b58f1aa701"
+    },
+    {
+      "case": "centimetres",
+      "milliseconds": 205.4756000000002,
+      "sha256": "c10309e730756d37a6dd4028730fc27ff04ddcf19f38cecd1b82408fda62b9e7",
+      "bundle": "2f21e70e41900b3c1e43977bdd129df4191bf1234d41bb4a7e2c125cf107bcd5"
+    },
+    {
+      "case": "empty-text",
+      "milliseconds": 194.64639999999963,
+      "sha256": "0c94b4b6b0b0ec8053df67501c1b12c4ffe3b2ec2c960b1d761a53351022ff49",
+      "bundle": "454942b3e6f68a4fa57e17e6696f9f683a23badd2ec9ff63db54fa29e2f7e4de"
+    },
+    {
+      "case": "no-basis",
+      "milliseconds": 203.84769999999935,
+      "sha256": "125d3040bea08fe96e08f1a0a3647540609b151535e3d057b50be559d301aca0",
+      "bundle": "828b19b3033e01b41d792d9c816321256a35913d5b87e20c3c7d13e341732ea9"
+    },
+    {
+      "case": "long-text",
+      "milliseconds": 208.3793999999998,
+      "sha256": "f1c8658517b4cfe38b7750da536c2102a3e3948bdfd2a11a18b76e4de4bdf002",
+      "bundle": "363d33720f7e89ce2735eac8919f63dfe5e34ba73bb8f5613fd4f63a939f9ae6"
+    }
+  ],
+  "visual_review": "Standard: all three pages inspected; traffic: page 3 inspected. Other pages: automated checks only. Not user-approved layout."
+}
