@@ -6,10 +6,10 @@ Oprettet 29. september 2026. Faser og acceptkriterier er foreslåede, medmindre 
 
 - **Fase 0, delvist udført:** kildeversion fastlagt; brugeren har valgt indbyggede standarder (B-008). Adgang, personlige/fælles data og arkitektur er ikke besluttet.
 - **Fase 1, i gang:** 13 aktive Python-filer er statisk registreret med 426 funktioner og 98 widget-kald. Alle otte navigationssider er besøgt i appens testmiljø. Detaljeret funktionsmatrix og konkrete fund foreligger. Datatabelredigering, samtlige hjælpelinks og alle rapportvalg kræver yderligere kontrol.
-- **Fase 2, i gang:** 2.062 core-cases og 24 snapshots af appforløb er registreret og genkørt uden forskelle. Desuden er 8 originale figurers data registreret fra 4 scenarier. Tolerancer er ikke indført. Visuel kontrol i browseren og faktiske Word/PDF-filer udestår.
+- **Fase 2, i gang:** 2.062 core-cases og 24 snapshots af appforløb er registreret og genkørt uden forskelle. Desuden er 8 originale figurers data registreret fra 4 scenarier. Ti rapportcases er dannet som original DOCX/Word-PDF og prototype-PDF gennem TypeScript/Typst. Dynamisk indhold er kontrolleret; Standard-casens tre sider i begge motorer er visuelt gennemgået. Tolerancer er ikke indført. Browserkontrol, øvrige rapporters visuelle kontrol og LibreOffice/servertest udestår.
 - **Fase 3–5:** afventer de relevante beslutninger; ingen nye visuelle løsninger er godkendt, og intet er offentliggjort.
 
-Næste afhængige valg er arkitektur, jf. `ARKITEKTURVALG.md`. Brugeren har bedt om en evaluering af TypeScript-rapporter før valget; den foreligger i `RAPPORT_EVALUERING.md` med forslag til en afgrænset prototype og sammenligning. Der kan fortsat arbejdes på referencecases og kortlægning uafhængigt af dette valg.
+Næste afhængige valg er arkitektur, jf. `ARKITEKTURVALG.md`. Rapportvurderingen foreligger i `RAPPORT_EVALUERING.md` og `TYPST_AFPROEVNING.md`. PDF som muligt primært format, Word-behovet og et konkret rapportdesign skal afklares før endelig implementation. Der kan fortsat arbejdes på referencecases og kortlægning uafhængigt af dette valg.
 
 ## Mål og afgrænsning
 

@@ -1,6 +1,8 @@
 # Evaluering af rapportgenerering i TypeScript
 
-Dato: 29. september 2026. Status: teknisk evaluering på baggrund af den konkrete kildekode, strukturel inspektion af Word-skabelonen og officiel dokumentation. Ingen ny rapportimplementation, visuel ændring eller ændring af eksportfunktioner er godkendt.
+Dato: 29. september 2026. Status: teknisk evaluering på baggrund af den konkrete kildekode, strukturel inspektion af Word-skabelonen og officiel dokumentation. Ingen produktionsrapportmotor, visuel ændring eller ændring af eksportfunktioner er godkendt.
+
+**Suppleret med konkret PDF-afprøvning:** Efter brugerens ønske om PDF som muligt primært format er [Typst vurderet og afprøvet](TYPST_AFPROEVNING.md) på ti rapportcases. Nedenstående vurderer især en bevaret Word-baseret eksportvej. TypeScript-DOCX/LibreOffice er fortsat en kandidat; Typst er nu den anbefalede kandidat til videre afprøvning ved PDF som primært format.
 
 ## Konklusion og anbefaling
 

@@ -25,3 +25,11 @@ Den aktive standardtabel i `core/lagfordeling.py:116` er 200/200/200/250/275/300
 Knappen »Redigér« har en hjælpetekst om, at ændringer gemmes ved »Færdig« (`app.py:7995`). Implementationen i `_rediger_diagramdata()` gemmer ændringer og opdaterer opslagstabellen undervejs (`app.py:8076`).
 
 Status: kildefund; skal afprøves som forløb. En ny gem-knap eller ændret tekst må ikke stiltiende ændre den faktiske gemmeadfærd.
+
+## FUND-005 — oplyste forudsætninger er fast standardtekst
+
+Den gamle rapportbygger indsætter standardtekst med »Dimensioneringsgivende trafikbelastning: T6« og »Vingestyrke, Cv, skønnet i planum: > 100 kPa«, når afsnittet ikke er redigeret. Det sker også for Standard, belastningsklasse 4, Eu 10 MPa. Materialeteksten i samme afsnit angiver Genbrugsstabil, mens beregningsgrundlaget angiver Stabilgrus SG II og Bundsikring BL II.
+
+Observeret i `reference/report-contexts.json`, case `standard`, og i den originale Word/PDF-generering. Det er redigerbar skabelontekst, ikke automatisk sammenstilling af den aktuelle dimensionerings forudsætninger.
+
+Muligt ændringsforslag: forudfyld relevante forudsætninger fra det valgte grundlag, med tydelig mulighed for at supplere projektspecifikke oplysninger. Først skal det aftales, hvilke felter der er automatiske, hvilke der er fritekst, og hvordan ændret dimensionering påvirker redigeret tekst. Ingen ændring er indført.

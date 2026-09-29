@@ -2,7 +2,7 @@
 
 Migrering af det eksisterende Streamlit-værktøj til React, TypeScript, Vite og shadcn/ui.
 
-Status: kortlægning og referencekontrol er i gang. 2.062 beregningscases og 24 trin i brugerforløb er registreret fra den uændrede reference og genkørt med samme resultater. Ingen ny beregningsmotor eller brugerflade er implementeret endnu.
+Status: kortlægning og referencekontrol er i gang. 2.062 beregningscases og 24 trin i brugerforløb er registreret fra den uændrede reference og genkørt med samme resultater. En isoleret TypeScript/Typst-prototype har genereret PDF for ti rapportcases. Ingen ny beregningsmotor eller brugerflade er implementeret endnu.
 
 - Arbejdsmappe: `C:\MSL-Dimensionering`
 - Nyt repository: https://github.com/1982Strand/msl-dimensionering
@@ -25,5 +25,6 @@ Beregninger, datagrundlag og funktionalitet skal bevares. Ændringer af eksister
 - [Fund til afklaring](docs/FUND.md) — observeret adfærd, som ikke må ændres stiltiende.
 - [Arkitekturvalg](docs/ARKITEKTURVALG.md) — konkrete muligheder efter kortlægningen.
 - [Evaluering af rapportgenerering i TypeScript](docs/RAPPORT_EVALUERING.md) — Word/PDF, LibreOffice, mulige forbedringer og afprøvningskriterier.
+- [Typst-afprøvning](docs/TYPST_AFPROEVNING.md) — ti genererede rapportcases, PDF som primært format og begrænsninger ved PDF til Word.
 
 Referenceversionen er fastlagt til den committede og pushede gamle app, commit `a330cfd6734ac2478be1304a362c69f94e412d25`. Valg af beregningsmotor afklares efter kortlægningen. Planen er et udkast til fælles gennemgang, ikke en allerede godkendt implementeringsplan.

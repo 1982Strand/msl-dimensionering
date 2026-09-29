@@ -12,6 +12,8 @@ Kilde: commit `a330cfd6734ac2478be1304a362c69f94e412d25` fra den gamle app. Prof
 | `figures.json` | 8 Plotly-figurer fordelt på 4 scenarier fra den rigtige app, inklusive geometri, labels og mål | Figurdata genkøres mod originalen; ingen pixel-/designgodkendelse |
 | `environment.json` | Python 3.12.10 på Windows og 65 registrerede pakkeversioner | Beskriver miljøet for referencekørslerne |
 | `report-template-audit.json` | Skabelonens 35 pakkedele, 26 markører, 2 tabeller, skrifttyper og sidemål | Strukturel læsning; ingen layout- eller hastighedskontrol |
+| `report-contexts.json` | Ti cases med den originale Word-byggers faktiske skabelondata | Registreret og genkørt; syntetiske metadata, eksisterende faglige tekster bevaret |
+| `report-prototype-results.json` | PDF-indhold, sideantal, figurbilleder, runtime og indledende tider | Original Word-vej mod isoleret TypeScript/Typst-prototype; ingen designgodkendelse |
 
 Inventarlisten og referencecases indeholder kildecommit og SHA-256 for de aktive Python-filer. Skabelonauditten registrerer kildecommit og skabelonens egne kontrolsummer; miljøfilen registrerer runtime og pakkeversioner. Forventede resultater er hentet fra den eksisterende kode, ikke fra en ny beregningsimplementation. Cases omfatter også afviste/ugyldige input. Et stort caseantal er ikke i sig selv dokumentation for komplet dækning eller faglig korrekthed.
 
@@ -67,7 +69,7 @@ Ved genkørsel accepteres ingen numerisk tolerance. JSON-objekters rækkefølge 
 - Streamlits testmiljø kører den rigtige `app.py`, men er ikke en rigtig browser. Segmentvælgere betjenes via session-state, andre kontroller via deres test-API. Dette beviser ikke klik-, tastatur- eller layoutadfærd i browseren.
 - Standardmeddelelser og rapportens beregningstekster er registreret. Alle specialbyggede HTML-advarsler er endnu ikke registreret i en samlet tekstkontrol.
 - Datatabelredigering, dubletter/slettede materialer, ugyldig JSON, alle indstillingskombinationer, sortering, hjælpelinks og eksportknapper mangler fuld forløbskontrol.
-- Rapport-siden er kørt uden et gyldigt beregningsresultat; rapportens tabeller/tekster er testet direkte på gyldige dimensioneringer. Faktiske DOCX/PDF-filer, billeder og downloadforløb er endnu ikke verificeret.
+- Rapport-siden er kørt uden et gyldigt beregningsresultat; rapportens tabeller/tekster er testet direkte på gyldige dimensioneringer. Den isolerede rapportprototype har desuden dannet ti originale DOCX/Word-PDF'er og ti Typst-PDF'er med indholdskontrol. Standard-casens sider er visuelt gennemgået i begge motorer. Rapportsidens samlede billed-/downloadforløb og LibreOffice er stadig ikke verificeret.
 - Brugerens accept af de repræsentative cases udestår. Ingen TypeScript-motor findes endnu, så tallene er ikke en bestået migreringskontrol.
 
 Kontrolværktøjet har desuden fire egne tests: ændret tykkelse afvises, boolesk/numerisk typeforveksling afvises, eksisterende forventninger kan ikke overskrives, og objektfelters rækkefølge giver ikke falske forskelle.
