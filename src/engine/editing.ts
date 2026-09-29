@@ -357,7 +357,7 @@ export const gem_indstillinger = (data: unknown): SaveOperation => ({
   kind: 'write',
   data: normaliser_indstillinger(data),
 });
-function equalData(a: unknown, b: unknown): boolean {
+export function equalData(a: unknown, b: unknown): boolean {
   if (Array.isArray(a) && Array.isArray(b))
     return a.length === b.length && a.every((v, i) => equalData(v, b[i]));
   if (isRecord(a) && isRecord(b))

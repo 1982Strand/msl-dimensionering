@@ -2,7 +2,7 @@
 
 Migrering af det eksisterende Streamlit-værktøj til React, TypeScript, Vite og shadcn/ui.
 
-Status: beregningskernen og sammensætningen af Standard/Brugerdefineret er porteret til TypeScript efter B-014. 2.575 tests består: beregninger, grænsetilfælde, sammensatte dimensioneringsforløb og nu også redigerbare grunddata, indstillinger og korrelationer. Resultaterne matcher Python-referencen uden numerisk tolerance. TypeScript/Typst-prototypen har desuden genereret ti rapportcases. React-brugerfladen er endnu ikke implementeret.
+Status: beregningskernen og sammensætningen af Standard/Brugerdefineret er porteret til TypeScript efter B-014. 2.582 tests består: beregninger, grænsetilfælde, sammensatte dimensioneringsforløb og nu også redigerbare grunddata, indstillinger og korrelationer. Resultaterne matcher Python-referencen uden numerisk tolerance. TypeScript/Typst-prototypen har desuden genereret ti rapportcases. React-brugerfladen er endnu ikke implementeret.
 
 - Arbejdsmappe: `C:\MSL-Dimensionering`
 - Nyt repository: https://github.com/1982Strand/msl-dimensionering
@@ -43,4 +43,4 @@ npm run format:check
 Motoren kører uden Python. Python bruges alene til at genoptage/kontrollere de uafhængige referenceforventninger. Serena er konfigureret til TypeScript/Python, og Semble bruges til at finde implementeringer.
 
 - [Redigerbare grunddata](docs/DATAREDIGERING.md) — porterede normaliseringer, JSON-indlæsning og kontroller.
-- [Forslag til enklere redigering](docs/REDIGERINGSFORSLAG.md) — kladde, ændringsoversigt, fortryd og videre muligheder; afventer godkendelse.
+- [Forslag til enklere redigering](docs/REDIGERINGSFORSLAG.md) — direkte redigering/automatisk gemning er valgt; ændringsoversigt, fortryd og øvrige forslag afventer godkendelse.

@@ -1,8 +1,9 @@
 # Redigerbare grunddata
-- src/engine/editing.ts normaliserer materialer, diagrammer, VejDim-rækker og indstillinger. JSON-loaders modtager tekst/null. gem_*-funktionerne returnerer write/delete-handlinger; de udfører ikke fysisk lagring eller vælger personlige/fælles data.
-- Tom diagramcelle er null, ikke 0 og ikke et signal om interpolation. Diagrammetadata låses til originalens seks standarddiagrammer. Redigerede rækker bliver direkte til opslagstabel.
-- VejDim-normalisering supplerer manglende standard-T/Eu-rækker; samme T/Eu flere gange bevares i listen, mens opslaget bruger sidste række. Afledte totaler genberegnes. Standardidentisk VejDim gemning betyder delete.
-- Materialenavne bruger Python Unicode-casefold fra python-casefold.json. Manglende maskekrav kan udfyldes fra standarden ved indlæsning. Bevar Python-afrunding og skellet mellem tomme, ugyldige og numeriske input.
-- tools/capture_editing_reference.py kører uændrede AST-funktionskroppe og originale filoperationer i midlertidigt kildearkiv. tools/capture_data_flow_reference.py supplerer med korrelation og sammensatte redigeret-data-til-beregning-cases. Begge nægter at overskrive forventninger.
-- Arbejdsgangsændringer R-001–005 er beskrevet i docs/REDIGERINGSFORSLAG.md. Tjek docs/BESLUTNINGER.md for godkendelse før kladde/gemmetidspunkt/fortryd indføres. Et ønske om forslag er ikke en ændringsgodkendelse.
+- B-017: direkte tabelredigering uden Redigér/Gem. Gyldige celleændringer skal automatisk anvendes og gemmes. Kladde/Anvend/Kassér blev fravalgt i A-007. R-002–005 (ændringsvisning/fortryd/import/profiler) kræver stadig godkendelse; se docs/BESLUTNINGER.md og docs/REDIGERINGSFORSLAG.md.
+- src/engine/auto-edit.ts opdaterer aktiv DataState ved gyldige ændringer og returnerer gemmehandling; ugyldige materialelister/diagramrækker bevarer aktiv tilstand med originale fejltekster. Ingen redigeringstilstand eller særskilt apply-kommando. React-editor/fysisk lagring skal tilkobles.
+- src/engine/editing.ts normaliserer materialer, diagrammer, VejDim-rækker og indstillinger. JSON-loaders modtager tekst/null. gem_*-funktionerne returnerer write/delete; de vælger ikke personlig/fælles lagring.
+- Tom diagramcelle er null, ikke 0 og ikke automatisk interpolation. De seks standarddiagrammers metadata bevares. Redigerede Eu-rækker bliver direkte til opslagstabel.
+- VejDim-normalisering supplerer manglende standard-T/Eu-rækker; dublet-T/Eu bevares i listen, mens opslaget bruger sidste række. Totaler genberegnes. Standardidentisk VejDim gemning betyder delete.
+- Materialenavne bruger Python Unicode-casefold fra python-casefold.json. Manglende maskekrav kan udfyldes fra standarden ved indlæsning. Bevar Python-afrunding og skellet mellem tomme/ugyldige/numeriske input.
+- tools/capture_editing_reference.py kører uændrede AST-kroppe og originale filoperationer i isoleret kildearkiv. tools/capture_data_flow_reference.py supplerer med korrelation og redigeret-data-til-beregning. Forventninger må ikke overskrives.
 - Generelle rammer: `mem:core`. Kontroller: `mem:task_completion`.

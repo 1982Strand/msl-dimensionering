@@ -23,7 +23,7 @@ Før TypeScript-implementationen blev **150 forventninger** registreret i `refer
 
 Yderligere **86 forventninger** i `reference/data-flow-cases.json` kontrollerer korrelationer, trafiktekster og seks forløb fra redigerede diagram-/VejDim-data og indstillinger til beregningsresultat. Dette er sammensætning af originale funktioner, ikke betjening af tabeller i en browser.
 
-Alle 236 nye forventninger matcher præcist. Sammen med to dækningskontroller og de tidligere tests består **2.575 tests** på Node 24.19.0. Der er ingen migrationstolerance. Streng TypeScript-kontrol består. Oprindelige referencefiler er uændrede; de nye sæt er supplerende.
+Alle 236 nye forventninger matcher præcist. Sammen med to dækningskontroller, syv tests af direkte redigering (B-017) og de tidligere tests består **2.582 tests** på Node 24.19.0. Der er ingen migrationstolerance. Streng TypeScript-kontrol består. Oprindelige referencefiler er uændrede; de nye sæt er supplerende.
 
 ```powershell
 npm run typecheck
@@ -41,4 +41,4 @@ Der er endnu ingen React-tabeleditor eller fysisk lagring bag de nye funktioner.
 
 Kontrollen omfatter de registrerede gyldige, tomme og ugyldige inputs; den beviser ikke håndtering af enhver tænkelig håndredigeret fil. I originalen kan visse ugyldige typer og ikke-endelige tal udløse undtagelser. Den registrerede `OverflowError` ved en uendelig materialevinkel er bevaret; en pænere brugerfejl kræver egen aftale.
 
-Brugerens ønskede forbedringsforslag ligger i [REDIGERINGSFORSLAG.md](REDIGERINGSFORSLAG.md). De er adskilt fra denne portering og afventer godkendelse. Ingen kladde, fortryd-funktion eller ændret gemmetidspunkt er indført endnu.
+B-017 vælger direkte redigering med automatisk anvendelse/gemning. `auto-edit.ts` opdaterer det aktive grundlag og returnerer gemmehandlingen ved gyldige ændringer; syv adfærdstests supplerer de øvrige kontroller. React-editor og fysisk gemning er stadig ikke tilkoblet. De øvrige [forbedringsforslag](REDIGERINGSFORSLAG.md) afventer godkendelse.

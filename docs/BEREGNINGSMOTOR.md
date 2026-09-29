@@ -31,7 +31,7 @@ Referenceforventningerne ændres ikke for at få TypeScript til at bestå. Kontr
 
 ## Resterende arbejde
 
-1. Tilslut de porterede datafunktioner til React-editor, nulstilling og den aftalte lagring. Normalisering, tabelopbygning, JSON-indlæsning og korrelationer er kontrolleret mod 236 nye forventninger; samlet 2.575 tests består. CSV og UI-forløb udestår.
+1. Tilslut de porterede datafunktioner til React-editor, nulstilling og den aftalte lagring. Normalisering, tabelopbygning, JSON-indlæsning og korrelationer er kontrolleret mod 236 nye forventninger; samlet 2.582 tests består. CSV og UI-forløb udestår.
 2. Flyt tilstandsstyring, navigation, referencegrupper og appens samlede status-/forklaringstekster. De 17 tests genskaber beregningerne, men betjener ingen React-kontroller.
 3. Kontroller flere kombinationer af indstillinger i hele forløbet, herunder under-minimum-valg, slettede materialer, produktfallback og ustabil phi-kobling. De enkelte kernemoduler har bredere dækning end de sammensatte forløb.
 4. Byg React/Vite/shadcn-grundlaget og gennemfør browserkontrol. Visuelle udkast og figurgeometri kræver særskilt accept.
@@ -53,4 +53,4 @@ På Windows kan CLI-output kræve `PYTHONIOENCODING=utf-8`, fordi Serenas kontro
 
 ## Supplerende dataleverance
 
-`editing.ts`, `input-values.ts` og `correlation.ts` flytter reglerne for materialer, diagramtabeller, VejDim-rækker og indstillinger. Se [DATAREDIGERING.md](DATAREDIGERING.md) for referencegrundlag og præcis afgrænsning. De 2.337 tests ovenfor beskriver første motorleverance; samlet består nu 2.575.
+`editing.ts`, `input-values.ts` og `correlation.ts` flytter reglerne for materialer, diagramtabeller, VejDim-rækker og indstillinger. Se [DATAREDIGERING.md](DATAREDIGERING.md) for referencegrundlag og præcis afgrænsning. De 2.337 tests ovenfor beskriver første motorleverance; samlet består nu 2.582.

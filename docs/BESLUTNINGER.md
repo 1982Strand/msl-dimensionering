@@ -54,7 +54,7 @@ Spørgsmålene tages i mindre grupper på det relevante tidspunkt. Ingen svar el
 - Brugerens svar og dato:
 - Status: foreslået / godkendt / afvist / implementeret / kontrolleret.
 
-Der er endnu ingen godkendte funktionelle afvigelser eller visuelle løsninger.
+B-017 godkender direkte tabelredigering uden en Redigér-knap og med automatisk gemning. Der er ingen godkendte ændringer af beregningsregler eller endelige visuelle løsninger.
 
 ## Forelagt under kortlægningen
 
@@ -70,4 +70,8 @@ Der er endnu ingen godkendte funktionelle afvigelser eller visuelle løsninger.
 - **B-014:** Brugeren vælger omskrivning af beregningsmotoren til TypeScript: »Fortsæt bare. Kør med omkodning af beregningsmotor til typescript.« Python-versionen bevares som reference; funktionelle ændringer og beregningstolerancer er fortsat ikke godkendt. A-005 er dermed afklaret for beregningsmotorens sprog.
 - **B-015:** Brugeren kræver aktivering og brug af Serena og Semble i den nye app. Serena konfigureres til TypeScript og Python; Semble bruges til kodesøgning.
 - **B-016:** Brugeren ønsker konkrete forslag til forbedring/forenkling af redigering af diagramtabeller, materialer mv. Forslagene dokumenteres i `REDIGERINGSFORSLAG.md`. Anmodningen autoriserer vurdering og forslag, ikke automatisk ændring af eksisterende adfærd.
-- **A-007:** R-001 er forelagt: fælles redigeringskladde med »Anvend ændringer« og »Kassér« frem for automatisk aktivering/gemning. Afventer svar. R-002–005 er ligeledes kun forslag.
+- **A-007:** Besvaret: brugeren fravælger kladde/Anvend/Kassér og vælger direkte redigering med automatisk gemning, jf. B-017. R-002–005 er fortsat kun forslag.
+
+## Supplerende aftale — 30. september 2026
+
+- **B-017:** Materialer, diagramtabeller og VejDim-data skal kunne redigeres direkte, uden »Redigér«- eller »Gem«-knap. Gyldige ændringer anvendes og gemmes automatisk. Brugerens svar: »Jeg synes man bare skal kunne redigere med det samme, uden at trykke på 'rediger' og så gemmer den ens valg automatisk uden man behøver trykke gem. Det er klart nemmest og hurtigst.« Dette vælger arbejdsgangen, ikke nye beregnings-/valideringsregler, Fortryd/Gentag, import, datalagringssted eller endeligt visuelt design.

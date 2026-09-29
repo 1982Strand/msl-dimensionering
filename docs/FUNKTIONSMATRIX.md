@@ -77,4 +77,4 @@ Det afslutter ikke de samlede brugerfunktioner i tabellerne ovenfor: React-kontr
 
 ## Supplerende data- og korrelationskontrol
 
-F-03.1, databehandlingen i F-04.3, F-11.1/3/4 samt korrelations-/trafikbetegnelser har nu TypeScript-implementation i `editing.ts`, `input-values.ts` og `correlation.ts`. 150 originale editor/JSON-cases og 86 korrelations-/beregningsforløb matcher. Se `DATAREDIGERING.md`. Interaktive kontroller, CSV og fysisk lagring mangler stadig; hele funktionerne er ikke afsluttet som migreret. R-001–005 er forslag, ikke godkendte ændringer.
+F-03.1, databehandlingen i F-04.3, F-11.1/3/4 samt korrelations-/trafikbetegnelser har nu TypeScript-implementation i `editing.ts`, `input-values.ts` og `correlation.ts`. 150 originale editor/JSON-cases og 86 korrelations-/beregningsforløb matcher. Se `DATAREDIGERING.md`. Interaktive kontroller, CSV og fysisk lagring mangler stadig; hele funktionerne er ikke afsluttet som migreret. R-001 er erstattet af B-017: direkte redigering og automatisk gemning. R-002–005 er fortsat kun forslag. `auto-edit.ts` har syv særskilte adfærdstests; fysisk gemning og tabelbrugerflade udestår.
