@@ -15,7 +15,7 @@ Den eksisterende Streamlit-app (`C:\geonet_beregning`, reference `a330cfd`) omsk
 | Grunddata: Materialer, Designdiagrammer, Trafikklasse-korrelation | React-editorer med direkte redigering, ændringsvisning, fortryd og automatisk lagring (B-017–019). R-004 afventer vurdering                                                    | [MATERIALEUDKAST.md](MATERIALEUDKAST.md), [GRUNDDATAUDKAST.md](GRUNDDATAUDKAST.md), [REDIGERING_OG_LAGRING.md](REDIGERING_OG_LAGRING.md) |
 | Indstillinger                                                     | Felter, standarder, afhængigheder og lagring. Dynamiske afsnitsopsummeringer og alle Gælder-markeringer udestår                                                                | [INDSTILLINGER.md](INDSTILLINGER.md)                                                                                                     |
 | Dimensionering                                                    | Formularer, produktvalg (B-023), produktoversigt og layout (B-024), opbygningsfigurer (B-025)                                                                                  | [DIMENSIONERINGSUDKAST.md](DIMENSIONERINGSUDKAST.md), [OPBYGNINGSFIGURER.md](OPBYGNINGSFIGURER.md)                                       |
-| Mellemregninger                                                   | M5: data kontrolleret; visningen ombygges til variant 4 (B-034, i gang). M6 færdig. M2 udgår (B-032). M1, M3, M4, M7, M8 og M9 udestår                                         | [MELLEMREGNINGER_PLAN.md](MELLEMREGNINGER_PLAN.md)                                                                                       |
+| Mellemregninger                                                   | M5 færdig som egen SVG i variant 4-stil (B-034/B-035). M6 færdig. M1 tekst/tal i gang. M2 udgår (B-032). M1, M3, M4, M7, M8 og M9 udestår                                      | [MELLEMREGNINGER_PLAN.md](MELLEMREGNINGER_PLAN.md)                                                                                       |
 | Rapport og firmaprofil                                            | Plan godkendt (B-026–030): kun PDF med Typst i browseren, lokal download, redigerbar firmaprofil. R1–R6 er ikke implementeret; prototypen ligger i `spikes/report-typescript/` | [RAPPORT_PLAN.md](RAPPORT_PLAN.md)                                                                                                       |
 | Geonet-database-side                                              | Ikke påbegyndt (F-11.5)                                                                                                                                                        | [FUNKTIONSMATRIX.md](FUNKTIONSMATRIX.md)                                                                                                 |
 | Hjælp-side                                                        | Ikke påbegyndt (F-13.1: otte kapitler, formler, figurer, kilder og »gå til«)                                                                                                   | [FUNKTIONSMATRIX.md](FUNKTIONSMATRIX.md)                                                                                                 |
@@ -24,13 +24,12 @@ Den eksisterende Streamlit-app (`C:\geonet_beregning`, reference `a330cfd`) omsk
 
 ## Resterende arbejde i rækkefølge
 
-1. **M5-visning efter B-034** (i gang): egen SVG, hover på nærmeste punkt, signaturboks, decimalkomma.
-2. **M1** »Sådan er resultatet beregnet«: først tekst og tal, derefter de to figurer i variant 4-stil med visuel godkendelse.
-3. **M3, M4, M7, M8 og M9** efter mellemregningsplanen.
-4. **Rapport** R1 → R6: rapportdata, compiler i browseren, figurer og layout, rapportside, firmaprofil og samlet PDF-accept. `spikes/report-typescript/` udgår, når R2 afløser den.
-5. **Geonet-database og Hjælp**: kortlægning og referencecases fra originalen før implementering; delplan forelægges.
-6. **Indstillingernes resterende markeringer, samlet navigation og forside**, med visuel godkendelse.
-7. **Samlet accept** (fase 5 nedenfor) og afklaring af adgang og hosting.
+1. **M1** »Sådan er resultatet beregnet«: først tekst og tal, derefter de to figurer i variant 4-stil med visuel godkendelse.
+2. **M3, M4, M7, M8 og M9** efter mellemregningsplanen.
+3. **Rapport** R1 → R6: rapportdata, compiler i browseren, figurer og layout, rapportside, firmaprofil og samlet PDF-accept. `spikes/report-typescript/` udgår, når R2 afløser den.
+4. **Geonet-database og Hjælp**: kortlægning og referencecases fra originalen før implementering; delplan forelægges.
+5. **Indstillingernes resterende markeringer, samlet navigation og forside**, med visuel godkendelse.
+6. **Samlet accept** (fase 5 nedenfor) og afklaring af adgang og hosting.
 
 ## Faser og acceptkriterier
 
