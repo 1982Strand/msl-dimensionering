@@ -3,6 +3,7 @@ import { Layers3 } from 'lucide-react';
 import { EditorProvider } from './EditorContext';
 import { Materials } from './Materials';
 import { DataTables } from './DataTables';
+import { Settings } from './Settings';
 export function App() {
   const [page, setPage] = useState(() => location.hash.slice(1) || 'materialer');
   useEffect(() => {
@@ -25,6 +26,7 @@ export function App() {
           ['materialer', 'Materialer'],
           ['diagrammer', 'Designdiagrammer'],
           ['vejdim', 'Trafikklasse-korrelation'],
+          ['indstillinger', 'Indstillinger'],
         ].map(([key, label]) => (
           <a key={key} href={`#${key}`} aria-current={page === key ? 'page' : undefined}>
             {label}
@@ -32,7 +34,9 @@ export function App() {
         ))}
       </nav>
       <EditorProvider>
-        {page === 'diagrammer' || page === 'vejdim' ? (
+        {page === 'indstillinger' ? (
+          <Settings />
+        ) : page === 'diagrammer' || page === 'vejdim' ? (
           <DataTables mode={page} key={page} />
         ) : (
           <Materials />

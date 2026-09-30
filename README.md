@@ -2,7 +2,7 @@
 
 Migrering af det eksisterende Streamlit-værktøj til React, TypeScript, Vite og shadcn/ui.
 
-Status: beregningskernen og sammensætningen af Standard/Brugerdefineret er porteret til TypeScript efter B-014. 2.746 tests består: beregninger, grænsetilfælde, sammensatte dimensioneringsforløb og nu også redigerbare grunddata, indstillinger og korrelationer. De oprindelige referencecases matcher Python uden numerisk tolerance; godkendte forbedringer har særskilte adfærdstests. TypeScript/Typst-prototypen har desuden genereret ti rapportcases. React/Vite/shadcn-udkastet til Materialer, Designdiagrammer og Trafikklasse-korrelation er tilkoblet browserlagring og kontrolleret med 17 browserprøver. Designretningen er godkendt i B-020.
+Status: beregningskernen og sammensætningen af Standard/Brugerdefineret er porteret til TypeScript efter B-014. 2.747 tests består: beregninger, grænsetilfælde, sammensatte dimensioneringsforløb, redigerbare grunddata, indstillinger og korrelationer. De oprindelige referencecases matcher Python uden numerisk tolerance; godkendte forbedringer har særskilte adfærdstests. TypeScript/Typst-prototypen har desuden genereret ti rapportcases. React/Vite/shadcn-udkastet omfatter Materialer, Designdiagrammer, Trafikklasse-korrelation og Indstillinger med browserlagring. De seneste to målrettede browserprøver består; CI kører alle 19. Designretningen er godkendt i B-020.
 
 - Arbejdsmappe: `C:\MSL-Dimensionering`
 - Nyt repository: https://github.com/1982Strand/msl-dimensionering
@@ -39,7 +39,7 @@ npm run preview
 
 Åbn `http://127.0.0.1:5174/`. Se [udkastets funktioner, kontroller og afgrænsning](docs/MATERIALEUDKAST.md).
 
-Udkastet omfatter nu også Designdiagrammer og Trafikklasse-korrelation med direkte redigering, kurver, regneeksempel og CSV. Aktuel kontrol: 2.746 motor-/datatests og 17 browserforløb. Se [grunddataudkastets omfang og resterende arbejde](docs/GRUNDDATAUDKAST.md).
+Udkastet omfatter Designdiagrammer og Trafikklasse-korrelation med direkte redigering, kurver, regneeksempel og CSV. Se [grunddataudkastets omfang](docs/GRUNDDATAUDKAST.md) og [Indstillinger med kontroller og resterende arbejde](docs/INDSTILLINGER.md).
 
 ## Beregningsmotor
 
