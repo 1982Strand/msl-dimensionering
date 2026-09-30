@@ -17,7 +17,7 @@ Beregninger, datagrundlag og funktionalitet skal bevares. Ændringer af eksister
 
 - [Delplan for mellemregninger](docs/MELLEMREGNINGER_PLAN.md) — M1–M9, godkendt rækkefølge, konkrete cases og særskilt figuraccept.
 - [Delplan for rapport og firmaprofil](docs/RAPPORT_PLAN.md) — godkendt browserkompilering, bevarede rapportdata og lagring/nulstilling af rapporttekster og valg.
-- [Personligt designdiagram M5](docs/PERSONLIGT_DESIGNDIAGRAM.md) — original Plotly-specifikation/hover og SVG gennem Typst; konkret designaccept afventes.
+- [Personligt designdiagram M5](docs/PERSONLIGT_DESIGNDIAGRAM.md) — original Plotly-specifikation/hover og SVG gennem Typst; visningen er godkendt i B-031.
 - [Migrationsplan](docs/MIGRATIONSPLAN.md) — forslag til faser, leverancer og godkendelser.
 - [Foreløbig funktionskortlægning](docs/FUNKTIONSKORTLAEGNING.md) — kendte områder og kontrolpunkter.
 - [Beslutningslog](docs/BESLUTNINGER.md) — aftaler, åbne spørgsmål og ændringsforslag.

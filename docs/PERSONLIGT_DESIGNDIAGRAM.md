@@ -1,6 +1,6 @@
 # M5 — personligt designdiagram
 
-30.09.2026. Implementeret efter godkendelse A-011/B-029. **Visuelt udkast til særskilt godkendelse; rapporttilkoblingen er ikke færdig.**
+30.09.2026. Implementeret efter godkendelse A-011/B-029. **M5-visningen er godkendt i B-031; rapporttilkoblingen er ikke færdig.**
 
 `src/engine/personal-diagram.ts` porterer originalens `core/diagram.py:29` / `byg_designdiagram` og `app.py:4568–4634` / `_phi_kurver`, `_tegn_designdiagram`. Samme Plotly-specifikation bruges i React og ved SVG-eksport. Den eksisterende plotly.js-pakke indlæses efter behov; hover bevares.
 
@@ -39,4 +39,4 @@ Rapportens originale overskrift, egne margener og eksportmål (900 × 550 for di
 
 ## Fortsat åbent
 
-Brugeren skal godkende den konkrete M5-visning. M6/M2 er næste godkendte arbejdsdel; øvrige mellemregninger, rapportside, firmaprofil, fuld PDF-indholdskontrol og endeligt layout er fortsat åbne.
+Den konkrete M5-visning er godkendt i B-031. Den eksisterende udkastmærkning fjernes med næste kodeændring. M6/M2 er næste godkendte arbejdsdel; øvrige mellemregninger, rapportside, firmaprofil, fuld PDF-indholdskontrol og endeligt layout er fortsat åbne.
