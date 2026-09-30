@@ -60,6 +60,7 @@ for (const c of reference.cases)
       );
       return {
         ...s,
+        figure: s.figure ? { caption: s.figure.caption, legend: s.figure.legend } : null,
         formulae: descendants(body, 'kob-formel').map((n) => couplingText(n).split('\n')),
         explanations: [...descendants(body, 'kob-brod'), ...descendants(body, 'kob-note')].map(
           couplingText,

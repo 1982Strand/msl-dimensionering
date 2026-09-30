@@ -16,6 +16,12 @@ import {
   type dimensioner,
 } from './dimensionering.ts';
 import type { CalculationResult } from './types.ts';
+import {
+  diagramFigure,
+  koerslerFigure,
+  type CouplingFigureModel,
+  type CouplingPoint,
+} from './kobling-figures.ts';
 
 export type CouplingNode =
   | string
@@ -34,7 +40,7 @@ export interface CouplingStep {
   chip: string;
   green: boolean;
   monoNote: boolean;
-  figure: { caption: string; legend: string[] } | null;
+  figure: { caption: string; legend: string[]; model: CouplingFigureModel | null } | null;
 }
 export interface CouplingExplanation {
   visible: boolean;
@@ -157,14 +163,34 @@ export function koblingExplanation(
   const netName = result.geonet?.navn || 'referencenet';
   const unreinforced = exact(r1 || r2, 't_uarmeret_phi_kor_mm');
   const legend = [`${length(requirement)} krav`];
-  if (unreinforced && Math.abs(unreinforced - requirement) >= 1)
+  const figurePoints: CouplingPoint[] = [
+    { x: requirement, y: eu, role: 'ustab', hollow: true, name: 'krav' },
+  ];
+  if (unreinforced && Math.abs(unreinforced - requirement) >= 1) {
     legend.push(`${length(unreinforced)} φᵥ-korrigeret`);
+    figurePoints.push({
+      x: unreinforced,
+      y: eu,
+      role: 'ustab',
+      hollow: false,
+      name: 'φᵥ-korrigeret',
+    });
+  }
   for (const [r, label] of [
     [r1, '1 lag'],
     [r2, '2 lag'],
   ] as const) {
     const value = exact(r, 't_armeret_mm');
-    if (value !== null) legend.push(`${length(value)} · ${label}`);
+    if (value !== null) {
+      legend.push(`${length(value)} · ${label}`);
+      figurePoints.push({
+        x: value,
+        y: eu,
+        role: label === '1 lag' ? 'lag1' : 'lag2',
+        hollow: false,
+        name: `${label} geonet`,
+      });
+    }
   }
   let bases: Record<string, { basis: number }> = {};
   if (traffic && data) {
@@ -267,6 +293,10 @@ export function koblingExplanation(
         {
           chip,
           figure: {
+            model: koerslerFigure(t, eu, ub, runs, unit, [
+              'kørte punkter',
+              `dit Eᵤ = ${num(eu)} MPa`,
+            ]),
             caption: `${t}s VejDim-kørsler. E-værdien er afsat i log-skala — den skala, interpolationen foretages i.`,
             legend: ['kørte punkter', `dit Eᵤ = ${num(eu)} MPa`],
           },
@@ -380,6 +410,17 @@ export function koblingExplanation(
           figure: {
             caption: `De stiplede kurver er belastningsklasse ${klLow} og ${klHigh}; den fuldt optrukne er Eₒ,ækv. Ringen viser VejDims krav fra trin 2; et eventuelt sort punkt viser φᵥ-korrektionen i trin 5, og farvede punkter viser 1 og 2 lag geonet fra trin 6.`,
             legend,
+            model: diagramFigure({
+              eu,
+              eo,
+              neighbours: [low, high],
+              table,
+              phi,
+              netCorrection,
+              points: figurePoints,
+              unit,
+              legend,
+            }),
           },
         },
       ),
@@ -451,6 +492,17 @@ export function koblingExplanation(
           figure: {
             caption: `Den fuldt optrukne kurve er klasse ${klass}${neighbours ? `; de stiplede er klasse ${neighbours}` : ''}. Ringen viser den ustabiliserede aflæsning fra trin 2; udfyldte punkter viser de efterfølgende værdier fra trin 3 og 4.`,
             legend,
+            model: diagramFigure({
+              eu,
+              eo,
+              neighbours: [EO_KOLONNER[i - 1], EO_KOLONNER[i + 1]].filter((v) => v !== undefined),
+              table,
+              phi,
+              netCorrection,
+              points: figurePoints,
+              unit,
+              legend,
+            }),
           },
         },
       ),
