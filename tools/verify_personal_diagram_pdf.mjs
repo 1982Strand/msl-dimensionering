@@ -1,4 +1,4 @@
-/** Local M5 integration probe: real Plotly SVG -> actual browser Typst 0.7.0.
+/** Local M5 integration probe: variant 4 SVG -> actual browser Typst 0.7.0.
  * Uses read-only demo dependencies/fonts; does not modify or run the demo app.
  * Run: node tools/verify_personal_diagram_pdf.mjs <demo-directory>
  */
@@ -26,12 +26,16 @@ try {
   page.on('pageerror', (e) => errors.push(e.message));
   await page.goto(`http://127.0.0.1:${port}/#dimensionering`);
   const chart = page.getByRole('img', { name: 'Personligt designdiagram' });
-  await chart.locator('.main-svg').first().waitFor();
+  await chart.locator('[data-curve]').first().waitFor();
   await chart.screenshot({ path: `${output}/standard-screen.png` });
-  // Real mouse interaction exercises Plotly hover, not a reconstructed label.
-  await chart.locator('.scatterlayer .points .point').first().hover({ force: true });
-  await chart.locator('.hoverlayer .hovertext').first().waitFor();
-  const hoverText = await chart.locator('.hoverlayer').textContent();
+  // Real mouse interaction exercises the SVG hover layer.
+  await chart.locator('[data-point]').first().hover({ force: true });
+  // Kun diagrammets egen forklaringsboks; siden har andre statusfelter.
+  const tip = page
+    .getByRole('group', { name: /Designdiagram\. Brug piletasterne/ })
+    .getByRole('status');
+  await tip.waitFor();
+  const hoverText = await tip.textContent();
   assert.match(hoverText ?? '', /1 lag geonet/);
   await page.getByRole('radio', { name: 'Brugerdefineret', exact: true }).check();
   const points = page.getByRole('checkbox', { name: 'Vis endepunkter for 1 og 2 lag geonet' });
@@ -39,7 +43,7 @@ try {
   await page.reload();
   assert.equal(await points.isChecked(), false);
   await points.check();
-  await chart.locator('.main-svg').first().waitFor();
+  await chart.locator('[data-curve]').first().waitFor();
   await chart.screenshot({ path: `${output}/custom-screen.png` });
 
   const fixtures = JSON.parse(await readFile('reference/personal-diagram-cases.json', 'utf8'));
@@ -62,7 +66,7 @@ try {
   };
   const result = await page.evaluate(
     async ({ examples, paths }) => {
-      const { personalDiagramSvg } = await import('/src/ui/plotly-export.ts');
+      const { personalDiagramSvg } = await import('/src/ui/personal-diagram-export.ts');
       const { $typst, TypstSnippet } = await import(paths.module);
       $typst.setCompilerInitOptions({ getModule: () => new URL(paths.wasm, location.href) });
       $typst.use(
@@ -73,7 +77,6 @@ try {
       for (const { id, spec } of examples) {
         const svg = await personalDiagramSvg(spec, {
           fontFamily: 'Carlito',
-          fontUrl: new URL(paths.fonts[0], location.href).href,
         });
         svgs.push({ id, svg });
         await $typst.mapShadow(`/${id}.svg`, new TextEncoder().encode(svg));
@@ -99,7 +102,7 @@ try {
   assert.equal(Buffer.from(result.pdf).subarray(0, 5).toString(), '%PDF-');
   assert.deepEqual(result.diagnostics ?? [], []);
   assert.deepEqual(errors, []);
-  await writeFile(`${output}/m5-plotly-typst.pdf`, Buffer.from(result.pdf));
+  await writeFile(`${output}/m5-svg-typst.pdf`, Buffer.from(result.pdf));
   for (const { id, svg } of result.svgs) {
     assert.match(svg, /Bærelagstykkelse/);
     assert.match(svg, /Bundmodul/);
