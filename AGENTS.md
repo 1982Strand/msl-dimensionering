@@ -23,6 +23,13 @@
 8. Offentliggørelse er en senere beslutning. Repository oprettes privat under planlægningen.
 9. Udvikling efter initialiseringen sker som udgangspunkt på `codex/`-grene.
 
+## Roller og grene (B-033)
+
+- Claude Code styrer udviklingen: planlægning, opgavefordeling, gennemgang af al kode, test og referencekontrol, commits, forelæggelse for brugeren og registrering i `docs/BESLUTNINGER.md`.
+- Codex er hjælper og startes med `codex exec` på afgrænsede opgaver. Hver opgave kører i sin egen worktree under `C:\MSL-Dimensionering-opgaver\<opgave>` på grenen `codex/<opgave>`, oprettet fra integrationsgrenen.
+- Som hjælper arbejder Codex kun i den tildelte mappe, committer og merger ikke, ændrer ikke `docs/BESLUTNINGER.md` og forelægger ikke selv for brugeren. Den afslutter med ændrede filer, kørte kontroller og åbne spørgsmål.
+- Integrationsgrenen er `codex/reference-kortlaegning` (udkast-PR #1). Hjælpegrene merges dertil efter gennemgang. Intet merges til `main` eller offentliggøres uden brugerens aftale.
+
 ## Kodesøgning
 
 Brug både Serena og Semble, jf. B-015. Aktivér Serena for `C:\MSL-Dimensionering`; brug TypeScript- og Python-sprogserverne til symboler, referencer og projekthukommelse. Semble bruges først til at lokalisere implementeringer. Den gamle app må fortsat kun læses som reference.
