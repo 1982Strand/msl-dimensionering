@@ -2,7 +2,7 @@
 
 Migrering af det eksisterende Streamlit-værktøj til React, TypeScript, Vite og shadcn/ui.
 
-Status: beregningskernen og sammensætningen af Standard/Brugerdefineret er porteret til TypeScript efter B-014. 2.582 tests består: beregninger, grænsetilfælde, sammensatte dimensioneringsforløb og nu også redigerbare grunddata, indstillinger og korrelationer. Resultaterne matcher Python-referencen uden numerisk tolerance. TypeScript/Typst-prototypen har desuden genereret ti rapportcases. React-brugerfladen er endnu ikke implementeret.
+Status: beregningskernen og sammensætningen af Standard/Brugerdefineret er porteret til TypeScript efter B-014. 2.614 tests består: beregninger, grænsetilfælde, sammensatte dimensioneringsforløb og nu også redigerbare grunddata, indstillinger og korrelationer. De oprindelige referencecases matcher Python uden numerisk tolerance; godkendte forbedringer har særskilte adfærdstests. TypeScript/Typst-prototypen har desuden genereret ti rapportcases. React-brugerfladen er endnu ikke implementeret.
 
 - Arbejdsmappe: `C:\MSL-Dimensionering`
 - Nyt repository: https://github.com/1982Strand/msl-dimensionering
@@ -27,7 +27,7 @@ Beregninger, datagrundlag og funktionalitet skal bevares. Ændringer af eksister
 - [Evaluering af rapportgenerering i TypeScript](docs/RAPPORT_EVALUERING.md) — Word/PDF, LibreOffice, mulige forbedringer og afprøvningskriterier.
 - [Typst-afprøvning](docs/TYPST_AFPROEVNING.md) — ti genererede rapportcases, PDF som primært format og begrænsninger ved PDF til Word.
 
-Referenceversionen er fastlagt til den committede og pushede gamle app, commit `a330cfd6734ac2478be1304a362c69f94e412d25`. TypeScript er valgt til beregningsmotoren i B-014. Visuelt design, datalagring, adgang og offentliggørelse afklares fortsat særskilt.
+Referenceversionen er fastlagt til den committede og pushede gamle app, commit `a330cfd6734ac2478be1304a362c69f94e412d25`. TypeScript er valgt til beregningsmotoren i B-014. Lokal lagring i samme browser/computer er valgt i B-019. Visuelt design, adgang og offentliggørelse afklares fortsat særskilt.
 
 ## Beregningsmotor
 
@@ -43,4 +43,5 @@ npm run format:check
 Motoren kører uden Python. Python bruges alene til at genoptage/kontrollere de uafhængige referenceforventninger. Serena er konfigureret til TypeScript/Python, og Semble bruges til at finde implementeringer.
 
 - [Redigerbare grunddata](docs/DATAREDIGERING.md) — porterede normaliseringer, JSON-indlæsning og kontroller.
-- [Forslag til enklere redigering](docs/REDIGERINGSFORSLAG.md) — direkte redigering/automatisk gemning er valgt; ændringsoversigt, fortryd og øvrige forslag afventer godkendelse.
+- [Forslag til enklere redigering](docs/REDIGERINGSFORSLAG.md) — direkte redigering, ændringsoversigt og fortryd er godkendt. R-004 afventer vurdering; dataprofiler er afvist.
+- [Ændringsvisning, historik og lokal lagring](docs/REDIGERING_OG_LAGRING.md) — implementeret grundlag, kontrol og resterende browserintegration.

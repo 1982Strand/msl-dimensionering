@@ -4,13 +4,13 @@ Oprettet 29. september 2026. Faser og acceptkriterier er foreslåede, medmindre 
 
 ## Status efter første udførelse
 
-- **Fase 0, delvist udført:** kildeversion fastlagt; brugeren har valgt indbyggede standarder (B-008). TypeScript-beregningsmotor er valgt i B-014. Adgang og personlige/fælles data er ikke besluttet.
+- **Fase 0, delvist udført:** kildeversion fastlagt; brugeren har valgt indbyggede standarder (B-008). TypeScript-beregningsmotor er valgt i B-014. Personlig lagring i samme browser/computer er valgt i B-019; adgang er stadig åben.
 - **Fase 1, i gang:** 13 aktive Python-filer er statisk registreret med 426 funktioner og 98 widget-kald. Alle otte navigationssider er besøgt i appens testmiljø. Detaljeret funktionsmatrix og konkrete fund foreligger. Datatabelredigering, samtlige hjælpelinks og alle rapportvalg kræver yderligere kontrol.
 - **Fase 2, i gang:** 2.062 core-cases og 24 snapshots af appforløb er registreret og genkørt uden forskelle. Desuden er 8 originale figurers data registreret fra 4 scenarier. Ti rapportcases er dannet som original DOCX/Word-PDF og prototype-PDF gennem TypeScript/Typst. Dynamisk indhold er kontrolleret; Standard-casens tre sider i begge motorer er visuelt gennemgået. Tolerancer er ikke indført. Browserkontrol, øvrige rapporters visuelle kontrol og LibreOffice/servertest udestår.
-- **Fase 4, beregningsmotor i gang:** TypeScript-kernen og sammensætningen af Standard/Brugerdefineret matcher referencecases. 2.582 tests og streng typekontrol består; se `BEREGNINGSMOTOR.md` og `DATAREDIGERING.md`. Normalisering, tabelopbygning, indlæsnings-/gemmeregler og korrelationer er porteret. React-editor, fysisk lagring, resterende app-logik og figurpipeline udestår.
+- **Fase 4, beregningsmotor i gang:** TypeScript-kernen og sammensætningen af Standard/Brugerdefineret matcher referencecases. 2.614 tests og streng typekontrol består; se `BEREGNINGSMOTOR.md` og `DATAREDIGERING.md`. Normalisering, tabelopbygning, indlæsnings-/gemmeregler og korrelationer er porteret. Ændringsvisning, historik og lokal JSON-lagring er implementeret som underliggende funktioner. React-editor, faktisk browserintegration, resterende app-logik og figurpipeline udestår.
 - **Fase 3 og 5:** appdesign/opbygningsfigurer og samlet accept udestår; intet er offentliggjort.
 
-Beregningsmotoren flyttes til TypeScript, jf. B-014. Næste implementeringstrin er de resterende data-/indstillingsforløb og React/Vite/shadcn-grundlaget med motoren tilkoblet. Visuel retning og opbygningsfigurer godkendes særskilt. Typst videreføres; rapportfinpudsning er udskudt af brugeren i B-013. Word-behov, adgang og lagring er fortsat åbne.
+Beregningsmotoren flyttes til TypeScript, jf. B-014. Næste implementeringstrin er de resterende data-/indstillingsforløb og React/Vite/shadcn-grundlaget med motoren tilkoblet. Visuel retning og opbygningsfigurer godkendes særskilt. Typst videreføres; rapportfinpudsning er udskudt af brugeren i B-013. Word-behov og adgang er fortsat åbne. Lagringssted er valgt i B-019.
 
 Efter B-012 arbejdes videre med Typst og bevarede rapportdata: firmaprofil/layout er adskilt, eksporten arkiverer data, skabelon, billeder og PDF, og de ti referencecases har nu samme tekstlinjer og sidefordeling som Word. Syv prototypetests består. Redigeringsmuligheder og afgrænsning fremgår af `RAPPORTSKABELON.md`; dette er fortsat ikke endelig visuel accept.
 
@@ -105,4 +105,4 @@ Rutinemæssig intern strukturering kan udføres uden ekstra godkendelse, når de
 
 ## Forslag efter brugerens ønske
 
-B-016 tilføjer vurdering af enklere dataredigering. R-001–005 i `REDIGERINGSFORSLAG.md` beskriver eksisterende og foreslået adfærd samt acceptbehov. A-007 er besvaret i B-017: direkte redigering uden Redigér/Gem og med automatisk anvendelse/gemning. Kladde/Anvend/Kassér blev fravalgt.
+B-016 tilføjer vurdering af enklere dataredigering. R-001–005 i `REDIGERINGSFORSLAG.md` beskriver eksisterende og foreslået adfærd samt acceptbehov. A-007 er besvaret i B-017: direkte redigering uden Redigér/Gem og med automatisk anvendelse/gemning. Kladde/Anvend/Kassér blev fravalgt. R-002/003 er godkendt i B-018. R-005 er erstattet af automatisk lagring i samme browser/computer i B-019. R-004 er forklaret og afventer vurdering. Se `REDIGERING_OG_LAGRING.md` for den nye implementation og resterende browserkontrol.

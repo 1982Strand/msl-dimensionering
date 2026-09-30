@@ -1,58 +1,49 @@
-# Enklere redigering af grunddata
+# Redigering af grunddata — valg og resterende forslag
 
-Opdateret 30. september 2026 efter brugerens valg af direkte redigering og automatisk gemning (B-017). **Denne arbejdsgang er valgt.** De øvrige forbedringer nedenfor er forslag; visuelt design er fortsat ikke godkendt.
+Opdateret 30. september 2026. Beslutningerne er registreret i [beslutningsloggen](BESLUTNINGER.md). Visuelt design godkendes særskilt.
 
-## R-001 — valgt arbejdsgang
+| ID | Status | Omfang |
+| --- | --- | --- |
+| R-001 | Godkendt, B-017 | Direkte redigering og automatisk anvendelse/gemning uden Redigér/Gem. |
+| R-002 | Godkendt, B-018 | Standardværdi sammen med ændret værdi og filteret »Vis kun ændringer«. |
+| R-003 | Godkendt, B-018 | Fortryd/Gentag i den aktive session og gendannelse af en celle/række til standard. |
+| R-004 | Afventer vurdering | Tastaturbetjening, søgning og eventuel indsætning af celler fra Excel; beskrevet nedenfor. |
+| R-005 | Dataprofiler afvist, B-019 | Erstattet af enkel automatisk lagring af aktuelle brugerdata og indtastede værdier. Samme browser/computer er nok. |
 
-Materialer, diagramtabeller og VejDim-data kan redigeres direkte i tabellen uden en »Redigér«-knap. Når en gyldig celleredigering afsluttes, gemmes og anvendes ændringen automatisk. Der er ingen »Gem«, »Anvend« eller »Kassér«-knap og ingen særskilt redigeringskladde.
+## Den valgte arbejdsgang
 
-Det viderefører den gamle apps automatiske aktivering/gemning og fjerner diagramtabellens ekstra åbne-/lukkehandling. »Færdig« udgår dermed som redigeringshandling. Eksisterende låste metadata og beregnede felter forbliver låste; direkte redigering gør dem ikke til nye input.
+Materialer, diagramtabeller og VejDim-data redigeres direkte. En afsluttet, gyldig ændring bliver automatisk aktiv og gemmes. Der er ingen særskilt kladde med Anvend/Kassér. Låste metadata og beregnede felter forbliver låste. Et ufærdigt tal under indtastning må ikke utilsigtet blive et nyt beregningsgrundlag.
 
-Eksisterende regler for normalisering og fejl bevares. Materialeduplikater, en tom materialeliste og diagramrækker med dublet/manglende Eu ændrer ikke det seneste gyldige grundlag. VejDim-rækker følger originalens normalisering og supplering med standardrækker. Nulstilling af ét diagram skal fortsat bevare de øvrige diagrammer.
+Eksisterende normalisering og fejl bevares. Materialeduplikater, tomme materialelister og diagramrækker med dublet/manglende Eu ændrer ikke seneste gyldige grundlag. VejDim følger originalens normalisering og supplering med standardrækker. Nulstilling af ét diagram bevarer de øvrige.
 
-I den kommende brugerflade bør gyldig celleafslutning følge almindelig tabelbetjening med Enter, Tab eller flytning til en anden celle. Midlertidig tekst under indtastning, fx et endnu ufærdigt tal, må ikke blive en utilsigtet ændring af beregningsgrundlaget. Gemmestatus skal kunne vises korrekt, og en mislykket fysisk gemning må ikke kaldes »Gemt«; konkret visning aftales ved designgennemgangen.
+R-002 gør det muligt at se eksempelvis **37° → 39°** ved en ændret friktionsvinkel. »Vis kun ændringer« filtrerer visningen, ikke beregningsgrundlaget. Nye og fjernede rækker vises særskilt. Diagrammernes eksisterende afrunding ved markering af afvigelser bevares; beregningsværdier afrundes ikke af visningen.
 
-TypeScript-logikken for direkte opdatering og automatiske gemmehandlinger ligger i `src/engine/auto-edit.ts`. React-tabeleditor og fysisk lagring er endnu ikke tilkoblet.
+R-003 skelner mellem to handlinger: **Fortryd** går tilbage til værdien før sidste trin; **Gendan standard** går tilbage til den indbyggede standard. Hvis friktionsvinklen gendannes, bevares andre ændrede felter. Begge handlinger gemmer automatisk, og en gendannelse kan selv fortrydes. Historikken følger den åbne app og bevares ved intern navigation; en genindlæsning starter ny historik, men henter de gemte værdier. En selvoprettet række uden standardværdi bliver ikke slettet ved »Gendan standard«.
 
-## Forslag til næste forbedringer
+Et permanent materiale-ID ved omdøbning er ikke indført. Det ville påvirke forbindelsen til lagvalg og kræver et særskilt forslag.
 
-Jeg anbefaler at vurdere R-002 og R-003 først. De kan passe til den valgte hurtige arbejdsgang uden at indføre en gem-knap.
+## R-004 forklaret med konkrete eksempler
 
-| ID | I dag | Forslag | Ændring der skal godkendes |
-| --- | --- | --- | --- |
-| R-002 | Diagrammet markerer allerede afvigelser i den faste tabel. Materialesiden advarer om ændret phi. | Vis **standardværdi → ændret værdi** i relevante celler og filteret **Vis kun ændringer**. Bevar markeringerne under direkte redigering. | Ny visning og filtrering; ingen nye faglige grænser. |
-| R-003 | Nulstilling findes for et diagram/alle diagrammer, materialelisten og VejDim-kørslerne. Der er ingen fælles fortryd-funktion. | **Fortryd/Gentag** i den aktive session og **Gendan denne celle/række** uden at miste andre ændringer. Et fortryd-trin anvendes og gemmes automatisk ligesom en almindelig redigering. | Nye handlinger og historik. Omfang, navigation og nulstilling af historik skal aftales. |
-| R-004 | Separate tabelvisninger; VejDim har allerede låste T-/Eu-kolonner og beregnede totaler. | Ens tastaturbetjening, søgning og indsætning af et celleområde fra Excel. | Masseændringer/import er nye funktioner. En særskilt importkontrol kan være nyttig, men må ikke indføre gem-knapper i almindelig celleredigering. |
-| R-005 | Ét aktuelt sæt brugerredigerede data ligger i JSON-filer ved appen. | Navngivne **dataprofiler**, fx »Standard« og »Projekt A«, med versionsnummer knyttet til beregning og rapport. | Ny datamodel; kræver aftale om ejerskab, adgang, lagring og eksisterende data. |
+Dette forslag består af tre dele, som kan vælges hver for sig:
 
-React gør det lettere at holde styr på aktuelle celler, vise ændringer og opdatere figurer uden at genkøre hele siden. TypeScript hjælper med ensartede felter mellem tabeller, beregning og rapport. Beregningsmetoden og faglige grænser bevares.
+1. **Ens tastaturbetjening:** brug Tab/Enter til at afslutte og gå videre mellem redigerbare celler. Det gør mange rettelser hurtigere. Ingen ekstra gem-knap.
+2. **Søgning og filtrering:** skriv eksempelvis et materialenavn for at finde rækken. Alle data findes fortsat, og søgningen ændrer ikke beregningerne.
+3. **Indsæt flere celler fra Excel:** markér eksempelvis ti rækker med SG- og BL-værdier i Excel, kopiér og indsæt i de tilsvarende to redigerbare kolonner i VejDim. Det erstatter tyve manuelle indtastninger. T/Eu og beregnede totaler forbliver låste.
 
-## R-002–003 — eksempel fra materialer
+Den tredje del handler om et kopieret celleområde, ikke om at uploade eller fortolke en hel Excel-fil. Det skal være entydigt, hvilken række og kolonne hver værdi havner i. Håndtering af ugyldige celler og ét samlet fortryd-trin for indsætningen skal beskrives konkret før implementering. Den eksisterende VejDim-CSV er eksport; en ny CSV-import er ikke godkendt.
 
-En bruger ændrer friktionsvinklen for et materiale og retter bemærkningen for et andet. Begge ændringer bliver aktive og gemmes automatisk. Visningen kan fremhæve de to ændrede felter med deres standardværdier. »Gendan friktionsvinkel« ville kun føre det valgte felt tilbage til den indbyggede standard, mens bemærkningen bevares. »Fortryd« ville føre det seneste trin tilbage til værdien før trinnet, som også kan have været brugerredigeret.
+Vi kan således vælge tastatur og søgning og undlade Excel-indsætning. R-004 er ikke implementeret. En kompakt tabel med skjulte detaljekolonner er heller ikke indført.
 
-Skeln mellem **fortryd et trin** og **gendan standard**. Materialernes eksisterende grænser, normalisering, unikke navne, lagtyper og genopfyldning af manglende felter ændres ikke af de foreslåede visninger.
+## R-005 erstattes af at huske det aktuelle arbejde
 
-Et permanent internt materiale-ID kan være nyttigt ved omdøbning, men ændrer forbindelsen til lagvalg og skal behandles som et separat forslag.
+Der oprettes ikke navngivne dataprofiler. Appen skal automatisk huske brugerens tabeller, indstillinger og indtastede værdier mellem sessioner. Brugeren har bekræftet, at samme browser på samme computer er tilstrækkeligt.
 
-## Diagramtabeller: bevar direkte kontrol
+Implementeringsvalget er ét JSON-dokument i browserens lokale lager. JSON er dataformatet; browserens lager er placeringen. Ingen konto eller serverlagring er nødvendig for dette behov. På første besøg bruges de gamle indbyggede standardværdier. Ved genåbning bruges brugerens gemte værdier. Gemmefejl må aldrig vises som »Gemt«.
 
-Bevar redigering af de konkrete Eu-rækker. Bevar skellet mellem **tomt felt (ingen diagramværdi)** og **tallet 0**, samt markeringen af direkte aflæste kontra interpolerede standardpunkter. Et tomt felt må ikke automatisk udfyldes eller interpoleres ved almindelig tabelredigering.
+Data følger appens webadresse og browserprofil. Rydning af webstedets browserdata fjerner også de gemte værdier. Se [MDN om localStorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage).
 
-En editor til få kurvepunkter med automatisk genopbygning af alle mellemliggende rækker kan være et senere alternativ. Det er en større ændring: i dag ændrer en redigering den konkrete celle direkte. En kurveeditor kan ændre mange rækker og kræver en særskilt aftale om interpolation, dækning og kontrolcases. Jeg anbefaler at beholde den direkte tabelredigering i første migrationsudgave.
+## Implementeringsstatus og bevarede grænser
 
-Bevar den oprindelige scanning ved siden af kurven fra de aktive tabelværdier. Figurer, farver og markeringer godkendes ved designgennemgangen.
+Den underliggende TypeScript-logik til R-001–003 og lokal JSON-lagring er implementeret og testet; [omfang og kontrol](REDIGERING_OG_LAGRING.md). React-editor, konkrete inputfelter, browserens faktiske lager og fejlvisning skal endnu kobles sammen og afprøves. Godkendelsen er derfor ikke en godkendelse af et færdigt visuelt design.
 
-## R-004 — VejDim og import
-
-En kompakt visning kan fokusere på T, Eu, SG, BL og ubundet total, med de øvrige eksisterende felter som detaljer. Ingen felter fjernes. Afledte totaler forbliver beregnede og må ikke overskrives af import.
-
-Excel-indsætning bør have et præcist kolonnematch og en aftalt behandling af ugyldige celler. Ukendte kolonner må ikke få en gættet betydning. Den nuværende semikolonseparerede VejDim-CSV er en eksport; import er en ny funktion og skal aftales særskilt.
-
-Nye faglige kontroller, fx monotone kurver eller ændrede tykkelsesgrænser, er ikke en del af den valgte arbejdsgang. De kan ændre accepterede data og kræver egen godkendelse.
-
-## Kontrol
-
-B-017 kontrolleres med direkte gyldige ændringer, afviste materialer/diagramrækker, uændrede værdier, nulstilling af ét diagram og VejDim-nulstilling. En konkret test følger en gyldig diagramændring til et nyt aktivt dimensioneringsresultat uden et særskilt anvendelsestrin. Browserprøver og fysisk gemning følger, når brugerflade og lagring er koblet til.
-
-Den tidligere foreslåede kladde med Anvend/Kassér blev fravalgt i A-007. Brugerens direkte redigering og automatisk gemning er den gældende retning.
+Diagrammer beholder direkte redigering af Eu-rækker og skellet mellem tomt felt og 0. Automatisk interpolation af brugerens tomme felter, en ny kurveeditor og nye faglige kontroller er ikke indført. Original scanning og kurven fra aktive tabelværdier bevares som krav; figurernes udformning forelægges ved designgennemgangen.
