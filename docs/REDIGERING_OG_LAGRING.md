@@ -9,7 +9,7 @@
 - `session-storage.ts`: læser/skriver ét versioneret JSON-dokument gennem browserens `getItem`/`setItem`-grænseflade. Dokumentet har aktuelle materialer, diagrammer, VejDim-rækker, indstillinger og et felt til brugerindtastede formularværdier. Versionsmærket er internt format, ikke brugerprofiler.
 - `saved-editor.ts`: kobler gyldige ændringer, fortryd/gentag og nulstilling til automatisk lagring af det samlede aktuelle dokument. Nulstilling af en sektion bevarer øvrige sektioner og formularværdier. Gemmefejl returneres til kommende brugerflade; aktive rettelser bevares, og lagring kan forsøges igen.
 
-Appen tilkobler senere `window.localStorage` til `open_saved_editor`. Åbning med manglende data giver uændrede standarder. Ugyldige, utilgængelige eller ukendte formatversioner giver en fejl frem for at overskrive de gemte data. Navigation inden for appen skal bevare editorinstansen; genindlæsning genskaber værdierne og starter ny fortrydhistorik.
+Materialeudkastet tilkobler nu `window.localStorage` til `open_saved_editor`. Åbning med manglende data giver uændrede standarder. Ugyldige, utilgængelige eller ukendte formatversioner giver en fejl frem for at overskrive de gemte data. Navigation inden for appen skal bevare editorinstansen; genindlæsning genskaber værdierne og starter ny fortrydhistorik.
 
 Lagret indeholder ikke beregningsresultater, PDF-filer eller historik. Input skal genskabe resultater gennem den samme beregningsmotor. Der er ingen automatisk import af gamle lokale brugerfiler og ingen ændring af indbyggede standardværdier.
 
@@ -27,6 +27,6 @@ Materialer matches til standarden ved navn; diagrammer ved Eu; VejDim ved T/Eu m
 
 Lagringsprøver bruger et isoleret lager med samme `getItem`/`setItem`-grænseflade. De kontrollerer genåbning, alle datasektioner, indtastede værdier, null/0, fortryd/gentag, standardgendannelse, afviste ændringer, ukendt format og læse-/skrivefejl. En beregningsprøve følger diagramændring → fortryd → gentag gennem den rigtige TypeScript-motor.
 
-Dette er ikke en afsluttet React- eller browserprøve. Næste trin er tilkobling af konkrete formularer og tabeller, synlig gemmestatus, navigation/genindlæsning i browseren og kontrol ved flere åbne faner. Inputfelternes konkrete gyldighedsregler og afhængigheder skal bevares under denne tilkobling. R-004 er fortsat uafklaret; ingen Excel-indsætning er implementeret.
+De oprindelige adapterprøver er senere suppleret med 11 browserforløb for Materialer, inklusive faktisk localStorage, genåbning, fejlvisning og flere faner. Se `MATERIALEUDKAST.md`. Øvrige tabeller, dimensioneringsformularer og navigation mangler stadig tilkobling. Inputfelternes konkrete gyldighedsregler og afhængigheder skal bevares under denne tilkobling. R-004 er fortsat uafklaret; ingen Excel-indsætning er implementeret.
 
 Lagringen er personlig for samme webadresse, browserprofil og computer. Rydning af webstedets data fjerner værdierne; privat browsing giver ikke almindelig varig lagring. Dette følger [browserens localStorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage). Hosting/adgang, endeligt design og publicering er ikke besluttet.

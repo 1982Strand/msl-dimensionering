@@ -44,6 +44,6 @@ Data følger appens webadresse og browserprofil. Rydning af webstedets browserda
 
 ## Implementeringsstatus og bevarede grænser
 
-Den underliggende TypeScript-logik til R-001–003 og lokal JSON-lagring er implementeret og testet; [omfang og kontrol](REDIGERING_OG_LAGRING.md). React-editor, konkrete inputfelter, browserens faktiske lager og fejlvisning skal endnu kobles sammen og afprøves. Godkendelsen er derfor ikke en godkendelse af et færdigt visuelt design.
+Den underliggende TypeScript-logik til R-001–003 og lokal JSON-lagring er implementeret og testet; [omfang og kontrol](REDIGERING_OG_LAGRING.md). Et første Materialer-udkast kobler nu editor, browserlager og fejlvisning sammen, kontrolleret med 11 browserprøver; se `MATERIALEUDKAST.md`. Øvrige tabeller og formularer mangler tilkobling. Godkendelsen er derfor ikke en godkendelse af et færdigt visuelt design.
 
 Diagrammer beholder direkte redigering af Eu-rækker og skellet mellem tomt felt og 0. Automatisk interpolation af brugerens tomme felter, en ny kurveeditor og nye faglige kontroller er ikke indført. Original scanning og kurven fra aktive tabelværdier bevares som krav; figurernes udformning forelægges ved designgennemgangen.
