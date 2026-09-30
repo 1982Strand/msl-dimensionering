@@ -104,3 +104,81 @@ test('Custom original layers, manual material and phi, scoped reset and responsi
   await page.setViewportSize({ width: 1440, height: 1000 });
   await page.screenshot({ path: info.outputPath('dimensioning-desktop.png') });
 });
+
+test('class choices are horizontal, reference popups keep layout stable and product table matches legacy', async ({
+  page,
+}, info) => {
+  await page.goto('/#dimensionering');
+  const rowTops = await page
+    .locator('input[name="std_valgt_klasse"]')
+    .evaluateAll((inputs) => inputs.map((input) => Math.round(input.getBoundingClientRect().top)));
+  expect(new Set(rowTops).size).toBe(1);
+  const section = page
+    .getByRole('heading', {
+      name: '1. Underbund og dimensioneringsgrundlag',
+      exact: true,
+      includeHidden: true,
+    })
+    .locator('..');
+  const heightBefore = (await section.boundingBox())!.height;
+  await page.getByRole('button', { name: 'Se designdiagram', exact: true }).click();
+  const diagram = page.getByRole('dialog', {
+    name: 'Designdiagram · belastningsklasse 4',
+    exact: true,
+  });
+  await expect(diagram).toBeVisible();
+  await expect(diagram.getByRole('img')).toBeVisible();
+  expect(
+    await diagram
+      .getByRole('img')
+      .evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth > 0),
+  ).toBeTruthy();
+  expect((await section.boundingBox())!.height).toBeCloseTo(heightBefore, 0);
+  await page.screenshot({ path: info.outputPath('diagram-popup.png') });
+  await page.keyboard.press('Escape');
+  await expect(page.getByRole('button', { name: 'Se designdiagram', exact: true })).toBeFocused();
+  await page.getByRole('radio', { name: 'Cv — vingestyrke', exact: true }).check();
+  const cvHeight = (await section.boundingBox())!.height;
+  await page.getByRole('button', { name: 'Se korrelationstabel', exact: true }).click();
+  const cv = page.getByRole('dialog', { name: 'Korrelation mellem Cv og Eᵤ', exact: true });
+  await expect(cv.getByRole('table')).toBeVisible();
+  expect(await cv.evaluate((el) => el.scrollWidth <= el.clientWidth)).toBeTruthy();
+  expect((await section.boundingBox())!.height).toBeCloseTo(cvHeight, 0);
+  await cv.getByRole('button', { name: 'Luk popup' }).click();
+  await page.getByText('Alle produkter', { exact: true }).click();
+  const table = page.getByRole('table', { name: 'Alle produkter', exact: true });
+  await expect(table.getByRole('columnheader')).toHaveText([
+    'Produkt',
+    'Klasse',
+    'Indeks',
+    '1 lag',
+    'Sparet',
+    '2 lag',
+    'Sparet',
+  ]);
+  const first = table.locator('tbody tr').first();
+  await expect(first.getByRole('cell')).toHaveText([
+    'Tensar InterAx NX850',
+    '5-6',
+    '115–130',
+    '550 mm',
+    '−350 mm · 39 %',
+    '—',
+    '—',
+  ]);
+  await expect(table.locator('tbody tr')).toHaveCount(20);
+  await expect(table).not.toContainText('Kombinationen');
+  await table.getByRole('button', { name: 'Sorter efter 1 lag', exact: true }).click();
+  await table.getByRole('button', { name: 'Sorter efter 1 lag', exact: true }).click();
+  await expect(table.locator('tbody tr').first().getByRole('cell').nth(3)).toHaveText('750 mm');
+  await page.screenshot({ path: info.outputPath('product-overview.png') });
+  await page.setViewportSize({ width: 390, height: 844 });
+  expect(
+    await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth),
+  ).toBeTruthy();
+  await page.getByRole('button', { name: 'Se korrelationstabel', exact: true }).click();
+  const bounds = (await cv.boundingBox())!;
+  expect(bounds.x).toBeGreaterThanOrEqual(0);
+  expect(bounds.x + bounds.width).toBeLessThanOrEqual(390);
+  await page.screenshot({ path: info.outputPath('cv-popup-mobile.png') });
+});

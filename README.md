@@ -2,7 +2,7 @@
 
 Migrering af det eksisterende Streamlit-værktøj til React, TypeScript, Vite og shadcn/ui.
 
-Status: beregningskernen og sammensætningen af Standard/Brugerdefineret er porteret til TypeScript efter B-014. 2.750 tests består: beregninger, grænsetilfælde, sammensatte dimensioneringsforløb, redigerbare grunddata, indstillinger og korrelationer. De oprindelige referencecases matcher Python uden numerisk tolerance; godkendte forbedringer har særskilte adfærdstests. TypeScript/Typst-prototypen har desuden genereret ti rapportcases. React/Vite/shadcn-udkastet omfatter Materialer, Designdiagrammer, Trafikklasse-korrelation, Indstillinger og dimensioneringsformularer med browserlagring. De seneste to målrettede browserprøver består; CI kører alle 21. Designretningen er godkendt i B-020.
+Status: beregningskernen og sammensætningen af Standard/Brugerdefineret er porteret til TypeScript efter B-014. 2.751 tests består: beregninger, grænsetilfælde, sammensatte dimensioneringsforløb, redigerbare grunddata, indstillinger og korrelationer. De oprindelige referencecases matcher Python uden numerisk tolerance; godkendte forbedringer har særskilte adfærdstests. TypeScript/Typst-prototypen har desuden genereret ti rapportcases. React/Vite/shadcn-udkastet omfatter Materialer, Designdiagrammer, Trafikklasse-korrelation, Indstillinger og dimensioneringsformularer med browserlagring. De tre målrettede browserprøver for dimensionering består, inklusive popupper og produktoversigt. Seks produktoversigter matcher originalens faktiske HTML. De tidligere 21 browserforløb bestod på Windows/Linux ved 6429265; CI omfatter nu 22. Designretningen er godkendt i B-020.
 
 - Arbejdsmappe: `C:\MSL-Dimensionering`
 - Nyt repository: https://github.com/1982Strand/msl-dimensionering

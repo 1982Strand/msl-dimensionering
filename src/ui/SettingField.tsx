@@ -12,6 +12,7 @@ export interface SettingDefinition {
   max?: number;
   step?: number;
   integer?: boolean;
+  inline?: boolean;
 }
 export function SettingField({
   field,
@@ -35,7 +36,9 @@ export function SettingField({
   const helpId = `${field.key}-help`;
   const options = field.options ?? [];
   return (
-    <div className={`setting-field ${disabled ? 'setting-disabled' : ''}`}>
+    <div
+      className={`setting-field ${disabled ? 'setting-disabled' : ''} ${field.inline ? 'setting-inline' : ''}`}
+    >
       {field.kind === 'checkbox' ? (
         <label className="setting-checkbox">
           <input

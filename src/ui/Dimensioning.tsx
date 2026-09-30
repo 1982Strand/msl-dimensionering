@@ -17,12 +17,14 @@ import {
 } from '../engine/dimensionering';
 import { beregn_alle_produkter } from '../engine/products';
 import { valider_input } from '../engine/validators';
-import { defaults, PHI_BASIS, K_PHI, format_klasse_interval } from '../engine/data';
+import { defaults, PHI_BASIS, K_PHI } from '../engine/data';
 import schema from '../engine/dimensioning-ui.json';
 import { laengde } from '../engine/enhed';
 import { pythonFixed, pythonRound } from '../engine/python-numbers';
 import { er_oprundet } from '../engine/afrunding';
 import type { CalculationResult } from '../engine/types';
+import { InfoPopup } from './InfoPopup';
+import { productOverview, overviewColumns, type OverviewSort } from '../engine/product-overview';
 
 const dk = (n: number, digits = 1) => pythonFixed(n, digits).replace('.', ',');
 function productLabel(name: string) {
@@ -66,6 +68,26 @@ export function Dimensioning() {
       .map((p) => p.navn),
   ).valg;
   if (result && !options.length) options.push(result.geonet_navn);
+  const sortKey = `rt_sort_${standard ? 'standard' : 'brugerdefineret'}`;
+  const rawSort = ctx.session.values[sortKey];
+  const sort =
+    rawSort &&
+    typeof rawSort === 'object' &&
+    !Array.isArray(rawSort) &&
+    overviewColumns.some((c) => c.key === rawSort.column) &&
+    ['asc', 'desc'].includes(String(rawSort.direction))
+      ? (rawSort as unknown as OverviewSort)
+      : null;
+  const overview = productOverview({
+    ...products,
+    unit,
+    rounding: ctx.session.data.indstillinger.afrunding,
+    trafficEu: basis.type === 'trafikklasse' ? input.eu : null,
+    runs: input.koersler,
+    table: input.t_basis_table,
+    rules: input.indstillinger?.yderomraade,
+    sort,
+  });
   // Mirror the original fallback when an input change invalidates a selected product.
   useEffect(() => {
     if (
@@ -109,7 +131,13 @@ export function Dimensioning() {
     options: SettingValue[],
     kind: 'radio' | 'select' = 'radio',
   ) =>
-    field({ key, label, kind, options: options.map((value) => ({ value, label: String(value) })) });
+    field({
+      key,
+      label,
+      kind,
+      inline: key.endsWith('_valgt_klasse') || key.endsWith('_valgt_tklasse'),
+      options: options.map((value) => ({ value, label: String(value) })),
+    });
   function slider(
     key: string,
     label: string,
@@ -208,8 +236,7 @@ export function Dimensioning() {
                   <p className="settings-note">
                     Cv = {String(values[`${prefix}_cv_slider`])} kN/m² → Eᵤ = {input.eu} MPa
                   </p>
-                  <details className="settings-deviations">
-                    <summary>Se korrelationstabel</summary>
+                  <InfoPopup label="Se korrelationstabel" title="Korrelation mellem Cv og Eᵤ">
                     <table className="summary-table">
                       <thead>
                         <tr>
@@ -228,7 +255,7 @@ export function Dimensioning() {
                         ))}
                       </tbody>
                     </table>
-                  </details>
+                  </InfoPopup>
                 </>
               ) : (
                 slider(
@@ -254,14 +281,17 @@ export function Dimensioning() {
                   )
                 : choice(`${prefix}_valgt_klasse`, 'Belastningsklasse', [1, 2, 3, 4, 5, 6])}
               {basis.type === 'belastningsklasse' && (
-                <details className="settings-deviations">
-                  <summary>Se designdiagram</summary>
+                <InfoPopup
+                  label="Se designdiagram"
+                  title={`Designdiagram · belastningsklasse ${basis.valgt_klasse}`}
+                  wide
+                >
                   <img
                     className="dim-scan"
                     src={`/diagrambilleder/${ctx.session.data.designdiagrammer.find((d) => d.klasse === basis.valgt_klasse)?.image_name}`}
                     alt={`Designdiagram for belastningsklasse ${basis.valgt_klasse}`}
                   />
-                </details>
+                </InfoPopup>
               )}
               {basis.type === 'trafikklasse' && (
                 <a className="dim-link" href="#vejdim">
@@ -520,39 +550,64 @@ export function Dimensioning() {
             <details className="settings-deviations">
               <summary>Alle produkter</summary>
               <div className="table-wrap">
-                <table className="summary-table" aria-label="Alle produkter">
+                <table className="summary-table product-overview" aria-label="Alle produkter">
                   <thead>
                     <tr>
-                      <th>Produkt</th>
-                      <th>1 lag geonet</th>
-                      <th>2 lag geonet</th>
-                      <th>Anbefalede belastningsklasser</th>
+                      {overviewColumns.map((c) => (
+                        <th
+                          key={c.key}
+                          aria-sort={
+                            sort?.column === c.key
+                              ? sort.direction === 'asc'
+                                ? 'ascending'
+                                : 'descending'
+                              : 'none'
+                          }
+                        >
+                          <button
+                            type="button"
+                            title={
+                              c.key === 'klasse' && basis.type === 'trafikklasse'
+                                ? `Viser anbefalede trafikklasser ved Eᵤ = ${dk(input.eu, 0)} MPa. Oversættelsen gælder kun dette Eᵤ — samme trafikklasse rammer forskellige belastningsklasser ved en anden underbund.`
+                                : undefined
+                            }
+                            aria-label={`Sorter efter ${c.key === 'sparet1' ? 'sparet med 1 lag' : c.key === 'sparet2' ? 'sparet med 2 lag' : c.label}`}
+                            onClick={() =>
+                              ctx.remember({
+                                [sortKey]: {
+                                  column: c.key,
+                                  direction:
+                                    sort?.column === c.key
+                                      ? sort.direction === 'asc'
+                                        ? 'desc'
+                                        : 'asc'
+                                      : c.direction,
+                                },
+                              })
+                            }
+                          >
+                            {c.label}
+                            {sort?.column === c.key ? (sort.direction === 'asc' ? ' ▲' : ' ▼') : ''}
+                          </button>
+                        </th>
+                      ))}
                     </tr>
                   </thead>
                   <tbody>
-                    {geonet_valgliste(products.one.map((p) => p.navn)).valg.map((name) => {
-                      const one = products.one.find((p) => p.navn === name)!,
-                        two = products.two.find((p) => p.navn === name)!;
-                      const display = (p: typeof one) =>
-                        p.fejl ??
-                        (p.t_armeret_mm_min != null
-                          ? `${laengde(p.t_armeret_mm_min, unit)}–${laengde(p.t_armeret_mm ?? null, unit)}`
-                          : laengde(p.t_armeret_mm ?? null, unit));
-                      return (
-                        <tr
-                          key={name}
-                          className={name === result.geonet_navn ? 'dim-selected' : ''}
-                        >
-                          <td>{name}</td>
-                          <td>{display(one)}</td>
-                          <td>{display(two)}</td>
-                          <td>{format_klasse_interval(one.klasser)}</td>
-                        </tr>
-                      );
-                    })}
+                    {overview.rows.map((row) => (
+                      <tr
+                        key={row.name}
+                        className={row.name === result.geonet_navn ? 'dim-selected' : ''}
+                      >
+                        {row.cells.map((cell, i) => (
+                          <td key={i}>{cell}</td>
+                        ))}
+                      </tr>
+                    ))}
                   </tbody>
                 </table>
               </div>
+              <p className="product-overview-caption">{overview.caption}</p>
             </details>
           </section>
         ) : (
