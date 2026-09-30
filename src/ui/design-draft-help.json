@@ -1,0 +1,34 @@
+[
+  [
+    "Beregningsmetoden",
+    "De to dimensioneringsgrundlag og vejen fra hver af dem til den færdige lagtykkelse. Belastningsklassen aflæses direkte i designdiagrammet; trafikklassen kobles til diagrammerne gennem VejDim-beregninger og et ækvivalent opslagspunkt."
+  ],
+  [
+    "Trafikklasse-korrelationen",
+    "Hvad Eₒ-matricen på korrelationssiden viser, hvad zonerne under og over betyder, hvordan de behandles efter tolerancer og regler, og hvad der sker, når en kørsel rettes."
+  ],
+  [
+    "Designdiagrammerne",
+    "De tre kurver i hvert af de seks diagrammer, hvordan tabellerne er dannet af de aflæste punkter, og hvad der sker uden for diagrammets område."
+  ],
+  [
+    "Materialer og friktionsvinkel",
+    "Hvordan den vægtede friktionsvinkel dannes af materialelagene, hvordan φᵥ-korrektionen virker på lagtykkelsen, og hvornår kornstørrelsen udelukker et materiale."
+  ],
+  [
+    "Geonet, effektindeks og placering",
+    "Referencenettet bag diagrammerne, hvordan effektindekset omsættes til en korrektion af lagtykkelsen, og hvordan to geonetlag placeres i bærelaget."
+  ],
+  [
+    "Sådan læses resultaterne",
+    "Hvordan den indtastede opbygning sammenholdes med de beregnede krav, hvordan tykkelsen fordeles på materialelagene med minimumstykkelse for det øverste lag og regler for tynde underliggende lag, hvilken friktionsvinkel opbygningerne regnes med, hvordan Standard-beregningen opdeler opbygningen, hvordan geonetplaceringen vises, og hvordan statuslinjen angiver forskellen mellem krav og indtastet tykkelse."
+  ],
+  [
+    "Datagrundlag og forbehold",
+    "Forudsætningerne for de 48 standardkørsler, designmanualernes anvendelsesområde, korrelationens gyldighed og de forhold, der kræver særskilt kontrol eller beregning."
+  ],
+  [
+    "Kildedokumenter",
+    "Designmanualerne og de tekniske datablade bag beregningen, med link til udgiverens egen offentliggjorte udgave."
+  ]
+]

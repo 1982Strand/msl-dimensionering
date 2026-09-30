@@ -5,6 +5,7 @@ import { Materials } from './Materials';
 import { DataTables } from './DataTables';
 import { Settings } from './Settings';
 import { Dimensioning } from './Dimensioning';
+import { DesignDraft, SidebarPreview } from './DesignDraft';
 export function App() {
   const [page, setPage] = useState(() => location.hash.slice(1) || 'materialer');
   useEffect(() => {
@@ -12,6 +13,7 @@ export function App() {
     window.addEventListener('hashchange', update);
     return () => window.removeEventListener('hashchange', update);
   }, []);
+  if (page === 'designudkast-sidebar') return <SidebarPreview />;
   return (
     <>
       <header className="topbar">
@@ -36,7 +38,9 @@ export function App() {
         ))}
       </nav>
       <EditorProvider>
-        {page === 'dimensionering' ? (
+        {page === 'designudkast' ? (
+          <DesignDraft />
+        ) : page === 'dimensionering' ? (
           <Dimensioning />
         ) : page === 'indstillinger' ? (
           <Settings />
