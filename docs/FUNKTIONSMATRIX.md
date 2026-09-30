@@ -67,6 +67,8 @@ Reference: `a330cfd`, indbyggede standardværdier. Alle kildehenvisninger er rel
 
 ## Færdigkriterium for hvert ID
 
+Opdatering 30. september 2026: F-04.3/F-11.3 har nu React-editorer, CSV, nulstilling, fælles historik og lagring. F-09.3 har rådiagrammer og trafikklassens regneeksempel; øvrige figurer/koblingsvisninger udestår. 132 yderligere originale sammenligninger og seks nye browserforløb dækker dette trin. Samlet 2.746 motor-/datatests og 17 browserforløb. De tidligere statusfelter dokumenterer kortlægningstidspunktet; aktuelle begrænsninger står i `GRUNDDATAUDKAST.md`.
+
 Et ID kan først afsluttes, når relevant originaladfærd er registreret, ny implementation er koblet til casen, automatisk/manuel kontrol er gennemført og eventuelle afvigelser har en konkret godkendelse. Ingen ID'er er afsluttet som migreret.
 
 ## TypeScript-status efter B-014

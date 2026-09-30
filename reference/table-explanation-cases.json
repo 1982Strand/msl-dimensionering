@@ -1,0 +1,7050 @@
+{
+  "source": {
+    "commit": "a330cfd6734ac2478be1304a362c69f94e412d25",
+    "data_profile": "built-in defaults; no user JSON",
+    "files": {
+      "app.py": "ba6b29870a92df46025a8d936b3ab6ea16f32b1f7122e48652a640182f9530e5",
+      "ui.py": "ffa3e583a19d4ede16873963bed70b819e3402b320878ba49166295fd5558d7c",
+      "core/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "core/afrunding.py": "9149c3536c388a82e2f242e939a1a1f998e01bf828a6ab378c927a757ad816e4",
+      "core/calculator.py": "bf46d2642d6083439b8c03c46e24eb18f156fe1a734af7e6fa866f16626ad227",
+      "core/data.py": "e164a0f3bb42cd0d565dfc45d2895031a03b2cb8e93b05a0a65097790d0f0540",
+      "core/diagram.py": "b171b7486e5aa1a43590f9f8a28376680bd2a50f7155535fcbfb7198d38df461",
+      "core/enhed.py": "256884745b59e94d0211a610e8bf092942a0fec5d147e48a7502833912583cf2",
+      "core/hjaelp.py": "5179b206a31224bf2582fdc31bf6520fd68552da1206dd5f7f034ab249e0ac78",
+      "core/lagfordeling.py": "0426d2021e037c8e993fefc104b69cfbf03526408cadd1303775c32f5577716b",
+      "core/placement.py": "9668ab8bfe106722e4735576d72dcb86280470ee60fea14feae08bf8f3ccf9d2",
+      "core/rapport.py": "b6235563354b72f81d386afc703db273eb08a2d6f9857d4f73499f7b2c61b898",
+      "core/validators.py": "5258b68728afa7d2224d1e5b090ff6c78f7a3c568408ad367dbcd210fb71428c"
+    }
+  },
+  "cases": [
+    {
+      "rows": [
+        {
+          "T": "T1",
+          "eu": 3,
+          "slidlag": "AB 1000",
+          "t_slid_mm": 40.0,
+          "bindelag": "-",
+          "t_bindelag_mm": 0.0,
+          "bundet_baerelag": "-",
+          "t_bundet_mm": 0.0,
+          "E_asf_vist_MPa": 1000.0,
+          "ubundet_baerelag": "SG II",
+          "t_SG_mm": 170.0,
+          "bundsikring": "BL II U≤3",
+          "t_BL_mm": 448.0,
+          "levetid_styrende_aar": 0.0,
+          "bemaerkning": ""
+        },
+        {
+          "T": "T1",
+          "eu": 4,
+          "slidlag": "AB 1000",
+          "t_slid_mm": 40.0,
+          "bindelag": "-",
+          "t_bindelag_mm": 0.0,
+          "bundet_baerelag": "-",
+          "t_bundet_mm": 0.0,
+          "E_asf_vist_MPa": 1000.0,
+          "ubundet_baerelag": "SG II",
+          "t_SG_mm": 120.0,
+          "bundsikring": "BL II U≤3",
+          "t_BL_mm": 470.0,
+          "levetid_styrende_aar": 0.0,
+          "bemaerkning": ""
+        },
+        {
+          "T": "T1",
+          "eu": 5,
+          "slidlag": "AB 1000",
+          "t_slid_mm": 40.0,
+          "bindelag": "-",
+          "t_bindelag_mm": 0.0,
+          "bundet_baerelag": "-",
+          "t_bundet_mm": 0.0,
+          "E_asf_vist_MPa": 1000.0,
+          "ubundet_baerelag": "SG II",
+          "t_SG_mm": 110.0,
+          "bundsikring": "BL II U≤3",
+          "t_BL_mm": 450.0,
+          "levetid_styrende_aar": 20.2,
+          "bemaerkning": ""
+        },
+        {
+          "T": "T1",
+          "eu": 10,
+          "slidlag": "AB 1000",
+          "t_slid_mm": 40.0,
+          "bindelag": "-",
+          "t_bindelag_mm": 0.0,
+          "bundet_baerelag": "-",
+          "t_bundet_mm": 0.0,
+          "E_asf_vist_MPa": 1000.0,
+          "ubundet_baerelag": "SG II",
+          "t_SG_mm": 100.0,
+          "bundsikring": "BL II U≤3",
+          "t_BL_mm": 356.0,
+          "levetid_styrende_aar": 20.0,
+          "bemaerkning": "SGII begrænset til minimumstykkelse 100"
+        },
+        {
+          "T": "T1",
+          "eu": 15,
+          "slidlag": "AB 1000",
+          "t_slid_mm": 40.0,
+          "bindelag": "-",
+          "t_bindelag_mm": 0.0,
+          "bundet_baerelag": "-",
+          "t_bundet_mm": 0.0,
+          "E_asf_vist_MPa": 1000.0,
+          "ubundet_baerelag": "SG II",
+          "t_SG_mm": 100.0,
+          "bundsikring": "BL II U≤3",
+          "t_BL_mm": 292.0,
+          "levetid_styrende_aar": 20.2,
+          "bemaerkning": "SGII begrænset til minimumstykkelse 100"
+        },
+        {
+          "T": "T1",
+          "eu": 20,
+          "slidlag": "AB 1000",
+          "t_slid_mm": 40.0,
+          "bindelag": "-",
+          "t_bindelag_mm": 0.0,
+          "bundet_baerelag": "-",
+          "t_bundet_mm": 0.0,
+          "E_asf_vist_MPa": 1000.0,
+          "ubundet_baerelag": "SG II",
+          "t_SG_mm": 100.0,
+          "bundsikring": "BL II U≤3",
+          "t_BL_mm": 243.0,
+          "levetid_styrende_aar": 20.1,
+          "bemaerkning": "SGII begrænset til minimumstykkelse 100"
+        },
+        {
+          "T": "T1",
+          "eu": 30,
+          "slidlag": "AB 1000",
+          "t_slid_mm": 40.0,
+          "bindelag": "-",
+          "t_bindelag_mm": 0.0,
+          "bundet_baerelag": "-",
+          "t_bundet_mm": 0.0,
+          "E_asf_vist_MPa": 1000.0,
+          "ubundet_baerelag": "SG II",
+          "t_SG_mm": 100.0,
+          "bundsikring": "BL II U≤3",
+          "t_BL_mm": 200.0,
+          "levetid_styrende_aar": 29.6,
+          "bemaerkning": "SGII begrænset til minimumstykkelse 100 og BLII begrænset til minimumstykkelse 200"
+        },
+        {
+          "T": "T1",
+          "eu": 40,
+          "slidlag": "AB 1000",
+          "t_slid_mm": 40.0,
+          "bindelag": "-",
+          "t_bindelag_mm": 0.0,
+          "bundet_baerelag": "-",
+          "t_bundet_mm": 0.0,
+          "E_asf_vist_MPa": 1000.0,
+          "ubundet_baerelag": "SG II",
+          "t_SG_mm": 100.0,
+          "bundsikring": "BL II U≤3",
+          "t_BL_mm": 200.0,
+          "levetid_styrende_aar": 30.1,
+          "bemaerkning": "SGII begrænset til minimumstykkelse 100 og BLII begrænset til minimumstykkelse 200"
+        },
+        {
+          "T": "T2",
+          "eu": 3,
+          "slidlag": "AB 1000",
+          "t_slid_mm": 40.0,
+          "bindelag": "-",
+          "t_bindelag_mm": 0.0,
+          "bundet_baerelag": "GAB 0 2000",
+          "t_bundet_mm": 74.0,
+          "E_asf_vist_MPa": 1690.0,
+          "ubundet_baerelag": "SG II",
+          "t_SG_mm": 180.0,
+          "bundsikring": "BL II U≤3",
+          "t_BL_mm": 866.0,
+          "levetid_styrende_aar": 0.0,
+          "bemaerkning": ""
+        },
+        {
+          "T": "T2",
+          "eu": 4,
+          "slidlag": "AB 1000",
+          "t_slid_mm": 40.0,
+          "bindelag": "-",
+          "t_bindelag_mm": 0.0,
+          "bundet_baerelag": "GAB 0 2000",
+          "t_bundet_mm": 74.0,
+          "E_asf_vist_MPa": 1690.0,
+          "ubundet_baerelag": "SG II",
+          "t_SG_mm": 180.0,
+          "bundsikring": "BL II U≤3",
+          "t_BL_mm": 797.0,
+          "levetid_styrende_aar": 0.0,
+          "bemaerkning": ""
+        },
+        {
+          "T": "T2",
+          "eu": 5,
+          "slidlag": "AB 1000",
+          "t_slid_mm": 40.0,
+          "bindelag": "-",
+          "t_bindelag_mm": 0.0,
+          "bundet_baerelag": "GAB 0 2000",
+          "t_bundet_mm": 74.0,
+          "E_asf_vist_MPa": 1690.0,
+          "ubundet_baerelag": "SG II",
+          "t_SG_mm": 170.0,
+          "bundsikring": "BL II U≤3",
+          "t_BL_mm": 757.0,
+          "levetid_styrende_aar": 20.1,
+          "bemaerkning": ""
+        },
+        {
+          "T": "T2",
+          "eu": 10,
+          "slidlag": "AB 1000",
+          "t_slid_mm": 40.0,
+          "bindelag": "-",
+          "t_bindelag_mm": 0.0,
+          "bundet_baerelag": "GAB 0 2000",
+          "t_bundet_mm": 74.0,
+          "E_asf_vist_MPa": 1690.0,
+          "ubundet_baerelag": "SG II",
+          "t_SG_mm": 170.0,
+          "bundsikring": "BL II U≤3",
+          "t_BL_mm": 590.0,
+          "levetid_styrende_aar": 20.0,
+          "bemaerkning": ""
+        },
+        {
+          "T": "T2",
+          "eu": 15,
+          "slidlag": "AB 1000",
+          "t_slid_mm": 40.0,
+          "bindelag": "-",
+          "t_bindelag_mm": 0.0,
+          "bundet_baerelag": "GAB 0 2000",
+          "t_bundet_mm": 73.0,
+          "E_asf_vist_MPa": 1680.0,
+          "ubundet_baerelag": "SG II",
+          "t_SG_mm": 160.0,
+          "bundsikring": "BL II U≤3",
+          "t_BL_mm": 508.0,
+          "levetid_styrende_aar": 20.1,
+          "bemaerkning": ""
+        },
+        {
+          "T": "T2",
+          "eu": 20,
+          "slidlag": "AB 1000",
+          "t_slid_mm": 40.0,
+          "bindelag": "-",
+          "t_bindelag_mm": 0.0,
+          "bundet_baerelag": "GAB 0 2000",
+          "t_bundet_mm": 73.0,
+          "E_asf_vist_MPa": 1680.0,
+          "ubundet_baerelag": "SG II",
+          "t_SG_mm": 160.0,
+          "bundsikring": "BL II U≤3",
+          "t_BL_mm": 439.0,
+          "levetid_styrende_aar": 20.1,
+          "bemaerkning": ""
+        },
+        {
+          "T": "T2",
+          "eu": 30,
+          "slidlag": "AB 1000",
+          "t_slid_mm": 40.0,
+          "bindelag": "-",
+          "t_bindelag_mm": 0.0,
+          "bundet_baerelag": "GAB 0 2000",
+          "t_bundet_mm": 72.0,
+          "E_asf_vist_MPa": 1671.0,
+          "ubundet_baerelag": "SG II",
+          "t_SG_mm": 160.0,
+          "bundsikring": "BL II U≤3",
+          "t_BL_mm": 337.0,
+          "levetid_styrende_aar": 20.2,
+          "bemaerkning": ""
+        },
+        {
+          "T": "T2",
+          "eu": 40,
+          "slidlag": "AB 1000",
+          "t_slid_mm": 40.0,
+          "bindelag": "-",
+          "t_bindelag_mm": 0.0,
+          "bundet_baerelag": "GAB 0 2000",
+          "t_bundet_mm": 72.0,
+          "E_asf_vist_MPa": 1671.0,
+          "ubundet_baerelag": "SG II",
+          "t_SG_mm": 160.0,
+          "bundsikring": "BL II U≤3",
+          "t_BL_mm": 264.0,
+          "levetid_styrende_aar": 20.1,
+          "bemaerkning": ""
+        },
+        {
+          "T": "T3",
+          "eu": 3,
+          "slidlag": "AB 1000",
+          "t_slid_mm": 40.0,
+          "bindelag": "-",
+          "t_bindelag_mm": 0.0,
+          "bundet_baerelag": "GAB 0 2000",
+          "t_bundet_mm": 95.0,
+          "E_asf_vist_MPa": 1862.0,
+          "ubundet_baerelag": "SG II",
+          "t_SG_mm": 200.0,
+          "bundsikring": "BL II U≤3",
+          "t_BL_mm": 957.0,
+          "levetid_styrende_aar": 0.0,
+          "bemaerkning": ""
+        },
+        {
+          "T": "T3",
+          "eu": 4,
+          "slidlag": "AB 1000",
+          "t_slid_mm": 40.0,
+          "bindelag": "-",
+          "t_bindelag_mm": 0.0,
+          "bundet_baerelag": "GAB 0 2000",
+          "t_bundet_mm": 95.0,
+          "E_asf_vist_MPa": 1862.0,
+          "ubundet_baerelag": "SG II",
+          "t_SG_mm": 200.0,
+          "bundsikring": "BL II U≤3",
+          "t_BL_mm": 879.0,
+          "levetid_styrende_aar": 0.0,
+          "bemaerkning": ""
+        },
+        {
+          "T": "T3",
+          "eu": 5,
+          "slidlag": "AB 1000",
+          "t_slid_mm": 40.0,
+          "bindelag": "-",
+          "t_bindelag_mm": 0.0,
+          "bundet_baerelag": "GAB 0 2000",
+          "t_bundet_mm": 95.0,
+          "E_asf_vist_MPa": 1862.0,
+          "ubundet_baerelag": "SG II",
+          "t_SG_mm": 200.0,
+          "bundsikring": "BL II U≤3",
+          "t_BL_mm": 818.0,
+          "levetid_styrende_aar": 20.0,
+          "bemaerkning": ""
+        },
+        {
+          "T": "T3",
+          "eu": 10,
+          "slidlag": "AB 1000",
+          "t_slid_mm": 40.0,
+          "bindelag": "-",
+          "t_bindelag_mm": 0.0,
+          "bundet_baerelag": "GAB 0 2000",
+          "t_bundet_mm": 94.0,
+          "E_asf_vist_MPa": 1854.0,
+          "ubundet_baerelag": "SG II",
+          "t_SG_mm": 190.0,
+          "bundsikring": "BL II U≤3",
+          "t_BL_mm": 649.0,
+          "levetid_styrende_aar": 20.1,
+          "bemaerkning": ""
+        },
+        {
+          "T": "T3",
+          "eu": 15,
+          "slidlag": "AB 1000",
+          "t_slid_mm": 40.0,
+          "bindelag": "-",
+          "t_bindelag_mm": 0.0,
+          "bundet_baerelag": "GAB 0 2000",
+          "t_bundet_mm": 94.0,
+          "E_asf_vist_MPa": 1854.0,
+          "ubundet_baerelag": "SG II",
+          "t_SG_mm": 190.0,
+          "bundsikring": "BL II U≤3",
+          "t_BL_mm": 539.0,
+          "levetid_styrende_aar": 20.1,
+          "bemaerkning": ""
+        },
+        {
+          "T": "T3",
+          "eu": 20,
+          "slidlag": "AB 1000",
+          "t_slid_mm": 40.0,
+          "bindelag": "-",
+          "t_bindelag_mm": 0.0,
+          "bundet_baerelag": "GAB 0 2000",
+          "t_bundet_mm": 94.0,
+          "E_asf_vist_MPa": 1854.0,
+          "ubundet_baerelag": "SG II",
+          "t_SG_mm": 190.0,
+          "bundsikring": "BL II U≤3",
+          "t_BL_mm": 460.0,
+          "levetid_styrende_aar": 20.0,
+          "bemaerkning": ""
+        },
+        {
+          "T": "T3",
+          "eu": 30,
+          "slidlag": "AB 1000",
+          "t_slid_mm": 40.0,
+          "bindelag": "-",
+          "t_bindelag_mm": 0.0,
+          "bundet_baerelag": "GAB 0 2000",
+          "t_bundet_mm": 94.0,
+          "E_asf_vist_MPa": 1854.0,
+          "ubundet_baerelag": "SG II",
+          "t_SG_mm": 200.0,
+          "bundsikring": "BL II U≤3",
+          "t_BL_mm": 334.0,
+          "levetid_styrende_aar": 20.0,
+          "bemaerkning": ""
+        },
+        {
+          "T": "T3",
+          "eu": 40,
+          "slidlag": "AB 1000",
+          "t_slid_mm": 40.0,
+          "bindelag": "-",
+          "t_bindelag_mm": 0.0,
+          "bundet_baerelag": "GAB 0 2000",
+          "t_bundet_mm": 94.0,
+          "E_asf_vist_MPa": 1854.0,
+          "ubundet_baerelag": "SG II",
+          "t_SG_mm": 200.0,
+          "bundsikring": "BL II U≤3",
+          "t_BL_mm": 255.0,
+          "levetid_styrende_aar": 20.1,
+          "bemaerkning": ""
+        },
+        {
+          "T": "T4",
+          "eu": 3,
+          "slidlag": "AB 2000",
+          "t_slid_mm": 40.0,
+          "bindelag": "-",
+          "t_bindelag_mm": 0.0,
+          "bundet_baerelag": "GAB 0 2000",
+          "t_bundet_mm": 125.0,
+          "E_asf_vist_MPa": 2362.0,
+          "ubundet_baerelag": "SG II",
+          "t_SG_mm": 240.0,
+          "bundsikring": "BL II U≤3",
+          "t_BL_mm": 1107.0,
+          "levetid_styrende_aar": 0.0,
+          "bemaerkning": "VejDim beregner tykkelsen af det bundne bærelag"
+        },
+        {
+          "T": "T4",
+          "eu": 4,
+          "slidlag": "AB 2000",
+          "t_slid_mm": 40.0,
+          "bindelag": "-",
+          "t_bindelag_mm": 0.0,
+          "bundet_baerelag": "GAB 0 2000",
+          "t_bundet_mm": 125.0,
+          "E_asf_vist_MPa": 2362.0,
+          "ubundet_baerelag": "SG II",
+          "t_SG_mm": 240.0,
+          "bundsikring": "BL II U≤3",
+          "t_BL_mm": 1014.0,
+          "levetid_styrende_aar": 0.0,
+          "bemaerkning": "VejDim beregner tykkelsen af det bundne bærelag"
+        },
+        {
+          "T": "T4",
+          "eu": 5,
+          "slidlag": "AB 2000",
+          "t_slid_mm": 40.0,
+          "bindelag": "-",
+          "t_bindelag_mm": 0.0,
+          "bundet_baerelag": "GAB 0 2000",
+          "t_bundet_mm": 125.0,
+          "E_asf_vist_MPa": 2362.0,
+          "ubundet_baerelag": "SG II",
+          "t_SG_mm": 240.0,
+          "bundsikring": "BL II U≤3",
+          "t_BL_mm": 944.0,
+          "levetid_styrende_aar": 20.0,
+          "bemaerkning": "VejDim beregner tykkelsen af det bundne bærelag"
+        },
+        {
+          "T": "T4",
+          "eu": 10,
+          "slidlag": "AB 2000",
+          "t_slid_mm": 40.0,
+          "bindelag": "-",
+          "t_bindelag_mm": 0.0,
+          "bundet_baerelag": "GAB 0 2000",
+          "t_bundet_mm": 125.0,
+          "E_asf_vist_MPa": 2362.0,
+          "ubundet_baerelag": "SG II",
+          "t_SG_mm": 230.0,
+          "bundsikring": "BL II U≤3",
+          "t_BL_mm": 739.0,
+          "levetid_styrende_aar": 20.0,
+          "bemaerkning": "VejDim beregner tykkelsen af det bundne bærelag"
+        },
+        {
+          "T": "T4",
+          "eu": 15,
+          "slidlag": "AB 2000",
+          "t_slid_mm": 40.0,
+          "bindelag": "-",
+          "t_bindelag_mm": 0.0,
+          "bundet_baerelag": "GAB 0 2000",
+          "t_bundet_mm": 123.0,
+          "E_asf_vist_MPa": 2355.0,
+          "ubundet_baerelag": "SG II",
+          "t_SG_mm": 220.0,
+          "bundsikring": "BL II U≤3",
+          "t_BL_mm": 629.0,
+          "levetid_styrende_aar": 20.1,
+          "bemaerkning": "VejDim beregner tykkelsen af det bundne bærelag"
+        },
+        {
+          "T": "T4",
+          "eu": 20,
+          "slidlag": "AB 2000",
+          "t_slid_mm": 40.0,
+          "bindelag": "-",
+          "t_bindelag_mm": 0.0,
+          "bundet_baerelag": "GAB 0 2000",
+          "t_bundet_mm": 123.0,
+          "E_asf_vist_MPa": 2355.0,
+          "ubundet_baerelag": "SG II",
+          "t_SG_mm": 220.0,
+          "bundsikring": "BL II U≤3",
+          "t_BL_mm": 537.0,
+          "levetid_styrende_aar": 20.0,
+          "bemaerkning": "VejDim beregner tykkelsen af det bundne bærelag"
+        },
+        {
+          "T": "T4",
+          "eu": 30,
+          "slidlag": "AB 2000",
+          "t_slid_mm": 40.0,
+          "bindelag": "-",
+          "t_bindelag_mm": 0.0,
+          "bundet_baerelag": "GAB 0 2000",
+          "t_bundet_mm": 123.0,
+          "E_asf_vist_MPa": 2355.0,
+          "ubundet_baerelag": "SG II",
+          "t_SG_mm": 230.0,
+          "bundsikring": "BL II U≤3",
+          "t_BL_mm": 392.0,
+          "levetid_styrende_aar": 20.1,
+          "bemaerkning": "VejDim beregner tykkelsen af det bundne bærelag"
+        },
+        {
+          "T": "T4",
+          "eu": 40,
+          "slidlag": "AB 2000",
+          "t_slid_mm": 40.0,
+          "bindelag": "-",
+          "t_bindelag_mm": 0.0,
+          "bundet_baerelag": "GAB 0 2000",
+          "t_bundet_mm": 123.0,
+          "E_asf_vist_MPa": 2355.0,
+          "ubundet_baerelag": "SG II",
+          "t_SG_mm": 230.0,
+          "bundsikring": "BL II U≤3",
+          "t_BL_mm": 301.0,
+          "levetid_styrende_aar": 20.0,
+          "bemaerkning": "VejDim beregner tykkelsen af det bundne bærelag"
+        },
+        {
+          "T": "T5",
+          "eu": 3,
+          "slidlag": "AB 2000",
+          "t_slid_mm": 40.0,
+          "bindelag": "-",
+          "t_bindelag_mm": 0.0,
+          "bundet_baerelag": "GAB I 3000",
+          "t_bundet_mm": 132.0,
+          "E_asf_vist_MPa": 3456.0,
+          "ubundet_baerelag": "SG II",
+          "t_SG_mm": 270.0,
+          "bundsikring": "BL II U≤3",
+          "t_BL_mm": 1224.0,
+          "levetid_styrende_aar": 0.0,
+          "bemaerkning": "VejDim beregner tykkelsen af det bundne bærelag"
+        },
+        {
+          "T": "T5",
+          "eu": 4,
+          "slidlag": "AB 2000",
+          "t_slid_mm": 40.0,
+          "bindelag": "-",
+          "t_bindelag_mm": 0.0,
+          "bundet_baerelag": "GAB I 3000",
+          "t_bundet_mm": 132.0,
+          "E_asf_vist_MPa": 3456.0,
+          "ubundet_baerelag": "SG II",
+          "t_SG_mm": 270.0,
+          "bundsikring": "BL II U≤3",
+          "t_BL_mm": 1119.0,
+          "levetid_styrende_aar": 0.0,
+          "bemaerkning": "VejDim beregner tykkelsen af det bundne bærelag"
+        },
+        {
+          "T": "T5",
+          "eu": 5,
+          "slidlag": "AB 2000",
+          "t_slid_mm": 40.0,
+          "bindelag": "-",
+          "t_bindelag_mm": 0.0,
+          "bundet_baerelag": "GAB I 3000",
+          "t_bundet_mm": 132.0,
+          "E_asf_vist_MPa": 3456.0,
+          "ubundet_baerelag": "SG II",
+          "t_SG_mm": 270.0,
+          "bundsikring": "BL II U≤3",
+          "t_BL_mm": 1042.0,
+          "levetid_styrende_aar": 20.0,
+          "bemaerkning": "VejDim beregner tykkelsen af det bundne bærelag"
+        },
+        {
+          "T": "T5",
+          "eu": 10,
+          "slidlag": "AB 2000",
+          "t_slid_mm": 40.0,
+          "bindelag": "-",
+          "t_bindelag_mm": 0.0,
+          "bundet_baerelag": "GAB I 3000",
+          "t_bundet_mm": 131.0,
+          "E_asf_vist_MPa": 3448.0,
+          "ubundet_baerelag": "SG II",
+          "t_SG_mm": 260.0,
+          "bundsikring": "BL II U≤3",
+          "t_BL_mm": 818.0,
+          "levetid_styrende_aar": 20.1,
+          "bemaerkning": "VejDim beregner tykkelsen af det bundne bærelag"
+        },
+        {
+          "T": "T5",
+          "eu": 15,
+          "slidlag": "AB 2000",
+          "t_slid_mm": 40.0,
+          "bindelag": "-",
+          "t_bindelag_mm": 0.0,
+          "bundet_baerelag": "GAB I 3000",
+          "t_bundet_mm": 131.0,
+          "E_asf_vist_MPa": 3448.0,
+          "ubundet_baerelag": "SG II",
+          "t_SG_mm": 250.0,
+          "bundsikring": "BL II U≤3",
+          "t_BL_mm": 689.0,
+          "levetid_styrende_aar": 20.0,
+          "bemaerkning": "VejDim beregner tykkelsen af det bundne bærelag"
+        },
+        {
+          "T": "T5",
+          "eu": 20,
+          "slidlag": "AB 2000",
+          "t_slid_mm": 40.0,
+          "bindelag": "-",
+          "t_bindelag_mm": 0.0,
+          "bundet_baerelag": "GAB I 3000",
+          "t_bundet_mm": 130.0,
+          "E_asf_vist_MPa": 3440.0,
+          "ubundet_baerelag": "SG II",
+          "t_SG_mm": 250.0,
+          "bundsikring": "BL II U≤3",
+          "t_BL_mm": 590.0,
+          "levetid_styrende_aar": 20.1,
+          "bemaerkning": "VejDim beregner tykkelsen af det bundne bærelag"
+        },
+        {
+          "T": "T5",
+          "eu": 30,
+          "slidlag": "AB 2000",
+          "t_slid_mm": 40.0,
+          "bindelag": "-",
+          "t_bindelag_mm": 0.0,
+          "bundet_baerelag": "GAB I 3000",
+          "t_bundet_mm": 130.0,
+          "E_asf_vist_MPa": 3440.0,
+          "ubundet_baerelag": "SG II",
+          "t_SG_mm": 240.0,
+          "bundsikring": "BL II U≤3",
+          "t_BL_mm": 459.0,
+          "levetid_styrende_aar": 20.1,
+          "bemaerkning": "VejDim beregner tykkelsen af det bundne bærelag"
+        },
+        {
+          "T": "T5",
+          "eu": 40,
+          "slidlag": "AB 2000",
+          "t_slid_mm": 40.0,
+          "bindelag": "-",
+          "t_bindelag_mm": 0.0,
+          "bundet_baerelag": "GAB I 3000",
+          "t_bundet_mm": 129.0,
+          "E_asf_vist_MPa": 3432.0,
+          "ubundet_baerelag": "SG II",
+          "t_SG_mm": 240.0,
+          "bundsikring": "BL II U≤3",
+          "t_BL_mm": 360.0,
+          "levetid_styrende_aar": 20.1,
+          "bemaerkning": "VejDim beregner tykkelsen af det bundne bærelag"
+        },
+        {
+          "T": "T6",
+          "eu": 3,
+          "slidlag": "SMA 3000",
+          "t_slid_mm": 40.0,
+          "bindelag": "-",
+          "t_bindelag_mm": 0.0,
+          "bundet_baerelag": "GAB II 3000",
+          "t_bundet_mm": 144.0,
+          "E_asf_vist_MPa": 3829.0,
+          "ubundet_baerelag": "SG II",
+          "t_SG_mm": 290.0,
+          "bundsikring": "BL II U≤3",
+          "t_BL_mm": 1290.0,
+          "levetid_styrende_aar": 0.0,
+          "bemaerkning": "VejDim beregner tykkelsen af det bundne bærelag"
+        },
+        {
+          "T": "T6",
+          "eu": 4,
+          "slidlag": "SMA 3000",
+          "t_slid_mm": 40.0,
+          "bindelag": "-",
+          "t_bindelag_mm": 0.0,
+          "bundet_baerelag": "GAB II 3000",
+          "t_bundet_mm": 143.0,
+          "E_asf_vist_MPa": 3823.0,
+          "ubundet_baerelag": "SG II",
+          "t_SG_mm": 280.0,
+          "bundsikring": "BL II U≤3",
+          "t_BL_mm": 1199.0,
+          "levetid_styrende_aar": 0.0,
+          "bemaerkning": "VejDim beregner tykkelsen af det bundne bærelag"
+        },
+        {
+          "T": "T6",
+          "eu": 5,
+          "slidlag": "SMA 3000",
+          "t_slid_mm": 40.0,
+          "bindelag": "-",
+          "t_bindelag_mm": 0.0,
+          "bundet_baerelag": "GAB II 3000",
+          "t_bundet_mm": 142.0,
+          "E_asf_vist_MPa": 3817.0,
+          "ubundet_baerelag": "SG II",
+          "t_SG_mm": 280.0,
+          "bundsikring": "BL II U≤3",
+          "t_BL_mm": 1117.0,
+          "levetid_styrende_aar": 20.0,
+          "bemaerkning": "VejDim beregner tykkelsen af det bundne bærelag"
+        },
+        {
+          "T": "T6",
+          "eu": 10,
+          "slidlag": "SMA 3000",
+          "t_slid_mm": 40.0,
+          "bindelag": "-",
+          "t_bindelag_mm": 0.0,
+          "bundet_baerelag": "GAB II 3000",
+          "t_bundet_mm": 141.0,
+          "E_asf_vist_MPa": 3811.0,
+          "ubundet_baerelag": "SG II",
+          "t_SG_mm": 270.0,
+          "bundsikring": "BL II U≤3",
+          "t_BL_mm": 876.0,
+          "levetid_styrende_aar": 20.0,
+          "bemaerkning": "VejDim beregner tykkelsen af det bundne bærelag"
+        },
+        {
+          "T": "T6",
+          "eu": 15,
+          "slidlag": "SMA 3000",
+          "t_slid_mm": 40.0,
+          "bindelag": "-",
+          "t_bindelag_mm": 0.0,
+          "bundet_baerelag": "GAB II 3000",
+          "t_bundet_mm": 141.0,
+          "E_asf_vist_MPa": 3811.0,
+          "ubundet_baerelag": "SG II",
+          "t_SG_mm": 270.0,
+          "bundsikring": "BL II U≤3",
+          "t_BL_mm": 723.0,
+          "levetid_styrende_aar": 20.0,
+          "bemaerkning": "VejDim beregner tykkelsen af det bundne bærelag"
+        },
+        {
+          "T": "T6",
+          "eu": 20,
+          "slidlag": "SMA 3000",
+          "t_slid_mm": 40.0,
+          "bindelag": "-",
+          "t_bindelag_mm": 0.0,
+          "bundet_baerelag": "GAB II 3000",
+          "t_bundet_mm": 141.0,
+          "E_asf_vist_MPa": 3811.0,
+          "ubundet_baerelag": "SG II",
+          "t_SG_mm": 260.0,
+          "bundsikring": "BL II U≤3",
+          "t_BL_mm": 629.0,
+          "levetid_styrende_aar": 20.0,
+          "bemaerkning": "VejDim beregner tykkelsen af det bundne bærelag"
+        },
+        {
+          "T": "T6",
+          "eu": 30,
+          "slidlag": "SMA 3000",
+          "t_slid_mm": 40.0,
+          "bindelag": "-",
+          "t_bindelag_mm": 0.0,
+          "bundet_baerelag": "GAB II 3000",
+          "t_bundet_mm": 140.0,
+          "E_asf_vist_MPa": 3805.0,
+          "ubundet_baerelag": "SG II",
+          "t_SG_mm": 260.0,
+          "bundsikring": "BL II U≤3",
+          "t_BL_mm": 478.0,
+          "levetid_styrende_aar": 20.0,
+          "bemaerkning": "VejDim beregner tykkelsen af det bundne bærelag"
+        },
+        {
+          "T": "T6",
+          "eu": 40,
+          "slidlag": "SMA 3000",
+          "t_slid_mm": 40.0,
+          "bindelag": "-",
+          "t_bindelag_mm": 0.0,
+          "bundet_baerelag": "GAB II 3000",
+          "t_bundet_mm": 140.0,
+          "E_asf_vist_MPa": 3805.0,
+          "ubundet_baerelag": "SG II",
+          "t_SG_mm": 260.0,
+          "bundsikring": "BL II U≤3",
+          "t_BL_mm": 370.0,
+          "levetid_styrende_aar": 20.1,
+          "bemaerkning": "VejDim beregner tykkelsen af det bundne bærelag"
+        }
+      ],
+      "samples": [
+        {
+          "traffic": "T1",
+          "eu": 3,
+          "expected": {
+            "trin1": {
+              "ubundet_mm": 618.0,
+              "direkte": true,
+              "kendte": [
+                3,
+                4,
+                5,
+                10,
+                15,
+                20,
+                30,
+                40
+              ],
+              "eu_punkt": 3,
+              "sg": 170.0,
+              "bl": 448.0
+            },
+            "trin2": {
+              "kurver": [
+                [
+                  30,
+                  1100.0
+                ],
+                [
+                  45,
+                  1200.0
+                ],
+                [
+                  60,
+                  1300.0
+                ],
+                [
+                  80,
+                  1400.0
+                ],
+                [
+                  120,
+                  1500.0
+                ],
+                [
+                  150,
+                  1600.0
+                ]
+              ]
+            },
+            "trin3": {}
+          }
+        },
+        {
+          "traffic": "T1",
+          "eu": 4,
+          "expected": {
+            "trin1": {
+              "ubundet_mm": 590.0,
+              "direkte": true,
+              "kendte": [
+                3,
+                4,
+                5,
+                10,
+                15,
+                20,
+                30,
+                40
+              ],
+              "eu_punkt": 4,
+              "sg": 120.0,
+              "bl": 470.0
+            },
+            "trin2": {
+              "kurver": [
+                [
+                  30,
+                  1000.0
+                ],
+                [
+                  45,
+                  1067.0
+                ],
+                [
+                  60,
+                  1167.0
+                ],
+                [
+                  80,
+                  1267.0
+                ],
+                [
+                  120,
+                  1367.0
+                ],
+                [
+                  150,
+                  1467.0
+                ]
+              ]
+            },
+            "trin3": {}
+          }
+        },
+        {
+          "traffic": "T1",
+          "eu": 5,
+          "expected": {
+            "trin1": {
+              "ubundet_mm": 560.0,
+              "direkte": true,
+              "kendte": [
+                3,
+                4,
+                5,
+                10,
+                15,
+                20,
+                30,
+                40
+              ],
+              "eu_punkt": 5,
+              "sg": 110.0,
+              "bl": 450.0
+            },
+            "trin2": {
+              "kurver": [
+                [
+                  30,
+                  900.0
+                ],
+                [
+                  45,
+                  1000.0
+                ],
+                [
+                  60,
+                  1100.0
+                ],
+                [
+                  80,
+                  1200.0
+                ],
+                [
+                  120,
+                  1300.0
+                ],
+                [
+                  150,
+                  1400.0
+                ]
+              ]
+            },
+            "trin3": {}
+          }
+        },
+        {
+          "traffic": "T1",
+          "eu": 7.5,
+          "expected": null
+        },
+        {
+          "traffic": "T1",
+          "eu": 10,
+          "expected": {
+            "trin1": {
+              "ubundet_mm": 456.0,
+              "direkte": true,
+              "kendte": [
+                3,
+                4,
+                5,
+                10,
+                15,
+                20,
+                30,
+                40
+              ],
+              "eu_punkt": 10,
+              "sg": 100.0,
+              "bl": 356.0
+            },
+            "trin2": {
+              "kurver": [
+                [
+                  30,
+                  580.0
+                ],
+                [
+                  45,
+                  700.0
+                ],
+                [
+                  60,
+                  800.0
+                ],
+                [
+                  80,
+                  900.0
+                ],
+                [
+                  120,
+                  1000.0
+                ],
+                [
+                  150,
+                  1100.0
+                ]
+              ]
+            },
+            "trin3": {}
+          }
+        },
+        {
+          "traffic": "T1",
+          "eu": 15,
+          "expected": {
+            "trin1": {
+              "ubundet_mm": 392.0,
+              "direkte": true,
+              "kendte": [
+                3,
+                4,
+                5,
+                10,
+                15,
+                20,
+                30,
+                40
+              ],
+              "eu_punkt": 15,
+              "sg": 100.0,
+              "bl": 292.0
+            },
+            "trin2": {
+              "kurver": [
+                [
+                  30,
+                  386.0
+                ],
+                [
+                  45,
+                  500.0
+                ],
+                [
+                  60,
+                  600.0
+                ],
+                [
+                  80,
+                  700.0
+                ],
+                [
+                  120,
+                  800.0
+                ],
+                [
+                  150,
+                  900.0
+                ]
+              ],
+              "eo_lav": 30,
+              "eo_hoej": 45,
+              "t_lav": 386.0,
+              "t_hoej": 500.0,
+              "frac": 0.05263157894736842,
+              "eo_aekv": 30.789473684210527
+            },
+            "trin3": {
+              "1_lag": {
+                "lav": 200.0,
+                "hoej": 325.0,
+                "basis": 206.57894736842104
+              }
+            }
+          }
+        },
+        {
+          "traffic": "T1",
+          "eu": 20,
+          "expected": {
+            "trin1": {
+              "ubundet_mm": 343.0,
+              "direkte": true,
+              "kendte": [
+                3,
+                4,
+                5,
+                10,
+                15,
+                20,
+                30,
+                40
+              ],
+              "eu_punkt": 20,
+              "sg": 100.0,
+              "bl": 243.0
+            },
+            "trin2": {
+              "kurver": [
+                [
+                  30,
+                  233.0
+                ],
+                [
+                  45,
+                  367.0
+                ],
+                [
+                  60,
+                  467.0
+                ],
+                [
+                  80,
+                  567.0
+                ],
+                [
+                  120,
+                  667.0
+                ],
+                [
+                  150,
+                  767.0
+                ]
+              ],
+              "eo_lav": 30,
+              "eo_hoej": 45,
+              "t_lav": 233.0,
+              "t_hoej": 367.0,
+              "frac": 0.8208955223880597,
+              "eo_aekv": 42.3134328358209
+            },
+            "trin3": {}
+          }
+        },
+        {
+          "traffic": "T1",
+          "eu": 30,
+          "expected": {
+            "trin1": {
+              "ubundet_mm": 300.0,
+              "direkte": true,
+              "kendte": [
+                3,
+                4,
+                5,
+                10,
+                15,
+                20,
+                30,
+                40
+              ],
+              "eu_punkt": 30,
+              "sg": 100.0,
+              "bl": 200.0
+            },
+            "trin2": {
+              "kurver": [
+                [
+                  30,
+                  0.0
+                ],
+                [
+                  45,
+                  186.0
+                ],
+                [
+                  60,
+                  286.0
+                ],
+                [
+                  80,
+                  386.0
+                ],
+                [
+                  120,
+                  486.0
+                ],
+                [
+                  150,
+                  586.0
+                ]
+              ],
+              "eo_lav": 60,
+              "eo_hoej": 80,
+              "t_lav": 286.0,
+              "t_hoej": 386.0,
+              "frac": 0.14,
+              "eo_aekv": 62.8
+            },
+            "trin3": {}
+          }
+        },
+        {
+          "traffic": "T1",
+          "eu": 40,
+          "expected": {
+            "trin1": {
+              "ubundet_mm": 300.0,
+              "direkte": true,
+              "kendte": [
+                3,
+                4,
+                5,
+                10,
+                15,
+                20,
+                30,
+                40
+              ],
+              "eu_punkt": 40,
+              "sg": 100.0,
+              "bl": 200.0
+            },
+            "trin2": {
+              "kurver": [
+                [
+                  45,
+                  56.0
+                ],
+                [
+                  60,
+                  156.0
+                ],
+                [
+                  80,
+                  256.0
+                ],
+                [
+                  120,
+                  356.0
+                ],
+                [
+                  150,
+                  456.0
+                ]
+              ],
+              "eo_lav": 80,
+              "eo_hoej": 120,
+              "t_lav": 256.0,
+              "t_hoej": 356.0,
+              "frac": 0.44,
+              "eo_aekv": 97.6
+            },
+            "trin3": {}
+          }
+        },
+        {
+          "traffic": "T2",
+          "eu": 3,
+          "expected": {
+            "trin1": {
+              "ubundet_mm": 1046.0,
+              "direkte": true,
+              "kendte": [
+                3,
+                4,
+                5,
+                10,
+                15,
+                20,
+                30,
+                40
+              ],
+              "eu_punkt": 3,
+              "sg": 180.0,
+              "bl": 866.0
+            },
+            "trin2": {
+              "kurver": [
+                [
+                  30,
+                  1100.0
+                ],
+                [
+                  45,
+                  1200.0
+                ],
+                [
+                  60,
+                  1300.0
+                ],
+                [
+                  80,
+                  1400.0
+                ],
+                [
+                  120,
+                  1500.0
+                ],
+                [
+                  150,
+                  1600.0
+                ]
+              ]
+            },
+            "trin3": {}
+          }
+        },
+        {
+          "traffic": "T2",
+          "eu": 4,
+          "expected": {
+            "trin1": {
+              "ubundet_mm": 977.0,
+              "direkte": true,
+              "kendte": [
+                3,
+                4,
+                5,
+                10,
+                15,
+                20,
+                30,
+                40
+              ],
+              "eu_punkt": 4,
+              "sg": 180.0,
+              "bl": 797.0
+            },
+            "trin2": {
+              "kurver": [
+                [
+                  30,
+                  1000.0
+                ],
+                [
+                  45,
+                  1067.0
+                ],
+                [
+                  60,
+                  1167.0
+                ],
+                [
+                  80,
+                  1267.0
+                ],
+                [
+                  120,
+                  1367.0
+                ],
+                [
+                  150,
+                  1467.0
+                ]
+              ]
+            },
+            "trin3": {}
+          }
+        },
+        {
+          "traffic": "T2",
+          "eu": 5,
+          "expected": {
+            "trin1": {
+              "ubundet_mm": 927.0,
+              "direkte": true,
+              "kendte": [
+                3,
+                4,
+                5,
+                10,
+                15,
+                20,
+                30,
+                40
+              ],
+              "eu_punkt": 5,
+              "sg": 170.0,
+              "bl": 757.0
+            },
+            "trin2": {
+              "kurver": [
+                [
+                  30,
+                  900.0
+                ],
+                [
+                  45,
+                  1000.0
+                ],
+                [
+                  60,
+                  1100.0
+                ],
+                [
+                  80,
+                  1200.0
+                ],
+                [
+                  120,
+                  1300.0
+                ],
+                [
+                  150,
+                  1400.0
+                ]
+              ],
+              "eo_lav": 30,
+              "eo_hoej": 45,
+              "t_lav": 900.0,
+              "t_hoej": 1000.0,
+              "frac": 0.27,
+              "eo_aekv": 34.05
+            },
+            "trin3": {
+              "1_lag": {
+                "lav": 600.0,
+                "hoej": 667.0,
+                "basis": 618.09
+              }
+            }
+          }
+        },
+        {
+          "traffic": "T2",
+          "eu": 7.5,
+          "expected": null
+        },
+        {
+          "traffic": "T2",
+          "eu": 10,
+          "expected": {
+            "trin1": {
+              "ubundet_mm": 760.0,
+              "direkte": true,
+              "kendte": [
+                3,
+                4,
+                5,
+                10,
+                15,
+                20,
+                30,
+                40
+              ],
+              "eu_punkt": 10,
+              "sg": 170.0,
+              "bl": 590.0
+            },
+            "trin2": {
+              "kurver": [
+                [
+                  30,
+                  580.0
+                ],
+                [
+                  45,
+                  700.0
+                ],
+                [
+                  60,
+                  800.0
+                ],
+                [
+                  80,
+                  900.0
+                ],
+                [
+                  120,
+                  1000.0
+                ],
+                [
+                  150,
+                  1100.0
+                ]
+              ],
+              "eo_lav": 45,
+              "eo_hoej": 60,
+              "t_lav": 700.0,
+              "t_hoej": 800.0,
+              "frac": 0.6,
+              "eo_aekv": 54.0
+            },
+            "trin3": {
+              "1_lag": {
+                "lav": 467.0,
+                "hoej": 567.0,
+                "basis": 527.0
+              }
+            }
+          }
+        },
+        {
+          "traffic": "T2",
+          "eu": 15,
+          "expected": {
+            "trin1": {
+              "ubundet_mm": 668.0,
+              "direkte": true,
+              "kendte": [
+                3,
+                4,
+                5,
+                10,
+                15,
+                20,
+                30,
+                40
+              ],
+              "eu_punkt": 15,
+              "sg": 160.0,
+              "bl": 508.0
+            },
+            "trin2": {
+              "kurver": [
+                [
+                  30,
+                  386.0
+                ],
+                [
+                  45,
+                  500.0
+                ],
+                [
+                  60,
+                  600.0
+                ],
+                [
+                  80,
+                  700.0
+                ],
+                [
+                  120,
+                  800.0
+                ],
+                [
+                  150,
+                  900.0
+                ]
+              ],
+              "eo_lav": 60,
+              "eo_hoej": 80,
+              "t_lav": 600.0,
+              "t_hoej": 700.0,
+              "frac": 0.68,
+              "eo_aekv": 73.6
+            },
+            "trin3": {
+              "1_lag": {
+                "lav": 425.0,
+                "hoej": 483.0,
+                "basis": 464.44
+              }
+            }
+          }
+        },
+        {
+          "traffic": "T2",
+          "eu": 20,
+          "expected": {
+            "trin1": {
+              "ubundet_mm": 599.0,
+              "direkte": true,
+              "kendte": [
+                3,
+                4,
+                5,
+                10,
+                15,
+                20,
+                30,
+                40
+              ],
+              "eu_punkt": 20,
+              "sg": 160.0,
+              "bl": 439.0
+            },
+            "trin2": {
+              "kurver": [
+                [
+                  30,
+                  233.0
+                ],
+                [
+                  45,
+                  367.0
+                ],
+                [
+                  60,
+                  467.0
+                ],
+                [
+                  80,
+                  567.0
+                ],
+                [
+                  120,
+                  667.0
+                ],
+                [
+                  150,
+                  767.0
+                ]
+              ],
+              "eo_lav": 80,
+              "eo_hoej": 120,
+              "t_lav": 567.0,
+              "t_hoej": 667.0,
+              "frac": 0.32,
+              "eo_aekv": 92.8
+            },
+            "trin3": {
+              "1_lag": {
+                "lav": 400.0,
+                "hoej": 483.0,
+                "basis": 426.56
+              }
+            }
+          }
+        },
+        {
+          "traffic": "T2",
+          "eu": 30,
+          "expected": {
+            "trin1": {
+              "ubundet_mm": 497.0,
+              "direkte": true,
+              "kendte": [
+                3,
+                4,
+                5,
+                10,
+                15,
+                20,
+                30,
+                40
+              ],
+              "eu_punkt": 30,
+              "sg": 160.0,
+              "bl": 337.0
+            },
+            "trin2": {
+              "kurver": [
+                [
+                  30,
+                  0.0
+                ],
+                [
+                  45,
+                  186.0
+                ],
+                [
+                  60,
+                  286.0
+                ],
+                [
+                  80,
+                  386.0
+                ],
+                [
+                  120,
+                  486.0
+                ],
+                [
+                  150,
+                  586.0
+                ]
+              ],
+              "eo_lav": 120,
+              "eo_hoej": 150,
+              "t_lav": 486.0,
+              "t_hoej": 586.0,
+              "frac": 0.11,
+              "eo_aekv": 123.3
+            },
+            "trin3": {
+              "1_lag": {
+                "lav": 338.0,
+                "hoej": 425.0,
+                "basis": 347.57
+              }
+            }
+          }
+        },
+        {
+          "traffic": "T2",
+          "eu": 40,
+          "expected": {
+            "trin1": {
+              "ubundet_mm": 424.0,
+              "direkte": true,
+              "kendte": [
+                3,
+                4,
+                5,
+                10,
+                15,
+                20,
+                30,
+                40
+              ],
+              "eu_punkt": 40,
+              "sg": 160.0,
+              "bl": 264.0
+            },
+            "trin2": {
+              "kurver": [
+                [
+                  45,
+                  56.0
+                ],
+                [
+                  60,
+                  156.0
+                ],
+                [
+                  80,
+                  256.0
+                ],
+                [
+                  120,
+                  356.0
+                ],
+                [
+                  150,
+                  456.0
+                ]
+              ],
+              "eo_lav": 120,
+              "eo_hoej": 150,
+              "t_lav": 356.0,
+              "t_hoej": 456.0,
+              "frac": 0.68,
+              "eo_aekv": 140.4
+            },
+            "trin3": {}
+          }
+        },
+        {
+          "traffic": "T3",
+          "eu": 3,
+          "expected": {
+            "trin1": {
+              "ubundet_mm": 1157.0,
+              "direkte": true,
+              "kendte": [
+                3,
+                4,
+                5,
+                10,
+                15,
+                20,
+                30,
+                40
+              ],
+              "eu_punkt": 3,
+              "sg": 200.0,
+              "bl": 957.0
+            },
+            "trin2": {
+              "kurver": [
+                [
+                  30,
+                  1100.0
+                ],
+                [
+                  45,
+                  1200.0
+                ],
+                [
+                  60,
+                  1300.0
+                ],
+                [
+                  80,
+                  1400.0
+                ],
+                [
+                  120,
+                  1500.0
+                ],
+                [
+                  150,
+                  1600.0
+                ]
+              ],
+              "eo_lav": 30,
+              "eo_hoej": 45,
+              "t_lav": 1100.0,
+              "t_hoej": 1200.0,
+              "frac": 0.57,
+              "eo_aekv": 38.55
+            },
+            "trin3": {
+              "1_lag": {
+                "lav": 700.0,
+                "hoej": 800.0,
+                "basis": 757.0
+              }
+            }
+          }
+        },
+        {
+          "traffic": "T3",
+          "eu": 4,
+          "expected": {
+            "trin1": {
+              "ubundet_mm": 1079.0,
+              "direkte": true,
+              "kendte": [
+                3,
+                4,
+                5,
+                10,
+                15,
+                20,
+                30,
+                40
+              ],
+              "eu_punkt": 4,
+              "sg": 200.0,
+              "bl": 879.0
+            },
+            "trin2": {
+              "kurver": [
+                [
+                  30,
+                  1000.0
+                ],
+                [
+                  45,
+                  1067.0
+                ],
+                [
+                  60,
+                  1167.0
+                ],
+                [
+                  80,
+                  1267.0
+                ],
+                [
+                  120,
+                  1367.0
+                ],
+                [
+                  150,
+                  1467.0
+                ]
+              ],
+              "eo_lav": 45,
+              "eo_hoej": 60,
+              "t_lav": 1067.0,
+              "t_hoej": 1167.0,
+              "frac": 0.12,
+              "eo_aekv": 46.8
+            },
+            "trin3": {
+              "1_lag": {
+                "lav": 733.0,
+                "hoej": 833.0,
+                "basis": 745.0
+              },
+              "2_lag": {
+                "lav": 633.0,
+                "hoej": 725.0,
+                "basis": 644.04
+              }
+            }
+          }
+        },
+        {
+          "traffic": "T3",
+          "eu": 5,
+          "expected": {
+            "trin1": {
+              "ubundet_mm": 1018.0,
+              "direkte": true,
+              "kendte": [
+                3,
+                4,
+                5,
+                10,
+                15,
+                20,
+                30,
+                40
+              ],
+              "eu_punkt": 5,
+              "sg": 200.0,
+              "bl": 818.0
+            },
+            "trin2": {
+              "kurver": [
+                [
+                  30,
+                  900.0
+                ],
+                [
+                  45,
+                  1000.0
+                ],
+                [
+                  60,
+                  1100.0
+                ],
+                [
+                  80,
+                  1200.0
+                ],
+                [
+                  120,
+                  1300.0
+                ],
+                [
+                  150,
+                  1400.0
+                ]
+              ],
+              "eo_lav": 45,
+              "eo_hoej": 60,
+              "t_lav": 1000.0,
+              "t_hoej": 1100.0,
+              "frac": 0.18,
+              "eo_aekv": 47.7
+            },
+            "trin3": {
+              "1_lag": {
+                "lav": 667.0,
+                "hoej": 775.0,
+                "basis": 686.44
+              },
+              "2_lag": {
+                "lav": 575.0,
+                "hoej": 675.0,
+                "basis": 593.0
+              }
+            }
+          }
+        },
+        {
+          "traffic": "T3",
+          "eu": 7.5,
+          "expected": null
+        },
+        {
+          "traffic": "T3",
+          "eu": 10,
+          "expected": {
+            "trin1": {
+              "ubundet_mm": 839.0,
+              "direkte": true,
+              "kendte": [
+                3,
+                4,
+                5,
+                10,
+                15,
+                20,
+                30,
+                40
+              ],
+              "eu_punkt": 10,
+              "sg": 190.0,
+              "bl": 649.0
+            },
+            "trin2": {
+              "kurver": [
+                [
+                  30,
+                  580.0
+                ],
+                [
+                  45,
+                  700.0
+                ],
+                [
+                  60,
+                  800.0
+                ],
+                [
+                  80,
+                  900.0
+                ],
+                [
+                  120,
+                  1000.0
+                ],
+                [
+                  150,
+                  1100.0
+                ]
+              ],
+              "eo_lav": 60,
+              "eo_hoej": 80,
+              "t_lav": 800.0,
+              "t_hoej": 900.0,
+              "frac": 0.39,
+              "eo_aekv": 67.8
+            },
+            "trin3": {
+              "1_lag": {
+                "lav": 567.0,
+                "hoej": 617.0,
+                "basis": 586.5
+              }
+            }
+          }
+        },
+        {
+          "traffic": "T3",
+          "eu": 15,
+          "expected": {
+            "trin1": {
+              "ubundet_mm": 729.0,
+              "direkte": true,
+              "kendte": [
+                3,
+                4,
+                5,
+                10,
+                15,
+                20,
+                30,
+                40
+              ],
+              "eu_punkt": 15,
+              "sg": 190.0,
+              "bl": 539.0
+            },
+            "trin2": {
+              "kurver": [
+                [
+                  30,
+                  386.0
+                ],
+                [
+                  45,
+                  500.0
+                ],
+                [
+                  60,
+                  600.0
+                ],
+                [
+                  80,
+                  700.0
+                ],
+                [
+                  120,
+                  800.0
+                ],
+                [
+                  150,
+                  900.0
+                ]
+              ],
+              "eo_lav": 80,
+              "eo_hoej": 120,
+              "t_lav": 700.0,
+              "t_hoej": 800.0,
+              "frac": 0.29,
+              "eo_aekv": 91.6
+            },
+            "trin3": {
+              "1_lag": {
+                "lav": 483.0,
+                "hoej": 573.0,
+                "basis": 509.1
+              }
+            }
+          }
+        },
+        {
+          "traffic": "T3",
+          "eu": 20,
+          "expected": {
+            "trin1": {
+              "ubundet_mm": 650.0,
+              "direkte": true,
+              "kendte": [
+                3,
+                4,
+                5,
+                10,
+                15,
+                20,
+                30,
+                40
+              ],
+              "eu_punkt": 20,
+              "sg": 190.0,
+              "bl": 460.0
+            },
+            "trin2": {
+              "kurver": [
+                [
+                  30,
+                  233.0
+                ],
+                [
+                  45,
+                  367.0
+                ],
+                [
+                  60,
+                  467.0
+                ],
+                [
+                  80,
+                  567.0
+                ],
+                [
+                  120,
+                  667.0
+                ],
+                [
+                  150,
+                  767.0
+                ]
+              ],
+              "eo_lav": 80,
+              "eo_hoej": 120,
+              "t_lav": 567.0,
+              "t_hoej": 667.0,
+              "frac": 0.83,
+              "eo_aekv": 113.19999999999999
+            },
+            "trin3": {
+              "1_lag": {
+                "lav": 400.0,
+                "hoej": 483.0,
+                "basis": 468.89
+              }
+            }
+          }
+        },
+        {
+          "traffic": "T3",
+          "eu": 30,
+          "expected": {
+            "trin1": {
+              "ubundet_mm": 534.0,
+              "direkte": true,
+              "kendte": [
+                3,
+                4,
+                5,
+                10,
+                15,
+                20,
+                30,
+                40
+              ],
+              "eu_punkt": 30,
+              "sg": 200.0,
+              "bl": 334.0
+            },
+            "trin2": {
+              "kurver": [
+                [
+                  30,
+                  0.0
+                ],
+                [
+                  45,
+                  186.0
+                ],
+                [
+                  60,
+                  286.0
+                ],
+                [
+                  80,
+                  386.0
+                ],
+                [
+                  120,
+                  486.0
+                ],
+                [
+                  150,
+                  586.0
+                ]
+              ],
+              "eo_lav": 120,
+              "eo_hoej": 150,
+              "t_lav": 486.0,
+              "t_hoej": 586.0,
+              "frac": 0.48,
+              "eo_aekv": 134.4
+            },
+            "trin3": {
+              "1_lag": {
+                "lav": 338.0,
+                "hoej": 425.0,
+                "basis": 379.76
+              }
+            }
+          }
+        },
+        {
+          "traffic": "T3",
+          "eu": 40,
+          "expected": {
+            "trin1": {
+              "ubundet_mm": 455.0,
+              "direkte": true,
+              "kendte": [
+                3,
+                4,
+                5,
+                10,
+                15,
+                20,
+                30,
+                40
+              ],
+              "eu_punkt": 40,
+              "sg": 200.0,
+              "bl": 255.0
+            },
+            "trin2": {
+              "kurver": [
+                [
+                  45,
+                  56.0
+                ],
+                [
+                  60,
+                  156.0
+                ],
+                [
+                  80,
+                  256.0
+                ],
+                [
+                  120,
+                  356.0
+                ],
+                [
+                  150,
+                  456.0
+                ]
+              ],
+              "eo_lav": 120,
+              "eo_hoej": 150,
+              "t_lav": 356.0,
+              "t_hoej": 456.0,
+              "frac": 0.99,
+              "eo_aekv": 149.7
+            },
+            "trin3": {}
+          }
+        },
+        {
+          "traffic": "T4",
+          "eu": 3,
+          "expected": {
+            "trin1": {
+              "ubundet_mm": 1347.0,
+              "direkte": true,
+              "kendte": [
+                3,
+                4,
+                5,
+                10,
+                15,
+                20,
+                30,
+                40
+              ],
+              "eu_punkt": 3,
+              "sg": 240.0,
+              "bl": 1107.0
+            },
+            "trin2": {
+              "kurver": [
+                [
+                  30,
+                  1100.0
+                ],
+                [
+                  45,
+                  1200.0
+                ],
+                [
+                  60,
+                  1300.0
+                ],
+                [
+                  80,
+                  1400.0
+                ],
+                [
+                  120,
+                  1500.0
+                ],
+                [
+                  150,
+                  1600.0
+                ]
+              ],
+              "eo_lav": 60,
+              "eo_hoej": 80,
+              "t_lav": 1300.0,
+              "t_hoej": 1400.0,
+              "frac": 0.47,
+              "eo_aekv": 69.4
+            },
+            "trin3": {
+              "1_lag": {
+                "lav": 900.0,
+                "hoej": 1000.0,
+                "basis": 947.0
+              },
+              "2_lag": {
+                "lav": 775.0,
+                "hoej": 900.0,
+                "basis": 833.75
+              }
+            }
+          }
+        },
+        {
+          "traffic": "T4",
+          "eu": 4,
+          "expected": {
+            "trin1": {
+              "ubundet_mm": 1254.0,
+              "direkte": true,
+              "kendte": [
+                3,
+                4,
+                5,
+                10,
+                15,
+                20,
+                30,
+                40
+              ],
+              "eu_punkt": 4,
+              "sg": 240.0,
+              "bl": 1014.0
+            },
+            "trin2": {
+              "kurver": [
+                [
+                  30,
+                  1000.0
+                ],
+                [
+                  45,
+                  1067.0
+                ],
+                [
+                  60,
+                  1167.0
+                ],
+                [
+                  80,
+                  1267.0
+                ],
+                [
+                  120,
+                  1367.0
+                ],
+                [
+                  150,
+                  1467.0
+                ]
+              ],
+              "eo_lav": 60,
+              "eo_hoej": 80,
+              "t_lav": 1167.0,
+              "t_hoej": 1267.0,
+              "frac": 0.87,
+              "eo_aekv": 77.4
+            },
+            "trin3": {
+              "1_lag": {
+                "lav": 833.0,
+                "hoej": 900.0,
+                "basis": 891.29
+              },
+              "2_lag": {
+                "lav": 725.0,
+                "hoej": 800.0,
+                "basis": 790.25
+              }
+            }
+          }
+        },
+        {
+          "traffic": "T4",
+          "eu": 5,
+          "expected": {
+            "trin1": {
+              "ubundet_mm": 1184.0,
+              "direkte": true,
+              "kendte": [
+                3,
+                4,
+                5,
+                10,
+                15,
+                20,
+                30,
+                40
+              ],
+              "eu_punkt": 5,
+              "sg": 240.0,
+              "bl": 944.0
+            },
+            "trin2": {
+              "kurver": [
+                [
+                  30,
+                  900.0
+                ],
+                [
+                  45,
+                  1000.0
+                ],
+                [
+                  60,
+                  1100.0
+                ],
+                [
+                  80,
+                  1200.0
+                ],
+                [
+                  120,
+                  1300.0
+                ],
+                [
+                  150,
+                  1400.0
+                ]
+              ],
+              "eo_lav": 60,
+              "eo_hoej": 80,
+              "t_lav": 1100.0,
+              "t_hoej": 1200.0,
+              "frac": 0.84,
+              "eo_aekv": 76.8
+            },
+            "trin3": {
+              "1_lag": {
+                "lav": 775.0,
+                "hoej": 833.0,
+                "basis": 823.72
+              },
+              "2_lag": {
+                "lav": 675.0,
+                "hoej": 750.0,
+                "basis": 738.0
+              }
+            }
+          }
+        },
+        {
+          "traffic": "T4",
+          "eu": 7.5,
+          "expected": null
+        },
+        {
+          "traffic": "T4",
+          "eu": 10,
+          "expected": {
+            "trin1": {
+              "ubundet_mm": 969.0,
+              "direkte": true,
+              "kendte": [
+                3,
+                4,
+                5,
+                10,
+                15,
+                20,
+                30,
+                40
+              ],
+              "eu_punkt": 10,
+              "sg": 230.0,
+              "bl": 739.0
+            },
+            "trin2": {
+              "kurver": [
+                [
+                  30,
+                  580.0
+                ],
+                [
+                  45,
+                  700.0
+                ],
+                [
+                  60,
+                  800.0
+                ],
+                [
+                  80,
+                  900.0
+                ],
+                [
+                  120,
+                  1000.0
+                ],
+                [
+                  150,
+                  1100.0
+                ]
+              ],
+              "eo_lav": 80,
+              "eo_hoej": 120,
+              "t_lav": 900.0,
+              "t_hoej": 1000.0,
+              "frac": 0.69,
+              "eo_aekv": 107.6
+            },
+            "trin3": {
+              "1_lag": {
+                "lav": 617.0,
+                "hoej": 688.0,
+                "basis": 665.99
+              }
+            }
+          }
+        },
+        {
+          "traffic": "T4",
+          "eu": 15,
+          "expected": {
+            "trin1": {
+              "ubundet_mm": 849.0,
+              "direkte": true,
+              "kendte": [
+                3,
+                4,
+                5,
+                10,
+                15,
+                20,
+                30,
+                40
+              ],
+              "eu_punkt": 15,
+              "sg": 220.0,
+              "bl": 629.0
+            },
+            "trin2": {
+              "kurver": [
+                [
+                  30,
+                  386.0
+                ],
+                [
+                  45,
+                  500.0
+                ],
+                [
+                  60,
+                  600.0
+                ],
+                [
+                  80,
+                  700.0
+                ],
+                [
+                  120,
+                  800.0
+                ],
+                [
+                  150,
+                  900.0
+                ]
+              ],
+              "eo_lav": 120,
+              "eo_hoej": 150,
+              "t_lav": 800.0,
+              "t_hoej": 900.0,
+              "frac": 0.49,
+              "eo_aekv": 134.7
+            },
+            "trin3": {
+              "1_lag": {
+                "lav": 573.0,
+                "hoej": 640.0,
+                "basis": 605.83
+              }
+            }
+          }
+        },
+        {
+          "traffic": "T4",
+          "eu": 20,
+          "expected": {
+            "trin1": {
+              "ubundet_mm": 757.0,
+              "direkte": true,
+              "kendte": [
+                3,
+                4,
+                5,
+                10,
+                15,
+                20,
+                30,
+                40
+              ],
+              "eu_punkt": 20,
+              "sg": 220.0,
+              "bl": 537.0
+            },
+            "trin2": {
+              "kurver": [
+                [
+                  30,
+                  233.0
+                ],
+                [
+                  45,
+                  367.0
+                ],
+                [
+                  60,
+                  467.0
+                ],
+                [
+                  80,
+                  567.0
+                ],
+                [
+                  120,
+                  667.0
+                ],
+                [
+                  150,
+                  767.0
+                ]
+              ],
+              "eo_lav": 120,
+              "eo_hoej": 150,
+              "t_lav": 667.0,
+              "t_hoej": 767.0,
+              "frac": 0.9,
+              "eo_aekv": 147.0
+            },
+            "trin3": {
+              "1_lag": {
+                "lav": 483.0,
+                "hoej": 557.0,
+                "basis": 549.6
+              }
+            }
+          }
+        },
+        {
+          "traffic": "T4",
+          "eu": 30,
+          "expected": {
+            "trin1": {
+              "ubundet_mm": 622.0,
+              "direkte": true,
+              "kendte": [
+                3,
+                4,
+                5,
+                10,
+                15,
+                20,
+                30,
+                40
+              ],
+              "eu_punkt": 30,
+              "sg": 230.0,
+              "bl": 392.0
+            },
+            "trin2": {
+              "kurver": [
+                [
+                  30,
+                  0.0
+                ],
+                [
+                  45,
+                  186.0
+                ],
+                [
+                  60,
+                  286.0
+                ],
+                [
+                  80,
+                  386.0
+                ],
+                [
+                  120,
+                  486.0
+                ],
+                [
+                  150,
+                  586.0
+                ]
+              ]
+            },
+            "trin3": {}
+          }
+        },
+        {
+          "traffic": "T4",
+          "eu": 40,
+          "expected": {
+            "trin1": {
+              "ubundet_mm": 531.0,
+              "direkte": true,
+              "kendte": [
+                3,
+                4,
+                5,
+                10,
+                15,
+                20,
+                30,
+                40
+              ],
+              "eu_punkt": 40,
+              "sg": 230.0,
+              "bl": 301.0
+            },
+            "trin2": {
+              "kurver": [
+                [
+                  45,
+                  56.0
+                ],
+                [
+                  60,
+                  156.0
+                ],
+                [
+                  80,
+                  256.0
+                ],
+                [
+                  120,
+                  356.0
+                ],
+                [
+                  150,
+                  456.0
+                ]
+              ]
+            },
+            "trin3": {}
+          }
+        },
+        {
+          "traffic": "T5",
+          "eu": 3,
+          "expected": {
+            "trin1": {
+              "ubundet_mm": 1494.0,
+              "direkte": true,
+              "kendte": [
+                3,
+                4,
+                5,
+                10,
+                15,
+                20,
+                30,
+                40
+              ],
+              "eu_punkt": 3,
+              "sg": 270.0,
+              "bl": 1224.0
+            },
+            "trin2": {
+              "kurver": [
+                [
+                  30,
+                  1100.0
+                ],
+                [
+                  45,
+                  1200.0
+                ],
+                [
+                  60,
+                  1300.0
+                ],
+                [
+                  80,
+                  1400.0
+                ],
+                [
+                  120,
+                  1500.0
+                ],
+                [
+                  150,
+                  1600.0
+                ]
+              ],
+              "eo_lav": 80,
+              "eo_hoej": 120,
+              "t_lav": 1400.0,
+              "t_hoej": 1500.0,
+              "frac": 0.94,
+              "eo_aekv": 117.6
+            },
+            "trin3": {
+              "1_lag": {
+                "lav": 1000.0,
+                "hoej": 1075.0,
+                "basis": 1070.5
+              },
+              "2_lag": {
+                "lav": 900.0,
+                "hoej": 1000.0,
+                "basis": 994.0
+              }
+            }
+          }
+        },
+        {
+          "traffic": "T5",
+          "eu": 4,
+          "expected": {
+            "trin1": {
+              "ubundet_mm": 1389.0,
+              "direkte": true,
+              "kendte": [
+                3,
+                4,
+                5,
+                10,
+                15,
+                20,
+                30,
+                40
+              ],
+              "eu_punkt": 4,
+              "sg": 270.0,
+              "bl": 1119.0
+            },
+            "trin2": {
+              "kurver": [
+                [
+                  30,
+                  1000.0
+                ],
+                [
+                  45,
+                  1067.0
+                ],
+                [
+                  60,
+                  1167.0
+                ],
+                [
+                  80,
+                  1267.0
+                ],
+                [
+                  120,
+                  1367.0
+                ],
+                [
+                  150,
+                  1467.0
+                ]
+              ],
+              "eo_lav": 120,
+              "eo_hoej": 150,
+              "t_lav": 1367.0,
+              "t_hoej": 1467.0,
+              "frac": 0.22,
+              "eo_aekv": 126.6
+            },
+            "trin3": {
+              "1_lag": {
+                "lav": 1025.0,
+                "hoej": 1050.0,
+                "basis": 1030.5
+              },
+              "2_lag": {
+                "lav": 933.0,
+                "hoej": 933.0,
+                "basis": 933.0
+              }
+            }
+          }
+        },
+        {
+          "traffic": "T5",
+          "eu": 5,
+          "expected": {
+            "trin1": {
+              "ubundet_mm": 1312.0,
+              "direkte": true,
+              "kendte": [
+                3,
+                4,
+                5,
+                10,
+                15,
+                20,
+                30,
+                40
+              ],
+              "eu_punkt": 5,
+              "sg": 270.0,
+              "bl": 1042.0
+            },
+            "trin2": {
+              "kurver": [
+                [
+                  30,
+                  900.0
+                ],
+                [
+                  45,
+                  1000.0
+                ],
+                [
+                  60,
+                  1100.0
+                ],
+                [
+                  80,
+                  1200.0
+                ],
+                [
+                  120,
+                  1300.0
+                ],
+                [
+                  150,
+                  1400.0
+                ]
+              ],
+              "eo_lav": 120,
+              "eo_hoej": 150,
+              "t_lav": 1300.0,
+              "t_hoej": 1400.0,
+              "frac": 0.12,
+              "eo_aekv": 123.6
+            },
+            "trin3": {
+              "1_lag": {
+                "lav": 967.0,
+                "hoej": 967.0,
+                "basis": 967.0
+              },
+              "2_lag": {
+                "lav": 867.0,
+                "hoej": 875.0,
+                "basis": 867.96
+              }
+            }
+          }
+        },
+        {
+          "traffic": "T5",
+          "eu": 7.5,
+          "expected": null
+        },
+        {
+          "traffic": "T5",
+          "eu": 10,
+          "expected": {
+            "trin1": {
+              "ubundet_mm": 1078.0,
+              "direkte": true,
+              "kendte": [
+                3,
+                4,
+                5,
+                10,
+                15,
+                20,
+                30,
+                40
+              ],
+              "eu_punkt": 10,
+              "sg": 260.0,
+              "bl": 818.0
+            },
+            "trin2": {
+              "kurver": [
+                [
+                  30,
+                  580.0
+                ],
+                [
+                  45,
+                  700.0
+                ],
+                [
+                  60,
+                  800.0
+                ],
+                [
+                  80,
+                  900.0
+                ],
+                [
+                  120,
+                  1000.0
+                ],
+                [
+                  150,
+                  1100.0
+                ]
+              ],
+              "eo_lav": 120,
+              "eo_hoej": 150,
+              "t_lav": 1000.0,
+              "t_hoej": 1100.0,
+              "frac": 0.78,
+              "eo_aekv": 143.4
+            },
+            "trin3": {
+              "1_lag": {
+                "lav": 688.0,
+                "hoej": 757.0,
+                "basis": 741.82
+              },
+              "2_lag": {
+                "lav": 600.0,
+                "hoej": 667.0,
+                "basis": 652.26
+              }
+            }
+          }
+        },
+        {
+          "traffic": "T5",
+          "eu": 15,
+          "expected": {
+            "trin1": {
+              "ubundet_mm": 939.0,
+              "direkte": true,
+              "kendte": [
+                3,
+                4,
+                5,
+                10,
+                15,
+                20,
+                30,
+                40
+              ],
+              "eu_punkt": 15,
+              "sg": 250.0,
+              "bl": 689.0
+            },
+            "trin2": {
+              "kurver": [
+                [
+                  30,
+                  386.0
+                ],
+                [
+                  45,
+                  500.0
+                ],
+                [
+                  60,
+                  600.0
+                ],
+                [
+                  80,
+                  700.0
+                ],
+                [
+                  120,
+                  800.0
+                ],
+                [
+                  150,
+                  900.0
+                ]
+              ]
+            },
+            "trin3": {}
+          }
+        },
+        {
+          "traffic": "T5",
+          "eu": 20,
+          "expected": {
+            "trin1": {
+              "ubundet_mm": 840.0,
+              "direkte": true,
+              "kendte": [
+                3,
+                4,
+                5,
+                10,
+                15,
+                20,
+                30,
+                40
+              ],
+              "eu_punkt": 20,
+              "sg": 250.0,
+              "bl": 590.0
+            },
+            "trin2": {
+              "kurver": [
+                [
+                  30,
+                  233.0
+                ],
+                [
+                  45,
+                  367.0
+                ],
+                [
+                  60,
+                  467.0
+                ],
+                [
+                  80,
+                  567.0
+                ],
+                [
+                  120,
+                  667.0
+                ],
+                [
+                  150,
+                  767.0
+                ]
+              ]
+            },
+            "trin3": {}
+          }
+        },
+        {
+          "traffic": "T5",
+          "eu": 30,
+          "expected": {
+            "trin1": {
+              "ubundet_mm": 699.0,
+              "direkte": true,
+              "kendte": [
+                3,
+                4,
+                5,
+                10,
+                15,
+                20,
+                30,
+                40
+              ],
+              "eu_punkt": 30,
+              "sg": 240.0,
+              "bl": 459.0
+            },
+            "trin2": {
+              "kurver": [
+                [
+                  30,
+                  0.0
+                ],
+                [
+                  45,
+                  186.0
+                ],
+                [
+                  60,
+                  286.0
+                ],
+                [
+                  80,
+                  386.0
+                ],
+                [
+                  120,
+                  486.0
+                ],
+                [
+                  150,
+                  586.0
+                ]
+              ]
+            },
+            "trin3": {}
+          }
+        },
+        {
+          "traffic": "T5",
+          "eu": 40,
+          "expected": {
+            "trin1": {
+              "ubundet_mm": 600.0,
+              "direkte": true,
+              "kendte": [
+                3,
+                4,
+                5,
+                10,
+                15,
+                20,
+                30,
+                40
+              ],
+              "eu_punkt": 40,
+              "sg": 240.0,
+              "bl": 360.0
+            },
+            "trin2": {
+              "kurver": [
+                [
+                  45,
+                  56.0
+                ],
+                [
+                  60,
+                  156.0
+                ],
+                [
+                  80,
+                  256.0
+                ],
+                [
+                  120,
+                  356.0
+                ],
+                [
+                  150,
+                  456.0
+                ]
+              ]
+            },
+            "trin3": {}
+          }
+        },
+        {
+          "traffic": "T6",
+          "eu": 3,
+          "expected": {
+            "trin1": {
+              "ubundet_mm": 1580.0,
+              "direkte": true,
+              "kendte": [
+                3,
+                4,
+                5,
+                10,
+                15,
+                20,
+                30,
+                40
+              ],
+              "eu_punkt": 3,
+              "sg": 290.0,
+              "bl": 1290.0
+            },
+            "trin2": {
+              "kurver": [
+                [
+                  30,
+                  1100.0
+                ],
+                [
+                  45,
+                  1200.0
+                ],
+                [
+                  60,
+                  1300.0
+                ],
+                [
+                  80,
+                  1400.0
+                ],
+                [
+                  120,
+                  1500.0
+                ],
+                [
+                  150,
+                  1600.0
+                ]
+              ],
+              "eo_lav": 120,
+              "eo_hoej": 150,
+              "t_lav": 1500.0,
+              "t_hoej": 1600.0,
+              "frac": 0.8,
+              "eo_aekv": 144.0
+            },
+            "trin3": {
+              "1_lag": {
+                "lav": 1075.0,
+                "hoej": 1150.0,
+                "basis": 1135.0
+              },
+              "2_lag": {
+                "lav": 1000.0,
+                "hoej": 1000.0,
+                "basis": 1000.0
+              }
+            }
+          }
+        },
+        {
+          "traffic": "T6",
+          "eu": 4,
+          "expected": {
+            "trin1": {
+              "ubundet_mm": 1479.0,
+              "direkte": true,
+              "kendte": [
+                3,
+                4,
+                5,
+                10,
+                15,
+                20,
+                30,
+                40
+              ],
+              "eu_punkt": 4,
+              "sg": 280.0,
+              "bl": 1199.0
+            },
+            "trin2": {
+              "kurver": [
+                [
+                  30,
+                  1000.0
+                ],
+                [
+                  45,
+                  1067.0
+                ],
+                [
+                  60,
+                  1167.0
+                ],
+                [
+                  80,
+                  1267.0
+                ],
+                [
+                  120,
+                  1367.0
+                ],
+                [
+                  150,
+                  1467.0
+                ]
+              ]
+            },
+            "trin3": {}
+          }
+        },
+        {
+          "traffic": "T6",
+          "eu": 5,
+          "expected": {
+            "trin1": {
+              "ubundet_mm": 1397.0,
+              "direkte": true,
+              "kendte": [
+                3,
+                4,
+                5,
+                10,
+                15,
+                20,
+                30,
+                40
+              ],
+              "eu_punkt": 5,
+              "sg": 280.0,
+              "bl": 1117.0
+            },
+            "trin2": {
+              "kurver": [
+                [
+                  30,
+                  900.0
+                ],
+                [
+                  45,
+                  1000.0
+                ],
+                [
+                  60,
+                  1100.0
+                ],
+                [
+                  80,
+                  1200.0
+                ],
+                [
+                  120,
+                  1300.0
+                ],
+                [
+                  150,
+                  1400.0
+                ]
+              ],
+              "eo_lav": 120,
+              "eo_hoej": 150,
+              "t_lav": 1300.0,
+              "t_hoej": 1400.0,
+              "frac": 0.97,
+              "eo_aekv": 149.1
+            },
+            "trin3": {
+              "1_lag": {
+                "lav": 967.0,
+                "hoej": 967.0,
+                "basis": 967.0
+              },
+              "2_lag": {
+                "lav": 867.0,
+                "hoej": 875.0,
+                "basis": 874.76
+              }
+            }
+          }
+        },
+        {
+          "traffic": "T6",
+          "eu": 7.5,
+          "expected": null
+        },
+        {
+          "traffic": "T6",
+          "eu": 10,
+          "expected": {
+            "trin1": {
+              "ubundet_mm": 1146.0,
+              "direkte": true,
+              "kendte": [
+                3,
+                4,
+                5,
+                10,
+                15,
+                20,
+                30,
+                40
+              ],
+              "eu_punkt": 10,
+              "sg": 270.0,
+              "bl": 876.0
+            },
+            "trin2": {
+              "kurver": [
+                [
+                  30,
+                  580.0
+                ],
+                [
+                  45,
+                  700.0
+                ],
+                [
+                  60,
+                  800.0
+                ],
+                [
+                  80,
+                  900.0
+                ],
+                [
+                  120,
+                  1000.0
+                ],
+                [
+                  150,
+                  1100.0
+                ]
+              ]
+            },
+            "trin3": {}
+          }
+        },
+        {
+          "traffic": "T6",
+          "eu": 15,
+          "expected": {
+            "trin1": {
+              "ubundet_mm": 993.0,
+              "direkte": true,
+              "kendte": [
+                3,
+                4,
+                5,
+                10,
+                15,
+                20,
+                30,
+                40
+              ],
+              "eu_punkt": 15,
+              "sg": 270.0,
+              "bl": 723.0
+            },
+            "trin2": {
+              "kurver": [
+                [
+                  30,
+                  386.0
+                ],
+                [
+                  45,
+                  500.0
+                ],
+                [
+                  60,
+                  600.0
+                ],
+                [
+                  80,
+                  700.0
+                ],
+                [
+                  120,
+                  800.0
+                ],
+                [
+                  150,
+                  900.0
+                ]
+              ]
+            },
+            "trin3": {}
+          }
+        },
+        {
+          "traffic": "T6",
+          "eu": 20,
+          "expected": {
+            "trin1": {
+              "ubundet_mm": 889.0,
+              "direkte": true,
+              "kendte": [
+                3,
+                4,
+                5,
+                10,
+                15,
+                20,
+                30,
+                40
+              ],
+              "eu_punkt": 20,
+              "sg": 260.0,
+              "bl": 629.0
+            },
+            "trin2": {
+              "kurver": [
+                [
+                  30,
+                  233.0
+                ],
+                [
+                  45,
+                  367.0
+                ],
+                [
+                  60,
+                  467.0
+                ],
+                [
+                  80,
+                  567.0
+                ],
+                [
+                  120,
+                  667.0
+                ],
+                [
+                  150,
+                  767.0
+                ]
+              ]
+            },
+            "trin3": {}
+          }
+        },
+        {
+          "traffic": "T6",
+          "eu": 30,
+          "expected": {
+            "trin1": {
+              "ubundet_mm": 738.0,
+              "direkte": true,
+              "kendte": [
+                3,
+                4,
+                5,
+                10,
+                15,
+                20,
+                30,
+                40
+              ],
+              "eu_punkt": 30,
+              "sg": 260.0,
+              "bl": 478.0
+            },
+            "trin2": {
+              "kurver": [
+                [
+                  30,
+                  0.0
+                ],
+                [
+                  45,
+                  186.0
+                ],
+                [
+                  60,
+                  286.0
+                ],
+                [
+                  80,
+                  386.0
+                ],
+                [
+                  120,
+                  486.0
+                ],
+                [
+                  150,
+                  586.0
+                ]
+              ]
+            },
+            "trin3": {}
+          }
+        },
+        {
+          "traffic": "T6",
+          "eu": 40,
+          "expected": {
+            "trin1": {
+              "ubundet_mm": 630.0,
+              "direkte": true,
+              "kendte": [
+                3,
+                4,
+                5,
+                10,
+                15,
+                20,
+                30,
+                40
+              ],
+              "eu_punkt": 40,
+              "sg": 260.0,
+              "bl": 370.0
+            },
+            "trin2": {
+              "kurver": [
+                [
+                  45,
+                  56.0
+                ],
+                [
+                  60,
+                  156.0
+                ],
+                [
+                  80,
+                  256.0
+                ],
+                [
+                  120,
+                  356.0
+                ],
+                [
+                  150,
+                  456.0
+                ]
+              ]
+            },
+            "trin3": {}
+          }
+        }
+      ],
+      "selected": [
+        "T3",
+        15
+      ]
+    },
+    {
+      "rows": [
+        {
+          "T": "T1",
+          "eu": 3,
+          "slidlag": "AB 1000",
+          "t_slid_mm": 40.0,
+          "bindelag": "-",
+          "t_bindelag_mm": 0.0,
+          "bundet_baerelag": "-",
+          "t_bundet_mm": 0.0,
+          "E_asf_vist_MPa": 1000.0,
+          "ubundet_baerelag": "SG II",
+          "t_SG_mm": 170.0,
+          "bundsikring": "BL II U≤3",
+          "t_BL_mm": 448.0,
+          "levetid_styrende_aar": 0.0,
+          "bemaerkning": ""
+        },
+        {
+          "T": "T1",
+          "eu": 4,
+          "slidlag": "AB 1000",
+          "t_slid_mm": 40.0,
+          "bindelag": "-",
+          "t_bindelag_mm": 0.0,
+          "bundet_baerelag": "-",
+          "t_bundet_mm": 0.0,
+          "E_asf_vist_MPa": 1000.0,
+          "ubundet_baerelag": "SG II",
+          "t_SG_mm": 120.0,
+          "bundsikring": "BL II U≤3",
+          "t_BL_mm": 470.0,
+          "levetid_styrende_aar": 0.0,
+          "bemaerkning": ""
+        },
+        {
+          "T": "T1",
+          "eu": 5,
+          "slidlag": "AB 1000",
+          "t_slid_mm": 40.0,
+          "bindelag": "-",
+          "t_bindelag_mm": 0.0,
+          "bundet_baerelag": "-",
+          "t_bundet_mm": 0.0,
+          "E_asf_vist_MPa": 1000.0,
+          "ubundet_baerelag": "SG II",
+          "t_SG_mm": 110.0,
+          "bundsikring": "BL II U≤3",
+          "t_BL_mm": 450.0,
+          "levetid_styrende_aar": 20.2,
+          "bemaerkning": ""
+        },
+        {
+          "T": "T1",
+          "eu": 10,
+          "slidlag": "AB 1000",
+          "t_slid_mm": 40.0,
+          "bindelag": "-",
+          "t_bindelag_mm": 0.0,
+          "bundet_baerelag": "-",
+          "t_bundet_mm": 0.0,
+          "E_asf_vist_MPa": 1000.0,
+          "ubundet_baerelag": "SG II",
+          "t_SG_mm": 100.0,
+          "bundsikring": "BL II U≤3",
+          "t_BL_mm": 356.0,
+          "levetid_styrende_aar": 20.0,
+          "bemaerkning": "SGII begrænset til minimumstykkelse 100"
+        },
+        {
+          "T": "T1",
+          "eu": 15,
+          "slidlag": "AB 1000",
+          "t_slid_mm": 40.0,
+          "bindelag": "-",
+          "t_bindelag_mm": 0.0,
+          "bundet_baerelag": "-",
+          "t_bundet_mm": 0.0,
+          "E_asf_vist_MPa": 1000.0,
+          "ubundet_baerelag": "SG II",
+          "t_SG_mm": 100.0,
+          "bundsikring": "BL II U≤3",
+          "t_BL_mm": 292.0,
+          "levetid_styrende_aar": 20.2,
+          "bemaerkning": "SGII begrænset til minimumstykkelse 100"
+        },
+        {
+          "T": "T1",
+          "eu": 20,
+          "slidlag": "AB 1000",
+          "t_slid_mm": 40.0,
+          "bindelag": "-",
+          "t_bindelag_mm": 0.0,
+          "bundet_baerelag": "-",
+          "t_bundet_mm": 0.0,
+          "E_asf_vist_MPa": 1000.0,
+          "ubundet_baerelag": "SG II",
+          "t_SG_mm": 100.0,
+          "bundsikring": "BL II U≤3",
+          "t_BL_mm": 243.0,
+          "levetid_styrende_aar": 20.1,
+          "bemaerkning": "SGII begrænset til minimumstykkelse 100"
+        },
+        {
+          "T": "T1",
+          "eu": 30,
+          "slidlag": "AB 1000",
+          "t_slid_mm": 40.0,
+          "bindelag": "-",
+          "t_bindelag_mm": 0.0,
+          "bundet_baerelag": "-",
+          "t_bundet_mm": 0.0,
+          "E_asf_vist_MPa": 1000.0,
+          "ubundet_baerelag": "SG II",
+          "t_SG_mm": 100.0,
+          "bundsikring": "BL II U≤3",
+          "t_BL_mm": 200.0,
+          "levetid_styrende_aar": 29.6,
+          "bemaerkning": "SGII begrænset til minimumstykkelse 100 og BLII begrænset til minimumstykkelse 200"
+        },
+        {
+          "T": "T1",
+          "eu": 40,
+          "slidlag": "AB 1000",
+          "t_slid_mm": 40.0,
+          "bindelag": "-",
+          "t_bindelag_mm": 0.0,
+          "bundet_baerelag": "-",
+          "t_bundet_mm": 0.0,
+          "E_asf_vist_MPa": 1000.0,
+          "ubundet_baerelag": "SG II",
+          "t_SG_mm": 100.0,
+          "bundsikring": "BL II U≤3",
+          "t_BL_mm": 200.0,
+          "levetid_styrende_aar": 30.1,
+          "bemaerkning": "SGII begrænset til minimumstykkelse 100 og BLII begrænset til minimumstykkelse 200"
+        },
+        {
+          "T": "T2",
+          "eu": 3,
+          "slidlag": "AB 1000",
+          "t_slid_mm": 40.0,
+          "bindelag": "-",
+          "t_bindelag_mm": 0.0,
+          "bundet_baerelag": "GAB 0 2000",
+          "t_bundet_mm": 74.0,
+          "E_asf_vist_MPa": 1690.0,
+          "ubundet_baerelag": "SG II",
+          "t_SG_mm": 180.0,
+          "bundsikring": "BL II U≤3",
+          "t_BL_mm": 866.0,
+          "levetid_styrende_aar": 0.0,
+          "bemaerkning": ""
+        },
+        {
+          "T": "T2",
+          "eu": 4,
+          "slidlag": "AB 1000",
+          "t_slid_mm": 40.0,
+          "bindelag": "-",
+          "t_bindelag_mm": 0.0,
+          "bundet_baerelag": "GAB 0 2000",
+          "t_bundet_mm": 74.0,
+          "E_asf_vist_MPa": 1690.0,
+          "ubundet_baerelag": "SG II",
+          "t_SG_mm": 180.0,
+          "bundsikring": "BL II U≤3",
+          "t_BL_mm": 797.0,
+          "levetid_styrende_aar": 0.0,
+          "bemaerkning": ""
+        },
+        {
+          "T": "T2",
+          "eu": 5,
+          "slidlag": "AB 1000",
+          "t_slid_mm": 40.0,
+          "bindelag": "-",
+          "t_bindelag_mm": 0.0,
+          "bundet_baerelag": "GAB 0 2000",
+          "t_bundet_mm": 74.0,
+          "E_asf_vist_MPa": 1690.0,
+          "ubundet_baerelag": "SG II",
+          "t_SG_mm": 170.0,
+          "bundsikring": "BL II U≤3",
+          "t_BL_mm": 757.0,
+          "levetid_styrende_aar": 20.1,
+          "bemaerkning": ""
+        },
+        {
+          "T": "T2",
+          "eu": 10,
+          "slidlag": "AB 1000",
+          "t_slid_mm": 40.0,
+          "bindelag": "-",
+          "t_bindelag_mm": 0.0,
+          "bundet_baerelag": "GAB 0 2000",
+          "t_bundet_mm": 74.0,
+          "E_asf_vist_MPa": 1690.0,
+          "ubundet_baerelag": "SG II",
+          "t_SG_mm": 170.0,
+          "bundsikring": "BL II U≤3",
+          "t_BL_mm": 590.0,
+          "levetid_styrende_aar": 20.0,
+          "bemaerkning": ""
+        },
+        {
+          "T": "T2",
+          "eu": 15,
+          "slidlag": "AB 1000",
+          "t_slid_mm": 40.0,
+          "bindelag": "-",
+          "t_bindelag_mm": 0.0,
+          "bundet_baerelag": "GAB 0 2000",
+          "t_bundet_mm": 73.0,
+          "E_asf_vist_MPa": 1680.0,
+          "ubundet_baerelag": "SG II",
+          "t_SG_mm": 160.0,
+          "bundsikring": "BL II U≤3",
+          "t_BL_mm": 508.0,
+          "levetid_styrende_aar": 20.1,
+          "bemaerkning": ""
+        },
+        {
+          "T": "T2",
+          "eu": 20,
+          "slidlag": "AB 1000",
+          "t_slid_mm": 40.0,
+          "bindelag": "-",
+          "t_bindelag_mm": 0.0,
+          "bundet_baerelag": "GAB 0 2000",
+          "t_bundet_mm": 73.0,
+          "E_asf_vist_MPa": 1680.0,
+          "ubundet_baerelag": "SG II",
+          "t_SG_mm": 160.0,
+          "bundsikring": "BL II U≤3",
+          "t_BL_mm": 439.0,
+          "levetid_styrende_aar": 20.1,
+          "bemaerkning": ""
+        },
+        {
+          "T": "T2",
+          "eu": 30,
+          "slidlag": "AB 1000",
+          "t_slid_mm": 40.0,
+          "bindelag": "-",
+          "t_bindelag_mm": 0.0,
+          "bundet_baerelag": "GAB 0 2000",
+          "t_bundet_mm": 72.0,
+          "E_asf_vist_MPa": 1671.0,
+          "ubundet_baerelag": "SG II",
+          "t_SG_mm": 160.0,
+          "bundsikring": "BL II U≤3",
+          "t_BL_mm": 337.0,
+          "levetid_styrende_aar": 20.2,
+          "bemaerkning": ""
+        },
+        {
+          "T": "T2",
+          "eu": 40,
+          "slidlag": "AB 1000",
+          "t_slid_mm": 40.0,
+          "bindelag": "-",
+          "t_bindelag_mm": 0.0,
+          "bundet_baerelag": "GAB 0 2000",
+          "t_bundet_mm": 72.0,
+          "E_asf_vist_MPa": 1671.0,
+          "ubundet_baerelag": "SG II",
+          "t_SG_mm": 160.0,
+          "bundsikring": "BL II U≤3",
+          "t_BL_mm": 264.0,
+          "levetid_styrende_aar": 20.1,
+          "bemaerkning": ""
+        },
+        {
+          "T": "T3",
+          "eu": 3,
+          "slidlag": "AB 1000",
+          "t_slid_mm": 40.0,
+          "bindelag": "-",
+          "t_bindelag_mm": 0.0,
+          "bundet_baerelag": "GAB 0 2000",
+          "t_bundet_mm": 95.0,
+          "E_asf_vist_MPa": 1862.0,
+          "ubundet_baerelag": "SG II",
+          "t_SG_mm": 0,
+          "bundsikring": "BL II U≤3",
+          "t_BL_mm": 0,
+          "levetid_styrende_aar": 0.0,
+          "bemaerkning": ""
+        },
+        {
+          "T": "T3",
+          "eu": 4,
+          "slidlag": "AB 1000",
+          "t_slid_mm": 40.0,
+          "bindelag": "-",
+          "t_bindelag_mm": 0.0,
+          "bundet_baerelag": "GAB 0 2000",
+          "t_bundet_mm": 95.0,
+          "E_asf_vist_MPa": 1862.0,
+          "ubundet_baerelag": "SG II",
+          "t_SG_mm": 0,
+          "bundsikring": "BL II U≤3",
+          "t_BL_mm": 0,
+          "levetid_styrende_aar": 0.0,
+          "bemaerkning": ""
+        },
+        {
+          "T": "T3",
+          "eu": 5,
+          "slidlag": "AB 1000",
+          "t_slid_mm": 40.0,
+          "bindelag": "-",
+          "t_bindelag_mm": 0.0,
+          "bundet_baerelag": "GAB 0 2000",
+          "t_bundet_mm": 95.0,
+          "E_asf_vist_MPa": 1862.0,
+          "ubundet_baerelag": "SG II",
+          "t_SG_mm": 0,
+          "bundsikring": "BL II U≤3",
+          "t_BL_mm": 0,
+          "levetid_styrende_aar": 20.0,
+          "bemaerkning": ""
+        },
+        {
+          "T": "T3",
+          "eu": 10,
+          "slidlag": "AB 1000",
+          "t_slid_mm": 40.0,
+          "bindelag": "-",
+          "t_bindelag_mm": 0.0,
+          "bundet_baerelag": "GAB 0 2000",
+          "t_bundet_mm": 94.0,
+          "E_asf_vist_MPa": 1854.0,
+          "ubundet_baerelag": "SG II",
+          "t_SG_mm": 0,
+          "bundsikring": "BL II U≤3",
+          "t_BL_mm": 0,
+          "levetid_styrende_aar": 20.1,
+          "bemaerkning": ""
+        },
+        {
+          "T": "T3",
+          "eu": 15,
+          "slidlag": "AB 1000",
+          "t_slid_mm": 40.0,
+          "bindelag": "-",
+          "t_bindelag_mm": 0.0,
+          "bundet_baerelag": "GAB 0 2000",
+          "t_bundet_mm": 94.0,
+          "E_asf_vist_MPa": 1854.0,
+          "ubundet_baerelag": "SG II",
+          "t_SG_mm": 0,
+          "bundsikring": "BL II U≤3",
+          "t_BL_mm": 0,
+          "levetid_styrende_aar": 20.1,
+          "bemaerkning": ""
+        },
+        {
+          "T": "T3",
+          "eu": 20,
+          "slidlag": "AB 1000",
+          "t_slid_mm": 40.0,
+          "bindelag": "-",
+          "t_bindelag_mm": 0.0,
+          "bundet_baerelag": "GAB 0 2000",
+          "t_bundet_mm": 94.0,
+          "E_asf_vist_MPa": 1854.0,
+          "ubundet_baerelag": "SG II",
+          "t_SG_mm": 0,
+          "bundsikring": "BL II U≤3",
+          "t_BL_mm": 0,
+          "levetid_styrende_aar": 20.0,
+          "bemaerkning": ""
+        },
+        {
+          "T": "T3",
+          "eu": 30,
+          "slidlag": "AB 1000",
+          "t_slid_mm": 40.0,
+          "bindelag": "-",
+          "t_bindelag_mm": 0.0,
+          "bundet_baerelag": "GAB 0 2000",
+          "t_bundet_mm": 94.0,
+          "E_asf_vist_MPa": 1854.0,
+          "ubundet_baerelag": "SG II",
+          "t_SG_mm": 0,
+          "bundsikring": "BL II U≤3",
+          "t_BL_mm": 0,
+          "levetid_styrende_aar": 20.0,
+          "bemaerkning": ""
+        },
+        {
+          "T": "T3",
+          "eu": 40,
+          "slidlag": "AB 1000",
+          "t_slid_mm": 40.0,
+          "bindelag": "-",
+          "t_bindelag_mm": 0.0,
+          "bundet_baerelag": "GAB 0 2000",
+          "t_bundet_mm": 94.0,
+          "E_asf_vist_MPa": 1854.0,
+          "ubundet_baerelag": "SG II",
+          "t_SG_mm": 0,
+          "bundsikring": "BL II U≤3",
+          "t_BL_mm": 0,
+          "levetid_styrende_aar": 20.1,
+          "bemaerkning": ""
+        },
+        {
+          "T": "T4",
+          "eu": 3,
+          "slidlag": "AB 2000",
+          "t_slid_mm": 40.0,
+          "bindelag": "-",
+          "t_bindelag_mm": 0.0,
+          "bundet_baerelag": "GAB 0 2000",
+          "t_bundet_mm": 125.0,
+          "E_asf_vist_MPa": 2362.0,
+          "ubundet_baerelag": "SG II",
+          "t_SG_mm": 240.0,
+          "bundsikring": "BL II U≤3",
+          "t_BL_mm": 1107.0,
+          "levetid_styrende_aar": 0.0,
+          "bemaerkning": "VejDim beregner tykkelsen af det bundne bærelag"
+        },
+        {
+          "T": "T4",
+          "eu": 4,
+          "slidlag": "AB 2000",
+          "t_slid_mm": 40.0,
+          "bindelag": "-",
+          "t_bindelag_mm": 0.0,
+          "bundet_baerelag": "GAB 0 2000",
+          "t_bundet_mm": 125.0,
+          "E_asf_vist_MPa": 2362.0,
+          "ubundet_baerelag": "SG II",
+          "t_SG_mm": 240.0,
+          "bundsikring": "BL II U≤3",
+          "t_BL_mm": 1014.0,
+          "levetid_styrende_aar": 0.0,
+          "bemaerkning": "VejDim beregner tykkelsen af det bundne bærelag"
+        },
+        {
+          "T": "T4",
+          "eu": 5,
+          "slidlag": "AB 2000",
+          "t_slid_mm": 40.0,
+          "bindelag": "-",
+          "t_bindelag_mm": 0.0,
+          "bundet_baerelag": "GAB 0 2000",
+          "t_bundet_mm": 125.0,
+          "E_asf_vist_MPa": 2362.0,
+          "ubundet_baerelag": "SG II",
+          "t_SG_mm": 240.0,
+          "bundsikring": "BL II U≤3",
+          "t_BL_mm": 944.0,
+          "levetid_styrende_aar": 20.0,
+          "bemaerkning": "VejDim beregner tykkelsen af det bundne bærelag"
+        },
+        {
+          "T": "T4",
+          "eu": 10,
+          "slidlag": "AB 2000",
+          "t_slid_mm": 40.0,
+          "bindelag": "-",
+          "t_bindelag_mm": 0.0,
+          "bundet_baerelag": "GAB 0 2000",
+          "t_bundet_mm": 125.0,
+          "E_asf_vist_MPa": 2362.0,
+          "ubundet_baerelag": "SG II",
+          "t_SG_mm": 230.0,
+          "bundsikring": "BL II U≤3",
+          "t_BL_mm": 739.0,
+          "levetid_styrende_aar": 20.0,
+          "bemaerkning": "VejDim beregner tykkelsen af det bundne bærelag"
+        },
+        {
+          "T": "T4",
+          "eu": 15,
+          "slidlag": "AB 2000",
+          "t_slid_mm": 40.0,
+          "bindelag": "-",
+          "t_bindelag_mm": 0.0,
+          "bundet_baerelag": "GAB 0 2000",
+          "t_bundet_mm": 123.0,
+          "E_asf_vist_MPa": 2355.0,
+          "ubundet_baerelag": "SG II",
+          "t_SG_mm": 220.0,
+          "bundsikring": "BL II U≤3",
+          "t_BL_mm": 629.0,
+          "levetid_styrende_aar": 20.1,
+          "bemaerkning": "VejDim beregner tykkelsen af det bundne bærelag"
+        },
+        {
+          "T": "T4",
+          "eu": 20,
+          "slidlag": "AB 2000",
+          "t_slid_mm": 40.0,
+          "bindelag": "-",
+          "t_bindelag_mm": 0.0,
+          "bundet_baerelag": "GAB 0 2000",
+          "t_bundet_mm": 123.0,
+          "E_asf_vist_MPa": 2355.0,
+          "ubundet_baerelag": "SG II",
+          "t_SG_mm": 220.0,
+          "bundsikring": "BL II U≤3",
+          "t_BL_mm": 537.0,
+          "levetid_styrende_aar": 20.0,
+          "bemaerkning": "VejDim beregner tykkelsen af det bundne bærelag"
+        },
+        {
+          "T": "T4",
+          "eu": 30,
+          "slidlag": "AB 2000",
+          "t_slid_mm": 40.0,
+          "bindelag": "-",
+          "t_bindelag_mm": 0.0,
+          "bundet_baerelag": "GAB 0 2000",
+          "t_bundet_mm": 123.0,
+          "E_asf_vist_MPa": 2355.0,
+          "ubundet_baerelag": "SG II",
+          "t_SG_mm": 230.0,
+          "bundsikring": "BL II U≤3",
+          "t_BL_mm": 392.0,
+          "levetid_styrende_aar": 20.1,
+          "bemaerkning": "VejDim beregner tykkelsen af det bundne bærelag"
+        },
+        {
+          "T": "T4",
+          "eu": 40,
+          "slidlag": "AB 2000",
+          "t_slid_mm": 40.0,
+          "bindelag": "-",
+          "t_bindelag_mm": 0.0,
+          "bundet_baerelag": "GAB 0 2000",
+          "t_bundet_mm": 123.0,
+          "E_asf_vist_MPa": 2355.0,
+          "ubundet_baerelag": "SG II",
+          "t_SG_mm": 230.0,
+          "bundsikring": "BL II U≤3",
+          "t_BL_mm": 301.0,
+          "levetid_styrende_aar": 20.0,
+          "bemaerkning": "VejDim beregner tykkelsen af det bundne bærelag"
+        },
+        {
+          "T": "T5",
+          "eu": 3,
+          "slidlag": "AB 2000",
+          "t_slid_mm": 40.0,
+          "bindelag": "-",
+          "t_bindelag_mm": 0.0,
+          "bundet_baerelag": "GAB I 3000",
+          "t_bundet_mm": 132.0,
+          "E_asf_vist_MPa": 3456.0,
+          "ubundet_baerelag": "SG II",
+          "t_SG_mm": 270.0,
+          "bundsikring": "BL II U≤3",
+          "t_BL_mm": 1224.0,
+          "levetid_styrende_aar": 0.0,
+          "bemaerkning": "VejDim beregner tykkelsen af det bundne bærelag"
+        },
+        {
+          "T": "T5",
+          "eu": 4,
+          "slidlag": "AB 2000",
+          "t_slid_mm": 40.0,
+          "bindelag": "-",
+          "t_bindelag_mm": 0.0,
+          "bundet_baerelag": "GAB I 3000",
+          "t_bundet_mm": 132.0,
+          "E_asf_vist_MPa": 3456.0,
+          "ubundet_baerelag": "SG II",
+          "t_SG_mm": 270.0,
+          "bundsikring": "BL II U≤3",
+          "t_BL_mm": 1119.0,
+          "levetid_styrende_aar": 0.0,
+          "bemaerkning": "VejDim beregner tykkelsen af det bundne bærelag"
+        },
+        {
+          "T": "T5",
+          "eu": 5,
+          "slidlag": "AB 2000",
+          "t_slid_mm": 40.0,
+          "bindelag": "-",
+          "t_bindelag_mm": 0.0,
+          "bundet_baerelag": "GAB I 3000",
+          "t_bundet_mm": 132.0,
+          "E_asf_vist_MPa": 3456.0,
+          "ubundet_baerelag": "SG II",
+          "t_SG_mm": 270.0,
+          "bundsikring": "BL II U≤3",
+          "t_BL_mm": 1042.0,
+          "levetid_styrende_aar": 20.0,
+          "bemaerkning": "VejDim beregner tykkelsen af det bundne bærelag"
+        },
+        {
+          "T": "T5",
+          "eu": 10,
+          "slidlag": "AB 2000",
+          "t_slid_mm": 40.0,
+          "bindelag": "-",
+          "t_bindelag_mm": 0.0,
+          "bundet_baerelag": "GAB I 3000",
+          "t_bundet_mm": 131.0,
+          "E_asf_vist_MPa": 3448.0,
+          "ubundet_baerelag": "SG II",
+          "t_SG_mm": 260.0,
+          "bundsikring": "BL II U≤3",
+          "t_BL_mm": 818.0,
+          "levetid_styrende_aar": 20.1,
+          "bemaerkning": "VejDim beregner tykkelsen af det bundne bærelag"
+        },
+        {
+          "T": "T5",
+          "eu": 15,
+          "slidlag": "AB 2000",
+          "t_slid_mm": 40.0,
+          "bindelag": "-",
+          "t_bindelag_mm": 0.0,
+          "bundet_baerelag": "GAB I 3000",
+          "t_bundet_mm": 131.0,
+          "E_asf_vist_MPa": 3448.0,
+          "ubundet_baerelag": "SG II",
+          "t_SG_mm": 250.0,
+          "bundsikring": "BL II U≤3",
+          "t_BL_mm": 689.0,
+          "levetid_styrende_aar": 20.0,
+          "bemaerkning": "VejDim beregner tykkelsen af det bundne bærelag"
+        },
+        {
+          "T": "T5",
+          "eu": 20,
+          "slidlag": "AB 2000",
+          "t_slid_mm": 40.0,
+          "bindelag": "-",
+          "t_bindelag_mm": 0.0,
+          "bundet_baerelag": "GAB I 3000",
+          "t_bundet_mm": 130.0,
+          "E_asf_vist_MPa": 3440.0,
+          "ubundet_baerelag": "SG II",
+          "t_SG_mm": 250.0,
+          "bundsikring": "BL II U≤3",
+          "t_BL_mm": 590.0,
+          "levetid_styrende_aar": 20.1,
+          "bemaerkning": "VejDim beregner tykkelsen af det bundne bærelag"
+        },
+        {
+          "T": "T5",
+          "eu": 30,
+          "slidlag": "AB 2000",
+          "t_slid_mm": 40.0,
+          "bindelag": "-",
+          "t_bindelag_mm": 0.0,
+          "bundet_baerelag": "GAB I 3000",
+          "t_bundet_mm": 130.0,
+          "E_asf_vist_MPa": 3440.0,
+          "ubundet_baerelag": "SG II",
+          "t_SG_mm": 240.0,
+          "bundsikring": "BL II U≤3",
+          "t_BL_mm": 459.0,
+          "levetid_styrende_aar": 20.1,
+          "bemaerkning": "VejDim beregner tykkelsen af det bundne bærelag"
+        },
+        {
+          "T": "T5",
+          "eu": 40,
+          "slidlag": "AB 2000",
+          "t_slid_mm": 40.0,
+          "bindelag": "-",
+          "t_bindelag_mm": 0.0,
+          "bundet_baerelag": "GAB I 3000",
+          "t_bundet_mm": 129.0,
+          "E_asf_vist_MPa": 3432.0,
+          "ubundet_baerelag": "SG II",
+          "t_SG_mm": 240.0,
+          "bundsikring": "BL II U≤3",
+          "t_BL_mm": 360.0,
+          "levetid_styrende_aar": 20.1,
+          "bemaerkning": "VejDim beregner tykkelsen af det bundne bærelag"
+        },
+        {
+          "T": "T6",
+          "eu": 3,
+          "slidlag": "SMA 3000",
+          "t_slid_mm": 40.0,
+          "bindelag": "-",
+          "t_bindelag_mm": 0.0,
+          "bundet_baerelag": "GAB II 3000",
+          "t_bundet_mm": 144.0,
+          "E_asf_vist_MPa": 3829.0,
+          "ubundet_baerelag": "SG II",
+          "t_SG_mm": 290.0,
+          "bundsikring": "BL II U≤3",
+          "t_BL_mm": 1290.0,
+          "levetid_styrende_aar": 0.0,
+          "bemaerkning": "VejDim beregner tykkelsen af det bundne bærelag"
+        },
+        {
+          "T": "T6",
+          "eu": 4,
+          "slidlag": "SMA 3000",
+          "t_slid_mm": 40.0,
+          "bindelag": "-",
+          "t_bindelag_mm": 0.0,
+          "bundet_baerelag": "GAB II 3000",
+          "t_bundet_mm": 143.0,
+          "E_asf_vist_MPa": 3823.0,
+          "ubundet_baerelag": "SG II",
+          "t_SG_mm": 280.0,
+          "bundsikring": "BL II U≤3",
+          "t_BL_mm": 1199.0,
+          "levetid_styrende_aar": 0.0,
+          "bemaerkning": "VejDim beregner tykkelsen af det bundne bærelag"
+        },
+        {
+          "T": "T6",
+          "eu": 5,
+          "slidlag": "SMA 3000",
+          "t_slid_mm": 40.0,
+          "bindelag": "-",
+          "t_bindelag_mm": 0.0,
+          "bundet_baerelag": "GAB II 3000",
+          "t_bundet_mm": 142.0,
+          "E_asf_vist_MPa": 3817.0,
+          "ubundet_baerelag": "SG II",
+          "t_SG_mm": 280.0,
+          "bundsikring": "BL II U≤3",
+          "t_BL_mm": 1117.0,
+          "levetid_styrende_aar": 20.0,
+          "bemaerkning": "VejDim beregner tykkelsen af det bundne bærelag"
+        },
+        {
+          "T": "T6",
+          "eu": 10,
+          "slidlag": "SMA 3000",
+          "t_slid_mm": 40.0,
+          "bindelag": "-",
+          "t_bindelag_mm": 0.0,
+          "bundet_baerelag": "GAB II 3000",
+          "t_bundet_mm": 141.0,
+          "E_asf_vist_MPa": 3811.0,
+          "ubundet_baerelag": "SG II",
+          "t_SG_mm": 270.0,
+          "bundsikring": "BL II U≤3",
+          "t_BL_mm": 876.0,
+          "levetid_styrende_aar": 20.0,
+          "bemaerkning": "VejDim beregner tykkelsen af det bundne bærelag"
+        },
+        {
+          "T": "T6",
+          "eu": 15,
+          "slidlag": "SMA 3000",
+          "t_slid_mm": 40.0,
+          "bindelag": "-",
+          "t_bindelag_mm": 0.0,
+          "bundet_baerelag": "GAB II 3000",
+          "t_bundet_mm": 141.0,
+          "E_asf_vist_MPa": 3811.0,
+          "ubundet_baerelag": "SG II",
+          "t_SG_mm": 270.0,
+          "bundsikring": "BL II U≤3",
+          "t_BL_mm": 723.0,
+          "levetid_styrende_aar": 20.0,
+          "bemaerkning": "VejDim beregner tykkelsen af det bundne bærelag"
+        },
+        {
+          "T": "T6",
+          "eu": 20,
+          "slidlag": "SMA 3000",
+          "t_slid_mm": 40.0,
+          "bindelag": "-",
+          "t_bindelag_mm": 0.0,
+          "bundet_baerelag": "GAB II 3000",
+          "t_bundet_mm": 141.0,
+          "E_asf_vist_MPa": 3811.0,
+          "ubundet_baerelag": "SG II",
+          "t_SG_mm": 260.0,
+          "bundsikring": "BL II U≤3",
+          "t_BL_mm": 629.0,
+          "levetid_styrende_aar": 20.0,
+          "bemaerkning": "VejDim beregner tykkelsen af det bundne bærelag"
+        },
+        {
+          "T": "T6",
+          "eu": 30,
+          "slidlag": "SMA 3000",
+          "t_slid_mm": 40.0,
+          "bindelag": "-",
+          "t_bindelag_mm": 0.0,
+          "bundet_baerelag": "GAB II 3000",
+          "t_bundet_mm": 140.0,
+          "E_asf_vist_MPa": 3805.0,
+          "ubundet_baerelag": "SG II",
+          "t_SG_mm": 260.0,
+          "bundsikring": "BL II U≤3",
+          "t_BL_mm": 478.0,
+          "levetid_styrende_aar": 20.0,
+          "bemaerkning": "VejDim beregner tykkelsen af det bundne bærelag"
+        },
+        {
+          "T": "T6",
+          "eu": 40,
+          "slidlag": "SMA 3000",
+          "t_slid_mm": 40.0,
+          "bindelag": "-",
+          "t_bindelag_mm": 0.0,
+          "bundet_baerelag": "GAB II 3000",
+          "t_bundet_mm": 140.0,
+          "E_asf_vist_MPa": 3805.0,
+          "ubundet_baerelag": "SG II",
+          "t_SG_mm": 260.0,
+          "bundsikring": "BL II U≤3",
+          "t_BL_mm": 370.0,
+          "levetid_styrende_aar": 20.1,
+          "bemaerkning": "VejDim beregner tykkelsen af det bundne bærelag"
+        }
+      ],
+      "samples": [
+        {
+          "traffic": "T1",
+          "eu": 3,
+          "expected": {
+            "trin1": {
+              "ubundet_mm": 618.0,
+              "direkte": true,
+              "kendte": [
+                3,
+                4,
+                5,
+                10,
+                15,
+                20,
+                30,
+                40
+              ],
+              "eu_punkt": 3,
+              "sg": 170.0,
+              "bl": 448.0
+            },
+            "trin2": {
+              "kurver": [
+                [
+                  30,
+                  1100.0
+                ],
+                [
+                  45,
+                  1200.0
+                ],
+                [
+                  60,
+                  1300.0
+                ],
+                [
+                  80,
+                  1400.0
+                ],
+                [
+                  120,
+                  1500.0
+                ],
+                [
+                  150,
+                  1600.0
+                ]
+              ]
+            },
+            "trin3": {}
+          }
+        },
+        {
+          "traffic": "T1",
+          "eu": 4,
+          "expected": {
+            "trin1": {
+              "ubundet_mm": 590.0,
+              "direkte": true,
+              "kendte": [
+                3,
+                4,
+                5,
+                10,
+                15,
+                20,
+                30,
+                40
+              ],
+              "eu_punkt": 4,
+              "sg": 120.0,
+              "bl": 470.0
+            },
+            "trin2": {
+              "kurver": [
+                [
+                  30,
+                  1000.0
+                ],
+                [
+                  45,
+                  1067.0
+                ],
+                [
+                  60,
+                  1167.0
+                ],
+                [
+                  80,
+                  1267.0
+                ],
+                [
+                  120,
+                  1367.0
+                ],
+                [
+                  150,
+                  1467.0
+                ]
+              ]
+            },
+            "trin3": {}
+          }
+        },
+        {
+          "traffic": "T1",
+          "eu": 5,
+          "expected": {
+            "trin1": {
+              "ubundet_mm": 560.0,
+              "direkte": true,
+              "kendte": [
+                3,
+                4,
+                5,
+                10,
+                15,
+                20,
+                30,
+                40
+              ],
+              "eu_punkt": 5,
+              "sg": 110.0,
+              "bl": 450.0
+            },
+            "trin2": {
+              "kurver": [
+                [
+                  30,
+                  900.0
+                ],
+                [
+                  45,
+                  1000.0
+                ],
+                [
+                  60,
+                  1100.0
+                ],
+                [
+                  80,
+                  1200.0
+                ],
+                [
+                  120,
+                  1300.0
+                ],
+                [
+                  150,
+                  1400.0
+                ]
+              ]
+            },
+            "trin3": {}
+          }
+        },
+        {
+          "traffic": "T1",
+          "eu": 7.5,
+          "expected": null
+        },
+        {
+          "traffic": "T1",
+          "eu": 10,
+          "expected": {
+            "trin1": {
+              "ubundet_mm": 456.0,
+              "direkte": true,
+              "kendte": [
+                3,
+                4,
+                5,
+                10,
+                15,
+                20,
+                30,
+                40
+              ],
+              "eu_punkt": 10,
+              "sg": 100.0,
+              "bl": 356.0
+            },
+            "trin2": {
+              "kurver": [
+                [
+                  30,
+                  580.0
+                ],
+                [
+                  45,
+                  700.0
+                ],
+                [
+                  60,
+                  800.0
+                ],
+                [
+                  80,
+                  900.0
+                ],
+                [
+                  120,
+                  1000.0
+                ],
+                [
+                  150,
+                  1100.0
+                ]
+              ]
+            },
+            "trin3": {}
+          }
+        },
+        {
+          "traffic": "T1",
+          "eu": 15,
+          "expected": {
+            "trin1": {
+              "ubundet_mm": 392.0,
+              "direkte": true,
+              "kendte": [
+                3,
+                4,
+                5,
+                10,
+                15,
+                20,
+                30,
+                40
+              ],
+              "eu_punkt": 15,
+              "sg": 100.0,
+              "bl": 292.0
+            },
+            "trin2": {
+              "kurver": [
+                [
+                  30,
+                  386.0
+                ],
+                [
+                  45,
+                  500.0
+                ],
+                [
+                  60,
+                  600.0
+                ],
+                [
+                  80,
+                  700.0
+                ],
+                [
+                  120,
+                  800.0
+                ],
+                [
+                  150,
+                  900.0
+                ]
+              ],
+              "eo_lav": 30,
+              "eo_hoej": 45,
+              "t_lav": 386.0,
+              "t_hoej": 500.0,
+              "frac": 0.05263157894736842,
+              "eo_aekv": 30.789473684210527
+            },
+            "trin3": {
+              "1_lag": {
+                "lav": 200.0,
+                "hoej": 325.0,
+                "basis": 206.57894736842104
+              }
+            }
+          }
+        },
+        {
+          "traffic": "T1",
+          "eu": 20,
+          "expected": {
+            "trin1": {
+              "ubundet_mm": 343.0,
+              "direkte": true,
+              "kendte": [
+                3,
+                4,
+                5,
+                10,
+                15,
+                20,
+                30,
+                40
+              ],
+              "eu_punkt": 20,
+              "sg": 100.0,
+              "bl": 243.0
+            },
+            "trin2": {
+              "kurver": [
+                [
+                  30,
+                  233.0
+                ],
+                [
+                  45,
+                  367.0
+                ],
+                [
+                  60,
+                  467.0
+                ],
+                [
+                  80,
+                  567.0
+                ],
+                [
+                  120,
+                  667.0
+                ],
+                [
+                  150,
+                  767.0
+                ]
+              ],
+              "eo_lav": 30,
+              "eo_hoej": 45,
+              "t_lav": 233.0,
+              "t_hoej": 367.0,
+              "frac": 0.8208955223880597,
+              "eo_aekv": 42.3134328358209
+            },
+            "trin3": {}
+          }
+        },
+        {
+          "traffic": "T1",
+          "eu": 30,
+          "expected": {
+            "trin1": {
+              "ubundet_mm": 300.0,
+              "direkte": true,
+              "kendte": [
+                3,
+                4,
+                5,
+                10,
+                15,
+                20,
+                30,
+                40
+              ],
+              "eu_punkt": 30,
+              "sg": 100.0,
+              "bl": 200.0
+            },
+            "trin2": {
+              "kurver": [
+                [
+                  30,
+                  0.0
+                ],
+                [
+                  45,
+                  186.0
+                ],
+                [
+                  60,
+                  286.0
+                ],
+                [
+                  80,
+                  386.0
+                ],
+                [
+                  120,
+                  486.0
+                ],
+                [
+                  150,
+                  586.0
+                ]
+              ],
+              "eo_lav": 60,
+              "eo_hoej": 80,
+              "t_lav": 286.0,
+              "t_hoej": 386.0,
+              "frac": 0.14,
+              "eo_aekv": 62.8
+            },
+            "trin3": {}
+          }
+        },
+        {
+          "traffic": "T1",
+          "eu": 40,
+          "expected": {
+            "trin1": {
+              "ubundet_mm": 300.0,
+              "direkte": true,
+              "kendte": [
+                3,
+                4,
+                5,
+                10,
+                15,
+                20,
+                30,
+                40
+              ],
+              "eu_punkt": 40,
+              "sg": 100.0,
+              "bl": 200.0
+            },
+            "trin2": {
+              "kurver": [
+                [
+                  45,
+                  56.0
+                ],
+                [
+                  60,
+                  156.0
+                ],
+                [
+                  80,
+                  256.0
+                ],
+                [
+                  120,
+                  356.0
+                ],
+                [
+                  150,
+                  456.0
+                ]
+              ],
+              "eo_lav": 80,
+              "eo_hoej": 120,
+              "t_lav": 256.0,
+              "t_hoej": 356.0,
+              "frac": 0.44,
+              "eo_aekv": 97.6
+            },
+            "trin3": {}
+          }
+        },
+        {
+          "traffic": "T2",
+          "eu": 3,
+          "expected": {
+            "trin1": {
+              "ubundet_mm": 1046.0,
+              "direkte": true,
+              "kendte": [
+                3,
+                4,
+                5,
+                10,
+                15,
+                20,
+                30,
+                40
+              ],
+              "eu_punkt": 3,
+              "sg": 180.0,
+              "bl": 866.0
+            },
+            "trin2": {
+              "kurver": [
+                [
+                  30,
+                  1100.0
+                ],
+                [
+                  45,
+                  1200.0
+                ],
+                [
+                  60,
+                  1300.0
+                ],
+                [
+                  80,
+                  1400.0
+                ],
+                [
+                  120,
+                  1500.0
+                ],
+                [
+                  150,
+                  1600.0
+                ]
+              ]
+            },
+            "trin3": {}
+          }
+        },
+        {
+          "traffic": "T2",
+          "eu": 4,
+          "expected": {
+            "trin1": {
+              "ubundet_mm": 977.0,
+              "direkte": true,
+              "kendte": [
+                3,
+                4,
+                5,
+                10,
+                15,
+                20,
+                30,
+                40
+              ],
+              "eu_punkt": 4,
+              "sg": 180.0,
+              "bl": 797.0
+            },
+            "trin2": {
+              "kurver": [
+                [
+                  30,
+                  1000.0
+                ],
+                [
+                  45,
+                  1067.0
+                ],
+                [
+                  60,
+                  1167.0
+                ],
+                [
+                  80,
+                  1267.0
+                ],
+                [
+                  120,
+                  1367.0
+                ],
+                [
+                  150,
+                  1467.0
+                ]
+              ]
+            },
+            "trin3": {}
+          }
+        },
+        {
+          "traffic": "T2",
+          "eu": 5,
+          "expected": {
+            "trin1": {
+              "ubundet_mm": 927.0,
+              "direkte": true,
+              "kendte": [
+                3,
+                4,
+                5,
+                10,
+                15,
+                20,
+                30,
+                40
+              ],
+              "eu_punkt": 5,
+              "sg": 170.0,
+              "bl": 757.0
+            },
+            "trin2": {
+              "kurver": [
+                [
+                  30,
+                  900.0
+                ],
+                [
+                  45,
+                  1000.0
+                ],
+                [
+                  60,
+                  1100.0
+                ],
+                [
+                  80,
+                  1200.0
+                ],
+                [
+                  120,
+                  1300.0
+                ],
+                [
+                  150,
+                  1400.0
+                ]
+              ],
+              "eo_lav": 30,
+              "eo_hoej": 45,
+              "t_lav": 900.0,
+              "t_hoej": 1000.0,
+              "frac": 0.27,
+              "eo_aekv": 34.05
+            },
+            "trin3": {
+              "1_lag": {
+                "lav": 600.0,
+                "hoej": 667.0,
+                "basis": 618.09
+              }
+            }
+          }
+        },
+        {
+          "traffic": "T2",
+          "eu": 7.5,
+          "expected": null
+        },
+        {
+          "traffic": "T2",
+          "eu": 10,
+          "expected": {
+            "trin1": {
+              "ubundet_mm": 760.0,
+              "direkte": true,
+              "kendte": [
+                3,
+                4,
+                5,
+                10,
+                15,
+                20,
+                30,
+                40
+              ],
+              "eu_punkt": 10,
+              "sg": 170.0,
+              "bl": 590.0
+            },
+            "trin2": {
+              "kurver": [
+                [
+                  30,
+                  580.0
+                ],
+                [
+                  45,
+                  700.0
+                ],
+                [
+                  60,
+                  800.0
+                ],
+                [
+                  80,
+                  900.0
+                ],
+                [
+                  120,
+                  1000.0
+                ],
+                [
+                  150,
+                  1100.0
+                ]
+              ],
+              "eo_lav": 45,
+              "eo_hoej": 60,
+              "t_lav": 700.0,
+              "t_hoej": 800.0,
+              "frac": 0.6,
+              "eo_aekv": 54.0
+            },
+            "trin3": {
+              "1_lag": {
+                "lav": 467.0,
+                "hoej": 567.0,
+                "basis": 527.0
+              }
+            }
+          }
+        },
+        {
+          "traffic": "T2",
+          "eu": 15,
+          "expected": {
+            "trin1": {
+              "ubundet_mm": 668.0,
+              "direkte": true,
+              "kendte": [
+                3,
+                4,
+                5,
+                10,
+                15,
+                20,
+                30,
+                40
+              ],
+              "eu_punkt": 15,
+              "sg": 160.0,
+              "bl": 508.0
+            },
+            "trin2": {
+              "kurver": [
+                [
+                  30,
+                  386.0
+                ],
+                [
+                  45,
+                  500.0
+                ],
+                [
+                  60,
+                  600.0
+                ],
+                [
+                  80,
+                  700.0
+                ],
+                [
+                  120,
+                  800.0
+                ],
+                [
+                  150,
+                  900.0
+                ]
+              ],
+              "eo_lav": 60,
+              "eo_hoej": 80,
+              "t_lav": 600.0,
+              "t_hoej": 700.0,
+              "frac": 0.68,
+              "eo_aekv": 73.6
+            },
+            "trin3": {
+              "1_lag": {
+                "lav": 425.0,
+                "hoej": 483.0,
+                "basis": 464.44
+              }
+            }
+          }
+        },
+        {
+          "traffic": "T2",
+          "eu": 20,
+          "expected": {
+            "trin1": {
+              "ubundet_mm": 599.0,
+              "direkte": true,
+              "kendte": [
+                3,
+                4,
+                5,
+                10,
+                15,
+                20,
+                30,
+                40
+              ],
+              "eu_punkt": 20,
+              "sg": 160.0,
+              "bl": 439.0
+            },
+            "trin2": {
+              "kurver": [
+                [
+                  30,
+                  233.0
+                ],
+                [
+                  45,
+                  367.0
+                ],
+                [
+                  60,
+                  467.0
+                ],
+                [
+                  80,
+                  567.0
+                ],
+                [
+                  120,
+                  667.0
+                ],
+                [
+                  150,
+                  767.0
+                ]
+              ],
+              "eo_lav": 80,
+              "eo_hoej": 120,
+              "t_lav": 567.0,
+              "t_hoej": 667.0,
+              "frac": 0.32,
+              "eo_aekv": 92.8
+            },
+            "trin3": {
+              "1_lag": {
+                "lav": 400.0,
+                "hoej": 483.0,
+                "basis": 426.56
+              }
+            }
+          }
+        },
+        {
+          "traffic": "T2",
+          "eu": 30,
+          "expected": {
+            "trin1": {
+              "ubundet_mm": 497.0,
+              "direkte": true,
+              "kendte": [
+                3,
+                4,
+                5,
+                10,
+                15,
+                20,
+                30,
+                40
+              ],
+              "eu_punkt": 30,
+              "sg": 160.0,
+              "bl": 337.0
+            },
+            "trin2": {
+              "kurver": [
+                [
+                  30,
+                  0.0
+                ],
+                [
+                  45,
+                  186.0
+                ],
+                [
+                  60,
+                  286.0
+                ],
+                [
+                  80,
+                  386.0
+                ],
+                [
+                  120,
+                  486.0
+                ],
+                [
+                  150,
+                  586.0
+                ]
+              ],
+              "eo_lav": 120,
+              "eo_hoej": 150,
+              "t_lav": 486.0,
+              "t_hoej": 586.0,
+              "frac": 0.11,
+              "eo_aekv": 123.3
+            },
+            "trin3": {
+              "1_lag": {
+                "lav": 338.0,
+                "hoej": 425.0,
+                "basis": 347.57
+              }
+            }
+          }
+        },
+        {
+          "traffic": "T2",
+          "eu": 40,
+          "expected": {
+            "trin1": {
+              "ubundet_mm": 424.0,
+              "direkte": true,
+              "kendte": [
+                3,
+                4,
+                5,
+                10,
+                15,
+                20,
+                30,
+                40
+              ],
+              "eu_punkt": 40,
+              "sg": 160.0,
+              "bl": 264.0
+            },
+            "trin2": {
+              "kurver": [
+                [
+                  45,
+                  56.0
+                ],
+                [
+                  60,
+                  156.0
+                ],
+                [
+                  80,
+                  256.0
+                ],
+                [
+                  120,
+                  356.0
+                ],
+                [
+                  150,
+                  456.0
+                ]
+              ],
+              "eo_lav": 120,
+              "eo_hoej": 150,
+              "t_lav": 356.0,
+              "t_hoej": 456.0,
+              "frac": 0.68,
+              "eo_aekv": 140.4
+            },
+            "trin3": {}
+          }
+        },
+        {
+          "traffic": "T3",
+          "eu": 3,
+          "expected": null
+        },
+        {
+          "traffic": "T3",
+          "eu": 4,
+          "expected": null
+        },
+        {
+          "traffic": "T3",
+          "eu": 5,
+          "expected": null
+        },
+        {
+          "traffic": "T3",
+          "eu": 7.5,
+          "expected": null
+        },
+        {
+          "traffic": "T3",
+          "eu": 10,
+          "expected": null
+        },
+        {
+          "traffic": "T3",
+          "eu": 15,
+          "expected": null
+        },
+        {
+          "traffic": "T3",
+          "eu": 20,
+          "expected": null
+        },
+        {
+          "traffic": "T3",
+          "eu": 30,
+          "expected": null
+        },
+        {
+          "traffic": "T3",
+          "eu": 40,
+          "expected": null
+        },
+        {
+          "traffic": "T4",
+          "eu": 3,
+          "expected": {
+            "trin1": {
+              "ubundet_mm": 1347.0,
+              "direkte": true,
+              "kendte": [
+                3,
+                4,
+                5,
+                10,
+                15,
+                20,
+                30,
+                40
+              ],
+              "eu_punkt": 3,
+              "sg": 240.0,
+              "bl": 1107.0
+            },
+            "trin2": {
+              "kurver": [
+                [
+                  30,
+                  1100.0
+                ],
+                [
+                  45,
+                  1200.0
+                ],
+                [
+                  60,
+                  1300.0
+                ],
+                [
+                  80,
+                  1400.0
+                ],
+                [
+                  120,
+                  1500.0
+                ],
+                [
+                  150,
+                  1600.0
+                ]
+              ],
+              "eo_lav": 60,
+              "eo_hoej": 80,
+              "t_lav": 1300.0,
+              "t_hoej": 1400.0,
+              "frac": 0.47,
+              "eo_aekv": 69.4
+            },
+            "trin3": {
+              "1_lag": {
+                "lav": 900.0,
+                "hoej": 1000.0,
+                "basis": 947.0
+              },
+              "2_lag": {
+                "lav": 775.0,
+                "hoej": 900.0,
+                "basis": 833.75
+              }
+            }
+          }
+        },
+        {
+          "traffic": "T4",
+          "eu": 4,
+          "expected": {
+            "trin1": {
+              "ubundet_mm": 1254.0,
+              "direkte": true,
+              "kendte": [
+                3,
+                4,
+                5,
+                10,
+                15,
+                20,
+                30,
+                40
+              ],
+              "eu_punkt": 4,
+              "sg": 240.0,
+              "bl": 1014.0
+            },
+            "trin2": {
+              "kurver": [
+                [
+                  30,
+                  1000.0
+                ],
+                [
+                  45,
+                  1067.0
+                ],
+                [
+                  60,
+                  1167.0
+                ],
+                [
+                  80,
+                  1267.0
+                ],
+                [
+                  120,
+                  1367.0
+                ],
+                [
+                  150,
+                  1467.0
+                ]
+              ],
+              "eo_lav": 60,
+              "eo_hoej": 80,
+              "t_lav": 1167.0,
+              "t_hoej": 1267.0,
+              "frac": 0.87,
+              "eo_aekv": 77.4
+            },
+            "trin3": {
+              "1_lag": {
+                "lav": 833.0,
+                "hoej": 900.0,
+                "basis": 891.29
+              },
+              "2_lag": {
+                "lav": 725.0,
+                "hoej": 800.0,
+                "basis": 790.25
+              }
+            }
+          }
+        },
+        {
+          "traffic": "T4",
+          "eu": 5,
+          "expected": {
+            "trin1": {
+              "ubundet_mm": 1184.0,
+              "direkte": true,
+              "kendte": [
+                3,
+                4,
+                5,
+                10,
+                15,
+                20,
+                30,
+                40
+              ],
+              "eu_punkt": 5,
+              "sg": 240.0,
+              "bl": 944.0
+            },
+            "trin2": {
+              "kurver": [
+                [
+                  30,
+                  900.0
+                ],
+                [
+                  45,
+                  1000.0
+                ],
+                [
+                  60,
+                  1100.0
+                ],
+                [
+                  80,
+                  1200.0
+                ],
+                [
+                  120,
+                  1300.0
+                ],
+                [
+                  150,
+                  1400.0
+                ]
+              ],
+              "eo_lav": 60,
+              "eo_hoej": 80,
+              "t_lav": 1100.0,
+              "t_hoej": 1200.0,
+              "frac": 0.84,
+              "eo_aekv": 76.8
+            },
+            "trin3": {
+              "1_lag": {
+                "lav": 775.0,
+                "hoej": 833.0,
+                "basis": 823.72
+              },
+              "2_lag": {
+                "lav": 675.0,
+                "hoej": 750.0,
+                "basis": 738.0
+              }
+            }
+          }
+        },
+        {
+          "traffic": "T4",
+          "eu": 7.5,
+          "expected": null
+        },
+        {
+          "traffic": "T4",
+          "eu": 10,
+          "expected": {
+            "trin1": {
+              "ubundet_mm": 969.0,
+              "direkte": true,
+              "kendte": [
+                3,
+                4,
+                5,
+                10,
+                15,
+                20,
+                30,
+                40
+              ],
+              "eu_punkt": 10,
+              "sg": 230.0,
+              "bl": 739.0
+            },
+            "trin2": {
+              "kurver": [
+                [
+                  30,
+                  580.0
+                ],
+                [
+                  45,
+                  700.0
+                ],
+                [
+                  60,
+                  800.0
+                ],
+                [
+                  80,
+                  900.0
+                ],
+                [
+                  120,
+                  1000.0
+                ],
+                [
+                  150,
+                  1100.0
+                ]
+              ],
+              "eo_lav": 80,
+              "eo_hoej": 120,
+              "t_lav": 900.0,
+              "t_hoej": 1000.0,
+              "frac": 0.69,
+              "eo_aekv": 107.6
+            },
+            "trin3": {
+              "1_lag": {
+                "lav": 617.0,
+                "hoej": 688.0,
+                "basis": 665.99
+              }
+            }
+          }
+        },
+        {
+          "traffic": "T4",
+          "eu": 15,
+          "expected": {
+            "trin1": {
+              "ubundet_mm": 849.0,
+              "direkte": true,
+              "kendte": [
+                3,
+                4,
+                5,
+                10,
+                15,
+                20,
+                30,
+                40
+              ],
+              "eu_punkt": 15,
+              "sg": 220.0,
+              "bl": 629.0
+            },
+            "trin2": {
+              "kurver": [
+                [
+                  30,
+                  386.0
+                ],
+                [
+                  45,
+                  500.0
+                ],
+                [
+                  60,
+                  600.0
+                ],
+                [
+                  80,
+                  700.0
+                ],
+                [
+                  120,
+                  800.0
+                ],
+                [
+                  150,
+                  900.0
+                ]
+              ],
+              "eo_lav": 120,
+              "eo_hoej": 150,
+              "t_lav": 800.0,
+              "t_hoej": 900.0,
+              "frac": 0.49,
+              "eo_aekv": 134.7
+            },
+            "trin3": {
+              "1_lag": {
+                "lav": 573.0,
+                "hoej": 640.0,
+                "basis": 605.83
+              }
+            }
+          }
+        },
+        {
+          "traffic": "T4",
+          "eu": 20,
+          "expected": {
+            "trin1": {
+              "ubundet_mm": 757.0,
+              "direkte": true,
+              "kendte": [
+                3,
+                4,
+                5,
+                10,
+                15,
+                20,
+                30,
+                40
+              ],
+              "eu_punkt": 20,
+              "sg": 220.0,
+              "bl": 537.0
+            },
+            "trin2": {
+              "kurver": [
+                [
+                  30,
+                  233.0
+                ],
+                [
+                  45,
+                  367.0
+                ],
+                [
+                  60,
+                  467.0
+                ],
+                [
+                  80,
+                  567.0
+                ],
+                [
+                  120,
+                  667.0
+                ],
+                [
+                  150,
+                  767.0
+                ]
+              ],
+              "eo_lav": 120,
+              "eo_hoej": 150,
+              "t_lav": 667.0,
+              "t_hoej": 767.0,
+              "frac": 0.9,
+              "eo_aekv": 147.0
+            },
+            "trin3": {
+              "1_lag": {
+                "lav": 483.0,
+                "hoej": 557.0,
+                "basis": 549.6
+              }
+            }
+          }
+        },
+        {
+          "traffic": "T4",
+          "eu": 30,
+          "expected": {
+            "trin1": {
+              "ubundet_mm": 622.0,
+              "direkte": true,
+              "kendte": [
+                3,
+                4,
+                5,
+                10,
+                15,
+                20,
+                30,
+                40
+              ],
+              "eu_punkt": 30,
+              "sg": 230.0,
+              "bl": 392.0
+            },
+            "trin2": {
+              "kurver": [
+                [
+                  30,
+                  0.0
+                ],
+                [
+                  45,
+                  186.0
+                ],
+                [
+                  60,
+                  286.0
+                ],
+                [
+                  80,
+                  386.0
+                ],
+                [
+                  120,
+                  486.0
+                ],
+                [
+                  150,
+                  586.0
+                ]
+              ]
+            },
+            "trin3": {}
+          }
+        },
+        {
+          "traffic": "T4",
+          "eu": 40,
+          "expected": {
+            "trin1": {
+              "ubundet_mm": 531.0,
+              "direkte": true,
+              "kendte": [
+                3,
+                4,
+                5,
+                10,
+                15,
+                20,
+                30,
+                40
+              ],
+              "eu_punkt": 40,
+              "sg": 230.0,
+              "bl": 301.0
+            },
+            "trin2": {
+              "kurver": [
+                [
+                  45,
+                  56.0
+                ],
+                [
+                  60,
+                  156.0
+                ],
+                [
+                  80,
+                  256.0
+                ],
+                [
+                  120,
+                  356.0
+                ],
+                [
+                  150,
+                  456.0
+                ]
+              ]
+            },
+            "trin3": {}
+          }
+        },
+        {
+          "traffic": "T5",
+          "eu": 3,
+          "expected": {
+            "trin1": {
+              "ubundet_mm": 1494.0,
+              "direkte": true,
+              "kendte": [
+                3,
+                4,
+                5,
+                10,
+                15,
+                20,
+                30,
+                40
+              ],
+              "eu_punkt": 3,
+              "sg": 270.0,
+              "bl": 1224.0
+            },
+            "trin2": {
+              "kurver": [
+                [
+                  30,
+                  1100.0
+                ],
+                [
+                  45,
+                  1200.0
+                ],
+                [
+                  60,
+                  1300.0
+                ],
+                [
+                  80,
+                  1400.0
+                ],
+                [
+                  120,
+                  1500.0
+                ],
+                [
+                  150,
+                  1600.0
+                ]
+              ],
+              "eo_lav": 80,
+              "eo_hoej": 120,
+              "t_lav": 1400.0,
+              "t_hoej": 1500.0,
+              "frac": 0.94,
+              "eo_aekv": 117.6
+            },
+            "trin3": {
+              "1_lag": {
+                "lav": 1000.0,
+                "hoej": 1075.0,
+                "basis": 1070.5
+              },
+              "2_lag": {
+                "lav": 900.0,
+                "hoej": 1000.0,
+                "basis": 994.0
+              }
+            }
+          }
+        },
+        {
+          "traffic": "T5",
+          "eu": 4,
+          "expected": {
+            "trin1": {
+              "ubundet_mm": 1389.0,
+              "direkte": true,
+              "kendte": [
+                3,
+                4,
+                5,
+                10,
+                15,
+                20,
+                30,
+                40
+              ],
+              "eu_punkt": 4,
+              "sg": 270.0,
+              "bl": 1119.0
+            },
+            "trin2": {
+              "kurver": [
+                [
+                  30,
+                  1000.0
+                ],
+                [
+                  45,
+                  1067.0
+                ],
+                [
+                  60,
+                  1167.0
+                ],
+                [
+                  80,
+                  1267.0
+                ],
+                [
+                  120,
+                  1367.0
+                ],
+                [
+                  150,
+                  1467.0
+                ]
+              ],
+              "eo_lav": 120,
+              "eo_hoej": 150,
+              "t_lav": 1367.0,
+              "t_hoej": 1467.0,
+              "frac": 0.22,
+              "eo_aekv": 126.6
+            },
+            "trin3": {
+              "1_lag": {
+                "lav": 1025.0,
+                "hoej": 1050.0,
+                "basis": 1030.5
+              },
+              "2_lag": {
+                "lav": 933.0,
+                "hoej": 933.0,
+                "basis": 933.0
+              }
+            }
+          }
+        },
+        {
+          "traffic": "T5",
+          "eu": 5,
+          "expected": {
+            "trin1": {
+              "ubundet_mm": 1312.0,
+              "direkte": true,
+              "kendte": [
+                3,
+                4,
+                5,
+                10,
+                15,
+                20,
+                30,
+                40
+              ],
+              "eu_punkt": 5,
+              "sg": 270.0,
+              "bl": 1042.0
+            },
+            "trin2": {
+              "kurver": [
+                [
+                  30,
+                  900.0
+                ],
+                [
+                  45,
+                  1000.0
+                ],
+                [
+                  60,
+                  1100.0
+                ],
+                [
+                  80,
+                  1200.0
+                ],
+                [
+                  120,
+                  1300.0
+                ],
+                [
+                  150,
+                  1400.0
+                ]
+              ],
+              "eo_lav": 120,
+              "eo_hoej": 150,
+              "t_lav": 1300.0,
+              "t_hoej": 1400.0,
+              "frac": 0.12,
+              "eo_aekv": 123.6
+            },
+            "trin3": {
+              "1_lag": {
+                "lav": 967.0,
+                "hoej": 967.0,
+                "basis": 967.0
+              },
+              "2_lag": {
+                "lav": 867.0,
+                "hoej": 875.0,
+                "basis": 867.96
+              }
+            }
+          }
+        },
+        {
+          "traffic": "T5",
+          "eu": 7.5,
+          "expected": null
+        },
+        {
+          "traffic": "T5",
+          "eu": 10,
+          "expected": {
+            "trin1": {
+              "ubundet_mm": 1078.0,
+              "direkte": true,
+              "kendte": [
+                3,
+                4,
+                5,
+                10,
+                15,
+                20,
+                30,
+                40
+              ],
+              "eu_punkt": 10,
+              "sg": 260.0,
+              "bl": 818.0
+            },
+            "trin2": {
+              "kurver": [
+                [
+                  30,
+                  580.0
+                ],
+                [
+                  45,
+                  700.0
+                ],
+                [
+                  60,
+                  800.0
+                ],
+                [
+                  80,
+                  900.0
+                ],
+                [
+                  120,
+                  1000.0
+                ],
+                [
+                  150,
+                  1100.0
+                ]
+              ],
+              "eo_lav": 120,
+              "eo_hoej": 150,
+              "t_lav": 1000.0,
+              "t_hoej": 1100.0,
+              "frac": 0.78,
+              "eo_aekv": 143.4
+            },
+            "trin3": {
+              "1_lag": {
+                "lav": 688.0,
+                "hoej": 757.0,
+                "basis": 741.82
+              },
+              "2_lag": {
+                "lav": 600.0,
+                "hoej": 667.0,
+                "basis": 652.26
+              }
+            }
+          }
+        },
+        {
+          "traffic": "T5",
+          "eu": 15,
+          "expected": {
+            "trin1": {
+              "ubundet_mm": 939.0,
+              "direkte": true,
+              "kendte": [
+                3,
+                4,
+                5,
+                10,
+                15,
+                20,
+                30,
+                40
+              ],
+              "eu_punkt": 15,
+              "sg": 250.0,
+              "bl": 689.0
+            },
+            "trin2": {
+              "kurver": [
+                [
+                  30,
+                  386.0
+                ],
+                [
+                  45,
+                  500.0
+                ],
+                [
+                  60,
+                  600.0
+                ],
+                [
+                  80,
+                  700.0
+                ],
+                [
+                  120,
+                  800.0
+                ],
+                [
+                  150,
+                  900.0
+                ]
+              ]
+            },
+            "trin3": {}
+          }
+        },
+        {
+          "traffic": "T5",
+          "eu": 20,
+          "expected": {
+            "trin1": {
+              "ubundet_mm": 840.0,
+              "direkte": true,
+              "kendte": [
+                3,
+                4,
+                5,
+                10,
+                15,
+                20,
+                30,
+                40
+              ],
+              "eu_punkt": 20,
+              "sg": 250.0,
+              "bl": 590.0
+            },
+            "trin2": {
+              "kurver": [
+                [
+                  30,
+                  233.0
+                ],
+                [
+                  45,
+                  367.0
+                ],
+                [
+                  60,
+                  467.0
+                ],
+                [
+                  80,
+                  567.0
+                ],
+                [
+                  120,
+                  667.0
+                ],
+                [
+                  150,
+                  767.0
+                ]
+              ]
+            },
+            "trin3": {}
+          }
+        },
+        {
+          "traffic": "T5",
+          "eu": 30,
+          "expected": {
+            "trin1": {
+              "ubundet_mm": 699.0,
+              "direkte": true,
+              "kendte": [
+                3,
+                4,
+                5,
+                10,
+                15,
+                20,
+                30,
+                40
+              ],
+              "eu_punkt": 30,
+              "sg": 240.0,
+              "bl": 459.0
+            },
+            "trin2": {
+              "kurver": [
+                [
+                  30,
+                  0.0
+                ],
+                [
+                  45,
+                  186.0
+                ],
+                [
+                  60,
+                  286.0
+                ],
+                [
+                  80,
+                  386.0
+                ],
+                [
+                  120,
+                  486.0
+                ],
+                [
+                  150,
+                  586.0
+                ]
+              ]
+            },
+            "trin3": {}
+          }
+        },
+        {
+          "traffic": "T5",
+          "eu": 40,
+          "expected": {
+            "trin1": {
+              "ubundet_mm": 600.0,
+              "direkte": true,
+              "kendte": [
+                3,
+                4,
+                5,
+                10,
+                15,
+                20,
+                30,
+                40
+              ],
+              "eu_punkt": 40,
+              "sg": 240.0,
+              "bl": 360.0
+            },
+            "trin2": {
+              "kurver": [
+                [
+                  45,
+                  56.0
+                ],
+                [
+                  60,
+                  156.0
+                ],
+                [
+                  80,
+                  256.0
+                ],
+                [
+                  120,
+                  356.0
+                ],
+                [
+                  150,
+                  456.0
+                ]
+              ]
+            },
+            "trin3": {}
+          }
+        },
+        {
+          "traffic": "T6",
+          "eu": 3,
+          "expected": {
+            "trin1": {
+              "ubundet_mm": 1580.0,
+              "direkte": true,
+              "kendte": [
+                3,
+                4,
+                5,
+                10,
+                15,
+                20,
+                30,
+                40
+              ],
+              "eu_punkt": 3,
+              "sg": 290.0,
+              "bl": 1290.0
+            },
+            "trin2": {
+              "kurver": [
+                [
+                  30,
+                  1100.0
+                ],
+                [
+                  45,
+                  1200.0
+                ],
+                [
+                  60,
+                  1300.0
+                ],
+                [
+                  80,
+                  1400.0
+                ],
+                [
+                  120,
+                  1500.0
+                ],
+                [
+                  150,
+                  1600.0
+                ]
+              ],
+              "eo_lav": 120,
+              "eo_hoej": 150,
+              "t_lav": 1500.0,
+              "t_hoej": 1600.0,
+              "frac": 0.8,
+              "eo_aekv": 144.0
+            },
+            "trin3": {
+              "1_lag": {
+                "lav": 1075.0,
+                "hoej": 1150.0,
+                "basis": 1135.0
+              },
+              "2_lag": {
+                "lav": 1000.0,
+                "hoej": 1000.0,
+                "basis": 1000.0
+              }
+            }
+          }
+        },
+        {
+          "traffic": "T6",
+          "eu": 4,
+          "expected": {
+            "trin1": {
+              "ubundet_mm": 1479.0,
+              "direkte": true,
+              "kendte": [
+                3,
+                4,
+                5,
+                10,
+                15,
+                20,
+                30,
+                40
+              ],
+              "eu_punkt": 4,
+              "sg": 280.0,
+              "bl": 1199.0
+            },
+            "trin2": {
+              "kurver": [
+                [
+                  30,
+                  1000.0
+                ],
+                [
+                  45,
+                  1067.0
+                ],
+                [
+                  60,
+                  1167.0
+                ],
+                [
+                  80,
+                  1267.0
+                ],
+                [
+                  120,
+                  1367.0
+                ],
+                [
+                  150,
+                  1467.0
+                ]
+              ]
+            },
+            "trin3": {}
+          }
+        },
+        {
+          "traffic": "T6",
+          "eu": 5,
+          "expected": {
+            "trin1": {
+              "ubundet_mm": 1397.0,
+              "direkte": true,
+              "kendte": [
+                3,
+                4,
+                5,
+                10,
+                15,
+                20,
+                30,
+                40
+              ],
+              "eu_punkt": 5,
+              "sg": 280.0,
+              "bl": 1117.0
+            },
+            "trin2": {
+              "kurver": [
+                [
+                  30,
+                  900.0
+                ],
+                [
+                  45,
+                  1000.0
+                ],
+                [
+                  60,
+                  1100.0
+                ],
+                [
+                  80,
+                  1200.0
+                ],
+                [
+                  120,
+                  1300.0
+                ],
+                [
+                  150,
+                  1400.0
+                ]
+              ],
+              "eo_lav": 120,
+              "eo_hoej": 150,
+              "t_lav": 1300.0,
+              "t_hoej": 1400.0,
+              "frac": 0.97,
+              "eo_aekv": 149.1
+            },
+            "trin3": {
+              "1_lag": {
+                "lav": 967.0,
+                "hoej": 967.0,
+                "basis": 967.0
+              },
+              "2_lag": {
+                "lav": 867.0,
+                "hoej": 875.0,
+                "basis": 874.76
+              }
+            }
+          }
+        },
+        {
+          "traffic": "T6",
+          "eu": 7.5,
+          "expected": null
+        },
+        {
+          "traffic": "T6",
+          "eu": 10,
+          "expected": {
+            "trin1": {
+              "ubundet_mm": 1146.0,
+              "direkte": true,
+              "kendte": [
+                3,
+                4,
+                5,
+                10,
+                15,
+                20,
+                30,
+                40
+              ],
+              "eu_punkt": 10,
+              "sg": 270.0,
+              "bl": 876.0
+            },
+            "trin2": {
+              "kurver": [
+                [
+                  30,
+                  580.0
+                ],
+                [
+                  45,
+                  700.0
+                ],
+                [
+                  60,
+                  800.0
+                ],
+                [
+                  80,
+                  900.0
+                ],
+                [
+                  120,
+                  1000.0
+                ],
+                [
+                  150,
+                  1100.0
+                ]
+              ]
+            },
+            "trin3": {}
+          }
+        },
+        {
+          "traffic": "T6",
+          "eu": 15,
+          "expected": {
+            "trin1": {
+              "ubundet_mm": 993.0,
+              "direkte": true,
+              "kendte": [
+                3,
+                4,
+                5,
+                10,
+                15,
+                20,
+                30,
+                40
+              ],
+              "eu_punkt": 15,
+              "sg": 270.0,
+              "bl": 723.0
+            },
+            "trin2": {
+              "kurver": [
+                [
+                  30,
+                  386.0
+                ],
+                [
+                  45,
+                  500.0
+                ],
+                [
+                  60,
+                  600.0
+                ],
+                [
+                  80,
+                  700.0
+                ],
+                [
+                  120,
+                  800.0
+                ],
+                [
+                  150,
+                  900.0
+                ]
+              ]
+            },
+            "trin3": {}
+          }
+        },
+        {
+          "traffic": "T6",
+          "eu": 20,
+          "expected": {
+            "trin1": {
+              "ubundet_mm": 889.0,
+              "direkte": true,
+              "kendte": [
+                3,
+                4,
+                5,
+                10,
+                15,
+                20,
+                30,
+                40
+              ],
+              "eu_punkt": 20,
+              "sg": 260.0,
+              "bl": 629.0
+            },
+            "trin2": {
+              "kurver": [
+                [
+                  30,
+                  233.0
+                ],
+                [
+                  45,
+                  367.0
+                ],
+                [
+                  60,
+                  467.0
+                ],
+                [
+                  80,
+                  567.0
+                ],
+                [
+                  120,
+                  667.0
+                ],
+                [
+                  150,
+                  767.0
+                ]
+              ]
+            },
+            "trin3": {}
+          }
+        },
+        {
+          "traffic": "T6",
+          "eu": 30,
+          "expected": {
+            "trin1": {
+              "ubundet_mm": 738.0,
+              "direkte": true,
+              "kendte": [
+                3,
+                4,
+                5,
+                10,
+                15,
+                20,
+                30,
+                40
+              ],
+              "eu_punkt": 30,
+              "sg": 260.0,
+              "bl": 478.0
+            },
+            "trin2": {
+              "kurver": [
+                [
+                  30,
+                  0.0
+                ],
+                [
+                  45,
+                  186.0
+                ],
+                [
+                  60,
+                  286.0
+                ],
+                [
+                  80,
+                  386.0
+                ],
+                [
+                  120,
+                  486.0
+                ],
+                [
+                  150,
+                  586.0
+                ]
+              ]
+            },
+            "trin3": {}
+          }
+        },
+        {
+          "traffic": "T6",
+          "eu": 40,
+          "expected": {
+            "trin1": {
+              "ubundet_mm": 630.0,
+              "direkte": true,
+              "kendte": [
+                3,
+                4,
+                5,
+                10,
+                15,
+                20,
+                30,
+                40
+              ],
+              "eu_punkt": 40,
+              "sg": 260.0,
+              "bl": 370.0
+            },
+            "trin2": {
+              "kurver": [
+                [
+                  45,
+                  56.0
+                ],
+                [
+                  60,
+                  156.0
+                ],
+                [
+                  80,
+                  256.0
+                ],
+                [
+                  120,
+                  356.0
+                ],
+                [
+                  150,
+                  456.0
+                ]
+              ]
+            },
+            "trin3": {}
+          }
+        }
+      ],
+      "selected": [
+        "T1",
+        15
+      ]
+    }
+  ],
+  "guidance": {
+    "steps": [
+      [
+        "Ubunden lagtykkelse",
+        "VejDim-kørslen fastlægger den lagtykkelse, trafikklassen kræver ved underbundens E-modul. Hvis der er valgt et Eᵤ mellem kørte E-værdier interpoleres værdien."
+      ],
+      [
+        "Ækvivalent Eₒ",
+        "Den Eₒ-kurve, hvis ustabiliserede lagtykkelse svarer til den fastlagte, bestemmes ved interpolation mellem de to nærmeste kurver fra de originale designdiagrammer."
+      ],
+      [
+        "Geonet-reduktion",
+        "Reduktionen følger af de samme to kurvers armerede lagtykkelser med samme interpolationsfaktor."
+      ],
+      [
+        "Korrektion",
+        "Lagtykkelsen korrigeres for friktionsvinkel og for det valgte geonets effektindeks i forhold til referencenettet."
+      ]
+    ],
+    "assumptions": [
+      [
+        "Belastningsmodel",
+        "Æ10 tvillingehjul, 60–80 km/t"
+      ],
+      [
+        "Afvanding",
+        "Nej"
+      ],
+      [
+        "Underbund",
+        "Frostsikker, E overskrevet til cellens Eᵤ"
+      ],
+      [
+        "Levetidsmål",
+        "20 år, alle lag"
+      ],
+      [
+        "Ubundne lag",
+        "SG II (E = 300) over BL II U≤3 (E = 100)"
+      ],
+      [
+        "Asfalt-E",
+        "Standard, ikke overskrevet"
+      ]
+    ],
+    "actions": {
+      "vejdim": "VejDims tykkelse",
+      "laveste": "diagrammets laveste kurve",
+      "afvis": "afvises"
+    }
+  },
+  "rules": [
+    {
+      "input": {
+        "tolerance_over_pct": 5.0,
+        "tolerance_under_pct": 5.0,
+        "under_inden": "laveste",
+        "over_uden": "afvis",
+        "under_uden": "afvis"
+      },
+      "expected": "Uden for diagrammets kurver gælder Indstillinger, afsnit 8. Over: inden for 5,0 % regnes med VejDims tykkelse; derudover afvises beregningen. Under: inden for 5,0 % regnes med diagrammets laveste kurve; derudover afvises beregningen."
+    },
+    {
+      "input": {
+        "tolerance_over_pct": 0.0,
+        "tolerance_under_pct": 0.0,
+        "under_inden": "laveste",
+        "over_uden": "afvis",
+        "under_uden": "afvis"
+      },
+      "expected": "Uden for diagrammets kurver gælder Indstillinger, afsnit 8. Over: inden for 0,0 % regnes med VejDims tykkelse; derudover afvises beregningen. Under: inden for 0,0 % regnes med diagrammets laveste kurve; derudover afvises beregningen."
+    }
+  ]
+}

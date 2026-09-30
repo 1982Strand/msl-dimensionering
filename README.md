@@ -2,7 +2,7 @@
 
 Migrering af det eksisterende Streamlit-værktøj til React, TypeScript, Vite og shadcn/ui.
 
-Status: beregningskernen og sammensætningen af Standard/Brugerdefineret er porteret til TypeScript efter B-014. 2.614 tests består: beregninger, grænsetilfælde, sammensatte dimensioneringsforløb og nu også redigerbare grunddata, indstillinger og korrelationer. De oprindelige referencecases matcher Python uden numerisk tolerance; godkendte forbedringer har særskilte adfærdstests. TypeScript/Typst-prototypen har desuden genereret ti rapportcases. Et første fungerende React/Vite/shadcn-udkast til Materialer er tilkoblet browserlagring og kontrolleret med 11 browserprøver. Designretningen er godkendt i B-020.
+Status: beregningskernen og sammensætningen af Standard/Brugerdefineret er porteret til TypeScript efter B-014. 2.746 tests består: beregninger, grænsetilfælde, sammensatte dimensioneringsforløb og nu også redigerbare grunddata, indstillinger og korrelationer. De oprindelige referencecases matcher Python uden numerisk tolerance; godkendte forbedringer har særskilte adfærdstests. TypeScript/Typst-prototypen har desuden genereret ti rapportcases. React/Vite/shadcn-udkastet til Materialer, Designdiagrammer og Trafikklasse-korrelation er tilkoblet browserlagring og kontrolleret med 17 browserprøver. Designretningen er godkendt i B-020.
 
 - Arbejdsmappe: `C:\MSL-Dimensionering`
 - Nyt repository: https://github.com/1982Strand/msl-dimensionering
@@ -29,7 +29,7 @@ Beregninger, datagrundlag og funktionalitet skal bevares. Ændringer af eksister
 
 Referenceversionen er fastlagt til den committede og pushede gamle app, commit `a330cfd6734ac2478be1304a362c69f94e412d25`. TypeScript er valgt til beregningsmotoren i B-014. Lokal lagring i samme browser/computer er valgt i B-019. Visuelt design, adgang og offentliggørelse afklares fortsat særskilt.
 
-## Lokalt materialeudkast
+## Lokalt grunddataudkast
 
 ```powershell
 npm ci
@@ -38,6 +38,8 @@ npm run preview
 ```
 
 Åbn `http://127.0.0.1:5174/`. Se [udkastets funktioner, kontroller og afgrænsning](docs/MATERIALEUDKAST.md).
+
+Udkastet omfatter nu også Designdiagrammer og Trafikklasse-korrelation med direkte redigering, kurver, regneeksempel og CSV. Aktuel kontrol: 2.746 motor-/datatests og 17 browserforløb. Se [grunddataudkastets omfang og resterende arbejde](docs/GRUNDDATAUDKAST.md).
 
 ## Beregningsmotor
 

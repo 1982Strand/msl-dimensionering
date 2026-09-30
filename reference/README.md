@@ -93,4 +93,6 @@ npm test
 
 ## Supplerende dataredigering
 
+Seneste UI-udvidelse: `table-ui-cases.json` fastlåser 20 sammenligninger af rådiagrammer, CSV, viste tabeller og dækningsområder samt aflæsningsmarkeringer. `table-explanation-cases.json` fastlåser 112 sammenligninger af regneeksemplets mellemregninger, cellevalg og regeltekster. Genkør med `tools/capture_table_ui_reference.py` og `tools/capture_table_explanation.py` (valgfrit `--legacy-repo PATH`). Uden `--record` sammenlignes eksisterende forventninger; de seks scanninger kontrolleres byte for byte. CSV-linjeskift kanoniseres til LF. Samlet TypeScript-kontrol er nu 2.746 tests; browserkontrollen er særskilt med 17 forløb. Se `docs/GRUNDDATAUDKAST.md`.
+
 `editing-cases.json` indeholder 150 forventninger fra uændrede originale datafunktioner og isoleret filindlæsning/gemning. `data-flow-cases.json` indeholder 86 forventninger for korrelationer, trafiktekster og redigerede data gennem beregningsmotoren. `tests/editing.test.ts` og `tests/data-flow.test.ts` matcher dem præcist og kontrollerer uændrede input. Samlet består 2.582 tests inklusive dækningskontroller. Se `docs/DATAREDIGERING.md` for omfang, genkørsel og begrænsninger. Den tidligere `typescript-engine-results.json` bevares som dokumentation for første motorleverance; den nye kontrol ligger i `editing-results.json`.

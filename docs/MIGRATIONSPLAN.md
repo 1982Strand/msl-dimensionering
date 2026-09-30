@@ -16,6 +16,8 @@ Efter B-012 arbejdes videre med Typst og bevarede rapportdata: firmaprofil/layou
 
 ## Mål og afgrænsning
 
+Seneste udvidelse 30. september 2026: Designdiagrammer og VejDim har nu fungerende React-editorer, fælles automatisk lagring/historik, råkurver, originale scanninger, CSV, korrelationsmatrix og regneeksempel. 2.746 motor-/datatests og 17 browserforløb består. Se `GRUNDDATAUDKAST.md` for præcis afgrænsning. Næste trin er indstillinger og dimensioneringsformularer; samlet navigation, resterende apptekster og figur-/rapportpipeline er stadig åbne.
+
 Den eksisterende app omskrives til en brugerflade med React, TypeScript, Vite og shadcn/ui. Beregninger og funktionalitet skal bevares. Beregningsmotoren flyttes fra Python til TypeScript efter B-014; Python fastholdes som uafhængig reference.
 
 Migreringens første leverance er dokumenteret overensstemmelse med den godkendte gamle app. Forbedringer vurderes enkeltvis sammen med brugeren og skal kunne spores til en konkret godkendelse.
