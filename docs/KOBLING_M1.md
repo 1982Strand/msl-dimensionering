@@ -25,7 +25,7 @@ Gammel Python er ikke forsøgt kørt, jf. den seneste instruktion.
 
 `kobling-explanation.ts` danner titel, kilde, formler, regnelinjer, resultater,
 noter, captions og figurpladser som strukturerede tekst-/elementdata.
-`CouplingExplanation.tsx` gengiver dem med React i et `<details>`, lukket fra
+`CouplingExplanation.tsx` gengiver dem med React i én shadcn `Accordion`, lukket fra
 start. HTML-strenge fra referencen indsættes aldrig i appen.
 
 Trafiktrinenes mellemresultater genbruger `eoSteps` fra `table-explanation.ts`.
@@ -116,3 +116,18 @@ Referencefilen og `tools/capture_*` er uændrede.
 
 Ingen beregningsregler er ændret, og ingen originalfejl er rettet. Originalens
 tekster er gengivet uændret.
+
+## B-038: originalens opstilling og stil
+
+Ét Accordion-punkt, lukket fra start, viser alle trin på én gang.
+`src/ui/coupling.css` overfører originalens `.kob-*`-regler: trinhoved med
+inline-kilde, højrestillet resultat/note, indrykning, formelbokse, klassekort,
+chips, figurkort med prik-/ringsignatur og figurtekst, lagkolonner,
+skillelinjer og fodnote. Mål, afstande, skriftstørrelser, vægte og bruddet
+ved 1100 px bevares. IBM Plex Mono 400/500/600 indlæses lokalt; øvrig tekst
+følger appens skrift. Temaets tekst-, grå-, kant- og primærfarver bruges,
+hvor de har en tilsvarende rolle; øvrige originalfarver bevares.
+Farveafvigelsen i B-034 bevares: 1 lag `#2a78d6`, 2 lag `#eb6834`.
+Figurens dublerede SVG-signatur skjules på skærmen til fordel for originalens
+signatur under figuren; hover og SVG-rendererens standard til eksport bevares.
+Tekster, tal, beregninger og referenceforventninger er uændrede.

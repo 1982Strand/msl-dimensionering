@@ -1,0 +1,375 @@
+/* B-038: originalens .kob-* mål, rytme og typografi, med temafarver. */
+.coupling-explanation {
+  --kob-text-font: 'Segoe UI', system-ui, sans-serif;
+  --bg-ink: var(--foreground);
+  --bg-ink-70: #4a554e;
+  --bg-ink-45: var(--color-muted-foreground);
+  --bg-ink-25: #9aa39c;
+  --bg-line: var(--color-border);
+  --bg-line-soft: #e6eae6;
+  --bg-surface: #fff;
+  --bg-green-900: var(--primary);
+  --bg-green-700: var(--primary);
+  --bg-green-lys: #f7fbf8;
+  margin-top: 20px;
+  min-width: 0;
+}
+.coupling-explanation .coupling-trigger {
+  padding: 18px 24px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--bg-ink);
+}
+.coupling-trigger strong {
+  font-weight: 600;
+}
+.coupling-subtitle {
+  color: var(--bg-ink-45);
+}
+.coupling-explanation .coupling-content {
+  padding: 0 24px 24px;
+}
+.coupling-explanation .kob {
+  margin: 0.1rem 0 0.2rem;
+}
+.coupling-explanation .kob-trin {
+  display: grid;
+  grid-template-columns: 22px 1fr auto;
+  gap: 0 12px;
+  align-items: baseline;
+  padding: 12px 0 0;
+}
+.coupling-explanation .kob-nr {
+  font:
+    600 11px/1.6 'IBM Plex Mono',
+    monospace;
+  color: var(--bg-green-700);
+}
+.coupling-explanation .kob-titel {
+  font: 600 12.5px/1.4 var(--kob-text-font);
+  color: var(--bg-ink);
+}
+.coupling-explanation .kob-kilde {
+  font: 400 11px/1.4 var(--kob-text-font);
+  color: var(--bg-ink-45);
+}
+.coupling-explanation .kob-res {
+  text-align: right;
+}
+.coupling-explanation .kob-res-tal {
+  font:
+    600 15px/1.3 'IBM Plex Mono',
+    monospace;
+  color: var(--bg-ink);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.coupling-explanation .kob-res-tal.kob-groen {
+  color: var(--bg-green-900);
+}
+.coupling-explanation .kob-res-tal .kob-skraa {
+  font-weight: 400;
+  color: var(--bg-ink-45);
+}
+.coupling-explanation .kob-res-note {
+  font: 400 10px/1.3 var(--kob-text-font);
+  color: var(--bg-ink-45);
+}
+.coupling-explanation .kob-res-note.kob-groen {
+  font-family: 'IBM Plex Mono', monospace;
+  color: var(--bg-green-700);
+}
+.coupling-explanation .kob-krop {
+  padding: 9px 0 16px 34px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+/* Regnestykke til venstre, trinnets egen figur til højre. Venstre side har
+   sit eget element, så dens dele står under hinanden i stedet for at blive
+   fordelt hver for sig som celler i gitteret, jf. _kob_kol(). */
+.coupling-explanation .kob-kol {
+  display: grid;
+  grid-template-columns: 1fr minmax(0, 400px);
+  gap: 18px;
+  align-items: start;
+}
+.coupling-explanation .kob-venstre {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+}
+/* Linjerne er sat op med mellemrum, så tallene står lodret på linje;
+   white-space:pre bevarer opstillingen, og boksen ruller vandret på
+   smalle skærme frem for at bryde et regnestykke midt over. */
+.coupling-explanation .kob-formel {
+  font:
+    400 11px/1.75 'IBM Plex Mono',
+    monospace;
+  color: var(--bg-ink-70);
+  background: #fbfcfb;
+  border: 1px solid var(--bg-line-soft);
+  border-radius: 4px;
+  padding: 10px 12px;
+  font-variant-numeric: tabular-nums;
+  white-space: pre;
+  overflow-x: auto;
+}
+.coupling-explanation .kob-formel b {
+  font-weight: 600;
+  color: var(--bg-ink);
+}
+.coupling-explanation .kob-slutlinje {
+  display: block;
+  border-top: 1px solid var(--bg-line);
+  margin-top: 4px;
+  padding-top: 4px;
+  color: var(--bg-ink);
+}
+/* Mellemregningen bag et led står nedtonet efter talkolonnen, så linjens
+   eget tal fortsat læses først. */
+.coupling-explanation .kob-svag {
+  color: var(--bg-ink-25);
+}
+.coupling-explanation .kob-note {
+  font: 400 10.5px/1.55 var(--kob-text-font);
+  color: var(--bg-ink-45);
+  text-wrap: pretty;
+}
+.coupling-explanation .kob-note b {
+  font-weight: 600;
+  color: var(--bg-ink-70);
+}
+.coupling-explanation .kob-brod {
+  font: 400 10.5px/1.6 var(--kob-text-font);
+  color: var(--bg-ink-70);
+  max-width: 104ch;
+  text-wrap: pretty;
+}
+/* Kørslen er ikke et kørt punkt — tallet interpoleres. */
+.coupling-explanation .kob-chip {
+  display: inline-block;
+  white-space: nowrap;
+  font:
+    500 9.5px/1 'IBM Plex Mono',
+    monospace;
+  color: #8a6a1f;
+  background: #fdf6e7;
+  border: 1px solid #ebdcb8;
+  border-radius: 3px;
+  padding: 3px 6px;
+  margin-left: 4px;
+}
+/* Nabokørsler (trin 2) og nabokurver (trin 4) som små kort. */
+.coupling-explanation .kob-kort-par {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 9px;
+}
+.coupling-explanation .kob-kort {
+  border: 1px solid var(--bg-line-soft);
+  border-radius: 4px;
+  background: #fbfcfb;
+  padding: 9px 11px;
+}
+.coupling-explanation .kob-kort-hoved {
+  font:
+    600 8.5px/1.35 'IBM Plex Mono',
+    monospace;
+  letter-spacing: 0.06em;
+  color: var(--bg-ink-45);
+}
+.coupling-explanation .kob-kort-linje {
+  font:
+    400 11px/1.6 'IBM Plex Mono',
+    monospace;
+  color: var(--bg-ink-70);
+  margin-top: 5px;
+  font-variant-numeric: tabular-nums;
+}
+.coupling-explanation .kob-kort-tal {
+  font:
+    600 13px/1.3 'IBM Plex Mono',
+    monospace;
+  color: var(--bg-ink);
+  font-variant-numeric: tabular-nums;
+}
+.coupling-explanation .kob-klasser {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1px;
+  background: var(--bg-line);
+  border: 1px solid var(--bg-line);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.coupling-explanation .kob-klasse {
+  background: var(--bg-surface);
+  padding: 9px 11px;
+}
+.coupling-explanation .kob-klasse-hoved {
+  font:
+    600 8.5px/1.35 'IBM Plex Mono',
+    monospace;
+  letter-spacing: 0.06em;
+  color: var(--bg-ink-25);
+}
+.coupling-explanation .kob-klasse-tal {
+  font:
+    500 13px/1.4 'IBM Plex Mono',
+    monospace;
+  color: var(--bg-ink-45);
+  margin-top: 4px;
+  font-variant-numeric: tabular-nums;
+}
+.coupling-explanation .kob-klasse.kob-din {
+  background: var(--bg-green-lys);
+}
+.coupling-explanation .kob-din .kob-klasse-hoved {
+  color: var(--bg-green-700);
+}
+.coupling-explanation .kob-din .kob-klasse-tal {
+  font-weight: 600;
+  color: var(--bg-green-900);
+}
+/* Trinnets figur i højre spalte. */
+.coupling-explanation .kob-figur {
+  border: 1px solid var(--bg-line-soft);
+  border-radius: 4px;
+  background: #fbfcfb;
+  padding: 12px;
+}
+.coupling-explanation .kob-figur img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.coupling-explanation .kob-sign {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+  margin-top: 9px;
+  font:
+    400 10px/1.4 'IBM Plex Mono',
+    monospace;
+  color: var(--bg-ink-70);
+}
+.coupling-explanation .kob-sign > div {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.coupling-explanation .kob-prik {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--bg-ink);
+}
+.coupling-explanation .kob-prik-ring {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--bg-surface);
+  border: 1.5px solid var(--bg-ink);
+  box-sizing: border-box;
+}
+.coupling-explanation .kob-figur-tekst {
+  font: 400 10px/1.5 var(--kob-text-font);
+  color: var(--bg-ink-45);
+  margin-top: 7px;
+  text-wrap: pretty;
+}
+/* Geonet-trinnet: ét regnestykke pr. lag-mode. */
+.coupling-explanation .kob-lag {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+.coupling-explanation .kob-lag-hoved {
+  font:
+    600 9px/1 'IBM Plex Mono',
+    monospace;
+  letter-spacing: 0.08em;
+  margin-bottom: 7px;
+}
+.coupling-explanation .kob-1lag {
+  color: #2a78d6;
+}
+.coupling-explanation .kob-2lag {
+  color: #eb6834;
+}
+.coupling-explanation .kob-skel {
+  height: 1px;
+  background: #f0f2f0;
+  margin: 0;
+}
+.coupling-explanation .kob-fod {
+  margin-top: 14px;
+  padding-top: 11px;
+  border-top: 1px solid var(--bg-line-soft);
+  font: 400 10.5px/1.5 var(--kob-text-font);
+  color: var(--bg-ink-45);
+  text-wrap: pretty;
+}
+@media (max-width: 1100px) {
+  .coupling-explanation .kob-kol {
+    grid-template-columns: 1fr;
+  }
+  .coupling-explanation .kob-lag {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* React-elementerne bevarer originalens inline- og rullelayout. */
+.coupling-explanation .kob-titel {
+  display: inline;
+  margin: 0;
+}
+.coupling-explanation .kob-step,
+.coupling-explanation .kob-trin > div,
+.coupling-explanation .kob-krop,
+.coupling-explanation .kob-kol,
+.coupling-explanation .kob-lag > div {
+  min-width: 0;
+}
+.coupling-explanation .kob-figur {
+  margin: 0;
+  min-width: 0;
+}
+.coupling-explanation .kob-prik,
+.coupling-explanation .kob-prik-ring {
+  flex-shrink: 0;
+}
+.coupling-explanation .kob-sign-lag1 {
+  background: #2a78d6;
+}
+.coupling-explanation .kob-sign-lag2 {
+  background: #eb6834;
+}
+.coupling-explanation .kob-sign-ind {
+  background: #4a3aa7;
+}
+.coupling-canvas {
+  position: relative;
+  width: 100%;
+  font-family: 'Segoe UI', Carlito, system-ui, sans-serif;
+}
+.coupling-canvas:focus-visible {
+  outline: 2px solid #417e6c;
+  outline-offset: 4px;
+  border-radius: 6px;
+}
+.coupling-svg > svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.coupling-overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
