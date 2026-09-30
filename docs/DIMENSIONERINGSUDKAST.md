@@ -20,7 +20,9 @@ Efter brugerens fire browserkommentarer (B-024) ligger klassevalgene vandret med
 
 ## Stadig under udvikling
 
-Opbygningsfigurer, personligt designdiagram, endepunkter, fulde mellemregninger/koblingsforklaringer, produktgruppernes komplette tabeller og rapporttilkobling udestår. En del originale hjælpetekster og statusoplysninger skal stadig overføres. Resultatoversigtens fulde fremhævelser og rå/eksakte referencenoter er heller ikke afsluttet. Opbygningsvisualisering kræver særskilt godkendelse.
+Opbygningsfigurer er nu tilkoblet som visuelt udkast med originalens tre/fire snit, fælles lodrette skala, netkoter, optimale niveauer, indtastet reference og visningsindstillinger. Seks originale figurcases matcher uden tolerance. Placeringsbeskeder følger den tegnede lagfordeling. Se `OPBYGNINGSFIGURER.md`; visuel godkendelse afventes.
+
+Personligt designdiagram, endepunkter, fulde mellemregninger/koblingsforklaringer, produktgruppernes komplette tabeller og rapporttilkobling udestår. En del originale hjælpetekster og statusoplysninger skal stadig overføres. Resultatoversigtens fulde fremhævelser og rå/eksakte referencenoter er heller ikke afsluttet.
 
 Cv-korrelationstabellen findes nu lokalt som popup. Trafikklasse-korrelationen åbnes fortsat via korrelationssiden; originalens lokale trafikklassevisning på dimensioneringssiden mangler. Forsiden starter fortsat på Materialer under udviklingen. Samlet navigation og visuel accept behandles senere. Dette udkast er ikke en færdig offentlig app.
 

@@ -15,6 +15,6 @@ Siden viser originalens oprundingseksempel, minimumsadvarsel, klassisk-standardb
 
 ## Resterende arbejde
 
-Originalens korte dynamiske afsnitsopsummeringer og alle »Gælder«-markeringer er endnu ikke flyttet. De registreres som resterende oplysninger og må ikke udgå i den færdige app. Visualiseringsvalgene er gemt, men dimensioneringsfigurer og den samlede rapportpipeline er endnu ikke tilkoblet React. Denne leverance afslutter derfor ikke hele indstillingsfunktionens accept.
+Originalens korte dynamiske afsnitsopsummeringer og alle »Gælder«-markeringer er endnu ikke flyttet. De registreres som resterende oplysninger og må ikke udgå i den færdige app. Visualiseringsvalgene styrer nu opbygningsfigurerne i React, jf. `OPBYGNINGSFIGURER.md`. Rapporttilkobling og særskilt visuel accept udestår. Denne leverance afslutter derfor ikke hele indstillingsfunktionens accept.
 
 Næste større trin er dimensioneringsformularer og produktvalg. Beregningerne findes allerede i TypeScript; formularernes afhængigheder, beskeder og opbygningsvisualisering skal bevares og kontrolleres separat.

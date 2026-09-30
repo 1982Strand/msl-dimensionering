@@ -24,6 +24,7 @@ import { pythonFixed, pythonRound } from '../engine/python-numbers';
 import { er_oprundet } from '../engine/afrunding';
 import type { CalculationResult } from '../engine/types';
 import { InfoPopup } from './InfoPopup';
+import { ConstructionFigure } from './ConstructionFigure';
 import { productOverview, overviewColumns, type OverviewSort } from '../engine/product-overview';
 
 const dk = (n: number, digits = 1) => pythonFixed(n, digits).replace('.', ',');
@@ -498,7 +499,7 @@ export function Dimensioning() {
             {result.geonet?.korrektion_interval && (
               <p className="settings-note">
                 Produktet har et korrektionsinterval. De viste tykkelser er konservative; den
-                optimale tykkelse fremgår af produktoversigten.
+                optimale tykkelse markeres med en grøn prikket linje i opbygningsfiguren.
               </p>
             )}
             <div className="dim-results" aria-label="Beregnet bærelagstykkelse">
@@ -537,15 +538,6 @@ export function Dimensioning() {
                   {message}
                 </p>
               )),
-            )}
-            {[result.res_1, result.res_2].flatMap((r, i) =>
-              'placeringsadvarsler' in r
-                ? (r.placeringsadvarsler as string[]).map((message) => (
-                    <p className="warning-banner" key={`${i}-${message}`}>
-                      {i + 1} lag geonet: {message}
-                    </p>
-                  ))
-                : [],
             )}
             <details className="settings-deviations">
               <summary>Alle produkter</summary>
@@ -615,9 +607,19 @@ export function Dimensioning() {
             <p className="warning-banner">Ingen gyldig dimensionering for denne kombination.</p>
           )
         )}
+        {result && (
+          <ConstructionFigure
+            result={result}
+            products={products}
+            display={ctx.session.data.indstillinger.opbygning}
+            netplacering={ctx.session.data.indstillinger.lagfordeling.netplacering}
+          />
+        )}
       </fieldset>
       <footer className="page-footer">
-        <span>Udkast · opbygningsfigurer og rapport tilføjes i næste trin.</span>
+        <span>
+          Udkast · opbygningsfigurer afventer visuel godkendelse. Rapport tilføjes senere.
+        </span>
         <span>MSL Dimensionering</span>
       </footer>
     </main>

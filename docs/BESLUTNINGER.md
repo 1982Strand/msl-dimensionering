@@ -88,3 +88,5 @@ B-017 godkender direkte tabelredigering uden en Redigér-knap og med automatisk 
 | B-023 | 30.09.2026 | Godkendt | Bevar det valgte Standard-geonet ved navigation og mellem sessioner, så længe produktet er gyldigt. Brugeren: »Ja, bevar produktvalget«. Afgrænset ændring af FUND-001; oprindelige beregninger bevares. |
 
 - **B-024:** Brugeren ønsker vandrette klassevalg og designdiagram i popup uden at øge hovedboksens højde. Cv-tabellens overlap skal rettes, og »Alle produkter« skal kontrolleres mod originalen. Klassevalg ombrydes på små skærme; diagram og Cv-tabel åbnes i popupper. Produktoversigten genskaber originalens syv kolonner og sortering. Dette godkender de nævnte layoutrettelser, ikke nye beregningsregler eller opbygningsfigurer.
+
+- **A-010:** Brugeren: »Så tager vi opbygningsfigurerne«. Et fungerende visuelt udkast foreligger i React med bevarede lag, tykkelser, koter, statustekster og visningsvalg fra originalen. Se `OPBYGNINGSFIGURER.md`. Udkastet forelægges til særskilt visuel godkendelse; anmodningen om arbejdet er ikke i sig selv en godkendelse af det færdige udseende.
