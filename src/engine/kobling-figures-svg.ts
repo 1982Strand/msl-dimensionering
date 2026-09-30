@@ -37,6 +37,7 @@ export function renderCouplingFigureSvg(
     fontFamily?: string;
     width?: number;
     height?: number;
+    showLegend?: boolean;
   } = {},
 ): string {
   const size = {
@@ -124,18 +125,18 @@ export function renderCouplingFigureSvg(
   );
   const bx = pl.x1 - 8 - bw,
     by = pl.y0 + 8;
-  if (m.legend.length)
+  if (options.showLegend !== false && m.legend.length)
     out.push(
       `<g data-legend="true"><rect x="${n(bx)}" y="${by}" width="${n(bw)}" height="${2 * pad + m.legend.length * row - 4}" rx="6" fill="${TEMA.flade}" fill-opacity="0.9" stroke="${TEMA.akse}"/>`,
     );
-  for (const [i, e] of m.legend.entries()) {
+  for (const [i, e] of (options.showLegend === false ? [] : m.legend).entries()) {
     const ly = by + pad + i * row + 6.5;
     out.push(
       `<circle cx="${n(bx + pad + key / 2)}" cy="${ly}" r="4" fill="${e.hollow ? TEMA.flade : TEMA.serie[e.role]}" stroke="${TEMA.serie[e.role]}" stroke-width="1.5"/>`,
       text(bx + pad + key + 6, ly + 4, e.text, '', TEMA.tekst),
     );
   }
-  if (m.legend.length) out.push('</g>');
+  if (options.showLegend !== false && m.legend.length) out.push('</g>');
   out.push('</svg>');
   return out.join('');
 }

@@ -24,7 +24,10 @@ function segmentDistance(px: number, py: number, ax: number, ay: number, bx: num
 export function CouplingFigure({ model: m }: { model: CouplingFigureModel }) {
   const id = useId();
   const uid = `kobling-${id.replace(/[^A-Za-z0-9_-]/g, '')}`;
-  const svg = useMemo(() => renderCouplingFigureSvg(m, { idPrefix: uid }), [m, uid]);
+  const svg = useMemo(
+    () => renderCouplingFigureSvg(m, { idPrefix: uid, showLegend: false }),
+    [m, uid],
+  );
   // Reset interaction when the model changes, including an input update while hovering.
   return <FigureCanvas key={svg} m={m} svg={svg} uid={uid} />;
 }

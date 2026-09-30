@@ -6,26 +6,35 @@ test('M1: initially closed, four load steps, six traffic steps, rejection and no
   const errors: string[] = [];
   page.on('pageerror', (e) => errors.push(e.message));
   await page.goto('/#dimensionering');
-  const section = page.locator('details.coupling-explanation');
+  const section = page.locator('.coupling-explanation');
   await expect(section).toHaveCount(1);
-  await expect(section).not.toHaveAttribute('open');
-  await expect(section.locator('summary')).toHaveText(
+  await expect(
+    section.getByRole('button', { name: /Sådan er resultatet beregnet/ }),
+  ).toHaveAttribute('aria-expanded', 'false');
+  await expect(section.getByRole('button', { name: /Sådan er resultatet beregnet/ })).toHaveText(
     'Sådan er resultatet beregnet · fra belastningsklasse 4 til 650 mm bærelag',
   );
-  await section.locator('summary').click();
-  await expect(section).toHaveAttribute('open', '');
-  await expect(section.locator('.coupling-step')).toHaveCount(4);
+  await section.getByRole('button', { name: /Sådan er resultatet beregnet/ }).click();
+  await expect(
+    section.getByRole('button', { name: /Sådan er resultatet beregnet/ }),
+  ).toHaveAttribute('aria-expanded', 'true');
+  await expect(section.locator('.kob-step')).toHaveCount(4);
+  await expect(section.locator('.kob-step').last()).toBeVisible();
+  await expect(section.locator('.kob-sign')).toHaveCount(1);
+  await expect(section.locator('[data-legend]')).toHaveCount(0);
   await expect(
     section.getByRole('img', { name: 'Designdiagrammets kurver', exact: true }),
   ).toBeVisible();
-  await expect(section.locator('.coupling-figure')).toHaveCount(1);
+  await expect(section.locator('.kob-figur')).toHaveCount(1);
   await expect(
     section.getByRole('heading', { name: 'Reduktion med geonet', exact: true }),
   ).toBeVisible();
   await page.getByRole('radio', { name: 'Trafikklasse', exact: true }).check();
   await page.getByRole('radio', { name: 'T4', exact: true }).check();
-  await expect(section.locator('.coupling-step')).toHaveCount(6);
-  await expect(section.locator('.coupling-figure')).toHaveCount(2);
+  await expect(section.locator('.kob-step')).toHaveCount(6);
+  await expect(section.locator('.kob-step').last()).toBeVisible();
+  await expect(section.locator('.kob-sign')).toHaveCount(2);
+  await expect(section.locator('.kob-figur')).toHaveCount(2);
   const runs = section.getByRole('img', { name: 'T4s VejDim-kørsler', exact: true });
   const diagram = section.getByRole('img', { name: 'Designdiagrammets kurver', exact: true });
   await expect(runs).toBeVisible();
@@ -53,14 +62,18 @@ test('M1: initially closed, four load steps, six traffic steps, rejection and no
   await expect(runsCanvas.getByRole('status')).not.toHaveText(firstValue!);
   await runsCanvas.press('ArrowDown');
   await expect(runsCanvas.getByRole('status')).toHaveText(firstValue!);
-  await expect(section.locator('summary')).toHaveText(
+  await expect(section.getByRole('button', { name: /Sådan er resultatet beregnet/ })).toHaveText(
     'Sådan er resultatet beregnet · fra trafikklasse T4 til 700 mm bærelag',
   );
-  await section.locator('summary').click();
-  await expect(section).not.toHaveAttribute('open');
-  await section.locator('summary').focus();
+  await section.getByRole('button', { name: /Sådan er resultatet beregnet/ }).click();
+  await expect(
+    section.getByRole('button', { name: /Sådan er resultatet beregnet/ }),
+  ).toHaveAttribute('aria-expanded', 'false');
+  await section.getByRole('button', { name: /Sådan er resultatet beregnet/ }).focus();
   await page.keyboard.press('Enter');
-  await expect(section).toHaveAttribute('open', '');
+  await expect(
+    section.getByRole('button', { name: /Sådan er resultatet beregnet/ }),
+  ).toHaveAttribute('aria-expanded', 'true');
   await page.setViewportSize({ width: 390, height: 844 });
   await runs.locator('[data-run]').last().hover({ force: true });
   await expect(runsCanvas.getByRole('status')).toBeVisible();

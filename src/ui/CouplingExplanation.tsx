@@ -1,4 +1,14 @@
 import { Fragment } from 'react';
+import '@fontsource/ibm-plex-mono/400.css';
+import '@fontsource/ibm-plex-mono/500.css';
+import '@fontsource/ibm-plex-mono/600.css';
+import './coupling.css';
+import {
+  Accordion,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionContent,
+} from '../components/ui/accordion';
 import { koblingExplanation, type CouplingNode } from '../engine/kobling-explanation';
 import type { DimensioningInput, dimensioner } from '../engine/dimensionering';
 import { CouplingFigure } from './CouplingFigure';
@@ -26,58 +36,92 @@ export function CouplingExplanation({
   if (!explanation.visible) return null;
   const title = explanation.title!.split('**');
   return (
-    <details className="section-card settings-deviations coupling-explanation">
-      <summary>
-        {title.length > 1 ? (
-          <>
-            <strong>{title[1]}</strong>
-            {title[2]}
-          </>
-        ) : (
-          title[0]
-        )}
-      </summary>
-      <div className="coupling-content">
-        {explanation.captions.map((caption, i) => (
-          <p key={i} className="settings-note">
-            {caption}
-          </p>
-        ))}
-        {explanation.steps.map((step) => (
-          <section
-            key={step.number}
-            className="coupling-step"
-            aria-label={`Trin ${step.number}: ${step.title}`}
-          >
-            <div className="coupling-heading">
-              <span className="coupling-number">{step.number}</span>
-              <div>
-                <h3>{step.title}</h3>
-                <p className="settings-note">— {step.source}</p>
-                {step.chip && <span className="coupling-chip">{step.chip}</span>}
-              </div>
-              <div className={`coupling-result${step.green ? ' coupling-green' : ''}`}>
-                <strong>{step.result}</strong>
-                <small className={step.monoNote ? 'coupling-mono' : undefined}>
-                  {step.result_note}
-                </small>
-              </div>
-            </div>
-            <div className={step.figure?.model ? 'coupling-columns' : undefined}>
-              <div className="coupling-body">
-                <Content nodes={step.body} />
-              </div>
-              {step.figure?.model && (
-                <figure className="coupling-figure">
-                  <CouplingFigure model={step.figure.model} />
-                  <figcaption>{step.figure.caption}</figcaption>
-                </figure>
-              )}
-            </div>
-          </section>
-        ))}
-        {explanation.footer && <p className="coupling-footer">{explanation.footer}</p>}
-      </div>
-    </details>
+    <Accordion type="single" collapsible className="section-card coupling-explanation">
+      <AccordionItem value="calculation">
+        <AccordionTrigger className="coupling-trigger">
+          <span>
+            {title.length > 1 ? (
+              <>
+                <strong>{title[1]}</strong>
+                <span className="coupling-subtitle">{title[2]}</span>
+              </>
+            ) : (
+              <strong>{title[0]}</strong>
+            )}
+          </span>
+        </AccordionTrigger>
+        <AccordionContent className="coupling-content">
+          <div className="kob">
+            {explanation.captions.map((caption, i) => (
+              <p key={i} className="kob-note">
+                {caption}
+              </p>
+            ))}
+            {explanation.steps.map((step, i) => (
+              <Fragment key={step.number}>
+                {i > 0 && <div className="kob-skel" />}
+                <section
+                  key={step.number}
+                  className="kob-step"
+                  aria-label={`Trin ${step.number}: ${step.title}`}
+                >
+                  <div className="kob-trin">
+                    <span className="kob-nr">{step.number}</span>
+                    <div>
+                      <h3 className="kob-titel">{step.title}</h3>{' '}
+                      <span className="kob-kilde">— {step.source}</span>
+                      {step.chip && <span className="kob-chip">{step.chip}</span>}
+                    </div>
+                    <div className="kob-res">
+                      <div className={`kob-res-tal${step.green ? ' kob-groen' : ''}`}>
+                        {step.result.split(' / ').map((part, i) => (
+                          <Fragment key={i}>
+                            {i > 0 && (
+                              <>
+                                {' '}
+                                <span className="kob-skraa">/</span>{' '}
+                              </>
+                            )}
+                            {part}
+                          </Fragment>
+                        ))}
+                      </div>
+                      <div className={`kob-res-note${step.monoNote ? ' kob-groen' : ''}`}>
+                        {step.result_note}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="kob-krop">
+                    <div className={step.figure?.model ? 'kob-kol' : 'kob-venstre'}>
+                      <div className="kob-venstre">
+                        <Content nodes={step.body} />
+                      </div>
+                      {step.figure?.model && (
+                        <figure className="kob-figur">
+                          <CouplingFigure model={step.figure.model} />
+                          <div className="kob-sign">
+                            {step.figure.model.legend.map((entry, i) => (
+                              <div key={i}>
+                                <span
+                                  className={`${entry.hollow ? 'kob-prik-ring' : 'kob-prik'} kob-sign-${entry.role}`}
+                                  aria-hidden="true"
+                                />
+                                {entry.text}
+                              </div>
+                            ))}
+                          </div>
+                          <figcaption className="kob-figur-tekst">{step.figure.caption}</figcaption>
+                        </figure>
+                      )}
+                    </div>
+                  </div>
+                </section>
+              </Fragment>
+            ))}
+            {explanation.footer && <p className="kob-fod">{explanation.footer}</p>}
+          </div>
+        </AccordionContent>
+      </AccordionItem>
+    </Accordion>
   );
 }
