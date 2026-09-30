@@ -1,6 +1,6 @@
 # Fund til afklaring
 
-Alle fund nedenfor gælder referencecommit `a330cfd`. Der er ikke ændret i den gamle app, og ingen rettelse er godkendt.
+Alle fund nedenfor gælder referencecommit `a330cfd`. Den gamle app er uændret. B-023 godkender bevaret produktvalg i den nye app for FUND-001; øvrige fund er ikke godkendte rettelser.
 
 ## FUND-001 — produktvalg nulstilles efter navigation i Standard
 
@@ -33,3 +33,5 @@ Den gamle rapportbygger indsætter standardtekst med »Dimensioneringsgivende tr
 Observeret i `reference/report-contexts.json`, case `standard`, og i den originale Word/PDF-generering. Det er redigerbar skabelontekst, ikke automatisk sammenstilling af den aktuelle dimensionerings forudsætninger.
 
 Muligt ændringsforslag: forudfyld relevante forudsætninger fra det valgte grundlag, med tydelig mulighed for at supplere projektspecifikke oplysninger. Først skal det aftales, hvilke felter der er automatiske, hvilke der er fritekst, og hvordan ændret dimensionering påvirker redigeret tekst. Ingen ændring er indført.
+
+FUND-001, afgørelse 30. september 2026: B-023 er godkendt og implementeret i React. Gyldigt Standard-produkt bevares ved navigation og genåbning. Originalens UI-005 og den gamle app er uændrede; browserprøven sammenligner i stedet det bevarede valg med UI-003.

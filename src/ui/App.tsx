@@ -4,6 +4,7 @@ import { EditorProvider } from './EditorContext';
 import { Materials } from './Materials';
 import { DataTables } from './DataTables';
 import { Settings } from './Settings';
+import { Dimensioning } from './Dimensioning';
 export function App() {
   const [page, setPage] = useState(() => location.hash.slice(1) || 'materialer');
   useEffect(() => {
@@ -19,10 +20,11 @@ export function App() {
           <strong>MSL</strong>
           <span>Dimensionering</span>
         </div>
-        <span className="draft-label">Grunddata · under udvikling</span>
+        <span className="draft-label">Under udvikling</span>
       </header>
-      <nav className="page-nav" aria-label="Grunddata">
+      <nav className="page-nav" aria-label="Navigation">
         {[
+          ['dimensionering', 'Dimensionering'],
           ['materialer', 'Materialer'],
           ['diagrammer', 'Designdiagrammer'],
           ['vejdim', 'Trafikklasse-korrelation'],
@@ -34,7 +36,9 @@ export function App() {
         ))}
       </nav>
       <EditorProvider>
-        {page === 'indstillinger' ? (
+        {page === 'dimensionering' ? (
+          <Dimensioning />
+        ) : page === 'indstillinger' ? (
           <Settings />
         ) : page === 'diagrammer' || page === 'vejdim' ? (
           <DataTables mode={page} key={page} />

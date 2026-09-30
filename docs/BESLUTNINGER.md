@@ -84,3 +84,5 @@ B-017 godkender direkte tabelredigering uden en Redigér-knap og med automatisk 
 
 - **B-021:** Brugeren ønsker lavere tokenforbrug og lidt færre tests: »begrænse tests en smule, og forsøge at optimere på tokenforbrug således du får lavet så meget kodearbejde som muligt i en session«. Nye tests målrettes ændrede risici og brugerforløb; eksisterende beregningskontrol bevares. Ingen godkendelse af tabt funktionalitet eller ændrede resultater.
 - **B-022:** Brugeren tillader mindre modeller til passende delopgaver, men understreger, at Astra skal holde overblik og styring. Afgrænsede underagenter kan derfor bruges; hovedagenten styrer scope, gennemgår ændringer og integrerer. Første delopgave er indstillingsreference med GPT-6 Sol. Hovedsamtalens model er ikke ændret af værktøjet.
+
+| B-023 | 30.09.2026 | Godkendt | Bevar det valgte Standard-geonet ved navigation og mellem sessioner, så længe produktet er gyldigt. Brugeren: »Ja, bevar produktvalget«. Afgrænset ændring af FUND-001; oprindelige beregninger bevares. |

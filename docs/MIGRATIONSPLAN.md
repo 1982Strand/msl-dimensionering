@@ -108,3 +108,5 @@ Rutinemæssig intern strukturering kan udføres uden ekstra godkendelse, når de
 ## Forslag efter brugerens ønske
 
 B-016 tilføjer vurdering af enklere dataredigering. R-001–005 i `REDIGERINGSFORSLAG.md` beskriver eksisterende og foreslået adfærd samt acceptbehov. A-007 er besvaret i B-017: direkte redigering uden Redigér/Gem og med automatisk anvendelse/gemning. Kladde/Anvend/Kassér blev fravalgt. R-002/003 er godkendt i B-018. R-005 er erstattet af automatisk lagring i samme browser/computer i B-019. R-004 er forklaret og afventer vurdering. Se `REDIGERING_OG_LAGRING.md` for den nye implementation og resterende browserkontrol.
+
+Dimensioneringsformularer er nu tilkoblet motoren: Standard/Brugerdefineret, Eᵤ/Cv, belastnings-/trafikklasse, op til tre materialelag, manuel φᵥ, produktvalg, genåbning og nulstilling. B-023 godkender bevaret gyldigt Standard-produkt. 2.750 motor-/datatests og to målrettede browserforløb består. Næste trin er opbygningsfigurer, fulde forklaringer/produktoversigter og rapporttilkobling; se DIMENSIONERINGSUDKAST.md. Tidligere statusafsnit beskriver foregående trin.

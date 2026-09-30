@@ -2,7 +2,7 @@
 
 Migrering af det eksisterende Streamlit-værktøj til React, TypeScript, Vite og shadcn/ui.
 
-Status: beregningskernen og sammensætningen af Standard/Brugerdefineret er porteret til TypeScript efter B-014. 2.747 tests består: beregninger, grænsetilfælde, sammensatte dimensioneringsforløb, redigerbare grunddata, indstillinger og korrelationer. De oprindelige referencecases matcher Python uden numerisk tolerance; godkendte forbedringer har særskilte adfærdstests. TypeScript/Typst-prototypen har desuden genereret ti rapportcases. React/Vite/shadcn-udkastet omfatter Materialer, Designdiagrammer, Trafikklasse-korrelation og Indstillinger med browserlagring. De seneste to målrettede browserprøver består; CI kører alle 19. Designretningen er godkendt i B-020.
+Status: beregningskernen og sammensætningen af Standard/Brugerdefineret er porteret til TypeScript efter B-014. 2.750 tests består: beregninger, grænsetilfælde, sammensatte dimensioneringsforløb, redigerbare grunddata, indstillinger og korrelationer. De oprindelige referencecases matcher Python uden numerisk tolerance; godkendte forbedringer har særskilte adfærdstests. TypeScript/Typst-prototypen har desuden genereret ti rapportcases. React/Vite/shadcn-udkastet omfatter Materialer, Designdiagrammer, Trafikklasse-korrelation, Indstillinger og dimensioneringsformularer med browserlagring. De seneste to målrettede browserprøver består; CI kører alle 21. Designretningen er godkendt i B-020.
 
 - Arbejdsmappe: `C:\MSL-Dimensionering`
 - Nyt repository: https://github.com/1982Strand/msl-dimensionering
@@ -57,3 +57,5 @@ Motoren kører uden Python. Python bruges alene til at genoptage/kontrollere de 
 - [Redigerbare grunddata](docs/DATAREDIGERING.md) — porterede normaliseringer, JSON-indlæsning og kontroller.
 - [Forslag til enklere redigering](docs/REDIGERINGSFORSLAG.md) — direkte redigering, ændringsoversigt og fortryd er godkendt. R-004 afventer vurdering; dataprofiler er afvist.
 - [Ændringsvisning, historik og lokal lagring](docs/REDIGERING_OG_LAGRING.md) — implementeret grundlag, kontrol og resterende browserintegration.
+
+[Dimensioneringsudkast](docs/DIMENSIONERINGSUDKAST.md) — Standard/Brugerdefineret, produktvalg, inputlagring, resultater og resterende figur-/rapportarbejde.

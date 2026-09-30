@@ -11,6 +11,7 @@ export interface SettingDefinition {
   min?: number;
   max?: number;
   step?: number;
+  integer?: boolean;
 }
 export function SettingField({
   field,
@@ -112,7 +113,8 @@ export function SettingField({
                   validity.badInput ||
                   validity.rangeOverflow ||
                   validity.rangeUnderflow ||
-                  !Number.isFinite(Number(draft))
+                  !Number.isFinite(Number(draft)) ||
+                  (field.integer && !Number.isInteger(Number(draft)))
                 ) {
                   setInvalid(true);
                   return;
