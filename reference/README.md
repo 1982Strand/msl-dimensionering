@@ -104,3 +104,7 @@ Seneste UI-udvidelse: `table-ui-cases.json` fastlåser 20 sammenligninger af rå
 `report-figure-cases.json` registrerer syv originale rapport-preview-forløb: renderargumenter, faktisk snitliste, effektive standarder, størrelse, signatur og eksportlayout. Chrome/rastereksport er erstattet af en neutral PNG under optagelsen; argumentdannelse og geometri udføres af originalen. Dette er en kald-/geometrireference, ikke en raster- eller PDF-sammenligning. Scenarienavne er ikke bevis for snitvalg; de observerede `snit_liste`-værdier er normative, jf. rapportplanens note om custom-input-only.
 
 Genkørsel: `tools/capture_personal_diagram_reference.py` og `tools/capture_report_figure_reference.py` med den gamle apps Python-miljø. Uden `--record` sammenlignes; med flag nægtes eksisterende målfiler, også før originalen startes. Begge kører isoleret a330cfd. Ingen eksisterende forventninger er overskrevet.
+
+## Aktiv M6 og korrigeret M2-kortlægning
+
+`phi-summary.json` registrerer 11 originale AppTest-forløb, fire uændrede AST-helpercases og de originale funktionskald. Kode-/HTML-tekster sammenlignes uden normalisering af whitespace eller numerisk tolerance. Se `docs/PHI_OPSUMMERING.md`. Genkør med `tools/capture_phi_reference.py`; `--record` afviser eksisterende målfil før optagelse. M2-helperen har ingen kald og aktiveres ikke efter B-032.

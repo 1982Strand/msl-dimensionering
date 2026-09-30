@@ -17,7 +17,7 @@ import {
 } from '../engine/dimensionering';
 import { beregn_alle_produkter } from '../engine/products';
 import { valider_input } from '../engine/validators';
-import { defaults, PHI_BASIS, K_PHI } from '../engine/data';
+import { defaults, PHI_BASIS } from '../engine/data';
 import schema from '../engine/dimensioning-ui.json';
 import { laengde } from '../engine/enhed';
 import { pythonFixed, pythonRound } from '../engine/python-numbers';
@@ -26,6 +26,7 @@ import type { CalculationResult } from '../engine/types';
 import { InfoPopup } from './InfoPopup';
 import { ConstructionFigure } from './ConstructionFigure';
 import { PersonalDiagram } from './PersonalDiagram';
+import { PhiSummary } from './PhiSummary';
 import { productOverview, overviewColumns, type OverviewSort } from '../engine/product-overview';
 
 const dk = (n: number, digits = 1) => pythonFixed(n, digits).replace('.', ',');
@@ -357,133 +358,130 @@ export function Dimensioning() {
               </p>
             ) : (
               <>
-                {field({
-                  key: 'bd_antal_lag',
-                  integer: true,
-                  label: 'Antal lag',
-                  kind: 'number',
-                  min: 1,
-                  max: 3,
-                  step: 1,
-                })}
-                <div className="dim-layers">
-                  {Array.from({ length: count }, (_, i) => {
-                    const material = input.materialer![i];
-                    const deleted =
-                      ctx.session.values[`bd_mat_${i}`] &&
-                      ctx.session.values[`bd_mat_${i}`] !== values[`bd_mat_${i}`];
-                    return (
-                      <div className="dim-layer" key={i}>
-                        <h3>
-                          {count === 2
-                            ? ['Øverste lag', 'Nederste lag'][i]
-                            : count === 3
-                              ? ['Øverste lag', 'Midterste lag', 'Nederste lag'][i]
-                              : 'Lag 1'}
-                        </h3>
-                        <div className="settings-fields">
-                          {choice(
-                            `bd_mat_${i}`,
-                            `Materiale · lag ${i + 1}`,
-                            [...ctx.session.data.materialer.map((m) => m.navn), MANUAL_MATERIAL],
-                            'select',
-                          )}
-                          {field({
-                            key: `bd_t_${i}`,
-                            label: `Tykkelse (mm) · lag ${i + 1}`,
-                            kind: 'number',
-                            min: 200,
-                            max: 2000,
-                            step: 50,
-                          })}
-                        </div>
-                        {material.navn === MANUAL_MATERIAL ? (
-                          <div className="dim-manual-fields">
-                            {field({
-                              key: `bd_phi_m_${i}`,
-                              label: `φᵢ (°) · lag ${i + 1}`,
-                              kind: 'number',
-                              min: 20,
-                              max: 60,
-                              step: 0.5,
-                            })}
-                            {field({
-                              integer: true,
-                              key: `bd_korn_m_${i}`,
-                              label: `Max kornstørrelse (mm) · lag ${i + 1}`,
-                              kind: 'number',
-                              min: 0,
-                              max: 500,
-                              step: 1,
-                            })}
-                            {choice(
-                              `bd_lt_m_${i}`,
-                              `Lagtype · lag ${i + 1}`,
-                              ['Bærelag', 'Bundsikring'],
-                              'select',
+                <div className="phi-input-layout">
+                  <div>
+                    {field({
+                      key: 'bd_antal_lag',
+                      integer: true,
+                      label: 'Antal lag',
+                      kind: 'number',
+                      min: 1,
+                      max: 3,
+                      step: 1,
+                    })}
+                    <div className="dim-layers">
+                      {Array.from({ length: count }, (_, i) => {
+                        const material = input.materialer![i];
+                        const deleted =
+                          ctx.session.values[`bd_mat_${i}`] &&
+                          ctx.session.values[`bd_mat_${i}`] !== values[`bd_mat_${i}`];
+                        return (
+                          <div className="dim-layer" key={i}>
+                            <h3>
+                              {count === 2
+                                ? ['Øverste lag', 'Nederste lag'][i]
+                                : count === 3
+                                  ? ['Øverste lag', 'Midterste lag', 'Nederste lag'][i]
+                                  : 'Lag 1'}
+                            </h3>
+                            <div className="settings-fields">
+                              {choice(
+                                `bd_mat_${i}`,
+                                `Materiale · lag ${i + 1}`,
+                                [
+                                  ...ctx.session.data.materialer.map((m) => m.navn),
+                                  MANUAL_MATERIAL,
+                                ],
+                                'select',
+                              )}
+                              {field({
+                                key: `bd_t_${i}`,
+                                label: `Tykkelse (mm) · lag ${i + 1}`,
+                                kind: 'number',
+                                min: 200,
+                                max: 2000,
+                                step: 50,
+                              })}
+                            </div>
+                            {material.navn === MANUAL_MATERIAL ? (
+                              <div className="dim-manual-fields">
+                                {field({
+                                  key: `bd_phi_m_${i}`,
+                                  label: `φᵢ (°) · lag ${i + 1}`,
+                                  kind: 'number',
+                                  min: 20,
+                                  max: 60,
+                                  step: 0.5,
+                                })}
+                                {field({
+                                  integer: true,
+                                  key: `bd_korn_m_${i}`,
+                                  label: `Max kornstørrelse (mm) · lag ${i + 1}`,
+                                  kind: 'number',
+                                  min: 0,
+                                  max: 500,
+                                  step: 1,
+                                })}
+                                {choice(
+                                  `bd_lt_m_${i}`,
+                                  `Lagtype · lag ${i + 1}`,
+                                  ['Bærelag', 'Bundsikring'],
+                                  'select',
+                                )}
+                              </div>
+                            ) : (
+                              <p className="settings-note">
+                                φᵢ = {dk(material.phi)}° · {String(material.lagtype)} · maks. korn{' '}
+                                {String(material.max_korn)} mm
+                                {material.krav_maskestoerrelse_mm != null
+                                  ? ` · krav til geonet maskestørrelse ${material.krav_maskestoerrelse_mm} mm`
+                                  : ''}
+                              </p>
+                            )}
+                            {deleted && (
+                              <p className="warning-banner">
+                                Materialet '{String(ctx.session.values[`bd_mat_${i}`])}' findes ikke
+                                længere i databasen. Laget er skiftet til manuel indtastning.
+                              </p>
                             )}
                           </div>
-                        ) : (
-                          <p className="settings-note">
-                            φᵢ = {dk(material.phi)}° · {String(material.lagtype)} · maks. korn{' '}
-                            {String(material.max_korn)} mm
-                            {material.krav_maskestoerrelse_mm != null
-                              ? ` · krav til geonet maskestørrelse ${material.krav_maskestoerrelse_mm} mm`
-                              : ''}
-                          </p>
-                        )}
-                        {deleted && (
-                          <p className="warning-banner">
-                            Materialet '{String(ctx.session.values[`bd_mat_${i}`])}' findes ikke
-                            længere i databasen. Laget er skiftet til manuel indtastning.
-                          </p>
-                        )}
-                      </div>
-                    );
-                  })}
-                </div>
-                <p className="settings-note">
-                  Samlet:{' '}
-                  {laengde(
-                    input.materialer!.reduce((sum, m) => sum + (m.tykkelse_mm ?? 0), 0),
-                    unit,
-                  )}{' '}
-                  · vægtet φᵥ = {dk(weighted, 2)}°. Mindste lagtykkelse der kan indtastes er 200 mm.
-                </p>
-                {field({ key: 'bd_phi_override', label: 'Overskriv φᵥ manuelt', kind: 'checkbox' })}
-                {values.bd_phi_override && (
-                  <>
-                    {field({
-                      key: 'bd_phi_man',
-                      label: 'φᵥ (°)',
-                      kind: 'number',
-                      min: 20,
-                      max: 60,
-                      step: 0.5,
-                    })}
-                    <p className="warning-banner">
-                      Den manuelt indtastede værdi anvendes i stedet for den vægtede. Opmærksomheden
-                      henledes på, at værdien ikke længere følger ændringer i materialelagene.
+                        );
+                      })}
+                    </div>
+                    <p className="settings-note">
+                      Samlet:{' '}
+                      {laengde(
+                        input.materialer!.reduce((sum, m) => sum + (m.tykkelse_mm ?? 0), 0),
+                        unit,
+                      )}{' '}
+                      · vægtet φᵥ = {dk(weighted, 2)}°. Mindste lagtykkelse der kan indtastes er 200
+                      mm.
                     </p>
-                  </>
-                )}
-                <details className="settings-deviations">
-                  <summary>φᵥ-korrektion</summary>
-                  <p>
-                    φᵥ = Σ(tᵢ × φᵢ) / Σ(tᵢ) ={' '}
-                    {dk(
-                      input.materialer!.reduce((sum, m) => sum + (m.tykkelse_mm ?? 0) * m.phi, 0),
-                      0,
-                    )}{' '}
-                    / {input.materialer!.reduce((sum, m) => sum + (m.tykkelse_mm ?? 0), 0)} ={' '}
-                    {dk(weighted, 2)}°
-                  </p>
-                  <p>
-                    kφ = {dk(K_PHI, 2)} × (φᵥ − {PHI_BASIS}°) ={' '}
-                    {dk(K_PHI * ((result?.phi ?? input.phi_manuel ?? weighted) - PHI_BASIS), 4)}.
-                    Korrektionen anvendes på basistykkelsen.
-                  </p>
-                </details>
+                    {field({
+                      key: 'bd_phi_override',
+                      label: 'Overskriv φᵥ manuelt',
+                      kind: 'checkbox',
+                    })}
+                    {values.bd_phi_override && (
+                      <>
+                        {field({
+                          key: 'bd_phi_man',
+                          label: 'φᵥ (°)',
+                          kind: 'number',
+                          min: 20,
+                          max: 60,
+                          step: 0.5,
+                        })}
+                        <p className="warning-banner">
+                          Den manuelt indtastede værdi anvendes i stedet for den vægtede.
+                          Opmærksomheden henledes på, at værdien ikke længere følger ændringer i
+                          materialelagene.
+                        </p>
+                      </>
+                    )}
+                  </div>
+                  <PhiSummary input={input} />
+                </div>
               </>
             )}
           </section>
@@ -628,9 +626,7 @@ export function Dimensioning() {
         )}
       </fieldset>
       <footer className="page-footer">
-        <span>
-          Udkast · personligt designdiagram afventer visuel godkendelse. Rapport tilføjes senere.
-        </span>
+        <span>Udkast · fulde mellemregninger og rapport tilføjes senere.</span>
         <span>MSL Dimensionering</span>
       </footer>
     </main>

@@ -1,0 +1,1094 @@
+{
+  "source": {
+    "commit": "a330cfd6734ac2478be1304a362c69f94e412d25",
+    "data_profile": "built-in defaults; no user JSON",
+    "files": {
+      "app.py": "ba6b29870a92df46025a8d936b3ab6ea16f32b1f7122e48652a640182f9530e5",
+      "ui.py": "ffa3e583a19d4ede16873963bed70b819e3402b320878ba49166295fd5558d7c",
+      "core/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "core/afrunding.py": "9149c3536c388a82e2f242e939a1a1f998e01bf828a6ab378c927a757ad816e4",
+      "core/calculator.py": "bf46d2642d6083439b8c03c46e24eb18f156fe1a734af7e6fa866f16626ad227",
+      "core/data.py": "e164a0f3bb42cd0d565dfc45d2895031a03b2cb8e93b05a0a65097790d0f0540",
+      "core/diagram.py": "b171b7486e5aa1a43590f9f8a28376680bd2a50f7155535fcbfb7198d38df461",
+      "core/enhed.py": "256884745b59e94d0211a610e8bf092942a0fec5d147e48a7502833912583cf2",
+      "core/hjaelp.py": "5179b206a31224bf2582fdc31bf6520fd68552da1206dd5f7f034ab249e0ac78",
+      "core/lagfordeling.py": "0426d2021e037c8e993fefc104b69cfbf03526408cadd1303775c32f5577716b",
+      "core/placement.py": "9668ab8bfe106722e4735576d72dcb86280470ee60fea14feae08bf8f3ccf9d2",
+      "core/rapport.py": "b6235563354b72f81d386afc703db273eb08a2d6f9857d4f73499f7b2c61b898",
+      "core/validators.py": "5258b68728afa7d2224d1e5b090ff6c78f7a3c568408ad367dbcd210fb71428c"
+    }
+  },
+  "call_sites": {
+    "_vis_beregnings_breakdown": [],
+    "_input_materialelag": [],
+    "_vis_phi_opsummeringsboks": [
+      6707
+    ],
+    "_input_materialelag_med_korrektioner": [
+      6882
+    ]
+  },
+  "method": "Original AppTest active code/html preserved verbatim; original AST table helper, unchanged bodies. No HTML/text whitespace normalization.",
+  "cases": [
+    {
+      "id": "FIG-001-standard-default",
+      "inputs": {
+        "mode": "Standard",
+        "eu": 10,
+        "basis": "Belastningsklasse",
+        "unit": "mm",
+        "settings": {
+          "afrunding": {
+            "trin_mm": 50,
+            "reduktion_eksakt": false,
+            "vis_eksakt": false,
+            "phi_afrunding": "ingen"
+          },
+          "opbygning": {
+            "geonet_paaskrift": true,
+            "maal_streg": true,
+            "maal_tal": true,
+            "signatur": true,
+            "enhed": "mm"
+          },
+          "lagfordeling": {
+            "fordeling": "minimum",
+            "samlet_minimum": true,
+            "minimum_mm": {
+              "1": 200.0,
+              "2": 200.0,
+              "3": 200.0,
+              "4": 250.0,
+              "5": 275.0,
+              "6": 300.0
+            },
+            "restlag": "vis",
+            "restlag_graense_mm": 100.0,
+            "vd_minimum_mm": {
+              "Bærelag": 100.0,
+              "Bundsikring": 200.0
+            },
+            "phi_regel": "indtastet",
+            "kraev_bundsikring": false,
+            "netplacering": "laggraense",
+            "standard_klassisk": false,
+            "standard_opdeling": true,
+            "standard_under_minimum": "stabilgrus"
+          },
+          "yderomraade": {
+            "tolerance_over_pct": 5.0,
+            "tolerance_under_pct": 5.0,
+            "under_inden": "laveste",
+            "over_uden": "afvis",
+            "under_uden": "afvis"
+          }
+        },
+        "materials": [],
+        "phi_manual": null,
+        "selected_product": "Tensar InterAx NX850",
+        "traffic": "T4"
+      },
+      "expected": {
+        "visible": false,
+        "code": null,
+        "factor_html": null,
+        "table": null,
+        "phi": null
+      }
+    },
+    {
+      "id": "FIG-003-custom-interval",
+      "inputs": {
+        "mode": "Brugerdefineret",
+        "eu": 5,
+        "basis": "Belastningsklasse",
+        "unit": "mm",
+        "settings": {
+          "afrunding": {
+            "trin_mm": 50,
+            "reduktion_eksakt": false,
+            "vis_eksakt": false,
+            "phi_afrunding": "ingen"
+          },
+          "opbygning": {
+            "geonet_paaskrift": true,
+            "maal_streg": true,
+            "maal_tal": true,
+            "signatur": true,
+            "enhed": "mm"
+          },
+          "lagfordeling": {
+            "fordeling": "minimum",
+            "samlet_minimum": true,
+            "minimum_mm": {
+              "1": 200.0,
+              "2": 200.0,
+              "3": 200.0,
+              "4": 250.0,
+              "5": 275.0,
+              "6": 300.0
+            },
+            "restlag": "vis",
+            "restlag_graense_mm": 100.0,
+            "vd_minimum_mm": {
+              "Bærelag": 100.0,
+              "Bundsikring": 200.0
+            },
+            "phi_regel": "indtastet",
+            "kraev_bundsikring": false,
+            "netplacering": "laggraense",
+            "standard_klassisk": false,
+            "standard_opdeling": true,
+            "standard_under_minimum": "stabilgrus"
+          },
+          "yderomraade": {
+            "tolerance_over_pct": 5.0,
+            "tolerance_under_pct": 5.0,
+            "under_inden": "laveste",
+            "over_uden": "afvis",
+            "under_uden": "afvis"
+          }
+        },
+        "materials": [
+          {
+            "navn": "Stabilgrus SGII 0-32",
+            "phi": 40.0,
+            "max_korn": 32,
+            "lagtype": "Bærelag",
+            "tykkelse_mm": 300.0,
+            "pct": null,
+            "krav_maskestoerrelse_mm": 35
+          },
+          {
+            "navn": "Bundsikringssand",
+            "phi": 37.0,
+            "max_korn": 8,
+            "lagtype": "Bundsikring",
+            "tykkelse_mm": 400.0,
+            "pct": null,
+            "krav_maskestoerrelse_mm": 35
+          }
+        ],
+        "phi_manual": null,
+        "selected_product": "Tensar InterAx NX850",
+        "traffic": "T4"
+      },
+      "expected": {
+        "visible": true,
+        "code": "φᵥ = Σ(tᵢ × φᵢ) / Σ(tᵢ)\n  = 26800 / 700 = 38,29°",
+        "factor_html": "<div class=\"kob-formel\">k<sub>φ</sub> = −0,02 × (φᵥ − 37°)\n    = −0,02 × (38,29 − 37)\n    = −0,0257 = −2,57 %</div>",
+        "table": {
+          "tabel_md": "| Lag | Materiale | Tykkelse | φᵢ (°) | Vægtet bidrag |\n|---|---|---:|---:|---:|\n| 1 | Stabilgrus SGII 0-32 | 300 mm | 40,0 | 12000 |\n| 2 | Bundsikringssand | 400 mm | 37,0 | 14800 |",
+          "total_v": 700.0,
+          "total_bidrag": 26800.0,
+          "phi_weighted": 38.285714285714285,
+          "lag_mode_pct": false,
+          "symbol": "t",
+          "enhed": "mm"
+        },
+        "phi": 38.285714285714285
+      }
+    },
+    {
+      "id": "FIG-004-custom-cm",
+      "inputs": {
+        "mode": "Brugerdefineret",
+        "eu": 5,
+        "basis": "Belastningsklasse",
+        "unit": "cm",
+        "settings": {
+          "afrunding": {
+            "trin_mm": 50,
+            "reduktion_eksakt": false,
+            "vis_eksakt": false,
+            "phi_afrunding": "ingen"
+          },
+          "opbygning": {
+            "geonet_paaskrift": true,
+            "maal_streg": true,
+            "maal_tal": true,
+            "signatur": true,
+            "enhed": "cm"
+          },
+          "lagfordeling": {
+            "fordeling": "minimum",
+            "samlet_minimum": true,
+            "minimum_mm": {
+              "1": 200.0,
+              "2": 200.0,
+              "3": 200.0,
+              "4": 250.0,
+              "5": 275.0,
+              "6": 300.0
+            },
+            "restlag": "vis",
+            "restlag_graense_mm": 100.0,
+            "vd_minimum_mm": {
+              "Bærelag": 100.0,
+              "Bundsikring": 200.0
+            },
+            "phi_regel": "indtastet",
+            "kraev_bundsikring": false,
+            "netplacering": "laggraense",
+            "standard_klassisk": false,
+            "standard_opdeling": true,
+            "standard_under_minimum": "stabilgrus"
+          },
+          "yderomraade": {
+            "tolerance_over_pct": 5.0,
+            "tolerance_under_pct": 5.0,
+            "under_inden": "laveste",
+            "over_uden": "afvis",
+            "under_uden": "afvis"
+          }
+        },
+        "materials": [
+          {
+            "navn": "Stabilgrus SGII 0-32",
+            "phi": 40.0,
+            "max_korn": 32,
+            "lagtype": "Bærelag",
+            "tykkelse_mm": 300.0,
+            "pct": null,
+            "krav_maskestoerrelse_mm": 35
+          },
+          {
+            "navn": "Bundsikringssand",
+            "phi": 37.0,
+            "max_korn": 8,
+            "lagtype": "Bundsikring",
+            "tykkelse_mm": 400.0,
+            "pct": null,
+            "krav_maskestoerrelse_mm": 35
+          }
+        ],
+        "phi_manual": null,
+        "selected_product": "Tensar InterAx NX850",
+        "traffic": "T4"
+      },
+      "expected": {
+        "visible": true,
+        "code": "φᵥ = Σ(tᵢ × φᵢ) / Σ(tᵢ)\n  = 26800 / 700 = 38,29°",
+        "factor_html": "<div class=\"kob-formel\">k<sub>φ</sub> = −0,02 × (φᵥ − 37°)\n    = −0,02 × (38,29 − 37)\n    = −0,0257 = −2,57 %</div>",
+        "table": {
+          "tabel_md": "| Lag | Materiale | Tykkelse | φᵢ (°) | Vægtet bidrag |\n|---|---|---:|---:|---:|\n| 1 | Stabilgrus SGII 0-32 | 300 mm | 40,0 | 12000 |\n| 2 | Bundsikringssand | 400 mm | 37,0 | 14800 |",
+          "total_v": 700.0,
+          "total_bidrag": 26800.0,
+          "phi_weighted": 38.285714285714285,
+          "lag_mode_pct": false,
+          "symbol": "t",
+          "enhed": "mm"
+        },
+        "phi": 38.285714285714285
+      }
+    },
+    {
+      "id": "TR2-custom-traffic",
+      "inputs": {
+        "mode": "Brugerdefineret",
+        "eu": 7,
+        "basis": "Trafikklasse",
+        "unit": "cm",
+        "settings": {
+          "afrunding": {
+            "trin_mm": 50,
+            "reduktion_eksakt": false,
+            "vis_eksakt": false,
+            "phi_afrunding": "ingen"
+          },
+          "opbygning": {
+            "geonet_paaskrift": true,
+            "maal_streg": true,
+            "maal_tal": true,
+            "signatur": true,
+            "enhed": "cm"
+          },
+          "lagfordeling": {
+            "fordeling": "minimum",
+            "samlet_minimum": true,
+            "minimum_mm": {
+              "1": 200.0,
+              "2": 200.0,
+              "3": 200.0,
+              "4": 250.0,
+              "5": 275.0,
+              "6": 300.0
+            },
+            "restlag": "vis",
+            "restlag_graense_mm": 100.0,
+            "vd_minimum_mm": {
+              "Bærelag": 100.0,
+              "Bundsikring": 200.0
+            },
+            "phi_regel": "indtastet",
+            "kraev_bundsikring": false,
+            "netplacering": "laggraense",
+            "standard_klassisk": false,
+            "standard_opdeling": true,
+            "standard_under_minimum": "stabilgrus"
+          },
+          "yderomraade": {
+            "tolerance_over_pct": 5.0,
+            "tolerance_under_pct": 5.0,
+            "under_inden": "laveste",
+            "over_uden": "afvis",
+            "under_uden": "afvis"
+          }
+        },
+        "materials": [
+          {
+            "navn": "Stabilgrus SGII 0-32",
+            "phi": 40.0,
+            "max_korn": 32,
+            "lagtype": "Bærelag",
+            "tykkelse_mm": 300.0,
+            "pct": null,
+            "krav_maskestoerrelse_mm": 35
+          },
+          {
+            "navn": "Bundsikringssand",
+            "phi": 37.0,
+            "max_korn": 8,
+            "lagtype": "Bundsikring",
+            "tykkelse_mm": 400.0,
+            "pct": null,
+            "krav_maskestoerrelse_mm": 35
+          }
+        ],
+        "phi_manual": null,
+        "selected_product": "Tensar InterAx NX850",
+        "traffic": "T4"
+      },
+      "expected": {
+        "visible": true,
+        "code": "φᵥ = Σ(tᵢ × φᵢ) / Σ(tᵢ)\n  = 26800 / 700 = 38,29°",
+        "factor_html": "<div class=\"kob-formel\">k<sub>φ</sub> = −0,02 × (φᵥ − 37°)\n    = −0,02 × (38,29 − 37)\n    = −0,0257 = −2,57 %</div>",
+        "table": {
+          "tabel_md": "| Lag | Materiale | Tykkelse | φᵢ (°) | Vægtet bidrag |\n|---|---|---:|---:|---:|\n| 1 | Stabilgrus SGII 0-32 | 300 mm | 40,0 | 12000 |\n| 2 | Bundsikringssand | 400 mm | 37,0 | 14800 |",
+          "total_v": 700.0,
+          "total_bidrag": 26800.0,
+          "phi_weighted": 38.285714285714285,
+          "lag_mode_pct": false,
+          "symbol": "t",
+          "enhed": "mm"
+        },
+        "phi": 38.285714285714285
+      }
+    },
+    {
+      "id": "PH1-manual40",
+      "inputs": {
+        "mode": "Brugerdefineret",
+        "eu": 5,
+        "basis": "Belastningsklasse",
+        "unit": "mm",
+        "settings": {
+          "afrunding": {
+            "trin_mm": 50,
+            "reduktion_eksakt": false,
+            "vis_eksakt": false,
+            "phi_afrunding": "ingen"
+          },
+          "opbygning": {
+            "geonet_paaskrift": true,
+            "maal_streg": true,
+            "maal_tal": true,
+            "signatur": true,
+            "enhed": "mm"
+          },
+          "lagfordeling": {
+            "fordeling": "minimum",
+            "samlet_minimum": true,
+            "minimum_mm": {
+              "1": 200.0,
+              "2": 200.0,
+              "3": 200.0,
+              "4": 250.0,
+              "5": 275.0,
+              "6": 300.0
+            },
+            "restlag": "vis",
+            "restlag_graense_mm": 100.0,
+            "vd_minimum_mm": {
+              "Bærelag": 100.0,
+              "Bundsikring": 200.0
+            },
+            "phi_regel": "indtastet",
+            "kraev_bundsikring": false,
+            "netplacering": "laggraense",
+            "standard_klassisk": false,
+            "standard_opdeling": true,
+            "standard_under_minimum": "stabilgrus"
+          },
+          "yderomraade": {
+            "tolerance_over_pct": 5.0,
+            "tolerance_under_pct": 5.0,
+            "under_inden": "laveste",
+            "over_uden": "afvis",
+            "under_uden": "afvis"
+          }
+        },
+        "materials": [
+          {
+            "navn": "Stabilgrus SGII 0-32",
+            "phi": 40.0,
+            "max_korn": 32,
+            "lagtype": "Bærelag",
+            "tykkelse_mm": 300.0,
+            "pct": null,
+            "krav_maskestoerrelse_mm": 35
+          },
+          {
+            "navn": "Bundsikringssand",
+            "phi": 37.0,
+            "max_korn": 8,
+            "lagtype": "Bundsikring",
+            "tykkelse_mm": 400.0,
+            "pct": null,
+            "krav_maskestoerrelse_mm": 35
+          }
+        ],
+        "phi_manual": 40.0,
+        "selected_product": "Tensar InterAx NX850",
+        "traffic": "T4"
+      },
+      "expected": {
+        "visible": true,
+        "code": "φᵥ = Σ(tᵢ × φᵢ) / Σ(tᵢ)\n  = 26800 / 700 = 38,29°",
+        "factor_html": "<div class=\"kob-formel\">k<sub>φ</sub> = −0,02 × (φᵥ − 37°)\n    = −0,02 × (40,00 − 37)\n    = −0,0600 = −6,00 %</div>",
+        "table": {
+          "tabel_md": "| Lag | Materiale | Tykkelse | φᵢ (°) | Vægtet bidrag |\n|---|---|---:|---:|---:|\n| 1 | Stabilgrus SGII 0-32 | 300 mm | 40,0 | 12000 |\n| 2 | Bundsikringssand | 400 mm | 37,0 | 14800 |",
+          "total_v": 700.0,
+          "total_bidrag": 26800.0,
+          "phi_weighted": 38.285714285714285,
+          "lag_mode_pct": false,
+          "symbol": "t",
+          "enhed": "mm"
+        },
+        "phi": 40.0
+      }
+    },
+    {
+      "id": "PH2-column",
+      "inputs": {
+        "mode": "Brugerdefineret",
+        "eu": 5,
+        "basis": "Belastningsklasse",
+        "unit": "mm",
+        "settings": {
+          "afrunding": {
+            "trin_mm": 50,
+            "reduktion_eksakt": false,
+            "vis_eksakt": false,
+            "phi_afrunding": "ingen"
+          },
+          "opbygning": {
+            "geonet_paaskrift": true,
+            "maal_streg": true,
+            "maal_tal": true,
+            "signatur": true,
+            "enhed": "mm"
+          },
+          "lagfordeling": {
+            "fordeling": "minimum",
+            "samlet_minimum": true,
+            "minimum_mm": {
+              "1": 200.0,
+              "2": 200.0,
+              "3": 200.0,
+              "4": 250.0,
+              "5": 275.0,
+              "6": 300.0
+            },
+            "restlag": "vis",
+            "restlag_graense_mm": 100.0,
+            "vd_minimum_mm": {
+              "Bærelag": 100.0,
+              "Bundsikring": 200.0
+            },
+            "phi_regel": "soejle",
+            "kraev_bundsikring": false,
+            "netplacering": "laggraense",
+            "standard_klassisk": false,
+            "standard_opdeling": true,
+            "standard_under_minimum": "stabilgrus"
+          },
+          "yderomraade": {
+            "tolerance_over_pct": 5.0,
+            "tolerance_under_pct": 5.0,
+            "under_inden": "laveste",
+            "over_uden": "afvis",
+            "under_uden": "afvis"
+          }
+        },
+        "materials": [
+          {
+            "navn": "Stabilgrus SGII 0-32",
+            "phi": 40.0,
+            "max_korn": 32,
+            "lagtype": "Bærelag",
+            "tykkelse_mm": 300.0,
+            "pct": null,
+            "krav_maskestoerrelse_mm": 35
+          },
+          {
+            "navn": "Bundsikringssand",
+            "phi": 37.0,
+            "max_korn": 8,
+            "lagtype": "Bundsikring",
+            "tykkelse_mm": 400.0,
+            "pct": null,
+            "krav_maskestoerrelse_mm": 35
+          }
+        ],
+        "phi_manual": null,
+        "selected_product": "Tensar InterAx NX850",
+        "traffic": "T4"
+      },
+      "expected": {
+        "visible": true,
+        "code": "φᵥ = Σ(tᵢ × φᵢ) / Σ(tᵢ)\n  = 26800 / 700 = 38,29°",
+        "factor_html": "<div class=\"kob-formel\">k<sub>φ</sub> = −0,02 × (φᵥ − 37°)\n    = −0,02 × (38,29 − 37)\n    = −0,0257 = −2,57 %</div>",
+        "table": {
+          "tabel_md": "| Lag | Materiale | Tykkelse | φᵢ (°) | Vægtet bidrag |\n|---|---|---:|---:|---:|\n| 1 | Stabilgrus SGII 0-32 | 300 mm | 40,0 | 12000 |\n| 2 | Bundsikringssand | 400 mm | 37,0 | 14800 |",
+          "total_v": 700.0,
+          "total_bidrag": 26800.0,
+          "phi_weighted": 38.285714285714285,
+          "lag_mode_pct": false,
+          "symbol": "t",
+          "enhed": "mm"
+        },
+        "phi": 38.285714285714285
+      }
+    },
+    {
+      "id": "M6-round-down",
+      "inputs": {
+        "mode": "Brugerdefineret",
+        "eu": 5,
+        "basis": "Belastningsklasse",
+        "unit": "mm",
+        "settings": {
+          "afrunding": {
+            "trin_mm": 50,
+            "reduktion_eksakt": false,
+            "vis_eksakt": false,
+            "phi_afrunding": "ned"
+          },
+          "opbygning": {
+            "geonet_paaskrift": true,
+            "maal_streg": true,
+            "maal_tal": true,
+            "signatur": true,
+            "enhed": "mm"
+          },
+          "lagfordeling": {
+            "fordeling": "minimum",
+            "samlet_minimum": true,
+            "minimum_mm": {
+              "1": 200.0,
+              "2": 200.0,
+              "3": 200.0,
+              "4": 250.0,
+              "5": 275.0,
+              "6": 300.0
+            },
+            "restlag": "vis",
+            "restlag_graense_mm": 100.0,
+            "vd_minimum_mm": {
+              "Bærelag": 100.0,
+              "Bundsikring": 200.0
+            },
+            "phi_regel": "indtastet",
+            "kraev_bundsikring": false,
+            "netplacering": "laggraense",
+            "standard_klassisk": false,
+            "standard_opdeling": true,
+            "standard_under_minimum": "stabilgrus"
+          },
+          "yderomraade": {
+            "tolerance_over_pct": 5.0,
+            "tolerance_under_pct": 5.0,
+            "under_inden": "laveste",
+            "over_uden": "afvis",
+            "under_uden": "afvis"
+          }
+        },
+        "materials": [
+          {
+            "navn": "Stabilgrus SGII 0-32",
+            "phi": 40.0,
+            "max_korn": 32,
+            "lagtype": "Bærelag",
+            "tykkelse_mm": 300.0,
+            "pct": null,
+            "krav_maskestoerrelse_mm": 35
+          },
+          {
+            "navn": "Bundsikringssand",
+            "phi": 37.0,
+            "max_korn": 8,
+            "lagtype": "Bundsikring",
+            "tykkelse_mm": 400.0,
+            "pct": null,
+            "krav_maskestoerrelse_mm": 35
+          }
+        ],
+        "phi_manual": null,
+        "selected_product": "Tensar InterAx NX850",
+        "traffic": "T4"
+      },
+      "expected": {
+        "visible": true,
+        "code": "φᵥ = Σ(tᵢ × φᵢ) / Σ(tᵢ)\n  = 26800 / 700 = 38,29°\n  ≈ 38° (nedrunding til hel grad)",
+        "factor_html": "<div class=\"kob-formel\">k<sub>φ</sub> = −0,02 × (φᵥ − 37°)\n    = −0,02 × (38,00 − 37)\n    = −0,0200 = −2,00 %</div>",
+        "table": {
+          "tabel_md": "| Lag | Materiale | Tykkelse | φᵢ (°) | Vægtet bidrag |\n|---|---|---:|---:|---:|\n| 1 | Stabilgrus SGII 0-32 | 300 mm | 40,0 | 12000 |\n| 2 | Bundsikringssand | 400 mm | 37,0 | 14800 |",
+          "total_v": 700.0,
+          "total_bidrag": 26800.0,
+          "phi_weighted": 38.285714285714285,
+          "lag_mode_pct": false,
+          "symbol": "t",
+          "enhed": "mm"
+        },
+        "phi": 38.0
+      }
+    },
+    {
+      "id": "M6-round-nearest",
+      "inputs": {
+        "mode": "Brugerdefineret",
+        "eu": 5,
+        "basis": "Belastningsklasse",
+        "unit": "cm",
+        "settings": {
+          "afrunding": {
+            "trin_mm": 50,
+            "reduktion_eksakt": false,
+            "vis_eksakt": false,
+            "phi_afrunding": "naermeste"
+          },
+          "opbygning": {
+            "geonet_paaskrift": true,
+            "maal_streg": true,
+            "maal_tal": true,
+            "signatur": true,
+            "enhed": "cm"
+          },
+          "lagfordeling": {
+            "fordeling": "minimum",
+            "samlet_minimum": true,
+            "minimum_mm": {
+              "1": 200.0,
+              "2": 200.0,
+              "3": 200.0,
+              "4": 250.0,
+              "5": 275.0,
+              "6": 300.0
+            },
+            "restlag": "vis",
+            "restlag_graense_mm": 100.0,
+            "vd_minimum_mm": {
+              "Bærelag": 100.0,
+              "Bundsikring": 200.0
+            },
+            "phi_regel": "indtastet",
+            "kraev_bundsikring": false,
+            "netplacering": "laggraense",
+            "standard_klassisk": false,
+            "standard_opdeling": true,
+            "standard_under_minimum": "stabilgrus"
+          },
+          "yderomraade": {
+            "tolerance_over_pct": 5.0,
+            "tolerance_under_pct": 5.0,
+            "under_inden": "laveste",
+            "over_uden": "afvis",
+            "under_uden": "afvis"
+          }
+        },
+        "materials": [
+          {
+            "navn": "Stabilgrus SGII 0-32",
+            "phi": 40.0,
+            "max_korn": 32,
+            "lagtype": "Bærelag",
+            "tykkelse_mm": 300.0,
+            "pct": null,
+            "krav_maskestoerrelse_mm": 35
+          },
+          {
+            "navn": "Bundsikringssand",
+            "phi": 37.0,
+            "max_korn": 8,
+            "lagtype": "Bundsikring",
+            "tykkelse_mm": 400.0,
+            "pct": null,
+            "krav_maskestoerrelse_mm": 35
+          }
+        ],
+        "phi_manual": 40.5,
+        "selected_product": "Tensar InterAx NX850",
+        "traffic": "T4"
+      },
+      "expected": {
+        "visible": true,
+        "code": "φᵥ = Σ(tᵢ × φᵢ) / Σ(tᵢ)\n  = 26800 / 700 = 38,29°\n  ≈ 41° (afrunding til nærmeste hele grad)",
+        "factor_html": "<div class=\"kob-formel\">k<sub>φ</sub> = −0,02 × (φᵥ − 37°)\n    = −0,02 × (41,00 − 37)\n    = −0,0800 = −8,00 %</div>",
+        "table": {
+          "tabel_md": "| Lag | Materiale | Tykkelse | φᵢ (°) | Vægtet bidrag |\n|---|---|---:|---:|---:|\n| 1 | Stabilgrus SGII 0-32 | 300 mm | 40,0 | 12000 |\n| 2 | Bundsikringssand | 400 mm | 37,0 | 14800 |",
+          "total_v": 700.0,
+          "total_bidrag": 26800.0,
+          "phi_weighted": 38.285714285714285,
+          "lag_mode_pct": false,
+          "symbol": "t",
+          "enhed": "mm"
+        },
+        "phi": 41.0
+      }
+    },
+    {
+      "id": "M6-three-layers",
+      "inputs": {
+        "mode": "Brugerdefineret",
+        "eu": 5,
+        "basis": "Belastningsklasse",
+        "unit": "mm",
+        "settings": {
+          "afrunding": {
+            "trin_mm": 50,
+            "reduktion_eksakt": false,
+            "vis_eksakt": false,
+            "phi_afrunding": "ingen"
+          },
+          "opbygning": {
+            "geonet_paaskrift": true,
+            "maal_streg": true,
+            "maal_tal": true,
+            "signatur": true,
+            "enhed": "mm"
+          },
+          "lagfordeling": {
+            "fordeling": "minimum",
+            "samlet_minimum": true,
+            "minimum_mm": {
+              "1": 200.0,
+              "2": 200.0,
+              "3": 200.0,
+              "4": 250.0,
+              "5": 275.0,
+              "6": 300.0
+            },
+            "restlag": "vis",
+            "restlag_graense_mm": 100.0,
+            "vd_minimum_mm": {
+              "Bærelag": 100.0,
+              "Bundsikring": 200.0
+            },
+            "phi_regel": "indtastet",
+            "kraev_bundsikring": false,
+            "netplacering": "laggraense",
+            "standard_klassisk": false,
+            "standard_opdeling": true,
+            "standard_under_minimum": "stabilgrus"
+          },
+          "yderomraade": {
+            "tolerance_over_pct": 5.0,
+            "tolerance_under_pct": 5.0,
+            "under_inden": "laveste",
+            "over_uden": "afvis",
+            "under_uden": "afvis"
+          }
+        },
+        "materials": [
+          {
+            "navn": "Stabilgrus SGII 0-32",
+            "phi": 40.0,
+            "max_korn": 32,
+            "lagtype": "Bærelag",
+            "tykkelse_mm": 300.0,
+            "pct": null,
+            "krav_maskestoerrelse_mm": 35
+          },
+          {
+            "navn": "Bundsikringssand",
+            "phi": 37.0,
+            "max_korn": 8,
+            "lagtype": "Bundsikring",
+            "tykkelse_mm": 400.0,
+            "pct": null,
+            "krav_maskestoerrelse_mm": 35
+          },
+          {
+            "navn": "Bundsikringssand",
+            "phi": 37.0,
+            "max_korn": 8,
+            "lagtype": "Bundsikring",
+            "tykkelse_mm": 200.0,
+            "pct": null,
+            "krav_maskestoerrelse_mm": 35
+          }
+        ],
+        "phi_manual": null,
+        "selected_product": "Tensar InterAx NX850",
+        "traffic": "T4"
+      },
+      "expected": {
+        "visible": true,
+        "code": "φᵥ = Σ(tᵢ × φᵢ) / Σ(tᵢ)\n  = 34200 / 900 = 38,00°",
+        "factor_html": "<div class=\"kob-formel\">k<sub>φ</sub> = −0,02 × (φᵥ − 37°)\n    = −0,02 × (38,00 − 37)\n    = −0,0200 = −2,00 %</div>",
+        "table": {
+          "tabel_md": "| Lag | Materiale | Tykkelse | φᵢ (°) | Vægtet bidrag |\n|---|---|---:|---:|---:|\n| 1 | Stabilgrus SGII 0-32 | 300 mm | 40,0 | 12000 |\n| 2 | Bundsikringssand | 400 mm | 37,0 | 14800 |\n| 3 | Bundsikringssand | 200 mm | 37,0 | 7400 |",
+          "total_v": 900.0,
+          "total_bidrag": 34200.0,
+          "phi_weighted": 38.0,
+          "lag_mode_pct": false,
+          "symbol": "t",
+          "enhed": "mm"
+        },
+        "phi": 38.0
+      }
+    },
+    {
+      "id": "OUT1-rejected",
+      "inputs": {
+        "mode": "Brugerdefineret",
+        "eu": 10,
+        "basis": "Trafikklasse",
+        "unit": "mm",
+        "settings": {
+          "afrunding": {
+            "trin_mm": 50,
+            "reduktion_eksakt": false,
+            "vis_eksakt": false,
+            "phi_afrunding": "ingen"
+          },
+          "opbygning": {
+            "geonet_paaskrift": true,
+            "maal_streg": true,
+            "maal_tal": true,
+            "signatur": true,
+            "enhed": "mm"
+          },
+          "lagfordeling": {
+            "fordeling": "minimum",
+            "samlet_minimum": true,
+            "minimum_mm": {
+              "1": 200.0,
+              "2": 200.0,
+              "3": 200.0,
+              "4": 250.0,
+              "5": 275.0,
+              "6": 300.0
+            },
+            "restlag": "vis",
+            "restlag_graense_mm": 100.0,
+            "vd_minimum_mm": {
+              "Bærelag": 100.0,
+              "Bundsikring": 200.0
+            },
+            "phi_regel": "indtastet",
+            "kraev_bundsikring": false,
+            "netplacering": "laggraense",
+            "standard_klassisk": false,
+            "standard_opdeling": true,
+            "standard_under_minimum": "stabilgrus"
+          },
+          "yderomraade": {
+            "tolerance_over_pct": 5.0,
+            "tolerance_under_pct": 5.0,
+            "under_inden": "laveste",
+            "over_uden": "afvis",
+            "under_uden": "afvis"
+          }
+        },
+        "materials": [],
+        "phi_manual": null,
+        "selected_product": null,
+        "traffic": "T1"
+      },
+      "expected": {
+        "visible": false,
+        "code": null,
+        "factor_html": null,
+        "table": null,
+        "phi": null
+      }
+    },
+    {
+      "id": "OUT2-vejdim",
+      "inputs": {
+        "mode": "Brugerdefineret",
+        "eu": 10,
+        "basis": "Trafikklasse",
+        "unit": "cm",
+        "settings": {
+          "afrunding": {
+            "trin_mm": 50,
+            "reduktion_eksakt": false,
+            "vis_eksakt": false,
+            "phi_afrunding": "ingen"
+          },
+          "opbygning": {
+            "geonet_paaskrift": true,
+            "maal_streg": true,
+            "maal_tal": true,
+            "signatur": true,
+            "enhed": "cm"
+          },
+          "lagfordeling": {
+            "fordeling": "minimum",
+            "samlet_minimum": true,
+            "minimum_mm": {
+              "1": 200.0,
+              "2": 200.0,
+              "3": 200.0,
+              "4": 250.0,
+              "5": 275.0,
+              "6": 300.0
+            },
+            "restlag": "vis",
+            "restlag_graense_mm": 100.0,
+            "vd_minimum_mm": {
+              "Bærelag": 100.0,
+              "Bundsikring": 200.0
+            },
+            "phi_regel": "indtastet",
+            "kraev_bundsikring": false,
+            "netplacering": "laggraense",
+            "standard_klassisk": false,
+            "standard_opdeling": true,
+            "standard_under_minimum": "stabilgrus"
+          },
+          "yderomraade": {
+            "tolerance_over_pct": 5.0,
+            "tolerance_under_pct": 5.0,
+            "under_inden": "vejdim",
+            "over_uden": "afvis",
+            "under_uden": "vejdim"
+          }
+        },
+        "materials": [
+          {
+            "navn": "Stabilgrus SGII 0-32",
+            "phi": 40.0,
+            "max_korn": 32,
+            "lagtype": "Bærelag",
+            "tykkelse_mm": 300.0,
+            "pct": null,
+            "krav_maskestoerrelse_mm": 35
+          },
+          {
+            "navn": "Bundsikringssand",
+            "phi": 37.0,
+            "max_korn": 8,
+            "lagtype": "Bundsikring",
+            "tykkelse_mm": 400.0,
+            "pct": null,
+            "krav_maskestoerrelse_mm": 35
+          }
+        ],
+        "phi_manual": null,
+        "selected_product": "Tensar InterAx NX850",
+        "traffic": "T1"
+      },
+      "expected": {
+        "visible": true,
+        "code": "φᵥ = Σ(tᵢ × φᵢ) / Σ(tᵢ)\n  = 26800 / 700 = 38,29°",
+        "factor_html": "<div class=\"kob-formel\">k<sub>φ</sub> = −0,02 × (φᵥ − 37°)\n    = −0,02 × (38,29 − 37)\n    = −0,0257 = −2,57 %</div>",
+        "table": {
+          "tabel_md": "| Lag | Materiale | Tykkelse | φᵢ (°) | Vægtet bidrag |\n|---|---|---:|---:|---:|\n| 1 | Stabilgrus SGII 0-32 | 300 mm | 40,0 | 12000 |\n| 2 | Bundsikringssand | 400 mm | 37,0 | 14800 |",
+          "total_v": 700.0,
+          "total_bidrag": 26800.0,
+          "phi_weighted": 38.285714285714285,
+          "lag_mode_pct": false,
+          "symbol": "t",
+          "enhed": "mm"
+        },
+        "phi": 38.285714285714285
+      }
+    }
+  ],
+  "helper_cases": [
+    {
+      "id": "empty",
+      "materials": [],
+      "expected": {
+        "tabel_md": "",
+        "total_v": 0.0,
+        "total_bidrag": 0.0,
+        "phi_weighted": 37.0,
+        "lag_mode_pct": false,
+        "symbol": "t",
+        "enhed": "mm"
+      }
+    },
+    {
+      "id": "zero",
+      "materials": [
+        {
+          "navn": "Prøve",
+          "phi": 38.5,
+          "tykkelse_mm": 0
+        }
+      ],
+      "expected": {
+        "tabel_md": "| Lag | Materiale | Tykkelse | φᵢ (°) | Vægtet bidrag |\n|---|---|---:|---:|---:|\n| 1 | Prøve | 0 mm | 38,5 | 0 |",
+        "total_v": 0.0,
+        "total_bidrag": 0.0,
+        "phi_weighted": 37.0,
+        "lag_mode_pct": false,
+        "symbol": "t",
+        "enhed": "mm"
+      }
+    },
+    {
+      "id": "percent",
+      "materials": [
+        {
+          "navn": "Øverst",
+          "phi": 40.0,
+          "pct": 42.5
+        },
+        {
+          "navn": "Nederst",
+          "phi": 37.0,
+          "pct": 57.5
+        }
+      ],
+      "expected": {
+        "tabel_md": "| Lag | Materiale | Andel | φᵢ (°) | Vægtet bidrag |\n|---|---|---:|---:|---:|\n| 1 | Øverst | 42 % | 40,0 | 1700 |\n| 2 | Nederst | 58 % | 37,0 | 2128 |",
+        "total_v": 100.0,
+        "total_bidrag": 3827.5,
+        "phi_weighted": 38.275,
+        "lag_mode_pct": true,
+        "symbol": "p",
+        "enhed": "%"
+      }
+    },
+    {
+      "id": "mixed-percent",
+      "materials": [
+        {
+          "navn": "Andel",
+          "phi": 37.0,
+          "pct": 60
+        },
+        {
+          "navn": "Tykkelse",
+          "phi": 40.0,
+          "tykkelse_mm": 300
+        }
+      ],
+      "expected": {
+        "tabel_md": "| Lag | Materiale | Andel | φᵢ (°) | Vægtet bidrag |\n|---|---|---:|---:|---:|\n| 1 | Andel | 60 % | 37,0 | 2220 |\n| 2 | Tykkelse | 0 % | 40,0 | 0 |",
+        "total_v": 60.0,
+        "total_bidrag": 2220.0,
+        "phi_weighted": 37.0,
+        "lag_mode_pct": true,
+        "symbol": "p",
+        "enhed": "%"
+      }
+    }
+  ]
+}

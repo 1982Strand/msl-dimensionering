@@ -82,7 +82,6 @@ export function PersonalDiagram({
     <section className="section-card settings-card" aria-labelledby={`${id}-heading`}>
       <div className="construction-heading">
         <h2 id={`${id}-heading`}>Designdiagram</h2>
-        <span className="construction-draft">Visuelt udkast</span>
       </div>
       <p className="settings-note">
         Eₒ = {pythonFixed(result.eo, 0)} MPa · {basis}

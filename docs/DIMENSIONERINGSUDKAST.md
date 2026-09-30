@@ -27,3 +27,7 @@ Personligt designdiagram M5 og endepunktvalg er tilkoblet med samme Plotly-speci
 Cv-korrelationstabellen findes nu lokalt som popup. Trafikklasse-korrelationen åbnes fortsat via korrelationssiden; originalens lokale trafikklassevisning på dimensioneringssiden mangler. Forsiden starter fortsat på Materialer under udviklingen. Samlet navigation og visuel accept behandles senere. Dette udkast er ikke en færdig offentlig app.
 
 Procentindtastning af materialelag og »Anden armering (manuel)« er ikke eksponeret i den gamle apps aktive brugerflade. De indføres ikke som nye forløb uden afklaring; se FUND-002.
+
+## Aktiv φᵥ-opsummering — M6, 30.09.2026
+
+Originalens aktive formelkolonne er nu porteret med præcise tal, fortegn, linjeskift og afrundingsnoter. Elleve originale UI-cases, fire helpercases og ét nyt browserforløb kontrollerer den. Se PHI_OPSUMMERING.md. De ubrugte M2-tabeller forbliver skjult efter B-032; aktive fulde regnelinjer følger i M1. M5’s udkastmarkering er fjernet efter B-031.

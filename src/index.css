@@ -962,6 +962,41 @@ th:nth-child(6) {
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 22px;
 }
+.phi-input-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.8fr) minmax(0, 1fr);
+  gap: 28px;
+  align-items: start;
+}
+.phi-input-layout > div,
+.phi-summary {
+  min-width: 0;
+}
+.phi-summary-block {
+  border: 1px solid #dce1dd;
+  border-radius: 6px;
+  padding: 14px;
+  margin: 12px 0;
+  background: #f7fbf8;
+}
+.phi-summary-block h4 {
+  font-size: 13px;
+  margin: 0 0 10px;
+}
+.phi-summary pre,
+.phi-summary .kob-formel {
+  font-family: ui-monospace, monospace;
+  font-size: 12px;
+  line-height: 1.7;
+  white-space: pre;
+  overflow-x: auto;
+  margin: 0;
+}
+@media (max-width: 1000px) {
+  .phi-input-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
 .guidance-steps {
   margin: 0 24px 24px;
   font-size: 12px;

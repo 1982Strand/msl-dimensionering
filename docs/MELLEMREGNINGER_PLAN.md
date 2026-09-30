@@ -1,13 +1,13 @@
 # Delplan: fulde mellemregninger
 
-30.09.2026. **Godkendt i A-011/B-029 med brugerens præciseringer.** Grundlag: den genlæste/rettede `CODEX-OPGAVE.md`, AGENTS.md og B-025–030. Casetabellerne nedenfor fastlægger konkrete input og kontroller før implementering; øvrige dele end M5 er fortsat planlagte.
+30.09.2026. **Godkendt i A-011/B-029 med brugerens præciseringer; M2 rettet i B-032.** M5 og aktiv M6 er implementeret. M2's ubrugte tabeller forbliver skjult; de aktive regnelinjer videreføres i M1. Øvrige dele er planlagte. Grundlag: genlæst/rettet `CODEX-OPGAVE.md`, AGENTS.md og beslutningsloggen.
 
 Reference er den isolerede gamle app ved commit `a330cfd6734ac2478be1304a362c69f94e412d25`. Linjer nedenfor henviser til dens `app.py`, medmindre andet er angivet. Beregninger, standardværdier, valg, betingelser og tekster bevares. Opbygningsdesign er godkendt i B-025; det godkender ikke de nye mellemregningsfigurer.
 
 ## Foreslået rækkefølge
 
 1. **M5: Personligt designdiagram**, fordi både dimensionering og rapport bruger det, og der allerede findes figurreferencer.
-2. **M6 og M2:** φᵥ-opsummering og beregningstabeller.
+2. **M6:** aktiv φᵥ-opsummering. M2's ubrugte tabeller forbliver skjult efter B-032; aktive regnelinjer følger i M1.
 3. **M1 tekst og tal:** alle seks trafiktrin og fire belastningstrin, før figurerne bygges.
 4. **M1 figurer:** selvstændig SVG-renderer og konkret visuelt udkast til godkendelse.
 5. **M3, M4, M7, M8 og M9:** de resterende forklaringer, produktgrupper, lokale korrelationer, hjælpetekster og statusfremhævelser.
@@ -46,11 +46,11 @@ FIG-001–004 i `reference/figures.json` er udgangspunkt for M5. Nye cases tilf�
 
 ## M6 — φᵥ-opsummering
 
-**Original:** `_vis_phi_opsummeringsboks` (6461), `_phi_tabel_data` (6405).
+**Original, rettet efter optagelse:** aktiv `_input_materialelag_med_korrektioner` (6712), `_phi_tabel_data` (6405). `_vis_phi_opsummeringsboks` (6461) kaldes alene fra den ubrugte `_input_materialelag`; den aktiveres ikke.
 
 **Tilstande:** især Brugerdefineret med belastnings-/trafikklasse, mm/cm, manuel/vægtet/søjlebaseret φ, intervalprodukt samt gyldige og ugyldige resultater/yderområde. Standard følger originalens synlighedsregel.
 
-**Leverance og kontrol:** portér lagtabellen, formel, korrektion og mm-ækvivalent. Sammenlign lagrækkefølge, tykkelser, vægte, φ-værdier, mellemresultater, formeltekst, enheder, afrundinger og eventuelle tomme værdier. Reference fra originalens tabeldata og gengivne opsummering. Afhænger af de eksisterende φ-resultater; færdiggøres før M1's korrektionstrin.
+**Leverance og kontrol:** aktiv formelkolonne med vægtning, faktor, procent og afrundingsnote er porteret. Fælles tabeldata er porteret til M1; ekstra tabel aktiveres ikke i M6. Originalens mm-korrektioner findes i M1. Elleve UI-cases og fire helpercases matcher præcist; se [PHI_OPSUMMERING.md](PHI_OPSUMMERING.md).
 
 ## M2 — beregningstabeller
 
@@ -58,7 +58,7 @@ FIG-001–004 i `reference/figures.json` er udgangspunkt for M5. Nye cases tilf�
 
 **Tilstande:** Standard/Brugerdefineret, belastnings-/trafikklasse, mm/cm, intervalprodukter, ugyldige 1/2-lagsløsninger, manglende uarmeret reference og yderområde.
 
-**Leverance og kontrol:** uarmeret, 1 lag, 2 lag og bedste løsning med originalens visningsbetingelser. Kontrollér alle rækker/kolonner, eksakt basis, φ-korrektion, effektivitetskorrektion, lagtillæg, minimum, afrunding og bedste løsningsvalg. Registrér originalens gengivne tabeller sammen med underliggende værdier. Afhænger af motorresultater og M6's konsistente enheder; ingen ny rangering.
+**Rettet omfang, B-032:** `_vis_beregnings_breakdown` har ingen kald i a330cfd og bruger standardafrunding uden aktive fordelings-/minimumsindstillinger. Helper-tabellerne er derfor ikke en manglende aktiv visning og aktiveres ikke. Originalens aktive opslag, korrektioner, lagtillæg, minimum og afrunding porteres i M1 med de samme cases. Kaldfraværet registreres i `reference/phi-summary.json`. Nye tabeller kræver særskilt forslag og godkendelse.
 
 ## M1 — alle trin, regnelinjer og avancerede figurer
 
