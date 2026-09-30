@@ -27,6 +27,7 @@ import { InfoPopup } from './InfoPopup';
 import { ConstructionFigure } from './ConstructionFigure';
 import { PersonalDiagram } from './PersonalDiagram';
 import { PhiSummary } from './PhiSummary';
+import { CouplingExplanation } from './CouplingExplanation';
 import { productOverview, overviewColumns, type OverviewSort } from '../engine/product-overview';
 
 const dk = (n: number, digits = 1) => pythonFixed(n, digits).replace('.', ',');
@@ -624,6 +625,7 @@ export function Dimensioning() {
             onChange={(key, value) => ctx.remember({ [key]: value })}
           />
         )}
+        {result && <CouplingExplanation input={input} result={result} />}
       </fieldset>
       <footer className="page-footer">
         <span>Udkast · fulde mellemregninger og rapport tilføjes senere.</span>
