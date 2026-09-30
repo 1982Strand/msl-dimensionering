@@ -20,7 +20,7 @@ Efter brugerens fire browserkommentarer (B-024) ligger klassevalgene vandret med
 
 ## Stadig under udvikling
 
-Opbygningsfigurer er nu tilkoblet som visuelt udkast med originalens tre/fire snit, fælles lodrette skala, netkoter, optimale niveauer, indtastet reference og visningsindstillinger. Seks originale figurcases matcher uden tolerance. Placeringsbeskeder følger den tegnede lagfordeling. Se `OPBYGNINGSFIGURER.md`; visuel godkendelse afventes.
+Opbygningsfigurer er tilkoblet med originalens tre/fire snit, fælles lodrette skala, netkoter, optimale niveauer, indtastet reference og visningsindstillinger. Seks originale figurcases matcher uden tolerance. Placeringsbeskeder følger den tegnede lagfordeling. Se `OPBYGNINGSFIGURER.md`; det forelagte design er godkendt i B-025. PDF-kontrol og andre figurers visuelle accept udestår.
 
 Personligt designdiagram, endepunkter, fulde mellemregninger/koblingsforklaringer, produktgruppernes komplette tabeller og rapporttilkobling udestår. En del originale hjælpetekster og statusoplysninger skal stadig overføres. Resultatoversigtens fulde fremhævelser og rå/eksakte referencenoter er heller ikke afsluttet.
 

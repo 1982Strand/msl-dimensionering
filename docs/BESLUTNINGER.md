@@ -2,15 +2,15 @@
 
 ## Aftalt af brugeren — 29. september 2026
 
-| ID | Beslutning | Grundlag |
-| --- | --- | --- |
-| B-001 | Nyt repository hedder `msl-dimensionering`; ny arbejdsmappe er `C:\MSL-Dimensionering` | Brugerens opstartsbesked |
-| B-002 | Brugerfladen bygges med React, TypeScript, Vite og shadcn/ui | Brugerens opstartsbesked |
-| B-003 | Beregninger, virkemåde og funktionalitet bevares; ændringer og forbedringer kræver brugerens godkendelse | Brugerens opstartsbesked |
-| B-004 | Appdesign og visualisering af opbygninger kræver brugerens godkendelse | Brugerens opstartsbesked |
-| B-005 | Planen udarbejdes sammen med brugeren, med løbende afklarende spørgsmål | Brugerens opstartsbesked |
-| B-006 | Beregningsmotorens sprog/arkitektur afklares efter kortlægningen | Brugerens svar: »Afklar efter kortlægningen« |
-| B-007 | Den gamle apps aktuelle ændringer committes og pushes; den version er udgangspunktet | Brugerens svar: »den gamle app skal fuldt committes og pushes, og så er det det vi arbejder ud fra.« Udført: `a330cfd6734ac2478be1304a362c69f94e412d25` på `origin/main` |
+| ID    | Beslutning                                                                                               | Grundlag                                                                                                                                                                 |
+| ----- | -------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| B-001 | Nyt repository hedder `msl-dimensionering`; ny arbejdsmappe er `C:\MSL-Dimensionering`                   | Brugerens opstartsbesked                                                                                                                                                 |
+| B-002 | Brugerfladen bygges med React, TypeScript, Vite og shadcn/ui                                             | Brugerens opstartsbesked                                                                                                                                                 |
+| B-003 | Beregninger, virkemåde og funktionalitet bevares; ændringer og forbedringer kræver brugerens godkendelse | Brugerens opstartsbesked                                                                                                                                                 |
+| B-004 | Appdesign og visualisering af opbygninger kræver brugerens godkendelse                                   | Brugerens opstartsbesked                                                                                                                                                 |
+| B-005 | Planen udarbejdes sammen med brugeren, med løbende afklarende spørgsmål                                  | Brugerens opstartsbesked                                                                                                                                                 |
+| B-006 | Beregningsmotorens sprog/arkitektur afklares efter kortlægningen                                         | Brugerens svar: »Afklar efter kortlægningen«                                                                                                                             |
+| B-007 | Den gamle apps aktuelle ændringer committes og pushes; den version er udgangspunktet                     | Brugerens svar: »den gamle app skal fuldt committes og pushes, og så er det det vi arbejder ud fra.« Udført: `a330cfd6734ac2478be1304a362c69f94e412d25` på `origin/main` |
 
 ## Foreløbige praktiske valg
 
@@ -19,17 +19,17 @@ Supplerende aftaler den 29. september 2026:
 - **B-008:** Den gamle apps indbyggede standardværdier bevares. Brugerens svar: »Bevar den gamle apps standard værdier. Gå igang med planen«.
 - **B-009:** Arbejdet med planens kortlægning og referencegrundlag er igangsat efter samme besked. Arkitekturvalg, funktionelle afvigelser og visuelle løsninger kræver fortsat afklaring/godkendelse.
 
-| ID | Valg | Status |
-| --- | --- | --- |
+| ID    | Valg                                                                 | Status                                                                        |
+| ----- | -------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
 | P-001 | Repository oprettes privat under den tilgængelige konto `1982Strand` | Reversibelt opstartsvalg meddelt brugeren; offentliggørelse er ikke besluttet |
-| P-002 | Første commit indeholder plan og arbejdsregler | Forberedelse; ingen beregninger eller design implementeret |
+| P-002 | Første commit indeholder plan og arbejdsregler                       | Forberedelse; ingen beregninger eller design implementeret                    |
 
 ## Spørgsmål forelagt brugeren
 
-| ID | Spørgsmål | Status |
-| --- | --- | --- |
-| A-001 | Skal hele beregningsmotoren omskrives til TypeScript, bevares i Python, eller afklares efter kortlægning? | Besvaret: afklares efter kortlægningen, jf. B-006 |
-| A-002 | Skal den lokale arbejdskopi, seneste GitHub-version eller en bestemt version være reference? | Besvaret og udført: aktuelle ændringer committet og pushet, jf. B-007 |
+| ID    | Spørgsmål                                                                                                 | Status                                                                |
+| ----- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| A-001 | Skal hele beregningsmotoren omskrives til TypeScript, bevares i Python, eller afklares efter kortlægning? | Besvaret: afklares efter kortlægningen, jf. B-006                     |
+| A-002 | Skal den lokale arbejdskopi, seneste GitHub-version eller en bestemt version være reference?              | Besvaret og udført: aktuelle ændringer committet og pushet, jf. B-007 |
 
 ## Næste afklaringer
 
@@ -89,4 +89,14 @@ B-017 godkender direkte tabelredigering uden en Redigér-knap og med automatisk 
 
 - **B-024:** Brugeren ønsker vandrette klassevalg og designdiagram i popup uden at øge hovedboksens højde. Cv-tabellens overlap skal rettes, og »Alle produkter« skal kontrolleres mod originalen. Klassevalg ombrydes på små skærme; diagram og Cv-tabel åbnes i popupper. Produktoversigten genskaber originalens syv kolonner og sortering. Dette godkender de nævnte layoutrettelser, ikke nye beregningsregler eller opbygningsfigurer.
 
-- **A-010:** Brugeren: »Så tager vi opbygningsfigurerne«. Et fungerende visuelt udkast foreligger i React med bevarede lag, tykkelser, koter, statustekster og visningsvalg fra originalen. Se `OPBYGNINGSFIGURER.md`. Udkastet forelægges til særskilt visuel godkendelse; anmodningen om arbejdet er ikke i sig selv en godkendelse af det færdige udseende.
+- **A-010:** Besvaret og godkendt 30.09.2026 i B-025. Det forelagte opbygningsudkast i `OPBYGNINGSFIGURER.md` er godkendt; senere figurer og PDF-design har særskilt accept.
+
+## Rapport og mellemregninger — 30.09.2026
+
+Beslutning B-025 følger brugerens besked i denne chat. B-026–028 registreres efter brugerens udtrykkelige instruktion om at følge afsnit 0 i `C:\Users\dst\Documents\MSL-rapportdemo\CODEX-OPGAVE.md`; de citerede svar er gengivet fra denne opgavefil.
+
+- **B-025:** A-010 er godkendt. Brugeren: »Det er fint. Fortsæt. Vær omhyggelig med de fulde mellemregninger, da der er nogle avancerede figurer med«. Det forelagte opbygningsdesign kan videreføres. Dette godkender ikke M1-figurerne, det personlige designdiagram M5 eller PDF-design.
+- **B-026:** Rapporten genereres alene som PDF med Typst; Word-eksport udgår. Brugeren: »vil gerne nøjes med at generere en pdf fil, men det kræver at denne pdf er perfekt sat op«. Dette erstatter forbeholdet om Word-eksport i B-011. Betingelsen om perfekt opsætning bevares som acceptkrav; den endelige PDF kræver brugerens visuelle godkendelse.
+- **B-027:** Appen er indtil videre en webapp. Rapporten hentes som en lokal PDF-download uden serverlagring. Brugeren: »Indtil videre bliver det en web app, så rapporten skal gemmes lokalt, ligesom den gør i den gamle app«. Browserkompilering er arkitekturforslaget i rapportdelplanen og forelægges før implementering.
+- **B-028:** Firmaprofilen skal kunne ændres i appen som vist i rapportdemoen. Brugeren: »til at starte med vil jeg gerne have at firmaprofilen kan ændres i appen« og »Jeg vil gerne have med at man kan redigere firmaskabelonen i appen som du har vist«. Firmaprofil er redigerbare data; layout forbliver kode. Upload af hele skabeloner er ikke valgt. Demoen er reference og må læses/kopieres; ændring af den kræver særskilt godkendelse. Demoens design er ikke dermed endeligt godkendt. De syv rapportafsnits standardtekster flyttes ikke ind i firmaprofilen uden en ny beslutning. FUND-005 og A-006 er fortsat uændrede.
+- **A-011:** Brugeren kræver skriftlige delplaner for mellemregninger og rapport, som forelægges før kodning. `MELLEMREGNINGER_PLAN.md` og `RAPPORT_PLAN.md` udarbejdes efter `CODEX-OPGAVE.md` og AGENTS.md. Rækkefølge og rapportarkitektur afventer brugerens svar. M1, M5, firmaprofilsiden, rapportsiden og den endelige PDF forelægges senere som særskilte konkrete visuelle udkast. Ingen merge eller offentliggørelse er autoriseret.

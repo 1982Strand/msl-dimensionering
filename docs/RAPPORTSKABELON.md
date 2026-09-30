@@ -2,16 +2,18 @@
 
 29. september 2026. Implementeret i den isolerede prototype; endnu ingen administrationsside i appen.
 
+Opdatering 30.09.2026: B-026–028 vælger PDF alene, lokal download og redigerbar firmaprofil. Den aktuelle appintegration beskrives i [RAPPORT_PLAN.md](RAPPORT_PLAN.md), som forelægges før kodning. Nedenstående beskriver den tidligere prototype, ikke en færdig rapportside eller endeligt godkendt PDF-layout.
+
 ## Hvad kan ændres?
 
-| Ændring | Hvor den udføres nu |
-| --- | --- |
-| Nyt logo, firmafarve, kontaktlinje og slogan | Firmaprofilen `spikes/report-typescript/theme.json` og den tilhørende billedfil |
-| Skrifttyper, størrelse, margener og linjeafstand | Firmaprofilen; kræver tilgængelige skrifter og ny layoutkontrol |
-| Gentage logo og sidefod på alle sider | Firmaprofilen |
-| Overskrifter og rækkefølge af de fem afsluttende tekstafsnit | Firmaprofilen; hvert afsnit skal fortsat være med præcis én gang |
-| Nyt sidehoved, forsidelayout, tabeller, figurplacering eller større ombygning af afsnit | `spikes/report-typescript/layout.typ` |
-| Projektets konkrete tekster og rapportvalg | Rapportdata, adskilt fra firmaprofil og layout |
+| Ændring                                                                                 | Hvor den udføres nu                                                             |
+| --------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| Nyt logo, firmafarve, kontaktlinje og slogan                                            | Firmaprofilen `spikes/report-typescript/theme.json` og den tilhørende billedfil |
+| Skrifttyper, størrelse, margener og linjeafstand                                        | Firmaprofilen; kræver tilgængelige skrifter og ny layoutkontrol                 |
+| Gentage logo og sidefod på alle sider                                                   | Firmaprofilen                                                                   |
+| Overskrifter og rækkefølge af de fem afsluttende tekstafsnit                            | Firmaprofilen; hvert afsnit skal fortsat være med præcis én gang                |
+| Nyt sidehoved, forsidelayout, tabeller, figurplacering eller større ombygning af afsnit | `spikes/report-typescript/layout.typ`                                           |
+| Projektets konkrete tekster og rapportvalg                                              | Rapportdata, adskilt fra firmaprofil og layout                                  |
 
 Typst-skabelonen redigeres som kode med en PDF som resultat. Den er ikke en Word-skabelon, hvor elementer flyttes direkte med musen. En fremtidig administrationsside kan gøre de almindelige ændringer til formularfelter, eksempelvis »Upload logo«, farvevalg og kontaktoplysninger. En generel visuel skabeloneditor er en selvstændig, større funktion og er ikke implementeret eller besluttet.
 

@@ -20,4 +20,4 @@ Udkastet vises under Resultater på `/#dimensionering`. Brugeren har bedt om at 
 
 To målrettede Node-tests dækker originaldata samt selvstændig SVG, skjulte visningsdele, ugyldige snit og escaping. Ét browserforløb kontrollerer fælles målestok, original tykkelse/netkote, skift af netplacering med tilsvarende advarsel, mm/cm, tre/fire snit, visningsindstillinger, genåbning og mobilrulning. De tre eksisterende dimensioneringsforløb består også. Samlet består 2.753 Node-tests, typekontrol og produktionsbygning. CI omfatter nu 23 browserforløb; de tidligere 22 bestod på Windows/Linux ved 46d8280.
 
-Gennemsete screenshots er gemt lokalt i `output/construction-review/`. Visuel accept og senere kontrol af samme figur i PDF udestår.
+Gennemsete screenshots er gemt lokalt i `output/construction-review/`. Det forelagte opbygningsdesign er godkendt 30.09.2026 i B-025 (A-010 besvaret). Senere kontrol af samme figur i PDF udestår. Appens eksisterende udkastmærkning fjernes ved en senere godkendt kodeopgave; denne opdatering ændrer kun dokumentation.

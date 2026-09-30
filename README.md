@@ -2,7 +2,7 @@
 
 Migrering af det eksisterende Streamlit-værktøj til React, TypeScript, Vite og shadcn/ui.
 
-Status: beregningskernen og sammensætningen af Standard/Brugerdefineret er porteret til TypeScript efter B-014. 2.753 tests består: beregninger, grænsetilfælde, sammensatte dimensioneringsforløb, redigerbare grunddata, indstillinger og korrelationer. De oprindelige referencecases matcher Python uden numerisk tolerance; godkendte forbedringer har særskilte adfærdstests. TypeScript/Typst-prototypen har desuden genereret ti rapportcases. React/Vite/shadcn-udkastet omfatter Materialer, Designdiagrammer, Trafikklasse-korrelation, Indstillinger og dimensioneringsformularer med browserlagring. Opbygningsfigurer er tilkoblet som visuelt udkast; seks originalcases matcher alle figurdata. Fire målrettede browserforløb for dimensionering/figurer består. Seks produktoversigter matcher originalens faktiske HTML. De tidligere 22 browserforløb bestod på Windows/Linux ved 46d8280; CI omfatter nu 23. Designretningen er godkendt i B-020.
+Status: beregningskernen og sammensætningen af Standard/Brugerdefineret er porteret til TypeScript efter B-014. 2.753 tests består: beregninger, grænsetilfælde, sammensatte dimensioneringsforløb, redigerbare grunddata, indstillinger og korrelationer. De oprindelige referencecases matcher Python uden numerisk tolerance; godkendte forbedringer har særskilte adfærdstests. TypeScript/Typst-prototypen har desuden genereret ti rapportcases. React/Vite/shadcn-udkastet omfatter Materialer, Designdiagrammer, Trafikklasse-korrelation, Indstillinger og dimensioneringsformularer med browserlagring. Opbygningsfigurer er tilkoblet og designgodkendt i B-025; seks originalcases matcher alle figurdata. Fire målrettede browserforløb for dimensionering/figurer består. Seks produktoversigter matcher originalens faktiske HTML. De tidligere 22 browserforløb bestod på Windows/Linux ved 46d8280; CI omfatter nu 23. Designretningen er godkendt i B-020.
 
 - Arbejdsmappe: `C:\MSL-Dimensionering`
 - Nyt repository: https://github.com/1982Strand/msl-dimensionering
@@ -15,6 +15,8 @@ Beregninger, datagrundlag og funktionalitet skal bevares. Ændringer af eksister
 
 ## Projektets dokumenter
 
+- [Delplan for mellemregninger](docs/MELLEMREGNINGER_PLAN.md) — M1–M8, referencekontrol og særskilt figuraccept; afventer godkendelse før kodning.
+- [Delplan for rapport og firmaprofil](docs/RAPPORT_PLAN.md) — PDF i browseren, bevarede rapportdata og profilredigering; arkitektur/rækkefølge afventer godkendelse.
 - [Migrationsplan](docs/MIGRATIONSPLAN.md) — forslag til faser, leverancer og godkendelser.
 - [Foreløbig funktionskortlægning](docs/FUNKTIONSKORTLAEGNING.md) — kendte områder og kontrolpunkter.
 - [Beslutningslog](docs/BESLUTNINGER.md) — aftaler, åbne spørgsmål og ændringsforslag.
@@ -27,7 +29,7 @@ Beregninger, datagrundlag og funktionalitet skal bevares. Ændringer af eksister
 - [Evaluering af rapportgenerering i TypeScript](docs/RAPPORT_EVALUERING.md) — Word/PDF, LibreOffice, mulige forbedringer og afprøvningskriterier.
 - [Typst-afprøvning](docs/TYPST_AFPROEVNING.md) — ti genererede rapportcases, PDF som primært format og begrænsninger ved PDF til Word.
 
-Referenceversionen er fastlagt til den committede og pushede gamle app, commit `a330cfd6734ac2478be1304a362c69f94e412d25`. TypeScript er valgt til beregningsmotoren i B-014. Lokal lagring i samme browser/computer er valgt i B-019. Visuelt design, adgang og offentliggørelse afklares fortsat særskilt.
+Referenceversionen er fastlagt til den committede og pushede gamle app, commit `a330cfd6734ac2478be1304a362c69f94e412d25`. TypeScript er valgt til beregningsmotoren i B-014. Lokal lagring i samme browser/computer er valgt i B-019. Opbygningsdesignet er godkendt i B-025. PDF alene med Typst, lokal download og redigerbar firmaprofil er besluttet i B-026–028; Word-eksport udgår. Mellemregninger og rapportintegration er endnu ikke implementeret. Delplanerne forelægges før kodning; øvrige figurer, rapportdesign, adgang og offentliggørelse har særskilt accept.
 
 ## Lokalt grunddataudkast
 

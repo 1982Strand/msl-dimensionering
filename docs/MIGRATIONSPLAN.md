@@ -2,6 +2,16 @@
 
 Oprettet 29. september 2026. Faser og acceptkriterier er foreslåede, medmindre de fremgår som aftalt i beslutningsloggen.
 
+## Aktuel afgrænsning — 30.09.2026
+
+Opbygningsfigurerne ved `cea9a5c` er godkendt i B-025. Beregningskontrol er fortsat uden tolerance; seneste implementerede omfang fremgår af README og OPBYGNINGSFIGURER.md.
+
+Efter brugerens `CODEX-OPGAVE.md` er B-026–028 registreret: PDF alene med Typst, lokal download og firmaprofilredigering i appen. Word-eksport udgår og er ikke længere et åbent spørgsmål. Demoen i Documents er læst som reference og ændres ikke.
+
+De skriftlige delplaner [MELLEMREGNINGER_PLAN.md](MELLEMREGNINGER_PLAN.md) og [RAPPORT_PLAN.md](RAPPORT_PLAN.md) forelægges før ny kodning (A-011). Forslag: M5 → M6/M2 → M1 tekst/tal → M1 SVG → M3/M4/M7/M8; rapportdata → browsercompiler/figurer/layout → rapportside/firmaprofil → PDF-accept. Browserkompilering er foreslået, ikke godkendt endnu. M1, M5, profilside, rapportside og endelig PDF har særskilte visuelle godkendelser.
+
+Denne planændring omfatter kun dokumentation. Ingen nye mellemregninger, rapportfunktioner eller profilside er implementeret. Ældre statusafsnit nedenfor beskriver tidligere milepæle; ovenstående afløser deres forbehold om Word og opbygningsaccept. Ingen merge eller offentliggørelse.
+
 ## Status efter første udførelse
 
 - **Fase 0, delvist udført:** kildeversion fastlagt; brugeren har valgt indbyggede standarder (B-008). TypeScript-beregningsmotor er valgt i B-014. Personlig lagring i samme browser/computer er valgt i B-019; adgang er stadig åben.
