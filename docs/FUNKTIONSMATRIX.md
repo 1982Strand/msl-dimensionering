@@ -87,21 +87,22 @@ F-02/F-03/F-11.2 har nu formularintegration og inputlagring med 17 uændrede ori
 
 ## Delplaner forelagt — 30.09.2026
 
-Kun planlægning er udført i denne milepæl. A-011 kræver plangodkendelse før kodning; nedenstående er ikke afsluttede migreringer.
+A-011 er godkendt i B-029 med brugerens præciseringer. M5 er nu implementeret som visuelt udkast; de øvrige dele er fortsat planlagte. B-030 udvider rapportens lagring/nulstilling uden at gemme datoen.
 
-| Planområde                               | Funktionskobling           | Status                                                         |
-| ---------------------------------------- | -------------------------- | -------------------------------------------------------------- |
-| M1 fulde trin og avancerede SVG'er       | F-09.3, F-03, F-04, F-05   | Trafiktrin 1–3's tal findes; resten planlagt, figuraccept åben |
-| M2 beregningstabeller                    | F-02.10, F-03, F-05        | Planlagt                                                       |
-| M3 udførelseskrav/advarselsafsnit        | F-07, F-08                 | Beskeder findes; komplette afsnit planlagt                     |
-| M4 netdetaljer/optimale og eksakte noter | F-02.10, F-07              | Delvist data/figurunderstøttet; resterende visning planlagt    |
-| M5 personligt designdiagram              | F-09.3                     | Fire figurreferencer findes; renderer og visuel accept åbne    |
-| M6 φᵥ-tabel og formel                    | F-02.8, F-06.4             | Enkelt værdi findes; fuld opsummering planlagt                 |
-| M7 komplette produktgrupper              | F-02.10                    | Motorfunktioner findes; komplette tabeller planlagt            |
-| M8 lokal trafik-korrelation              | F-02.4, F-04, F-09.3       | Lokal visning planlagt; VejDim-siden er separat                |
-| R1–R3 rapportdata/compiler/layout        | F-12.1, F-12.4/5, F-09.1/3 | Prototype er ikke appintegration; planlagt                     |
-| R4 rapportside og spærring               | F-12.2/3/6                 | Planlagt; originalens valg og defaults bevares                 |
-| R5 firmaprofil                           | B-028, F-11.4              | Ny godkendt funktion; placering/design og implementation åbne  |
-| R6 samlet PDF-accept                     | F-12, F-09                 | Indholds- og layoutkontrol samt brugeraccept åbne              |
+| Planområde                               | Funktionskobling                         | Status                                                                                                                                        |
+| ---------------------------------------- | ---------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| M1 fulde trin og avancerede SVG'er       | F-09.3, F-03, F-04, F-05                 | Trafiktrin 1–3's tal findes; resten planlagt, figuraccept åben                                                                                |
+| M2 beregningstabeller                    | F-02.10, F-03, F-05                      | Planlagt                                                                                                                                      |
+| M3 udførelseskrav/advarselsafsnit        | F-07, F-08                               | Beskeder findes; komplette afsnit planlagt                                                                                                    |
+| M4 netdetaljer/optimale og eksakte noter | F-02.10, F-07                            | Delvist data/figurunderstøttet; resterende visning planlagt                                                                                   |
+| M5 personligt designdiagram              | F-09.3                                   | Plotly-specifikation/hover porteret; 11 cases og fire uændrede figures.json-figurer matcher. SVG afprøvet i browser-Typst; visuel accept åben |
+| M6 φᵥ-tabel og formel                    | F-02.8, F-06.4                           | Enkelt værdi findes; fuld opsummering planlagt                                                                                                |
+| M7 komplette produktgrupper              | F-02.10                                  | Motorfunktioner findes; komplette tabeller planlagt                                                                                           |
+| M8 lokal trafik-korrelation              | F-02.4, F-04, F-09.3                     | Lokal visning planlagt; VejDim-siden er separat                                                                                               |
+| M9 øvrig hjælp/status/fremhævelser       | F-09.3, F-13.1 og dimensioneringsvisning | Resterende punkter fra DIMENSIONERINGSUDKAST.md placeret her; planlagt                                                                        |
+| R1–R3 rapportdata/compiler/layout        | F-12.1, F-12.4/5, F-09.1/3               | Prototype er ikke appintegration; planlagt                                                                                                    |
+| R4 rapportside og spærring               | F-12.2/3/6                               | Planlagt; originalens valg og defaults bevares                                                                                                |
+| R5 firmaprofil                           | B-028, F-11.4                            | Ny godkendt funktion; placering/design og implementation åbne                                                                                 |
+| R6 samlet PDF-accept                     | F-12, F-09                               | Indholds- og layoutkontrol samt brugeraccept åbne                                                                                             |
 
-Se [MELLEMREGNINGER_PLAN.md](MELLEMREGNINGER_PLAN.md) og [RAPPORT_PLAN.md](RAPPORT_PLAN.md) for originalfunktioner, tilstande, referenceoptagelse, præcise sammenligninger og afhængigheder. Opbygningsdesign er godkendt B-025; kontrol af samme figur i PDF mangler. Demoen ændres ikke.
+Se [MELLEMREGNINGER_PLAN.md](MELLEMREGNINGER_PLAN.md) og [RAPPORT_PLAN.md](RAPPORT_PLAN.md) for konkrete cases før hver del, originalfunktioner, tilstande og afhængigheder. M5-kontrollen fremgår af [PERSONLIGT_DESIGNDIAGRAM.md](PERSONLIGT_DESIGNDIAGRAM.md): 22 målrettede Node-tests, ét browserforløb og fire SVG'er gennem Typst består. Hele testpakkerne er ikke genkørt i denne milepæl. Syv rapportfigurcases er optaget, men R3 er endnu ikke porteret. Opbygningsdesign er godkendt B-025; rapportens figurtilkobling og endelige PDF-accept mangler. Demoen ændres ikke.

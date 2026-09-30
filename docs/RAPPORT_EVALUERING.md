@@ -35,7 +35,7 @@ Følgende forhold skal håndteres ved flytningen:
 
 - De eksisterende Jinja-markører såsom `{%tr for r in dim_grundlag %}` er specifikke for den nuværende motor. De skal oversættes til den valgte TypeScript-motors syntaks; biblioteket kan ikke blot byttes under den samme kode.
 - Den nuværende Pythonkode samler tags, der er delt mellem tekststykker i Word, og opdeler tabel-loopmarkører, der står i samme række. Den funktion skal enten erstattes korrekt eller gøres overflødig gennem en kontrolleret tilpasning af skabelonen.
-- Tom brugerredigeret tekst betyder »udelad teksten«; den må ikke blive erstattet af standardtekst. Manglende værdi og tom streng skal fortsat behandles forskelligt.
+- Tom brugerredigeret tekst gengives tom under den bevarede overskrift (baseline `empty-text.pdf`); den må ikke blive erstattet af standardtekst. Manglende værdi og tom streng skal fortsat behandles forskelligt. Præciseret i B-029.
 - Grundlagets overskrift/tabel fjernes, når alle grundlagslinjer er fravalgt.
 - Figurer indsættes i den eksisterende rapport med en bredde på 16 cm. Skala, labels og valg af snit skal komme fra samme data som skærmens figurer.
 - Skrifttyper, størrelser, margener, sidehoved/-fod og felter skal kontrolleres på det valgte servermiljø. Et skift af font eller erstatningsfont kan påvirke linjebrud, selv når alle tal og ord er uændrede.
@@ -44,18 +44,18 @@ Inspektionen er strukturel. Den fastslår ikke antallet af sider i en udfyldt ra
 
 ## Sammenligning af mulighederne
 
-| Egenskab | Nuværende Python + Word/LibreOffice | TypeScript + DOCX + LibreOffice | TypeScript + HTML/Chromium-PDF samt særskilt DOCX |
-| --- | --- | --- | --- |
-| Redigerbar Word-fil | Findes | Bevares med TypeScript-bibliotek | Kræver stadig separat DOCX-generering |
-| PDF-grundlag | Den genererede Word-fil | Den genererede Word-fil | HTML/CSS-opstilling |
-| Eksisterende Word-design | Findes | Kan bruges som udgangspunkt med ændrede tags | Kan bevares for DOCX; PDF-design skal bygges særskilt |
-| Risiko for forskelle mellem Word/PDF | Allerede mulig mellem Word og LibreOffice | Stadig renderer-/fontafhængig, men fælles dokumentgrundlag | To forskellige layoutsystemer skal holdes i overensstemmelse |
-| Python i produktion | Ja | Kan udfases | Kan udfases |
-| LibreOffice i produktion | Ja på nuværende ikke-Windows-vej | Ja | Kan udfases for PDF-vejen |
-| Øvrig drift | Python og billed-/dokumentmotorer | Node og billed-/dokumentmotorer | Node/Chromium og DOCX-generator |
-| React-forhåndsvisning | Eksisterende figurpreview | Figurer kan deles; endelig dokumentside skal stadig renderes | HTML kan ligne printvisningen tæt, men PDF-sidebrud kræver særskilt kontrol |
-| Sandsynligt ændringsomfang | Intet ved bevarelse | Dataformat, Word-tags, generering og processtyring | Samme plus separat PDF-layout og dobbelt eksportkontrol |
-| Dokumenteret hastighedsgevinst her | Ikke målt | Ikke målt | Ikke målt |
+| Egenskab                             | Nuværende Python + Word/LibreOffice       | TypeScript + DOCX + LibreOffice                              | TypeScript + HTML/Chromium-PDF samt særskilt DOCX                           |
+| ------------------------------------ | ----------------------------------------- | ------------------------------------------------------------ | --------------------------------------------------------------------------- |
+| Redigerbar Word-fil                  | Findes                                    | Bevares med TypeScript-bibliotek                             | Kræver stadig separat DOCX-generering                                       |
+| PDF-grundlag                         | Den genererede Word-fil                   | Den genererede Word-fil                                      | HTML/CSS-opstilling                                                         |
+| Eksisterende Word-design             | Findes                                    | Kan bruges som udgangspunkt med ændrede tags                 | Kan bevares for DOCX; PDF-design skal bygges særskilt                       |
+| Risiko for forskelle mellem Word/PDF | Allerede mulig mellem Word og LibreOffice | Stadig renderer-/fontafhængig, men fælles dokumentgrundlag   | To forskellige layoutsystemer skal holdes i overensstemmelse                |
+| Python i produktion                  | Ja                                        | Kan udfases                                                  | Kan udfases                                                                 |
+| LibreOffice i produktion             | Ja på nuværende ikke-Windows-vej          | Ja                                                           | Kan udfases for PDF-vejen                                                   |
+| Øvrig drift                          | Python og billed-/dokumentmotorer         | Node og billed-/dokumentmotorer                              | Node/Chromium og DOCX-generator                                             |
+| React-forhåndsvisning                | Eksisterende figurpreview                 | Figurer kan deles; endelig dokumentside skal stadig renderes | HTML kan ligne printvisningen tæt, men PDF-sidebrud kræver særskilt kontrol |
+| Sandsynligt ændringsomfang           | Intet ved bevarelse                       | Dataformat, Word-tags, generering og processtyring           | Samme plus separat PDF-layout og dobbelt eksportkontrol                     |
+| Dokumenteret hastighedsgevinst her   | Ikke målt                                 | Ikke målt                                                    | Ikke målt                                                                   |
 
 Playwright kan producere PDF med print-CSS, A4, margener, sidehoved/-fod og sideantal. Det gør HTML-sporet teknisk muligt; det konverterer ikke den eksisterende Word-fil til det samme PDF-layout. [Playwright PDF](https://playwright.dev/docs/api/class-page#page-pdf).
 

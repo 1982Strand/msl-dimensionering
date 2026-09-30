@@ -30,7 +30,6 @@ export function ConstructionFigure({
     <section className="section-card construction-card" aria-labelledby={`${id}-heading`}>
       <div className="construction-heading">
         <h2 id={`${id}-heading`}>Opbygning</h2>
-        <span className="construction-draft">Visuelt udkast</span>
       </div>
       <p className="settings-note">
         Snit i samme lodrette skala

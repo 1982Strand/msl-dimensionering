@@ -25,6 +25,7 @@ import { er_oprundet } from '../engine/afrunding';
 import type { CalculationResult } from '../engine/types';
 import { InfoPopup } from './InfoPopup';
 import { ConstructionFigure } from './ConstructionFigure';
+import { PersonalDiagram } from './PersonalDiagram';
 import { productOverview, overviewColumns, type OverviewSort } from '../engine/product-overview';
 
 const dk = (n: number, digits = 1) => pythonFixed(n, digits).replace('.', ',');
@@ -615,10 +616,20 @@ export function Dimensioning() {
             netplacering={ctx.session.data.indstillinger.lagfordeling.netplacering}
           />
         )}
+        {result && (
+          <PersonalDiagram
+            result={result}
+            products={products}
+            table={input.t_basis_table}
+            showInput={ctx.session.values.bd_dd_vis_din_prik !== false}
+            showEndpoints={ctx.session.values.bd_dd_vis_lag_prikker !== false}
+            onChange={(key, value) => ctx.remember({ [key]: value })}
+          />
+        )}
       </fieldset>
       <footer className="page-footer">
         <span>
-          Udkast · opbygningsfigurer afventer visuel godkendelse. Rapport tilføjes senere.
+          Udkast · personligt designdiagram afventer visuel godkendelse. Rapport tilføjes senere.
         </span>
         <span>MSL Dimensionering</span>
       </footer>

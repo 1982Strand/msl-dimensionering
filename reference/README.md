@@ -4,16 +4,16 @@ Kilde: commit `a330cfd6734ac2478be1304a362c69f94e412d25` fra den gamle app. Prof
 
 ## Registreret og genkørt
 
-| Fil | Indhold | Kontrol |
-| --- | --- | --- |
-| `inventory.json` | 13 aktive Python-filer, 426 funktioner, 98 widget-kald, signaturer, kildepositioner og direkte session-state-opslag | Statisk registrering; ingen påstand om fuld adfærdsdækning |
-| `core-cases.json` | 2.062 cases fordelt på 21 grupper samt standarddata | Genkørsel af originalen matcher de registrerede resultater |
-| `ui-flows.json` | 24 registrerede trin: inputs, valg, indstillinger, seneste dimensionering og rapportens beregningstekster | Genkørsel matcher; alle otte navigationssider besøgt |
-| `figures.json` | 8 Plotly-figurer fordelt på 4 scenarier fra den rigtige app, inklusive geometri, labels og mål | Figurdata genkøres mod originalen; ingen pixel-/designgodkendelse |
-| `environment.json` | Python 3.12.10 på Windows og 65 registrerede pakkeversioner | Beskriver miljøet for referencekørslerne |
-| `report-template-audit.json` | Skabelonens 35 pakkedele, 26 markører, 2 tabeller, skrifttyper og sidemål | Strukturel læsning; ingen layout- eller hastighedskontrol |
-| `report-contexts.json` | Ti cases med den originale Word-byggers faktiske skabelondata | Registreret og genkørt; syntetiske metadata, eksisterende faglige tekster bevaret |
-| `report-prototype-results.json` | PDF-indhold, sideantal, figurbilleder, runtime og indledende tider | Original Word-vej mod isoleret TypeScript/Typst-prototype; ingen designgodkendelse |
+| Fil                             | Indhold                                                                                                             | Kontrol                                                                            |
+| ------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `inventory.json`                | 13 aktive Python-filer, 426 funktioner, 98 widget-kald, signaturer, kildepositioner og direkte session-state-opslag | Statisk registrering; ingen påstand om fuld adfærdsdækning                         |
+| `core-cases.json`               | 2.062 cases fordelt på 21 grupper samt standarddata                                                                 | Genkørsel af originalen matcher de registrerede resultater                         |
+| `ui-flows.json`                 | 24 registrerede trin: inputs, valg, indstillinger, seneste dimensionering og rapportens beregningstekster           | Genkørsel matcher; alle otte navigationssider besøgt                               |
+| `figures.json`                  | 8 Plotly-figurer fordelt på 4 scenarier fra den rigtige app, inklusive geometri, labels og mål                      | Figurdata genkøres mod originalen; ingen pixel-/designgodkendelse                  |
+| `environment.json`              | Python 3.12.10 på Windows og 65 registrerede pakkeversioner                                                         | Beskriver miljøet for referencekørslerne                                           |
+| `report-template-audit.json`    | Skabelonens 35 pakkedele, 26 markører, 2 tabeller, skrifttyper og sidemål                                           | Strukturel læsning; ingen layout- eller hastighedskontrol                          |
+| `report-contexts.json`          | Ti cases med den originale Word-byggers faktiske skabelondata                                                       | Registreret og genkørt; syntetiske metadata, eksisterende faglige tekster bevaret  |
+| `report-prototype-results.json` | PDF-indhold, sideantal, figurbilleder, runtime og indledende tider                                                  | Original Word-vej mod isoleret TypeScript/Typst-prototype; ingen designgodkendelse |
 
 Inventarlisten og referencecases indeholder kildecommit og SHA-256 for de aktive Python-filer. Skabelonauditten registrerer kildecommit og skabelonens egne kontrolsummer; miljøfilen registrerer runtime og pakkeversioner. Forventede resultater er hentet fra den eksisterende kode, ikke fra en ny beregningsimplementation. Cases omfatter også afviste/ugyldige input. Et stort caseantal er ikke i sig selv dokumentation for komplet dækning eller faglig korrekthed.
 
@@ -31,20 +31,20 @@ Core-cases tester de enkelte modulers kontrakter. De bærer kun de indstillinger
 
 ### Udvalgte konkrete referenceforløb
 
-| Case | Input/handling | Observeret resultat |
-| --- | --- | --- |
-| UI-001 | Ny Standard-session, Eu 10 MPa, klasse 4, TX160 | Uarmeret 900 mm; ét lag 650 mm; to lag afvises af diagrammet |
-| UI-002 | Eu ændres til 5 MPa | Ét lag 850 mm; to lag 750 mm |
-| UI-003 | NX850 vælges ved Eu 5 MPa, klasse 4 | Konservativt ét lag 750 mm; to lag 650 mm; produktets intervaldata bevares |
-| UI-005 | Materialer besøges, derefter tilbage | Eu 5 bevares; produktet vender tilbage til TX160, jf. FUND-001 |
-| UI-traffic-T1-3 | Trafikklasse T1 ved Eu 3 | Afvist under diagramområdet; gammel `sidste_dim` fjernes |
-| UI-traffic-T4-10 | Trafikklasse T4 ved Eu 10 | Ækvivalent Eo 107,6 MPa; ét lag 700 mm |
-| UI-008 | Nulstil i topbjælken | Standard-input genetableres, inklusive Eu 10 og belastningsklasse |
-| UI-009–011 | Brugerdefineret: to standardlag, tredje manuelt lag, manuel phi 38,5° | Lag/input og beregningsresultater registreres på hvert trin |
-| UI-013 | Visningsenhed ændres fra mm til cm | Beregningsdata er uændrede; kontrol med eksplicit assertion |
-| UI-015 | Klassisk Standard tilvælges | Klassisk tilstand registreres med dens oprunding og opbygning |
-| UI-016 | Rapport åbnes efter blokeret beregning | Intet gammelt beregningsresultat kan anvendes |
-| UI-017 | Ny session efter gemte indstillingsændringer | cm og 100 mm oprunding genindlæses fra testens midlertidige filer |
+| Case             | Input/handling                                                        | Observeret resultat                                                        |
+| ---------------- | --------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| UI-001           | Ny Standard-session, Eu 10 MPa, klasse 4, TX160                       | Uarmeret 900 mm; ét lag 650 mm; to lag afvises af diagrammet               |
+| UI-002           | Eu ændres til 5 MPa                                                   | Ét lag 850 mm; to lag 750 mm                                               |
+| UI-003           | NX850 vælges ved Eu 5 MPa, klasse 4                                   | Konservativt ét lag 750 mm; to lag 650 mm; produktets intervaldata bevares |
+| UI-005           | Materialer besøges, derefter tilbage                                  | Eu 5 bevares; produktet vender tilbage til TX160, jf. FUND-001             |
+| UI-traffic-T1-3  | Trafikklasse T1 ved Eu 3                                              | Afvist under diagramområdet; gammel `sidste_dim` fjernes                   |
+| UI-traffic-T4-10 | Trafikklasse T4 ved Eu 10                                             | Ækvivalent Eo 107,6 MPa; ét lag 700 mm                                     |
+| UI-008           | Nulstil i topbjælken                                                  | Standard-input genetableres, inklusive Eu 10 og belastningsklasse          |
+| UI-009–011       | Brugerdefineret: to standardlag, tredje manuelt lag, manuel phi 38,5° | Lag/input og beregningsresultater registreres på hvert trin                |
+| UI-013           | Visningsenhed ændres fra mm til cm                                    | Beregningsdata er uændrede; kontrol med eksplicit assertion                |
+| UI-015           | Klassisk Standard tilvælges                                           | Klassisk tilstand registreres med dens oprunding og opbygning              |
+| UI-016           | Rapport åbnes efter blokeret beregning                                | Intet gammelt beregningsresultat kan anvendes                              |
+| UI-017           | Ny session efter gemte indstillingsændringer                          | cm og 100 mm oprunding genindlæses fra testens midlertidige filer          |
 
 ## Gentag kontrollen
 
@@ -96,3 +96,11 @@ npm test
 Seneste UI-udvidelse: `table-ui-cases.json` fastlåser 20 sammenligninger af rådiagrammer, CSV, viste tabeller og dækningsområder samt aflæsningsmarkeringer. `table-explanation-cases.json` fastlåser 112 sammenligninger af regneeksemplets mellemregninger, cellevalg og regeltekster. Genkør med `tools/capture_table_ui_reference.py` og `tools/capture_table_explanation.py` (valgfrit `--legacy-repo PATH`). Uden `--record` sammenlignes eksisterende forventninger; de seks scanninger kontrolleres byte for byte. CSV-linjeskift kanoniseres til LF. Samlet TypeScript-kontrol er nu 2.746 tests; browserkontrollen er særskilt med 17 forløb. Se `docs/GRUNDDATAUDKAST.md`.
 
 `editing-cases.json` indeholder 150 forventninger fra uændrede originale datafunktioner og isoleret filindlæsning/gemning. `data-flow-cases.json` indeholder 86 forventninger for korrelationer, trafiktekster og redigerede data gennem beregningsmotoren. `tests/editing.test.ts` og `tests/data-flow.test.ts` matcher dem præcist og kontrollerer uændrede input. Samlet består 2.582 tests inklusive dækningskontroller. Se `docs/DATAREDIGERING.md` for omfang, genkørsel og begrænsninger. Den tidligere `typescript-engine-results.json` bevares som dokumentation for første motorleverance; den nye kontrol ligger i `editing-results.json`.
+
+## M5 og rapportens egne figurkald — 30.09.2026
+
+`personal-diagram-cases.json` registrerer otte originale UI-kald og tre direkte særtilfælde for `byg_designdiagram`, inklusive hele Plotly-specifikationer. De fire oprindelige `figures.json`-specifikationer er bevaret og sammenlignes direkte. To målrettede tests dækker alle cases/argumenter uden tolerance; sammen med dimensionerings-/konstruktionskontrol består 22 tests. Se `docs/PERSONLIGT_DESIGNDIAGRAM.md` for browser- og SVG/Typst-kontrol.
+
+`report-figure-cases.json` registrerer syv originale rapport-preview-forløb: renderargumenter, faktisk snitliste, effektive standarder, størrelse, signatur og eksportlayout. Chrome/rastereksport er erstattet af en neutral PNG under optagelsen; argumentdannelse og geometri udføres af originalen. Dette er en kald-/geometrireference, ikke en raster- eller PDF-sammenligning. Scenarienavne er ikke bevis for snitvalg; de observerede `snit_liste`-værdier er normative, jf. rapportplanens note om custom-input-only.
+
+Genkørsel: `tools/capture_personal_diagram_reference.py` og `tools/capture_report_figure_reference.py` med den gamle apps Python-miljø. Uden `--record` sammenlignes; med flag nægtes eksisterende målfiler, også før originalen startes. Begge kører isoleret a330cfd. Ingen eksisterende forventninger er overskrevet.

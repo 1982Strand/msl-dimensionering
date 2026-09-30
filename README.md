@@ -15,8 +15,9 @@ Beregninger, datagrundlag og funktionalitet skal bevares. Ændringer af eksister
 
 ## Projektets dokumenter
 
-- [Delplan for mellemregninger](docs/MELLEMREGNINGER_PLAN.md) — M1–M8, referencekontrol og særskilt figuraccept; afventer godkendelse før kodning.
-- [Delplan for rapport og firmaprofil](docs/RAPPORT_PLAN.md) — PDF i browseren, bevarede rapportdata og profilredigering; arkitektur/rækkefølge afventer godkendelse.
+- [Delplan for mellemregninger](docs/MELLEMREGNINGER_PLAN.md) — M1–M9, godkendt rækkefølge, konkrete cases og særskilt figuraccept.
+- [Delplan for rapport og firmaprofil](docs/RAPPORT_PLAN.md) — godkendt browserkompilering, bevarede rapportdata og lagring/nulstilling af rapporttekster og valg.
+- [Personligt designdiagram M5](docs/PERSONLIGT_DESIGNDIAGRAM.md) — original Plotly-specifikation/hover og SVG gennem Typst; konkret designaccept afventes.
 - [Migrationsplan](docs/MIGRATIONSPLAN.md) — forslag til faser, leverancer og godkendelser.
 - [Foreløbig funktionskortlægning](docs/FUNKTIONSKORTLAEGNING.md) — kendte områder og kontrolpunkter.
 - [Beslutningslog](docs/BESLUTNINGER.md) — aftaler, åbne spørgsmål og ændringsforslag.
@@ -29,7 +30,7 @@ Beregninger, datagrundlag og funktionalitet skal bevares. Ændringer af eksister
 - [Evaluering af rapportgenerering i TypeScript](docs/RAPPORT_EVALUERING.md) — Word/PDF, LibreOffice, mulige forbedringer og afprøvningskriterier.
 - [Typst-afprøvning](docs/TYPST_AFPROEVNING.md) — ti genererede rapportcases, PDF som primært format og begrænsninger ved PDF til Word.
 
-Referenceversionen er fastlagt til den committede og pushede gamle app, commit `a330cfd6734ac2478be1304a362c69f94e412d25`. TypeScript er valgt til beregningsmotoren i B-014. Lokal lagring i samme browser/computer er valgt i B-019. Opbygningsdesignet er godkendt i B-025. PDF alene med Typst, lokal download og redigerbar firmaprofil er besluttet i B-026–028; Word-eksport udgår. Mellemregninger og rapportintegration er endnu ikke implementeret. Delplanerne forelægges før kodning; øvrige figurer, rapportdesign, adgang og offentliggørelse har særskilt accept.
+Referenceversionen er fastlagt til den committede og pushede gamle app, commit `a330cfd6734ac2478be1304a362c69f94e412d25`. TypeScript er valgt til beregningsmotoren i B-014. Lokal lagring i samme browser/computer er valgt i B-019. Opbygningsdesignet er godkendt i B-025. PDF alene med Typst, lokal download og redigerbar firmaprofil er besluttet i B-026–028; Word-eksport udgår. Delplaner og browserkompilering er godkendt i B-029. M5 er implementeret som visuelt udkast: alle 11 optagne Plotly-specifikationer og fire oprindelige figurer matcher uden tolerance. 22 målrettede Node-tests, ét nyt browserforløb og fire SVG'er gennem browserens Typst-compiler består. Syv rapportfigurcases er optaget separat. B-030 godkender kommende lagring/nulstilling af rapporttekster og valg. Øvrige mellemregninger og rapportintegration er fortsat åbne; figurer, rapportdesign, adgang og offentliggørelse har særskilt accept.
 
 ## Lokalt grunddataudkast
 

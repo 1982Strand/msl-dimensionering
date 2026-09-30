@@ -22,7 +22,7 @@ Efter brugerens fire browserkommentarer (B-024) ligger klassevalgene vandret med
 
 Opbygningsfigurer er tilkoblet med originalens tre/fire snit, fælles lodrette skala, netkoter, optimale niveauer, indtastet reference og visningsindstillinger. Seks originale figurcases matcher uden tolerance. Placeringsbeskeder følger den tegnede lagfordeling. Se `OPBYGNINGSFIGURER.md`; det forelagte design er godkendt i B-025. PDF-kontrol og andre figurers visuelle accept udestår.
 
-Personligt designdiagram, endepunkter, fulde mellemregninger/koblingsforklaringer, produktgruppernes komplette tabeller og rapporttilkobling udestår. En del originale hjælpetekster og statusoplysninger skal stadig overføres. Resultatoversigtens fulde fremhævelser og rå/eksakte referencenoter er heller ikke afsluttet.
+Personligt designdiagram M5 og endepunktvalg er tilkoblet med samme Plotly-specifikation/hover som originalen; SVG-eksport er afprøvet gennem browserens Typst-compiler. Visuel accept afventes, se `PERSONLIGT_DESIGNDIAGRAM.md`. Fulde mellemregninger/koblingsforklaringer, produktgruppernes komplette tabeller og rapporttilkobling udestår. Rå/eksakte referencenoter hører til M4; resterende originale hjælpetekster, statusoplysninger og resultatfremhævelser hører til M9. Se den godkendte `MELLEMREGNINGER_PLAN.md`.
 
 Cv-korrelationstabellen findes nu lokalt som popup. Trafikklasse-korrelationen åbnes fortsat via korrelationssiden; originalens lokale trafikklassevisning på dimensioneringssiden mangler. Forsiden starter fortsat på Materialer under udviklingen. Samlet navigation og visuel accept behandles senere. Dette udkast er ikke en færdig offentlig app.
 

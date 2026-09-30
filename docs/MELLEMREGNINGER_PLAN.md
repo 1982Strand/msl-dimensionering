@@ -1,6 +1,6 @@
 # Delplan: fulde mellemregninger
 
-30.09.2026. **Forslag til godkendelse før kodning (A-011).** Grundlag: brugerens `CODEX-OPGAVE.md`, AGENTS.md og beslutninger B-025–028. Denne plan implementerer ingen funktioner.
+30.09.2026. **Godkendt i A-011/B-029 med brugerens præciseringer.** Grundlag: den genlæste/rettede `CODEX-OPGAVE.md`, AGENTS.md og B-025–030. Casetabellerne nedenfor fastlægger konkrete input og kontroller før implementering; øvrige dele end M5 er fortsat planlagte.
 
 Reference er den isolerede gamle app ved commit `a330cfd6734ac2478be1304a362c69f94e412d25`. Linjer nedenfor henviser til dens `app.py`, medmindre andet er angivet. Beregninger, standardværdier, valg, betingelser og tekster bevares. Opbygningsdesign er godkendt i B-025; det godkender ikke de nye mellemregningsfigurer.
 
@@ -10,7 +10,7 @@ Reference er den isolerede gamle app ved commit `a330cfd6734ac2478be1304a362c69f
 2. **M6 og M2:** φᵥ-opsummering og beregningstabeller.
 3. **M1 tekst og tal:** alle seks trafiktrin og fire belastningstrin, før figurerne bygges.
 4. **M1 figurer:** selvstændig SVG-renderer og konkret visuelt udkast til godkendelse.
-5. **M3, M4, M7 og M8:** de resterende forklaringer, produktgrupper og lokale korrelationer.
+5. **M3, M4, M7, M8 og M9:** de resterende forklaringer, produktgrupper, lokale korrelationer, hjælpetekster og statusfremhævelser.
 
 Rapportens datadel kan følge efter M5 parallelt med de resterende mellemregninger som arbejdsrækkefølge; en komplet rapport afsluttes først, når dens nødvendige figurer og data er kontrolleret. M1-figurerne indgår ikke i den gamle rapport og tilføjes ikke til PDF'en uden en særskilt godkendelse.
 
@@ -38,7 +38,7 @@ FIG-001–004 i `reference/figures.json` er udgangspunkt for M5. Nye cases tilf�
 
 **Tilstande:** begge tilstande og dimensioneringsgrundlag; begge enheder; intervalprodukter; ugyldige kurver og yderområde. Brugerdefineret omfatter oprindelige φ-kurver og valg for indtastet opbygning/endepunkter.
 
-**Leverance:** en fælles figurmodel og renderer, der kan vises i React og eksporteres som vektor til rapporten. Kurvernes punkter, φ pr. kurve, interpolation, skala, akser, signatur, markører, interval mellem optimal og konservativ løsning og yderområdetekst følger originalen. Punkter anvender eksakte tykkelser før oprunding. Ugyldige løsninger får originalens visning, aldrig et opdigtet punkt.
+**Leverance:** portér `byg_designdiagram` til samme Plotly-specifikation som originalen. Sammenlign direkte med `reference/figures.json`, inklusive layout, traces, shapes og hover. Vis med den eksisterende plotly.js-pakke, bevar hover og eksportér SVG til PDF. Afprøv den faktiske Plotly-SVG med browserens Typst-compiler. Kurvernes punkter, φ pr. kurve, interpolation, skala, akser, signatur, markører og interval mellem optimal og konservativ løsning følger originalen. Punkter anvender eksakte tykkelser før oprunding. Diagrammets x-akse er fortsat cm også ved mm-visning, som originalen. Ugyldige løsninger får originalens visning, aldrig et opdigtet punkt.
 
 **Kontrol:** de fire eksisterende scenariers personlige Plotly-specifikationer sammenlignes på alle relevante data og valgbetingelser. Supplér trafik/interpolation/yderområde, hvis de ikke er dækket. Registrér originale koordinater og akseomdannelse før portering; et andet renderformat skal bevare disse relationer og dokumentere sin struktur.
 
@@ -103,6 +103,29 @@ FIG-001–004 i `reference/figures.json` er udgangspunkt for M5. Nye cases tilf�
 **Tilstande:** trafikklasse i begge tilstande/enheder; direkte opslag og Eᵤ-interpolation; ugyldighed/yderområde efter originalens regler. Produktintervaller må ikke ændre selve trafik-korrelationen. Belastningsklassens synlighedsregel bevares.
 
 **Leverance og kontrol:** vis korrelationen lokalt på dimensioneringssiden med originalens indhold og valg; den nuværende henvisning til VejDim er ikke fuld migrering. Sammenlign tabeller, markeringer, hjælpetekst, tal og visningsbetingelser. Genbrug `CorrelationExample`/fælles data, hvor de matcher. Afhænger af M1's kontrollerede trafikdata.
+
+## M9 — resterende hjælp, status og fremhævelser
+
+**Original:** de aktive Standard/Brugerdefineret-forløb (`app.py:6057`, `app.py:6521`, `app.py:6852`) og deres UI-hjælpere. `DIMENSIONERINGSUDKAST.md` er restancelisten; konkrete kald/synlighedsregler registreres i isoleret original før portering.
+
+**Tilstande:** begge tilstande og grundlag, mm/cm, intervalprodukt, ugyldig kombination, yderområde og rå/eksakte visningsindstillinger. M4 beholder net-/referencenoter; M9 dækker øvrige resterende hjælpetekster, statusoplysninger og resultatfremhævelser, så intet falder mellem delene. Sammenlign tekster, værdier, fremhævelsesbetingelser, rækkefølge og synlighed. Afhænger af M1–M8 og afslutter dimensioneringssidens restancer; navigation/hjælpekapitler uden for siden er separate opgaver.
+
+## Konkrete cases pr. del
+
+De fælles inputprofiler er syntetiske og bruger indbyggede standarddata. FIG-001 er Standard/Eᵤ10/BK4/TX160 (ugyldig 2-lagskombination); FIG-002 Standard/Eᵤ5/BK4/NX850; FIG-003 Brugerdefineret/Eᵤ5/BK4/NX850 med standardmaterialelag; FIG-004 er FIG-003 i cm. TR-1 er Standard/Eᵤ10/T4/TX160; TR-2 Brugerdefineret/Eᵤ7/T4/NX850 i cm. OUT-1 er Standard/Eᵤ10/T1 med standardafvisning; OUT-2 gentager med originalens VejDim-yderregel og skalering. PH-1 er Brugerdefineret/Eᵤ5/BK4/NX850 med manuel φ40; PH-2 samme sag med søjlemetode. REF-EMPTY er originalens tomme aktive tabel. Nye forventninger optages før den berørte del og får egne, ikke-overskrivbare filer.
+
+| Del          | Cases/input                                                                       | Præcis kontrol                                                                                                                    |
+| ------------ | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| M5           | FIG-001–004; TR-1/TR-2; OUT-2; PH-1/PH-2; REF-EMPTY                               | Hele Plotly-specifikationen; direkte opslag/interpolation, intervalbånd, ugyldige punkter, skala, φ pr. kurve, hover; SVG i Typst |
+| M6           | FIG-001/003/004; TR-2; PH-1/PH-2; OUT-1/2                                         | Synlighed, alle lag/vægte, φ-formel, korrektion og mm-ækvivalent                                                                  |
+| M2           | FIG-001–004; TR-1/2; OUT-1/2; FIG-003 med oprunding 1 mm og minimum slået fra     | Uarm/1/2 lag, bedste løsning, alle mellemresultater, minimum og oprunding                                                         |
+| M1 tekst/tal | FIG-001/002/004; TR-1/2; OUT-1/2; PH-2                                            | Fire/seks trin, eksakte regnelinjer, enheder, valg og hjælp                                                                       |
+| M1 SVG       | TR-1 (direkte punkt), TR-2 (interpolation), FIG-002 (interval), OUT-2 (randkurve) | Begge SVG-strukturer, alle punkter/linjer/pile/etiketter og koordinater                                                           |
+| M3           | FIG-001/003/004; TR-2; OUT-1/2; FIG-003 med øverste net i dæklag                  | Afsnit, advarsler/anbefalinger, udførelseskrav, betingelser og enheder                                                            |
+| M4           | FIG-001–004; TR-2; PH-2; OUT-2; FIG-002 med visning af præcise værdier            | Optimal/konservativ note, netniveauer, lagtillæg, rå/eksakt reference                                                             |
+| M7           | FIG-001–004; TR-1/2; OUT-1/2                                                      | Samtlige grupper, sortering, celler, krav og ugyldige værdier                                                                     |
+| M8           | TR-1/2; OUT-1/2; TR-1 med ændret SG-værdi i aktiv VejDim-række; FIG-001           | Lokal tabel/markering, interpolation, opdatering, afvisning og skjult BK-visning                                                  |
+| M9           | FIG-001–004; TR-1/2; OUT-1/2; FIG-001 med præcise værdier til/fra                 | Resterende hjælpetekster, statusoplysninger og fremhævelser i alle grene                                                          |
 
 ## Afslutning og godkendelser
 
