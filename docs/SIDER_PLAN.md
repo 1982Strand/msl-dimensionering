@@ -1,6 +1,6 @@
 # Delplan: Geonet-database og Hjælp
 
-30.09.2026. **Forslag til godkendelse før kodning.** De to sider findes i originalens navigation (`app.py:10720–10731`), men mangler i den nye app og i de øvrige delplaner. Siderne har ingen beregninger. Indhold, rækkefølge og tekster bevares uændret. Udseendet følger den godkendte designretning (B-020); et konkret udkast forelægges før siderne betragtes som afsluttet.
+30.09.2026. **Godkendt i B-036.** De to sider findes i originalens navigation (`app.py:10720–10731`), men mangler i den nye app og i de øvrige delplaner. Siderne har ingen beregninger. Indhold, rækkefølge og tekster bevares uændret. Udseendet følger den godkendte designretning (B-020); et konkret udkast forelægges før siderne betragtes som afsluttet.
 
 ## S1 — Geonet-database
 
