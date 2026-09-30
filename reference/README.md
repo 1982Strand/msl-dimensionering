@@ -108,3 +108,9 @@ Genkørsel: `tools/capture_personal_diagram_reference.py` og `tools/capture_repo
 ## Aktiv M6 og korrigeret M2-kortlægning
 
 `phi-summary.json` registrerer 11 originale AppTest-forløb, fire uændrede AST-helpercases og de originale funktionskald. Kode-/HTML-tekster sammenlignes uden normalisering af whitespace eller numerisk tolerance. Se `docs/PHI_OPSUMMERING.md`. Genkør med `tools/capture_phi_reference.py`; `--record` afviser eksisterende målfil før optagelse. M2-helperen har ingen kald og aktiveres ikke efter B-032.
+
+## Geonet-database og Hjælp (S1/S2, B-036)
+
+`tools/capture_pages_reference.py` optager fra isoleret `a330cfd` den viste side for Geonet-database samt Hjælp (standardvisning og alle kapitler åbne), hjælpeparserens output (`laes_kapitler`) med typenavne, `KILDEDOKUMENTER` og kontrolsummer for kapitelfilerne. Resultatet er `reference/pages-cases.json`; `--record` opretter kun, og uden flag sammenlignes. Første optagelse og en ny sammenligning gav samme resultat.
+
+De otte kapitelfiler er kopieret uændret fra `a330cfd` til `src/content/hjaelp/`. Kontrolsummerne i referencen gælder arkivets bytes med CRLF; projektet gemmer markdown med LF (`.gitattributes`). Indholdet er identisk efter normalisering af linjeskift, og originalens parser læser med normaliserede linjeskift.
