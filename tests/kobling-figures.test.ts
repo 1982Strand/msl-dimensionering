@@ -43,7 +43,7 @@ const roles = {
   '#15211A': 'ustab',
   '#2C5AA0': 'lag1',
   '#7B3F8C': 'lag2',
-  '#1B6B34': 'ind',
+  '#1B6B34': 'bruger',
   '#C4CAC5': 'neutral',
 } as const;
 const role = (color: string) => {

@@ -122,13 +122,13 @@ export function koerslerFigure(
       true,
     ),
     curves: [{ name: 'kørte punkter', role: 'ustab', dashed: false, dots: true, points }],
-    points: [{ x: ubundet, y: eu, role: 'ind', hollow: false, name: legend[1] }],
+    points: [{ x: ubundet, y: eu, role: 'bruger', hollow: false, name: legend[1] }],
     guides: [
-      { from: [x[0], eu], to: [ubundet, eu], role: 'ind' },
-      { from: [ubundet, eu], to: [ubundet, Math.exp(y[0])], role: 'ind' },
+      { from: [x[0], eu], to: [ubundet, eu], role: 'bruger' },
+      { from: [ubundet, eu], to: [ubundet, Math.exp(y[0])], role: 'bruger' },
     ],
-    labels: [{ at: [ubundet, eu], text: laengde(ubundet, unit), side: 1, role: 'ind' }],
-    legend: legend.map((text, i) => ({ text, role: i ? 'ind' : 'ustab', hollow: false })),
+    labels: [{ at: [ubundet, eu], text: laengde(ubundet, unit), side: 1, role: 'bruger' }],
+    legend: legend.map((text, i) => ({ text, role: i ? 'bruger' : 'ustab', hollow: false })),
   };
 }
 
@@ -206,7 +206,7 @@ export function diagramFigure({
     at: [x[0], eu],
     text: `Eᵤ ${pythonFixed(eu, 0, true).replaceAll(',', '.')}`,
     side: 1,
-    role: 'ind',
+    role: 'hjaelp',
   });
   return {
     kind: 'diagram',
@@ -216,7 +216,7 @@ export function diagramFigure({
     y: axis(y, 'Underbund Eᵤ [MPa]', koblingTicks(...y), (v) => pythonFixed(v)),
     curves,
     points,
-    guides: [{ from: [x[0], eu], to: [x[1], eu], role: 'ind' }],
+    guides: [{ from: [x[0], eu], to: [x[1], eu], role: 'hjaelp' }],
     labels,
     legend: legend.map((text, i) => ({ text, role: points[i].role, hollow: points[i].hollow })),
   };

@@ -11,9 +11,12 @@ export const TEMA = {
   serie: {
     ustab: '#263a32',
     lag1: '#2a78d6',
-    lag2: '#eb6834',
-    ind: '#4a3aa7',
+    lag2: '#7b1fa2',
+    ind: '#b42318',
     neutral: '#65736d',
+    // M1-figurerne: brugerens Eᵤ som originalens kørselsfigur (grøn) og Eᵤ-hjælpelinjen som originalens diagramfigur (grå).
+    bruger: '#1b6b34',
+    hjaelp: '#9aa39c',
   },
 } as const;
 

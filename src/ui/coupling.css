@@ -42,8 +42,9 @@
 }
 .coupling-explanation .kob-nr {
   font:
-    600 11px/1.6 'IBM Plex Mono',
-    monospace;
+    600 11px/1.6 'Segoe UI',
+    system-ui,
+    sans-serif;
   color: var(--bg-green-700);
 }
 .coupling-explanation .kob-titel {
@@ -59,8 +60,9 @@
 }
 .coupling-explanation .kob-res-tal {
   font:
-    600 15px/1.3 'IBM Plex Mono',
-    monospace;
+    600 15px/1.3 'Segoe UI',
+    system-ui,
+    sans-serif;
   color: var(--bg-ink);
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
@@ -77,7 +79,7 @@
   color: var(--bg-ink-45);
 }
 .coupling-explanation .kob-res-note.kob-groen {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'Segoe UI', system-ui, sans-serif;
   color: var(--bg-green-700);
 }
 .coupling-explanation .kob-krop {
@@ -153,8 +155,9 @@
   display: inline-block;
   white-space: nowrap;
   font:
-    500 9.5px/1 'IBM Plex Mono',
-    monospace;
+    500 9.5px/1 'Segoe UI',
+    system-ui,
+    sans-serif;
   color: #8a6a1f;
   background: #fdf6e7;
   border: 1px solid #ebdcb8;
@@ -176,8 +179,9 @@
 }
 .coupling-explanation .kob-kort-hoved {
   font:
-    600 8.5px/1.35 'IBM Plex Mono',
-    monospace;
+    600 8.5px/1.35 'Segoe UI',
+    system-ui,
+    sans-serif;
   letter-spacing: 0.06em;
   color: var(--bg-ink-45);
 }
@@ -211,15 +215,17 @@
 }
 .coupling-explanation .kob-klasse-hoved {
   font:
-    600 8.5px/1.35 'IBM Plex Mono',
-    monospace;
+    600 8.5px/1.35 'Segoe UI',
+    system-ui,
+    sans-serif;
   letter-spacing: 0.06em;
   color: var(--bg-ink-25);
 }
 .coupling-explanation .kob-klasse-tal {
   font:
-    500 13px/1.4 'IBM Plex Mono',
-    monospace;
+    500 13px/1.4 'Segoe UI',
+    system-ui,
+    sans-serif;
   color: var(--bg-ink-45);
   margin-top: 4px;
   font-variant-numeric: tabular-nums;
@@ -252,8 +258,9 @@
   gap: 4px 14px;
   margin-top: 9px;
   font:
-    400 10px/1.4 'IBM Plex Mono',
-    monospace;
+    400 10px/1.4 'Segoe UI',
+    system-ui,
+    sans-serif;
   color: var(--bg-ink-70);
 }
 .coupling-explanation .kob-sign > div {
@@ -289,8 +296,9 @@
 }
 .coupling-explanation .kob-lag-hoved {
   font:
-    600 9px/1 'IBM Plex Mono',
-    monospace;
+    600 9px/1 'Segoe UI',
+    system-ui,
+    sans-serif;
   letter-spacing: 0.08em;
   margin-bottom: 7px;
 }
@@ -298,7 +306,7 @@
   color: #2a78d6;
 }
 .coupling-explanation .kob-2lag {
-  color: #eb6834;
+  color: #7b1fa2;
 }
 .coupling-explanation .kob-skel {
   height: 1px;
@@ -346,10 +354,16 @@
   background: #2a78d6;
 }
 .coupling-explanation .kob-sign-lag2 {
-  background: #eb6834;
+  background: #7b1fa2;
 }
 .coupling-explanation .kob-sign-ind {
-  background: #4a3aa7;
+  background: #b42318;
+}
+.coupling-explanation .kob-sign-bruger {
+  background: #1b6b34;
+}
+.coupling-explanation .kob-sign-hjaelp {
+  background: #9aa39c;
 }
 .coupling-canvas {
   position: relative;
