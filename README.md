@@ -21,7 +21,7 @@ Kontroller:
 npm run typecheck
 npm test               # motor-, data- og referencetests
 npm run format:check
-npm run test:browser   # Playwright-forløb
+npm run test:browser   # Playwright-forløb (egen port: $env:PW_PORT=5181)
 ```
 
 Python bruges kun til at optage og efterprøve referencer fra den gamle app; se [reference/README.md](reference/README.md).
