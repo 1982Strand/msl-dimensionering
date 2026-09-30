@@ -1,6 +1,7 @@
 import { Fragment } from 'react';
 import { koblingExplanation, type CouplingNode } from '../engine/kobling-explanation';
 import type { DimensioningInput, dimensioner } from '../engine/dimensionering';
+import { CouplingFigure } from './CouplingFigure';
 
 function Content({ nodes }: { nodes: CouplingNode[] }) {
   return nodes.map((n, i) => {
@@ -62,18 +63,13 @@ export function CouplingExplanation({
                 </small>
               </div>
             </div>
-            <div className={step.figure ? 'coupling-columns' : undefined}>
+            <div className={step.figure?.model ? 'coupling-columns' : undefined}>
               <div className="coupling-body">
                 <Content nodes={step.body} />
               </div>
-              {step.figure && (
+              {step.figure?.model && (
                 <figure className="coupling-figure">
-                  <div className="coupling-placeholder">Figur følger</div>
-                  <ul>
-                    {step.figure.legend.map((entry, i) => (
-                      <li key={i}>{entry}</li>
-                    ))}
-                  </ul>
+                  <CouplingFigure model={step.figure.model} />
                   <figcaption>{step.figure.caption}</figcaption>
                 </figure>
               )}
