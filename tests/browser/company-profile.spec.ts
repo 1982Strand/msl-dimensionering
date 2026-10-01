@@ -57,8 +57,23 @@ test('R5 live revision, logo, feltfejl, genåbning, eksport/import og nulstillin
     ['Overskrift 1', 'Komprimering – prøve:'],
   ]) {
     const revision = await page.getByTestId('compile-state').getAttribute('data-revision');
+    // Med varm compiler er spærringen kortvarig; den registreres, mens den står i DOM.
+    await page.evaluate(() => {
+      const w = window as unknown as { __locked: boolean };
+      w.__locked = false;
+      new MutationObserver(() => {
+        if (
+          [...document.querySelectorAll('button')].some(
+            (b) => b.textContent?.trim() === 'Hent PDF' && b.disabled,
+          )
+        )
+          w.__locked = true;
+      }).observe(document.body, { subtree: true, childList: true, attributes: true });
+    });
     await page.getByLabel(label, { exact: true }).fill(value);
-    await expect(page.getByRole('button', { name: 'Hent PDF', exact: true })).toBeDisabled();
+    await expect
+      .poll(() => page.evaluate(() => (window as unknown as { __locked: boolean }).__locked))
+      .toBe(true);
     old = await ready(page, old);
     expect(await page.getByTestId('compile-state').getAttribute('data-revision')).not.toBe(
       revision,
