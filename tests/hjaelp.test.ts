@@ -112,7 +112,7 @@ for (const [name, open] of [
 ] as const) {
   test(`S2: ${name} matcher originalens viste tekster, HTML-formler, figurer og knapper i rækkefølge`, () => {
     const original = reference[name].filter((event: { type: string }) => event.type !== 'column');
-    // Rapportsiden findes i originalen, men afventer implementation i den nye app.
+    // Rapportsiden findes nu også i den nye app (R4/B-036).
     const originalRoutes = { ...HJAELP_ROUTES, rapport: '#rapport' };
     assert.deepEqual(originalContent([...open], originalRoutes), original);
     const hiddenLabels = new Set(
@@ -148,5 +148,7 @@ test('S2: eksisterende ruter og skjulte ukendte sider følger B-036', () => {
   for (const link of links) assert.equal(link.href, HJAELP_ROUTES[link.side]);
   assert.ok(links.some((link) => link.href === '#vejdim'));
   assert.ok(links.some((link) => link.href === '#geonet-database'));
-  assert.ok(!links.some((link) => link.side === 'rapport'));
+  // Originalens otte kapitler har ingen rapport-Gaatil; ruten findes som i originalens
+  // sideliste, så en genvej til Rapport virker (B-036).
+  assert.equal(HJAELP_ROUTES.rapport, '#rapport');
 });
