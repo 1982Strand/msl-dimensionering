@@ -27,4 +27,8 @@ jobs:
       - run: npm run format:check
       - run: npm test
       - run: npx playwright install --with-deps chromium
+      # Rapporttesten (B-049) læser PDF-teksten med pdftotext; Windows-billedet har det i forvejen.
+      - name: Installer pdftotext
+        if: runner.os == 'Linux'
+        run: sudo apt-get install -y --no-install-recommends poppler-utils
       - run: npm run test:browser
