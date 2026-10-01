@@ -33,7 +33,10 @@ async function ready(page: Page, old?: string | null) {
   return frame.getAttribute('src');
 }
 async function exported(page: Page) {
-  const downloaded = page.waitForEvent('download');
+  // Headless Chromium kan hente PDF-forhåndsvisningen som download; vent på profilfilen.
+  const downloaded = page.waitForEvent('download', {
+    predicate: (d) => d.suggestedFilename() === 'firmaprofil.json',
+  });
   await page.getByRole('button', { name: 'Eksportér profil', exact: true }).click();
   const file = await downloaded;
   expect(file.suggestedFilename()).toBe('firmaprofil.json');
@@ -226,7 +229,10 @@ test('R5 live revision, logo, feltfejl, genåbning, eksport/import og nulstillin
     'src',
     /^data:image\/png;base64,/,
   );
-  const downloading = page.waitForEvent('download');
+  const downloading = page.waitForEvent('download', {
+    // Kun »Hent PDF«; headless Chromium kan også hente forhåndsvisningen som download.
+    predicate: (d) => d.suggestedFilename().startsWith('Dimensionering - '),
+  });
   await page.getByRole('link', { name: 'Hent PDF', exact: true }).click();
   const pdf = await readFile((await (await downloading).path())!);
   expect(pdf.subarray(0, 4).toString()).toBe('%PDF');

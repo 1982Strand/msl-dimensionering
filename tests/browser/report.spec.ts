@@ -261,7 +261,10 @@ test('rapportkæden, lokal compiler/skrifter, PDF-download og revisionens spærr
   console.log(
     `R4 første kompilering inklusive indlæsning: ${await page.getByTestId('compile-time').textContent()} ms`,
   );
-  const downloaded = page.waitForEvent('download');
+  const downloaded = page.waitForEvent('download', {
+    // Kun »Hent PDF«; headless Chromium kan også hente forhåndsvisningen som download.
+    predicate: (d) => d.suggestedFilename().startsWith('Dimensionering - '),
+  });
   await page.getByRole('link', { name: 'Hent PDF', exact: true }).click();
   const download = await downloaded;
   expect(download.suggestedFilename()).toBe('Dimensionering - MSL test - 2026-09-29.pdf');
