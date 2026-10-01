@@ -114,7 +114,7 @@ export function parseReportText(source: string): FormattedText {
   };
 }
 
-export type TextFormatAction = 'bold' | 'italic' | 'bullet';
+export type TextFormatAction = 'bold' | 'italic' | 'bullet' | 'indent';
 /** Returnerer også markeringen, så editoren kan bevare fokus og det valgte indhold. */
 export function formatTextSelection(
   value: string,
@@ -122,7 +122,7 @@ export function formatTextSelection(
   end: number,
   action: TextFormatAction,
 ) {
-  if (action !== 'bullet') {
+  if (action === 'bold' || action === 'italic') {
     const marker = action === 'bold' ? '**' : '*';
     return {
       value: value.slice(0, start) + marker + value.slice(start, end) + marker + value.slice(end),
@@ -135,20 +135,23 @@ export function formatTextSelection(
   const next = value.indexOf('\n', lastSelected);
   const to = next < 0 ? value.length : next;
   const selected = value.slice(from, to);
+  // Punkt indsættes efter linjens indrykning; Indrykning (B-052) er et tabulatortegn forrest,
+  // svarende til et tryk på tabulator i begyndelsen af linjen.
+  const insert = action === 'bullet' ? '• ' : '\t';
   const insertions: number[] = [];
   let offset = from;
   const replacement = selected
     .split('\n')
     .map((line) => {
-      const indent = line.match(/^[ \t]*/)![0];
+      const indent = action === 'bullet' ? line.match(/^[ \t]*/)![0] : '';
       insertions.push(offset + indent.length);
       offset += line.length + 1;
-      return indent + '• ' + line.slice(indent.length);
+      return indent + insert + line.slice(indent.length);
     })
     .join('\n');
   return {
     value: value.slice(0, from) + replacement + value.slice(to),
-    start: start + 2 * insertions.filter((p) => p <= start).length,
-    end: end + 2 * insertions.filter((p) => p <= lastSelected).length,
+    start: start + insert.length * insertions.filter((p) => p <= start).length,
+    end: end + insert.length * insertions.filter((p) => p <= lastSelected).length,
   };
 }

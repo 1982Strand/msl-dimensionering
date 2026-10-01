@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import ReactMarkdown from 'react-markdown';
-import { Bold, Italic, List } from 'lucide-react';
+import { Bold, IndentIncrease, Italic, List } from 'lucide-react';
 import { Tooltip, TooltipTrigger, TooltipContent } from '../components/ui/tooltip';
 import { formatTextSelection, type TextFormatAction } from '../report/text-format';
 import { formatPhone } from '../report/phone-format';
@@ -450,6 +450,7 @@ export function Report({
               ['bold', 'Fed', Bold],
               ['italic', 'Kursiv', Italic],
               ['bullet', 'Punkt', List],
+              ['indent', 'Indrykning', IndentIncrease],
             ] as const
           ).map(([action, label, Icon]) => (
             <Tooltip key={action}>
@@ -469,7 +470,9 @@ export function Report({
               <TooltipContent>
                 {label === 'Punkt'
                   ? 'Sæt punkt foran de markerede linjer'
-                  : `Formatér markeringen: ${label.toLowerCase()}`}
+                  : label === 'Indrykning'
+                    ? 'Indryk de markerede linjer som et tryk på tabulator. Et indrykket punkt bliver et underpunkt.'
+                    : `Formatér markeringen: ${label.toLowerCase()}`}
               </TooltipContent>
             </Tooltip>
           ))}

@@ -29,7 +29,7 @@ export const REPORT_INTRO =
 export const REPORT_NO_CALCULATION =
   'Der skal først foretages en dimensionering med et valgt geonet, før rapporten kan genereres.\n\nDimensioneringen udføres under **Dimensionering**, i Standard eller Brugerdefineret. Rapporten bygger på den seneste dimensionering.';
 export const REPORT_FORMAT_HELP =
-  'Formatering: `**fed**`, `*kursiv*` og • eller - efterfulgt af mellemrum for punkter. Indryk punkter for underpunkter. Tomme linjer starter et nyt afsnit.';
+  'Formatering: `**fed**`, `*kursiv*` og • eller - efterfulgt af mellemrum for punkter. Indryk punkter med Indrykning for underpunkter. Tomme linjer starter et nyt afsnit.';
 export const PROJECT_FIELDS = [
   ['projekt', 'Projekt'],
   ['omfang', 'Omfang'],

@@ -133,3 +133,25 @@ test('B-046: værktøjer bevarer valgt tekst og indrykning; tom markering placer
     end: 2,
   });
 });
+
+test('B-052: Indrykning indsætter et tabulatortegn forrest i de markerede linjer', () => {
+  assert.deepEqual(formatTextSelection('• a\n• b\nc', 4, 7, 'indent'), {
+    value: '• a\n\t• b\nc',
+    start: 5,
+    end: 8,
+  });
+  assert.deepEqual(formatTextSelection('a\nb', 0, 3, 'indent'), {
+    value: '\ta\n\tb',
+    start: 1,
+    end: 5,
+  });
+  // Et indrykket punkt under et punkt bliver et underpunkt (B-046).
+  const lines = parseReportText('• a\n\t• b').paragraphs[0].lines;
+  assert.deepEqual(
+    lines.map((l) => [l.kind, l.depth]),
+    [
+      ['bullet', 0],
+      ['bullet', 1],
+    ],
+  );
+});
