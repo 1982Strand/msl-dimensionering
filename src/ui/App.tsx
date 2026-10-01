@@ -8,6 +8,7 @@ import { Settings } from './Settings';
 import { Dimensioning } from './Dimensioning';
 import { DesignDraft, SidebarPreview } from './DesignDraft';
 import { Help } from './Help';
+import { ReportCompileCheck } from './ReportCompileCheck';
 export function App() {
   const [page, setPage] = useState(() => location.hash.slice(1) || 'materialer');
   useEffect(() => {
@@ -16,6 +17,7 @@ export function App() {
     return () => window.removeEventListener('hashchange', update);
   }, []);
   if (page === 'designudkast-sidebar') return <SidebarPreview />;
+  if (page === 'rapport-kompilering') return <ReportCompileCheck />;
   return (
     <>
       <header className="topbar">
