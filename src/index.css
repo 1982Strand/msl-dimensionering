@@ -14,6 +14,8 @@
   --color-accent: #edf2f0;
   --color-accent-foreground: #173d39;
   --color-destructive: #b42318;
+  --color-popover: #ffffff;
+  --color-popover-foreground: var(--foreground);
   --color-border: #dce3dd;
   --color-input: #d3ddd5;
   --color-ring: #548176;
