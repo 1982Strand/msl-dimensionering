@@ -1,8 +1,8 @@
 # Foreløbig funktionskortlægning
 
-Status: indledende kildeinspektion den 29. september 2026, ikke en komplet funktionsaudit eller kørselsverifikation. Kildestier er relative til `C:\geonet_beregning`. Linjer henviser til den observerede arbejdskopi og kan flytte sig.
+Status: denne indledende oversigt fra 29. september 2026 er nu suppleret af [funktionsmatrixen](FUNKTIONSMATRIX.md) og [kørte referencecases](../reference/README.md). Kildestier er relative til `C:\geonet_beregning`. Linjer henviser til referencecommit `a330cfd`.
 
-Alle områder nedenfor afventer detaljeret kortlægning, referencecases, implementering og kontrol. Ingen er markeret som færdigmigreret.
+Kontroldækning og resterende arbejde fremgår af funktionsmatrixen. Ingen områder er markeret som færdigmigreret.
 
 | ID | Område | Observeret kilde | Hvad skal bevares/kontrolleres |
 | --- | --- | --- | --- |

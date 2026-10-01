@@ -1,0 +1,2940 @@
+{
+  "source": {
+    "commit": "a330cfd6734ac2478be1304a362c69f94e412d25",
+    "data_profile": "built-in defaults; no user JSON",
+    "files": {
+      "app.py": "ba6b29870a92df46025a8d936b3ab6ea16f32b1f7122e48652a640182f9530e5",
+      "ui.py": "ffa3e583a19d4ede16873963bed70b819e3402b320878ba49166295fd5558d7c",
+      "core/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "core/afrunding.py": "9149c3536c388a82e2f242e939a1a1f998e01bf828a6ab378c927a757ad816e4",
+      "core/calculator.py": "bf46d2642d6083439b8c03c46e24eb18f156fe1a734af7e6fa866f16626ad227",
+      "core/data.py": "e164a0f3bb42cd0d565dfc45d2895031a03b2cb8e93b05a0a65097790d0f0540",
+      "core/diagram.py": "b171b7486e5aa1a43590f9f8a28376680bd2a50f7155535fcbfb7198d38df461",
+      "core/enhed.py": "256884745b59e94d0211a610e8bf092942a0fec5d147e48a7502833912583cf2",
+      "core/hjaelp.py": "5179b206a31224bf2582fdc31bf6520fd68552da1206dd5f7f034ab249e0ac78",
+      "core/lagfordeling.py": "0426d2021e037c8e993fefc104b69cfbf03526408cadd1303775c32f5577716b",
+      "core/placement.py": "9668ab8bfe106722e4735576d72dcb86280470ee60fea14feae08bf8f3ccf9d2",
+      "core/rapport.py": "b6235563354b72f81d386afc703db273eb08a2d6f9857d4f73499f7b2c61b898",
+      "core/validators.py": "5258b68728afa7d2224d1e5b090ff6c78f7a3c568408ad367dbcd210fb71428c"
+    }
+  },
+  "comparison": "exact; no migration tolerance",
+  "cases": [
+    {
+      "id": "boundary-0001",
+      "function": "pythonRound",
+      "input": {
+        "value": -1038.55,
+        "digits": 0
+      },
+      "expected": -1039.0
+    },
+    {
+      "id": "boundary-0002",
+      "function": "pythonRound",
+      "input": {
+        "value": -1038.55,
+        "digits": 1
+      },
+      "expected": -1038.5
+    },
+    {
+      "id": "boundary-0003",
+      "function": "pythonRound",
+      "input": {
+        "value": -1038.55,
+        "digits": 2
+      },
+      "expected": -1038.55
+    },
+    {
+      "id": "boundary-0004",
+      "function": "pythonRound",
+      "input": {
+        "value": -1038.55,
+        "digits": 4
+      },
+      "expected": -1038.55
+    },
+    {
+      "id": "boundary-0005",
+      "function": "pythonRound",
+      "input": {
+        "value": -1038.55,
+        "digits": -1
+      },
+      "expected": -1040.0
+    },
+    {
+      "id": "boundary-0006",
+      "function": "pythonFixed",
+      "input": {
+        "value": -1038.55,
+        "digits": 0
+      },
+      "expected": "-1,039"
+    },
+    {
+      "id": "boundary-0007",
+      "function": "pythonFixed",
+      "input": {
+        "value": -1038.55,
+        "digits": 1
+      },
+      "expected": "-1,038.5"
+    },
+    {
+      "id": "boundary-0008",
+      "function": "pythonFixed",
+      "input": {
+        "value": -1038.55,
+        "digits": 2
+      },
+      "expected": "-1,038.55"
+    },
+    {
+      "id": "boundary-0009",
+      "function": "pythonFixed",
+      "input": {
+        "value": -1038.55,
+        "digits": 4
+      },
+      "expected": "-1,038.5500"
+    },
+    {
+      "id": "boundary-0010",
+      "function": "enhed.tal",
+      "input": {
+        "v_mm": -1038.55,
+        "enhed": "mm",
+        "decimaler": 0
+      },
+      "expected": "−1.039"
+    },
+    {
+      "id": "boundary-0011",
+      "function": "enhed.tal",
+      "input": {
+        "v_mm": -1038.55,
+        "enhed": "mm",
+        "decimaler": 1
+      },
+      "expected": "−1.038,5"
+    },
+    {
+      "id": "boundary-0012",
+      "function": "enhed.tal",
+      "input": {
+        "v_mm": -1038.55,
+        "enhed": "mm",
+        "decimaler": 2
+      },
+      "expected": "−1.038,55"
+    },
+    {
+      "id": "boundary-0013",
+      "function": "enhed.tal",
+      "input": {
+        "v_mm": -1038.55,
+        "enhed": "cm",
+        "decimaler": 0
+      },
+      "expected": "−103,9"
+    },
+    {
+      "id": "boundary-0014",
+      "function": "enhed.tal",
+      "input": {
+        "v_mm": -1038.55,
+        "enhed": "cm",
+        "decimaler": 1
+      },
+      "expected": "−103,85"
+    },
+    {
+      "id": "boundary-0015",
+      "function": "enhed.tal",
+      "input": {
+        "v_mm": -1038.55,
+        "enhed": "cm",
+        "decimaler": 2
+      },
+      "expected": "−103,855"
+    },
+    {
+      "id": "boundary-0016",
+      "function": "pythonRound",
+      "input": {
+        "value": -2.675,
+        "digits": 0
+      },
+      "expected": -3.0
+    },
+    {
+      "id": "boundary-0017",
+      "function": "pythonRound",
+      "input": {
+        "value": -2.675,
+        "digits": 1
+      },
+      "expected": -2.7
+    },
+    {
+      "id": "boundary-0018",
+      "function": "pythonRound",
+      "input": {
+        "value": -2.675,
+        "digits": 2
+      },
+      "expected": -2.67
+    },
+    {
+      "id": "boundary-0019",
+      "function": "pythonRound",
+      "input": {
+        "value": -2.675,
+        "digits": 4
+      },
+      "expected": -2.675
+    },
+    {
+      "id": "boundary-0020",
+      "function": "pythonRound",
+      "input": {
+        "value": -2.675,
+        "digits": -1
+      },
+      "expected": -0.0
+    },
+    {
+      "id": "boundary-0021",
+      "function": "pythonFixed",
+      "input": {
+        "value": -2.675,
+        "digits": 0
+      },
+      "expected": "-3"
+    },
+    {
+      "id": "boundary-0022",
+      "function": "pythonFixed",
+      "input": {
+        "value": -2.675,
+        "digits": 1
+      },
+      "expected": "-2.7"
+    },
+    {
+      "id": "boundary-0023",
+      "function": "pythonFixed",
+      "input": {
+        "value": -2.675,
+        "digits": 2
+      },
+      "expected": "-2.67"
+    },
+    {
+      "id": "boundary-0024",
+      "function": "pythonFixed",
+      "input": {
+        "value": -2.675,
+        "digits": 4
+      },
+      "expected": "-2.6750"
+    },
+    {
+      "id": "boundary-0025",
+      "function": "enhed.tal",
+      "input": {
+        "v_mm": -2.675,
+        "enhed": "mm",
+        "decimaler": 0
+      },
+      "expected": "−3"
+    },
+    {
+      "id": "boundary-0026",
+      "function": "enhed.tal",
+      "input": {
+        "v_mm": -2.675,
+        "enhed": "mm",
+        "decimaler": 1
+      },
+      "expected": "−2,7"
+    },
+    {
+      "id": "boundary-0027",
+      "function": "enhed.tal",
+      "input": {
+        "v_mm": -2.675,
+        "enhed": "mm",
+        "decimaler": 2
+      },
+      "expected": "−2,67"
+    },
+    {
+      "id": "boundary-0028",
+      "function": "enhed.tal",
+      "input": {
+        "v_mm": -2.675,
+        "enhed": "cm",
+        "decimaler": 0
+      },
+      "expected": "−0,3"
+    },
+    {
+      "id": "boundary-0029",
+      "function": "enhed.tal",
+      "input": {
+        "v_mm": -2.675,
+        "enhed": "cm",
+        "decimaler": 1
+      },
+      "expected": "−0,27"
+    },
+    {
+      "id": "boundary-0030",
+      "function": "enhed.tal",
+      "input": {
+        "v_mm": -2.675,
+        "enhed": "cm",
+        "decimaler": 2
+      },
+      "expected": "−0,267"
+    },
+    {
+      "id": "boundary-0031",
+      "function": "pythonRound",
+      "input": {
+        "value": -1.5,
+        "digits": 0
+      },
+      "expected": -2.0
+    },
+    {
+      "id": "boundary-0032",
+      "function": "pythonRound",
+      "input": {
+        "value": -1.5,
+        "digits": 1
+      },
+      "expected": -1.5
+    },
+    {
+      "id": "boundary-0033",
+      "function": "pythonRound",
+      "input": {
+        "value": -1.5,
+        "digits": 2
+      },
+      "expected": -1.5
+    },
+    {
+      "id": "boundary-0034",
+      "function": "pythonRound",
+      "input": {
+        "value": -1.5,
+        "digits": 4
+      },
+      "expected": -1.5
+    },
+    {
+      "id": "boundary-0035",
+      "function": "pythonRound",
+      "input": {
+        "value": -1.5,
+        "digits": -1
+      },
+      "expected": -0.0
+    },
+    {
+      "id": "boundary-0036",
+      "function": "pythonFixed",
+      "input": {
+        "value": -1.5,
+        "digits": 0
+      },
+      "expected": "-2"
+    },
+    {
+      "id": "boundary-0037",
+      "function": "pythonFixed",
+      "input": {
+        "value": -1.5,
+        "digits": 1
+      },
+      "expected": "-1.5"
+    },
+    {
+      "id": "boundary-0038",
+      "function": "pythonFixed",
+      "input": {
+        "value": -1.5,
+        "digits": 2
+      },
+      "expected": "-1.50"
+    },
+    {
+      "id": "boundary-0039",
+      "function": "pythonFixed",
+      "input": {
+        "value": -1.5,
+        "digits": 4
+      },
+      "expected": "-1.5000"
+    },
+    {
+      "id": "boundary-0040",
+      "function": "enhed.tal",
+      "input": {
+        "v_mm": -1.5,
+        "enhed": "mm",
+        "decimaler": 0
+      },
+      "expected": "−2"
+    },
+    {
+      "id": "boundary-0041",
+      "function": "enhed.tal",
+      "input": {
+        "v_mm": -1.5,
+        "enhed": "mm",
+        "decimaler": 1
+      },
+      "expected": "−1,5"
+    },
+    {
+      "id": "boundary-0042",
+      "function": "enhed.tal",
+      "input": {
+        "v_mm": -1.5,
+        "enhed": "mm",
+        "decimaler": 2
+      },
+      "expected": "−1,50"
+    },
+    {
+      "id": "boundary-0043",
+      "function": "enhed.tal",
+      "input": {
+        "v_mm": -1.5,
+        "enhed": "cm",
+        "decimaler": 0
+      },
+      "expected": "−0,1"
+    },
+    {
+      "id": "boundary-0044",
+      "function": "enhed.tal",
+      "input": {
+        "v_mm": -1.5,
+        "enhed": "cm",
+        "decimaler": 1
+      },
+      "expected": "−0,15"
+    },
+    {
+      "id": "boundary-0045",
+      "function": "enhed.tal",
+      "input": {
+        "v_mm": -1.5,
+        "enhed": "cm",
+        "decimaler": 2
+      },
+      "expected": "−0,15"
+    },
+    {
+      "id": "boundary-0046",
+      "function": "pythonRound",
+      "input": {
+        "value": -0.5,
+        "digits": 0
+      },
+      "expected": -0.0
+    },
+    {
+      "id": "boundary-0047",
+      "function": "pythonRound",
+      "input": {
+        "value": -0.5,
+        "digits": 1
+      },
+      "expected": -0.5
+    },
+    {
+      "id": "boundary-0048",
+      "function": "pythonRound",
+      "input": {
+        "value": -0.5,
+        "digits": 2
+      },
+      "expected": -0.5
+    },
+    {
+      "id": "boundary-0049",
+      "function": "pythonRound",
+      "input": {
+        "value": -0.5,
+        "digits": 4
+      },
+      "expected": -0.5
+    },
+    {
+      "id": "boundary-0050",
+      "function": "pythonRound",
+      "input": {
+        "value": -0.5,
+        "digits": -1
+      },
+      "expected": -0.0
+    },
+    {
+      "id": "boundary-0051",
+      "function": "pythonFixed",
+      "input": {
+        "value": -0.5,
+        "digits": 0
+      },
+      "expected": "-0"
+    },
+    {
+      "id": "boundary-0052",
+      "function": "pythonFixed",
+      "input": {
+        "value": -0.5,
+        "digits": 1
+      },
+      "expected": "-0.5"
+    },
+    {
+      "id": "boundary-0053",
+      "function": "pythonFixed",
+      "input": {
+        "value": -0.5,
+        "digits": 2
+      },
+      "expected": "-0.50"
+    },
+    {
+      "id": "boundary-0054",
+      "function": "pythonFixed",
+      "input": {
+        "value": -0.5,
+        "digits": 4
+      },
+      "expected": "-0.5000"
+    },
+    {
+      "id": "boundary-0055",
+      "function": "enhed.tal",
+      "input": {
+        "v_mm": -0.5,
+        "enhed": "mm",
+        "decimaler": 0
+      },
+      "expected": "0"
+    },
+    {
+      "id": "boundary-0056",
+      "function": "enhed.tal",
+      "input": {
+        "v_mm": -0.5,
+        "enhed": "mm",
+        "decimaler": 1
+      },
+      "expected": "−0,5"
+    },
+    {
+      "id": "boundary-0057",
+      "function": "enhed.tal",
+      "input": {
+        "v_mm": -0.5,
+        "enhed": "mm",
+        "decimaler": 2
+      },
+      "expected": "−0,50"
+    },
+    {
+      "id": "boundary-0058",
+      "function": "enhed.tal",
+      "input": {
+        "v_mm": -0.5,
+        "enhed": "cm",
+        "decimaler": 0
+      },
+      "expected": "−0,1"
+    },
+    {
+      "id": "boundary-0059",
+      "function": "enhed.tal",
+      "input": {
+        "v_mm": -0.5,
+        "enhed": "cm",
+        "decimaler": 1
+      },
+      "expected": "−0,05"
+    },
+    {
+      "id": "boundary-0060",
+      "function": "enhed.tal",
+      "input": {
+        "v_mm": -0.5,
+        "enhed": "cm",
+        "decimaler": 2
+      },
+      "expected": "−0,05"
+    },
+    {
+      "id": "boundary-0061",
+      "function": "pythonRound",
+      "input": {
+        "value": -0.0,
+        "digits": 0
+      },
+      "expected": -0.0
+    },
+    {
+      "id": "boundary-0062",
+      "function": "pythonRound",
+      "input": {
+        "value": -0.0,
+        "digits": 1
+      },
+      "expected": -0.0
+    },
+    {
+      "id": "boundary-0063",
+      "function": "pythonRound",
+      "input": {
+        "value": -0.0,
+        "digits": 2
+      },
+      "expected": -0.0
+    },
+    {
+      "id": "boundary-0064",
+      "function": "pythonRound",
+      "input": {
+        "value": -0.0,
+        "digits": 4
+      },
+      "expected": -0.0
+    },
+    {
+      "id": "boundary-0065",
+      "function": "pythonRound",
+      "input": {
+        "value": -0.0,
+        "digits": -1
+      },
+      "expected": -0.0
+    },
+    {
+      "id": "boundary-0066",
+      "function": "pythonFixed",
+      "input": {
+        "value": -0.0,
+        "digits": 0
+      },
+      "expected": "-0"
+    },
+    {
+      "id": "boundary-0067",
+      "function": "pythonFixed",
+      "input": {
+        "value": -0.0,
+        "digits": 1
+      },
+      "expected": "-0.0"
+    },
+    {
+      "id": "boundary-0068",
+      "function": "pythonFixed",
+      "input": {
+        "value": -0.0,
+        "digits": 2
+      },
+      "expected": "-0.00"
+    },
+    {
+      "id": "boundary-0069",
+      "function": "pythonFixed",
+      "input": {
+        "value": -0.0,
+        "digits": 4
+      },
+      "expected": "-0.0000"
+    },
+    {
+      "id": "boundary-0070",
+      "function": "enhed.tal",
+      "input": {
+        "v_mm": -0.0,
+        "enhed": "mm",
+        "decimaler": 0
+      },
+      "expected": "0"
+    },
+    {
+      "id": "boundary-0071",
+      "function": "enhed.tal",
+      "input": {
+        "v_mm": -0.0,
+        "enhed": "mm",
+        "decimaler": 1
+      },
+      "expected": "−0,0"
+    },
+    {
+      "id": "boundary-0072",
+      "function": "enhed.tal",
+      "input": {
+        "v_mm": -0.0,
+        "enhed": "mm",
+        "decimaler": 2
+      },
+      "expected": "−0,00"
+    },
+    {
+      "id": "boundary-0073",
+      "function": "enhed.tal",
+      "input": {
+        "v_mm": -0.0,
+        "enhed": "cm",
+        "decimaler": 0
+      },
+      "expected": "0"
+    },
+    {
+      "id": "boundary-0074",
+      "function": "enhed.tal",
+      "input": {
+        "v_mm": -0.0,
+        "enhed": "cm",
+        "decimaler": 1
+      },
+      "expected": "0"
+    },
+    {
+      "id": "boundary-0075",
+      "function": "enhed.tal",
+      "input": {
+        "v_mm": -0.0,
+        "enhed": "cm",
+        "decimaler": 2
+      },
+      "expected": "0"
+    },
+    {
+      "id": "boundary-0076",
+      "function": "pythonRound",
+      "input": {
+        "value": 0.0,
+        "digits": 0
+      },
+      "expected": 0.0
+    },
+    {
+      "id": "boundary-0077",
+      "function": "pythonRound",
+      "input": {
+        "value": 0.0,
+        "digits": 1
+      },
+      "expected": 0.0
+    },
+    {
+      "id": "boundary-0078",
+      "function": "pythonRound",
+      "input": {
+        "value": 0.0,
+        "digits": 2
+      },
+      "expected": 0.0
+    },
+    {
+      "id": "boundary-0079",
+      "function": "pythonRound",
+      "input": {
+        "value": 0.0,
+        "digits": 4
+      },
+      "expected": 0.0
+    },
+    {
+      "id": "boundary-0080",
+      "function": "pythonRound",
+      "input": {
+        "value": 0.0,
+        "digits": -1
+      },
+      "expected": 0.0
+    },
+    {
+      "id": "boundary-0081",
+      "function": "pythonFixed",
+      "input": {
+        "value": 0.0,
+        "digits": 0
+      },
+      "expected": "0"
+    },
+    {
+      "id": "boundary-0082",
+      "function": "pythonFixed",
+      "input": {
+        "value": 0.0,
+        "digits": 1
+      },
+      "expected": "0.0"
+    },
+    {
+      "id": "boundary-0083",
+      "function": "pythonFixed",
+      "input": {
+        "value": 0.0,
+        "digits": 2
+      },
+      "expected": "0.00"
+    },
+    {
+      "id": "boundary-0084",
+      "function": "pythonFixed",
+      "input": {
+        "value": 0.0,
+        "digits": 4
+      },
+      "expected": "0.0000"
+    },
+    {
+      "id": "boundary-0085",
+      "function": "enhed.tal",
+      "input": {
+        "v_mm": 0.0,
+        "enhed": "mm",
+        "decimaler": 0
+      },
+      "expected": "0"
+    },
+    {
+      "id": "boundary-0086",
+      "function": "enhed.tal",
+      "input": {
+        "v_mm": 0.0,
+        "enhed": "mm",
+        "decimaler": 1
+      },
+      "expected": "0,0"
+    },
+    {
+      "id": "boundary-0087",
+      "function": "enhed.tal",
+      "input": {
+        "v_mm": 0.0,
+        "enhed": "mm",
+        "decimaler": 2
+      },
+      "expected": "0,00"
+    },
+    {
+      "id": "boundary-0088",
+      "function": "enhed.tal",
+      "input": {
+        "v_mm": 0.0,
+        "enhed": "cm",
+        "decimaler": 0
+      },
+      "expected": "0"
+    },
+    {
+      "id": "boundary-0089",
+      "function": "enhed.tal",
+      "input": {
+        "v_mm": 0.0,
+        "enhed": "cm",
+        "decimaler": 1
+      },
+      "expected": "0"
+    },
+    {
+      "id": "boundary-0090",
+      "function": "enhed.tal",
+      "input": {
+        "v_mm": 0.0,
+        "enhed": "cm",
+        "decimaler": 2
+      },
+      "expected": "0"
+    },
+    {
+      "id": "boundary-0091",
+      "function": "pythonRound",
+      "input": {
+        "value": 0.5,
+        "digits": 0
+      },
+      "expected": 0.0
+    },
+    {
+      "id": "boundary-0092",
+      "function": "pythonRound",
+      "input": {
+        "value": 0.5,
+        "digits": 1
+      },
+      "expected": 0.5
+    },
+    {
+      "id": "boundary-0093",
+      "function": "pythonRound",
+      "input": {
+        "value": 0.5,
+        "digits": 2
+      },
+      "expected": 0.5
+    },
+    {
+      "id": "boundary-0094",
+      "function": "pythonRound",
+      "input": {
+        "value": 0.5,
+        "digits": 4
+      },
+      "expected": 0.5
+    },
+    {
+      "id": "boundary-0095",
+      "function": "pythonRound",
+      "input": {
+        "value": 0.5,
+        "digits": -1
+      },
+      "expected": 0.0
+    },
+    {
+      "id": "boundary-0096",
+      "function": "pythonFixed",
+      "input": {
+        "value": 0.5,
+        "digits": 0
+      },
+      "expected": "0"
+    },
+    {
+      "id": "boundary-0097",
+      "function": "pythonFixed",
+      "input": {
+        "value": 0.5,
+        "digits": 1
+      },
+      "expected": "0.5"
+    },
+    {
+      "id": "boundary-0098",
+      "function": "pythonFixed",
+      "input": {
+        "value": 0.5,
+        "digits": 2
+      },
+      "expected": "0.50"
+    },
+    {
+      "id": "boundary-0099",
+      "function": "pythonFixed",
+      "input": {
+        "value": 0.5,
+        "digits": 4
+      },
+      "expected": "0.5000"
+    },
+    {
+      "id": "boundary-0100",
+      "function": "enhed.tal",
+      "input": {
+        "v_mm": 0.5,
+        "enhed": "mm",
+        "decimaler": 0
+      },
+      "expected": "0"
+    },
+    {
+      "id": "boundary-0101",
+      "function": "enhed.tal",
+      "input": {
+        "v_mm": 0.5,
+        "enhed": "mm",
+        "decimaler": 1
+      },
+      "expected": "0,5"
+    },
+    {
+      "id": "boundary-0102",
+      "function": "enhed.tal",
+      "input": {
+        "v_mm": 0.5,
+        "enhed": "mm",
+        "decimaler": 2
+      },
+      "expected": "0,50"
+    },
+    {
+      "id": "boundary-0103",
+      "function": "enhed.tal",
+      "input": {
+        "v_mm": 0.5,
+        "enhed": "cm",
+        "decimaler": 0
+      },
+      "expected": "0,1"
+    },
+    {
+      "id": "boundary-0104",
+      "function": "enhed.tal",
+      "input": {
+        "v_mm": 0.5,
+        "enhed": "cm",
+        "decimaler": 1
+      },
+      "expected": "0,05"
+    },
+    {
+      "id": "boundary-0105",
+      "function": "enhed.tal",
+      "input": {
+        "v_mm": 0.5,
+        "enhed": "cm",
+        "decimaler": 2
+      },
+      "expected": "0,05"
+    },
+    {
+      "id": "boundary-0106",
+      "function": "pythonRound",
+      "input": {
+        "value": 1.5,
+        "digits": 0
+      },
+      "expected": 2.0
+    },
+    {
+      "id": "boundary-0107",
+      "function": "pythonRound",
+      "input": {
+        "value": 1.5,
+        "digits": 1
+      },
+      "expected": 1.5
+    },
+    {
+      "id": "boundary-0108",
+      "function": "pythonRound",
+      "input": {
+        "value": 1.5,
+        "digits": 2
+      },
+      "expected": 1.5
+    },
+    {
+      "id": "boundary-0109",
+      "function": "pythonRound",
+      "input": {
+        "value": 1.5,
+        "digits": 4
+      },
+      "expected": 1.5
+    },
+    {
+      "id": "boundary-0110",
+      "function": "pythonRound",
+      "input": {
+        "value": 1.5,
+        "digits": -1
+      },
+      "expected": 0.0
+    },
+    {
+      "id": "boundary-0111",
+      "function": "pythonFixed",
+      "input": {
+        "value": 1.5,
+        "digits": 0
+      },
+      "expected": "2"
+    },
+    {
+      "id": "boundary-0112",
+      "function": "pythonFixed",
+      "input": {
+        "value": 1.5,
+        "digits": 1
+      },
+      "expected": "1.5"
+    },
+    {
+      "id": "boundary-0113",
+      "function": "pythonFixed",
+      "input": {
+        "value": 1.5,
+        "digits": 2
+      },
+      "expected": "1.50"
+    },
+    {
+      "id": "boundary-0114",
+      "function": "pythonFixed",
+      "input": {
+        "value": 1.5,
+        "digits": 4
+      },
+      "expected": "1.5000"
+    },
+    {
+      "id": "boundary-0115",
+      "function": "enhed.tal",
+      "input": {
+        "v_mm": 1.5,
+        "enhed": "mm",
+        "decimaler": 0
+      },
+      "expected": "2"
+    },
+    {
+      "id": "boundary-0116",
+      "function": "enhed.tal",
+      "input": {
+        "v_mm": 1.5,
+        "enhed": "mm",
+        "decimaler": 1
+      },
+      "expected": "1,5"
+    },
+    {
+      "id": "boundary-0117",
+      "function": "enhed.tal",
+      "input": {
+        "v_mm": 1.5,
+        "enhed": "mm",
+        "decimaler": 2
+      },
+      "expected": "1,50"
+    },
+    {
+      "id": "boundary-0118",
+      "function": "enhed.tal",
+      "input": {
+        "v_mm": 1.5,
+        "enhed": "cm",
+        "decimaler": 0
+      },
+      "expected": "0,1"
+    },
+    {
+      "id": "boundary-0119",
+      "function": "enhed.tal",
+      "input": {
+        "v_mm": 1.5,
+        "enhed": "cm",
+        "decimaler": 1
+      },
+      "expected": "0,15"
+    },
+    {
+      "id": "boundary-0120",
+      "function": "enhed.tal",
+      "input": {
+        "v_mm": 1.5,
+        "enhed": "cm",
+        "decimaler": 2
+      },
+      "expected": "0,15"
+    },
+    {
+      "id": "boundary-0121",
+      "function": "pythonRound",
+      "input": {
+        "value": 2.5,
+        "digits": 0
+      },
+      "expected": 2.0
+    },
+    {
+      "id": "boundary-0122",
+      "function": "pythonRound",
+      "input": {
+        "value": 2.5,
+        "digits": 1
+      },
+      "expected": 2.5
+    },
+    {
+      "id": "boundary-0123",
+      "function": "pythonRound",
+      "input": {
+        "value": 2.5,
+        "digits": 2
+      },
+      "expected": 2.5
+    },
+    {
+      "id": "boundary-0124",
+      "function": "pythonRound",
+      "input": {
+        "value": 2.5,
+        "digits": 4
+      },
+      "expected": 2.5
+    },
+    {
+      "id": "boundary-0125",
+      "function": "pythonRound",
+      "input": {
+        "value": 2.5,
+        "digits": -1
+      },
+      "expected": 0.0
+    },
+    {
+      "id": "boundary-0126",
+      "function": "pythonFixed",
+      "input": {
+        "value": 2.5,
+        "digits": 0
+      },
+      "expected": "2"
+    },
+    {
+      "id": "boundary-0127",
+      "function": "pythonFixed",
+      "input": {
+        "value": 2.5,
+        "digits": 1
+      },
+      "expected": "2.5"
+    },
+    {
+      "id": "boundary-0128",
+      "function": "pythonFixed",
+      "input": {
+        "value": 2.5,
+        "digits": 2
+      },
+      "expected": "2.50"
+    },
+    {
+      "id": "boundary-0129",
+      "function": "pythonFixed",
+      "input": {
+        "value": 2.5,
+        "digits": 4
+      },
+      "expected": "2.5000"
+    },
+    {
+      "id": "boundary-0130",
+      "function": "enhed.tal",
+      "input": {
+        "v_mm": 2.5,
+        "enhed": "mm",
+        "decimaler": 0
+      },
+      "expected": "2"
+    },
+    {
+      "id": "boundary-0131",
+      "function": "enhed.tal",
+      "input": {
+        "v_mm": 2.5,
+        "enhed": "mm",
+        "decimaler": 1
+      },
+      "expected": "2,5"
+    },
+    {
+      "id": "boundary-0132",
+      "function": "enhed.tal",
+      "input": {
+        "v_mm": 2.5,
+        "enhed": "mm",
+        "decimaler": 2
+      },
+      "expected": "2,50"
+    },
+    {
+      "id": "boundary-0133",
+      "function": "enhed.tal",
+      "input": {
+        "v_mm": 2.5,
+        "enhed": "cm",
+        "decimaler": 0
+      },
+      "expected": "0,2"
+    },
+    {
+      "id": "boundary-0134",
+      "function": "enhed.tal",
+      "input": {
+        "v_mm": 2.5,
+        "enhed": "cm",
+        "decimaler": 1
+      },
+      "expected": "0,25"
+    },
+    {
+      "id": "boundary-0135",
+      "function": "enhed.tal",
+      "input": {
+        "v_mm": 2.5,
+        "enhed": "cm",
+        "decimaler": 2
+      },
+      "expected": "0,25"
+    },
+    {
+      "id": "boundary-0136",
+      "function": "pythonRound",
+      "input": {
+        "value": 2.675,
+        "digits": 0
+      },
+      "expected": 3.0
+    },
+    {
+      "id": "boundary-0137",
+      "function": "pythonRound",
+      "input": {
+        "value": 2.675,
+        "digits": 1
+      },
+      "expected": 2.7
+    },
+    {
+      "id": "boundary-0138",
+      "function": "pythonRound",
+      "input": {
+        "value": 2.675,
+        "digits": 2
+      },
+      "expected": 2.67
+    },
+    {
+      "id": "boundary-0139",
+      "function": "pythonRound",
+      "input": {
+        "value": 2.675,
+        "digits": 4
+      },
+      "expected": 2.675
+    },
+    {
+      "id": "boundary-0140",
+      "function": "pythonRound",
+      "input": {
+        "value": 2.675,
+        "digits": -1
+      },
+      "expected": 0.0
+    },
+    {
+      "id": "boundary-0141",
+      "function": "pythonFixed",
+      "input": {
+        "value": 2.675,
+        "digits": 0
+      },
+      "expected": "3"
+    },
+    {
+      "id": "boundary-0142",
+      "function": "pythonFixed",
+      "input": {
+        "value": 2.675,
+        "digits": 1
+      },
+      "expected": "2.7"
+    },
+    {
+      "id": "boundary-0143",
+      "function": "pythonFixed",
+      "input": {
+        "value": 2.675,
+        "digits": 2
+      },
+      "expected": "2.67"
+    },
+    {
+      "id": "boundary-0144",
+      "function": "pythonFixed",
+      "input": {
+        "value": 2.675,
+        "digits": 4
+      },
+      "expected": "2.6750"
+    },
+    {
+      "id": "boundary-0145",
+      "function": "enhed.tal",
+      "input": {
+        "v_mm": 2.675,
+        "enhed": "mm",
+        "decimaler": 0
+      },
+      "expected": "3"
+    },
+    {
+      "id": "boundary-0146",
+      "function": "enhed.tal",
+      "input": {
+        "v_mm": 2.675,
+        "enhed": "mm",
+        "decimaler": 1
+      },
+      "expected": "2,7"
+    },
+    {
+      "id": "boundary-0147",
+      "function": "enhed.tal",
+      "input": {
+        "v_mm": 2.675,
+        "enhed": "mm",
+        "decimaler": 2
+      },
+      "expected": "2,67"
+    },
+    {
+      "id": "boundary-0148",
+      "function": "enhed.tal",
+      "input": {
+        "v_mm": 2.675,
+        "enhed": "cm",
+        "decimaler": 0
+      },
+      "expected": "0,3"
+    },
+    {
+      "id": "boundary-0149",
+      "function": "enhed.tal",
+      "input": {
+        "v_mm": 2.675,
+        "enhed": "cm",
+        "decimaler": 1
+      },
+      "expected": "0,27"
+    },
+    {
+      "id": "boundary-0150",
+      "function": "enhed.tal",
+      "input": {
+        "v_mm": 2.675,
+        "enhed": "cm",
+        "decimaler": 2
+      },
+      "expected": "0,267"
+    },
+    {
+      "id": "boundary-0151",
+      "function": "pythonRound",
+      "input": {
+        "value": 1.005,
+        "digits": 0
+      },
+      "expected": 1.0
+    },
+    {
+      "id": "boundary-0152",
+      "function": "pythonRound",
+      "input": {
+        "value": 1.005,
+        "digits": 1
+      },
+      "expected": 1.0
+    },
+    {
+      "id": "boundary-0153",
+      "function": "pythonRound",
+      "input": {
+        "value": 1.005,
+        "digits": 2
+      },
+      "expected": 1.0
+    },
+    {
+      "id": "boundary-0154",
+      "function": "pythonRound",
+      "input": {
+        "value": 1.005,
+        "digits": 4
+      },
+      "expected": 1.005
+    },
+    {
+      "id": "boundary-0155",
+      "function": "pythonRound",
+      "input": {
+        "value": 1.005,
+        "digits": -1
+      },
+      "expected": 0.0
+    },
+    {
+      "id": "boundary-0156",
+      "function": "pythonFixed",
+      "input": {
+        "value": 1.005,
+        "digits": 0
+      },
+      "expected": "1"
+    },
+    {
+      "id": "boundary-0157",
+      "function": "pythonFixed",
+      "input": {
+        "value": 1.005,
+        "digits": 1
+      },
+      "expected": "1.0"
+    },
+    {
+      "id": "boundary-0158",
+      "function": "pythonFixed",
+      "input": {
+        "value": 1.005,
+        "digits": 2
+      },
+      "expected": "1.00"
+    },
+    {
+      "id": "boundary-0159",
+      "function": "pythonFixed",
+      "input": {
+        "value": 1.005,
+        "digits": 4
+      },
+      "expected": "1.0050"
+    },
+    {
+      "id": "boundary-0160",
+      "function": "enhed.tal",
+      "input": {
+        "v_mm": 1.005,
+        "enhed": "mm",
+        "decimaler": 0
+      },
+      "expected": "1"
+    },
+    {
+      "id": "boundary-0161",
+      "function": "enhed.tal",
+      "input": {
+        "v_mm": 1.005,
+        "enhed": "mm",
+        "decimaler": 1
+      },
+      "expected": "1,0"
+    },
+    {
+      "id": "boundary-0162",
+      "function": "enhed.tal",
+      "input": {
+        "v_mm": 1.005,
+        "enhed": "mm",
+        "decimaler": 2
+      },
+      "expected": "1,00"
+    },
+    {
+      "id": "boundary-0163",
+      "function": "enhed.tal",
+      "input": {
+        "v_mm": 1.005,
+        "enhed": "cm",
+        "decimaler": 0
+      },
+      "expected": "0,1"
+    },
+    {
+      "id": "boundary-0164",
+      "function": "enhed.tal",
+      "input": {
+        "v_mm": 1.005,
+        "enhed": "cm",
+        "decimaler": 1
+      },
+      "expected": "0,1"
+    },
+    {
+      "id": "boundary-0165",
+      "function": "enhed.tal",
+      "input": {
+        "v_mm": 1.005,
+        "enhed": "cm",
+        "decimaler": 2
+      },
+      "expected": "0,1"
+    },
+    {
+      "id": "boundary-0166",
+      "function": "pythonRound",
+      "input": {
+        "value": 2.685,
+        "digits": 0
+      },
+      "expected": 3.0
+    },
+    {
+      "id": "boundary-0167",
+      "function": "pythonRound",
+      "input": {
+        "value": 2.685,
+        "digits": 1
+      },
+      "expected": 2.7
+    },
+    {
+      "id": "boundary-0168",
+      "function": "pythonRound",
+      "input": {
+        "value": 2.685,
+        "digits": 2
+      },
+      "expected": 2.69
+    },
+    {
+      "id": "boundary-0169",
+      "function": "pythonRound",
+      "input": {
+        "value": 2.685,
+        "digits": 4
+      },
+      "expected": 2.685
+    },
+    {
+      "id": "boundary-0170",
+      "function": "pythonRound",
+      "input": {
+        "value": 2.685,
+        "digits": -1
+      },
+      "expected": 0.0
+    },
+    {
+      "id": "boundary-0171",
+      "function": "pythonFixed",
+      "input": {
+        "value": 2.685,
+        "digits": 0
+      },
+      "expected": "3"
+    },
+    {
+      "id": "boundary-0172",
+      "function": "pythonFixed",
+      "input": {
+        "value": 2.685,
+        "digits": 1
+      },
+      "expected": "2.7"
+    },
+    {
+      "id": "boundary-0173",
+      "function": "pythonFixed",
+      "input": {
+        "value": 2.685,
+        "digits": 2
+      },
+      "expected": "2.69"
+    },
+    {
+      "id": "boundary-0174",
+      "function": "pythonFixed",
+      "input": {
+        "value": 2.685,
+        "digits": 4
+      },
+      "expected": "2.6850"
+    },
+    {
+      "id": "boundary-0175",
+      "function": "enhed.tal",
+      "input": {
+        "v_mm": 2.685,
+        "enhed": "mm",
+        "decimaler": 0
+      },
+      "expected": "3"
+    },
+    {
+      "id": "boundary-0176",
+      "function": "enhed.tal",
+      "input": {
+        "v_mm": 2.685,
+        "enhed": "mm",
+        "decimaler": 1
+      },
+      "expected": "2,7"
+    },
+    {
+      "id": "boundary-0177",
+      "function": "enhed.tal",
+      "input": {
+        "v_mm": 2.685,
+        "enhed": "mm",
+        "decimaler": 2
+      },
+      "expected": "2,69"
+    },
+    {
+      "id": "boundary-0178",
+      "function": "enhed.tal",
+      "input": {
+        "v_mm": 2.685,
+        "enhed": "cm",
+        "decimaler": 0
+      },
+      "expected": "0,3"
+    },
+    {
+      "id": "boundary-0179",
+      "function": "enhed.tal",
+      "input": {
+        "v_mm": 2.685,
+        "enhed": "cm",
+        "decimaler": 1
+      },
+      "expected": "0,27"
+    },
+    {
+      "id": "boundary-0180",
+      "function": "enhed.tal",
+      "input": {
+        "v_mm": 2.685,
+        "enhed": "cm",
+        "decimaler": 2
+      },
+      "expected": "0,269"
+    },
+    {
+      "id": "boundary-0181",
+      "function": "pythonRound",
+      "input": {
+        "value": 550.0000000001,
+        "digits": 0
+      },
+      "expected": 550.0
+    },
+    {
+      "id": "boundary-0182",
+      "function": "pythonRound",
+      "input": {
+        "value": 550.0000000001,
+        "digits": 1
+      },
+      "expected": 550.0
+    },
+    {
+      "id": "boundary-0183",
+      "function": "pythonRound",
+      "input": {
+        "value": 550.0000000001,
+        "digits": 2
+      },
+      "expected": 550.0
+    },
+    {
+      "id": "boundary-0184",
+      "function": "pythonRound",
+      "input": {
+        "value": 550.0000000001,
+        "digits": 4
+      },
+      "expected": 550.0
+    },
+    {
+      "id": "boundary-0185",
+      "function": "pythonRound",
+      "input": {
+        "value": 550.0000000001,
+        "digits": -1
+      },
+      "expected": 550.0
+    },
+    {
+      "id": "boundary-0186",
+      "function": "pythonFixed",
+      "input": {
+        "value": 550.0000000001,
+        "digits": 0
+      },
+      "expected": "550"
+    },
+    {
+      "id": "boundary-0187",
+      "function": "pythonFixed",
+      "input": {
+        "value": 550.0000000001,
+        "digits": 1
+      },
+      "expected": "550.0"
+    },
+    {
+      "id": "boundary-0188",
+      "function": "pythonFixed",
+      "input": {
+        "value": 550.0000000001,
+        "digits": 2
+      },
+      "expected": "550.00"
+    },
+    {
+      "id": "boundary-0189",
+      "function": "pythonFixed",
+      "input": {
+        "value": 550.0000000001,
+        "digits": 4
+      },
+      "expected": "550.0000"
+    },
+    {
+      "id": "boundary-0190",
+      "function": "enhed.tal",
+      "input": {
+        "v_mm": 550.0000000001,
+        "enhed": "mm",
+        "decimaler": 0
+      },
+      "expected": "550"
+    },
+    {
+      "id": "boundary-0191",
+      "function": "enhed.tal",
+      "input": {
+        "v_mm": 550.0000000001,
+        "enhed": "mm",
+        "decimaler": 1
+      },
+      "expected": "550,0"
+    },
+    {
+      "id": "boundary-0192",
+      "function": "enhed.tal",
+      "input": {
+        "v_mm": 550.0000000001,
+        "enhed": "mm",
+        "decimaler": 2
+      },
+      "expected": "550,00"
+    },
+    {
+      "id": "boundary-0193",
+      "function": "enhed.tal",
+      "input": {
+        "v_mm": 550.0000000001,
+        "enhed": "cm",
+        "decimaler": 0
+      },
+      "expected": "55"
+    },
+    {
+      "id": "boundary-0194",
+      "function": "enhed.tal",
+      "input": {
+        "v_mm": 550.0000000001,
+        "enhed": "cm",
+        "decimaler": 1
+      },
+      "expected": "55"
+    },
+    {
+      "id": "boundary-0195",
+      "function": "enhed.tal",
+      "input": {
+        "v_mm": 550.0000000001,
+        "enhed": "cm",
+        "decimaler": 2
+      },
+      "expected": "55"
+    },
+    {
+      "id": "boundary-0196",
+      "function": "pythonRound",
+      "input": {
+        "value": 1e-308,
+        "digits": 0
+      },
+      "expected": 0.0
+    },
+    {
+      "id": "boundary-0197",
+      "function": "pythonRound",
+      "input": {
+        "value": 1e-308,
+        "digits": 1
+      },
+      "expected": 0.0
+    },
+    {
+      "id": "boundary-0198",
+      "function": "pythonRound",
+      "input": {
+        "value": 1e-308,
+        "digits": 2
+      },
+      "expected": 0.0
+    },
+    {
+      "id": "boundary-0199",
+      "function": "pythonRound",
+      "input": {
+        "value": 1e-308,
+        "digits": 4
+      },
+      "expected": 0.0
+    },
+    {
+      "id": "boundary-0200",
+      "function": "pythonRound",
+      "input": {
+        "value": 1e-308,
+        "digits": -1
+      },
+      "expected": 0.0
+    },
+    {
+      "id": "boundary-0201",
+      "function": "pythonFixed",
+      "input": {
+        "value": 1e-308,
+        "digits": 0
+      },
+      "expected": "0"
+    },
+    {
+      "id": "boundary-0202",
+      "function": "pythonFixed",
+      "input": {
+        "value": 1e-308,
+        "digits": 1
+      },
+      "expected": "0.0"
+    },
+    {
+      "id": "boundary-0203",
+      "function": "pythonFixed",
+      "input": {
+        "value": 1e-308,
+        "digits": 2
+      },
+      "expected": "0.00"
+    },
+    {
+      "id": "boundary-0204",
+      "function": "pythonFixed",
+      "input": {
+        "value": 1e-308,
+        "digits": 4
+      },
+      "expected": "0.0000"
+    },
+    {
+      "id": "boundary-0205",
+      "function": "enhed.tal",
+      "input": {
+        "v_mm": 1e-308,
+        "enhed": "mm",
+        "decimaler": 0
+      },
+      "expected": "0"
+    },
+    {
+      "id": "boundary-0206",
+      "function": "enhed.tal",
+      "input": {
+        "v_mm": 1e-308,
+        "enhed": "mm",
+        "decimaler": 1
+      },
+      "expected": "0,0"
+    },
+    {
+      "id": "boundary-0207",
+      "function": "enhed.tal",
+      "input": {
+        "v_mm": 1e-308,
+        "enhed": "mm",
+        "decimaler": 2
+      },
+      "expected": "0,00"
+    },
+    {
+      "id": "boundary-0208",
+      "function": "enhed.tal",
+      "input": {
+        "v_mm": 1e-308,
+        "enhed": "cm",
+        "decimaler": 0
+      },
+      "expected": "0"
+    },
+    {
+      "id": "boundary-0209",
+      "function": "enhed.tal",
+      "input": {
+        "v_mm": 1e-308,
+        "enhed": "cm",
+        "decimaler": 1
+      },
+      "expected": "0"
+    },
+    {
+      "id": "boundary-0210",
+      "function": "enhed.tal",
+      "input": {
+        "v_mm": 1e-308,
+        "enhed": "cm",
+        "decimaler": 2
+      },
+      "expected": "0"
+    },
+    {
+      "id": "boundary-0211",
+      "function": "pythonRound",
+      "input": {
+        "value": 1e+20,
+        "digits": 0
+      },
+      "expected": 1e+20
+    },
+    {
+      "id": "boundary-0212",
+      "function": "pythonRound",
+      "input": {
+        "value": 1e+20,
+        "digits": 1
+      },
+      "expected": 1e+20
+    },
+    {
+      "id": "boundary-0213",
+      "function": "pythonRound",
+      "input": {
+        "value": 1e+20,
+        "digits": 2
+      },
+      "expected": 1e+20
+    },
+    {
+      "id": "boundary-0214",
+      "function": "pythonRound",
+      "input": {
+        "value": 1e+20,
+        "digits": 4
+      },
+      "expected": 1e+20
+    },
+    {
+      "id": "boundary-0215",
+      "function": "pythonRound",
+      "input": {
+        "value": 1e+20,
+        "digits": -1
+      },
+      "expected": 1e+20
+    },
+    {
+      "id": "boundary-0216",
+      "function": "pythonFixed",
+      "input": {
+        "value": 1e+20,
+        "digits": 0
+      },
+      "expected": "100,000,000,000,000,000,000"
+    },
+    {
+      "id": "boundary-0217",
+      "function": "pythonFixed",
+      "input": {
+        "value": 1e+20,
+        "digits": 1
+      },
+      "expected": "100,000,000,000,000,000,000.0"
+    },
+    {
+      "id": "boundary-0218",
+      "function": "pythonFixed",
+      "input": {
+        "value": 1e+20,
+        "digits": 2
+      },
+      "expected": "100,000,000,000,000,000,000.00"
+    },
+    {
+      "id": "boundary-0219",
+      "function": "pythonFixed",
+      "input": {
+        "value": 1e+20,
+        "digits": 4
+      },
+      "expected": "100,000,000,000,000,000,000.0000"
+    },
+    {
+      "id": "boundary-0220",
+      "function": "enhed.tal",
+      "input": {
+        "v_mm": 1e+20,
+        "enhed": "mm",
+        "decimaler": 0
+      },
+      "expected": "100.000.000.000.000.000.000"
+    },
+    {
+      "id": "boundary-0221",
+      "function": "enhed.tal",
+      "input": {
+        "v_mm": 1e+20,
+        "enhed": "mm",
+        "decimaler": 1
+      },
+      "expected": "100.000.000.000.000.000.000,0"
+    },
+    {
+      "id": "boundary-0222",
+      "function": "enhed.tal",
+      "input": {
+        "v_mm": 1e+20,
+        "enhed": "mm",
+        "decimaler": 2
+      },
+      "expected": "100.000.000.000.000.000.000,00"
+    },
+    {
+      "id": "boundary-0223",
+      "function": "enhed.tal",
+      "input": {
+        "v_mm": 1e+20,
+        "enhed": "cm",
+        "decimaler": 0
+      },
+      "expected": "10.000.000.000.000.000.000"
+    },
+    {
+      "id": "boundary-0224",
+      "function": "enhed.tal",
+      "input": {
+        "v_mm": 1e+20,
+        "enhed": "cm",
+        "decimaler": 1
+      },
+      "expected": "10.000.000.000.000.000.000"
+    },
+    {
+      "id": "boundary-0225",
+      "function": "enhed.tal",
+      "input": {
+        "v_mm": 1e+20,
+        "enhed": "cm",
+        "decimaler": 2
+      },
+      "expected": "10.000.000.000.000.000.000"
+    },
+    {
+      "id": "boundary-0226",
+      "function": "afrunding.normaliser",
+      "input": {
+        "indstilling": null
+      },
+      "expected": {
+        "trin_mm": 50,
+        "reduktion_eksakt": false,
+        "vis_eksakt": false,
+        "phi_afrunding": "ingen"
+      }
+    },
+    {
+      "id": "boundary-0227",
+      "function": "afrunding.normaliser",
+      "input": {
+        "indstilling": {}
+      },
+      "expected": {
+        "trin_mm": 50,
+        "reduktion_eksakt": false,
+        "vis_eksakt": false,
+        "phi_afrunding": "ingen"
+      }
+    },
+    {
+      "id": "boundary-0228",
+      "function": "afrunding.normaliser",
+      "input": {
+        "indstilling": {
+          "trin_mm": true
+        }
+      },
+      "expected": {
+        "trin_mm": 1,
+        "reduktion_eksakt": false,
+        "vis_eksakt": false,
+        "phi_afrunding": "ingen"
+      }
+    },
+    {
+      "id": "boundary-0229",
+      "function": "afrunding.normaliser",
+      "input": {
+        "indstilling": {
+          "trin_mm": 10.9,
+          "vis_eksakt": 1
+        }
+      },
+      "expected": {
+        "trin_mm": 10,
+        "reduktion_eksakt": false,
+        "vis_eksakt": false,
+        "phi_afrunding": "ingen"
+      }
+    },
+    {
+      "id": "boundary-0230",
+      "function": "afrunding.normaliser",
+      "input": {
+        "indstilling": {
+          "t_min_mm": true
+        }
+      },
+      "expected": {
+        "trin_mm": 50,
+        "reduktion_eksakt": false,
+        "vis_eksakt": false,
+        "phi_afrunding": "ingen"
+      }
+    },
+    {
+      "id": "boundary-0231",
+      "function": "afrunding.normaliser",
+      "input": {
+        "indstilling": {
+          "t_min_mm": 275,
+          "phi_afrunding": "ned"
+        }
+      },
+      "expected": {
+        "trin_mm": 50,
+        "reduktion_eksakt": false,
+        "vis_eksakt": false,
+        "phi_afrunding": "ned",
+        "t_min_mm": 275.0
+      }
+    },
+    {
+      "id": "boundary-0232",
+      "function": "afrunding.normaliser",
+      "input": {
+        "indstilling": {
+          "lagopbygning": {
+            "lag": []
+          }
+        }
+      },
+      "expected": {
+        "trin_mm": 50,
+        "reduktion_eksakt": false,
+        "vis_eksakt": false,
+        "phi_afrunding": "ingen"
+      }
+    },
+    {
+      "id": "boundary-0233",
+      "function": "lagfordeling.normaliser",
+      "input": {
+        "indstilling": null
+      },
+      "expected": {
+        "fordeling": "minimum",
+        "samlet_minimum": true,
+        "minimum_mm": {
+          "1": 200.0,
+          "2": 200.0,
+          "3": 200.0,
+          "4": 250.0,
+          "5": 275.0,
+          "6": 300.0
+        },
+        "restlag": "vis",
+        "restlag_graense_mm": 100.0,
+        "vd_minimum_mm": {
+          "Bærelag": 100.0,
+          "Bundsikring": 200.0
+        },
+        "phi_regel": "laveste",
+        "kraev_bundsikring": false,
+        "netplacering": "laggraense",
+        "standard_klassisk": false,
+        "standard_opdeling": true,
+        "standard_under_minimum": "stabilgrus"
+      }
+    },
+    {
+      "id": "boundary-0234",
+      "function": "lagfordeling.normaliser",
+      "input": {
+        "indstilling": {}
+      },
+      "expected": {
+        "fordeling": "minimum",
+        "samlet_minimum": true,
+        "minimum_mm": {
+          "1": 200.0,
+          "2": 200.0,
+          "3": 200.0,
+          "4": 250.0,
+          "5": 275.0,
+          "6": 300.0
+        },
+        "restlag": "vis",
+        "restlag_graense_mm": 100.0,
+        "vd_minimum_mm": {
+          "Bærelag": 100.0,
+          "Bundsikring": 200.0
+        },
+        "phi_regel": "laveste",
+        "kraev_bundsikring": false,
+        "netplacering": "laggraense",
+        "standard_klassisk": false,
+        "standard_opdeling": true,
+        "standard_under_minimum": "stabilgrus"
+      }
+    },
+    {
+      "id": "boundary-0235",
+      "function": "lagfordeling.normaliser",
+      "input": {
+        "indstilling": {
+          "minimum_mm": {
+            "4": 5,
+            "5": 1200,
+            "bad": 300
+          },
+          "restlag_graense_mm": -5,
+          "samlet_minimum": 0
+        }
+      },
+      "expected": {
+        "fordeling": "minimum",
+        "samlet_minimum": true,
+        "minimum_mm": {
+          "1": 200.0,
+          "2": 200.0,
+          "3": 200.0,
+          "4": 100.0,
+          "5": 1000.0,
+          "6": 300.0
+        },
+        "restlag": "vis",
+        "restlag_graense_mm": 0.0,
+        "vd_minimum_mm": {
+          "Bærelag": 100.0,
+          "Bundsikring": 200.0
+        },
+        "phi_regel": "laveste",
+        "kraev_bundsikring": false,
+        "netplacering": "laggraense",
+        "standard_klassisk": false,
+        "standard_opdeling": true,
+        "standard_under_minimum": "stabilgrus"
+      }
+    },
+    {
+      "id": "boundary-0236",
+      "function": "lagfordeling.normaliser",
+      "input": {
+        "indstilling": {
+          "vd_minimum_mm": {
+            "Bærelag": true,
+            "Bundsikring": 50
+          },
+          "standard_klassisk": true
+        }
+      },
+      "expected": {
+        "fordeling": "minimum",
+        "samlet_minimum": true,
+        "minimum_mm": {
+          "1": 200.0,
+          "2": 200.0,
+          "3": 200.0,
+          "4": 250.0,
+          "5": 275.0,
+          "6": 300.0
+        },
+        "restlag": "vis",
+        "restlag_graense_mm": 100.0,
+        "vd_minimum_mm": {
+          "Bærelag": 100.0,
+          "Bundsikring": 50.0
+        },
+        "phi_regel": "laveste",
+        "kraev_bundsikring": false,
+        "netplacering": "laggraense",
+        "standard_klassisk": true,
+        "standard_opdeling": true,
+        "standard_under_minimum": "stabilgrus"
+      }
+    },
+    {
+      "id": "boundary-0237",
+      "function": "lagfordeling.klasse_for_eo",
+      "input": {
+        "eo": null
+      },
+      "expected": null
+    },
+    {
+      "id": "boundary-0238",
+      "function": "lagfordeling.klasse_for_eo",
+      "input": {
+        "eo": 29.999999
+      },
+      "expected": 1
+    },
+    {
+      "id": "boundary-0239",
+      "function": "lagfordeling.klasse_for_eo",
+      "input": {
+        "eo": 30
+      },
+      "expected": 1
+    },
+    {
+      "id": "boundary-0240",
+      "function": "lagfordeling.klasse_for_eo",
+      "input": {
+        "eo": 30.000002
+      },
+      "expected": 2
+    },
+    {
+      "id": "boundary-0241",
+      "function": "lagfordeling.klasse_for_eo",
+      "input": {
+        "eo": 70
+      },
+      "expected": 4
+    },
+    {
+      "id": "boundary-0242",
+      "function": "lagfordeling.klasse_for_eo",
+      "input": {
+        "eo": 150
+      },
+      "expected": 6
+    },
+    {
+      "id": "boundary-0243",
+      "function": "lagfordeling.klasse_for_eo",
+      "input": {
+        "eo": 151
+      },
+      "expected": 6
+    },
+    {
+      "id": "boundary-0244",
+      "function": "lagfordeling.standard_spec",
+      "input": {
+        "indstilling": {},
+        "minimum": 275
+      },
+      "expected": {
+        "lag": [
+          {
+            "navn": "Stabilgrus",
+            "andel": 1.0,
+            "lagtype": "Bærelag"
+          },
+          {
+            "navn": "Bundsikring",
+            "andel": 1.0,
+            "lagtype": "Bundsikring"
+          }
+        ],
+        "fordeling": "fastholdt",
+        "min_mm": null,
+        "oeverst_ref_mm": 275.0,
+        "restlag": "vis",
+        "restlag_graense_mm": 100.0,
+        "vd_minimum_mm": null,
+        "kraev_bundsikring": false,
+        "phi_regel": "indtastet"
+      }
+    },
+    {
+      "id": "boundary-0245",
+      "function": "lagfordeling.standard_spec",
+      "input": {
+        "indstilling": {
+          "restlag": "flet"
+        },
+        "minimum": 275
+      },
+      "expected": {
+        "lag": [
+          {
+            "navn": "Stabilgrus",
+            "andel": 1.0,
+            "lagtype": "Bærelag"
+          },
+          {
+            "navn": "Bundsikring",
+            "andel": 1.0,
+            "lagtype": "Bundsikring"
+          }
+        ],
+        "fordeling": "fastholdt",
+        "min_mm": null,
+        "oeverst_ref_mm": 275.0,
+        "restlag": "flet",
+        "restlag_graense_mm": 100.0,
+        "vd_minimum_mm": null,
+        "kraev_bundsikring": false,
+        "phi_regel": "indtastet"
+      }
+    },
+    {
+      "id": "boundary-0246",
+      "function": "lagfordeling.standard_spec",
+      "input": {
+        "indstilling": {
+          "restlag": "vd",
+          "kraev_bundsikring": true
+        },
+        "minimum": 275
+      },
+      "expected": {
+        "lag": [
+          {
+            "navn": "Stabilgrus",
+            "andel": 1.0,
+            "lagtype": "Bærelag"
+          },
+          {
+            "navn": "Bundsikring",
+            "andel": 1.0,
+            "lagtype": "Bundsikring"
+          }
+        ],
+        "fordeling": "fastholdt",
+        "min_mm": null,
+        "oeverst_ref_mm": 275.0,
+        "restlag": "vd",
+        "restlag_graense_mm": 100.0,
+        "vd_minimum_mm": {
+          "Bærelag": 100.0,
+          "Bundsikring": 200.0
+        },
+        "kraev_bundsikring": true,
+        "phi_regel": "indtastet"
+      }
+    },
+    {
+      "id": "boundary-0247",
+      "function": "calculator.beregn",
+      "input": {
+        "eu": 10,
+        "eo": 60,
+        "phi": 37.5,
+        "net_korrektion": -0.2,
+        "lag_mode": "1_lag",
+        "t_basis_table": {},
+        "skala": 1.05,
+        "afrunding": {
+          "trin_mm": 50,
+          "reduktion_eksakt": false,
+          "vis_eksakt": false,
+          "phi_afrunding": "ingen"
+        }
+      },
+      "expected": {
+        "fejl": "Diagramtabellen indeholder ingen Eᵤ-rækker. Nulstil diagramdata til standard under Designdiagrammer."
+      }
+    },
+    {
+      "id": "boundary-0248",
+      "function": "calculator.beregn",
+      "input": {
+        "eu": 10,
+        "eo": 70,
+        "phi": 37.5,
+        "net_korrektion": -0.2,
+        "lag_mode": "1_lag",
+        "t_basis_table": {},
+        "skala": 1.05,
+        "afrunding": {
+          "trin_mm": 50,
+          "reduktion_eksakt": false,
+          "vis_eksakt": false,
+          "phi_afrunding": "ingen"
+        }
+      },
+      "expected": {
+        "fejl": "Diagramtabellen indeholder ingen Eᵤ-rækker. Nulstil diagramdata til standard under Designdiagrammer."
+      }
+    },
+    {
+      "id": "boundary-0249",
+      "function": "calculator.beregn",
+      "input": {
+        "eu": 10,
+        "eo": 80,
+        "phi": 37.5,
+        "net_korrektion": -0.2,
+        "lag_mode": "1_lag",
+        "t_basis_table": {},
+        "skala": 1.05,
+        "afrunding": {
+          "trin_mm": 50,
+          "reduktion_eksakt": false,
+          "vis_eksakt": false,
+          "phi_afrunding": "ingen"
+        }
+      },
+      "expected": {
+        "fejl": "Diagramtabellen indeholder ingen Eᵤ-rækker. Nulstil diagramdata til standard under Designdiagrammer."
+      }
+    },
+    {
+      "id": "boundary-0250",
+      "function": "calculator.beregn",
+      "input": {
+        "eu": 10,
+        "eo": 60,
+        "phi": 37.5,
+        "net_korrektion": -0.2,
+        "lag_mode": "1_lag",
+        "t_basis_table": {
+          "10": {
+            "80": {
+              "uarmeret": null,
+              "1_lag": 60.5,
+              "2_lag": null
+            }
+          }
+        },
+        "skala": 1.05,
+        "afrunding": {
+          "trin_mm": 50,
+          "reduktion_eksakt": false,
+          "vis_eksakt": false,
+          "phi_afrunding": "ingen"
+        }
+      },
+      "expected": {
+        "fejl": "Kombinationen Eᵤ=10 MPa / Eₒ=60 MPa / 1 lag geonet er uden for diagrammets gyldighedsområde (\"—\" i opslagstabellen). Et lavere Eᵤ eller færre lag vil normalt ligge inden for gyldighedsområdet."
+      }
+    },
+    {
+      "id": "boundary-0251",
+      "function": "calculator.beregn",
+      "input": {
+        "eu": 10,
+        "eo": 70,
+        "phi": 37.5,
+        "net_korrektion": -0.2,
+        "lag_mode": "1_lag",
+        "t_basis_table": {
+          "10": {
+            "80": {
+              "uarmeret": null,
+              "1_lag": 60.5,
+              "2_lag": null
+            }
+          }
+        },
+        "skala": 1.05,
+        "afrunding": {
+          "trin_mm": 50,
+          "reduktion_eksakt": false,
+          "vis_eksakt": false,
+          "phi_afrunding": "ingen"
+        }
+      },
+      "expected": {
+        "fejl": "Kombinationen Eᵤ=10 MPa / Eₒ=70 MPa / 1 lag geonet er uden for diagrammets gyldighedsområde (\"—\" i opslagstabellen). Et lavere Eᵤ eller færre lag vil normalt ligge inden for gyldighedsområdet."
+      }
+    },
+    {
+      "id": "boundary-0252",
+      "function": "calculator.beregn",
+      "input": {
+        "eu": 10,
+        "eo": 80,
+        "phi": 37.5,
+        "net_korrektion": -0.2,
+        "lag_mode": "1_lag",
+        "t_basis_table": {
+          "10": {
+            "80": {
+              "uarmeret": null,
+              "1_lag": 60.5,
+              "2_lag": null
+            }
+          }
+        },
+        "skala": 1.05,
+        "afrunding": {
+          "trin_mm": 50,
+          "reduktion_eksakt": false,
+          "vis_eksakt": false,
+          "phi_afrunding": "ingen"
+        }
+      },
+      "expected": {
+        "eu": 10,
+        "eo": 80,
+        "phi": 37.5,
+        "phi_uarmeret": 37.5,
+        "phi_eksakt": 37.5,
+        "phi_uarmeret_eksakt": 37.5,
+        "phi_afrunding": "ingen",
+        "lag_mode": "1_lag",
+        "net_korrektion": -0.2,
+        "eu_lower": 10,
+        "eu_upper": 10,
+        "t_low_arm_cm": 60.5,
+        "t_high_arm_cm": 60.5,
+        "t_low_uarm_cm": null,
+        "t_high_uarm_cm": null,
+        "t_basis_arm_cm": 63.5,
+        "t_basis_arm_mm": 635.0,
+        "t_basis_uarm_cm": null,
+        "t_basis_uarm_mm": null,
+        "phi_korrektion": -0.01,
+        "phi_korrektion_uarmeret": -0.01,
+        "samlet_faktor": 0.79,
+        "skala": 1.05,
+        "t_armeret_mm": 550.0,
+        "t_uarmeret_mm": null,
+        "t_uarmeret_phi_kor_mm": null,
+        "reduktion_mm": null,
+        "reduktion_pct": null,
+        "uarmeret_mangler": true,
+        "uarmeret_fejl": "Der er ikke defineret nogen uarmeret bærelagstykkelse for Eᵤ=10 MPa / Eₒ=80 MPa.",
+        "fejl": null,
+        "t_armeret_eksakt_mm": 502.0,
+        "t_uarmeret_eksakt_mm": null,
+        "t_uarmeret_phi_kor_eksakt_mm": null,
+        "t_min_mm": null,
+        "reduktion_mm_eksakt": null,
+        "reduktion_pct_eksakt": null,
+        "afrunding_trin_mm": 50
+      }
+    },
+    {
+      "id": "boundary-0253",
+      "function": "calculator.beregn",
+      "input": {
+        "eu": 10,
+        "eo": 60,
+        "phi": 37.5,
+        "net_korrektion": -0.2,
+        "lag_mode": "1_lag",
+        "t_basis_table": {
+          "10": {
+            "60": {
+              "uarmeret": 80.5,
+              "1_lag": 55.5
+            },
+            "80": {
+              "uarmeret": 90.5,
+              "1_lag": 60.5
+            }
+          }
+        },
+        "skala": 1.05,
+        "afrunding": {
+          "trin_mm": 50,
+          "reduktion_eksakt": false,
+          "vis_eksakt": false,
+          "phi_afrunding": "ingen"
+        }
+      },
+      "expected": {
+        "eu": 10,
+        "eo": 60,
+        "phi": 37.5,
+        "phi_uarmeret": 37.5,
+        "phi_eksakt": 37.5,
+        "phi_uarmeret_eksakt": 37.5,
+        "phi_afrunding": "ingen",
+        "lag_mode": "1_lag",
+        "net_korrektion": -0.2,
+        "eu_lower": 10,
+        "eu_upper": 10,
+        "t_low_arm_cm": 55.5,
+        "t_high_arm_cm": 55.5,
+        "t_low_uarm_cm": 80.5,
+        "t_high_uarm_cm": 80.5,
+        "t_basis_arm_cm": 58.3,
+        "t_basis_arm_mm": 583.0,
+        "t_basis_uarm_cm": 84.5,
+        "t_basis_uarm_mm": 845.0,
+        "phi_korrektion": -0.01,
+        "phi_korrektion_uarmeret": -0.01,
+        "samlet_faktor": 0.79,
+        "skala": 1.05,
+        "t_armeret_mm": 500.0,
+        "t_uarmeret_mm": 850.0,
+        "t_uarmeret_phi_kor_mm": 850.0,
+        "reduktion_mm": 350.0,
+        "reduktion_pct": 0.4118,
+        "uarmeret_mangler": false,
+        "uarmeret_fejl": null,
+        "fejl": null,
+        "t_armeret_eksakt_mm": 460.0,
+        "t_uarmeret_eksakt_mm": 845.0,
+        "t_uarmeret_phi_kor_eksakt_mm": 837.0,
+        "t_min_mm": null,
+        "reduktion_mm_eksakt": 376.0,
+        "reduktion_pct_eksakt": 0.4498,
+        "afrunding_trin_mm": 50
+      }
+    },
+    {
+      "id": "boundary-0254",
+      "function": "calculator.beregn",
+      "input": {
+        "eu": 10,
+        "eo": 70,
+        "phi": 37.5,
+        "net_korrektion": -0.2,
+        "lag_mode": "1_lag",
+        "t_basis_table": {
+          "10": {
+            "60": {
+              "uarmeret": 80.5,
+              "1_lag": 55.5
+            },
+            "80": {
+              "uarmeret": 90.5,
+              "1_lag": 60.5
+            }
+          }
+        },
+        "skala": 1.05,
+        "afrunding": {
+          "trin_mm": 50,
+          "reduktion_eksakt": false,
+          "vis_eksakt": false,
+          "phi_afrunding": "ingen"
+        }
+      },
+      "expected": {
+        "eu": 10,
+        "eo": 70,
+        "phi": 37.5,
+        "phi_uarmeret": 37.5,
+        "phi_eksakt": 37.5,
+        "phi_uarmeret_eksakt": 37.5,
+        "phi_afrunding": "ingen",
+        "lag_mode": "1_lag",
+        "net_korrektion": -0.2,
+        "eu_lower": 10,
+        "eu_upper": 10,
+        "t_low_arm_cm": 58.0,
+        "t_high_arm_cm": 58.0,
+        "t_low_uarm_cm": 85.5,
+        "t_high_uarm_cm": 85.5,
+        "t_basis_arm_cm": 60.9,
+        "t_basis_arm_mm": 609.0,
+        "t_basis_uarm_cm": 89.8,
+        "t_basis_uarm_mm": 898.0,
+        "phi_korrektion": -0.01,
+        "phi_korrektion_uarmeret": -0.01,
+        "samlet_faktor": 0.79,
+        "skala": 1.05,
+        "t_armeret_mm": 500.0,
+        "t_uarmeret_mm": 900.0,
+        "t_uarmeret_phi_kor_mm": 900.0,
+        "reduktion_mm": 400.0,
+        "reduktion_pct": 0.4444,
+        "uarmeret_mangler": false,
+        "uarmeret_fejl": null,
+        "fejl": null,
+        "t_armeret_eksakt_mm": 481.0,
+        "t_uarmeret_eksakt_mm": 898.0,
+        "t_uarmeret_phi_kor_eksakt_mm": 889.0,
+        "t_min_mm": null,
+        "reduktion_mm_eksakt": 408.0,
+        "reduktion_pct_eksakt": 0.4587,
+        "afrunding_trin_mm": 50
+      }
+    },
+    {
+      "id": "boundary-0255",
+      "function": "calculator.beregn",
+      "input": {
+        "eu": 10,
+        "eo": 80,
+        "phi": 37.5,
+        "net_korrektion": -0.2,
+        "lag_mode": "1_lag",
+        "t_basis_table": {
+          "10": {
+            "60": {
+              "uarmeret": 80.5,
+              "1_lag": 55.5
+            },
+            "80": {
+              "uarmeret": 90.5,
+              "1_lag": 60.5
+            }
+          }
+        },
+        "skala": 1.05,
+        "afrunding": {
+          "trin_mm": 50,
+          "reduktion_eksakt": false,
+          "vis_eksakt": false,
+          "phi_afrunding": "ingen"
+        }
+      },
+      "expected": {
+        "eu": 10,
+        "eo": 80,
+        "phi": 37.5,
+        "phi_uarmeret": 37.5,
+        "phi_eksakt": 37.5,
+        "phi_uarmeret_eksakt": 37.5,
+        "phi_afrunding": "ingen",
+        "lag_mode": "1_lag",
+        "net_korrektion": -0.2,
+        "eu_lower": 10,
+        "eu_upper": 10,
+        "t_low_arm_cm": 60.5,
+        "t_high_arm_cm": 60.5,
+        "t_low_uarm_cm": 90.5,
+        "t_high_uarm_cm": 90.5,
+        "t_basis_arm_cm": 63.5,
+        "t_basis_arm_mm": 635.0,
+        "t_basis_uarm_cm": 95.0,
+        "t_basis_uarm_mm": 950.0,
+        "phi_korrektion": -0.01,
+        "phi_korrektion_uarmeret": -0.01,
+        "samlet_faktor": 0.79,
+        "skala": 1.05,
+        "t_armeret_mm": 550.0,
+        "t_uarmeret_mm": 950.0,
+        "t_uarmeret_phi_kor_mm": 950.0,
+        "reduktion_mm": 400.0,
+        "reduktion_pct": 0.4211,
+        "uarmeret_mangler": false,
+        "uarmeret_fejl": null,
+        "fejl": null,
+        "t_armeret_eksakt_mm": 502.0,
+        "t_uarmeret_eksakt_mm": 950.0,
+        "t_uarmeret_phi_kor_eksakt_mm": 941.0,
+        "t_min_mm": null,
+        "reduktion_mm_eksakt": 439.0,
+        "reduktion_pct_eksakt": 0.4665,
+        "afrunding_trin_mm": 50
+      }
+    }
+  ]
+}

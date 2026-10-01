@@ -1,0 +1,2618 @@
+{
+  "source": {
+    "commit": "a330cfd6734ac2478be1304a362c69f94e412d25",
+    "data_profile": "built-in defaults; no user JSON",
+    "files": {
+      "app.py": "ba6b29870a92df46025a8d936b3ab6ea16f32b1f7122e48652a640182f9530e5",
+      "ui.py": "ffa3e583a19d4ede16873963bed70b819e3402b320878ba49166295fd5558d7c",
+      "core/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "core/afrunding.py": "9149c3536c388a82e2f242e939a1a1f998e01bf828a6ab378c927a757ad816e4",
+      "core/calculator.py": "bf46d2642d6083439b8c03c46e24eb18f156fe1a734af7e6fa866f16626ad227",
+      "core/data.py": "e164a0f3bb42cd0d565dfc45d2895031a03b2cb8e93b05a0a65097790d0f0540",
+      "core/diagram.py": "b171b7486e5aa1a43590f9f8a28376680bd2a50f7155535fcbfb7198d38df461",
+      "core/enhed.py": "256884745b59e94d0211a610e8bf092942a0fec5d147e48a7502833912583cf2",
+      "core/hjaelp.py": "5179b206a31224bf2582fdc31bf6520fd68552da1206dd5f7f034ab249e0ac78",
+      "core/lagfordeling.py": "0426d2021e037c8e993fefc104b69cfbf03526408cadd1303775c32f5577716b",
+      "core/placement.py": "9668ab8bfe106722e4735576d72dcb86280470ee60fea14feae08bf8f3ccf9d2",
+      "core/rapport.py": "b6235563354b72f81d386afc703db273eb08a2d6f9857d4f73499f7b2c61b898",
+      "core/validators.py": "5258b68728afa7d2224d1e5b090ff6c78f7a3c568408ad367dbcd210fb71428c"
+    }
+  },
+  "snapshots": [
+    {
+      "id": "standard-default",
+      "action": "Fresh app, built-in defaults",
+      "mode": "Standard",
+      "widgets": [
+        {
+          "key": "tilstand",
+          "kind": "segmented",
+          "label": "Tilstand",
+          "value": "Standard",
+          "disabled": false,
+          "help": "**Standard:** Vælg Eᵤ/Cv og belastningsklasse — få en oversigt over alle geonet-produkter med deres opnåelige bærelagstykkelse.  \n**Brugerdefineret:** Få en oversigt over alle produkter, eller vælg ét produkt med op til 3 materialelag, med beregning af vægtet friktionsvinkel",
+          "optionLabels": [
+            "Standard",
+            "Brugerdefineret"
+          ],
+          "optionValues": [
+            "Standard",
+            "Brugerdefineret"
+          ]
+        },
+        {
+          "key": "std_eu_mode",
+          "kind": "segmented",
+          "label": "Input-form",
+          "value": "Eᵤ — E-modul",
+          "disabled": false,
+          "help": null,
+          "optionLabels": [
+            "Eᵤ — E-modul",
+            "Cv — vingestyrke"
+          ],
+          "optionValues": [
+            "Eᵤ — E-modul",
+            "Cv — vingestyrke"
+          ]
+        },
+        {
+          "key": "std_grundlag",
+          "kind": "segmented",
+          "label": "Dimensioneringsgrundlag",
+          "value": "Belastningsklasse",
+          "disabled": false,
+          "help": "**Belastningsklasse:** dimensionér ud fra Tensar/GS-GRID-belastningsklasserne (1–6) som hidtil.  \n**Trafikklasse:** dimensionér ud fra Vejdirektoratets trafikklasser (T1–T6) via en dokumenteret korrelation til designdiagrammerne.",
+          "optionLabels": [
+            "Belastningsklasse",
+            "Trafikklasse"
+          ],
+          "optionValues": [
+            "Belastningsklasse",
+            "Trafikklasse"
+          ]
+        },
+        {
+          "key": "std_valgt_klasse",
+          "kind": "segmented",
+          "label": "Belastningsklasse",
+          "value": 4,
+          "disabled": false,
+          "help": null,
+          "optionLabels": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6"
+          ],
+          "optionValues": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ]
+        },
+        {
+          "key": "std_geonet",
+          "kind": "select",
+          "label": "Produkt",
+          "value": "Tensar TriAx TX160",
+          "disabled": false,
+          "help": null,
+          "optionLabels": [
+            "Tensar HX5.5 (Klasse 1-5 · Net-korrektion: +5 %)",
+            "Tensar HX165 (Klasse 4-6 · Net-korrektion: -5 %)",
+            "Tensar InterAx NX750 (Klasse 5-6 · Net-korrektion: −10 % (opt. −20 %))",
+            "Tensar InterAx NX850 (Klasse 5-6 · Net-korrektion: −15 % (opt. −30 %))",
+            "Tensar SS30 (Klasse 3-5 · Net-korrektion: +10 %)",
+            "Tensar TriAx TX150 (Klasse 1-4 · Net-korrektion: +10 %)",
+            "Tensar TriAx TX160 · Referencenet (Klasse 3-6 · Net-korrektion: 0 %)",
+            "Tensar TriAx TX190L (Klasse 4-6 · Net-korrektion: 0 %)",
+            "GS-GRID B20/20 (Klasse 1-3 · Net-korrektion: +20 %)",
+            "GS-GRID B20/20L (Klasse 1-3 · Net-korrektion: +20 %)",
+            "GS-GRID B30/30 (Klasse 3-5 · Net-korrektion: +10 %)",
+            "GS-GRID B30/30L (Klasse 3-5 · Net-korrektion: +10 %)",
+            "GS-GRID B30/30XL (Klasse 4-6 · Net-korrektion: +10 %)",
+            "GS-GRID B40/40 (Klasse 4-6 · Net-korrektion: 0 %)",
+            "GS-GRID B40/40L (Klasse 4-6 · Net-korrektion: 0 %)",
+            "GS-GRID SX160 · Referencenet (Klasse 3-6 · Net-korrektion: 0 %)",
+            "GS-GRID SX170 (Klasse 4-6 · Net-korrektion: -10 %)",
+            "E'GRID T6 · Referencenet (Klasse 3-6 · Net-korrektion: 0 %)",
+            "E'GRID T7 (Klasse 4-6 · Net-korrektion: -10 %)",
+            "E'GRID T9L (Klasse 4-6 · Net-korrektion: -10 %)"
+          ],
+          "optionValues": [
+            "Tensar HX5.5",
+            "Tensar HX165",
+            "Tensar InterAx NX750",
+            "Tensar InterAx NX850",
+            "Tensar SS30",
+            "Tensar TriAx TX150",
+            "Tensar TriAx TX160",
+            "Tensar TriAx TX190L",
+            "GS-GRID B20/20",
+            "GS-GRID B20/20L",
+            "GS-GRID B30/30",
+            "GS-GRID B30/30L",
+            "GS-GRID B30/30XL",
+            "GS-GRID B40/40",
+            "GS-GRID B40/40L",
+            "GS-GRID SX160",
+            "GS-GRID SX170",
+            "E'GRID T6",
+            "E'GRID T7",
+            "E'GRID T9L"
+          ]
+        },
+        {
+          "key": "std_eu_slider",
+          "kind": "slider",
+          "label": "Eᵤ (MPa)",
+          "value": 10,
+          "disabled": false,
+          "help": "Angiv E-modul for underbunden. Oftest målt ved belastningsforsøg i marken, eller skønnet.",
+          "optionLabels": [],
+          "optionValues": [],
+          "min": 1.0,
+          "max": 45.0,
+          "step": 1.0
+        }
+      ],
+      "selectedMaterials": {},
+      "session": {
+        "std_valgt_klasse": 4,
+        "std_grundlag": "Belastningsklasse",
+        "tilstand": "Standard",
+        "std_geonet": "Tensar TriAx TX160",
+        "std_eu_slider": 10,
+        "std_eu_mode": "Eᵤ — E-modul",
+        "std_sidste_klasse": 4
+      }
+    },
+    {
+      "id": "standard-cv",
+      "action": "Choose Cv instead of Eᵤ",
+      "mode": "Standard",
+      "widgets": [
+        {
+          "key": "tilstand",
+          "kind": "segmented",
+          "label": "Tilstand",
+          "value": "Standard",
+          "disabled": false,
+          "help": "**Standard:** Vælg Eᵤ/Cv og belastningsklasse — få en oversigt over alle geonet-produkter med deres opnåelige bærelagstykkelse.  \n**Brugerdefineret:** Få en oversigt over alle produkter, eller vælg ét produkt med op til 3 materialelag, med beregning af vægtet friktionsvinkel",
+          "optionLabels": [
+            "Standard",
+            "Brugerdefineret"
+          ],
+          "optionValues": [
+            "Standard",
+            "Brugerdefineret"
+          ]
+        },
+        {
+          "key": "std_eu_mode",
+          "kind": "segmented",
+          "label": "Input-form",
+          "value": "Cv — vingestyrke",
+          "disabled": false,
+          "help": null,
+          "optionLabels": [
+            "Eᵤ — E-modul",
+            "Cv — vingestyrke"
+          ],
+          "optionValues": [
+            "Eᵤ — E-modul",
+            "Cv — vingestyrke"
+          ]
+        },
+        {
+          "key": "std_grundlag",
+          "kind": "segmented",
+          "label": "Dimensioneringsgrundlag",
+          "value": "Belastningsklasse",
+          "disabled": false,
+          "help": "**Belastningsklasse:** dimensionér ud fra Tensar/GS-GRID-belastningsklasserne (1–6) som hidtil.  \n**Trafikklasse:** dimensionér ud fra Vejdirektoratets trafikklasser (T1–T6) via en dokumenteret korrelation til designdiagrammerne.",
+          "optionLabels": [
+            "Belastningsklasse",
+            "Trafikklasse"
+          ],
+          "optionValues": [
+            "Belastningsklasse",
+            "Trafikklasse"
+          ]
+        },
+        {
+          "key": "std_valgt_klasse",
+          "kind": "segmented",
+          "label": "Belastningsklasse",
+          "value": 4,
+          "disabled": false,
+          "help": null,
+          "optionLabels": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6"
+          ],
+          "optionValues": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ]
+        },
+        {
+          "key": "std_geonet",
+          "kind": "select",
+          "label": "Produkt",
+          "value": "Tensar TriAx TX160",
+          "disabled": false,
+          "help": null,
+          "optionLabels": [
+            "Tensar HX5.5 (Klasse 1-5 · Net-korrektion: +5 %)",
+            "Tensar HX165 (Klasse 4-6 · Net-korrektion: -5 %)",
+            "Tensar InterAx NX750 (Klasse 5-6 · Net-korrektion: −10 % (opt. −20 %))",
+            "Tensar InterAx NX850 (Klasse 5-6 · Net-korrektion: −15 % (opt. −30 %))",
+            "Tensar SS30 (Klasse 3-5 · Net-korrektion: +10 %)",
+            "Tensar TriAx TX150 (Klasse 1-4 · Net-korrektion: +10 %)",
+            "Tensar TriAx TX160 · Referencenet (Klasse 3-6 · Net-korrektion: 0 %)",
+            "Tensar TriAx TX190L (Klasse 4-6 · Net-korrektion: 0 %)",
+            "GS-GRID B20/20 (Klasse 1-3 · Net-korrektion: +20 %)",
+            "GS-GRID B20/20L (Klasse 1-3 · Net-korrektion: +20 %)",
+            "GS-GRID B30/30 (Klasse 3-5 · Net-korrektion: +10 %)",
+            "GS-GRID B30/30L (Klasse 3-5 · Net-korrektion: +10 %)",
+            "GS-GRID B30/30XL (Klasse 4-6 · Net-korrektion: +10 %)",
+            "GS-GRID B40/40 (Klasse 4-6 · Net-korrektion: 0 %)",
+            "GS-GRID B40/40L (Klasse 4-6 · Net-korrektion: 0 %)",
+            "GS-GRID SX160 · Referencenet (Klasse 3-6 · Net-korrektion: 0 %)",
+            "GS-GRID SX170 (Klasse 4-6 · Net-korrektion: -10 %)",
+            "E'GRID T6 · Referencenet (Klasse 3-6 · Net-korrektion: 0 %)",
+            "E'GRID T7 (Klasse 4-6 · Net-korrektion: -10 %)",
+            "E'GRID T9L (Klasse 4-6 · Net-korrektion: -10 %)"
+          ],
+          "optionValues": [
+            "Tensar HX5.5",
+            "Tensar HX165",
+            "Tensar InterAx NX750",
+            "Tensar InterAx NX850",
+            "Tensar SS30",
+            "Tensar TriAx TX150",
+            "Tensar TriAx TX160",
+            "Tensar TriAx TX190L",
+            "GS-GRID B20/20",
+            "GS-GRID B20/20L",
+            "GS-GRID B30/30",
+            "GS-GRID B30/30L",
+            "GS-GRID B30/30XL",
+            "GS-GRID B40/40",
+            "GS-GRID B40/40L",
+            "GS-GRID SX160",
+            "GS-GRID SX170",
+            "E'GRID T6",
+            "E'GRID T7",
+            "E'GRID T9L"
+          ]
+        },
+        {
+          "key": "std_cv_slider",
+          "kind": "slider",
+          "label": "Cv (kN/m²)",
+          "value": 60,
+          "disabled": false,
+          "help": "Ukorrigeret vingerstyrke fra feltmåling/markjournal.",
+          "optionLabels": [],
+          "optionValues": [],
+          "min": 0.0,
+          "max": 180.0,
+          "step": 5.0
+        }
+      ],
+      "selectedMaterials": {},
+      "session": {
+        "std_grundlag": "Belastningsklasse",
+        "std_geonet": "Tensar TriAx TX160",
+        "std_eu_mode": "Cv — vingestyrke",
+        "std_valgt_klasse": 4,
+        "std_cv_slider": 60,
+        "tilstand": "Standard",
+        "std_eu_slider": 10,
+        "std_sidste_klasse": 4
+      }
+    },
+    {
+      "id": "standard-cv-traffic",
+      "action": "Choose traffic class with Cv",
+      "mode": "Standard",
+      "widgets": [
+        {
+          "key": "tilstand",
+          "kind": "segmented",
+          "label": "Tilstand",
+          "value": "Standard",
+          "disabled": false,
+          "help": "**Standard:** Vælg Eᵤ/Cv og belastningsklasse — få en oversigt over alle geonet-produkter med deres opnåelige bærelagstykkelse.  \n**Brugerdefineret:** Få en oversigt over alle produkter, eller vælg ét produkt med op til 3 materialelag, med beregning af vægtet friktionsvinkel",
+          "optionLabels": [
+            "Standard",
+            "Brugerdefineret"
+          ],
+          "optionValues": [
+            "Standard",
+            "Brugerdefineret"
+          ]
+        },
+        {
+          "key": "std_eu_mode",
+          "kind": "segmented",
+          "label": "Input-form",
+          "value": "Cv — vingestyrke",
+          "disabled": false,
+          "help": null,
+          "optionLabels": [
+            "Eᵤ — E-modul",
+            "Cv — vingestyrke"
+          ],
+          "optionValues": [
+            "Eᵤ — E-modul",
+            "Cv — vingestyrke"
+          ]
+        },
+        {
+          "key": "std_grundlag",
+          "kind": "segmented",
+          "label": "Dimensioneringsgrundlag",
+          "value": "Trafikklasse",
+          "disabled": false,
+          "help": "**Belastningsklasse:** dimensionér ud fra Tensar/GS-GRID-belastningsklasserne (1–6) som hidtil.  \n**Trafikklasse:** dimensionér ud fra Vejdirektoratets trafikklasser (T1–T6) via en dokumenteret korrelation til designdiagrammerne.",
+          "optionLabels": [
+            "Belastningsklasse",
+            "Trafikklasse"
+          ],
+          "optionValues": [
+            "Belastningsklasse",
+            "Trafikklasse"
+          ]
+        },
+        {
+          "key": "std_valgt_tklasse",
+          "kind": "segmented",
+          "label": "Trafikklasse",
+          "value": "T4",
+          "disabled": false,
+          "help": null,
+          "optionLabels": [
+            "T1",
+            "T2",
+            "T3",
+            "T4",
+            "T5",
+            "T6"
+          ],
+          "optionValues": [
+            "T1",
+            "T2",
+            "T3",
+            "T4",
+            "T5",
+            "T6"
+          ]
+        },
+        {
+          "key": "std_geonet",
+          "kind": "select",
+          "label": "Produkt",
+          "value": "Tensar TriAx TX160",
+          "disabled": false,
+          "help": null,
+          "optionLabels": [
+            "Tensar HX5.5 (Klasse 1-5 · Net-korrektion: +5 %)",
+            "Tensar HX165 (Klasse 4-6 · Net-korrektion: -5 %)",
+            "Tensar InterAx NX750 (Klasse 5-6 · Net-korrektion: −10 % (opt. −20 %))",
+            "Tensar InterAx NX850 (Klasse 5-6 · Net-korrektion: −15 % (opt. −30 %))",
+            "Tensar SS30 (Klasse 3-5 · Net-korrektion: +10 %)",
+            "Tensar TriAx TX150 (Klasse 1-4 · Net-korrektion: +10 %)",
+            "Tensar TriAx TX160 · Referencenet (Klasse 3-6 · Net-korrektion: 0 %)",
+            "Tensar TriAx TX190L (Klasse 4-6 · Net-korrektion: 0 %)",
+            "GS-GRID B20/20 (Klasse 1-3 · Net-korrektion: +20 %)",
+            "GS-GRID B20/20L (Klasse 1-3 · Net-korrektion: +20 %)",
+            "GS-GRID B30/30 (Klasse 3-5 · Net-korrektion: +10 %)",
+            "GS-GRID B30/30L (Klasse 3-5 · Net-korrektion: +10 %)",
+            "GS-GRID B30/30XL (Klasse 4-6 · Net-korrektion: +10 %)",
+            "GS-GRID B40/40 (Klasse 4-6 · Net-korrektion: 0 %)",
+            "GS-GRID B40/40L (Klasse 4-6 · Net-korrektion: 0 %)",
+            "GS-GRID SX160 · Referencenet (Klasse 3-6 · Net-korrektion: 0 %)",
+            "GS-GRID SX170 (Klasse 4-6 · Net-korrektion: -10 %)",
+            "E'GRID T6 · Referencenet (Klasse 3-6 · Net-korrektion: 0 %)",
+            "E'GRID T7 (Klasse 4-6 · Net-korrektion: -10 %)",
+            "E'GRID T9L (Klasse 4-6 · Net-korrektion: -10 %)"
+          ],
+          "optionValues": [
+            "Tensar HX5.5",
+            "Tensar HX165",
+            "Tensar InterAx NX750",
+            "Tensar InterAx NX850",
+            "Tensar SS30",
+            "Tensar TriAx TX150",
+            "Tensar TriAx TX160",
+            "Tensar TriAx TX190L",
+            "GS-GRID B20/20",
+            "GS-GRID B20/20L",
+            "GS-GRID B30/30",
+            "GS-GRID B30/30L",
+            "GS-GRID B30/30XL",
+            "GS-GRID B40/40",
+            "GS-GRID B40/40L",
+            "GS-GRID SX160",
+            "GS-GRID SX170",
+            "E'GRID T6",
+            "E'GRID T7",
+            "E'GRID T9L"
+          ]
+        },
+        {
+          "key": "std_cv_slider",
+          "kind": "slider",
+          "label": "Cv (kN/m²)",
+          "value": 60,
+          "disabled": false,
+          "help": "Ukorrigeret vingerstyrke fra feltmåling/markjournal.",
+          "optionLabels": [],
+          "optionValues": [],
+          "min": 0.0,
+          "max": 180.0,
+          "step": 5.0
+        }
+      ],
+      "selectedMaterials": {},
+      "session": {
+        "std_valgt_tklasse": "T4",
+        "std_grundlag": "Trafikklasse",
+        "std_geonet": "Tensar TriAx TX160",
+        "std_eu_mode": "Cv — vingestyrke",
+        "std_sidste_tklasse": "T4",
+        "std_valgt_klasse": 4,
+        "std_cv_slider": 60,
+        "tilstand": "Standard",
+        "std_eu_slider": 10,
+        "std_sidste_klasse": 4
+      }
+    },
+    {
+      "id": "standard-traffic",
+      "action": "Choose traffic class with Eᵤ",
+      "mode": "Standard",
+      "widgets": [
+        {
+          "key": "tilstand",
+          "kind": "segmented",
+          "label": "Tilstand",
+          "value": "Standard",
+          "disabled": false,
+          "help": "**Standard:** Vælg Eᵤ/Cv og belastningsklasse — få en oversigt over alle geonet-produkter med deres opnåelige bærelagstykkelse.  \n**Brugerdefineret:** Få en oversigt over alle produkter, eller vælg ét produkt med op til 3 materialelag, med beregning af vægtet friktionsvinkel",
+          "optionLabels": [
+            "Standard",
+            "Brugerdefineret"
+          ],
+          "optionValues": [
+            "Standard",
+            "Brugerdefineret"
+          ]
+        },
+        {
+          "key": "std_eu_mode",
+          "kind": "segmented",
+          "label": "Input-form",
+          "value": "Eᵤ — E-modul",
+          "disabled": false,
+          "help": null,
+          "optionLabels": [
+            "Eᵤ — E-modul",
+            "Cv — vingestyrke"
+          ],
+          "optionValues": [
+            "Eᵤ — E-modul",
+            "Cv — vingestyrke"
+          ]
+        },
+        {
+          "key": "std_grundlag",
+          "kind": "segmented",
+          "label": "Dimensioneringsgrundlag",
+          "value": "Trafikklasse",
+          "disabled": false,
+          "help": "**Belastningsklasse:** dimensionér ud fra Tensar/GS-GRID-belastningsklasserne (1–6) som hidtil.  \n**Trafikklasse:** dimensionér ud fra Vejdirektoratets trafikklasser (T1–T6) via en dokumenteret korrelation til designdiagrammerne.",
+          "optionLabels": [
+            "Belastningsklasse",
+            "Trafikklasse"
+          ],
+          "optionValues": [
+            "Belastningsklasse",
+            "Trafikklasse"
+          ]
+        },
+        {
+          "key": "std_valgt_tklasse",
+          "kind": "segmented",
+          "label": "Trafikklasse",
+          "value": "T4",
+          "disabled": false,
+          "help": null,
+          "optionLabels": [
+            "T1",
+            "T2",
+            "T3",
+            "T4",
+            "T5",
+            "T6"
+          ],
+          "optionValues": [
+            "T1",
+            "T2",
+            "T3",
+            "T4",
+            "T5",
+            "T6"
+          ]
+        },
+        {
+          "key": "std_geonet",
+          "kind": "select",
+          "label": "Produkt",
+          "value": "Tensar TriAx TX160",
+          "disabled": false,
+          "help": null,
+          "optionLabels": [
+            "Tensar HX5.5 (Klasse 1-5 · Net-korrektion: +5 %)",
+            "Tensar HX165 (Klasse 4-6 · Net-korrektion: -5 %)",
+            "Tensar InterAx NX750 (Klasse 5-6 · Net-korrektion: −10 % (opt. −20 %))",
+            "Tensar InterAx NX850 (Klasse 5-6 · Net-korrektion: −15 % (opt. −30 %))",
+            "Tensar SS30 (Klasse 3-5 · Net-korrektion: +10 %)",
+            "Tensar TriAx TX150 (Klasse 1-4 · Net-korrektion: +10 %)",
+            "Tensar TriAx TX160 · Referencenet (Klasse 3-6 · Net-korrektion: 0 %)",
+            "Tensar TriAx TX190L (Klasse 4-6 · Net-korrektion: 0 %)",
+            "GS-GRID B20/20 (Klasse 1-3 · Net-korrektion: +20 %)",
+            "GS-GRID B20/20L (Klasse 1-3 · Net-korrektion: +20 %)",
+            "GS-GRID B30/30 (Klasse 3-5 · Net-korrektion: +10 %)",
+            "GS-GRID B30/30L (Klasse 3-5 · Net-korrektion: +10 %)",
+            "GS-GRID B30/30XL (Klasse 4-6 · Net-korrektion: +10 %)",
+            "GS-GRID B40/40 (Klasse 4-6 · Net-korrektion: 0 %)",
+            "GS-GRID B40/40L (Klasse 4-6 · Net-korrektion: 0 %)",
+            "GS-GRID SX160 · Referencenet (Klasse 3-6 · Net-korrektion: 0 %)",
+            "GS-GRID SX170 (Klasse 4-6 · Net-korrektion: -10 %)",
+            "E'GRID T6 · Referencenet (Klasse 3-6 · Net-korrektion: 0 %)",
+            "E'GRID T7 (Klasse 4-6 · Net-korrektion: -10 %)",
+            "E'GRID T9L (Klasse 4-6 · Net-korrektion: -10 %)"
+          ],
+          "optionValues": [
+            "Tensar HX5.5",
+            "Tensar HX165",
+            "Tensar InterAx NX750",
+            "Tensar InterAx NX850",
+            "Tensar SS30",
+            "Tensar TriAx TX150",
+            "Tensar TriAx TX160",
+            "Tensar TriAx TX190L",
+            "GS-GRID B20/20",
+            "GS-GRID B20/20L",
+            "GS-GRID B30/30",
+            "GS-GRID B30/30L",
+            "GS-GRID B30/30XL",
+            "GS-GRID B40/40",
+            "GS-GRID B40/40L",
+            "GS-GRID SX160",
+            "GS-GRID SX170",
+            "E'GRID T6",
+            "E'GRID T7",
+            "E'GRID T9L"
+          ]
+        },
+        {
+          "key": "std_eu_slider",
+          "kind": "slider",
+          "label": "Eᵤ (MPa)",
+          "value": 10,
+          "disabled": false,
+          "help": "Angiv E-modul for underbunden. Oftest målt ved belastningsforsøg i marken, eller skønnet.",
+          "optionLabels": [],
+          "optionValues": [],
+          "min": 1.0,
+          "max": 45.0,
+          "step": 1.0
+        }
+      ],
+      "selectedMaterials": {},
+      "session": {
+        "std_valgt_tklasse": "T4",
+        "std_grundlag": "Trafikklasse",
+        "std_geonet": "Tensar TriAx TX160",
+        "std_eu_mode": "Eᵤ — E-modul",
+        "std_sidste_tklasse": "T4",
+        "std_valgt_klasse": 4,
+        "std_cv_slider": 60,
+        "tilstand": "Standard",
+        "std_eu_slider": 10,
+        "std_sidste_klasse": 4
+      }
+    },
+    {
+      "id": "custom-default",
+      "action": "Switch to Custom, built-in two material layers",
+      "mode": "Brugerdefineret",
+      "widgets": [
+        {
+          "key": "tilstand",
+          "kind": "segmented",
+          "label": "Tilstand",
+          "value": "Brugerdefineret",
+          "disabled": false,
+          "help": "**Standard:** Vælg Eᵤ/Cv og belastningsklasse — få en oversigt over alle geonet-produkter med deres opnåelige bærelagstykkelse.  \n**Brugerdefineret:** Få en oversigt over alle produkter, eller vælg ét produkt med op til 3 materialelag, med beregning af vægtet friktionsvinkel",
+          "optionLabels": [
+            "Standard",
+            "Brugerdefineret"
+          ],
+          "optionValues": [
+            "Standard",
+            "Brugerdefineret"
+          ]
+        },
+        {
+          "key": "bd_eu_mode",
+          "kind": "segmented",
+          "label": "Input-form",
+          "value": "Eᵤ — E-modul",
+          "disabled": false,
+          "help": null,
+          "optionLabels": [
+            "Eᵤ — E-modul",
+            "Cv — vingestyrke"
+          ],
+          "optionValues": [
+            "Eᵤ — E-modul",
+            "Cv — vingestyrke"
+          ]
+        },
+        {
+          "key": "bd_grundlag",
+          "kind": "segmented",
+          "label": "Dimensioneringsgrundlag",
+          "value": "Belastningsklasse",
+          "disabled": false,
+          "help": "**Belastningsklasse:** dimensionér ud fra Tensar/GS-GRID-belastningsklasserne (1–6) som hidtil.  \n**Trafikklasse:** dimensionér ud fra Vejdirektoratets trafikklasser (T1–T6) via en dokumenteret korrelation til designdiagrammerne.",
+          "optionLabels": [
+            "Belastningsklasse",
+            "Trafikklasse"
+          ],
+          "optionValues": [
+            "Belastningsklasse",
+            "Trafikklasse"
+          ]
+        },
+        {
+          "key": "bd_valgt_klasse",
+          "kind": "segmented",
+          "label": "Belastningsklasse",
+          "value": 4,
+          "disabled": false,
+          "help": null,
+          "optionLabels": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6"
+          ],
+          "optionValues": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ]
+        },
+        {
+          "key": "bd_mat_0",
+          "kind": "select",
+          "label": "Materiale",
+          "value": "Stabilgrus SGII 0-32",
+          "disabled": false,
+          "help": null,
+          "optionLabels": [
+            "Bundsikringssand",
+            "Bundgrus 0-80",
+            "Stabilgrus SGI 0-32",
+            "Stabilgrus SGII 0-32",
+            "Knust beton 0-32",
+            "Skærver 0-32",
+            "Skærver 0-64",
+            "Skærver 0-90",
+            "Skærver 0-120",
+            "Skærver 0-150",
+            "Skærver 0-200",
+            "Skærver 0-250",
+            "Manuel indtastning"
+          ],
+          "optionValues": [
+            "Bundsikringssand",
+            "Bundgrus 0-80",
+            "Stabilgrus SGI 0-32",
+            "Stabilgrus SGII 0-32",
+            "Knust beton 0-32",
+            "Skærver 0-32",
+            "Skærver 0-64",
+            "Skærver 0-90",
+            "Skærver 0-120",
+            "Skærver 0-150",
+            "Skærver 0-200",
+            "Skærver 0-250",
+            "Manuel indtastning"
+          ]
+        },
+        {
+          "key": "bd_mat_1",
+          "kind": "select",
+          "label": "Materiale",
+          "value": "Bundsikringssand",
+          "disabled": false,
+          "help": null,
+          "optionLabels": [
+            "Bundsikringssand",
+            "Bundgrus 0-80",
+            "Stabilgrus SGI 0-32",
+            "Stabilgrus SGII 0-32",
+            "Knust beton 0-32",
+            "Skærver 0-32",
+            "Skærver 0-64",
+            "Skærver 0-90",
+            "Skærver 0-120",
+            "Skærver 0-150",
+            "Skærver 0-200",
+            "Skærver 0-250",
+            "Manuel indtastning"
+          ],
+          "optionValues": [
+            "Bundsikringssand",
+            "Bundgrus 0-80",
+            "Stabilgrus SGI 0-32",
+            "Stabilgrus SGII 0-32",
+            "Knust beton 0-32",
+            "Skærver 0-32",
+            "Skærver 0-64",
+            "Skærver 0-90",
+            "Skærver 0-120",
+            "Skærver 0-150",
+            "Skærver 0-200",
+            "Skærver 0-250",
+            "Manuel indtastning"
+          ]
+        },
+        {
+          "key": "bd_geonet",
+          "kind": "select",
+          "label": "Produkt",
+          "value": "Tensar TriAx TX160",
+          "disabled": false,
+          "help": null,
+          "optionLabels": [
+            "Tensar HX5.5 (Klasse 1-5 · Net-korrektion: +5 %)",
+            "Tensar HX165 (Klasse 4-6 · Net-korrektion: -5 %)",
+            "Tensar InterAx NX750 (Klasse 5-6 · Net-korrektion: −10 % (opt. −20 %))",
+            "Tensar InterAx NX850 (Klasse 5-6 · Net-korrektion: −15 % (opt. −30 %))",
+            "Tensar SS30 (Klasse 3-5 · Net-korrektion: +10 %)",
+            "Tensar TriAx TX150 (Klasse 1-4 · Net-korrektion: +10 %)",
+            "Tensar TriAx TX160 · Referencenet (Klasse 3-6 · Net-korrektion: 0 %)",
+            "Tensar TriAx TX190L (Klasse 4-6 · Net-korrektion: 0 %)",
+            "GS-GRID B20/20 (Klasse 1-3 · Net-korrektion: +20 %)",
+            "GS-GRID B20/20L (Klasse 1-3 · Net-korrektion: +20 %)",
+            "GS-GRID B30/30 (Klasse 3-5 · Net-korrektion: +10 %)",
+            "GS-GRID B30/30L (Klasse 3-5 · Net-korrektion: +10 %)",
+            "GS-GRID B30/30XL (Klasse 4-6 · Net-korrektion: +10 %)",
+            "GS-GRID B40/40 (Klasse 4-6 · Net-korrektion: 0 %)",
+            "GS-GRID B40/40L (Klasse 4-6 · Net-korrektion: 0 %)",
+            "GS-GRID SX160 · Referencenet (Klasse 3-6 · Net-korrektion: 0 %)",
+            "GS-GRID SX170 (Klasse 4-6 · Net-korrektion: -10 %)",
+            "E'GRID T6 · Referencenet (Klasse 3-6 · Net-korrektion: 0 %)",
+            "E'GRID T7 (Klasse 4-6 · Net-korrektion: -10 %)",
+            "E'GRID T9L (Klasse 4-6 · Net-korrektion: -10 %)"
+          ],
+          "optionValues": [
+            "Tensar HX5.5",
+            "Tensar HX165",
+            "Tensar InterAx NX750",
+            "Tensar InterAx NX850",
+            "Tensar SS30",
+            "Tensar TriAx TX150",
+            "Tensar TriAx TX160",
+            "Tensar TriAx TX190L",
+            "GS-GRID B20/20",
+            "GS-GRID B20/20L",
+            "GS-GRID B30/30",
+            "GS-GRID B30/30L",
+            "GS-GRID B30/30XL",
+            "GS-GRID B40/40",
+            "GS-GRID B40/40L",
+            "GS-GRID SX160",
+            "GS-GRID SX170",
+            "E'GRID T6",
+            "E'GRID T7",
+            "E'GRID T9L"
+          ]
+        },
+        {
+          "key": "bd_eu_slider",
+          "kind": "slider",
+          "label": "Eᵤ (MPa)",
+          "value": 10,
+          "disabled": false,
+          "help": "Angiv E-modul for underbunden. Oftest målt ved belastningsforsøg i marken, eller skønnet.",
+          "optionLabels": [],
+          "optionValues": [],
+          "min": 1.0,
+          "max": 45.0,
+          "step": 1.0
+        },
+        {
+          "key": "bd_antal_lag",
+          "kind": "number",
+          "label": "Antal lag",
+          "value": 2,
+          "disabled": false,
+          "help": "Antal materialelag i opbygningen.",
+          "min": 1.0,
+          "max": 3.0,
+          "step": 1.0,
+          "format": "%d"
+        },
+        {
+          "key": "bd_t_0",
+          "kind": "number",
+          "label": "Tykkelse (mm)",
+          "value": 300,
+          "disabled": false,
+          "help": null,
+          "min": 200.0,
+          "max": 2000.0,
+          "step": 50.0,
+          "format": "%d"
+        },
+        {
+          "key": "bd_t_1",
+          "kind": "number",
+          "label": "Tykkelse (mm)",
+          "value": 400,
+          "disabled": false,
+          "help": null,
+          "min": 200.0,
+          "max": 2000.0,
+          "step": 50.0,
+          "format": "%d"
+        },
+        {
+          "key": "bd_phi_override",
+          "kind": "checkbox",
+          "label": "Overskriv φᵥ manuelt",
+          "value": false,
+          "disabled": false,
+          "help": null
+        },
+        {
+          "key": "bd_dd_vis_din_prik",
+          "kind": "checkbox",
+          "label": "Vis indtastet opbygning",
+          "value": true,
+          "disabled": false,
+          "help": null
+        },
+        {
+          "key": "bd_dd_vis_lag_prikker",
+          "kind": "checkbox",
+          "label": "Vis endepunkter for 1 og 2 lag geonet",
+          "value": true,
+          "disabled": false,
+          "help": null
+        }
+      ],
+      "selectedMaterials": {
+        "bd_mat_0": "Stabilgrus SGII 0-32",
+        "bd_mat_1": "Bundsikringssand"
+      },
+      "session": {
+        "bd_antal_lag": 2,
+        "bd_phi_override": false,
+        "bd_eu_mode": "Eᵤ — E-modul",
+        "std_valgt_tklasse": "T4",
+        "bd_dd_vis_din_prik": true,
+        "std_grundlag": "Trafikklasse",
+        "bd_mat_0": "Stabilgrus SGII 0-32",
+        "bd_dd_vis_lag_prikker": true,
+        "bd_geonet": "Tensar TriAx TX160",
+        "bd_mat_1": "Bundsikringssand",
+        "std_eu_mode": "Eᵤ — E-modul",
+        "bd_t_1": 400,
+        "bd_eu_slider": 10,
+        "std_sidste_tklasse": "T4",
+        "std_valgt_klasse": 4,
+        "std_cv_slider": 60,
+        "tilstand": "Brugerdefineret",
+        "std_eu_slider": 10,
+        "bd_sidste_klasse": 4,
+        "bd_valgt_klasse": 4,
+        "bd_grundlag": "Belastningsklasse",
+        "bd_t_0": 300,
+        "std_sidste_klasse": 4
+      }
+    },
+    {
+      "id": "custom-three-layers-manual-material",
+      "action": "Third layer with manual material properties",
+      "mode": "Brugerdefineret",
+      "widgets": [
+        {
+          "key": "tilstand",
+          "kind": "segmented",
+          "label": "Tilstand",
+          "value": "Brugerdefineret",
+          "disabled": false,
+          "help": "**Standard:** Vælg Eᵤ/Cv og belastningsklasse — få en oversigt over alle geonet-produkter med deres opnåelige bærelagstykkelse.  \n**Brugerdefineret:** Få en oversigt over alle produkter, eller vælg ét produkt med op til 3 materialelag, med beregning af vægtet friktionsvinkel",
+          "optionLabels": [
+            "Standard",
+            "Brugerdefineret"
+          ],
+          "optionValues": [
+            "Standard",
+            "Brugerdefineret"
+          ]
+        },
+        {
+          "key": "bd_eu_mode",
+          "kind": "segmented",
+          "label": "Input-form",
+          "value": "Eᵤ — E-modul",
+          "disabled": false,
+          "help": null,
+          "optionLabels": [
+            "Eᵤ — E-modul",
+            "Cv — vingestyrke"
+          ],
+          "optionValues": [
+            "Eᵤ — E-modul",
+            "Cv — vingestyrke"
+          ]
+        },
+        {
+          "key": "bd_grundlag",
+          "kind": "segmented",
+          "label": "Dimensioneringsgrundlag",
+          "value": "Belastningsklasse",
+          "disabled": false,
+          "help": "**Belastningsklasse:** dimensionér ud fra Tensar/GS-GRID-belastningsklasserne (1–6) som hidtil.  \n**Trafikklasse:** dimensionér ud fra Vejdirektoratets trafikklasser (T1–T6) via en dokumenteret korrelation til designdiagrammerne.",
+          "optionLabels": [
+            "Belastningsklasse",
+            "Trafikklasse"
+          ],
+          "optionValues": [
+            "Belastningsklasse",
+            "Trafikklasse"
+          ]
+        },
+        {
+          "key": "bd_valgt_klasse",
+          "kind": "segmented",
+          "label": "Belastningsklasse",
+          "value": 4,
+          "disabled": false,
+          "help": null,
+          "optionLabels": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6"
+          ],
+          "optionValues": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ]
+        },
+        {
+          "key": "bd_mat_0",
+          "kind": "select",
+          "label": "Materiale",
+          "value": "Stabilgrus SGII 0-32",
+          "disabled": false,
+          "help": null,
+          "optionLabels": [
+            "Bundsikringssand",
+            "Bundgrus 0-80",
+            "Stabilgrus SGI 0-32",
+            "Stabilgrus SGII 0-32",
+            "Knust beton 0-32",
+            "Skærver 0-32",
+            "Skærver 0-64",
+            "Skærver 0-90",
+            "Skærver 0-120",
+            "Skærver 0-150",
+            "Skærver 0-200",
+            "Skærver 0-250",
+            "Manuel indtastning"
+          ],
+          "optionValues": [
+            "Bundsikringssand",
+            "Bundgrus 0-80",
+            "Stabilgrus SGI 0-32",
+            "Stabilgrus SGII 0-32",
+            "Knust beton 0-32",
+            "Skærver 0-32",
+            "Skærver 0-64",
+            "Skærver 0-90",
+            "Skærver 0-120",
+            "Skærver 0-150",
+            "Skærver 0-200",
+            "Skærver 0-250",
+            "Manuel indtastning"
+          ]
+        },
+        {
+          "key": "bd_mat_1",
+          "kind": "select",
+          "label": "Materiale",
+          "value": "Bundsikringssand",
+          "disabled": false,
+          "help": null,
+          "optionLabels": [
+            "Bundsikringssand",
+            "Bundgrus 0-80",
+            "Stabilgrus SGI 0-32",
+            "Stabilgrus SGII 0-32",
+            "Knust beton 0-32",
+            "Skærver 0-32",
+            "Skærver 0-64",
+            "Skærver 0-90",
+            "Skærver 0-120",
+            "Skærver 0-150",
+            "Skærver 0-200",
+            "Skærver 0-250",
+            "Manuel indtastning"
+          ],
+          "optionValues": [
+            "Bundsikringssand",
+            "Bundgrus 0-80",
+            "Stabilgrus SGI 0-32",
+            "Stabilgrus SGII 0-32",
+            "Knust beton 0-32",
+            "Skærver 0-32",
+            "Skærver 0-64",
+            "Skærver 0-90",
+            "Skærver 0-120",
+            "Skærver 0-150",
+            "Skærver 0-200",
+            "Skærver 0-250",
+            "Manuel indtastning"
+          ]
+        },
+        {
+          "key": "bd_mat_2",
+          "kind": "select",
+          "label": "Materiale",
+          "value": "Manuel indtastning",
+          "disabled": false,
+          "help": null,
+          "optionLabels": [
+            "Bundsikringssand",
+            "Bundgrus 0-80",
+            "Stabilgrus SGI 0-32",
+            "Stabilgrus SGII 0-32",
+            "Knust beton 0-32",
+            "Skærver 0-32",
+            "Skærver 0-64",
+            "Skærver 0-90",
+            "Skærver 0-120",
+            "Skærver 0-150",
+            "Skærver 0-200",
+            "Skærver 0-250",
+            "Manuel indtastning"
+          ],
+          "optionValues": [
+            "Bundsikringssand",
+            "Bundgrus 0-80",
+            "Stabilgrus SGI 0-32",
+            "Stabilgrus SGII 0-32",
+            "Knust beton 0-32",
+            "Skærver 0-32",
+            "Skærver 0-64",
+            "Skærver 0-90",
+            "Skærver 0-120",
+            "Skærver 0-150",
+            "Skærver 0-200",
+            "Skærver 0-250",
+            "Manuel indtastning"
+          ]
+        },
+        {
+          "key": "bd_lt_m_2",
+          "kind": "select",
+          "label": "Lagtype",
+          "value": "Bærelag",
+          "disabled": false,
+          "help": null,
+          "optionLabels": [
+            "Bærelag",
+            "Bundsikring"
+          ],
+          "optionValues": [
+            "Bærelag",
+            "Bundsikring"
+          ]
+        },
+        {
+          "key": "bd_geonet",
+          "kind": "select",
+          "label": "Produkt",
+          "value": "Tensar TriAx TX160",
+          "disabled": false,
+          "help": null,
+          "optionLabels": [
+            "Tensar HX5.5 (Klasse 1-5 · Net-korrektion: +5 %)",
+            "Tensar HX165 (Klasse 4-6 · Net-korrektion: -5 %)",
+            "Tensar InterAx NX750 (Klasse 5-6 · Net-korrektion: −10 % (opt. −20 %))",
+            "Tensar InterAx NX850 (Klasse 5-6 · Net-korrektion: −15 % (opt. −30 %))",
+            "Tensar SS30 (Klasse 3-5 · Net-korrektion: +10 %)",
+            "Tensar TriAx TX150 (Klasse 1-4 · Net-korrektion: +10 %)",
+            "Tensar TriAx TX160 · Referencenet (Klasse 3-6 · Net-korrektion: 0 %)",
+            "Tensar TriAx TX190L (Klasse 4-6 · Net-korrektion: 0 %)",
+            "GS-GRID B20/20 (Klasse 1-3 · Net-korrektion: +20 %)",
+            "GS-GRID B20/20L (Klasse 1-3 · Net-korrektion: +20 %)",
+            "GS-GRID B30/30 (Klasse 3-5 · Net-korrektion: +10 %)",
+            "GS-GRID B30/30L (Klasse 3-5 · Net-korrektion: +10 %)",
+            "GS-GRID B30/30XL (Klasse 4-6 · Net-korrektion: +10 %)",
+            "GS-GRID B40/40 (Klasse 4-6 · Net-korrektion: 0 %)",
+            "GS-GRID B40/40L (Klasse 4-6 · Net-korrektion: 0 %)",
+            "GS-GRID SX160 · Referencenet (Klasse 3-6 · Net-korrektion: 0 %)",
+            "GS-GRID SX170 (Klasse 4-6 · Net-korrektion: -10 %)",
+            "E'GRID T6 · Referencenet (Klasse 3-6 · Net-korrektion: 0 %)",
+            "E'GRID T7 (Klasse 4-6 · Net-korrektion: -10 %)",
+            "E'GRID T9L (Klasse 4-6 · Net-korrektion: -10 %)"
+          ],
+          "optionValues": [
+            "Tensar HX5.5",
+            "Tensar HX165",
+            "Tensar InterAx NX750",
+            "Tensar InterAx NX850",
+            "Tensar SS30",
+            "Tensar TriAx TX150",
+            "Tensar TriAx TX160",
+            "Tensar TriAx TX190L",
+            "GS-GRID B20/20",
+            "GS-GRID B20/20L",
+            "GS-GRID B30/30",
+            "GS-GRID B30/30L",
+            "GS-GRID B30/30XL",
+            "GS-GRID B40/40",
+            "GS-GRID B40/40L",
+            "GS-GRID SX160",
+            "GS-GRID SX170",
+            "E'GRID T6",
+            "E'GRID T7",
+            "E'GRID T9L"
+          ]
+        },
+        {
+          "key": "bd_eu_slider",
+          "kind": "slider",
+          "label": "Eᵤ (MPa)",
+          "value": 10,
+          "disabled": false,
+          "help": "Angiv E-modul for underbunden. Oftest målt ved belastningsforsøg i marken, eller skønnet.",
+          "optionLabels": [],
+          "optionValues": [],
+          "min": 1.0,
+          "max": 45.0,
+          "step": 1.0
+        },
+        {
+          "key": "bd_antal_lag",
+          "kind": "number",
+          "label": "Antal lag",
+          "value": 3,
+          "disabled": false,
+          "help": "Antal materialelag i opbygningen.",
+          "min": 1.0,
+          "max": 3.0,
+          "step": 1.0,
+          "format": "%d"
+        },
+        {
+          "key": "bd_t_0",
+          "kind": "number",
+          "label": "Tykkelse (mm)",
+          "value": 300,
+          "disabled": false,
+          "help": null,
+          "min": 200.0,
+          "max": 2000.0,
+          "step": 50.0,
+          "format": "%d"
+        },
+        {
+          "key": "bd_t_1",
+          "kind": "number",
+          "label": "Tykkelse (mm)",
+          "value": 400,
+          "disabled": false,
+          "help": null,
+          "min": 200.0,
+          "max": 2000.0,
+          "step": 50.0,
+          "format": "%d"
+        },
+        {
+          "key": "bd_t_2",
+          "kind": "number",
+          "label": "Tykkelse (mm)",
+          "value": 200,
+          "disabled": false,
+          "help": null,
+          "min": 200.0,
+          "max": 2000.0,
+          "step": 50.0,
+          "format": "%d"
+        },
+        {
+          "key": "bd_phi_m_2",
+          "kind": "number",
+          "label": "φᵢ (°)",
+          "value": 37.0,
+          "disabled": false,
+          "help": null,
+          "min": 20.0,
+          "max": 60.0,
+          "step": 0.5,
+          "format": "%0.2f"
+        },
+        {
+          "key": "bd_korn_m_2",
+          "kind": "number",
+          "label": "Max kornstørrelse (mm)",
+          "value": 32,
+          "disabled": false,
+          "help": null,
+          "min": 0.0,
+          "max": 500.0,
+          "step": 1.0,
+          "format": "%d"
+        },
+        {
+          "key": "bd_phi_override",
+          "kind": "checkbox",
+          "label": "Overskriv φᵥ manuelt",
+          "value": false,
+          "disabled": false,
+          "help": null
+        },
+        {
+          "key": "bd_dd_vis_din_prik",
+          "kind": "checkbox",
+          "label": "Vis indtastet opbygning",
+          "value": true,
+          "disabled": false,
+          "help": null
+        },
+        {
+          "key": "bd_dd_vis_lag_prikker",
+          "kind": "checkbox",
+          "label": "Vis endepunkter for 1 og 2 lag geonet",
+          "value": true,
+          "disabled": false,
+          "help": null
+        }
+      ],
+      "selectedMaterials": {
+        "bd_mat_0": "Stabilgrus SGII 0-32",
+        "bd_mat_1": "Bundsikringssand",
+        "bd_mat_2": "Manuel indtastning"
+      },
+      "session": {
+        "bd_antal_lag": 3,
+        "bd_phi_override": false,
+        "bd_eu_mode": "Eᵤ — E-modul",
+        "std_valgt_tklasse": "T4",
+        "bd_dd_vis_din_prik": true,
+        "bd_mat_0": "Stabilgrus SGII 0-32",
+        "std_grundlag": "Trafikklasse",
+        "bd_phi_m_2": 37.0,
+        "bd_lt_m_2": "Bærelag",
+        "bd_dd_vis_lag_prikker": true,
+        "bd_geonet": "Tensar TriAx TX160",
+        "bd_mat_1": "Bundsikringssand",
+        "std_eu_mode": "Eᵤ — E-modul",
+        "bd_t_1": 400,
+        "bd_mat_2": "Manuel indtastning",
+        "bd_t_2": 200,
+        "bd_eu_slider": 10,
+        "std_sidste_tklasse": "T4",
+        "std_valgt_klasse": 4,
+        "bd_korn_m_2": 32,
+        "std_cv_slider": 60,
+        "tilstand": "Brugerdefineret",
+        "std_eu_slider": 10,
+        "bd_sidste_klasse": 4,
+        "bd_valgt_klasse": 4,
+        "bd_grundlag": "Belastningsklasse",
+        "bd_t_0": 300,
+        "std_sidste_klasse": 4
+      }
+    },
+    {
+      "id": "custom-manual-phi",
+      "action": "Enable manual weighted-friction-angle override",
+      "mode": "Brugerdefineret",
+      "widgets": [
+        {
+          "key": "tilstand",
+          "kind": "segmented",
+          "label": "Tilstand",
+          "value": "Brugerdefineret",
+          "disabled": false,
+          "help": "**Standard:** Vælg Eᵤ/Cv og belastningsklasse — få en oversigt over alle geonet-produkter med deres opnåelige bærelagstykkelse.  \n**Brugerdefineret:** Få en oversigt over alle produkter, eller vælg ét produkt med op til 3 materialelag, med beregning af vægtet friktionsvinkel",
+          "optionLabels": [
+            "Standard",
+            "Brugerdefineret"
+          ],
+          "optionValues": [
+            "Standard",
+            "Brugerdefineret"
+          ]
+        },
+        {
+          "key": "bd_eu_mode",
+          "kind": "segmented",
+          "label": "Input-form",
+          "value": "Eᵤ — E-modul",
+          "disabled": false,
+          "help": null,
+          "optionLabels": [
+            "Eᵤ — E-modul",
+            "Cv — vingestyrke"
+          ],
+          "optionValues": [
+            "Eᵤ — E-modul",
+            "Cv — vingestyrke"
+          ]
+        },
+        {
+          "key": "bd_grundlag",
+          "kind": "segmented",
+          "label": "Dimensioneringsgrundlag",
+          "value": "Belastningsklasse",
+          "disabled": false,
+          "help": "**Belastningsklasse:** dimensionér ud fra Tensar/GS-GRID-belastningsklasserne (1–6) som hidtil.  \n**Trafikklasse:** dimensionér ud fra Vejdirektoratets trafikklasser (T1–T6) via en dokumenteret korrelation til designdiagrammerne.",
+          "optionLabels": [
+            "Belastningsklasse",
+            "Trafikklasse"
+          ],
+          "optionValues": [
+            "Belastningsklasse",
+            "Trafikklasse"
+          ]
+        },
+        {
+          "key": "bd_valgt_klasse",
+          "kind": "segmented",
+          "label": "Belastningsklasse",
+          "value": 4,
+          "disabled": false,
+          "help": null,
+          "optionLabels": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6"
+          ],
+          "optionValues": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ]
+        },
+        {
+          "key": "bd_mat_0",
+          "kind": "select",
+          "label": "Materiale",
+          "value": "Stabilgrus SGII 0-32",
+          "disabled": false,
+          "help": null,
+          "optionLabels": [
+            "Bundsikringssand",
+            "Bundgrus 0-80",
+            "Stabilgrus SGI 0-32",
+            "Stabilgrus SGII 0-32",
+            "Knust beton 0-32",
+            "Skærver 0-32",
+            "Skærver 0-64",
+            "Skærver 0-90",
+            "Skærver 0-120",
+            "Skærver 0-150",
+            "Skærver 0-200",
+            "Skærver 0-250",
+            "Manuel indtastning"
+          ],
+          "optionValues": [
+            "Bundsikringssand",
+            "Bundgrus 0-80",
+            "Stabilgrus SGI 0-32",
+            "Stabilgrus SGII 0-32",
+            "Knust beton 0-32",
+            "Skærver 0-32",
+            "Skærver 0-64",
+            "Skærver 0-90",
+            "Skærver 0-120",
+            "Skærver 0-150",
+            "Skærver 0-200",
+            "Skærver 0-250",
+            "Manuel indtastning"
+          ]
+        },
+        {
+          "key": "bd_mat_1",
+          "kind": "select",
+          "label": "Materiale",
+          "value": "Bundsikringssand",
+          "disabled": false,
+          "help": null,
+          "optionLabels": [
+            "Bundsikringssand",
+            "Bundgrus 0-80",
+            "Stabilgrus SGI 0-32",
+            "Stabilgrus SGII 0-32",
+            "Knust beton 0-32",
+            "Skærver 0-32",
+            "Skærver 0-64",
+            "Skærver 0-90",
+            "Skærver 0-120",
+            "Skærver 0-150",
+            "Skærver 0-200",
+            "Skærver 0-250",
+            "Manuel indtastning"
+          ],
+          "optionValues": [
+            "Bundsikringssand",
+            "Bundgrus 0-80",
+            "Stabilgrus SGI 0-32",
+            "Stabilgrus SGII 0-32",
+            "Knust beton 0-32",
+            "Skærver 0-32",
+            "Skærver 0-64",
+            "Skærver 0-90",
+            "Skærver 0-120",
+            "Skærver 0-150",
+            "Skærver 0-200",
+            "Skærver 0-250",
+            "Manuel indtastning"
+          ]
+        },
+        {
+          "key": "bd_mat_2",
+          "kind": "select",
+          "label": "Materiale",
+          "value": "Manuel indtastning",
+          "disabled": false,
+          "help": null,
+          "optionLabels": [
+            "Bundsikringssand",
+            "Bundgrus 0-80",
+            "Stabilgrus SGI 0-32",
+            "Stabilgrus SGII 0-32",
+            "Knust beton 0-32",
+            "Skærver 0-32",
+            "Skærver 0-64",
+            "Skærver 0-90",
+            "Skærver 0-120",
+            "Skærver 0-150",
+            "Skærver 0-200",
+            "Skærver 0-250",
+            "Manuel indtastning"
+          ],
+          "optionValues": [
+            "Bundsikringssand",
+            "Bundgrus 0-80",
+            "Stabilgrus SGI 0-32",
+            "Stabilgrus SGII 0-32",
+            "Knust beton 0-32",
+            "Skærver 0-32",
+            "Skærver 0-64",
+            "Skærver 0-90",
+            "Skærver 0-120",
+            "Skærver 0-150",
+            "Skærver 0-200",
+            "Skærver 0-250",
+            "Manuel indtastning"
+          ]
+        },
+        {
+          "key": "bd_lt_m_2",
+          "kind": "select",
+          "label": "Lagtype",
+          "value": "Bærelag",
+          "disabled": false,
+          "help": null,
+          "optionLabels": [
+            "Bærelag",
+            "Bundsikring"
+          ],
+          "optionValues": [
+            "Bærelag",
+            "Bundsikring"
+          ]
+        },
+        {
+          "key": "bd_geonet",
+          "kind": "select",
+          "label": "Produkt",
+          "value": "Tensar TriAx TX160",
+          "disabled": false,
+          "help": null,
+          "optionLabels": [
+            "Tensar HX5.5 (Klasse 1-5 · Net-korrektion: +5 %)",
+            "Tensar HX165 (Klasse 4-6 · Net-korrektion: -5 %)",
+            "Tensar InterAx NX750 (Klasse 5-6 · Net-korrektion: −10 % (opt. −20 %))",
+            "Tensar InterAx NX850 (Klasse 5-6 · Net-korrektion: −15 % (opt. −30 %))",
+            "Tensar SS30 (Klasse 3-5 · Net-korrektion: +10 %)",
+            "Tensar TriAx TX150 (Klasse 1-4 · Net-korrektion: +10 %)",
+            "Tensar TriAx TX160 · Referencenet (Klasse 3-6 · Net-korrektion: 0 %)",
+            "Tensar TriAx TX190L (Klasse 4-6 · Net-korrektion: 0 %)",
+            "GS-GRID B20/20 (Klasse 1-3 · Net-korrektion: +20 %)",
+            "GS-GRID B20/20L (Klasse 1-3 · Net-korrektion: +20 %)",
+            "GS-GRID B30/30 (Klasse 3-5 · Net-korrektion: +10 %)",
+            "GS-GRID B30/30L (Klasse 3-5 · Net-korrektion: +10 %)",
+            "GS-GRID B30/30XL (Klasse 4-6 · Net-korrektion: +10 %)",
+            "GS-GRID B40/40 (Klasse 4-6 · Net-korrektion: 0 %)",
+            "GS-GRID B40/40L (Klasse 4-6 · Net-korrektion: 0 %)",
+            "GS-GRID SX160 · Referencenet (Klasse 3-6 · Net-korrektion: 0 %)",
+            "GS-GRID SX170 (Klasse 4-6 · Net-korrektion: -10 %)",
+            "E'GRID T6 · Referencenet (Klasse 3-6 · Net-korrektion: 0 %)",
+            "E'GRID T7 (Klasse 4-6 · Net-korrektion: -10 %)",
+            "E'GRID T9L (Klasse 4-6 · Net-korrektion: -10 %)"
+          ],
+          "optionValues": [
+            "Tensar HX5.5",
+            "Tensar HX165",
+            "Tensar InterAx NX750",
+            "Tensar InterAx NX850",
+            "Tensar SS30",
+            "Tensar TriAx TX150",
+            "Tensar TriAx TX160",
+            "Tensar TriAx TX190L",
+            "GS-GRID B20/20",
+            "GS-GRID B20/20L",
+            "GS-GRID B30/30",
+            "GS-GRID B30/30L",
+            "GS-GRID B30/30XL",
+            "GS-GRID B40/40",
+            "GS-GRID B40/40L",
+            "GS-GRID SX160",
+            "GS-GRID SX170",
+            "E'GRID T6",
+            "E'GRID T7",
+            "E'GRID T9L"
+          ]
+        },
+        {
+          "key": "bd_eu_slider",
+          "kind": "slider",
+          "label": "Eᵤ (MPa)",
+          "value": 10,
+          "disabled": false,
+          "help": "Angiv E-modul for underbunden. Oftest målt ved belastningsforsøg i marken, eller skønnet.",
+          "optionLabels": [],
+          "optionValues": [],
+          "min": 1.0,
+          "max": 45.0,
+          "step": 1.0
+        },
+        {
+          "key": "bd_antal_lag",
+          "kind": "number",
+          "label": "Antal lag",
+          "value": 3,
+          "disabled": false,
+          "help": "Antal materialelag i opbygningen.",
+          "min": 1.0,
+          "max": 3.0,
+          "step": 1.0,
+          "format": "%d"
+        },
+        {
+          "key": "bd_t_0",
+          "kind": "number",
+          "label": "Tykkelse (mm)",
+          "value": 300,
+          "disabled": false,
+          "help": null,
+          "min": 200.0,
+          "max": 2000.0,
+          "step": 50.0,
+          "format": "%d"
+        },
+        {
+          "key": "bd_t_1",
+          "kind": "number",
+          "label": "Tykkelse (mm)",
+          "value": 400,
+          "disabled": false,
+          "help": null,
+          "min": 200.0,
+          "max": 2000.0,
+          "step": 50.0,
+          "format": "%d"
+        },
+        {
+          "key": "bd_t_2",
+          "kind": "number",
+          "label": "Tykkelse (mm)",
+          "value": 200,
+          "disabled": false,
+          "help": null,
+          "min": 200.0,
+          "max": 2000.0,
+          "step": 50.0,
+          "format": "%d"
+        },
+        {
+          "key": "bd_phi_m_2",
+          "kind": "number",
+          "label": "φᵢ (°)",
+          "value": 37.0,
+          "disabled": false,
+          "help": null,
+          "min": 20.0,
+          "max": 60.0,
+          "step": 0.5,
+          "format": "%0.2f"
+        },
+        {
+          "key": "bd_korn_m_2",
+          "kind": "number",
+          "label": "Max kornstørrelse (mm)",
+          "value": 32,
+          "disabled": false,
+          "help": null,
+          "min": 0.0,
+          "max": 500.0,
+          "step": 1.0,
+          "format": "%d"
+        },
+        {
+          "key": "bd_phi_man",
+          "kind": "number",
+          "label": "φᵥ (°)",
+          "value": 38.0,
+          "disabled": false,
+          "help": null,
+          "min": 20.0,
+          "max": 60.0,
+          "step": 0.5,
+          "format": "%0.2f"
+        },
+        {
+          "key": "bd_phi_override",
+          "kind": "checkbox",
+          "label": "Overskriv φᵥ manuelt",
+          "value": true,
+          "disabled": false,
+          "help": null
+        },
+        {
+          "key": "bd_dd_vis_din_prik",
+          "kind": "checkbox",
+          "label": "Vis indtastet opbygning",
+          "value": true,
+          "disabled": false,
+          "help": null
+        },
+        {
+          "key": "bd_dd_vis_lag_prikker",
+          "kind": "checkbox",
+          "label": "Vis endepunkter for 1 og 2 lag geonet",
+          "value": true,
+          "disabled": false,
+          "help": null
+        }
+      ],
+      "selectedMaterials": {
+        "bd_mat_0": "Stabilgrus SGII 0-32",
+        "bd_mat_1": "Bundsikringssand",
+        "bd_mat_2": "Manuel indtastning"
+      },
+      "session": {
+        "bd_antal_lag": 3,
+        "bd_phi_override": true,
+        "bd_eu_mode": "Eᵤ — E-modul",
+        "std_valgt_tklasse": "T4",
+        "bd_dd_vis_din_prik": true,
+        "bd_mat_0": "Stabilgrus SGII 0-32",
+        "std_grundlag": "Trafikklasse",
+        "bd_phi_m_2": 37.0,
+        "bd_lt_m_2": "Bærelag",
+        "bd_dd_vis_lag_prikker": true,
+        "bd_geonet": "Tensar TriAx TX160",
+        "bd_mat_1": "Bundsikringssand",
+        "bd_phi_man": 38.0,
+        "std_eu_mode": "Eᵤ — E-modul",
+        "bd_t_1": 400,
+        "bd_mat_2": "Manuel indtastning",
+        "bd_t_2": 200,
+        "bd_eu_slider": 10,
+        "std_sidste_tklasse": "T4",
+        "std_valgt_klasse": 4,
+        "bd_korn_m_2": 32,
+        "std_cv_slider": 60,
+        "tilstand": "Brugerdefineret",
+        "std_eu_slider": 10,
+        "bd_sidste_klasse": 4,
+        "bd_valgt_klasse": 4,
+        "bd_grundlag": "Belastningsklasse",
+        "bd_t_0": 300,
+        "std_sidste_klasse": 4
+      }
+    },
+    {
+      "id": "custom-traffic",
+      "action": "Choose traffic class in Custom mode",
+      "mode": "Brugerdefineret",
+      "widgets": [
+        {
+          "key": "tilstand",
+          "kind": "segmented",
+          "label": "Tilstand",
+          "value": "Brugerdefineret",
+          "disabled": false,
+          "help": "**Standard:** Vælg Eᵤ/Cv og belastningsklasse — få en oversigt over alle geonet-produkter med deres opnåelige bærelagstykkelse.  \n**Brugerdefineret:** Få en oversigt over alle produkter, eller vælg ét produkt med op til 3 materialelag, med beregning af vægtet friktionsvinkel",
+          "optionLabels": [
+            "Standard",
+            "Brugerdefineret"
+          ],
+          "optionValues": [
+            "Standard",
+            "Brugerdefineret"
+          ]
+        },
+        {
+          "key": "bd_eu_mode",
+          "kind": "segmented",
+          "label": "Input-form",
+          "value": "Eᵤ — E-modul",
+          "disabled": false,
+          "help": null,
+          "optionLabels": [
+            "Eᵤ — E-modul",
+            "Cv — vingestyrke"
+          ],
+          "optionValues": [
+            "Eᵤ — E-modul",
+            "Cv — vingestyrke"
+          ]
+        },
+        {
+          "key": "bd_grundlag",
+          "kind": "segmented",
+          "label": "Dimensioneringsgrundlag",
+          "value": "Trafikklasse",
+          "disabled": false,
+          "help": "**Belastningsklasse:** dimensionér ud fra Tensar/GS-GRID-belastningsklasserne (1–6) som hidtil.  \n**Trafikklasse:** dimensionér ud fra Vejdirektoratets trafikklasser (T1–T6) via en dokumenteret korrelation til designdiagrammerne.",
+          "optionLabels": [
+            "Belastningsklasse",
+            "Trafikklasse"
+          ],
+          "optionValues": [
+            "Belastningsklasse",
+            "Trafikklasse"
+          ]
+        },
+        {
+          "key": "bd_valgt_tklasse",
+          "kind": "segmented",
+          "label": "Trafikklasse",
+          "value": "T4",
+          "disabled": false,
+          "help": null,
+          "optionLabels": [
+            "T1",
+            "T2",
+            "T3",
+            "T4",
+            "T5",
+            "T6"
+          ],
+          "optionValues": [
+            "T1",
+            "T2",
+            "T3",
+            "T4",
+            "T5",
+            "T6"
+          ]
+        },
+        {
+          "key": "bd_mat_0",
+          "kind": "select",
+          "label": "Materiale",
+          "value": "Stabilgrus SGII 0-32",
+          "disabled": false,
+          "help": null,
+          "optionLabels": [
+            "Bundsikringssand",
+            "Bundgrus 0-80",
+            "Stabilgrus SGI 0-32",
+            "Stabilgrus SGII 0-32",
+            "Knust beton 0-32",
+            "Skærver 0-32",
+            "Skærver 0-64",
+            "Skærver 0-90",
+            "Skærver 0-120",
+            "Skærver 0-150",
+            "Skærver 0-200",
+            "Skærver 0-250",
+            "Manuel indtastning"
+          ],
+          "optionValues": [
+            "Bundsikringssand",
+            "Bundgrus 0-80",
+            "Stabilgrus SGI 0-32",
+            "Stabilgrus SGII 0-32",
+            "Knust beton 0-32",
+            "Skærver 0-32",
+            "Skærver 0-64",
+            "Skærver 0-90",
+            "Skærver 0-120",
+            "Skærver 0-150",
+            "Skærver 0-200",
+            "Skærver 0-250",
+            "Manuel indtastning"
+          ]
+        },
+        {
+          "key": "bd_mat_1",
+          "kind": "select",
+          "label": "Materiale",
+          "value": "Bundsikringssand",
+          "disabled": false,
+          "help": null,
+          "optionLabels": [
+            "Bundsikringssand",
+            "Bundgrus 0-80",
+            "Stabilgrus SGI 0-32",
+            "Stabilgrus SGII 0-32",
+            "Knust beton 0-32",
+            "Skærver 0-32",
+            "Skærver 0-64",
+            "Skærver 0-90",
+            "Skærver 0-120",
+            "Skærver 0-150",
+            "Skærver 0-200",
+            "Skærver 0-250",
+            "Manuel indtastning"
+          ],
+          "optionValues": [
+            "Bundsikringssand",
+            "Bundgrus 0-80",
+            "Stabilgrus SGI 0-32",
+            "Stabilgrus SGII 0-32",
+            "Knust beton 0-32",
+            "Skærver 0-32",
+            "Skærver 0-64",
+            "Skærver 0-90",
+            "Skærver 0-120",
+            "Skærver 0-150",
+            "Skærver 0-200",
+            "Skærver 0-250",
+            "Manuel indtastning"
+          ]
+        },
+        {
+          "key": "bd_mat_2",
+          "kind": "select",
+          "label": "Materiale",
+          "value": "Manuel indtastning",
+          "disabled": false,
+          "help": null,
+          "optionLabels": [
+            "Bundsikringssand",
+            "Bundgrus 0-80",
+            "Stabilgrus SGI 0-32",
+            "Stabilgrus SGII 0-32",
+            "Knust beton 0-32",
+            "Skærver 0-32",
+            "Skærver 0-64",
+            "Skærver 0-90",
+            "Skærver 0-120",
+            "Skærver 0-150",
+            "Skærver 0-200",
+            "Skærver 0-250",
+            "Manuel indtastning"
+          ],
+          "optionValues": [
+            "Bundsikringssand",
+            "Bundgrus 0-80",
+            "Stabilgrus SGI 0-32",
+            "Stabilgrus SGII 0-32",
+            "Knust beton 0-32",
+            "Skærver 0-32",
+            "Skærver 0-64",
+            "Skærver 0-90",
+            "Skærver 0-120",
+            "Skærver 0-150",
+            "Skærver 0-200",
+            "Skærver 0-250",
+            "Manuel indtastning"
+          ]
+        },
+        {
+          "key": "bd_lt_m_2",
+          "kind": "select",
+          "label": "Lagtype",
+          "value": "Bærelag",
+          "disabled": false,
+          "help": null,
+          "optionLabels": [
+            "Bærelag",
+            "Bundsikring"
+          ],
+          "optionValues": [
+            "Bærelag",
+            "Bundsikring"
+          ]
+        },
+        {
+          "key": "bd_geonet",
+          "kind": "select",
+          "label": "Produkt",
+          "value": "Tensar TriAx TX160",
+          "disabled": false,
+          "help": null,
+          "optionLabels": [
+            "Tensar HX5.5 (Klasse 1-5 · Net-korrektion: +5 %)",
+            "Tensar HX165 (Klasse 4-6 · Net-korrektion: -5 %)",
+            "Tensar InterAx NX750 (Klasse 5-6 · Net-korrektion: −10 % (opt. −20 %))",
+            "Tensar InterAx NX850 (Klasse 5-6 · Net-korrektion: −15 % (opt. −30 %))",
+            "Tensar SS30 (Klasse 3-5 · Net-korrektion: +10 %)",
+            "Tensar TriAx TX150 (Klasse 1-4 · Net-korrektion: +10 %)",
+            "Tensar TriAx TX160 · Referencenet (Klasse 3-6 · Net-korrektion: 0 %)",
+            "Tensar TriAx TX190L (Klasse 4-6 · Net-korrektion: 0 %)",
+            "GS-GRID B20/20 (Klasse 1-3 · Net-korrektion: +20 %)",
+            "GS-GRID B20/20L (Klasse 1-3 · Net-korrektion: +20 %)",
+            "GS-GRID B30/30 (Klasse 3-5 · Net-korrektion: +10 %)",
+            "GS-GRID B30/30L (Klasse 3-5 · Net-korrektion: +10 %)",
+            "GS-GRID B30/30XL (Klasse 4-6 · Net-korrektion: +10 %)",
+            "GS-GRID B40/40 (Klasse 4-6 · Net-korrektion: 0 %)",
+            "GS-GRID B40/40L (Klasse 4-6 · Net-korrektion: 0 %)",
+            "GS-GRID SX160 · Referencenet (Klasse 3-6 · Net-korrektion: 0 %)",
+            "GS-GRID SX170 (Klasse 4-6 · Net-korrektion: -10 %)",
+            "E'GRID T6 · Referencenet (Klasse 3-6 · Net-korrektion: 0 %)",
+            "E'GRID T7 (Klasse 4-6 · Net-korrektion: -10 %)",
+            "E'GRID T9L (Klasse 4-6 · Net-korrektion: -10 %)"
+          ],
+          "optionValues": [
+            "Tensar HX5.5",
+            "Tensar HX165",
+            "Tensar InterAx NX750",
+            "Tensar InterAx NX850",
+            "Tensar SS30",
+            "Tensar TriAx TX150",
+            "Tensar TriAx TX160",
+            "Tensar TriAx TX190L",
+            "GS-GRID B20/20",
+            "GS-GRID B20/20L",
+            "GS-GRID B30/30",
+            "GS-GRID B30/30L",
+            "GS-GRID B30/30XL",
+            "GS-GRID B40/40",
+            "GS-GRID B40/40L",
+            "GS-GRID SX160",
+            "GS-GRID SX170",
+            "E'GRID T6",
+            "E'GRID T7",
+            "E'GRID T9L"
+          ]
+        },
+        {
+          "key": "bd_eu_slider",
+          "kind": "slider",
+          "label": "Eᵤ (MPa)",
+          "value": 10,
+          "disabled": false,
+          "help": "Angiv E-modul for underbunden. Oftest målt ved belastningsforsøg i marken, eller skønnet.",
+          "optionLabels": [],
+          "optionValues": [],
+          "min": 1.0,
+          "max": 45.0,
+          "step": 1.0
+        },
+        {
+          "key": "bd_antal_lag",
+          "kind": "number",
+          "label": "Antal lag",
+          "value": 3,
+          "disabled": false,
+          "help": "Antal materialelag i opbygningen.",
+          "min": 1.0,
+          "max": 3.0,
+          "step": 1.0,
+          "format": "%d"
+        },
+        {
+          "key": "bd_t_0",
+          "kind": "number",
+          "label": "Tykkelse (mm)",
+          "value": 300,
+          "disabled": false,
+          "help": null,
+          "min": 200.0,
+          "max": 2000.0,
+          "step": 50.0,
+          "format": "%d"
+        },
+        {
+          "key": "bd_t_1",
+          "kind": "number",
+          "label": "Tykkelse (mm)",
+          "value": 400,
+          "disabled": false,
+          "help": null,
+          "min": 200.0,
+          "max": 2000.0,
+          "step": 50.0,
+          "format": "%d"
+        },
+        {
+          "key": "bd_t_2",
+          "kind": "number",
+          "label": "Tykkelse (mm)",
+          "value": 200,
+          "disabled": false,
+          "help": null,
+          "min": 200.0,
+          "max": 2000.0,
+          "step": 50.0,
+          "format": "%d"
+        },
+        {
+          "key": "bd_phi_m_2",
+          "kind": "number",
+          "label": "φᵢ (°)",
+          "value": 37.0,
+          "disabled": false,
+          "help": null,
+          "min": 20.0,
+          "max": 60.0,
+          "step": 0.5,
+          "format": "%0.2f"
+        },
+        {
+          "key": "bd_korn_m_2",
+          "kind": "number",
+          "label": "Max kornstørrelse (mm)",
+          "value": 32,
+          "disabled": false,
+          "help": null,
+          "min": 0.0,
+          "max": 500.0,
+          "step": 1.0,
+          "format": "%d"
+        },
+        {
+          "key": "bd_phi_man",
+          "kind": "number",
+          "label": "φᵥ (°)",
+          "value": 38.0,
+          "disabled": false,
+          "help": null,
+          "min": 20.0,
+          "max": 60.0,
+          "step": 0.5,
+          "format": "%0.2f"
+        },
+        {
+          "key": "bd_phi_override",
+          "kind": "checkbox",
+          "label": "Overskriv φᵥ manuelt",
+          "value": true,
+          "disabled": false,
+          "help": null
+        },
+        {
+          "key": "bd_dd_vis_din_prik",
+          "kind": "checkbox",
+          "label": "Vis indtastet opbygning",
+          "value": true,
+          "disabled": false,
+          "help": null
+        },
+        {
+          "key": "bd_dd_vis_lag_prikker",
+          "kind": "checkbox",
+          "label": "Vis endepunkter for 1 og 2 lag geonet",
+          "value": true,
+          "disabled": false,
+          "help": null
+        }
+      ],
+      "selectedMaterials": {
+        "bd_mat_0": "Stabilgrus SGII 0-32",
+        "bd_mat_1": "Bundsikringssand",
+        "bd_mat_2": "Manuel indtastning"
+      },
+      "session": {
+        "bd_antal_lag": 3,
+        "bd_phi_override": true,
+        "std_valgt_tklasse": "T4",
+        "bd_mat_0": "Stabilgrus SGII 0-32",
+        "std_grundlag": "Trafikklasse",
+        "std_eu_mode": "Eᵤ — E-modul",
+        "bd_eu_slider": 10,
+        "tilstand": "Brugerdefineret",
+        "bd_sidste_klasse": 4,
+        "bd_grundlag": "Trafikklasse",
+        "bd_t_0": 300,
+        "std_sidste_klasse": 4,
+        "bd_eu_mode": "Eᵤ — E-modul",
+        "bd_dd_vis_din_prik": true,
+        "bd_phi_m_2": 37.0,
+        "bd_lt_m_2": "Bærelag",
+        "bd_dd_vis_lag_prikker": true,
+        "bd_sidste_tklasse": "T4",
+        "bd_geonet": "Tensar TriAx TX160",
+        "bd_valgt_tklasse": "T4",
+        "bd_mat_1": "Bundsikringssand",
+        "bd_phi_man": 38.0,
+        "bd_t_1": 400,
+        "bd_mat_2": "Manuel indtastning",
+        "bd_t_2": 200,
+        "std_sidste_tklasse": "T4",
+        "std_valgt_klasse": 4,
+        "bd_korn_m_2": 32,
+        "std_cv_slider": 60,
+        "std_eu_slider": 10,
+        "bd_valgt_klasse": 4
+      }
+    },
+    {
+      "id": "custom-geonet",
+      "action": "Choose a different named geonet",
+      "mode": "Brugerdefineret",
+      "widgets": [
+        {
+          "key": "tilstand",
+          "kind": "segmented",
+          "label": "Tilstand",
+          "value": "Brugerdefineret",
+          "disabled": false,
+          "help": "**Standard:** Vælg Eᵤ/Cv og belastningsklasse — få en oversigt over alle geonet-produkter med deres opnåelige bærelagstykkelse.  \n**Brugerdefineret:** Få en oversigt over alle produkter, eller vælg ét produkt med op til 3 materialelag, med beregning af vægtet friktionsvinkel",
+          "optionLabels": [
+            "Standard",
+            "Brugerdefineret"
+          ],
+          "optionValues": [
+            "Standard",
+            "Brugerdefineret"
+          ]
+        },
+        {
+          "key": "bd_eu_mode",
+          "kind": "segmented",
+          "label": "Input-form",
+          "value": "Eᵤ — E-modul",
+          "disabled": false,
+          "help": null,
+          "optionLabels": [
+            "Eᵤ — E-modul",
+            "Cv — vingestyrke"
+          ],
+          "optionValues": [
+            "Eᵤ — E-modul",
+            "Cv — vingestyrke"
+          ]
+        },
+        {
+          "key": "bd_grundlag",
+          "kind": "segmented",
+          "label": "Dimensioneringsgrundlag",
+          "value": "Trafikklasse",
+          "disabled": false,
+          "help": "**Belastningsklasse:** dimensionér ud fra Tensar/GS-GRID-belastningsklasserne (1–6) som hidtil.  \n**Trafikklasse:** dimensionér ud fra Vejdirektoratets trafikklasser (T1–T6) via en dokumenteret korrelation til designdiagrammerne.",
+          "optionLabels": [
+            "Belastningsklasse",
+            "Trafikklasse"
+          ],
+          "optionValues": [
+            "Belastningsklasse",
+            "Trafikklasse"
+          ]
+        },
+        {
+          "key": "bd_valgt_tklasse",
+          "kind": "segmented",
+          "label": "Trafikklasse",
+          "value": "T4",
+          "disabled": false,
+          "help": null,
+          "optionLabels": [
+            "T1",
+            "T2",
+            "T3",
+            "T4",
+            "T5",
+            "T6"
+          ],
+          "optionValues": [
+            "T1",
+            "T2",
+            "T3",
+            "T4",
+            "T5",
+            "T6"
+          ]
+        },
+        {
+          "key": "bd_mat_0",
+          "kind": "select",
+          "label": "Materiale",
+          "value": "Stabilgrus SGII 0-32",
+          "disabled": false,
+          "help": null,
+          "optionLabels": [
+            "Bundsikringssand",
+            "Bundgrus 0-80",
+            "Stabilgrus SGI 0-32",
+            "Stabilgrus SGII 0-32",
+            "Knust beton 0-32",
+            "Skærver 0-32",
+            "Skærver 0-64",
+            "Skærver 0-90",
+            "Skærver 0-120",
+            "Skærver 0-150",
+            "Skærver 0-200",
+            "Skærver 0-250",
+            "Manuel indtastning"
+          ],
+          "optionValues": [
+            "Bundsikringssand",
+            "Bundgrus 0-80",
+            "Stabilgrus SGI 0-32",
+            "Stabilgrus SGII 0-32",
+            "Knust beton 0-32",
+            "Skærver 0-32",
+            "Skærver 0-64",
+            "Skærver 0-90",
+            "Skærver 0-120",
+            "Skærver 0-150",
+            "Skærver 0-200",
+            "Skærver 0-250",
+            "Manuel indtastning"
+          ]
+        },
+        {
+          "key": "bd_mat_1",
+          "kind": "select",
+          "label": "Materiale",
+          "value": "Bundsikringssand",
+          "disabled": false,
+          "help": null,
+          "optionLabels": [
+            "Bundsikringssand",
+            "Bundgrus 0-80",
+            "Stabilgrus SGI 0-32",
+            "Stabilgrus SGII 0-32",
+            "Knust beton 0-32",
+            "Skærver 0-32",
+            "Skærver 0-64",
+            "Skærver 0-90",
+            "Skærver 0-120",
+            "Skærver 0-150",
+            "Skærver 0-200",
+            "Skærver 0-250",
+            "Manuel indtastning"
+          ],
+          "optionValues": [
+            "Bundsikringssand",
+            "Bundgrus 0-80",
+            "Stabilgrus SGI 0-32",
+            "Stabilgrus SGII 0-32",
+            "Knust beton 0-32",
+            "Skærver 0-32",
+            "Skærver 0-64",
+            "Skærver 0-90",
+            "Skærver 0-120",
+            "Skærver 0-150",
+            "Skærver 0-200",
+            "Skærver 0-250",
+            "Manuel indtastning"
+          ]
+        },
+        {
+          "key": "bd_mat_2",
+          "kind": "select",
+          "label": "Materiale",
+          "value": "Manuel indtastning",
+          "disabled": false,
+          "help": null,
+          "optionLabels": [
+            "Bundsikringssand",
+            "Bundgrus 0-80",
+            "Stabilgrus SGI 0-32",
+            "Stabilgrus SGII 0-32",
+            "Knust beton 0-32",
+            "Skærver 0-32",
+            "Skærver 0-64",
+            "Skærver 0-90",
+            "Skærver 0-120",
+            "Skærver 0-150",
+            "Skærver 0-200",
+            "Skærver 0-250",
+            "Manuel indtastning"
+          ],
+          "optionValues": [
+            "Bundsikringssand",
+            "Bundgrus 0-80",
+            "Stabilgrus SGI 0-32",
+            "Stabilgrus SGII 0-32",
+            "Knust beton 0-32",
+            "Skærver 0-32",
+            "Skærver 0-64",
+            "Skærver 0-90",
+            "Skærver 0-120",
+            "Skærver 0-150",
+            "Skærver 0-200",
+            "Skærver 0-250",
+            "Manuel indtastning"
+          ]
+        },
+        {
+          "key": "bd_lt_m_2",
+          "kind": "select",
+          "label": "Lagtype",
+          "value": "Bærelag",
+          "disabled": false,
+          "help": null,
+          "optionLabels": [
+            "Bærelag",
+            "Bundsikring"
+          ],
+          "optionValues": [
+            "Bærelag",
+            "Bundsikring"
+          ]
+        },
+        {
+          "key": "bd_geonet",
+          "kind": "select",
+          "label": "Produkt",
+          "value": "GS-GRID SX160",
+          "disabled": false,
+          "help": null,
+          "optionLabels": [
+            "Tensar HX5.5 (Klasse 1-5 · Net-korrektion: +5 %)",
+            "Tensar HX165 (Klasse 4-6 · Net-korrektion: -5 %)",
+            "Tensar InterAx NX750 (Klasse 5-6 · Net-korrektion: −10 % (opt. −20 %))",
+            "Tensar InterAx NX850 (Klasse 5-6 · Net-korrektion: −15 % (opt. −30 %))",
+            "Tensar SS30 (Klasse 3-5 · Net-korrektion: +10 %)",
+            "Tensar TriAx TX150 (Klasse 1-4 · Net-korrektion: +10 %)",
+            "Tensar TriAx TX160 · Referencenet (Klasse 3-6 · Net-korrektion: 0 %)",
+            "Tensar TriAx TX190L (Klasse 4-6 · Net-korrektion: 0 %)",
+            "GS-GRID B20/20 (Klasse 1-3 · Net-korrektion: +20 %)",
+            "GS-GRID B20/20L (Klasse 1-3 · Net-korrektion: +20 %)",
+            "GS-GRID B30/30 (Klasse 3-5 · Net-korrektion: +10 %)",
+            "GS-GRID B30/30L (Klasse 3-5 · Net-korrektion: +10 %)",
+            "GS-GRID B30/30XL (Klasse 4-6 · Net-korrektion: +10 %)",
+            "GS-GRID B40/40 (Klasse 4-6 · Net-korrektion: 0 %)",
+            "GS-GRID B40/40L (Klasse 4-6 · Net-korrektion: 0 %)",
+            "GS-GRID SX160 · Referencenet (Klasse 3-6 · Net-korrektion: 0 %)",
+            "GS-GRID SX170 (Klasse 4-6 · Net-korrektion: -10 %)",
+            "E'GRID T6 · Referencenet (Klasse 3-6 · Net-korrektion: 0 %)",
+            "E'GRID T7 (Klasse 4-6 · Net-korrektion: -10 %)",
+            "E'GRID T9L (Klasse 4-6 · Net-korrektion: -10 %)"
+          ],
+          "optionValues": [
+            "Tensar HX5.5",
+            "Tensar HX165",
+            "Tensar InterAx NX750",
+            "Tensar InterAx NX850",
+            "Tensar SS30",
+            "Tensar TriAx TX150",
+            "Tensar TriAx TX160",
+            "Tensar TriAx TX190L",
+            "GS-GRID B20/20",
+            "GS-GRID B20/20L",
+            "GS-GRID B30/30",
+            "GS-GRID B30/30L",
+            "GS-GRID B30/30XL",
+            "GS-GRID B40/40",
+            "GS-GRID B40/40L",
+            "GS-GRID SX160",
+            "GS-GRID SX170",
+            "E'GRID T6",
+            "E'GRID T7",
+            "E'GRID T9L"
+          ]
+        },
+        {
+          "key": "bd_eu_slider",
+          "kind": "slider",
+          "label": "Eᵤ (MPa)",
+          "value": 10,
+          "disabled": false,
+          "help": "Angiv E-modul for underbunden. Oftest målt ved belastningsforsøg i marken, eller skønnet.",
+          "optionLabels": [],
+          "optionValues": [],
+          "min": 1.0,
+          "max": 45.0,
+          "step": 1.0
+        },
+        {
+          "key": "bd_antal_lag",
+          "kind": "number",
+          "label": "Antal lag",
+          "value": 3,
+          "disabled": false,
+          "help": "Antal materialelag i opbygningen.",
+          "min": 1.0,
+          "max": 3.0,
+          "step": 1.0,
+          "format": "%d"
+        },
+        {
+          "key": "bd_t_0",
+          "kind": "number",
+          "label": "Tykkelse (mm)",
+          "value": 300,
+          "disabled": false,
+          "help": null,
+          "min": 200.0,
+          "max": 2000.0,
+          "step": 50.0,
+          "format": "%d"
+        },
+        {
+          "key": "bd_t_1",
+          "kind": "number",
+          "label": "Tykkelse (mm)",
+          "value": 400,
+          "disabled": false,
+          "help": null,
+          "min": 200.0,
+          "max": 2000.0,
+          "step": 50.0,
+          "format": "%d"
+        },
+        {
+          "key": "bd_t_2",
+          "kind": "number",
+          "label": "Tykkelse (mm)",
+          "value": 200,
+          "disabled": false,
+          "help": null,
+          "min": 200.0,
+          "max": 2000.0,
+          "step": 50.0,
+          "format": "%d"
+        },
+        {
+          "key": "bd_phi_m_2",
+          "kind": "number",
+          "label": "φᵢ (°)",
+          "value": 37.0,
+          "disabled": false,
+          "help": null,
+          "min": 20.0,
+          "max": 60.0,
+          "step": 0.5,
+          "format": "%0.2f"
+        },
+        {
+          "key": "bd_korn_m_2",
+          "kind": "number",
+          "label": "Max kornstørrelse (mm)",
+          "value": 32,
+          "disabled": false,
+          "help": null,
+          "min": 0.0,
+          "max": 500.0,
+          "step": 1.0,
+          "format": "%d"
+        },
+        {
+          "key": "bd_phi_man",
+          "kind": "number",
+          "label": "φᵥ (°)",
+          "value": 38.0,
+          "disabled": false,
+          "help": null,
+          "min": 20.0,
+          "max": 60.0,
+          "step": 0.5,
+          "format": "%0.2f"
+        },
+        {
+          "key": "bd_phi_override",
+          "kind": "checkbox",
+          "label": "Overskriv φᵥ manuelt",
+          "value": true,
+          "disabled": false,
+          "help": null
+        },
+        {
+          "key": "bd_dd_vis_din_prik",
+          "kind": "checkbox",
+          "label": "Vis indtastet opbygning",
+          "value": true,
+          "disabled": false,
+          "help": null
+        },
+        {
+          "key": "bd_dd_vis_lag_prikker",
+          "kind": "checkbox",
+          "label": "Vis endepunkter for 1 og 2 lag geonet",
+          "value": true,
+          "disabled": false,
+          "help": null
+        }
+      ],
+      "selectedMaterials": {
+        "bd_mat_0": "Stabilgrus SGII 0-32",
+        "bd_mat_1": "Bundsikringssand",
+        "bd_mat_2": "Manuel indtastning"
+      },
+      "session": {
+        "bd_antal_lag": 3,
+        "bd_phi_override": true,
+        "std_valgt_tklasse": "T4",
+        "bd_mat_0": "Stabilgrus SGII 0-32",
+        "std_grundlag": "Trafikklasse",
+        "std_eu_mode": "Eᵤ — E-modul",
+        "bd_eu_slider": 10,
+        "tilstand": "Brugerdefineret",
+        "bd_sidste_klasse": 4,
+        "bd_grundlag": "Trafikklasse",
+        "bd_t_0": 300,
+        "std_sidste_klasse": 4,
+        "bd_eu_mode": "Eᵤ — E-modul",
+        "bd_dd_vis_din_prik": true,
+        "bd_phi_m_2": 37.0,
+        "bd_lt_m_2": "Bærelag",
+        "bd_dd_vis_lag_prikker": true,
+        "bd_sidste_tklasse": "T4",
+        "bd_geonet": "GS-GRID SX160",
+        "bd_valgt_tklasse": "T4",
+        "bd_mat_1": "Bundsikringssand",
+        "bd_phi_man": 38.0,
+        "bd_t_1": 400,
+        "bd_mat_2": "Manuel indtastning",
+        "bd_t_2": 200,
+        "std_sidste_tklasse": "T4",
+        "std_valgt_klasse": 4,
+        "bd_korn_m_2": 32,
+        "std_cv_slider": 60,
+        "std_eu_slider": 10,
+        "bd_valgt_klasse": 4
+      }
+    }
+  ]
+}

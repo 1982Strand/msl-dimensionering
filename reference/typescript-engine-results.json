@@ -1,0 +1,50 @@
+{
+  "source_commit": "a330cfd6734ac2478be1304a362c69f94e412d25",
+  "recorded_date": "2026-09-29",
+  "runtime": "Node 24.19.0",
+  "platform": "Windows",
+  "comparison": "deep strict equality; no numerical migration tolerance",
+  "tests": {
+    "core_reference_cases": 2062,
+    "additional_boundary_cases": 255,
+    "dimensioning_snapshots": 17,
+    "coverage_and_defaults_guards": 3,
+    "total_pass": 2337,
+    "fail": 0
+  },
+  "checks": {
+    "strict_typescript": "passed",
+    "prettier": "passed",
+    "exported_defaults_vs_python": "passed",
+    "boundary_expectations_vs_python": "passed"
+  },
+  "limitations": [
+    "No React UI/browser verification yet",
+    "Data editing/persistence and diagram rebuilding not migrated",
+    "Report text/figure generation not yet wired to TypeScript engine",
+    "Not independent engineering validation"
+  ],
+  "sha256": {
+    "reference/core-cases.json": "1c3fb790388c7acb94e551aa816123b90588583c593c5af1baec6abbc91545df",
+    "reference/engine-boundaries.json": "43fc1d93eb64be01adb48b1211d5a394c2fba4dd497c902d8f73535374032d0f",
+    "reference/ui-flows.json": "f995f6a32113a5244f55dcfdd2cae491b0aba838504acfac0355cc003925dcbb",
+    "src/engine/defaults.json": "f739d652e42a90eaefed193a80e06d7ed9581210f564577d10b8bba851e72bdb",
+    "package-lock.json": "3f72dfa9c9f570cf0a6df4391b351b210b01869253468676b1a0388d1312e2a0",
+    "src/engine/afrunding.ts": "a75dd58b97eda594f179c5e6f88a893e1c86df511a83f5d70f366af9dda34ad0",
+    "src/engine/calculator.ts": "aa359423337bc8ca432cc1ce79342516c647764e7a077fa16d932a4588ef0460",
+    "src/engine/data.ts": "054118f6bd2ce21c9f1598e044e641f2f5baaa4300750380fd28b4415bdd588a",
+    "src/engine/dimensionering.ts": "c594d1a0350c9459c80eeda1f1228b620c124f810e7a589ab296485e34dea773",
+    "src/engine/enhed.ts": "a520eac91cebc0bca81294a42246e2f756fe4dd2528227f9e98347466c131a0a",
+    "src/engine/lagfordeling.ts": "08c817ac0f4826018e6ced6aaf181ca36d913ba8e0e375469eceee716513836e",
+    "src/engine/placement.ts": "30d9bf486150dc09feb66a06dcd65959ae421dc90a1dee1c9bea421650c370c4",
+    "src/engine/products.ts": "11ef636d72945015cfd5c91dff56a8035696205c403c6c9e4612232a0173978e",
+    "src/engine/python-numbers.ts": "27a0402218ae42142f14c1941f54de86bf7c8b168cf35385def89649031c3b47",
+    "src/engine/traffic.ts": "71c9960285a5f759a2983a7bccc818564eb911f926a7f8c4c52eb4ad13f2b353",
+    "src/engine/types.ts": "04739814dc98a64bf1d1b9fa0ee1544e609041e79d31456f28cf546bb03071a5",
+    "src/engine/validators.ts": "0bd1dd8b1b1aeeaba483b6729c6a3c179a6f24631fd17482778f02d01f419446",
+    "tests/dimensionering.test.ts": "dc8e24bdc1b350bb2ac4b2c2c9b48fb55fc7431fa8f7aaebeb1c24a0b6ce5240",
+    "tests/engine-boundaries.test.ts": "f6a17cff09c716fc8d5c12702b77d30b526175422b9c7bd8d435feb28dcc3c5c",
+    "tests/engine-reference.test.ts": "ac7a44d65cbe34f7e0823f622cc67720c9bfaa9b2686c12d1a0a34b87fc3d878"
+  },
+  "hash_encoding": "UTF-8 files normalized to LF before SHA-256"
+}

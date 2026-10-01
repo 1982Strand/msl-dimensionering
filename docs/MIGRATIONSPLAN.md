@@ -1,92 +1,65 @@
-# Migrationsplan — udkast til fælles gennemgang
+# Migrationsplan og status
 
-Oprettet 29. september 2026. Faser og acceptkriterier er foreslåede, medmindre de fremgår som aftalt i beslutningsloggen.
+Oprettet 29. september 2026, samlet 30. september 2026. Aftaler og godkendelser står i [BESLUTNINGER.md](BESLUTNINGER.md). Tidligere statusafsnit findes i Git-historikken (senest `f5e66f2`).
 
-## Mål og afgrænsning
+## Formål og ramme
 
-Den eksisterende app omskrives til en brugerflade med React, TypeScript, Vite og shadcn/ui. Beregninger og funktionalitet skal bevares. Om beregningsmotoren også skal flyttes fra Python til TypeScript, er et åbent arkitekturvalg.
+Den eksisterende Streamlit-app (`C:\geonet_beregning`, reference `a330cfd`) omskrives til React, TypeScript, Vite og shadcn/ui. Beregninger, standardværdier, gyldighedsområder, afrundinger, advarsler og funktioner bevares (B-003, B-008). Beregningsmotoren er flyttet til TypeScript (B-014); Python bruges kun som uafhængig reference. Ændringer af virkemåde, design og visualiseringer kræver brugerens godkendelse. Arbejdsgang og roller står i [AGENTS.md](../AGENTS.md) (B-033).
 
-Migreringens første leverance er dokumenteret overensstemmelse med den godkendte gamle app. Forbedringer vurderes enkeltvis sammen med brugeren og skal kunne spores til en konkret godkendelse.
+## Aktuel status — 01.10.2026 (opdateret)
 
-## Fase 0 — reference og rammer
+| Område                                                            | Status                                                                                                                                                                                                                                                            | Dokument                                                                                                                                 |
+| ----------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| Reference og kontrolgrundlag                                      | Fastlagt ved `a330cfd`. 2.062 core-cases, UI-snapshots samt figur-, produkt- og rapportreferencer er optaget fra isoleret original                                                                                                                                | [REFERENCESTATUS.md](REFERENCESTATUS.md), [reference/README.md](../reference/README.md)                                                  |
+| Beregningsmotor                                                   | Porteret og kontrolleret uden tolerance. 2.810 Node-tests, 29 browserforløb og typekontrol består                                                                                                                                                                 | [BEREGNINGSMOTOR.md](BEREGNINGSMOTOR.md)                                                                                                 |
+| Grunddata: Materialer, Designdiagrammer, Trafikklasse-korrelation | React-editorer med direkte redigering, ændringsvisning, fortryd og automatisk lagring (B-017–019). R-004 afventer vurdering                                                                                                                                       | [MATERIALEUDKAST.md](MATERIALEUDKAST.md), [GRUNDDATAUDKAST.md](GRUNDDATAUDKAST.md), [REDIGERING_OG_LAGRING.md](REDIGERING_OG_LAGRING.md) |
+| Indstillinger                                                     | Felter, standarder, afhængigheder og lagring. Dynamiske afsnitsopsummeringer og alle Gælder-markeringer udestår                                                                                                                                                   | [INDSTILLINGER.md](INDSTILLINGER.md)                                                                                                     |
+| Dimensionering                                                    | Formularer, produktvalg (B-023), produktoversigt og layout (B-024), opbygningsfigurer (B-025)                                                                                                                                                                     | [DIMENSIONERINGSUDKAST.md](DIMENSIONERINGSUDKAST.md), [OPBYGNINGSFIGURER.md](OPBYGNINGSFIGURER.md)                                       |
+| Mellemregninger                                                   | Færdige: M1 (B-038–B-040), M3/M7, M4, M5 (B-034/B-035), M6, M8 og M9. M2 udgår (B-032). Dimensioneringssiden godkendt (B-042)                                                                                                                                     | [MELLEMREGNINGER_PLAN.md](MELLEMREGNINGER_PLAN.md), [DIMENSIONERINGSUDKAST.md](DIMENSIONERINGSUDKAST.md)                                 |
+| Rapport og firmaprofil                                            | Plan godkendt (B-026–030). R1 rapportdata, R2 PDF-kompilering i browseren og R3 layout og figurer og R4 rapportside (godkendt B-044) er færdige; R5 firmaprofil (B-045) og R6 endelig PDF-godkendelse (B-055) er færdige                                          | [RAPPORT_PLAN.md](RAPPORT_PLAN.md)                                                                                                       |
+| Geonet-database-side                                              | Færdig og godkendt (B-036, B-041): tabel, søgning, sortering og noter kontrolleret mod originalen                                                                                                                                                                 | [SIDER_PLAN.md](SIDER_PLAN.md)                                                                                                           |
+| Hjælp-side                                                        | Færdig og godkendt (B-036, B-041): otte kapitler, formler, figurer, kilder og »gå til« kontrolleret mod originalen                                                                                                                                                | [SIDER_PLAN.md](SIDER_PLAN.md)                                                                                                           |
+| Navigation og samlet brugerflade                                  | Alle otte sider er samlet i shadcn Sidebar (B-037) med originalens grupper, ikoner og versionsfod, hash-links, ikonvisning og mobilskuffe. Dimensionering er startside. Browserkontrol er tilføjet; temagennemgangen er færdig og godkendt (B-058, B-059). Samlet accept udestår | —                                                                                                                                        |
+| Adgang, hosting og offentliggørelse                               | Webapp med lokal lagring i browseren (B-019, B-027). Adgang og hosting er ikke valgt (A-004)                                                                                                                                                                      | [ARKITEKTURVALG.md](ARKITEKTURVALG.md)                                                                                                   |
 
-Udført: brugeren har valgt den aktuelle gamle app efter commit/push som reference (`a330cfd6734ac2478be1304a362c69f94e412d25`). Kildearkiv, eksisterende lokale JSON-data, miljøoplysninger og kontrolsummer er bevaret lokalt under `reference-private/a330cfd/`. Brugeren ønsker arkitekturvalget afklaret efter kortlægningen. De øvrige punkter nedenfor er fortsat åbne.
+## Resterende arbejde i rækkefølge
 
-- Vælg referenceversion: lokal arbejdskopi, GitHub-version eller en bestemt version.
-- Medtag relevante brugerdefinerede materialer, diagrammer, korrelationer og indstillinger i beslutningen. En Git-commit alene beskriver ikke den aktuelle lokale app.
-- Gem en reproducerbar reference med commit, lokale ændringer, filkontrolsummer, afhængigheder og nødvendige skabeloner/data. Lokale metadata holdes uden for Git.
-- Afklar hvad »offentliggøres« betyder: åben app, login, adgang til redigering af grunddata, personlige kontra fælles indstillinger og behov for offlinebrug.
-- Sammenlign TypeScript-motor og bevaret Python-motor med hensyn til efterprøvning, rapporter og drift. Teknologistakken for brugerfladen er allerede valgt.
+1. **Samlet temagennemgang** (B-042): færdig og godkendt (B-058, B-059). Temaet er gennemført på alle sider med tokens, fælles sidehoved, shadcn-kontroller, beskeder og tabeller; de globale tabelregler er fjernet.
+2. **Oprydning før brug:** udført (B-059). Designudkastets sider (`#designudkast`, `#designudkast-sidebar`) med hjælpedata og særskilt browsertest, temaudkastet (`#temaudkast`) med CSS og skærmudklip, de ubrugte shadcn-komponenter Card, Progress og Sonner samt `spikes/report-typescript/` med testkommando og konfigurationshenvisninger er fjernet. Dokumentationen bevares som historik. Mærket »Under udvikling« og fodnoten »Udkast · …« er fjernet sammen med temaet (B-058).
+3. **Samlet accept** (fase 5 nedenfor) og afklaring af adgang og hosting (A-004). Merge til `main` og offentliggørelse kun efter brugerens aftale.
 
-Godkendelse: referencegrundlag og arkitektur. Dette ændrer ikke i sig selv den gamle funktionalitet.
+## Faser og acceptkriterier
 
-## Fase 1 — komplet funktionsfortegnelse
+**Fase 0 — reference og rammer (udført).** Referencen er den committede gamle app `a330cfd6734ac2478be1304a362c69f94e412d25` (B-007). Kildearkiv, lokale JSON-data, miljøoplysninger og kontrolsummer ligger lokalt i `reference-private/a330cfd/` uden for Git.
 
-- Gennemgå alle otte navigationssider og deres underfunktioner, herunder Standard og Brugerdefineret dimensionering.
-- Registrer inputs, tilladte værdier, standarder, afhængigheder, beregninger, mellemresultater, advarsler, fejl, gemning/nulstilling og rapportindhold.
-- Kortlæg logik og tilstandsændringer i `app.py` samt data og skabeloner uden for beregningsmotoren.
-- Giv hver funktion et stabilt ID og forbind det til gammel kode, referencecase, ny implementation og kontrolstatus.
-- Gennemgå den foreløbige fortegnelse sammen med brugeren. Uafklarede eller sjældent brugte funktioner må ikke udgå stiltiende.
+**Fase 1 — funktionsfortegnelse.** Alle otte sider og deres underfunktioner registreres med stabile ID'er, kilde, referencecase, ny implementation og kontrolstatus i [FUNKTIONSMATRIX.md](FUNKTIONSMATRIX.md). Sjældent brugte funktioner må ikke udgå stiltiende.
 
-Godkendelse: omfang og identificerede afklaringspunkter.
+**Fase 2 — referencecases.** Originalens output optages, før den tilsvarende nye kode skrives, fra et isoleret arkiv af referencen, og eksisterende forventninger overskrives aldrig. Dækningen skal omfatte:
 
-## Fase 2 — referencecases og kontrolgrundlag
+- belastnings- og trafikklasse, Standard og Brugerdefineret;
+- uarmeret og et eller to geonetlag, samt produktvalg og -grupper;
+- gyldighedsgrænser, oprunding, minimumstykkelser, lagfordeling og geonetplacering;
+- mm/cm, redigerede data og indstillinger, rapportvalg og hele brugerforløb.
 
-Kør cases i den godkendte gamle app før tilsvarende ny kode skrives. Gem input, data/indstillinger, forventede mellem- og slutresultater samt advarsler og relevante figurer/rapporter.
+Accept: samme diskrete udfald, gyldighed, advarsler og oprundede og viste værdier. Tolerancer kræver særskilt godkendelse og må aldrig skjule ændret tykkelse, grænseafgørelse eller produktvalg.
 
-Minimumsdækning foreslås som:
+**Fase 3 — design og visualisering.** Konkrete udkast med realistiske, syntetiske data. Appdesign og opbygnings- og figurvisualisering godkendes hver for sig. Et godkendt udkast tillader ikke ændrede beregningsregler.
 
-- Belastningsklasse og trafikklasse; Standard og Brugerdefineret.
-- Uarmeret, ét og to geonetlag; produktvalg, produktgrupper og manuel armering.
-- Diagramknuder, mellemliggende opslag og begge sider af gyldighedsgrænser, herunder manglende værdier og regler uden for diagramområdet.
-- Alle oprundingstrin, friktionsvinkelregler, minimumstykkelser, fordelinger og regler for tynde restlag.
-- Geonetplacering, dæklag, afstande, overlæg og ugyldige opbygninger.
-- mm/cm, decimaler, viste reduktioner og præcise værdier bag oprundingen.
-- Redigerede tabeller og indstillinger; manglende/ugyldige gemte data; nulstilling og genåbning.
-- Rapporter med valgte snit, metadata, redigerede tekster og relevante eksportformater.
-- Hele brugerforløb, herunder ændring af input efter et tidligere resultat, navigation og genindlæsning.
+**Fase 4 — implementering i afgrænsede dele.** Domænelogik, data, brugerflade og rapport holdes adskilt. Hver del afsluttes med:
 
-Accept: samme diskrete udfald, gyldighed, advarsler, oprundede og viste værdier. Interne flydende tal får kun tolerance efter særskilt aftale; tolerancen må aldrig skjule ændret lagtykkelse, grænseafgørelse eller produktvalg. Python- og JavaScript-afrunding kontrolleres udtrykkeligt ved en portering.
+- sammenligning mod referencen;
+- opdatering af funktionsmatrixen;
+- registrering af eventuelle godkendte afvigelser.
 
-Godkendelse: repræsentative faglige cases og eventuelle numeriske tolerancer. Sammenfald med den gamle app dokumenterer migrationskorrekthed, ikke automatisk en selvstændig faglig validering af den gamle metode.
+**Fase 5 — samlet accept og offentliggørelse.**
 
-## Fase 3 — design og opbygningsvisualisering
+- Alle referencecases og hele forløb fra input til PDF skal køres.
+- Aftalte browsere, skærmstørrelser, tilgængelighed og lagring skal kontrolleres.
+- En oversigt over dækning og afvigelser skal foreligge.
+- Versionsmærkning og mulighed for tilbagerulning skal være på plads.
 
-Der udarbejdes konkrete udkast på realistiske, syntetiske referencecases. Afklar først om eksisterende identitet videreføres, eller om et nyt MSL-design ønskes.
-
-To separate godkendelser:
-
-1. Appdesign: navigation, sidestruktur, formularer, tabeller, resultater, fejl/advarsler, typografi, farver og relevante skærmstørrelser.
-2. Opbygningsvisualisering: lagrækkefølge, materialer, skalering, geonetlinjer, mål, enheder, labels, signaturer og visning af gyldige/ugyldige snit på skærm og i rapport.
-
-Forslag om ændrede arbejdsgange er også funktionelle ændringer og skal beskrives som sådanne. Et godkendt visuelt udkast giver ikke tilladelse til at ændre beregningsregler.
-
-## Fase 4 — implementering i afgrænsede dele
-
-Efter de relevante afklaringer opsættes React/TypeScript/Vite/shadcn/ui med låste afhængigheder, typekontrol og automatiske kontroller. Domænelogik, data, brugerflade og rapportgenerering adskilles, så hver del kan kontrolleres mod referencen.
-
-Foreslået rækkefølge:
-
-1. Datamodeller, opslag, beregninger og validering.
-2. Indstillinger, lagfordeling, produktvalg og dimensioneringsforløb.
-3. Godkendt brugerflade, diagrammer og opbygningsvisualiseringer.
-4. Redigering/gemning af data, hjælp, rapporter og eksport.
-
-Hver del afsluttes med sammenligning mod referencecases og opdatering af funktionsfortegnelsen. Referenceforventninger må ikke ændres for at skjule en forskel. Eventuelle godkendte forbedringer får egne cases og henvisning til beslutningsloggen.
-
-## Fase 5 — samlet accept og offentliggørelse
-
-- Gennemfør alle referencecases og komplette brugerforløb fra input til rapport.
-- Gennemgå beregning, figur og rapport for de samme cases med brugeren.
-- Kontroller de aftalte browsere/skærmstørrelser, tilgængelighed, lagring og adskillelse af brugerdata.
-- Kontroller drift af rapporteksport på det valgte hostingmiljø.
-- Lever en oversigt over funktionsdækning, godkendte afvigelser, åbne punkter og kontrolresultater.
-- Aftal versionsmærkning, udgivelse og mulighed for at vende tilbage til tidligere version.
-
-Offentliggørelse følger først efter brugerens accept af den konkrete version og de aftalte kontroller. Hosting og offentlig adgang er endnu ikke valgt.
+Offentliggørelse først efter brugerens accept af den konkrete version.
 
 ## Procedure for forbedringer
 
-Beskriv eksisterende adfærd med en konkret case, foreslået ny adfærd, begrundelse, påvirkede resultater/arbejdsgange/figurer og kontrolmetode. Forelæg dette for brugeren. Registrer godkendelse eller afvisning før den ændrede adfærd indføres.
-
-Rutinemæssig intern strukturering kan udføres uden ekstra godkendelse, når den bevarer den aftalte adfærd og kontrolleres mod referencen.
+Beskriv eksisterende adfærd med en konkret case, foreslået ny adfærd, begrundelse, påvirkede resultater, arbejdsgange og figurer samt kontrolmetode. Forelæg forslaget for brugeren, og registrér svaret, før ændringen indføres. Rutinemæssig intern strukturering kræver ikke ekstra godkendelse, når adfærden bevares og kontrolleres mod referencen.

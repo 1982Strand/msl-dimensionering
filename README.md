@@ -1,24 +1,78 @@
 # MSL Dimensionering
 
-Migrering af det eksisterende Streamlit-værktøj til React, TypeScript, Vite og shadcn/ui.
+Migrering af det eksisterende Streamlit-værktøj til dimensionering af MSL-opbygninger med geonet til en webapp i React, TypeScript, Vite og shadcn/ui. Beregninger, standardværdier og funktioner bevares; ændringer kræver brugerens godkendelse.
 
-Status: planlægning. Ingen beregningsmotor eller brugerflade er implementeret endnu.
+**Status 30.09.2026:** Beregningsmotoren er porteret til TypeScript og kontrolleret mod originalen uden tolerance (2.757 tests). Grunddata, indstillinger, dimensionering, opbygningsfigurer, designdiagram og φᵥ-opsummering fungerer med automatisk lagring i browseren. Mellemregninger, rapport med firmaprofil, Geonet-database, Hjælp og samlet navigation udestår. Se [Migrationsplan og status](docs/MIGRATIONSPLAN.md).
 
-- Arbejdsmappe: `C:\MSL-Dimensionering`
-- Nyt repository: https://github.com/1982Strand/msl-dimensionering
-- Eksisterende app: `C:\geonet_beregning`
-- Kilderepository: https://github.com/1982Strand/Geonet_beregning
+## Kom i gang
 
-## Aftalt ramme
+Kræver Node 24 eller nyere.
 
-Beregninger, datagrundlag og funktionalitet skal bevares. Ændringer af eksisterende virkemåde kræver brugerens udtrykkelige godkendelse. Det gælder også fejlrettelser og optimeringer, når de ændrer resultater eller adfærd. Appens design og visualisering af opbygninger skal godkendes særskilt af brugeren.
+```powershell
+npm ci
+npm run dev            # udviklingsserver
+npm run build          # typekontrol og produktionsbygning
+npm run preview        # http://127.0.0.1:5174/
+```
 
-## Projektets dokumenter
+Kontroller:
 
-- [Migrationsplan](docs/MIGRATIONSPLAN.md) — forslag til faser, leverancer og godkendelser.
-- [Foreløbig funktionskortlægning](docs/FUNKTIONSKORTLAEGNING.md) — kendte områder og kontrolpunkter.
-- [Beslutningslog](docs/BESLUTNINGER.md) — aftaler, åbne spørgsmål og ændringsforslag.
-- [Observeret kildegrundlag](docs/REFERENCESTATUS.md) — status ved opstart; endnu ikke en godkendt referenceversion.
-- [Arbejdsregler](AGENTS.md) — bindende rammer for kommende udvikling.
+```powershell
+npm run typecheck
+npm test               # motor-, data- og referencetests
+npm run format:check
+npm run test:browser   # Playwright-forløb (egen port: $env:PW_PORT=5181)
+```
 
-Referenceversionen er fastlagt til den committede og pushede gamle app, commit `a330cfd6734ac2478be1304a362c69f94e412d25`. Valg af beregningsmotor afklares efter kortlægningen. Planen er et udkast til fælles gennemgang, ikke en allerede godkendt implementeringsplan.
+Python bruges kun til at optage og efterprøve referencer fra den gamle app; se [reference/README.md](reference/README.md).
+
+## Arbejdsgang
+
+Claude Code styrer udviklingen; Codex bruges som hjælper i separate worktrees (B-033). Integrationsgrenen er `codex/reference-kortlaegning` (udkast-PR #1). Regler, roller og grene står i [AGENTS.md](AGENTS.md). Serena og Semble bruges til kodesøgning (B-015).
+
+## Dokumenter
+
+**Styring**
+
+- [Arbejdsregler](AGENTS.md)
+- [Beslutningslog](docs/BESLUTNINGER.md)
+- [Migrationsplan og status](docs/MIGRATIONSPLAN.md)
+- [Fund til afklaring](docs/FUND.md)
+
+**Delplaner**
+
+- [Mellemregninger](docs/MELLEMREGNINGER_PLAN.md) — M1–M9.
+- [Rapport og firmaprofil](docs/RAPPORT_PLAN.md) — R1–R6.
+
+**Områder**
+
+- [Beregningsmotor](docs/BEREGNINGSMOTOR.md)
+- [Dataredigering](docs/DATAREDIGERING.md)
+- [Redigering og lagring](docs/REDIGERING_OG_LAGRING.md)
+- [Redigeringsforslag](docs/REDIGERINGSFORSLAG.md)
+- [Materialer](docs/MATERIALEUDKAST.md)
+- [Grunddata](docs/GRUNDDATAUDKAST.md)
+- [Indstillinger](docs/INDSTILLINGER.md)
+- [Dimensionering](docs/DIMENSIONERINGSUDKAST.md)
+- [Opbygningsfigurer](docs/OPBYGNINGSFIGURER.md)
+- [Designdiagram M5](docs/PERSONLIGT_DESIGNDIAGRAM.md)
+- [φᵥ-opsummering M6](docs/PHI_OPSUMMERING.md)
+
+**Reference og kortlægning**
+
+- [Referencestatus](docs/REFERENCESTATUS.md)
+- [Referencekontrol](reference/README.md)
+- [Funktionsmatrix](docs/FUNKTIONSMATRIX.md)
+- [Funktionskortlægning](docs/FUNKTIONSKORTLAEGNING.md)
+
+**Rapport og arkitektur**
+
+- [Arkitekturvalg](docs/ARKITEKTURVALG.md)
+- [Rapportskabelon](docs/RAPPORTSKABELON.md)
+- [Typst-afprøvning](docs/TYPST_AFPROEVNING.md)
+- [Rapportevaluering](docs/RAPPORT_EVALUERING.md)
+
+## Kilder
+
+- Arbejdsmappe: `C:\MSL-Dimensionering` — https://github.com/1982Strand/msl-dimensionering (privat)
+- Reference: `C:\geonet_beregning`, commit `a330cfd` — https://github.com/1982Strand/Geonet_beregning

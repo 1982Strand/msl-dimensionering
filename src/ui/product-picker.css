@@ -1,0 +1,79 @@
+.product-picker-trigger {
+  width: 100%;
+  background: var(--card);
+  height: auto;
+  min-height: 44px;
+  justify-content: space-between;
+  padding: 10px 12px;
+  text-align: left;
+  white-space: normal;
+}
+.product-picker-value {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: 6px 14px;
+  min-width: 0;
+  flex-wrap: wrap;
+}
+/* Navnet i fast bredde, så mærkerne flugter til højre i felt og liste (B-054). */
+.product-picker-name {
+  font-weight: 600;
+  flex: 0 0 190px;
+}
+.product-picker-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+.product-picker-popover {
+  width: max(640px, var(--radix-popover-trigger-width));
+  /* Holdes inden for skærmen; listen ruller, hvis der ikke er plads. */
+  max-height: var(--radix-popover-content-available-height);
+  display: flex;
+  flex-direction: column;
+  max-width: calc(100vw - 24px);
+  padding: 0;
+}
+.product-picker-filter {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 10px 12px;
+}
+.product-picker-badge.product-picker-green {
+  background: var(--color-secondary);
+  color: var(--primary);
+  border-color: var(--color-border);
+}
+.product-picker-badge.product-picker-yellow {
+  background: var(--warning);
+  color: var(--warning-foreground);
+  border-color: var(--warning-border);
+}
+.product-picker-badge.product-picker-neutral {
+  background: var(--background);
+}
+/* Søgefeltets fokus vises på feltets linje; den globale fokusramme blev skåret af. */
+.product-picker-popover [cmdk-input]:focus-visible {
+  outline: none;
+}
+.product-picker-popover [data-slot='command-input-wrapper']:focus-within {
+  border-bottom-color: var(--color-ring);
+  box-shadow: inset 0 -1px 0 var(--color-ring);
+}
+@media (max-width: 600px) {
+  .product-picker-name {
+    flex-basis: 100%;
+  }
+  .product-picker-popover {
+    width: calc(100vw - 24px);
+  }
+}
+
+.product-picker-popover [data-slot='command'] {
+  min-height: 0;
+}
+.product-picker-popover [data-slot='command-list'] {
+  max-height: min(360px, calc(var(--radix-popover-content-available-height) - 96px));
+}

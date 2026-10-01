@@ -1,0 +1,833 @@
+{
+  "date": "2026-09-29",
+  "source_commit": "a330cfd6734ac2478be1304a362c69f94e412d25",
+  "node": "24.19.0",
+  "typst": "0.15.1",
+  "reference_renderer": "Microsoft Word 16.0 on Windows",
+  "template_sha256": "2f16acf217e91d90972703eeb5a276cba8b6595088a8c933a6bac73afc04b88f",
+  "compiler_source_sha256": "8991e5c6f3736153bb5e7353e6af02cfaf8b5a5fee0a62601387f005f5b8deca",
+  "checks": [
+    {
+      "case": "standard",
+      "baseline-pdf": {
+        "pages": 3,
+        "bytes": 459924,
+        "missing": [],
+        "expected_figure_pixels_present": false,
+        "expected_figures": 2,
+        "basis_heading": true,
+        "page_sizes": [
+          [
+            0.0,
+            0.0,
+            595.32,
+            841.92
+          ],
+          [
+            0.0,
+            0.0,
+            595.32,
+            841.92
+          ],
+          [
+            0.0,
+            0.0,
+            595.32,
+            841.92
+          ]
+        ],
+        "fonts": [
+          "/BCDEEE+Calibri",
+          "/BCDFEE+ArialMT",
+          "/BCDGEE+Arial-ItalicMT",
+          "/BCDHEE+Calibri",
+          "/BCDIEE+Calibri-Bold",
+          "/BCDJEE+Calibri-Italic",
+          "/BCDKEE+Calibri-Bold"
+        ],
+        "sha256": "7a3e2d232868612d3eef563d8f87ce91362903b76ca9545ec816449b60b78f45"
+      },
+      "typst": {
+        "pages": 3,
+        "bytes": 297923,
+        "missing": [],
+        "expected_figure_pixels_present": true,
+        "expected_figures": 2,
+        "basis_heading": true,
+        "page_sizes": [
+          [
+            0.0,
+            0.0,
+            595.2756,
+            841.8898
+          ],
+          [
+            0.0,
+            0.0,
+            595.2756,
+            841.8898
+          ],
+          [
+            0.0,
+            0.0,
+            595.2756,
+            841.8898
+          ]
+        ],
+        "fonts": [
+          "/FQDKNI+Calibri-Italic",
+          "/MEBOVP+Calibri",
+          "/PKUBEQ+Calibri-Bold",
+          "/QSIPBM+ArialMT"
+        ],
+        "sha256": "ac2c98b48b21c04501de9a0931926056163e41ceda80d33b62686ffde3073696"
+      }
+    },
+    {
+      "case": "two-layers",
+      "baseline-pdf": {
+        "pages": 3,
+        "bytes": 361884,
+        "missing": [],
+        "expected_figure_pixels_present": true,
+        "expected_figures": 0,
+        "basis_heading": true,
+        "page_sizes": [
+          [
+            0.0,
+            0.0,
+            595.32,
+            841.92
+          ],
+          [
+            0.0,
+            0.0,
+            595.32,
+            841.92
+          ],
+          [
+            0.0,
+            0.0,
+            595.32,
+            841.92
+          ]
+        ],
+        "fonts": [
+          "/BCDEEE+Calibri",
+          "/BCDFEE+ArialMT",
+          "/BCDGEE+Arial-ItalicMT",
+          "/BCDHEE+Calibri",
+          "/BCDIEE+Calibri-Bold",
+          "/BCDJEE+Calibri-Italic",
+          "/BCDKEE+Calibri-Bold"
+        ],
+        "sha256": "2c22d1cd8cf848c4a1bf1d0592576b694c95abacf90f6f7113f48fd587c0ecaa"
+      },
+      "typst": {
+        "pages": 2,
+        "bytes": 147596,
+        "missing": [],
+        "expected_figure_pixels_present": true,
+        "expected_figures": 0,
+        "basis_heading": true,
+        "page_sizes": [
+          [
+            0.0,
+            0.0,
+            595.2756,
+            841.8898
+          ],
+          [
+            0.0,
+            0.0,
+            595.2756,
+            841.8898
+          ]
+        ],
+        "fonts": [
+          "/ANGHOV+Calibri-Bold",
+          "/FQDKNI+Calibri-Italic",
+          "/QSIPBM+ArialMT",
+          "/WYBHAD+Calibri"
+        ],
+        "sha256": "85d36b3b7ee545923f9ee4a62714f8dae57de939f41e9aa459696fbb8553a187"
+      }
+    },
+    {
+      "case": "nx850",
+      "baseline-pdf": {
+        "pages": 3,
+        "bytes": 366639,
+        "missing": [],
+        "expected_figure_pixels_present": true,
+        "expected_figures": 0,
+        "basis_heading": true,
+        "page_sizes": [
+          [
+            0.0,
+            0.0,
+            595.32,
+            841.92
+          ],
+          [
+            0.0,
+            0.0,
+            595.32,
+            841.92
+          ],
+          [
+            0.0,
+            0.0,
+            595.32,
+            841.92
+          ]
+        ],
+        "fonts": [
+          "/BCDEEE+Calibri",
+          "/BCDFEE+ArialMT",
+          "/BCDGEE+Arial-ItalicMT",
+          "/BCDHEE+Calibri",
+          "/BCDIEE+Calibri-Bold",
+          "/BCDJEE+Calibri-Italic",
+          "/BCDKEE+Calibri-Bold"
+        ],
+        "sha256": "ff32bbff875650c6d3f619765ddcd8695f781ab84f2b7421efdeeec69b414517"
+      },
+      "typst": {
+        "pages": 2,
+        "bytes": 148304,
+        "missing": [],
+        "expected_figure_pixels_present": true,
+        "expected_figures": 0,
+        "basis_heading": true,
+        "page_sizes": [
+          [
+            0.0,
+            0.0,
+            595.2756,
+            841.8898
+          ],
+          [
+            0.0,
+            0.0,
+            595.2756,
+            841.8898
+          ]
+        ],
+        "fonts": [
+          "/DUDVBW+Calibri",
+          "/FQDKNI+Calibri-Italic",
+          "/QSIPBM+ArialMT",
+          "/TWMPSD+Calibri-Bold"
+        ],
+        "sha256": "da90f88c0b4cd1250a30fe1884388749909f6287dd3e9d79e3f7ffb95153b1f7"
+      }
+    },
+    {
+      "case": "traffic",
+      "baseline-pdf": {
+        "pages": 3,
+        "bytes": 362210,
+        "missing": [],
+        "expected_figure_pixels_present": true,
+        "expected_figures": 0,
+        "basis_heading": true,
+        "page_sizes": [
+          [
+            0.0,
+            0.0,
+            595.32,
+            841.92
+          ],
+          [
+            0.0,
+            0.0,
+            595.32,
+            841.92
+          ],
+          [
+            0.0,
+            0.0,
+            595.32,
+            841.92
+          ]
+        ],
+        "fonts": [
+          "/BCDEEE+Calibri",
+          "/BCDFEE+ArialMT",
+          "/BCDGEE+Arial-ItalicMT",
+          "/BCDHEE+Calibri",
+          "/BCDIEE+Calibri-Bold",
+          "/BCDJEE+Calibri-Italic",
+          "/BCDKEE+Calibri-Bold"
+        ],
+        "sha256": "17891b5700847d25fb6fbcae6bbd726ae52c0abf1ea0bb914ca9241d494d7b11"
+      },
+      "typst": {
+        "pages": 2,
+        "bytes": 148656,
+        "missing": [],
+        "expected_figure_pixels_present": true,
+        "expected_figures": 0,
+        "basis_heading": true,
+        "page_sizes": [
+          [
+            0.0,
+            0.0,
+            595.2756,
+            841.8898
+          ],
+          [
+            0.0,
+            0.0,
+            595.2756,
+            841.8898
+          ]
+        ],
+        "fonts": [
+          "/FQDKNI+Calibri-Italic",
+          "/MTBWRS+Calibri-Bold",
+          "/QSIPBM+ArialMT",
+          "/VSEECR+Calibri"
+        ],
+        "sha256": "7cd27c34b192b2d0b85f484067ac333253cd6f0e103c9850424c2da69fc83228"
+      }
+    },
+    {
+      "case": "custom-three",
+      "baseline-pdf": {
+        "pages": 3,
+        "bytes": 362539,
+        "missing": [],
+        "expected_figure_pixels_present": true,
+        "expected_figures": 0,
+        "basis_heading": true,
+        "page_sizes": [
+          [
+            0.0,
+            0.0,
+            595.32,
+            841.92
+          ],
+          [
+            0.0,
+            0.0,
+            595.32,
+            841.92
+          ],
+          [
+            0.0,
+            0.0,
+            595.32,
+            841.92
+          ]
+        ],
+        "fonts": [
+          "/BCDEEE+Calibri",
+          "/BCDFEE+ArialMT",
+          "/BCDGEE+Arial-ItalicMT",
+          "/BCDHEE+Calibri",
+          "/BCDIEE+Calibri-Bold",
+          "/BCDJEE+Calibri-Italic",
+          "/BCDKEE+Calibri-Bold"
+        ],
+        "sha256": "102f47799289bf1dfc2c5f9cbbbf356b49754831a6240a274b8ae98b923b9c16"
+      },
+      "typst": {
+        "pages": 2,
+        "bytes": 148191,
+        "missing": [],
+        "expected_figure_pixels_present": true,
+        "expected_figures": 0,
+        "basis_heading": true,
+        "page_sizes": [
+          [
+            0.0,
+            0.0,
+            595.2756,
+            841.8898
+          ],
+          [
+            0.0,
+            0.0,
+            595.2756,
+            841.8898
+          ]
+        ],
+        "fonts": [
+          "/FBWHYF+Calibri-Bold",
+          "/FPXFIA+Calibri",
+          "/FQDKNI+Calibri-Italic",
+          "/QSIPBM+ArialMT"
+        ],
+        "sha256": "fa08a01fa409009b900b2751752fe36dbadfd765284b8f9e78491c0af53c2b85"
+      }
+    },
+    {
+      "case": "manual-phi",
+      "baseline-pdf": {
+        "pages": 3,
+        "bytes": 362535,
+        "missing": [],
+        "expected_figure_pixels_present": true,
+        "expected_figures": 0,
+        "basis_heading": true,
+        "page_sizes": [
+          [
+            0.0,
+            0.0,
+            595.32,
+            841.92
+          ],
+          [
+            0.0,
+            0.0,
+            595.32,
+            841.92
+          ],
+          [
+            0.0,
+            0.0,
+            595.32,
+            841.92
+          ]
+        ],
+        "fonts": [
+          "/BCDEEE+Calibri",
+          "/BCDFEE+ArialMT",
+          "/BCDGEE+Arial-ItalicMT",
+          "/BCDHEE+Calibri",
+          "/BCDIEE+Calibri-Bold",
+          "/BCDJEE+Calibri-Italic",
+          "/BCDKEE+Calibri-Bold"
+        ],
+        "sha256": "33fbf3a1af4d7c337e0d9ff59c012038256324d6bccf1fcb84ae0acebfdeced7"
+      },
+      "typst": {
+        "pages": 2,
+        "bytes": 148197,
+        "missing": [],
+        "expected_figure_pixels_present": true,
+        "expected_figures": 0,
+        "basis_heading": true,
+        "page_sizes": [
+          [
+            0.0,
+            0.0,
+            595.2756,
+            841.8898
+          ],
+          [
+            0.0,
+            0.0,
+            595.2756,
+            841.8898
+          ]
+        ],
+        "fonts": [
+          "/FQDKNI+Calibri-Italic",
+          "/PSMKOX+Calibri",
+          "/QSIPBM+ArialMT",
+          "/TGVTSV+Calibri-Bold"
+        ],
+        "sha256": "c0b1be85f9191a13cce79aecf9206f32381ece8e52eab31f9ac554ae3e478b44"
+      }
+    },
+    {
+      "case": "centimetres",
+      "baseline-pdf": {
+        "pages": 3,
+        "bytes": 362541,
+        "missing": [],
+        "expected_figure_pixels_present": true,
+        "expected_figures": 0,
+        "basis_heading": true,
+        "page_sizes": [
+          [
+            0.0,
+            0.0,
+            595.32,
+            841.92
+          ],
+          [
+            0.0,
+            0.0,
+            595.32,
+            841.92
+          ],
+          [
+            0.0,
+            0.0,
+            595.32,
+            841.92
+          ]
+        ],
+        "fonts": [
+          "/BCDEEE+Calibri",
+          "/BCDFEE+ArialMT",
+          "/BCDGEE+Arial-ItalicMT",
+          "/BCDHEE+Calibri",
+          "/BCDIEE+Calibri-Bold",
+          "/BCDJEE+Calibri-Italic",
+          "/BCDKEE+Calibri-Bold"
+        ],
+        "sha256": "9171dacd74cf9b5a4845063e6da9cc1072f3a3d053b0fc724b5280d3d2cd342c"
+      },
+      "typst": {
+        "pages": 2,
+        "bytes": 148183,
+        "missing": [],
+        "expected_figure_pixels_present": true,
+        "expected_figures": 0,
+        "basis_heading": true,
+        "page_sizes": [
+          [
+            0.0,
+            0.0,
+            595.2756,
+            841.8898
+          ],
+          [
+            0.0,
+            0.0,
+            595.2756,
+            841.8898
+          ]
+        ],
+        "fonts": [
+          "/FQDKNI+Calibri-Italic",
+          "/MMJCUE+Calibri-Bold",
+          "/QSIPBM+ArialMT",
+          "/WOOVHW+Calibri"
+        ],
+        "sha256": "49f700a0cb89ff8bb9c5da5a927d470033191104c058dcfbea5b48edefb9fbff"
+      }
+    },
+    {
+      "case": "empty-text",
+      "baseline-pdf": {
+        "pages": 2,
+        "bytes": 346444,
+        "missing": [],
+        "expected_figure_pixels_present": true,
+        "expected_figures": 0,
+        "basis_heading": true,
+        "page_sizes": [
+          [
+            0.0,
+            0.0,
+            595.32,
+            841.92
+          ],
+          [
+            0.0,
+            0.0,
+            595.32,
+            841.92
+          ]
+        ],
+        "fonts": [
+          "/BCDEEE+Calibri",
+          "/BCDFEE+ArialMT",
+          "/BCDGEE+Arial-ItalicMT",
+          "/BCDHEE+Calibri",
+          "/BCDIEE+Calibri-Bold",
+          "/BCDJEE+Calibri-Italic",
+          "/BCDKEE+Calibri-Bold"
+        ],
+        "sha256": "bf42ede015ae247992c48b3db287f518a7504ee1acb85db63c330bd1f21f0c17"
+      },
+      "typst": {
+        "pages": 1,
+        "bytes": 137159,
+        "missing": [],
+        "expected_figure_pixels_present": true,
+        "expected_figures": 0,
+        "basis_heading": true,
+        "page_sizes": [
+          [
+            0.0,
+            0.0,
+            595.2756,
+            841.8898
+          ]
+        ],
+        "fonts": [
+          "/FQDKNI+Calibri-Italic",
+          "/FZMGTP+Calibri",
+          "/QSIPBM+ArialMT",
+          "/RFFSWW+Calibri-Bold"
+        ],
+        "sha256": "8a84ec613b1997953ee725a59fc8f56b24b709ef302e3951ef1a6619f0412135"
+      }
+    },
+    {
+      "case": "no-basis",
+      "baseline-pdf": {
+        "pages": 3,
+        "bytes": 345337,
+        "missing": [],
+        "expected_figure_pixels_present": true,
+        "expected_figures": 0,
+        "basis_heading": false,
+        "page_sizes": [
+          [
+            0.0,
+            0.0,
+            595.32,
+            841.92
+          ],
+          [
+            0.0,
+            0.0,
+            595.32,
+            841.92
+          ],
+          [
+            0.0,
+            0.0,
+            595.32,
+            841.92
+          ]
+        ],
+        "fonts": [
+          "/BCDEEE+Calibri",
+          "/BCDFEE+ArialMT",
+          "/BCDGEE+Arial-ItalicMT",
+          "/BCDHEE+Calibri",
+          "/BCDIEE+Calibri-Bold",
+          "/BCDJEE+Calibri-Italic",
+          "/BCDKEE+Calibri-Bold"
+        ],
+        "sha256": "f399c07fbbe6570761fa414bf0f2566c880289ffc95b2235c5f03e50e61b008f"
+      },
+      "typst": {
+        "pages": 2,
+        "bytes": 142021,
+        "missing": [],
+        "expected_figure_pixels_present": true,
+        "expected_figures": 0,
+        "basis_heading": false,
+        "page_sizes": [
+          [
+            0.0,
+            0.0,
+            595.2756,
+            841.8898
+          ],
+          [
+            0.0,
+            0.0,
+            595.2756,
+            841.8898
+          ]
+        ],
+        "fonts": [
+          "/QSIPBM+ArialMT",
+          "/RRKCXE+Calibri-Bold",
+          "/VQSYTQ+Calibri",
+          "/YMEHCD+Calibri-Italic"
+        ],
+        "sha256": "81cd61313bebedab326be8ae0ed23fa4e2e5861892fbf3ff5eed9e8c63efa16f"
+      }
+    },
+    {
+      "case": "long-text",
+      "baseline-pdf": {
+        "pages": 3,
+        "bytes": 359093,
+        "missing": [],
+        "expected_figure_pixels_present": true,
+        "expected_figures": 0,
+        "basis_heading": true,
+        "page_sizes": [
+          [
+            0.0,
+            0.0,
+            595.32,
+            841.92
+          ],
+          [
+            0.0,
+            0.0,
+            595.32,
+            841.92
+          ],
+          [
+            0.0,
+            0.0,
+            595.32,
+            841.92
+          ]
+        ],
+        "fonts": [
+          "/BCDEEE+Calibri",
+          "/BCDFEE+ArialMT",
+          "/BCDGEE+Arial-ItalicMT",
+          "/BCDHEE+Calibri",
+          "/BCDIEE+Calibri-Bold",
+          "/BCDJEE+Calibri-Italic",
+          "/BCDKEE+Calibri-Bold"
+        ],
+        "sha256": "088beb777711a686a43ff0154b35718dbbbba70652ee9ee9b574067fff2182d9"
+      },
+      "typst": {
+        "pages": 3,
+        "bytes": 147825,
+        "missing": [],
+        "expected_figure_pixels_present": true,
+        "expected_figures": 0,
+        "basis_heading": true,
+        "page_sizes": [
+          [
+            0.0,
+            0.0,
+            595.2756,
+            841.8898
+          ],
+          [
+            0.0,
+            0.0,
+            595.2756,
+            841.8898
+          ],
+          [
+            0.0,
+            0.0,
+            595.2756,
+            841.8898
+          ]
+        ],
+        "fonts": [
+          "/AOHGEP+Calibri-Bold",
+          "/FQDKNI+Calibri-Italic",
+          "/QSIPBM+ArialMT",
+          "/RMGRFR+Calibri"
+        ],
+        "sha256": "3082435d6a0528c7d0368542a9444d5bff7ab26347316578c00f311b47aa9440"
+      }
+    }
+  ],
+  "typst_timings": [
+    {
+      "case": "standard",
+      "milliseconds": 252.24869999999999,
+      "sha256": "ac2c98b48b21c04501de9a0931926056163e41ceda80d33b62686ffde3073696"
+    },
+    {
+      "case": "two-layers",
+      "milliseconds": 208.73289999999997,
+      "sha256": "85d36b3b7ee545923f9ee4a62714f8dae57de939f41e9aa459696fbb8553a187"
+    },
+    {
+      "case": "nx850",
+      "milliseconds": 202.60210000000006,
+      "sha256": "da90f88c0b4cd1250a30fe1884388749909f6287dd3e9d79e3f7ffb95153b1f7"
+    },
+    {
+      "case": "traffic",
+      "milliseconds": 190.59320000000002,
+      "sha256": "7cd27c34b192b2d0b85f484067ac333253cd6f0e103c9850424c2da69fc83228"
+    },
+    {
+      "case": "custom-three",
+      "milliseconds": 199.6168,
+      "sha256": "fa08a01fa409009b900b2751752fe36dbadfd765284b8f9e78491c0af53c2b85"
+    },
+    {
+      "case": "manual-phi",
+      "milliseconds": 192.67049999999995,
+      "sha256": "c0b1be85f9191a13cce79aecf9206f32381ece8e52eab31f9ac554ae3e478b44"
+    },
+    {
+      "case": "centimetres",
+      "milliseconds": 197.1884,
+      "sha256": "49f700a0cb89ff8bb9c5da5a927d470033191104c058dcfbea5b48edefb9fbff"
+    },
+    {
+      "case": "empty-text",
+      "milliseconds": 191.9919,
+      "sha256": "8a84ec613b1997953ee725a59fc8f56b24b709ef302e3951ef1a6619f0412135"
+    },
+    {
+      "case": "no-basis",
+      "milliseconds": 192.5556999999999,
+      "sha256": "81cd61313bebedab326be8ae0ed23fa4e2e5861892fbf3ff5eed9e8c63efa16f"
+    },
+    {
+      "case": "long-text",
+      "milliseconds": 319.31489999999985,
+      "sha256": "3082435d6a0528c7d0368542a9444d5bff7ab26347316578c00f311b47aa9440"
+    }
+  ],
+  "word_pdf_timings": [
+    {
+      "name": "centimetres",
+      "milliseconds": 2922.4142,
+      "wordVersion": "16.0"
+    },
+    {
+      "name": "custom-three",
+      "milliseconds": 574.9022,
+      "wordVersion": "16.0"
+    },
+    {
+      "name": "empty-text",
+      "milliseconds": 603.1482,
+      "wordVersion": "16.0"
+    },
+    {
+      "name": "long-text",
+      "milliseconds": 858.8821,
+      "wordVersion": "16.0"
+    },
+    {
+      "name": "manual-phi",
+      "milliseconds": 552.067,
+      "wordVersion": "16.0"
+    },
+    {
+      "name": "no-basis",
+      "milliseconds": 611.6406,
+      "wordVersion": "16.0"
+    },
+    {
+      "name": "nx850",
+      "milliseconds": 588.0574,
+      "wordVersion": "16.0"
+    },
+    {
+      "name": "standard",
+      "milliseconds": 641.2734,
+      "wordVersion": "16.0"
+    },
+    {
+      "name": "traffic",
+      "milliseconds": 562.0276,
+      "wordVersion": "16.0"
+    },
+    {
+      "name": "two-layers",
+      "milliseconds": 642.5735,
+      "wordVersion": "16.0"
+    }
+  ],
+  "tests_passed": 5,
+  "visual_review": {
+    "case": "standard",
+    "engines": [
+      "Word PDF",
+      "Typst PDF"
+    ],
+    "pages_each": 3,
+    "status": "Visually inspected; layout differs; not user-approved"
+  },
+  "limitations": [
+    "Original Python formatted all report data",
+    "Images reused from original UI fixtures",
+    "No LibreOffice comparison",
+    "Fonts depend on Windows installation",
+    "Other nine cases not visually inspected",
+    "Single local timing series; excludes image generation; not a production benchmark"
+  ]
+}

@@ -1,0 +1,51 @@
+.traffic-correlation-popup p {
+  margin: 0 0 16px;
+}
+.traffic-correlation-scroll {
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.traffic-correlation-popup table {
+  width: max-content;
+  min-width: 100%;
+  border-collapse: collapse;
+  font-size: var(--fs-small);
+  font-variant-numeric: tabular-nums;
+}
+.traffic-correlation-popup th,
+.traffic-correlation-popup td {
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  white-space: nowrap;
+  text-align: right;
+}
+.traffic-correlation-popup th {
+  background: var(--background);
+  color: var(--muted-foreground);
+  font-size: var(--fs-meta);
+  font-weight: 500;
+}
+.traffic-correlation-popup th[scope='row'] {
+  text-align: left;
+  color: var(--foreground);
+  font-size: var(--fs-small);
+  font-weight: 600;
+}
+.traffic-correlation-popup .traffic-correlation-boundary {
+  font-style: italic;
+  opacity: 0.75;
+}
+.traffic-correlation-popup .traffic-correlation-row {
+  background-color: var(--accent);
+}
+.traffic-correlation-popup .traffic-correlation-cell {
+  background-color: var(--accent);
+  color: var(--primary);
+  font-weight: 700;
+  box-shadow: inset 0 0 0 2px var(--primary);
+}
+.traffic-correlation-caption {
+  font-size: var(--fs-meta);
+  color: var(--muted-foreground);
+  line-height: 1.6;
+}

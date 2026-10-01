@@ -1,0 +1,38 @@
+{
+  "date": "2026-09-30",
+  "legacy_commit": "a330cfd6734ac2478be1304a362c69f94e412d25",
+  "design_decision": "B-020",
+  "runtime_local_build_browser": "v26.4.0",
+  "engine_test_runtime": "Node 24.19.0",
+  "browser": "Playwright Chromium 153 (1243)",
+  "tests": {
+    "engine_pass": 2614,
+    "browser_pass": 11,
+    "fail": 0
+  },
+  "checks": {
+    "strict_typescript": "passed",
+    "production_build": "passed",
+    "prettier": "passed",
+    "desktop_visual_inspection": "passed",
+    "mobile_visual_inspection": "passed",
+    "serena_typescript_index": "passed"
+  },
+  "scope": "React material editor + actual browser localStorage; not full app migration",
+  "limitations": [
+    "Other pages and navigation are not connected",
+    "Old Streamlit widget flows not exhaustively compared",
+    "Layer-material mapping and ordering in future selectors still require integrated tests",
+    "R-004, corporate logo and layer visualisations not approved",
+    "Cross-browser/accessibility and simultaneous multi-tab save races remain for production QA"
+  ],
+  "sha256_lf": {
+    "src/ui/App.tsx": "95e47c78f94d6594d862a350a2572029291f54e2aed12db425922bf3edc11ae7",
+    "src/index.css": "3026c4638f9a75bf915e524db652ae6f3f3ae3d59f8143a73e3a3cb2224ab8d6",
+    "src/main.tsx": "b77758c4fcc161a23eb03fdf2cc89a62d435415ba4157f85cc5437c5bf6eac40",
+    "vite.config.ts": "cb97f1d0f8184ed57f69dd904c4b98ac2849799c20d7c52ab16977d0f478ee14",
+    "playwright.config.ts": "ea244acbcaab900cdded2833597005b335da0c8d95a59f0a896f4527b4358b3c",
+    "tests/browser/materials.spec.ts": "b6712a723afa6fbfa978291e32022fd001796496fa49c3aed60ed6c3a54d1ce8",
+    "package-lock.json": "d300752b57e8dd7aa7c44278547ea4a795efc0c047aebdc5e28991f59755eacd"
+  }
+}

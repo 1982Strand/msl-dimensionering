@@ -1,0 +1,2525 @@
+{
+  "source": {
+    "commit": "a330cfd6734ac2478be1304a362c69f94e412d25",
+    "data_profile": "built-in defaults; no user JSON",
+    "files": {
+      "app.py": "ba6b29870a92df46025a8d936b3ab6ea16f32b1f7122e48652a640182f9530e5",
+      "ui.py": "ffa3e583a19d4ede16873963bed70b819e3402b320878ba49166295fd5558d7c",
+      "core/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "core/afrunding.py": "9149c3536c388a82e2f242e939a1a1f998e01bf828a6ab378c927a757ad816e4",
+      "core/calculator.py": "bf46d2642d6083439b8c03c46e24eb18f156fe1a734af7e6fa866f16626ad227",
+      "core/data.py": "e164a0f3bb42cd0d565dfc45d2895031a03b2cb8e93b05a0a65097790d0f0540",
+      "core/diagram.py": "b171b7486e5aa1a43590f9f8a28376680bd2a50f7155535fcbfb7198d38df461",
+      "core/enhed.py": "256884745b59e94d0211a610e8bf092942a0fec5d147e48a7502833912583cf2",
+      "core/hjaelp.py": "5179b206a31224bf2582fdc31bf6520fd68552da1206dd5f7f034ab249e0ac78",
+      "core/lagfordeling.py": "0426d2021e037c8e993fefc104b69cfbf03526408cadd1303775c32f5577716b",
+      "core/placement.py": "9668ab8bfe106722e4735576d72dcb86280470ee60fea14feae08bf8f3ccf9d2",
+      "core/rapport.py": "b6235563354b72f81d386afc703db273eb08a2d6f9857d4f73499f7b2c61b898",
+      "core/validators.py": "5258b68728afa7d2224d1e5b090ff6c78f7a3c568408ad367dbcd210fb71428c"
+    }
+  },
+  "method": "Observed unchanged ui.snit and core.diagram.byg_snit calls in AppTest of isolated approved commit",
+  "cases": [
+    {
+      "id": "standard-eu10-bk4-mm",
+      "action": "Standard default; invalid 2-layer column",
+      "inputs": {
+        "mode": "Standard",
+        "eu": 10,
+        "basis": "Belastningsklasse",
+        "class": 4,
+        "traffic": null,
+        "selected_product": "Tensar TriAx TX160",
+        "custom_layers": null,
+        "settings": {
+          "afrunding": {
+            "trin_mm": 50,
+            "reduktion_eksakt": false,
+            "vis_eksakt": false,
+            "phi_afrunding": "ingen"
+          },
+          "opbygning": {
+            "geonet_paaskrift": true,
+            "maal_streg": true,
+            "maal_tal": true,
+            "signatur": true,
+            "enhed": "mm"
+          },
+          "lagfordeling": {
+            "fordeling": "minimum",
+            "samlet_minimum": true,
+            "minimum_mm": {
+              "1": 200.0,
+              "2": 200.0,
+              "3": 200.0,
+              "4": 250.0,
+              "5": 275.0,
+              "6": 300.0
+            },
+            "restlag": "vis",
+            "restlag_graense_mm": 100.0,
+            "vd_minimum_mm": {
+              "Bærelag": 100.0,
+              "Bundsikring": 200.0
+            },
+            "phi_regel": "laveste",
+            "kraev_bundsikring": false,
+            "netplacering": "laggraense",
+            "standard_klassisk": false,
+            "standard_opdeling": true,
+            "standard_under_minimum": "stabilgrus"
+          },
+          "yderomraade": {
+            "tolerance_over_pct": 5.0,
+            "tolerance_under_pct": 5.0,
+            "under_inden": "laveste",
+            "over_uden": "afvis",
+            "under_uden": "afvis"
+          }
+        },
+        "materials": []
+      },
+      "calculation": {
+        "eu": 10.0,
+        "eo": 80.0,
+        "phi": 37.0,
+        "valgt_klasse": 4,
+        "grundlag_type": "belastningsklasse",
+        "t_klasse": null,
+        "res_1": {
+          "navn": "Tensar TriAx TX160",
+          "serie": "Tensar",
+          "korrektion": 0.0,
+          "t_armeret_mm": 650.0,
+          "t_uarmeret_mm": 900.0,
+          "t_uarmeret_phi_kor_mm": 900.0,
+          "t_basis_arm_mm": 617.0,
+          "reduktion_mm": 250.0,
+          "reduktion_pct": 0.2778,
+          "klasse_ok": true,
+          "klasser": [
+            3,
+            4,
+            5,
+            6
+          ],
+          "min_daklag": 20,
+          "max_korn": 80,
+          "fejl": null,
+          "t_armeret_eksakt_mm": 617.0,
+          "t_uarmeret_eksakt_mm": 900.0,
+          "t_uarmeret_phi_kor_eksakt_mm": 900.0,
+          "reduktion_mm_eksakt": 283.0,
+          "reduktion_pct_eksakt": 0.3144,
+          "afrunding_trin_mm": 50,
+          "t_min_mm": 250.0,
+          "phi": 37.0,
+          "phi_uarmeret": 37.0,
+          "phi_eksakt": 37.0,
+          "phi_uarmeret_eksakt": 37.0,
+          "phi_afrunding": "ingen",
+          "min_top_cover_mm": 200.0,
+          "general_top_cover_mm": 200.0,
+          "product_cover_mm": 200.0,
+          "min_spacing_mm": 200.0,
+          "max_spacing_mm": 400.0,
+          "overlap_ge5_mm": 300.0,
+          "overlap_lt5_mm": 400.0,
+          "source": "Tensar",
+          "placering_ok": true,
+          "geonet_placeringer_mm_fra_top": [
+            650.0
+          ],
+          "geonet_y_fracs": [
+            1.0
+          ],
+          "topdaeklag_mm": 650.0,
+          "afstande_mellem_geonet_mm": [],
+          "placeringsadvarsler": [],
+          "t_min_placering_mm": 200.0,
+          "t_dimensionerende_mm": 650.0,
+          "placeringsbasis": "underbund"
+        },
+        "res_2": {
+          "navn": "Tensar TriAx TX160",
+          "serie": "Tensar",
+          "korrektion": 0.0,
+          "t_armeret_mm": null,
+          "t_uarmeret_mm": null,
+          "t_uarmeret_phi_kor_mm": null,
+          "t_basis_arm_mm": null,
+          "reduktion_mm": null,
+          "reduktion_pct": null,
+          "klasse_ok": true,
+          "klasser": [
+            3,
+            4,
+            5,
+            6
+          ],
+          "min_daklag": 20,
+          "max_korn": 80,
+          "fejl": "Kombinationen Eᵤ=10 MPa / Eₒ=80 MPa / 2 lag geonet er uden for diagrammets gyldighedsområde (\"—\" i opslagstabellen). Et lavere Eᵤ eller færre lag vil normalt ligge inden for gyldighedsområdet."
+        },
+        "standard_opdeling": {
+          "klassisk": false,
+          "spec": {
+            "lag": [
+              {
+                "navn": "Stabilgrus",
+                "andel": 1.0,
+                "lagtype": "Bærelag"
+              },
+              {
+                "navn": "Bundsikring",
+                "andel": 1.0,
+                "lagtype": "Bundsikring"
+              }
+            ],
+            "fordeling": "fastholdt",
+            "min_mm": null,
+            "oeverst_ref_mm": 250.0,
+            "restlag": "vis",
+            "restlag_graense_mm": 100.0,
+            "vd_minimum_mm": null,
+            "kraev_bundsikring": false,
+            "phi_regel": "indtastet"
+          },
+          "stabilgrus_mm": 250.0,
+          "under_minimum": "stabilgrus",
+          "t_min_mm": 250.0,
+          "klasse": 4
+        }
+      },
+      "ui_snit": {
+        "columns": [
+          {
+            "titel": "Ustabiliseret bærelagstykkelse",
+            "lag": [
+              [
+                "Stabilgrus",
+                250.0,
+                "baerelag"
+              ],
+              [
+                "Bundsikring",
+                650.0,
+                "bundsikring"
+              ]
+            ],
+            "geonet_mm": [],
+            "total_mm": 900.0,
+            "tom_tekst": "Ikke defineret",
+            "best_case_mm": null,
+            "best_case_note": null,
+            "status": [
+              "",
+              "neutral"
+            ],
+            "underbund_tekst": "Underbund Eᵤ = 10 MPa"
+          },
+          {
+            "titel": "1 lag geonet",
+            "lag": [
+              [
+                "Stabilgrus",
+                250.0,
+                "baerelag"
+              ],
+              [
+                "Bundsikring",
+                400.0,
+                "bundsikring"
+              ]
+            ],
+            "geonet_mm": [
+              0.0
+            ],
+            "total_mm": 650.0,
+            "tom_tekst": "Ikke defineret",
+            "best_case_mm": null,
+            "best_case_note": null,
+            "status": [
+              "",
+              "neutral"
+            ]
+          },
+          {
+            "titel": "2 lag geonet",
+            "lag": [],
+            "geonet_mm": [],
+            "total_mm": null,
+            "tom_tekst": "Ikke gyldigt for denne kombination",
+            "best_case_mm": null,
+            "best_case_note": null,
+            "status": [
+              "",
+              "neutral"
+            ]
+          }
+        ],
+        "kwargs": {
+          "reference_mm": null,
+          "geonet_navn": "Tensar TriAx TX160",
+          "geonet_maerkat": "Tensar TriAx TX160",
+          "geonet_paaskrift": true,
+          "vis_maal_streg": true,
+          "vis_maal_tal": true,
+          "vis_signatur": true,
+          "enhed": "mm"
+        }
+      },
+      "byg_snit": {
+        "columns": [
+          {
+            "titel": "Ustabiliseret bærelagstykkelse",
+            "lag": [
+              [
+                "Stabilgrus",
+                250.0,
+                "baerelag"
+              ],
+              [
+                "Bundsikring",
+                650.0,
+                "bundsikring"
+              ]
+            ],
+            "geonet_mm": [],
+            "total_mm": 900.0,
+            "tom_tekst": "Ikke defineret",
+            "best_case_mm": null,
+            "best_case_note": null,
+            "status": [
+              "",
+              "neutral"
+            ],
+            "underbund_tekst": "Underbund Eᵤ = 10 MPa"
+          },
+          {
+            "titel": "1 lag geonet",
+            "lag": [
+              [
+                "Stabilgrus",
+                250.0,
+                "baerelag"
+              ],
+              [
+                "Bundsikring",
+                400.0,
+                "bundsikring"
+              ]
+            ],
+            "geonet_mm": [
+              0.0
+            ],
+            "total_mm": 650.0,
+            "tom_tekst": "Ikke defineret",
+            "best_case_mm": null,
+            "best_case_note": null,
+            "status": [
+              "",
+              "neutral"
+            ]
+          },
+          {
+            "titel": "2 lag geonet",
+            "lag": [],
+            "geonet_mm": [],
+            "total_mm": null,
+            "tom_tekst": "Ikke gyldigt for denne kombination",
+            "best_case_mm": null,
+            "best_case_note": null,
+            "status": [
+              "",
+              "neutral"
+            ]
+          }
+        ],
+        "kwargs": {
+          "reference_mm": null,
+          "geonet_navn": "Tensar TriAx TX160",
+          "hoejde_px": 340,
+          "geonet_paaskrift": true,
+          "geonet_maerkat": "Tensar TriAx TX160",
+          "vis_maal_streg": true,
+          "vis_maal_tal": true,
+          "vis_signatur": true,
+          "enhed": "mm"
+        }
+      }
+    },
+    {
+      "id": "standard-eu5-bk4-nx850-mm",
+      "action": "Standard interval product; valid 1- and 2-layer columns",
+      "inputs": {
+        "mode": "Standard",
+        "eu": 5,
+        "basis": "Belastningsklasse",
+        "class": 4,
+        "traffic": null,
+        "selected_product": "Tensar InterAx NX850",
+        "custom_layers": null,
+        "settings": {
+          "afrunding": {
+            "trin_mm": 50,
+            "reduktion_eksakt": false,
+            "vis_eksakt": false,
+            "phi_afrunding": "ingen"
+          },
+          "opbygning": {
+            "geonet_paaskrift": true,
+            "maal_streg": true,
+            "maal_tal": true,
+            "signatur": true,
+            "enhed": "mm"
+          },
+          "lagfordeling": {
+            "fordeling": "minimum",
+            "samlet_minimum": true,
+            "minimum_mm": {
+              "1": 200.0,
+              "2": 200.0,
+              "3": 200.0,
+              "4": 250.0,
+              "5": 275.0,
+              "6": 300.0
+            },
+            "restlag": "vis",
+            "restlag_graense_mm": 100.0,
+            "vd_minimum_mm": {
+              "Bærelag": 100.0,
+              "Bundsikring": 200.0
+            },
+            "phi_regel": "laveste",
+            "kraev_bundsikring": false,
+            "netplacering": "laggraense",
+            "standard_klassisk": false,
+            "standard_opdeling": true,
+            "standard_under_minimum": "stabilgrus"
+          },
+          "yderomraade": {
+            "tolerance_over_pct": 5.0,
+            "tolerance_under_pct": 5.0,
+            "under_inden": "laveste",
+            "over_uden": "afvis",
+            "under_uden": "afvis"
+          }
+        },
+        "materials": []
+      },
+      "calculation": {
+        "eu": 5.0,
+        "eo": 80.0,
+        "phi": 37.0,
+        "valgt_klasse": 4,
+        "grundlag_type": "belastningsklasse",
+        "t_klasse": null,
+        "res_1": {
+          "navn": "Tensar InterAx NX850",
+          "serie": "Tensar",
+          "korrektion": -0.15,
+          "t_armeret_mm": 750.0,
+          "t_uarmeret_mm": 1200.0,
+          "t_uarmeret_phi_kor_mm": 1200.0,
+          "t_basis_arm_mm": 833.0,
+          "reduktion_mm": 450.0,
+          "reduktion_pct": 0.375,
+          "klasse_ok": false,
+          "klasser": [
+            5,
+            6
+          ],
+          "min_daklag": 20,
+          "max_korn": null,
+          "fejl": null,
+          "t_armeret_eksakt_mm": 708.0,
+          "t_uarmeret_eksakt_mm": 1200.0,
+          "t_uarmeret_phi_kor_eksakt_mm": 1200.0,
+          "reduktion_mm_eksakt": 492.0,
+          "reduktion_pct_eksakt": 0.41,
+          "afrunding_trin_mm": 50,
+          "t_min_mm": 250.0,
+          "phi": 37.0,
+          "phi_uarmeret": 37.0,
+          "phi_eksakt": 37.0,
+          "phi_uarmeret_eksakt": 37.0,
+          "phi_afrunding": "ingen",
+          "min_top_cover_mm": 200.0,
+          "general_top_cover_mm": 200.0,
+          "product_cover_mm": 200.0,
+          "min_spacing_mm": 200.0,
+          "max_spacing_mm": 400.0,
+          "overlap_ge5_mm": 300.0,
+          "overlap_lt5_mm": 400.0,
+          "source": "Tensar",
+          "placering_ok": true,
+          "geonet_placeringer_mm_fra_top": [
+            750.0
+          ],
+          "geonet_y_fracs": [
+            1.0
+          ],
+          "topdaeklag_mm": 750.0,
+          "afstande_mellem_geonet_mm": [],
+          "placeringsadvarsler": [],
+          "t_min_placering_mm": 200.0,
+          "t_dimensionerende_mm": 750.0,
+          "placeringsbasis": "underbund",
+          "korrektion_min": -0.3,
+          "korrektion_max": -0.15,
+          "t_armeret_mm_min": 600.0,
+          "t_armeret_mm_max": 750.0,
+          "t_armeret_eksakt_mm_min": 583.0,
+          "phi_min": 37.0,
+          "reduktion_mm_min": 450.0,
+          "reduktion_mm_max": 600.0,
+          "reduktion_pct_min": 0.375,
+          "reduktion_pct_max": 0.5,
+          "placering_best": {
+            "min_top_cover_mm": 200.0,
+            "general_top_cover_mm": 200.0,
+            "product_cover_mm": 200.0,
+            "min_spacing_mm": 200.0,
+            "max_spacing_mm": 400.0,
+            "overlap_ge5_mm": 300.0,
+            "overlap_lt5_mm": 400.0,
+            "source": "Tensar",
+            "placering_ok": true,
+            "geonet_placeringer_mm_fra_top": [
+              600.0
+            ],
+            "geonet_y_fracs": [
+              1.0
+            ],
+            "topdaeklag_mm": 600.0,
+            "afstande_mellem_geonet_mm": [],
+            "placeringsadvarsler": [],
+            "t_min_placering_mm": 200.0,
+            "t_dimensionerende_mm": 600.0,
+            "placeringsbasis": "underbund"
+          }
+        },
+        "res_2": {
+          "navn": "Tensar InterAx NX850",
+          "serie": "Tensar",
+          "korrektion": -0.15,
+          "t_armeret_mm": 650.0,
+          "t_uarmeret_mm": 1200.0,
+          "t_uarmeret_phi_kor_mm": 1200.0,
+          "t_basis_arm_mm": 750.0,
+          "reduktion_mm": 550.0,
+          "reduktion_pct": 0.4583,
+          "klasse_ok": false,
+          "klasser": [
+            5,
+            6
+          ],
+          "min_daklag": 20,
+          "max_korn": null,
+          "fejl": null,
+          "t_armeret_eksakt_mm": 638.0,
+          "t_uarmeret_eksakt_mm": 1200.0,
+          "t_uarmeret_phi_kor_eksakt_mm": 1200.0,
+          "reduktion_mm_eksakt": 562.0,
+          "reduktion_pct_eksakt": 0.4688,
+          "afrunding_trin_mm": 50,
+          "t_min_mm": 250.0,
+          "phi": 37.0,
+          "phi_uarmeret": 37.0,
+          "phi_eksakt": 37.0,
+          "phi_uarmeret_eksakt": 37.0,
+          "phi_afrunding": "ingen",
+          "min_top_cover_mm": 200.0,
+          "general_top_cover_mm": 200.0,
+          "product_cover_mm": 200.0,
+          "min_spacing_mm": 200.0,
+          "max_spacing_mm": 400.0,
+          "overlap_ge5_mm": 300.0,
+          "overlap_lt5_mm": 400.0,
+          "source": "Tensar",
+          "placering_ok": false,
+          "geonet_placeringer_mm_fra_top": [
+            200.0,
+            650.0
+          ],
+          "geonet_y_fracs": [
+            0.3076923076923077,
+            1.0
+          ],
+          "topdaeklag_mm": 200.0,
+          "afstande_mellem_geonet_mm": [
+            450.0
+          ],
+          "placeringsadvarsler": [
+            "Afstanden mellem geonetlagene er 450 mm. Anbefalingen for bedst effekt er højst 400 mm for Tensar."
+          ],
+          "t_min_placering_mm": 400.0,
+          "t_dimensionerende_mm": 650.0,
+          "placeringsbasis": "minimumsdæklag",
+          "korrektion_min": -0.3,
+          "korrektion_max": -0.15,
+          "t_armeret_mm_min": 550.0,
+          "t_armeret_mm_max": 650.0,
+          "t_armeret_eksakt_mm_min": 525.0,
+          "phi_min": 37.0,
+          "reduktion_mm_min": 550.0,
+          "reduktion_mm_max": 650.0,
+          "reduktion_pct_min": 0.4583,
+          "reduktion_pct_max": 0.5417,
+          "placering_best": {
+            "min_top_cover_mm": 200.0,
+            "general_top_cover_mm": 200.0,
+            "product_cover_mm": 200.0,
+            "min_spacing_mm": 200.0,
+            "max_spacing_mm": 400.0,
+            "overlap_ge5_mm": 300.0,
+            "overlap_lt5_mm": 400.0,
+            "source": "Tensar",
+            "placering_ok": true,
+            "geonet_placeringer_mm_fra_top": [
+              200.0,
+              550.0
+            ],
+            "geonet_y_fracs": [
+              0.36363636363636365,
+              1.0
+            ],
+            "topdaeklag_mm": 200.0,
+            "afstande_mellem_geonet_mm": [
+              350.0
+            ],
+            "placeringsadvarsler": [],
+            "t_min_placering_mm": 400.0,
+            "t_dimensionerende_mm": 550.0,
+            "placeringsbasis": "minimumsdæklag"
+          }
+        },
+        "standard_opdeling": {
+          "klassisk": false,
+          "spec": {
+            "lag": [
+              {
+                "navn": "Stabilgrus",
+                "andel": 1.0,
+                "lagtype": "Bærelag"
+              },
+              {
+                "navn": "Bundsikring",
+                "andel": 1.0,
+                "lagtype": "Bundsikring"
+              }
+            ],
+            "fordeling": "fastholdt",
+            "min_mm": null,
+            "oeverst_ref_mm": 250.0,
+            "restlag": "vis",
+            "restlag_graense_mm": 100.0,
+            "vd_minimum_mm": null,
+            "kraev_bundsikring": false,
+            "phi_regel": "indtastet"
+          },
+          "stabilgrus_mm": 250.0,
+          "under_minimum": "stabilgrus",
+          "t_min_mm": 250.0,
+          "klasse": 4
+        }
+      },
+      "ui_snit": {
+        "columns": [
+          {
+            "titel": "Ustabiliseret bærelagstykkelse",
+            "lag": [
+              [
+                "Stabilgrus",
+                250.0,
+                "baerelag"
+              ],
+              [
+                "Bundsikring",
+                950.0,
+                "bundsikring"
+              ]
+            ],
+            "geonet_mm": [],
+            "total_mm": 1200.0,
+            "tom_tekst": "Ikke defineret",
+            "best_case_mm": null,
+            "best_case_note": null,
+            "status": [
+              "",
+              "neutral"
+            ],
+            "underbund_tekst": "Underbund Eᵤ = 5 MPa"
+          },
+          {
+            "titel": "1 lag geonet",
+            "lag": [
+              [
+                "Stabilgrus",
+                250.0,
+                "baerelag"
+              ],
+              [
+                "Bundsikring",
+                500.0,
+                "bundsikring"
+              ]
+            ],
+            "geonet_mm": [
+              0.0
+            ],
+            "total_mm": 750.0,
+            "tom_tekst": "Ikke defineret",
+            "best_case_mm": 600.0,
+            "best_case_note": "Optimal korrektion · effektindeks 130 · net-korrektion −30 %\nUstabiliseret bærelagstykkelse: 1.200 mm\n− Basisreduktion, referencenet: 367 mm\n− Net-korrektion, indeks 130: 250 mm\n+ Oprunding til nærmeste 50 mm: 17 mm\n= Stabiliseret bærelagstykkelse: 600 mm",
+            "status": [
+              "",
+              "neutral"
+            ]
+          },
+          {
+            "titel": "2 lag geonet",
+            "lag": [
+              [
+                "Stabilgrus",
+                250.0,
+                "baerelag"
+              ],
+              [
+                "Bundsikring",
+                400.0,
+                "bundsikring"
+              ]
+            ],
+            "geonet_mm": [
+              400.0,
+              0.0
+            ],
+            "total_mm": 650.0,
+            "tom_tekst": "Ikke defineret",
+            "best_case_mm": 550.0,
+            "best_case_note": "Optimal korrektion · effektindeks 130 · net-korrektion −30 %\nUstabiliseret bærelagstykkelse: 1.200 mm\n− Basisreduktion, referencenet: 450 mm\n− Net-korrektion, indeks 130: 225 mm\n+ Oprunding til nærmeste 50 mm: 25 mm\n= Stabiliseret bærelagstykkelse: 550 mm",
+            "status": [
+              "",
+              "neutral"
+            ]
+          }
+        ],
+        "kwargs": {
+          "reference_mm": null,
+          "geonet_navn": "Tensar InterAx NX850",
+          "geonet_maerkat": "Tensar InterAx NX850",
+          "geonet_paaskrift": true,
+          "vis_maal_streg": true,
+          "vis_maal_tal": true,
+          "vis_signatur": true,
+          "enhed": "mm"
+        }
+      },
+      "byg_snit": {
+        "columns": [
+          {
+            "titel": "Ustabiliseret bærelagstykkelse",
+            "lag": [
+              [
+                "Stabilgrus",
+                250.0,
+                "baerelag"
+              ],
+              [
+                "Bundsikring",
+                950.0,
+                "bundsikring"
+              ]
+            ],
+            "geonet_mm": [],
+            "total_mm": 1200.0,
+            "tom_tekst": "Ikke defineret",
+            "best_case_mm": null,
+            "best_case_note": null,
+            "status": [
+              "",
+              "neutral"
+            ],
+            "underbund_tekst": "Underbund Eᵤ = 5 MPa"
+          },
+          {
+            "titel": "1 lag geonet",
+            "lag": [
+              [
+                "Stabilgrus",
+                250.0,
+                "baerelag"
+              ],
+              [
+                "Bundsikring",
+                500.0,
+                "bundsikring"
+              ]
+            ],
+            "geonet_mm": [
+              0.0
+            ],
+            "total_mm": 750.0,
+            "tom_tekst": "Ikke defineret",
+            "best_case_mm": 600.0,
+            "best_case_note": "Optimal korrektion · effektindeks 130 · net-korrektion −30 %\nUstabiliseret bærelagstykkelse: 1.200 mm\n− Basisreduktion, referencenet: 367 mm\n− Net-korrektion, indeks 130: 250 mm\n+ Oprunding til nærmeste 50 mm: 17 mm\n= Stabiliseret bærelagstykkelse: 600 mm",
+            "status": [
+              "",
+              "neutral"
+            ]
+          },
+          {
+            "titel": "2 lag geonet",
+            "lag": [
+              [
+                "Stabilgrus",
+                250.0,
+                "baerelag"
+              ],
+              [
+                "Bundsikring",
+                400.0,
+                "bundsikring"
+              ]
+            ],
+            "geonet_mm": [
+              400.0,
+              0.0
+            ],
+            "total_mm": 650.0,
+            "tom_tekst": "Ikke defineret",
+            "best_case_mm": 550.0,
+            "best_case_note": "Optimal korrektion · effektindeks 130 · net-korrektion −30 %\nUstabiliseret bærelagstykkelse: 1.200 mm\n− Basisreduktion, referencenet: 450 mm\n− Net-korrektion, indeks 130: 225 mm\n+ Oprunding til nærmeste 50 mm: 25 mm\n= Stabiliseret bærelagstykkelse: 550 mm",
+            "status": [
+              "",
+              "neutral"
+            ]
+          }
+        ],
+        "kwargs": {
+          "reference_mm": null,
+          "geonet_navn": "Tensar InterAx NX850",
+          "hoejde_px": 340,
+          "geonet_paaskrift": true,
+          "geonet_maerkat": "Tensar InterAx NX850",
+          "vis_maal_streg": true,
+          "vis_maal_tal": true,
+          "vis_signatur": true,
+          "enhed": "mm"
+        }
+      }
+    },
+    {
+      "id": "standard-eu5-bk4-cm",
+      "action": "Standard cross-section after cm setting",
+      "inputs": {
+        "mode": "Standard",
+        "eu": 5,
+        "basis": "Belastningsklasse",
+        "class": 4,
+        "traffic": null,
+        "selected_product": "Tensar TriAx TX160",
+        "custom_layers": null,
+        "settings": {
+          "afrunding": {
+            "trin_mm": 50,
+            "reduktion_eksakt": false,
+            "vis_eksakt": false,
+            "phi_afrunding": "ingen"
+          },
+          "opbygning": {
+            "geonet_paaskrift": true,
+            "maal_streg": true,
+            "maal_tal": true,
+            "signatur": true,
+            "enhed": "cm"
+          },
+          "lagfordeling": {
+            "fordeling": "minimum",
+            "samlet_minimum": true,
+            "minimum_mm": {
+              "1": 200.0,
+              "2": 200.0,
+              "3": 200.0,
+              "4": 250.0,
+              "5": 275.0,
+              "6": 300.0
+            },
+            "restlag": "vis",
+            "restlag_graense_mm": 100.0,
+            "vd_minimum_mm": {
+              "Bærelag": 100.0,
+              "Bundsikring": 200.0
+            },
+            "phi_regel": "laveste",
+            "kraev_bundsikring": false,
+            "netplacering": "laggraense",
+            "standard_klassisk": false,
+            "standard_opdeling": true,
+            "standard_under_minimum": "stabilgrus"
+          },
+          "yderomraade": {
+            "tolerance_over_pct": 5.0,
+            "tolerance_under_pct": 5.0,
+            "under_inden": "laveste",
+            "over_uden": "afvis",
+            "under_uden": "afvis"
+          }
+        },
+        "materials": []
+      },
+      "calculation": {
+        "eu": 5.0,
+        "eo": 80.0,
+        "phi": 37.0,
+        "valgt_klasse": 4,
+        "grundlag_type": "belastningsklasse",
+        "t_klasse": null,
+        "res_1": {
+          "navn": "Tensar TriAx TX160",
+          "serie": "Tensar",
+          "korrektion": 0.0,
+          "t_armeret_mm": 850.0,
+          "t_uarmeret_mm": 1200.0,
+          "t_uarmeret_phi_kor_mm": 1200.0,
+          "t_basis_arm_mm": 833.0,
+          "reduktion_mm": 350.0,
+          "reduktion_pct": 0.2917,
+          "klasse_ok": true,
+          "klasser": [
+            3,
+            4,
+            5,
+            6
+          ],
+          "min_daklag": 20,
+          "max_korn": 80,
+          "fejl": null,
+          "t_armeret_eksakt_mm": 833.0,
+          "t_uarmeret_eksakt_mm": 1200.0,
+          "t_uarmeret_phi_kor_eksakt_mm": 1200.0,
+          "reduktion_mm_eksakt": 367.0,
+          "reduktion_pct_eksakt": 0.3058,
+          "afrunding_trin_mm": 50,
+          "t_min_mm": 250.0,
+          "phi": 37.0,
+          "phi_uarmeret": 37.0,
+          "phi_eksakt": 37.0,
+          "phi_uarmeret_eksakt": 37.0,
+          "phi_afrunding": "ingen",
+          "min_top_cover_mm": 200.0,
+          "general_top_cover_mm": 200.0,
+          "product_cover_mm": 200.0,
+          "min_spacing_mm": 200.0,
+          "max_spacing_mm": 400.0,
+          "overlap_ge5_mm": 300.0,
+          "overlap_lt5_mm": 400.0,
+          "source": "Tensar",
+          "placering_ok": true,
+          "geonet_placeringer_mm_fra_top": [
+            850.0
+          ],
+          "geonet_y_fracs": [
+            1.0
+          ],
+          "topdaeklag_mm": 850.0,
+          "afstande_mellem_geonet_mm": [],
+          "placeringsadvarsler": [],
+          "t_min_placering_mm": 200.0,
+          "t_dimensionerende_mm": 850.0,
+          "placeringsbasis": "underbund"
+        },
+        "res_2": {
+          "navn": "Tensar TriAx TX160",
+          "serie": "Tensar",
+          "korrektion": 0.0,
+          "t_armeret_mm": 750.0,
+          "t_uarmeret_mm": 1200.0,
+          "t_uarmeret_phi_kor_mm": 1200.0,
+          "t_basis_arm_mm": 750.0,
+          "reduktion_mm": 450.0,
+          "reduktion_pct": 0.375,
+          "klasse_ok": true,
+          "klasser": [
+            3,
+            4,
+            5,
+            6
+          ],
+          "min_daklag": 20,
+          "max_korn": 80,
+          "fejl": null,
+          "t_armeret_eksakt_mm": 750.0,
+          "t_uarmeret_eksakt_mm": 1200.0,
+          "t_uarmeret_phi_kor_eksakt_mm": 1200.0,
+          "reduktion_mm_eksakt": 450.0,
+          "reduktion_pct_eksakt": 0.375,
+          "afrunding_trin_mm": 50,
+          "t_min_mm": 250.0,
+          "phi": 37.0,
+          "phi_uarmeret": 37.0,
+          "phi_eksakt": 37.0,
+          "phi_uarmeret_eksakt": 37.0,
+          "phi_afrunding": "ingen",
+          "min_top_cover_mm": 200.0,
+          "general_top_cover_mm": 200.0,
+          "product_cover_mm": 200.0,
+          "min_spacing_mm": 200.0,
+          "max_spacing_mm": 400.0,
+          "overlap_ge5_mm": 300.0,
+          "overlap_lt5_mm": 400.0,
+          "source": "Tensar",
+          "placering_ok": false,
+          "geonet_placeringer_mm_fra_top": [
+            200.0,
+            750.0
+          ],
+          "geonet_y_fracs": [
+            0.26666666666666666,
+            1.0
+          ],
+          "topdaeklag_mm": 200.0,
+          "afstande_mellem_geonet_mm": [
+            550.0
+          ],
+          "placeringsadvarsler": [
+            "Afstanden mellem geonetlagene er 550 mm. Anbefalingen for bedst effekt er højst 400 mm for Tensar."
+          ],
+          "t_min_placering_mm": 400.0,
+          "t_dimensionerende_mm": 750.0,
+          "placeringsbasis": "minimumsdæklag"
+        },
+        "standard_opdeling": {
+          "klassisk": false,
+          "spec": {
+            "lag": [
+              {
+                "navn": "Stabilgrus",
+                "andel": 1.0,
+                "lagtype": "Bærelag"
+              },
+              {
+                "navn": "Bundsikring",
+                "andel": 1.0,
+                "lagtype": "Bundsikring"
+              }
+            ],
+            "fordeling": "fastholdt",
+            "min_mm": null,
+            "oeverst_ref_mm": 250.0,
+            "restlag": "vis",
+            "restlag_graense_mm": 100.0,
+            "vd_minimum_mm": null,
+            "kraev_bundsikring": false,
+            "phi_regel": "indtastet"
+          },
+          "stabilgrus_mm": 250.0,
+          "under_minimum": "stabilgrus",
+          "t_min_mm": 250.0,
+          "klasse": 4
+        }
+      },
+      "ui_snit": {
+        "columns": [
+          {
+            "titel": "Ustabiliseret bærelagstykkelse",
+            "lag": [
+              [
+                "Stabilgrus",
+                250.0,
+                "baerelag"
+              ],
+              [
+                "Bundsikring",
+                950.0,
+                "bundsikring"
+              ]
+            ],
+            "geonet_mm": [],
+            "total_mm": 1200.0,
+            "tom_tekst": "Ikke defineret",
+            "best_case_mm": null,
+            "best_case_note": null,
+            "status": [
+              "",
+              "neutral"
+            ],
+            "underbund_tekst": "Underbund Eᵤ = 5 MPa"
+          },
+          {
+            "titel": "1 lag geonet",
+            "lag": [
+              [
+                "Stabilgrus",
+                250.0,
+                "baerelag"
+              ],
+              [
+                "Bundsikring",
+                600.0,
+                "bundsikring"
+              ]
+            ],
+            "geonet_mm": [
+              0.0
+            ],
+            "total_mm": 850.0,
+            "tom_tekst": "Ikke defineret",
+            "best_case_mm": null,
+            "best_case_note": null,
+            "status": [
+              "",
+              "neutral"
+            ]
+          },
+          {
+            "titel": "2 lag geonet",
+            "lag": [
+              [
+                "Stabilgrus",
+                250.0,
+                "baerelag"
+              ],
+              [
+                "Bundsikring",
+                500.0,
+                "bundsikring"
+              ]
+            ],
+            "geonet_mm": [
+              500.00000000000006,
+              0.0
+            ],
+            "total_mm": 750.0,
+            "tom_tekst": "Ikke defineret",
+            "best_case_mm": null,
+            "best_case_note": null,
+            "status": [
+              "",
+              "neutral"
+            ]
+          }
+        ],
+        "kwargs": {
+          "reference_mm": null,
+          "geonet_navn": "Tensar TriAx TX160",
+          "geonet_maerkat": "Tensar TriAx TX160",
+          "geonet_paaskrift": true,
+          "vis_maal_streg": true,
+          "vis_maal_tal": true,
+          "vis_signatur": true,
+          "enhed": "cm"
+        }
+      },
+      "byg_snit": {
+        "columns": [
+          {
+            "titel": "Ustabiliseret bærelagstykkelse",
+            "lag": [
+              [
+                "Stabilgrus",
+                250.0,
+                "baerelag"
+              ],
+              [
+                "Bundsikring",
+                950.0,
+                "bundsikring"
+              ]
+            ],
+            "geonet_mm": [],
+            "total_mm": 1200.0,
+            "tom_tekst": "Ikke defineret",
+            "best_case_mm": null,
+            "best_case_note": null,
+            "status": [
+              "",
+              "neutral"
+            ],
+            "underbund_tekst": "Underbund Eᵤ = 5 MPa"
+          },
+          {
+            "titel": "1 lag geonet",
+            "lag": [
+              [
+                "Stabilgrus",
+                250.0,
+                "baerelag"
+              ],
+              [
+                "Bundsikring",
+                600.0,
+                "bundsikring"
+              ]
+            ],
+            "geonet_mm": [
+              0.0
+            ],
+            "total_mm": 850.0,
+            "tom_tekst": "Ikke defineret",
+            "best_case_mm": null,
+            "best_case_note": null,
+            "status": [
+              "",
+              "neutral"
+            ]
+          },
+          {
+            "titel": "2 lag geonet",
+            "lag": [
+              [
+                "Stabilgrus",
+                250.0,
+                "baerelag"
+              ],
+              [
+                "Bundsikring",
+                500.0,
+                "bundsikring"
+              ]
+            ],
+            "geonet_mm": [
+              500.00000000000006,
+              0.0
+            ],
+            "total_mm": 750.0,
+            "tom_tekst": "Ikke defineret",
+            "best_case_mm": null,
+            "best_case_note": null,
+            "status": [
+              "",
+              "neutral"
+            ]
+          }
+        ],
+        "kwargs": {
+          "reference_mm": null,
+          "geonet_navn": "Tensar TriAx TX160",
+          "hoejde_px": 340,
+          "geonet_paaskrift": true,
+          "geonet_maerkat": "Tensar TriAx TX160",
+          "vis_maal_streg": true,
+          "vis_maal_tal": true,
+          "vis_signatur": true,
+          "enhed": "cm"
+        }
+      }
+    },
+    {
+      "id": "custom-eu10-bk4-cm",
+      "action": "Default two material layers; invalid 2-layer column",
+      "inputs": {
+        "mode": "Brugerdefineret",
+        "eu": 10,
+        "basis": "Belastningsklasse",
+        "class": 4,
+        "traffic": null,
+        "selected_product": "Tensar TriAx TX160",
+        "custom_layers": 2,
+        "settings": {
+          "afrunding": {
+            "trin_mm": 50,
+            "reduktion_eksakt": false,
+            "vis_eksakt": false,
+            "phi_afrunding": "ingen"
+          },
+          "opbygning": {
+            "geonet_paaskrift": true,
+            "maal_streg": true,
+            "maal_tal": true,
+            "signatur": true,
+            "enhed": "cm"
+          },
+          "lagfordeling": {
+            "fordeling": "minimum",
+            "samlet_minimum": true,
+            "minimum_mm": {
+              "1": 200.0,
+              "2": 200.0,
+              "3": 200.0,
+              "4": 250.0,
+              "5": 275.0,
+              "6": 300.0
+            },
+            "restlag": "vis",
+            "restlag_graense_mm": 100.0,
+            "vd_minimum_mm": {
+              "Bærelag": 100.0,
+              "Bundsikring": 200.0
+            },
+            "phi_regel": "laveste",
+            "kraev_bundsikring": false,
+            "netplacering": "laggraense",
+            "standard_klassisk": false,
+            "standard_opdeling": true,
+            "standard_under_minimum": "stabilgrus"
+          },
+          "yderomraade": {
+            "tolerance_over_pct": 5.0,
+            "tolerance_under_pct": 5.0,
+            "under_inden": "laveste",
+            "over_uden": "afvis",
+            "under_uden": "afvis"
+          }
+        },
+        "materials": [
+          {
+            "navn": "Stabilgrus SGII 0-32",
+            "phi": 40.0,
+            "max_korn": 32,
+            "lagtype": "Bærelag",
+            "tykkelse_mm": 300.0,
+            "pct": null,
+            "krav_maskestoerrelse_mm": 35
+          },
+          {
+            "navn": "Bundsikringssand",
+            "phi": 37.0,
+            "max_korn": 8,
+            "lagtype": "Bundsikring",
+            "tykkelse_mm": 400.0,
+            "pct": null,
+            "krav_maskestoerrelse_mm": 35
+          }
+        ]
+      },
+      "calculation": {
+        "eu": 10.0,
+        "eo": 80.0,
+        "phi": 38.285714285714285,
+        "valgt_klasse": 4,
+        "grundlag_type": "belastningsklasse",
+        "t_klasse": null,
+        "res_1": {
+          "eu": 10.0,
+          "eo": 80.0,
+          "phi": 38.285714285714285,
+          "phi_uarmeret": 38.285714285714285,
+          "phi_eksakt": 38.285714285714285,
+          "phi_uarmeret_eksakt": 38.285714285714285,
+          "phi_afrunding": "ingen",
+          "lag_mode": "1_lag",
+          "net_korrektion": 0.0,
+          "eu_lower": 10.0,
+          "eu_upper": 10.0,
+          "t_low_arm_cm": 61.7,
+          "t_high_arm_cm": 61.7,
+          "t_low_uarm_cm": 90.0,
+          "t_high_uarm_cm": 90.0,
+          "t_basis_arm_cm": 61.7,
+          "t_basis_arm_mm": 617.0,
+          "t_basis_uarm_cm": 90.0,
+          "t_basis_uarm_mm": 900.0,
+          "phi_korrektion": -0.0257,
+          "phi_korrektion_uarmeret": -0.0257,
+          "samlet_faktor": 0.9743,
+          "skala": 1.0,
+          "t_armeret_mm": 650.0,
+          "t_uarmeret_mm": 900.0,
+          "t_uarmeret_phi_kor_mm": 900.0,
+          "reduktion_mm": 250.0,
+          "reduktion_pct": 0.2778,
+          "uarmeret_mangler": false,
+          "uarmeret_fejl": null,
+          "fejl": null,
+          "t_armeret_eksakt_mm": 601.0,
+          "t_uarmeret_eksakt_mm": 900.0,
+          "t_uarmeret_phi_kor_eksakt_mm": 877.0,
+          "t_min_mm": 250.0,
+          "reduktion_mm_eksakt": 276.0,
+          "reduktion_pct_eksakt": 0.3144,
+          "afrunding_trin_mm": 50,
+          "phi_indtastet": 38.285714285714285,
+          "phi_regel": "laveste",
+          "min_top_cover_mm": 200.0,
+          "general_top_cover_mm": 200.0,
+          "product_cover_mm": 200.0,
+          "min_spacing_mm": 200.0,
+          "max_spacing_mm": 400.0,
+          "overlap_ge5_mm": 300.0,
+          "overlap_lt5_mm": 400.0,
+          "source": "Tensar",
+          "placering_ok": true,
+          "geonet_placeringer_mm_fra_top": [
+            650.0
+          ],
+          "geonet_y_fracs": [
+            1.0
+          ],
+          "topdaeklag_mm": 650.0,
+          "afstande_mellem_geonet_mm": [],
+          "placeringsadvarsler": [],
+          "t_min_placering_mm": 200.0,
+          "t_dimensionerende_mm": 650.0,
+          "placeringsbasis": "underbund"
+        },
+        "res_2": {
+          "fejl": "Kombinationen Eᵤ=10 MPa / Eₒ=80 MPa / 2 lag geonet er uden for diagrammets gyldighedsområde (\"—\" i opslagstabellen). Et lavere Eᵤ eller færre lag vil normalt ligge inden for gyldighedsområdet."
+        },
+        "standard_opdeling": null
+      },
+      "ui_snit": {
+        "columns": [
+          {
+            "titel": "Indtastet opbygning",
+            "lag": [
+              [
+                "Stabilgrus SGII 0-32",
+                300.0,
+                "baerelag"
+              ],
+              [
+                "Bundsikringssand",
+                400.0,
+                "bundsikring"
+              ]
+            ],
+            "geonet_mm": [],
+            "total_mm": 700.0,
+            "tom_tekst": "Ikke defineret",
+            "best_case_mm": null,
+            "best_case_note": null,
+            "status": [
+              "",
+              "neutral"
+            ],
+            "underbund_tekst": "Underbund Eᵤ = 10 MPa"
+          },
+          {
+            "titel": "Ustabiliseret bærelagstykkelse (φᵥ-korrigeret)",
+            "lag": [
+              [
+                "Stabilgrus SGII 0-32",
+                400.0,
+                "baerelag"
+              ],
+              [
+                "Bundsikringssand",
+                500.0,
+                "bundsikring"
+              ]
+            ],
+            "geonet_mm": [],
+            "total_mm": 900.0,
+            "tom_tekst": "Ikke defineret",
+            "best_case_mm": null,
+            "best_case_note": null,
+            "status": [
+              "20 cm for lidt",
+              "kritisk"
+            ]
+          },
+          {
+            "titel": "1 lag geonet",
+            "lag": [
+              [
+                "Stabilgrus SGII 0-32",
+                300.0,
+                "baerelag"
+              ],
+              [
+                "Bundsikringssand",
+                350.0,
+                "bundsikring"
+              ]
+            ],
+            "geonet_mm": [
+              0.0
+            ],
+            "total_mm": 650.0,
+            "tom_tekst": "Ikke defineret",
+            "best_case_mm": null,
+            "best_case_note": null,
+            "status": [
+              "5 cm i overskud",
+              "gron"
+            ]
+          },
+          {
+            "titel": "2 lag geonet",
+            "lag": [],
+            "geonet_mm": [],
+            "total_mm": null,
+            "tom_tekst": "Ikke gyldigt for denne kombination",
+            "best_case_mm": null,
+            "best_case_note": null,
+            "status": [
+              "",
+              "neutral"
+            ]
+          }
+        ],
+        "kwargs": {
+          "reference_mm": 700.0,
+          "geonet_navn": "Tensar TriAx TX160",
+          "geonet_maerkat": "Tensar TriAx TX160",
+          "geonet_paaskrift": true,
+          "vis_maal_streg": true,
+          "vis_maal_tal": true,
+          "vis_signatur": true,
+          "enhed": "cm"
+        }
+      },
+      "byg_snit": {
+        "columns": [
+          {
+            "titel": "Indtastet opbygning",
+            "lag": [
+              [
+                "Stabilgrus SGII 0-32",
+                300.0,
+                "baerelag"
+              ],
+              [
+                "Bundsikringssand",
+                400.0,
+                "bundsikring"
+              ]
+            ],
+            "geonet_mm": [],
+            "total_mm": 700.0,
+            "tom_tekst": "Ikke defineret",
+            "best_case_mm": null,
+            "best_case_note": null,
+            "status": [
+              "",
+              "neutral"
+            ],
+            "underbund_tekst": "Underbund Eᵤ = 10 MPa"
+          },
+          {
+            "titel": "Ustabiliseret bærelagstykkelse (φᵥ-korrigeret)",
+            "lag": [
+              [
+                "Stabilgrus SGII 0-32",
+                400.0,
+                "baerelag"
+              ],
+              [
+                "Bundsikringssand",
+                500.0,
+                "bundsikring"
+              ]
+            ],
+            "geonet_mm": [],
+            "total_mm": 900.0,
+            "tom_tekst": "Ikke defineret",
+            "best_case_mm": null,
+            "best_case_note": null,
+            "status": [
+              "20 cm for lidt",
+              "kritisk"
+            ]
+          },
+          {
+            "titel": "1 lag geonet",
+            "lag": [
+              [
+                "Stabilgrus SGII 0-32",
+                300.0,
+                "baerelag"
+              ],
+              [
+                "Bundsikringssand",
+                350.0,
+                "bundsikring"
+              ]
+            ],
+            "geonet_mm": [
+              0.0
+            ],
+            "total_mm": 650.0,
+            "tom_tekst": "Ikke defineret",
+            "best_case_mm": null,
+            "best_case_note": null,
+            "status": [
+              "5 cm i overskud",
+              "gron"
+            ]
+          },
+          {
+            "titel": "2 lag geonet",
+            "lag": [],
+            "geonet_mm": [],
+            "total_mm": null,
+            "tom_tekst": "Ikke gyldigt for denne kombination",
+            "best_case_mm": null,
+            "best_case_note": null,
+            "status": [
+              "",
+              "neutral"
+            ]
+          }
+        ],
+        "kwargs": {
+          "reference_mm": 700.0,
+          "geonet_navn": "Tensar TriAx TX160",
+          "hoejde_px": 340,
+          "geonet_paaskrift": true,
+          "geonet_maerkat": "Tensar TriAx TX160",
+          "vis_maal_streg": true,
+          "vis_maal_tal": true,
+          "vis_signatur": true,
+          "enhed": "cm"
+        }
+      }
+    },
+    {
+      "id": "custom-eu5-bk4-nx850-cm",
+      "action": "Custom two material layers and interval product",
+      "inputs": {
+        "mode": "Brugerdefineret",
+        "eu": 5,
+        "basis": "Belastningsklasse",
+        "class": 4,
+        "traffic": null,
+        "selected_product": "Tensar InterAx NX850",
+        "custom_layers": 2,
+        "settings": {
+          "afrunding": {
+            "trin_mm": 50,
+            "reduktion_eksakt": false,
+            "vis_eksakt": false,
+            "phi_afrunding": "ingen"
+          },
+          "opbygning": {
+            "geonet_paaskrift": true,
+            "maal_streg": true,
+            "maal_tal": true,
+            "signatur": true,
+            "enhed": "cm"
+          },
+          "lagfordeling": {
+            "fordeling": "minimum",
+            "samlet_minimum": true,
+            "minimum_mm": {
+              "1": 200.0,
+              "2": 200.0,
+              "3": 200.0,
+              "4": 250.0,
+              "5": 275.0,
+              "6": 300.0
+            },
+            "restlag": "vis",
+            "restlag_graense_mm": 100.0,
+            "vd_minimum_mm": {
+              "Bærelag": 100.0,
+              "Bundsikring": 200.0
+            },
+            "phi_regel": "laveste",
+            "kraev_bundsikring": false,
+            "netplacering": "laggraense",
+            "standard_klassisk": false,
+            "standard_opdeling": true,
+            "standard_under_minimum": "stabilgrus"
+          },
+          "yderomraade": {
+            "tolerance_over_pct": 5.0,
+            "tolerance_under_pct": 5.0,
+            "under_inden": "laveste",
+            "over_uden": "afvis",
+            "under_uden": "afvis"
+          }
+        },
+        "materials": [
+          {
+            "navn": "Stabilgrus SGII 0-32",
+            "phi": 40.0,
+            "max_korn": 32,
+            "lagtype": "Bærelag",
+            "tykkelse_mm": 300.0,
+            "pct": null,
+            "krav_maskestoerrelse_mm": 35
+          },
+          {
+            "navn": "Bundsikringssand",
+            "phi": 37.0,
+            "max_korn": 8,
+            "lagtype": "Bundsikring",
+            "tykkelse_mm": 400.0,
+            "pct": null,
+            "krav_maskestoerrelse_mm": 35
+          }
+        ]
+      },
+      "calculation": {
+        "eu": 5.0,
+        "eo": 80.0,
+        "phi": 38.285714285714285,
+        "valgt_klasse": 4,
+        "grundlag_type": "belastningsklasse",
+        "t_klasse": null,
+        "res_1": {
+          "eu": 5.0,
+          "eo": 80.0,
+          "phi": 38.285714285714285,
+          "phi_uarmeret": 38.25,
+          "phi_eksakt": 38.285714285714285,
+          "phi_uarmeret_eksakt": 38.25,
+          "phi_afrunding": "ingen",
+          "lag_mode": "1_lag",
+          "net_korrektion": -0.15,
+          "eu_lower": 5.0,
+          "eu_upper": 5.0,
+          "t_low_arm_cm": 83.3,
+          "t_high_arm_cm": 83.3,
+          "t_low_uarm_cm": 120.0,
+          "t_high_uarm_cm": 120.0,
+          "t_basis_arm_cm": 83.3,
+          "t_basis_arm_mm": 833.0,
+          "t_basis_uarm_cm": 120.0,
+          "t_basis_uarm_mm": 1200.0,
+          "phi_korrektion": -0.0257,
+          "phi_korrektion_uarmeret": -0.025,
+          "samlet_faktor": 0.8243,
+          "skala": 1.0,
+          "t_armeret_mm": 700.0,
+          "t_uarmeret_mm": 1200.0,
+          "t_uarmeret_phi_kor_mm": 1200.0,
+          "reduktion_mm": 500.0,
+          "reduktion_pct": 0.4167,
+          "uarmeret_mangler": false,
+          "uarmeret_fejl": null,
+          "fejl": null,
+          "t_armeret_eksakt_mm": 687.0,
+          "t_uarmeret_eksakt_mm": 1200.0,
+          "t_uarmeret_phi_kor_eksakt_mm": 1170.0,
+          "t_min_mm": 250.0,
+          "reduktion_mm_eksakt": 483.0,
+          "reduktion_pct_eksakt": 0.4131,
+          "afrunding_trin_mm": 50,
+          "phi_indtastet": 38.285714285714285,
+          "phi_regel": "laveste",
+          "min_top_cover_mm": 200.0,
+          "general_top_cover_mm": 200.0,
+          "product_cover_mm": 200.0,
+          "min_spacing_mm": 200.0,
+          "max_spacing_mm": 400.0,
+          "overlap_ge5_mm": 300.0,
+          "overlap_lt5_mm": 400.0,
+          "source": "Tensar",
+          "placering_ok": true,
+          "geonet_placeringer_mm_fra_top": [
+            700.0
+          ],
+          "geonet_y_fracs": [
+            1.0
+          ],
+          "topdaeklag_mm": 700.0,
+          "afstande_mellem_geonet_mm": [],
+          "placeringsadvarsler": [],
+          "t_min_placering_mm": 200.0,
+          "t_dimensionerende_mm": 700.0,
+          "placeringsbasis": "underbund"
+        },
+        "res_2": {
+          "eu": 5.0,
+          "eo": 80.0,
+          "phi": 38.285714285714285,
+          "phi_uarmeret": 38.25,
+          "phi_eksakt": 38.285714285714285,
+          "phi_uarmeret_eksakt": 38.25,
+          "phi_afrunding": "ingen",
+          "lag_mode": "2_lag",
+          "net_korrektion": -0.15,
+          "eu_lower": 5.0,
+          "eu_upper": 5.0,
+          "t_low_arm_cm": 75.0,
+          "t_high_arm_cm": 75.0,
+          "t_low_uarm_cm": 120.0,
+          "t_high_uarm_cm": 120.0,
+          "t_basis_arm_cm": 75.0,
+          "t_basis_arm_mm": 750.0,
+          "t_basis_uarm_cm": 120.0,
+          "t_basis_uarm_mm": 1200.0,
+          "phi_korrektion": -0.0257,
+          "phi_korrektion_uarmeret": -0.025,
+          "samlet_faktor": 0.8243,
+          "skala": 1.0,
+          "t_armeret_mm": 650.0,
+          "t_uarmeret_mm": 1200.0,
+          "t_uarmeret_phi_kor_mm": 1200.0,
+          "reduktion_mm": 550.0,
+          "reduktion_pct": 0.4583,
+          "uarmeret_mangler": false,
+          "uarmeret_fejl": null,
+          "fejl": null,
+          "t_armeret_eksakt_mm": 618.0,
+          "t_uarmeret_eksakt_mm": 1200.0,
+          "t_uarmeret_phi_kor_eksakt_mm": 1170.0,
+          "t_min_mm": 250.0,
+          "reduktion_mm_eksakt": 552.0,
+          "reduktion_pct_eksakt": 0.4716,
+          "afrunding_trin_mm": 50,
+          "phi_indtastet": 38.285714285714285,
+          "phi_regel": "laveste",
+          "min_top_cover_mm": 200.0,
+          "general_top_cover_mm": 200.0,
+          "product_cover_mm": 200.0,
+          "min_spacing_mm": 200.0,
+          "max_spacing_mm": 400.0,
+          "overlap_ge5_mm": 300.0,
+          "overlap_lt5_mm": 400.0,
+          "source": "Tensar",
+          "placering_ok": false,
+          "geonet_placeringer_mm_fra_top": [
+            200.0,
+            650.0
+          ],
+          "geonet_y_fracs": [
+            0.3076923076923077,
+            1.0
+          ],
+          "topdaeklag_mm": 200.0,
+          "afstande_mellem_geonet_mm": [
+            450.0
+          ],
+          "placeringsadvarsler": [
+            "Afstanden mellem geonetlagene er 450 mm. Anbefalingen for bedst effekt er højst 400 mm for Tensar."
+          ],
+          "t_min_placering_mm": 400.0,
+          "t_dimensionerende_mm": 650.0,
+          "placeringsbasis": "minimumsdæklag"
+        },
+        "standard_opdeling": null
+      },
+      "ui_snit": {
+        "columns": [
+          {
+            "titel": "Indtastet opbygning",
+            "lag": [
+              [
+                "Stabilgrus SGII 0-32",
+                300.0,
+                "baerelag"
+              ],
+              [
+                "Bundsikringssand",
+                400.0,
+                "bundsikring"
+              ]
+            ],
+            "geonet_mm": [],
+            "total_mm": 700.0,
+            "tom_tekst": "Ikke defineret",
+            "best_case_mm": null,
+            "best_case_note": null,
+            "status": [
+              "",
+              "neutral"
+            ],
+            "underbund_tekst": "Underbund Eᵤ = 5 MPa"
+          },
+          {
+            "titel": "Ustabiliseret bærelagstykkelse (φᵥ-korrigeret)",
+            "lag": [
+              [
+                "Stabilgrus SGII 0-32",
+                500.0,
+                "baerelag"
+              ],
+              [
+                "Bundsikringssand",
+                700.0,
+                "bundsikring"
+              ]
+            ],
+            "geonet_mm": [],
+            "total_mm": 1200.0,
+            "tom_tekst": "Ikke defineret",
+            "best_case_mm": null,
+            "best_case_note": null,
+            "status": [
+              "50 cm for lidt",
+              "kritisk"
+            ]
+          },
+          {
+            "titel": "1 lag geonet",
+            "lag": [
+              [
+                "Stabilgrus SGII 0-32",
+                300.0,
+                "baerelag"
+              ],
+              [
+                "Bundsikringssand",
+                400.0,
+                "bundsikring"
+              ]
+            ],
+            "geonet_mm": [
+              0.0
+            ],
+            "total_mm": 700.0,
+            "tom_tekst": "Ikke defineret",
+            "best_case_mm": 600.0,
+            "best_case_note": "Optimal korrektion · effektindeks 130 · net-korrektion −30 %\nUstabiliseret bærelagstykkelse: 120 cm\n− Basisreduktion, referencenet: 36,7 cm\n− Net-korrektion, indeks 130: 25 cm\n− φᵥ-korrektion, −2,5 %: 2,1 cm\n+ Oprunding til nærmeste 5 cm: 3,8 cm\n= Stabiliseret bærelagstykkelse: 60 cm",
+            "status": [
+              "0 cm i overskud\n(10 cm optimalt)",
+              "gron"
+            ]
+          },
+          {
+            "titel": "2 lag geonet",
+            "lag": [
+              [
+                "Stabilgrus SGII 0-32",
+                300.0,
+                "baerelag"
+              ],
+              [
+                "Bundsikringssand",
+                350.0,
+                "bundsikring"
+              ]
+            ],
+            "geonet_mm": [
+              350.0,
+              0.0
+            ],
+            "total_mm": 650.0,
+            "tom_tekst": "Ikke defineret",
+            "best_case_mm": 550.0,
+            "best_case_note": "Optimal korrektion · effektindeks 130 · net-korrektion −30 %\nUstabiliseret bærelagstykkelse: 120 cm\n− Basisreduktion, referencenet: 45 cm\n− Net-korrektion, indeks 130: 22,5 cm\n− φᵥ-korrektion, −2,6 %: 1,9 cm\n+ Oprunding til nærmeste 5 cm: 4,4 cm\n= Stabiliseret bærelagstykkelse: 55 cm",
+            "status": [
+              "5 cm i overskud\n(15 cm optimalt)",
+              "gron"
+            ]
+          }
+        ],
+        "kwargs": {
+          "reference_mm": 700.0,
+          "geonet_navn": "Tensar InterAx NX850",
+          "geonet_maerkat": "Tensar InterAx NX850",
+          "geonet_paaskrift": true,
+          "vis_maal_streg": true,
+          "vis_maal_tal": true,
+          "vis_signatur": true,
+          "enhed": "cm"
+        }
+      },
+      "byg_snit": {
+        "columns": [
+          {
+            "titel": "Indtastet opbygning",
+            "lag": [
+              [
+                "Stabilgrus SGII 0-32",
+                300.0,
+                "baerelag"
+              ],
+              [
+                "Bundsikringssand",
+                400.0,
+                "bundsikring"
+              ]
+            ],
+            "geonet_mm": [],
+            "total_mm": 700.0,
+            "tom_tekst": "Ikke defineret",
+            "best_case_mm": null,
+            "best_case_note": null,
+            "status": [
+              "",
+              "neutral"
+            ],
+            "underbund_tekst": "Underbund Eᵤ = 5 MPa"
+          },
+          {
+            "titel": "Ustabiliseret bærelagstykkelse (φᵥ-korrigeret)",
+            "lag": [
+              [
+                "Stabilgrus SGII 0-32",
+                500.0,
+                "baerelag"
+              ],
+              [
+                "Bundsikringssand",
+                700.0,
+                "bundsikring"
+              ]
+            ],
+            "geonet_mm": [],
+            "total_mm": 1200.0,
+            "tom_tekst": "Ikke defineret",
+            "best_case_mm": null,
+            "best_case_note": null,
+            "status": [
+              "50 cm for lidt",
+              "kritisk"
+            ]
+          },
+          {
+            "titel": "1 lag geonet",
+            "lag": [
+              [
+                "Stabilgrus SGII 0-32",
+                300.0,
+                "baerelag"
+              ],
+              [
+                "Bundsikringssand",
+                400.0,
+                "bundsikring"
+              ]
+            ],
+            "geonet_mm": [
+              0.0
+            ],
+            "total_mm": 700.0,
+            "tom_tekst": "Ikke defineret",
+            "best_case_mm": 600.0,
+            "best_case_note": "Optimal korrektion · effektindeks 130 · net-korrektion −30 %\nUstabiliseret bærelagstykkelse: 120 cm\n− Basisreduktion, referencenet: 36,7 cm\n− Net-korrektion, indeks 130: 25 cm\n− φᵥ-korrektion, −2,5 %: 2,1 cm\n+ Oprunding til nærmeste 5 cm: 3,8 cm\n= Stabiliseret bærelagstykkelse: 60 cm",
+            "status": [
+              "0 cm i overskud\n(10 cm optimalt)",
+              "gron"
+            ]
+          },
+          {
+            "titel": "2 lag geonet",
+            "lag": [
+              [
+                "Stabilgrus SGII 0-32",
+                300.0,
+                "baerelag"
+              ],
+              [
+                "Bundsikringssand",
+                350.0,
+                "bundsikring"
+              ]
+            ],
+            "geonet_mm": [
+              350.0,
+              0.0
+            ],
+            "total_mm": 650.0,
+            "tom_tekst": "Ikke defineret",
+            "best_case_mm": 550.0,
+            "best_case_note": "Optimal korrektion · effektindeks 130 · net-korrektion −30 %\nUstabiliseret bærelagstykkelse: 120 cm\n− Basisreduktion, referencenet: 45 cm\n− Net-korrektion, indeks 130: 22,5 cm\n− φᵥ-korrektion, −2,6 %: 1,9 cm\n+ Oprunding til nærmeste 5 cm: 4,4 cm\n= Stabiliseret bærelagstykkelse: 55 cm",
+            "status": [
+              "5 cm i overskud\n(15 cm optimalt)",
+              "gron"
+            ]
+          }
+        ],
+        "kwargs": {
+          "reference_mm": 700.0,
+          "geonet_navn": "Tensar InterAx NX850",
+          "hoejde_px": 340,
+          "geonet_paaskrift": true,
+          "geonet_maerkat": "Tensar InterAx NX850",
+          "vis_maal_streg": true,
+          "vis_maal_tal": true,
+          "vis_signatur": true,
+          "enhed": "cm"
+        }
+      }
+    },
+    {
+      "id": "custom-eu5-bk4-nx850-three-layers-cm",
+      "action": "Custom three material layers",
+      "inputs": {
+        "mode": "Brugerdefineret",
+        "eu": 5,
+        "basis": "Belastningsklasse",
+        "class": 4,
+        "traffic": null,
+        "selected_product": "Tensar InterAx NX850",
+        "custom_layers": 3,
+        "settings": {
+          "afrunding": {
+            "trin_mm": 50,
+            "reduktion_eksakt": false,
+            "vis_eksakt": false,
+            "phi_afrunding": "ingen"
+          },
+          "opbygning": {
+            "geonet_paaskrift": true,
+            "maal_streg": true,
+            "maal_tal": true,
+            "signatur": true,
+            "enhed": "cm"
+          },
+          "lagfordeling": {
+            "fordeling": "minimum",
+            "samlet_minimum": true,
+            "minimum_mm": {
+              "1": 200.0,
+              "2": 200.0,
+              "3": 200.0,
+              "4": 250.0,
+              "5": 275.0,
+              "6": 300.0
+            },
+            "restlag": "vis",
+            "restlag_graense_mm": 100.0,
+            "vd_minimum_mm": {
+              "Bærelag": 100.0,
+              "Bundsikring": 200.0
+            },
+            "phi_regel": "laveste",
+            "kraev_bundsikring": false,
+            "netplacering": "laggraense",
+            "standard_klassisk": false,
+            "standard_opdeling": true,
+            "standard_under_minimum": "stabilgrus"
+          },
+          "yderomraade": {
+            "tolerance_over_pct": 5.0,
+            "tolerance_under_pct": 5.0,
+            "under_inden": "laveste",
+            "over_uden": "afvis",
+            "under_uden": "afvis"
+          }
+        },
+        "materials": [
+          {
+            "navn": "Stabilgrus SGII 0-32",
+            "phi": 40.0,
+            "max_korn": 32,
+            "lagtype": "Bærelag",
+            "tykkelse_mm": 300.0,
+            "pct": null,
+            "krav_maskestoerrelse_mm": 35
+          },
+          {
+            "navn": "Bundsikringssand",
+            "phi": 37.0,
+            "max_korn": 8,
+            "lagtype": "Bundsikring",
+            "tykkelse_mm": 400.0,
+            "pct": null,
+            "krav_maskestoerrelse_mm": 35
+          },
+          {
+            "navn": "Bundsikringssand",
+            "phi": 37.0,
+            "max_korn": 8,
+            "lagtype": "Bundsikring",
+            "tykkelse_mm": 200.0,
+            "pct": null,
+            "krav_maskestoerrelse_mm": 35
+          }
+        ]
+      },
+      "calculation": {
+        "eu": 5.0,
+        "eo": 80.0,
+        "phi": 38.0,
+        "valgt_klasse": 4,
+        "grundlag_type": "belastningsklasse",
+        "t_klasse": null,
+        "res_1": {
+          "eu": 5.0,
+          "eo": 80.0,
+          "phi": 38.0,
+          "phi_uarmeret": 38.0,
+          "phi_eksakt": 38.0,
+          "phi_uarmeret_eksakt": 38.0,
+          "phi_afrunding": "ingen",
+          "lag_mode": "1_lag",
+          "net_korrektion": -0.15,
+          "eu_lower": 5.0,
+          "eu_upper": 5.0,
+          "t_low_arm_cm": 83.3,
+          "t_high_arm_cm": 83.3,
+          "t_low_uarm_cm": 120.0,
+          "t_high_uarm_cm": 120.0,
+          "t_basis_arm_cm": 83.3,
+          "t_basis_arm_mm": 833.0,
+          "t_basis_uarm_cm": 120.0,
+          "t_basis_uarm_mm": 1200.0,
+          "phi_korrektion": -0.02,
+          "phi_korrektion_uarmeret": -0.02,
+          "samlet_faktor": 0.83,
+          "skala": 1.0,
+          "t_armeret_mm": 700.0,
+          "t_uarmeret_mm": 1200.0,
+          "t_uarmeret_phi_kor_mm": 1200.0,
+          "reduktion_mm": 500.0,
+          "reduktion_pct": 0.4167,
+          "uarmeret_mangler": false,
+          "uarmeret_fejl": null,
+          "fejl": null,
+          "t_armeret_eksakt_mm": 691.0,
+          "t_uarmeret_eksakt_mm": 1200.0,
+          "t_uarmeret_phi_kor_eksakt_mm": 1176.0,
+          "t_min_mm": 250.0,
+          "reduktion_mm_eksakt": 485.0,
+          "reduktion_pct_eksakt": 0.4121,
+          "afrunding_trin_mm": 50,
+          "phi_indtastet": 38.0,
+          "phi_regel": "laveste",
+          "min_top_cover_mm": 200.0,
+          "general_top_cover_mm": 200.0,
+          "product_cover_mm": 200.0,
+          "min_spacing_mm": 200.0,
+          "max_spacing_mm": 400.0,
+          "overlap_ge5_mm": 300.0,
+          "overlap_lt5_mm": 400.0,
+          "source": "Tensar",
+          "placering_ok": true,
+          "geonet_placeringer_mm_fra_top": [
+            700.0
+          ],
+          "geonet_y_fracs": [
+            1.0
+          ],
+          "topdaeklag_mm": 700.0,
+          "afstande_mellem_geonet_mm": [],
+          "placeringsadvarsler": [],
+          "t_min_placering_mm": 200.0,
+          "t_dimensionerende_mm": 700.0,
+          "placeringsbasis": "underbund"
+        },
+        "res_2": {
+          "eu": 5.0,
+          "eo": 80.0,
+          "phi": 38.0,
+          "phi_uarmeret": 38.0,
+          "phi_eksakt": 38.0,
+          "phi_uarmeret_eksakt": 38.0,
+          "phi_afrunding": "ingen",
+          "lag_mode": "2_lag",
+          "net_korrektion": -0.15,
+          "eu_lower": 5.0,
+          "eu_upper": 5.0,
+          "t_low_arm_cm": 75.0,
+          "t_high_arm_cm": 75.0,
+          "t_low_uarm_cm": 120.0,
+          "t_high_uarm_cm": 120.0,
+          "t_basis_arm_cm": 75.0,
+          "t_basis_arm_mm": 750.0,
+          "t_basis_uarm_cm": 120.0,
+          "t_basis_uarm_mm": 1200.0,
+          "phi_korrektion": -0.02,
+          "phi_korrektion_uarmeret": -0.02,
+          "samlet_faktor": 0.83,
+          "skala": 1.0,
+          "t_armeret_mm": 650.0,
+          "t_uarmeret_mm": 1200.0,
+          "t_uarmeret_phi_kor_mm": 1200.0,
+          "reduktion_mm": 550.0,
+          "reduktion_pct": 0.4583,
+          "uarmeret_mangler": false,
+          "uarmeret_fejl": null,
+          "fejl": null,
+          "t_armeret_eksakt_mm": 622.0,
+          "t_uarmeret_eksakt_mm": 1200.0,
+          "t_uarmeret_phi_kor_eksakt_mm": 1176.0,
+          "t_min_mm": 250.0,
+          "reduktion_mm_eksakt": 554.0,
+          "reduktion_pct_eksakt": 0.4707,
+          "afrunding_trin_mm": 50,
+          "phi_indtastet": 38.0,
+          "phi_regel": "laveste",
+          "min_top_cover_mm": 200.0,
+          "general_top_cover_mm": 200.0,
+          "product_cover_mm": 200.0,
+          "min_spacing_mm": 200.0,
+          "max_spacing_mm": 400.0,
+          "overlap_ge5_mm": 300.0,
+          "overlap_lt5_mm": 400.0,
+          "source": "Tensar",
+          "placering_ok": false,
+          "geonet_placeringer_mm_fra_top": [
+            200.0,
+            650.0
+          ],
+          "geonet_y_fracs": [
+            0.3076923076923077,
+            1.0
+          ],
+          "topdaeklag_mm": 200.0,
+          "afstande_mellem_geonet_mm": [
+            450.0
+          ],
+          "placeringsadvarsler": [
+            "Afstanden mellem geonetlagene er 450 mm. Anbefalingen for bedst effekt er højst 400 mm for Tensar."
+          ],
+          "t_min_placering_mm": 400.0,
+          "t_dimensionerende_mm": 650.0,
+          "placeringsbasis": "minimumsdæklag"
+        },
+        "standard_opdeling": null
+      },
+      "ui_snit": {
+        "columns": [
+          {
+            "titel": "Indtastet opbygning",
+            "lag": [
+              [
+                "Stabilgrus SGII 0-32",
+                300.0,
+                "baerelag"
+              ],
+              [
+                "Bundsikringssand",
+                400.0,
+                "bundsikring"
+              ],
+              [
+                "Bundsikringssand",
+                200.0,
+                "bundsikring"
+              ]
+            ],
+            "geonet_mm": [],
+            "total_mm": 900.0,
+            "tom_tekst": "Ikke defineret",
+            "best_case_mm": null,
+            "best_case_note": null,
+            "status": [
+              "",
+              "neutral"
+            ],
+            "underbund_tekst": "Underbund Eᵤ = 5 MPa"
+          },
+          {
+            "titel": "Ustabiliseret bærelagstykkelse (φᵥ-korrigeret)",
+            "lag": [
+              [
+                "Stabilgrus SGII 0-32",
+                400.0,
+                "baerelag"
+              ],
+              [
+                "Bundsikringssand",
+                550.0,
+                "bundsikring"
+              ],
+              [
+                "Bundsikringssand",
+                250.0,
+                "bundsikring"
+              ]
+            ],
+            "geonet_mm": [],
+            "total_mm": 1200.0,
+            "tom_tekst": "Ikke defineret",
+            "best_case_mm": null,
+            "best_case_note": null,
+            "status": [
+              "30 cm for lidt",
+              "kritisk"
+            ]
+          },
+          {
+            "titel": "1 lag geonet",
+            "lag": [
+              [
+                "Stabilgrus SGII 0-32",
+                250.0,
+                "baerelag"
+              ],
+              [
+                "Bundsikringssand",
+                300.0,
+                "bundsikring"
+              ],
+              [
+                "Bundsikringssand",
+                150.0,
+                "bundsikring"
+              ]
+            ],
+            "geonet_mm": [
+              0.0
+            ],
+            "total_mm": 700.0,
+            "tom_tekst": "Ikke defineret",
+            "best_case_mm": 600.0,
+            "best_case_note": "Optimal korrektion · effektindeks 130 · net-korrektion −30 %\nUstabiliseret bærelagstykkelse: 120 cm\n− Basisreduktion, referencenet: 36,7 cm\n− Net-korrektion, indeks 130: 25 cm\n− φᵥ-korrektion, −2,0 %: 1,7 cm\n+ Oprunding til nærmeste 5 cm: 3,4 cm\n= Stabiliseret bærelagstykkelse: 60 cm",
+            "status": [
+              "20 cm i overskud\n(30 cm optimalt)",
+              "gron"
+            ]
+          },
+          {
+            "titel": "2 lag geonet",
+            "lag": [
+              [
+                "Stabilgrus SGII 0-32",
+                250.0,
+                "baerelag"
+              ],
+              [
+                "Bundsikringssand",
+                250.0,
+                "bundsikring"
+              ],
+              [
+                "Bundsikringssand",
+                150.0,
+                "bundsikring"
+              ]
+            ],
+            "geonet_mm": [
+              400.0,
+              0.0
+            ],
+            "total_mm": 650.0,
+            "tom_tekst": "Ikke defineret",
+            "best_case_mm": 550.0,
+            "best_case_note": "Optimal korrektion · effektindeks 130 · net-korrektion −30 %\nUstabiliseret bærelagstykkelse: 120 cm\n− Basisreduktion, referencenet: 45 cm\n− Net-korrektion, indeks 130: 22,5 cm\n− φᵥ-korrektion, −2,0 %: 1,5 cm\n+ Oprunding til nærmeste 5 cm: 4 cm\n= Stabiliseret bærelagstykkelse: 55 cm",
+            "status": [
+              "25 cm i overskud\n(35 cm optimalt)",
+              "gron"
+            ]
+          }
+        ],
+        "kwargs": {
+          "reference_mm": 900.0,
+          "geonet_navn": "Tensar InterAx NX850",
+          "geonet_maerkat": "Tensar InterAx NX850",
+          "geonet_paaskrift": true,
+          "vis_maal_streg": true,
+          "vis_maal_tal": true,
+          "vis_signatur": true,
+          "enhed": "cm"
+        }
+      },
+      "byg_snit": {
+        "columns": [
+          {
+            "titel": "Indtastet opbygning",
+            "lag": [
+              [
+                "Stabilgrus SGII 0-32",
+                300.0,
+                "baerelag"
+              ],
+              [
+                "Bundsikringssand",
+                400.0,
+                "bundsikring"
+              ],
+              [
+                "Bundsikringssand",
+                200.0,
+                "bundsikring"
+              ]
+            ],
+            "geonet_mm": [],
+            "total_mm": 900.0,
+            "tom_tekst": "Ikke defineret",
+            "best_case_mm": null,
+            "best_case_note": null,
+            "status": [
+              "",
+              "neutral"
+            ],
+            "underbund_tekst": "Underbund Eᵤ = 5 MPa"
+          },
+          {
+            "titel": "Ustabiliseret bærelagstykkelse (φᵥ-korrigeret)",
+            "lag": [
+              [
+                "Stabilgrus SGII 0-32",
+                400.0,
+                "baerelag"
+              ],
+              [
+                "Bundsikringssand",
+                550.0,
+                "bundsikring"
+              ],
+              [
+                "Bundsikringssand",
+                250.0,
+                "bundsikring"
+              ]
+            ],
+            "geonet_mm": [],
+            "total_mm": 1200.0,
+            "tom_tekst": "Ikke defineret",
+            "best_case_mm": null,
+            "best_case_note": null,
+            "status": [
+              "30 cm for lidt",
+              "kritisk"
+            ]
+          },
+          {
+            "titel": "1 lag geonet",
+            "lag": [
+              [
+                "Stabilgrus SGII 0-32",
+                250.0,
+                "baerelag"
+              ],
+              [
+                "Bundsikringssand",
+                300.0,
+                "bundsikring"
+              ],
+              [
+                "Bundsikringssand",
+                150.0,
+                "bundsikring"
+              ]
+            ],
+            "geonet_mm": [
+              0.0
+            ],
+            "total_mm": 700.0,
+            "tom_tekst": "Ikke defineret",
+            "best_case_mm": 600.0,
+            "best_case_note": "Optimal korrektion · effektindeks 130 · net-korrektion −30 %\nUstabiliseret bærelagstykkelse: 120 cm\n− Basisreduktion, referencenet: 36,7 cm\n− Net-korrektion, indeks 130: 25 cm\n− φᵥ-korrektion, −2,0 %: 1,7 cm\n+ Oprunding til nærmeste 5 cm: 3,4 cm\n= Stabiliseret bærelagstykkelse: 60 cm",
+            "status": [
+              "20 cm i overskud\n(30 cm optimalt)",
+              "gron"
+            ]
+          },
+          {
+            "titel": "2 lag geonet",
+            "lag": [
+              [
+                "Stabilgrus SGII 0-32",
+                250.0,
+                "baerelag"
+              ],
+              [
+                "Bundsikringssand",
+                250.0,
+                "bundsikring"
+              ],
+              [
+                "Bundsikringssand",
+                150.0,
+                "bundsikring"
+              ]
+            ],
+            "geonet_mm": [
+              400.0,
+              0.0
+            ],
+            "total_mm": 650.0,
+            "tom_tekst": "Ikke defineret",
+            "best_case_mm": 550.0,
+            "best_case_note": "Optimal korrektion · effektindeks 130 · net-korrektion −30 %\nUstabiliseret bærelagstykkelse: 120 cm\n− Basisreduktion, referencenet: 45 cm\n− Net-korrektion, indeks 130: 22,5 cm\n− φᵥ-korrektion, −2,0 %: 1,5 cm\n+ Oprunding til nærmeste 5 cm: 4 cm\n= Stabiliseret bærelagstykkelse: 55 cm",
+            "status": [
+              "25 cm i overskud\n(35 cm optimalt)",
+              "gron"
+            ]
+          }
+        ],
+        "kwargs": {
+          "reference_mm": 900.0,
+          "geonet_navn": "Tensar InterAx NX850",
+          "hoejde_px": 340,
+          "geonet_paaskrift": true,
+          "geonet_maerkat": "Tensar InterAx NX850",
+          "vis_maal_streg": true,
+          "vis_maal_tal": true,
+          "vis_signatur": true,
+          "enhed": "cm"
+        }
+      }
+    }
+  ]
+}

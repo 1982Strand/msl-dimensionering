@@ -1,0 +1,748 @@
+{
+  "source_commit": "a330cfd6734ac2478be1304a362c69f94e412d25",
+  "cases": [
+    {
+      "schema_version": 1,
+      "source_commit": "a330cfd6734ac2478be1304a362c69f94e412d25",
+      "case": "standard",
+      "snapshot": "UI-001",
+      "context": {
+        "projekt": "MSL reference standard",
+        "beskrivelse": "Syntetisk migrationskontrol",
+        "omfang": "Dimensionering af vejopbygning",
+        "udfoeres_for": "MSL prøveprojekt",
+        "sagsbehandler": "Testingeniør",
+        "sagsbehandler_mail": "test@example.invalid",
+        "kontrol": "Kontrolperson",
+        "dato": "29/09/2026",
+        "dim_grundlag": [
+          {
+            "label": "Underbundens E-modul (Eᵤ)",
+            "vaerdi": "10 MPa"
+          },
+          {
+            "label": "Belastningsklasse",
+            "vaerdi": "4"
+          },
+          {
+            "label": "Materialeopbygning",
+            "vaerdi": "Stabilgrus SG II og Bundsikring BL II"
+          },
+          {
+            "label": "Vægtet friktionsvinkel (φᵥ)",
+            "vaerdi": "37,0°"
+          }
+        ],
+        "dim_resultat": [
+          {
+            "label": "Valgt geonet",
+            "vaerdi": "Tensar TriAx TX160"
+          },
+          {
+            "label": "Ustabiliseret referenceopbygning",
+            "vaerdi": "900 mm"
+          },
+          {
+            "label": "Samlet tykkelse af valgt opbygning",
+            "vaerdi": "—"
+          },
+          {
+            "label": "Stabiliseret tykkelse — 1 lag",
+            "vaerdi": "650 mm"
+          },
+          {
+            "label": "Stabiliseret tykkelse — 2 lag",
+            "vaerdi": "—"
+          }
+        ],
+        "tekst_oplyste_forudsaetninger": "   • Dimensionsgivende trafikbelastning: T6\n   • Vingestyrke, Cv, skønnet i planum: > 100 kPa\n   • Grundvandsspejl: ikke oplyst/ikke relevant\n   • Bærelagsmaterialer:\n           o Genbrugsstabil",
+        "tekst_generelle_forudsaetninger": "Dimensioneringen af MSL opbygningen (mekanisk stabiliseret bærelag) er baseret på resultaterne fra mere en 20 års feltforsøg udført i Skandinavien. Det ubundne bærelag fastholdes af et eller flere lag geonet, som låser og fastholder bærelaget hvormed trykspredningsvinklen forøges i lighed. I praksis betyder det, at bærelaget kan reduceres i forhold til den ikke-stabiliserede ubundne opbygning. Alternativt vil der kunne opnås en betydelig forøgelse af bæreevne for en MSL opbygning i forhold til en traditionel opbygning.\n\nDifferenssætninger vil i stort omfang blive udjævnet, ligesom den stabiliserede randzone for specielt flerlagsopbygninger vil blive mindre sårbar i forhold til sætninger. Selvom erfaringerne viser betydelige reduktioner i sætninger, så vil der kun sjældent kunne opnås en sætningsfri ombygning. Ligeledes bør der tages højde for evt. frostfølsomhed, selvom MSL-opbygningen vil udjævne eventuelle hævninger.\n\nMSL-løsninger kan kombineres med letfyld, som dermed kan være med til at kompensere for eventuelle sætninger.\n\nMSL-løsninger kan ligeledes håndtere og kompensere for bæreevnesvigt forårsaget af midlertidig kortvarig vandpåvirkning, eksempelvis i forbindelse med LAR-opbygninger.\n\nFor særligt sætningsgivende bundforhold vil det være en fordel at afvente med belægningsarbejde til sætningsforløbet har stabiliseret sig. Tidshorisonten er variabel, og kan vare op til et år.",
+        "tekst_krav_komprimering": "Det forudsættes, at der ved indbygning af de ubundne bærelag opnås og eftervises en komprimeringsgrad på middel 95 % og mindst 92 % målt ved Vibrationsforsøg.",
+        "tekst_dim_sikkerhed": "Dimensionering og kontrol af bæreevne kan være forbundet med en nogen måleusikkerhed.\n\nVed kontrol af bæreevnen for MSL opbygningen vil en eventuel negativ variation normalt være maksimalt 10 %.",
+        "tekst_udfoerelse": "MSL-opbygninger kan udføres hele året. I visse situationer kan det være en fordel at arbejdet tilrettelægges således, at det udføres i frostperioder, hvor fremkommeligheden i terrænet kan være mere gunstig.\n\nGeonettenes formstabile struktur nødvendiggør at udlægningen sker på et relativt jævnt underlag. Eventuelt bevoksning skal som udgangspunkt fjernes. På meget sætningsgivende blød underbund kan rødder fra træer og buske med fordel blive stående, ligesom intakt tørv bør bevares. Det er dog vigtigt, at rødder og stubbe skæres helt ned, således at der maksimalt er en terrænforskel på +/- 5 cm.\n\nOverlæg på geonet bør være minimum 0,4 m. Anlæg på udvendige skråninger bør normalt udføres med maksimalt anlæg 1,5.",
+        "tekst_kontrolplan": "Det anbefales at udføre supplerende geoteknisk sondering og indmåling af E-modul på planum, således at eventuelt behov for korrektion af opbygning kan foretages før indbygning.\n\nKontrol af bæreevne på oversiden af de indbyggede bærelag kan ske ved pladebelastningsforsøg suppleret med dynamisk minifaldlodsmåling.\n\nOmfanget af kontrolplan vurderes på det enkelte projekt.",
+        "tekst_projekteringsansvar": "Såfremt der foreligger skriftligt aftale med præcisering af omfang og krav til konstruktionen samt honorar og ansvarsforpligtelse for projekteringen, kan ansvaret for dimensioneringen være omfattet af vores rådgiveransvarsforsikring.\n\nSåfremt der ikke foreligger en skriftlige aftale omkring ansvarsforhold, og dersom dimensioneringen i tillæg er udarbejdet som en vederlagsfri service, fraskriver Byggros sig ansvaret for anvendelsen af beregninger, konstruktionsforslag og anden relateret rådgivning.",
+        "visualisering": {
+          "image": "assets/standard-0.png",
+          "width_cm": 16
+        },
+        "designdiagram": {
+          "image": "assets/standard-1.png",
+          "width_cm": 16
+        }
+      },
+      "sections": {
+        "oplyste_forudsaetninger": "Oplyste forudsætninger",
+        "generelle_forudsaetninger": "Generelle dimensioneringsforudsætninger for MSL opbygning",
+        "krav_komprimering": "Krav til komprimering",
+        "dim_sikkerhed": "Dimensionering og sikkerhed",
+        "udfoerelse": "Udførelse",
+        "kontrolplan": "Kontrolplan",
+        "projekteringsansvar": "Projekteringsansvar"
+      },
+      "scope": "Report assembly only. Formatted strings from original Python; images reused from original UI fixtures, not a test of report image selection."
+    },
+    {
+      "schema_version": 1,
+      "source_commit": "a330cfd6734ac2478be1304a362c69f94e412d25",
+      "case": "two-layers",
+      "snapshot": "UI-002",
+      "context": {
+        "projekt": "MSL reference two-layers",
+        "beskrivelse": "Syntetisk migrationskontrol",
+        "omfang": "Dimensionering af vejopbygning",
+        "udfoeres_for": "MSL prøveprojekt",
+        "sagsbehandler": "Testingeniør",
+        "sagsbehandler_mail": "test@example.invalid",
+        "kontrol": "Kontrolperson",
+        "dato": "29/09/2026",
+        "dim_grundlag": [
+          {
+            "label": "Underbundens E-modul (Eᵤ)",
+            "vaerdi": "5 MPa"
+          },
+          {
+            "label": "Belastningsklasse",
+            "vaerdi": "4"
+          },
+          {
+            "label": "Materialeopbygning",
+            "vaerdi": "Stabilgrus SG II og Bundsikring BL II"
+          },
+          {
+            "label": "Vægtet friktionsvinkel (φᵥ)",
+            "vaerdi": "37,0°"
+          }
+        ],
+        "dim_resultat": [
+          {
+            "label": "Valgt geonet",
+            "vaerdi": "Tensar TriAx TX160"
+          },
+          {
+            "label": "Ustabiliseret referenceopbygning",
+            "vaerdi": "1.200 mm"
+          },
+          {
+            "label": "Samlet tykkelse af valgt opbygning",
+            "vaerdi": "—"
+          },
+          {
+            "label": "Stabiliseret tykkelse — 1 lag",
+            "vaerdi": "850 mm"
+          },
+          {
+            "label": "Stabiliseret tykkelse — 2 lag",
+            "vaerdi": "750 mm"
+          }
+        ],
+        "tekst_oplyste_forudsaetninger": "   • Dimensionsgivende trafikbelastning: T6\n   • Vingestyrke, Cv, skønnet i planum: > 100 kPa\n   • Grundvandsspejl: ikke oplyst/ikke relevant\n   • Bærelagsmaterialer:\n           o Genbrugsstabil",
+        "tekst_generelle_forudsaetninger": "Dimensioneringen af MSL opbygningen (mekanisk stabiliseret bærelag) er baseret på resultaterne fra mere en 20 års feltforsøg udført i Skandinavien. Det ubundne bærelag fastholdes af et eller flere lag geonet, som låser og fastholder bærelaget hvormed trykspredningsvinklen forøges i lighed. I praksis betyder det, at bærelaget kan reduceres i forhold til den ikke-stabiliserede ubundne opbygning. Alternativt vil der kunne opnås en betydelig forøgelse af bæreevne for en MSL opbygning i forhold til en traditionel opbygning.\n\nDifferenssætninger vil i stort omfang blive udjævnet, ligesom den stabiliserede randzone for specielt flerlagsopbygninger vil blive mindre sårbar i forhold til sætninger. Selvom erfaringerne viser betydelige reduktioner i sætninger, så vil der kun sjældent kunne opnås en sætningsfri ombygning. Ligeledes bør der tages højde for evt. frostfølsomhed, selvom MSL-opbygningen vil udjævne eventuelle hævninger.\n\nMSL-løsninger kan kombineres med letfyld, som dermed kan være med til at kompensere for eventuelle sætninger.\n\nMSL-løsninger kan ligeledes håndtere og kompensere for bæreevnesvigt forårsaget af midlertidig kortvarig vandpåvirkning, eksempelvis i forbindelse med LAR-opbygninger.\n\nFor særligt sætningsgivende bundforhold vil det være en fordel at afvente med belægningsarbejde til sætningsforløbet har stabiliseret sig. Tidshorisonten er variabel, og kan vare op til et år.",
+        "tekst_krav_komprimering": "Det forudsættes, at der ved indbygning af de ubundne bærelag opnås og eftervises en komprimeringsgrad på middel 95 % og mindst 92 % målt ved Vibrationsforsøg.",
+        "tekst_dim_sikkerhed": "Dimensionering og kontrol af bæreevne kan være forbundet med en nogen måleusikkerhed.\n\nVed kontrol af bæreevnen for MSL opbygningen vil en eventuel negativ variation normalt være maksimalt 10 %.",
+        "tekst_udfoerelse": "MSL-opbygninger kan udføres hele året. I visse situationer kan det være en fordel at arbejdet tilrettelægges således, at det udføres i frostperioder, hvor fremkommeligheden i terrænet kan være mere gunstig.\n\nGeonettenes formstabile struktur nødvendiggør at udlægningen sker på et relativt jævnt underlag. Eventuelt bevoksning skal som udgangspunkt fjernes. På meget sætningsgivende blød underbund kan rødder fra træer og buske med fordel blive stående, ligesom intakt tørv bør bevares. Det er dog vigtigt, at rødder og stubbe skæres helt ned, således at der maksimalt er en terrænforskel på +/- 5 cm.\n\nOverlæg på geonet bør være minimum 0,4 m. Anlæg på udvendige skråninger bør normalt udføres med maksimalt anlæg 1,5.",
+        "tekst_kontrolplan": "Det anbefales at udføre supplerende geoteknisk sondering og indmåling af E-modul på planum, således at eventuelt behov for korrektion af opbygning kan foretages før indbygning.\n\nKontrol af bæreevne på oversiden af de indbyggede bærelag kan ske ved pladebelastningsforsøg suppleret med dynamisk minifaldlodsmåling.\n\nOmfanget af kontrolplan vurderes på det enkelte projekt.",
+        "tekst_projekteringsansvar": "Såfremt der foreligger skriftligt aftale med præcisering af omfang og krav til konstruktionen samt honorar og ansvarsforpligtelse for projekteringen, kan ansvaret for dimensioneringen være omfattet af vores rådgiveransvarsforsikring.\n\nSåfremt der ikke foreligger en skriftlige aftale omkring ansvarsforhold, og dersom dimensioneringen i tillæg er udarbejdet som en vederlagsfri service, fraskriver Byggros sig ansvaret for anvendelsen af beregninger, konstruktionsforslag og anden relateret rådgivning.",
+        "visualisering": "",
+        "designdiagram": ""
+      },
+      "sections": {
+        "oplyste_forudsaetninger": "Oplyste forudsætninger",
+        "generelle_forudsaetninger": "Generelle dimensioneringsforudsætninger for MSL opbygning",
+        "krav_komprimering": "Krav til komprimering",
+        "dim_sikkerhed": "Dimensionering og sikkerhed",
+        "udfoerelse": "Udførelse",
+        "kontrolplan": "Kontrolplan",
+        "projekteringsansvar": "Projekteringsansvar"
+      },
+      "scope": "Report assembly only. Formatted strings from original Python; images reused from original UI fixtures, not a test of report image selection."
+    },
+    {
+      "schema_version": 1,
+      "source_commit": "a330cfd6734ac2478be1304a362c69f94e412d25",
+      "case": "nx850",
+      "snapshot": "UI-003",
+      "context": {
+        "projekt": "MSL reference nx850",
+        "beskrivelse": "Syntetisk migrationskontrol",
+        "omfang": "Dimensionering af vejopbygning",
+        "udfoeres_for": "MSL prøveprojekt",
+        "sagsbehandler": "Testingeniør",
+        "sagsbehandler_mail": "test@example.invalid",
+        "kontrol": "Kontrolperson",
+        "dato": "29/09/2026",
+        "dim_grundlag": [
+          {
+            "label": "Underbundens E-modul (Eᵤ)",
+            "vaerdi": "5 MPa"
+          },
+          {
+            "label": "Belastningsklasse",
+            "vaerdi": "4"
+          },
+          {
+            "label": "Materialeopbygning",
+            "vaerdi": "Stabilgrus SG II og Bundsikring BL II"
+          },
+          {
+            "label": "Vægtet friktionsvinkel (φᵥ)",
+            "vaerdi": "37,0°"
+          }
+        ],
+        "dim_resultat": [
+          {
+            "label": "Valgt geonet",
+            "vaerdi": "Tensar InterAx NX850"
+          },
+          {
+            "label": "Ustabiliseret referenceopbygning",
+            "vaerdi": "1.200 mm"
+          },
+          {
+            "label": "Samlet tykkelse af valgt opbygning",
+            "vaerdi": "—"
+          },
+          {
+            "label": "Stabiliseret tykkelse — 1 lag",
+            "vaerdi": "750 mm"
+          },
+          {
+            "label": "Stabiliseret tykkelse — 2 lag",
+            "vaerdi": "650 mm"
+          }
+        ],
+        "tekst_oplyste_forudsaetninger": "   • Dimensionsgivende trafikbelastning: T6\n   • Vingestyrke, Cv, skønnet i planum: > 100 kPa\n   • Grundvandsspejl: ikke oplyst/ikke relevant\n   • Bærelagsmaterialer:\n           o Genbrugsstabil",
+        "tekst_generelle_forudsaetninger": "Dimensioneringen af MSL opbygningen (mekanisk stabiliseret bærelag) er baseret på resultaterne fra mere en 20 års feltforsøg udført i Skandinavien. Det ubundne bærelag fastholdes af et eller flere lag geonet, som låser og fastholder bærelaget hvormed trykspredningsvinklen forøges i lighed. I praksis betyder det, at bærelaget kan reduceres i forhold til den ikke-stabiliserede ubundne opbygning. Alternativt vil der kunne opnås en betydelig forøgelse af bæreevne for en MSL opbygning i forhold til en traditionel opbygning.\n\nDifferenssætninger vil i stort omfang blive udjævnet, ligesom den stabiliserede randzone for specielt flerlagsopbygninger vil blive mindre sårbar i forhold til sætninger. Selvom erfaringerne viser betydelige reduktioner i sætninger, så vil der kun sjældent kunne opnås en sætningsfri ombygning. Ligeledes bør der tages højde for evt. frostfølsomhed, selvom MSL-opbygningen vil udjævne eventuelle hævninger.\n\nMSL-løsninger kan kombineres med letfyld, som dermed kan være med til at kompensere for eventuelle sætninger.\n\nMSL-løsninger kan ligeledes håndtere og kompensere for bæreevnesvigt forårsaget af midlertidig kortvarig vandpåvirkning, eksempelvis i forbindelse med LAR-opbygninger.\n\nFor særligt sætningsgivende bundforhold vil det være en fordel at afvente med belægningsarbejde til sætningsforløbet har stabiliseret sig. Tidshorisonten er variabel, og kan vare op til et år.",
+        "tekst_krav_komprimering": "Det forudsættes, at der ved indbygning af de ubundne bærelag opnås og eftervises en komprimeringsgrad på middel 95 % og mindst 92 % målt ved Vibrationsforsøg.",
+        "tekst_dim_sikkerhed": "Dimensionering og kontrol af bæreevne kan være forbundet med en nogen måleusikkerhed.\n\nVed kontrol af bæreevnen for MSL opbygningen vil en eventuel negativ variation normalt være maksimalt 10 %.",
+        "tekst_udfoerelse": "MSL-opbygninger kan udføres hele året. I visse situationer kan det være en fordel at arbejdet tilrettelægges således, at det udføres i frostperioder, hvor fremkommeligheden i terrænet kan være mere gunstig.\n\nGeonettenes formstabile struktur nødvendiggør at udlægningen sker på et relativt jævnt underlag. Eventuelt bevoksning skal som udgangspunkt fjernes. På meget sætningsgivende blød underbund kan rødder fra træer og buske med fordel blive stående, ligesom intakt tørv bør bevares. Det er dog vigtigt, at rødder og stubbe skæres helt ned, således at der maksimalt er en terrænforskel på +/- 5 cm.\n\nOverlæg på geonet bør være minimum 0,4 m. Anlæg på udvendige skråninger bør normalt udføres med maksimalt anlæg 1,5.",
+        "tekst_kontrolplan": "Det anbefales at udføre supplerende geoteknisk sondering og indmåling af E-modul på planum, således at eventuelt behov for korrektion af opbygning kan foretages før indbygning.\n\nKontrol af bæreevne på oversiden af de indbyggede bærelag kan ske ved pladebelastningsforsøg suppleret med dynamisk minifaldlodsmåling.\n\nOmfanget af kontrolplan vurderes på det enkelte projekt.",
+        "tekst_projekteringsansvar": "Såfremt der foreligger skriftligt aftale med præcisering af omfang og krav til konstruktionen samt honorar og ansvarsforpligtelse for projekteringen, kan ansvaret for dimensioneringen være omfattet af vores rådgiveransvarsforsikring.\n\nSåfremt der ikke foreligger en skriftlige aftale omkring ansvarsforhold, og dersom dimensioneringen i tillæg er udarbejdet som en vederlagsfri service, fraskriver Byggros sig ansvaret for anvendelsen af beregninger, konstruktionsforslag og anden relateret rådgivning.",
+        "visualisering": "",
+        "designdiagram": ""
+      },
+      "sections": {
+        "oplyste_forudsaetninger": "Oplyste forudsætninger",
+        "generelle_forudsaetninger": "Generelle dimensioneringsforudsætninger for MSL opbygning",
+        "krav_komprimering": "Krav til komprimering",
+        "dim_sikkerhed": "Dimensionering og sikkerhed",
+        "udfoerelse": "Udførelse",
+        "kontrolplan": "Kontrolplan",
+        "projekteringsansvar": "Projekteringsansvar"
+      },
+      "scope": "Report assembly only. Formatted strings from original Python; images reused from original UI fixtures, not a test of report image selection."
+    },
+    {
+      "schema_version": 1,
+      "source_commit": "a330cfd6734ac2478be1304a362c69f94e412d25",
+      "case": "traffic",
+      "snapshot": "UI-traffic-T4-10",
+      "context": {
+        "projekt": "MSL reference traffic",
+        "beskrivelse": "Syntetisk migrationskontrol",
+        "omfang": "Dimensionering af vejopbygning",
+        "udfoeres_for": "MSL prøveprojekt",
+        "sagsbehandler": "Testingeniør",
+        "sagsbehandler_mail": "test@example.invalid",
+        "kontrol": "Kontrolperson",
+        "dato": "29/09/2026",
+        "dim_grundlag": [
+          {
+            "label": "Underbundens E-modul (Eᵤ)",
+            "vaerdi": "10 MPa"
+          },
+          {
+            "label": "Dimensioneringsgrundlag",
+            "vaerdi": "Trafikklasse T4 (VejDim)"
+          },
+          {
+            "label": "Ækvivalent Eₒ (Eₒ,ækv)",
+            "vaerdi": "108 MPa"
+          },
+          {
+            "label": "Materialeopbygning",
+            "vaerdi": "Stabilgrus SG II og Bundsikring BL II"
+          },
+          {
+            "label": "Vægtet friktionsvinkel (φᵥ)",
+            "vaerdi": "37,0°"
+          }
+        ],
+        "dim_resultat": [
+          {
+            "label": "Valgt geonet",
+            "vaerdi": "Tensar TriAx TX160"
+          },
+          {
+            "label": "Ustabiliseret referenceopbygning",
+            "vaerdi": "1.000 mm"
+          },
+          {
+            "label": "Samlet tykkelse af valgt opbygning",
+            "vaerdi": "—"
+          },
+          {
+            "label": "Stabiliseret tykkelse — 1 lag",
+            "vaerdi": "700 mm"
+          },
+          {
+            "label": "Stabiliseret tykkelse — 2 lag",
+            "vaerdi": "—"
+          }
+        ],
+        "tekst_oplyste_forudsaetninger": "   • Dimensionsgivende trafikbelastning: T6\n   • Vingestyrke, Cv, skønnet i planum: > 100 kPa\n   • Grundvandsspejl: ikke oplyst/ikke relevant\n   • Bærelagsmaterialer:\n           o Genbrugsstabil",
+        "tekst_generelle_forudsaetninger": "Dimensioneringen af MSL opbygningen (mekanisk stabiliseret bærelag) er baseret på resultaterne fra mere en 20 års feltforsøg udført i Skandinavien. Det ubundne bærelag fastholdes af et eller flere lag geonet, som låser og fastholder bærelaget hvormed trykspredningsvinklen forøges i lighed. I praksis betyder det, at bærelaget kan reduceres i forhold til den ikke-stabiliserede ubundne opbygning. Alternativt vil der kunne opnås en betydelig forøgelse af bæreevne for en MSL opbygning i forhold til en traditionel opbygning.\n\nDifferenssætninger vil i stort omfang blive udjævnet, ligesom den stabiliserede randzone for specielt flerlagsopbygninger vil blive mindre sårbar i forhold til sætninger. Selvom erfaringerne viser betydelige reduktioner i sætninger, så vil der kun sjældent kunne opnås en sætningsfri ombygning. Ligeledes bør der tages højde for evt. frostfølsomhed, selvom MSL-opbygningen vil udjævne eventuelle hævninger.\n\nMSL-løsninger kan kombineres med letfyld, som dermed kan være med til at kompensere for eventuelle sætninger.\n\nMSL-løsninger kan ligeledes håndtere og kompensere for bæreevnesvigt forårsaget af midlertidig kortvarig vandpåvirkning, eksempelvis i forbindelse med LAR-opbygninger.\n\nFor særligt sætningsgivende bundforhold vil det være en fordel at afvente med belægningsarbejde til sætningsforløbet har stabiliseret sig. Tidshorisonten er variabel, og kan vare op til et år.",
+        "tekst_krav_komprimering": "Det forudsættes, at der ved indbygning af de ubundne bærelag opnås og eftervises en komprimeringsgrad på middel 95 % og mindst 92 % målt ved Vibrationsforsøg.",
+        "tekst_dim_sikkerhed": "Dimensionering og kontrol af bæreevne kan være forbundet med en nogen måleusikkerhed.\n\nVed kontrol af bæreevnen for MSL opbygningen vil en eventuel negativ variation normalt være maksimalt 10 %.",
+        "tekst_udfoerelse": "MSL-opbygninger kan udføres hele året. I visse situationer kan det være en fordel at arbejdet tilrettelægges således, at det udføres i frostperioder, hvor fremkommeligheden i terrænet kan være mere gunstig.\n\nGeonettenes formstabile struktur nødvendiggør at udlægningen sker på et relativt jævnt underlag. Eventuelt bevoksning skal som udgangspunkt fjernes. På meget sætningsgivende blød underbund kan rødder fra træer og buske med fordel blive stående, ligesom intakt tørv bør bevares. Det er dog vigtigt, at rødder og stubbe skæres helt ned, således at der maksimalt er en terrænforskel på +/- 5 cm.\n\nOverlæg på geonet bør være minimum 0,4 m. Anlæg på udvendige skråninger bør normalt udføres med maksimalt anlæg 1,5.",
+        "tekst_kontrolplan": "Det anbefales at udføre supplerende geoteknisk sondering og indmåling af E-modul på planum, således at eventuelt behov for korrektion af opbygning kan foretages før indbygning.\n\nKontrol af bæreevne på oversiden af de indbyggede bærelag kan ske ved pladebelastningsforsøg suppleret med dynamisk minifaldlodsmåling.\n\nOmfanget af kontrolplan vurderes på det enkelte projekt.",
+        "tekst_projekteringsansvar": "Såfremt der foreligger skriftligt aftale med præcisering af omfang og krav til konstruktionen samt honorar og ansvarsforpligtelse for projekteringen, kan ansvaret for dimensioneringen være omfattet af vores rådgiveransvarsforsikring.\n\nSåfremt der ikke foreligger en skriftlige aftale omkring ansvarsforhold, og dersom dimensioneringen i tillæg er udarbejdet som en vederlagsfri service, fraskriver Byggros sig ansvaret for anvendelsen af beregninger, konstruktionsforslag og anden relateret rådgivning.",
+        "visualisering": "",
+        "designdiagram": ""
+      },
+      "sections": {
+        "oplyste_forudsaetninger": "Oplyste forudsætninger",
+        "generelle_forudsaetninger": "Generelle dimensioneringsforudsætninger for MSL opbygning",
+        "krav_komprimering": "Krav til komprimering",
+        "dim_sikkerhed": "Dimensionering og sikkerhed",
+        "udfoerelse": "Udførelse",
+        "kontrolplan": "Kontrolplan",
+        "projekteringsansvar": "Projekteringsansvar"
+      },
+      "scope": "Report assembly only. Formatted strings from original Python; images reused from original UI fixtures, not a test of report image selection."
+    },
+    {
+      "schema_version": 1,
+      "source_commit": "a330cfd6734ac2478be1304a362c69f94e412d25",
+      "case": "custom-three",
+      "snapshot": "UI-010",
+      "context": {
+        "projekt": "MSL reference custom-three",
+        "beskrivelse": "Syntetisk migrationskontrol",
+        "omfang": "Dimensionering af vejopbygning",
+        "udfoeres_for": "MSL prøveprojekt",
+        "sagsbehandler": "Testingeniør",
+        "sagsbehandler_mail": "test@example.invalid",
+        "kontrol": "Kontrolperson",
+        "dato": "29/09/2026",
+        "dim_grundlag": [
+          {
+            "label": "Underbundens E-modul (Eᵤ)",
+            "vaerdi": "10 MPa"
+          },
+          {
+            "label": "Belastningsklasse",
+            "vaerdi": "4"
+          },
+          {
+            "label": "Materialeopbygning",
+            "vaerdi": "Lag 1: Stabilgrus SGII 0-32 · φᵢ = 40,0° · 300 mm\nLag 2: Bundsikringssand · φᵢ = 37,0° · 400 mm\nLag 3: Manuel indtastning · φᵢ = 37,0° · 200 mm"
+          },
+          {
+            "label": "Vægtet friktionsvinkel (φᵥ)",
+            "vaerdi": "38,0°"
+          }
+        ],
+        "dim_resultat": [
+          {
+            "label": "Valgt geonet",
+            "vaerdi": "Tensar TriAx TX160"
+          },
+          {
+            "label": "Ustabiliseret referenceopbygning",
+            "vaerdi": "900 mm"
+          },
+          {
+            "label": "Samlet tykkelse af valgt opbygning",
+            "vaerdi": "900 mm"
+          },
+          {
+            "label": "Stabiliseret tykkelse — 1 lag",
+            "vaerdi": "650 mm"
+          },
+          {
+            "label": "Stabiliseret tykkelse — 2 lag",
+            "vaerdi": "—"
+          }
+        ],
+        "tekst_oplyste_forudsaetninger": "   • Dimensionsgivende trafikbelastning: T6\n   • Vingestyrke, Cv, skønnet i planum: > 100 kPa\n   • Grundvandsspejl: ikke oplyst/ikke relevant\n   • Bærelagsmaterialer:\n           o Genbrugsstabil",
+        "tekst_generelle_forudsaetninger": "Dimensioneringen af MSL opbygningen (mekanisk stabiliseret bærelag) er baseret på resultaterne fra mere en 20 års feltforsøg udført i Skandinavien. Det ubundne bærelag fastholdes af et eller flere lag geonet, som låser og fastholder bærelaget hvormed trykspredningsvinklen forøges i lighed. I praksis betyder det, at bærelaget kan reduceres i forhold til den ikke-stabiliserede ubundne opbygning. Alternativt vil der kunne opnås en betydelig forøgelse af bæreevne for en MSL opbygning i forhold til en traditionel opbygning.\n\nDifferenssætninger vil i stort omfang blive udjævnet, ligesom den stabiliserede randzone for specielt flerlagsopbygninger vil blive mindre sårbar i forhold til sætninger. Selvom erfaringerne viser betydelige reduktioner i sætninger, så vil der kun sjældent kunne opnås en sætningsfri ombygning. Ligeledes bør der tages højde for evt. frostfølsomhed, selvom MSL-opbygningen vil udjævne eventuelle hævninger.\n\nMSL-løsninger kan kombineres med letfyld, som dermed kan være med til at kompensere for eventuelle sætninger.\n\nMSL-løsninger kan ligeledes håndtere og kompensere for bæreevnesvigt forårsaget af midlertidig kortvarig vandpåvirkning, eksempelvis i forbindelse med LAR-opbygninger.\n\nFor særligt sætningsgivende bundforhold vil det være en fordel at afvente med belægningsarbejde til sætningsforløbet har stabiliseret sig. Tidshorisonten er variabel, og kan vare op til et år.",
+        "tekst_krav_komprimering": "Det forudsættes, at der ved indbygning af de ubundne bærelag opnås og eftervises en komprimeringsgrad på middel 95 % og mindst 92 % målt ved Vibrationsforsøg.",
+        "tekst_dim_sikkerhed": "Dimensionering og kontrol af bæreevne kan være forbundet med en nogen måleusikkerhed.\n\nVed kontrol af bæreevnen for MSL opbygningen vil en eventuel negativ variation normalt være maksimalt 10 %.",
+        "tekst_udfoerelse": "MSL-opbygninger kan udføres hele året. I visse situationer kan det være en fordel at arbejdet tilrettelægges således, at det udføres i frostperioder, hvor fremkommeligheden i terrænet kan være mere gunstig.\n\nGeonettenes formstabile struktur nødvendiggør at udlægningen sker på et relativt jævnt underlag. Eventuelt bevoksning skal som udgangspunkt fjernes. På meget sætningsgivende blød underbund kan rødder fra træer og buske med fordel blive stående, ligesom intakt tørv bør bevares. Det er dog vigtigt, at rødder og stubbe skæres helt ned, således at der maksimalt er en terrænforskel på +/- 5 cm.\n\nOverlæg på geonet bør være minimum 0,4 m. Anlæg på udvendige skråninger bør normalt udføres med maksimalt anlæg 1,5.",
+        "tekst_kontrolplan": "Det anbefales at udføre supplerende geoteknisk sondering og indmåling af E-modul på planum, således at eventuelt behov for korrektion af opbygning kan foretages før indbygning.\n\nKontrol af bæreevne på oversiden af de indbyggede bærelag kan ske ved pladebelastningsforsøg suppleret med dynamisk minifaldlodsmåling.\n\nOmfanget af kontrolplan vurderes på det enkelte projekt.",
+        "tekst_projekteringsansvar": "Såfremt der foreligger skriftligt aftale med præcisering af omfang og krav til konstruktionen samt honorar og ansvarsforpligtelse for projekteringen, kan ansvaret for dimensioneringen være omfattet af vores rådgiveransvarsforsikring.\n\nSåfremt der ikke foreligger en skriftlige aftale omkring ansvarsforhold, og dersom dimensioneringen i tillæg er udarbejdet som en vederlagsfri service, fraskriver Byggros sig ansvaret for anvendelsen af beregninger, konstruktionsforslag og anden relateret rådgivning.",
+        "visualisering": "",
+        "designdiagram": ""
+      },
+      "sections": {
+        "oplyste_forudsaetninger": "Oplyste forudsætninger",
+        "generelle_forudsaetninger": "Generelle dimensioneringsforudsætninger for MSL opbygning",
+        "krav_komprimering": "Krav til komprimering",
+        "dim_sikkerhed": "Dimensionering og sikkerhed",
+        "udfoerelse": "Udførelse",
+        "kontrolplan": "Kontrolplan",
+        "projekteringsansvar": "Projekteringsansvar"
+      },
+      "scope": "Report assembly only. Formatted strings from original Python; images reused from original UI fixtures, not a test of report image selection."
+    },
+    {
+      "schema_version": 1,
+      "source_commit": "a330cfd6734ac2478be1304a362c69f94e412d25",
+      "case": "manual-phi",
+      "snapshot": "UI-011",
+      "context": {
+        "projekt": "MSL reference manual-phi",
+        "beskrivelse": "Syntetisk migrationskontrol",
+        "omfang": "Dimensionering af vejopbygning",
+        "udfoeres_for": "MSL prøveprojekt",
+        "sagsbehandler": "Testingeniør",
+        "sagsbehandler_mail": "test@example.invalid",
+        "kontrol": "Kontrolperson",
+        "dato": "29/09/2026",
+        "dim_grundlag": [
+          {
+            "label": "Underbundens E-modul (Eᵤ)",
+            "vaerdi": "10 MPa"
+          },
+          {
+            "label": "Belastningsklasse",
+            "vaerdi": "4"
+          },
+          {
+            "label": "Materialeopbygning",
+            "vaerdi": "Lag 1: Stabilgrus SGII 0-32 · φᵢ = 40,0° · 300 mm\nLag 2: Bundsikringssand · φᵢ = 37,0° · 400 mm\nLag 3: Manuel indtastning · φᵢ = 37,0° · 200 mm"
+          },
+          {
+            "label": "Vægtet friktionsvinkel (φᵥ)",
+            "vaerdi": "38,5°"
+          }
+        ],
+        "dim_resultat": [
+          {
+            "label": "Valgt geonet",
+            "vaerdi": "Tensar TriAx TX160"
+          },
+          {
+            "label": "Ustabiliseret referenceopbygning",
+            "vaerdi": "900 mm"
+          },
+          {
+            "label": "Samlet tykkelse af valgt opbygning",
+            "vaerdi": "900 mm"
+          },
+          {
+            "label": "Stabiliseret tykkelse — 1 lag",
+            "vaerdi": "600 mm"
+          },
+          {
+            "label": "Stabiliseret tykkelse — 2 lag",
+            "vaerdi": "—"
+          }
+        ],
+        "tekst_oplyste_forudsaetninger": "   • Dimensionsgivende trafikbelastning: T6\n   • Vingestyrke, Cv, skønnet i planum: > 100 kPa\n   • Grundvandsspejl: ikke oplyst/ikke relevant\n   • Bærelagsmaterialer:\n           o Genbrugsstabil",
+        "tekst_generelle_forudsaetninger": "Dimensioneringen af MSL opbygningen (mekanisk stabiliseret bærelag) er baseret på resultaterne fra mere en 20 års feltforsøg udført i Skandinavien. Det ubundne bærelag fastholdes af et eller flere lag geonet, som låser og fastholder bærelaget hvormed trykspredningsvinklen forøges i lighed. I praksis betyder det, at bærelaget kan reduceres i forhold til den ikke-stabiliserede ubundne opbygning. Alternativt vil der kunne opnås en betydelig forøgelse af bæreevne for en MSL opbygning i forhold til en traditionel opbygning.\n\nDifferenssætninger vil i stort omfang blive udjævnet, ligesom den stabiliserede randzone for specielt flerlagsopbygninger vil blive mindre sårbar i forhold til sætninger. Selvom erfaringerne viser betydelige reduktioner i sætninger, så vil der kun sjældent kunne opnås en sætningsfri ombygning. Ligeledes bør der tages højde for evt. frostfølsomhed, selvom MSL-opbygningen vil udjævne eventuelle hævninger.\n\nMSL-løsninger kan kombineres med letfyld, som dermed kan være med til at kompensere for eventuelle sætninger.\n\nMSL-løsninger kan ligeledes håndtere og kompensere for bæreevnesvigt forårsaget af midlertidig kortvarig vandpåvirkning, eksempelvis i forbindelse med LAR-opbygninger.\n\nFor særligt sætningsgivende bundforhold vil det være en fordel at afvente med belægningsarbejde til sætningsforløbet har stabiliseret sig. Tidshorisonten er variabel, og kan vare op til et år.",
+        "tekst_krav_komprimering": "Det forudsættes, at der ved indbygning af de ubundne bærelag opnås og eftervises en komprimeringsgrad på middel 95 % og mindst 92 % målt ved Vibrationsforsøg.",
+        "tekst_dim_sikkerhed": "Dimensionering og kontrol af bæreevne kan være forbundet med en nogen måleusikkerhed.\n\nVed kontrol af bæreevnen for MSL opbygningen vil en eventuel negativ variation normalt være maksimalt 10 %.",
+        "tekst_udfoerelse": "MSL-opbygninger kan udføres hele året. I visse situationer kan det være en fordel at arbejdet tilrettelægges således, at det udføres i frostperioder, hvor fremkommeligheden i terrænet kan være mere gunstig.\n\nGeonettenes formstabile struktur nødvendiggør at udlægningen sker på et relativt jævnt underlag. Eventuelt bevoksning skal som udgangspunkt fjernes. På meget sætningsgivende blød underbund kan rødder fra træer og buske med fordel blive stående, ligesom intakt tørv bør bevares. Det er dog vigtigt, at rødder og stubbe skæres helt ned, således at der maksimalt er en terrænforskel på +/- 5 cm.\n\nOverlæg på geonet bør være minimum 0,4 m. Anlæg på udvendige skråninger bør normalt udføres med maksimalt anlæg 1,5.",
+        "tekst_kontrolplan": "Det anbefales at udføre supplerende geoteknisk sondering og indmåling af E-modul på planum, således at eventuelt behov for korrektion af opbygning kan foretages før indbygning.\n\nKontrol af bæreevne på oversiden af de indbyggede bærelag kan ske ved pladebelastningsforsøg suppleret med dynamisk minifaldlodsmåling.\n\nOmfanget af kontrolplan vurderes på det enkelte projekt.",
+        "tekst_projekteringsansvar": "Såfremt der foreligger skriftligt aftale med præcisering af omfang og krav til konstruktionen samt honorar og ansvarsforpligtelse for projekteringen, kan ansvaret for dimensioneringen være omfattet af vores rådgiveransvarsforsikring.\n\nSåfremt der ikke foreligger en skriftlige aftale omkring ansvarsforhold, og dersom dimensioneringen i tillæg er udarbejdet som en vederlagsfri service, fraskriver Byggros sig ansvaret for anvendelsen af beregninger, konstruktionsforslag og anden relateret rådgivning.",
+        "visualisering": "",
+        "designdiagram": ""
+      },
+      "sections": {
+        "oplyste_forudsaetninger": "Oplyste forudsætninger",
+        "generelle_forudsaetninger": "Generelle dimensioneringsforudsætninger for MSL opbygning",
+        "krav_komprimering": "Krav til komprimering",
+        "dim_sikkerhed": "Dimensionering og sikkerhed",
+        "udfoerelse": "Udførelse",
+        "kontrolplan": "Kontrolplan",
+        "projekteringsansvar": "Projekteringsansvar"
+      },
+      "scope": "Report assembly only. Formatted strings from original Python; images reused from original UI fixtures, not a test of report image selection."
+    },
+    {
+      "schema_version": 1,
+      "source_commit": "a330cfd6734ac2478be1304a362c69f94e412d25",
+      "case": "centimetres",
+      "snapshot": "UI-013",
+      "context": {
+        "projekt": "MSL reference centimetres",
+        "beskrivelse": "Syntetisk migrationskontrol",
+        "omfang": "Dimensionering af vejopbygning",
+        "udfoeres_for": "MSL prøveprojekt",
+        "sagsbehandler": "Testingeniør",
+        "sagsbehandler_mail": "test@example.invalid",
+        "kontrol": "Kontrolperson",
+        "dato": "29/09/2026",
+        "dim_grundlag": [
+          {
+            "label": "Underbundens E-modul (Eᵤ)",
+            "vaerdi": "10 MPa"
+          },
+          {
+            "label": "Belastningsklasse",
+            "vaerdi": "4"
+          },
+          {
+            "label": "Materialeopbygning",
+            "vaerdi": "Lag 1: Stabilgrus SGII 0-32 · φᵢ = 40,0° · 30 cm\nLag 2: Bundsikringssand · φᵢ = 37,0° · 40 cm\nLag 3: Manuel indtastning · φᵢ = 37,0° · 20 cm"
+          },
+          {
+            "label": "Vægtet friktionsvinkel (φᵥ)",
+            "vaerdi": "38,5°"
+          }
+        ],
+        "dim_resultat": [
+          {
+            "label": "Valgt geonet",
+            "vaerdi": "Tensar TriAx TX160"
+          },
+          {
+            "label": "Ustabiliseret referenceopbygning",
+            "vaerdi": "90 cm"
+          },
+          {
+            "label": "Samlet tykkelse af valgt opbygning",
+            "vaerdi": "90 cm"
+          },
+          {
+            "label": "Stabiliseret tykkelse — 1 lag",
+            "vaerdi": "60 cm"
+          },
+          {
+            "label": "Stabiliseret tykkelse — 2 lag",
+            "vaerdi": "—"
+          }
+        ],
+        "tekst_oplyste_forudsaetninger": "   • Dimensionsgivende trafikbelastning: T6\n   • Vingestyrke, Cv, skønnet i planum: > 100 kPa\n   • Grundvandsspejl: ikke oplyst/ikke relevant\n   • Bærelagsmaterialer:\n           o Genbrugsstabil",
+        "tekst_generelle_forudsaetninger": "Dimensioneringen af MSL opbygningen (mekanisk stabiliseret bærelag) er baseret på resultaterne fra mere en 20 års feltforsøg udført i Skandinavien. Det ubundne bærelag fastholdes af et eller flere lag geonet, som låser og fastholder bærelaget hvormed trykspredningsvinklen forøges i lighed. I praksis betyder det, at bærelaget kan reduceres i forhold til den ikke-stabiliserede ubundne opbygning. Alternativt vil der kunne opnås en betydelig forøgelse af bæreevne for en MSL opbygning i forhold til en traditionel opbygning.\n\nDifferenssætninger vil i stort omfang blive udjævnet, ligesom den stabiliserede randzone for specielt flerlagsopbygninger vil blive mindre sårbar i forhold til sætninger. Selvom erfaringerne viser betydelige reduktioner i sætninger, så vil der kun sjældent kunne opnås en sætningsfri ombygning. Ligeledes bør der tages højde for evt. frostfølsomhed, selvom MSL-opbygningen vil udjævne eventuelle hævninger.\n\nMSL-løsninger kan kombineres med letfyld, som dermed kan være med til at kompensere for eventuelle sætninger.\n\nMSL-løsninger kan ligeledes håndtere og kompensere for bæreevnesvigt forårsaget af midlertidig kortvarig vandpåvirkning, eksempelvis i forbindelse med LAR-opbygninger.\n\nFor særligt sætningsgivende bundforhold vil det være en fordel at afvente med belægningsarbejde til sætningsforløbet har stabiliseret sig. Tidshorisonten er variabel, og kan vare op til et år.",
+        "tekst_krav_komprimering": "Det forudsættes, at der ved indbygning af de ubundne bærelag opnås og eftervises en komprimeringsgrad på middel 95 % og mindst 92 % målt ved Vibrationsforsøg.",
+        "tekst_dim_sikkerhed": "Dimensionering og kontrol af bæreevne kan være forbundet med en nogen måleusikkerhed.\n\nVed kontrol af bæreevnen for MSL opbygningen vil en eventuel negativ variation normalt være maksimalt 10 %.",
+        "tekst_udfoerelse": "MSL-opbygninger kan udføres hele året. I visse situationer kan det være en fordel at arbejdet tilrettelægges således, at det udføres i frostperioder, hvor fremkommeligheden i terrænet kan være mere gunstig.\n\nGeonettenes formstabile struktur nødvendiggør at udlægningen sker på et relativt jævnt underlag. Eventuelt bevoksning skal som udgangspunkt fjernes. På meget sætningsgivende blød underbund kan rødder fra træer og buske med fordel blive stående, ligesom intakt tørv bør bevares. Det er dog vigtigt, at rødder og stubbe skæres helt ned, således at der maksimalt er en terrænforskel på +/- 5 cm.\n\nOverlæg på geonet bør være minimum 0,4 m. Anlæg på udvendige skråninger bør normalt udføres med maksimalt anlæg 1,5.",
+        "tekst_kontrolplan": "Det anbefales at udføre supplerende geoteknisk sondering og indmåling af E-modul på planum, således at eventuelt behov for korrektion af opbygning kan foretages før indbygning.\n\nKontrol af bæreevne på oversiden af de indbyggede bærelag kan ske ved pladebelastningsforsøg suppleret med dynamisk minifaldlodsmåling.\n\nOmfanget af kontrolplan vurderes på det enkelte projekt.",
+        "tekst_projekteringsansvar": "Såfremt der foreligger skriftligt aftale med præcisering af omfang og krav til konstruktionen samt honorar og ansvarsforpligtelse for projekteringen, kan ansvaret for dimensioneringen være omfattet af vores rådgiveransvarsforsikring.\n\nSåfremt der ikke foreligger en skriftlige aftale omkring ansvarsforhold, og dersom dimensioneringen i tillæg er udarbejdet som en vederlagsfri service, fraskriver Byggros sig ansvaret for anvendelsen af beregninger, konstruktionsforslag og anden relateret rådgivning.",
+        "visualisering": "",
+        "designdiagram": ""
+      },
+      "sections": {
+        "oplyste_forudsaetninger": "Oplyste forudsætninger",
+        "generelle_forudsaetninger": "Generelle dimensioneringsforudsætninger for MSL opbygning",
+        "krav_komprimering": "Krav til komprimering",
+        "dim_sikkerhed": "Dimensionering og sikkerhed",
+        "udfoerelse": "Udførelse",
+        "kontrolplan": "Kontrolplan",
+        "projekteringsansvar": "Projekteringsansvar"
+      },
+      "scope": "Report assembly only. Formatted strings from original Python; images reused from original UI fixtures, not a test of report image selection."
+    },
+    {
+      "schema_version": 1,
+      "source_commit": "a330cfd6734ac2478be1304a362c69f94e412d25",
+      "case": "empty-text",
+      "snapshot": "UI-001",
+      "context": {
+        "projekt": "MSL reference empty-text",
+        "beskrivelse": "Syntetisk migrationskontrol",
+        "omfang": "Dimensionering af vejopbygning",
+        "udfoeres_for": "MSL prøveprojekt",
+        "sagsbehandler": "Testingeniør",
+        "sagsbehandler_mail": "test@example.invalid",
+        "kontrol": "Kontrolperson",
+        "dato": "29/09/2026",
+        "dim_grundlag": [
+          {
+            "label": "Underbundens E-modul (Eᵤ)",
+            "vaerdi": "10 MPa"
+          },
+          {
+            "label": "Belastningsklasse",
+            "vaerdi": "4"
+          },
+          {
+            "label": "Materialeopbygning",
+            "vaerdi": "Stabilgrus SG II og Bundsikring BL II"
+          },
+          {
+            "label": "Vægtet friktionsvinkel (φᵥ)",
+            "vaerdi": "37,0°"
+          }
+        ],
+        "dim_resultat": [
+          {
+            "label": "Valgt geonet",
+            "vaerdi": "Tensar TriAx TX160"
+          },
+          {
+            "label": "Ustabiliseret referenceopbygning",
+            "vaerdi": "900 mm"
+          },
+          {
+            "label": "Samlet tykkelse af valgt opbygning",
+            "vaerdi": "—"
+          },
+          {
+            "label": "Stabiliseret tykkelse — 1 lag",
+            "vaerdi": "650 mm"
+          },
+          {
+            "label": "Stabiliseret tykkelse — 2 lag",
+            "vaerdi": "—"
+          }
+        ],
+        "tekst_oplyste_forudsaetninger": "",
+        "tekst_generelle_forudsaetninger": "",
+        "tekst_krav_komprimering": "",
+        "tekst_dim_sikkerhed": "",
+        "tekst_udfoerelse": "",
+        "tekst_kontrolplan": "",
+        "tekst_projekteringsansvar": "",
+        "visualisering": "",
+        "designdiagram": ""
+      },
+      "sections": {
+        "oplyste_forudsaetninger": "Oplyste forudsætninger",
+        "generelle_forudsaetninger": "Generelle dimensioneringsforudsætninger for MSL opbygning",
+        "krav_komprimering": "Krav til komprimering",
+        "dim_sikkerhed": "Dimensionering og sikkerhed",
+        "udfoerelse": "Udførelse",
+        "kontrolplan": "Kontrolplan",
+        "projekteringsansvar": "Projekteringsansvar"
+      },
+      "scope": "Report assembly only. Formatted strings from original Python; images reused from original UI fixtures, not a test of report image selection."
+    },
+    {
+      "schema_version": 1,
+      "source_commit": "a330cfd6734ac2478be1304a362c69f94e412d25",
+      "case": "no-basis",
+      "snapshot": "UI-001",
+      "context": {
+        "projekt": "MSL reference no-basis",
+        "beskrivelse": "Syntetisk migrationskontrol",
+        "omfang": "Dimensionering af vejopbygning",
+        "udfoeres_for": "MSL prøveprojekt",
+        "sagsbehandler": "Testingeniør",
+        "sagsbehandler_mail": "test@example.invalid",
+        "kontrol": "Kontrolperson",
+        "dato": "29/09/2026",
+        "dim_grundlag": [],
+        "dim_resultat": [
+          {
+            "label": "Valgt geonet",
+            "vaerdi": "Tensar TriAx TX160"
+          },
+          {
+            "label": "Ustabiliseret referenceopbygning",
+            "vaerdi": "900 mm"
+          },
+          {
+            "label": "Samlet tykkelse af valgt opbygning",
+            "vaerdi": "—"
+          },
+          {
+            "label": "Stabiliseret tykkelse — 1 lag",
+            "vaerdi": "650 mm"
+          },
+          {
+            "label": "Stabiliseret tykkelse — 2 lag",
+            "vaerdi": "—"
+          }
+        ],
+        "tekst_oplyste_forudsaetninger": "   • Dimensionsgivende trafikbelastning: T6\n   • Vingestyrke, Cv, skønnet i planum: > 100 kPa\n   • Grundvandsspejl: ikke oplyst/ikke relevant\n   • Bærelagsmaterialer:\n           o Genbrugsstabil",
+        "tekst_generelle_forudsaetninger": "Dimensioneringen af MSL opbygningen (mekanisk stabiliseret bærelag) er baseret på resultaterne fra mere en 20 års feltforsøg udført i Skandinavien. Det ubundne bærelag fastholdes af et eller flere lag geonet, som låser og fastholder bærelaget hvormed trykspredningsvinklen forøges i lighed. I praksis betyder det, at bærelaget kan reduceres i forhold til den ikke-stabiliserede ubundne opbygning. Alternativt vil der kunne opnås en betydelig forøgelse af bæreevne for en MSL opbygning i forhold til en traditionel opbygning.\n\nDifferenssætninger vil i stort omfang blive udjævnet, ligesom den stabiliserede randzone for specielt flerlagsopbygninger vil blive mindre sårbar i forhold til sætninger. Selvom erfaringerne viser betydelige reduktioner i sætninger, så vil der kun sjældent kunne opnås en sætningsfri ombygning. Ligeledes bør der tages højde for evt. frostfølsomhed, selvom MSL-opbygningen vil udjævne eventuelle hævninger.\n\nMSL-løsninger kan kombineres med letfyld, som dermed kan være med til at kompensere for eventuelle sætninger.\n\nMSL-løsninger kan ligeledes håndtere og kompensere for bæreevnesvigt forårsaget af midlertidig kortvarig vandpåvirkning, eksempelvis i forbindelse med LAR-opbygninger.\n\nFor særligt sætningsgivende bundforhold vil det være en fordel at afvente med belægningsarbejde til sætningsforløbet har stabiliseret sig. Tidshorisonten er variabel, og kan vare op til et år.",
+        "tekst_krav_komprimering": "Det forudsættes, at der ved indbygning af de ubundne bærelag opnås og eftervises en komprimeringsgrad på middel 95 % og mindst 92 % målt ved Vibrationsforsøg.",
+        "tekst_dim_sikkerhed": "Dimensionering og kontrol af bæreevne kan være forbundet med en nogen måleusikkerhed.\n\nVed kontrol af bæreevnen for MSL opbygningen vil en eventuel negativ variation normalt være maksimalt 10 %.",
+        "tekst_udfoerelse": "MSL-opbygninger kan udføres hele året. I visse situationer kan det være en fordel at arbejdet tilrettelægges således, at det udføres i frostperioder, hvor fremkommeligheden i terrænet kan være mere gunstig.\n\nGeonettenes formstabile struktur nødvendiggør at udlægningen sker på et relativt jævnt underlag. Eventuelt bevoksning skal som udgangspunkt fjernes. På meget sætningsgivende blød underbund kan rødder fra træer og buske med fordel blive stående, ligesom intakt tørv bør bevares. Det er dog vigtigt, at rødder og stubbe skæres helt ned, således at der maksimalt er en terrænforskel på +/- 5 cm.\n\nOverlæg på geonet bør være minimum 0,4 m. Anlæg på udvendige skråninger bør normalt udføres med maksimalt anlæg 1,5.",
+        "tekst_kontrolplan": "Det anbefales at udføre supplerende geoteknisk sondering og indmåling af E-modul på planum, således at eventuelt behov for korrektion af opbygning kan foretages før indbygning.\n\nKontrol af bæreevne på oversiden af de indbyggede bærelag kan ske ved pladebelastningsforsøg suppleret med dynamisk minifaldlodsmåling.\n\nOmfanget af kontrolplan vurderes på det enkelte projekt.",
+        "tekst_projekteringsansvar": "Såfremt der foreligger skriftligt aftale med præcisering af omfang og krav til konstruktionen samt honorar og ansvarsforpligtelse for projekteringen, kan ansvaret for dimensioneringen være omfattet af vores rådgiveransvarsforsikring.\n\nSåfremt der ikke foreligger en skriftlige aftale omkring ansvarsforhold, og dersom dimensioneringen i tillæg er udarbejdet som en vederlagsfri service, fraskriver Byggros sig ansvaret for anvendelsen af beregninger, konstruktionsforslag og anden relateret rådgivning.",
+        "visualisering": "",
+        "designdiagram": ""
+      },
+      "sections": {
+        "oplyste_forudsaetninger": "Oplyste forudsætninger",
+        "generelle_forudsaetninger": "Generelle dimensioneringsforudsætninger for MSL opbygning",
+        "krav_komprimering": "Krav til komprimering",
+        "dim_sikkerhed": "Dimensionering og sikkerhed",
+        "udfoerelse": "Udførelse",
+        "kontrolplan": "Kontrolplan",
+        "projekteringsansvar": "Projekteringsansvar"
+      },
+      "scope": "Report assembly only. Formatted strings from original Python; images reused from original UI fixtures, not a test of report image selection."
+    },
+    {
+      "schema_version": 1,
+      "source_commit": "a330cfd6734ac2478be1304a362c69f94e412d25",
+      "case": "long-text",
+      "snapshot": "UI-001",
+      "context": {
+        "projekt": "MSL reference long-text",
+        "beskrivelse": "Syntetisk migrationskontrol",
+        "omfang": "Dimensionering af vejopbygning",
+        "udfoeres_for": "MSL prøveprojekt",
+        "sagsbehandler": "Testingeniør",
+        "sagsbehandler_mail": "test@example.invalid",
+        "kontrol": "Kontrolperson",
+        "dato": "29/09/2026",
+        "dim_grundlag": [
+          {
+            "label": "Underbundens E-modul (Eᵤ)",
+            "vaerdi": "10 MPa"
+          },
+          {
+            "label": "Belastningsklasse",
+            "vaerdi": "4"
+          },
+          {
+            "label": "Materialeopbygning",
+            "vaerdi": "Stabilgrus SG II og Bundsikring BL II"
+          },
+          {
+            "label": "Vægtet friktionsvinkel (φᵥ)",
+            "vaerdi": "37,0°"
+          }
+        ],
+        "dim_resultat": [
+          {
+            "label": "Valgt geonet",
+            "vaerdi": "Tensar TriAx TX160"
+          },
+          {
+            "label": "Ustabiliseret referenceopbygning",
+            "vaerdi": "900 mm"
+          },
+          {
+            "label": "Samlet tykkelse af valgt opbygning",
+            "vaerdi": "—"
+          },
+          {
+            "label": "Stabiliseret tykkelse — 1 lag",
+            "vaerdi": "650 mm"
+          },
+          {
+            "label": "Stabiliseret tykkelse — 2 lag",
+            "vaerdi": "—"
+          }
+        ],
+        "tekst_oplyste_forudsaetninger": "Syntetisk prøvesag. Underbund og materialer skal eftervises ved kontrol.\n\nSyntetisk prøvesag. Underbund og materialer skal eftervises ved kontrol.\n\nSyntetisk prøvesag. Underbund og materialer skal eftervises ved kontrol.\n\nSyntetisk prøvesag. Underbund og materialer skal eftervises ved kontrol.\n\nSyntetisk prøvesag. Underbund og materialer skal eftervises ved kontrol.\n\nSyntetisk prøvesag. Underbund og materialer skal eftervises ved kontrol.\n\nSyntetisk prøvesag. Underbund og materialer skal eftervises ved kontrol.\n\nSyntetisk prøvesag. Underbund og materialer skal eftervises ved kontrol.\n\nSyntetisk prøvesag. Underbund og materialer skal eftervises ved kontrol.\n\nSyntetisk prøvesag. Underbund og materialer skal eftervises ved kontrol.\n\nSyntetisk prøvesag. Underbund og materialer skal eftervises ved kontrol.\n\nSyntetisk prøvesag. Underbund og materialer skal eftervises ved kontrol.\n\nSyntetisk prøvesag. Underbund og materialer skal eftervises ved kontrol.\n\nSyntetisk prøvesag. Underbund og materialer skal eftervises ved kontrol.\n\nSyntetisk prøvesag. Underbund og materialer skal eftervises ved kontrol.\n\nSyntetisk prøvesag. Underbund og materialer skal eftervises ved kontrol.\n\nSyntetisk prøvesag. Underbund og materialer skal eftervises ved kontrol.\n\nSyntetisk prøvesag. Underbund og materialer skal eftervises ved kontrol.",
+        "tekst_generelle_forudsaetninger": "Dimensioneringen af MSL opbygningen (mekanisk stabiliseret bærelag) er baseret på resultaterne fra mere en 20 års feltforsøg udført i Skandinavien. Det ubundne bærelag fastholdes af et eller flere lag geonet, som låser og fastholder bærelaget hvormed trykspredningsvinklen forøges i lighed. I praksis betyder det, at bærelaget kan reduceres i forhold til den ikke-stabiliserede ubundne opbygning. Alternativt vil der kunne opnås en betydelig forøgelse af bæreevne for en MSL opbygning i forhold til en traditionel opbygning.\n\nDifferenssætninger vil i stort omfang blive udjævnet, ligesom den stabiliserede randzone for specielt flerlagsopbygninger vil blive mindre sårbar i forhold til sætninger. Selvom erfaringerne viser betydelige reduktioner i sætninger, så vil der kun sjældent kunne opnås en sætningsfri ombygning. Ligeledes bør der tages højde for evt. frostfølsomhed, selvom MSL-opbygningen vil udjævne eventuelle hævninger.\n\nMSL-løsninger kan kombineres med letfyld, som dermed kan være med til at kompensere for eventuelle sætninger.\n\nMSL-løsninger kan ligeledes håndtere og kompensere for bæreevnesvigt forårsaget af midlertidig kortvarig vandpåvirkning, eksempelvis i forbindelse med LAR-opbygninger.\n\nFor særligt sætningsgivende bundforhold vil det være en fordel at afvente med belægningsarbejde til sætningsforløbet har stabiliseret sig. Tidshorisonten er variabel, og kan vare op til et år.",
+        "tekst_krav_komprimering": "Det forudsættes, at der ved indbygning af de ubundne bærelag opnås og eftervises en komprimeringsgrad på middel 95 % og mindst 92 % målt ved Vibrationsforsøg.",
+        "tekst_dim_sikkerhed": "Dimensionering og kontrol af bæreevne kan være forbundet med en nogen måleusikkerhed.\n\nVed kontrol af bæreevnen for MSL opbygningen vil en eventuel negativ variation normalt være maksimalt 10 %.",
+        "tekst_udfoerelse": "MSL-opbygninger kan udføres hele året. I visse situationer kan det være en fordel at arbejdet tilrettelægges således, at det udføres i frostperioder, hvor fremkommeligheden i terrænet kan være mere gunstig.\n\nGeonettenes formstabile struktur nødvendiggør at udlægningen sker på et relativt jævnt underlag. Eventuelt bevoksning skal som udgangspunkt fjernes. På meget sætningsgivende blød underbund kan rødder fra træer og buske med fordel blive stående, ligesom intakt tørv bør bevares. Det er dog vigtigt, at rødder og stubbe skæres helt ned, således at der maksimalt er en terrænforskel på +/- 5 cm.\n\nOverlæg på geonet bør være minimum 0,4 m. Anlæg på udvendige skråninger bør normalt udføres med maksimalt anlæg 1,5.",
+        "tekst_kontrolplan": "Det anbefales at udføre supplerende geoteknisk sondering og indmåling af E-modul på planum, således at eventuelt behov for korrektion af opbygning kan foretages før indbygning.\n\nKontrol af bæreevne på oversiden af de indbyggede bærelag kan ske ved pladebelastningsforsøg suppleret med dynamisk minifaldlodsmåling.\n\nOmfanget af kontrolplan vurderes på det enkelte projekt.",
+        "tekst_projekteringsansvar": "Såfremt der foreligger skriftligt aftale med præcisering af omfang og krav til konstruktionen samt honorar og ansvarsforpligtelse for projekteringen, kan ansvaret for dimensioneringen være omfattet af vores rådgiveransvarsforsikring.\n\nSåfremt der ikke foreligger en skriftlige aftale omkring ansvarsforhold, og dersom dimensioneringen i tillæg er udarbejdet som en vederlagsfri service, fraskriver Byggros sig ansvaret for anvendelsen af beregninger, konstruktionsforslag og anden relateret rådgivning.",
+        "visualisering": "",
+        "designdiagram": ""
+      },
+      "sections": {
+        "oplyste_forudsaetninger": "Oplyste forudsætninger",
+        "generelle_forudsaetninger": "Generelle dimensioneringsforudsætninger for MSL opbygning",
+        "krav_komprimering": "Krav til komprimering",
+        "dim_sikkerhed": "Dimensionering og sikkerhed",
+        "udfoerelse": "Udførelse",
+        "kontrolplan": "Kontrolplan",
+        "projekteringsansvar": "Projekteringsansvar"
+      },
+      "scope": "Report assembly only. Formatted strings from original Python; images reused from original UI fixtures, not a test of report image selection."
+    }
+  ]
+}

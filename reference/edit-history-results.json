@@ -1,0 +1,39 @@
+{
+  "source_commit": "a330cfd6734ac2478be1304a362c69f94e412d25",
+  "date": "2026-09-30",
+  "runtime": "Node 24.19.0",
+  "platform": "Windows",
+  "comparison": "Exact original marker outputs; separate tests for approved new behavior",
+  "tests": {
+    "previous_tests": 2582,
+    "original_marker_cases": 8,
+    "review_history_behavior": 10,
+    "storage_integration": 14,
+    "total_pass": 2614,
+    "fail": 0
+  },
+  "checks": {
+    "strict_typescript": "passed",
+    "prettier": "passed",
+    "original_markers_recapture": "passed",
+    "legacy_checkout": "clean and unchanged",
+    "serena_typescript_index": "passed",
+    "serena_memory_integrity": "passed"
+  },
+  "limitations": [
+    "Storage tested using injected getItem/setItem backend, not actual browser storage",
+    "React fields, navigation, saving status and multi-tab behavior remain to connect and test",
+    "R-004 remains unapproved; no Excel paste or named profiles implemented"
+  ],
+  "hash_encoding": "UTF-8 normalized to LF before SHA-256",
+  "sha256": {
+    "reference/review-cases.json": "d4fbd36f00f3bbf0f0c99b088e74c646dd12cb1345cb752c1cc90fad596ced1e",
+    "src/engine/edit-review.ts": "1ce66ff02ea04433cb9fec95d39407e8dc21392e86cc0a5c3219c3eaa9420bf5",
+    "src/engine/edit-session.ts": "b96fd4ebc6a84a7b1e66d3569cdc393c09326e92c583ccad9fa7fb9858f78c3d",
+    "src/engine/session-storage.ts": "b3726a10cb8843b52f216ad98417e091ea4322a20d1a88106fa925ec02f7cf5a",
+    "src/engine/saved-editor.ts": "46692087eb4900348f4bec22cc6b8e39463ee2d2caa9138c5b3c9f9c12066229",
+    "tests/edit-history.test.ts": "d6cd218d050f4cc97d97e9bfaa50d4a81cf84e8792a219c597d25016c2d5d77e",
+    "tests/session-storage.test.ts": "05b0c3077deb9d31d8a32f2cd159ed49eda502c7f6f5c555b5a5ed24b04b9129",
+    "tools/capture_review_reference.py": "26cd628c23973d8ed321c170f7d7d1fab82cbbf113a71d592bc830e025c0de14"
+  }
+}

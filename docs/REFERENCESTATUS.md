@@ -29,9 +29,11 @@ Lokale brugerfiler er bevaret uden at blive uploadet. Det skal stadig aftales, h
 
 ## Resterende referencearbejde
 
-1. Bekræft relevante lokale tabeller og indstillinger med brugeren.
+1. Afklaret i B-008: brug den gamle apps indbyggede standarder, ikke de lokale tilpasninger.
 2. Dokumenter startforløb og systemafhængigheder ud over Python-pakker; afprøv en reproducerbar referencekørsel.
 3. Registrer input, resultater, advarsler og figurer/rapporter for konkrete referencecases.
 4. Registrer brugerens accept af cases og eventuelle numeriske tolerancer.
 
-Der er endnu ikke kørt sammenligningstests eller foretaget en fuld audit af den gamle app. Plan og foreløbig kortlægning er baseret på kildeinspektion. Commit/push og den lokale referencekopi fastlægger udgangspunktet; de dokumenterer ikke, at en migration allerede er verificeret.
+Den første referencekontrol er nu kørt og genkørt: 2.062 cases fra beregningsmodulerne og 24 registrerede trin i appens brugerforløb giver samme resultater ved genkørsel. Se `reference/README.md`. Kørslerne anvender en ny midlertidig udpakning af Git-committen uden brugerdefinerede filer. Ti rapportcases er desuden genereret med originalen og en isoleret TypeScript/Typst-prototype; deres dynamiske tekstindhold er kontrolleret. Standard-eksemplets tre PDF-sider er visuelt gennemgået i begge motorer. Øvrige rapporters visuelle kontrol, LibreOffice, browserforløb og alle redigeringsforløb udestår. TypeScript-motoren matcher nu de 2.062 core-cases, yderligere 255 grænsecases samt de 17 aktive dimensioneringssnapshots. Se `BEREGNINGSMOTOR.md` for præcis afgrænsning.
+
+Formateringstilpasningen er registreret særskilt i `reference/report-format-results.json`: ti cases med samme tekstlinjer og sidefordeling som Word-referencen. De oprindelige referenceforventninger er uændrede. Rapportdata og skabelonversion gemmes med PDF'en lokalt; se `docs/RAPPORTSKABELON.md`.

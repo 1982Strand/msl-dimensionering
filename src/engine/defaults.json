@@ -1,0 +1,4965 @@
+{
+  "source": {
+    "commit": "a330cfd6734ac2478be1304a362c69f94e412d25",
+    "data_profile": "built-in defaults; no user JSON",
+    "files": {
+      "app.py": "ba6b29870a92df46025a8d936b3ab6ea16f32b1f7122e48652a640182f9530e5",
+      "ui.py": "ffa3e583a19d4ede16873963bed70b819e3402b320878ba49166295fd5558d7c",
+      "core/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "core/afrunding.py": "9149c3536c388a82e2f242e939a1a1f998e01bf828a6ab378c927a757ad816e4",
+      "core/calculator.py": "bf46d2642d6083439b8c03c46e24eb18f156fe1a734af7e6fa866f16626ad227",
+      "core/data.py": "e164a0f3bb42cd0d565dfc45d2895031a03b2cb8e93b05a0a65097790d0f0540",
+      "core/diagram.py": "b171b7486e5aa1a43590f9f8a28376680bd2a50f7155535fcbfb7198d38df461",
+      "core/enhed.py": "256884745b59e94d0211a610e8bf092942a0fec5d147e48a7502833912583cf2",
+      "core/hjaelp.py": "5179b206a31224bf2582fdc31bf6520fd68552da1206dd5f7f034ab249e0ac78",
+      "core/lagfordeling.py": "0426d2021e037c8e993fefc104b69cfbf03526408cadd1303775c32f5577716b",
+      "core/placement.py": "9668ab8bfe106722e4735576d72dcb86280470ee60fea14feae08bf8f3ccf9d2",
+      "core/rapport.py": "b6235563354b72f81d386afc703db273eb08a2d6f9857d4f73499f7b2c61b898",
+      "core/validators.py": "5258b68728afa7d2224d1e5b090ff6c78f7a3c568408ad367dbcd210fb71428c"
+    }
+  },
+  "values": {
+    "EU_MIN": 1.0,
+    "EU_MAX": 45.0,
+    "EU_RAEKKER": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45
+    ],
+    "EO_KOLONNER": [
+      30,
+      45,
+      60,
+      80,
+      120,
+      150
+    ],
+    "PHI_BASIS": 37.0,
+    "K_PHI": -0.02,
+    "GEONET_DB": [
+      {
+        "navn": "Tensar SS30",
+        "serie": "Tensar",
+        "type": "Biaxialt",
+        "effektindeks": "90",
+        "korrektion": 0.1,
+        "max_korn": null,
+        "anbefalet_tilslag": null,
+        "rudeaabning": null,
+        "min_daklag": 20,
+        "klasser": [
+          3,
+          4,
+          5
+        ],
+        "radial_stivhed": null,
+        "gwp": null,
+        "min_levetid": null,
+        "overlap_eu_ge5_cm": 30,
+        "overlap_eu_lt5_cm": 40,
+        "maskestoerrelse_datablad_mm": null,
+        "gwp_bredder": null,
+        "knudepunkt_effektivitet": null,
+        "maskestabilitet_Nmm_grad": null,
+        "stivhedsforhold": null,
+        "min_traekstyrke": null,
+        "traekstyrke_2pct": null,
+        "traekstyrke_5pct": null,
+        "max_deformation_pct": null,
+        "ribbetykkelse": null,
+        "resistens_kemisk_pct": null,
+        "resistens_uv_pct": null,
+        "resistens_oxidation_pct": null,
+        "resistens_installationsskader": null,
+        "bemærkning": "Effektindeks 90. Tekniske specifikationer ikke tilgængelige i foreliggende kildedokumenter."
+      },
+      {
+        "navn": "Tensar TriAx TX150",
+        "serie": "Tensar",
+        "type": "Triaxialt",
+        "effektindeks": "90",
+        "korrektion": 0.1,
+        "max_korn": null,
+        "anbefalet_tilslag": null,
+        "rudeaabning": null,
+        "min_daklag": 20,
+        "klasser": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "radial_stivhed": null,
+        "gwp": null,
+        "min_levetid": null,
+        "overlap_eu_ge5_cm": 30,
+        "overlap_eu_lt5_cm": 40,
+        "maskestoerrelse_datablad_mm": null,
+        "gwp_bredder": null,
+        "knudepunkt_effektivitet": null,
+        "maskestabilitet_Nmm_grad": null,
+        "stivhedsforhold": null,
+        "min_traekstyrke": null,
+        "traekstyrke_2pct": null,
+        "traekstyrke_5pct": null,
+        "max_deformation_pct": null,
+        "ribbetykkelse": null,
+        "resistens_kemisk_pct": null,
+        "resistens_uv_pct": null,
+        "resistens_oxidation_pct": null,
+        "resistens_installationsskader": null,
+        "bemærkning": "Effektindeks 90. Tekniske specifikationer ikke tilgængelige i foreliggende kildedokumenter."
+      },
+      {
+        "navn": "Tensar HX5.5",
+        "serie": "Tensar",
+        "type": "Hexagonalt",
+        "effektindeks": "95",
+        "korrektion": 0.05,
+        "max_korn": null,
+        "anbefalet_tilslag": null,
+        "rudeaabning": null,
+        "min_daklag": 20,
+        "klasser": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "radial_stivhed": null,
+        "gwp": null,
+        "min_levetid": null,
+        "overlap_eu_ge5_cm": 30,
+        "overlap_eu_lt5_cm": 40,
+        "maskestoerrelse_datablad_mm": null,
+        "gwp_bredder": null,
+        "knudepunkt_effektivitet": null,
+        "maskestabilitet_Nmm_grad": null,
+        "stivhedsforhold": null,
+        "min_traekstyrke": null,
+        "traekstyrke_2pct": null,
+        "traekstyrke_5pct": null,
+        "max_deformation_pct": null,
+        "ribbetykkelse": null,
+        "resistens_kemisk_pct": null,
+        "resistens_uv_pct": null,
+        "resistens_oxidation_pct": null,
+        "resistens_installationsskader": null,
+        "bemærkning": "Effektindeks 95. Tekniske specifikationer ikke tilgængelige i foreliggende kildedokumenter."
+      },
+      {
+        "navn": "Tensar TriAx TX160",
+        "serie": "Tensar",
+        "type": "Triaxialt",
+        "effektindeks": "100",
+        "korrektion": 0.0,
+        "max_korn": 80,
+        "anbefalet_tilslag": "0–80 mm",
+        "rudeaabning": "Triangulær, ribbe 40 mm",
+        "min_daklag": 20,
+        "klasser": [
+          3,
+          4,
+          5,
+          6
+        ],
+        "radial_stivhed": 390,
+        "gwp": null,
+        "min_levetid": null,
+        "overlap_eu_ge5_cm": 30,
+        "overlap_eu_lt5_cm": 40,
+        "maskestoerrelse_datablad_mm": null,
+        "gwp_bredder": null,
+        "knudepunkt_effektivitet": "90%",
+        "maskestabilitet_Nmm_grad": 390,
+        "stivhedsforhold": ">0,75",
+        "min_traekstyrke": null,
+        "traekstyrke_2pct": null,
+        "traekstyrke_5pct": null,
+        "max_deformation_pct": null,
+        "ribbetykkelse": null,
+        "resistens_kemisk_pct": 96,
+        "resistens_uv_pct": 98,
+        "resistens_oxidation_pct": 90,
+        "resistens_installationsskader": ">87%",
+        "bemærkning": "REFERENCE (Tensar-design) - effektindeks 100. Maks. tid uden afdækning: < 2 uger."
+      },
+      {
+        "navn": "Tensar HX165",
+        "serie": "Tensar",
+        "type": "Hexagonalt",
+        "effektindeks": "105",
+        "korrektion": -0.05,
+        "max_korn": null,
+        "anbefalet_tilslag": null,
+        "rudeaabning": null,
+        "min_daklag": 20,
+        "klasser": [
+          4,
+          5,
+          6
+        ],
+        "radial_stivhed": null,
+        "gwp": null,
+        "min_levetid": null,
+        "overlap_eu_ge5_cm": 30,
+        "overlap_eu_lt5_cm": 40,
+        "maskestoerrelse_datablad_mm": null,
+        "gwp_bredder": null,
+        "knudepunkt_effektivitet": null,
+        "maskestabilitet_Nmm_grad": null,
+        "stivhedsforhold": null,
+        "min_traekstyrke": null,
+        "traekstyrke_2pct": null,
+        "traekstyrke_5pct": null,
+        "max_deformation_pct": null,
+        "ribbetykkelse": null,
+        "resistens_kemisk_pct": null,
+        "resistens_uv_pct": null,
+        "resistens_oxidation_pct": null,
+        "resistens_installationsskader": null,
+        "bemærkning": "Effektindeks 105. Tekniske specifikationer ikke tilgængelige i foreliggende kildedokumenter."
+      },
+      {
+        "navn": "Tensar InterAx NX750",
+        "serie": "Tensar",
+        "type": "Hexagonalt",
+        "effektindeks": "110–120",
+        "korrektion": -0.1,
+        "korrektion_interval": [
+          -0.2,
+          -0.1
+        ],
+        "max_korn": null,
+        "anbefalet_tilslag": null,
+        "rudeaabning": "Hexagonal/trapezoidal/triangulær, ribbeafstand 80 mm",
+        "min_daklag": 20,
+        "klasser": [
+          5,
+          6
+        ],
+        "radial_stivhed": null,
+        "gwp": null,
+        "min_levetid": null,
+        "overlap_eu_ge5_cm": 30,
+        "overlap_eu_lt5_cm": 40,
+        "maskestoerrelse_datablad_mm": null,
+        "gwp_bredder": null,
+        "knudepunkt_effektivitet": null,
+        "maskestabilitet_Nmm_grad": null,
+        "stivhedsforhold": null,
+        "min_traekstyrke": null,
+        "traekstyrke_2pct": null,
+        "traekstyrke_5pct": null,
+        "max_deformation_pct": null,
+        "ribbetykkelse": null,
+        "resistens_kemisk_pct": null,
+        "resistens_uv_pct": null,
+        "resistens_oxidation_pct": null,
+        "resistens_installationsskader": null,
+        "bemærkning": "Effektindeks 110–120 ⇒ korrektion fra −20 % (bedste) til −10 % (konservativ). Coekstruderet, integralt formet hexagonalt geonet med rektangulære ribber og knudetykkelse 3,5 mm. EPD-certificeret (EN 15804+A2:2019). 100 % modstand mod kemisk nedbrydning, 90 % modstand mod UV/forvitring. PIDS angiver ikke designværdier (trækstyrke, radial stivhed, GWP, maks. korn)."
+      },
+      {
+        "navn": "Tensar InterAx NX850",
+        "serie": "Tensar",
+        "type": "Hexagonalt",
+        "effektindeks": "115–130",
+        "korrektion": -0.15,
+        "korrektion_interval": [
+          -0.3,
+          -0.15
+        ],
+        "max_korn": null,
+        "anbefalet_tilslag": null,
+        "rudeaabning": "Hexagonal/trapezoidal/triangulær, ribbeafstand 80 mm",
+        "min_daklag": 20,
+        "klasser": [
+          5,
+          6
+        ],
+        "radial_stivhed": null,
+        "gwp": null,
+        "min_levetid": null,
+        "overlap_eu_ge5_cm": 30,
+        "overlap_eu_lt5_cm": 40,
+        "maskestoerrelse_datablad_mm": null,
+        "gwp_bredder": null,
+        "knudepunkt_effektivitet": null,
+        "maskestabilitet_Nmm_grad": null,
+        "stivhedsforhold": null,
+        "min_traekstyrke": null,
+        "traekstyrke_2pct": null,
+        "traekstyrke_5pct": null,
+        "max_deformation_pct": null,
+        "ribbetykkelse": null,
+        "resistens_kemisk_pct": null,
+        "resistens_uv_pct": null,
+        "resistens_oxidation_pct": null,
+        "resistens_installationsskader": null,
+        "bemærkning": "Effektindeks 115–130 ⇒ korrektion fra −30 % (bedste) til −15 % (konservativ). Coekstruderet, integralt formet hexagonalt geonet med rektangulære ribber og knudetykkelse 4,5 mm. EPD-certificeret (EN 15804+A2:2019). 100 % modstand mod kemisk nedbrydning, 90 % modstand mod UV/forvitring. PIDS angiver ikke designværdier (trækstyrke, radial stivhed, GWP, maks. korn)."
+      },
+      {
+        "navn": "Tensar TriAx TX190L",
+        "serie": "Tensar",
+        "type": "Triaxialt",
+        "effektindeks": "100",
+        "korrektion": 0.0,
+        "max_korn": null,
+        "anbefalet_tilslag": null,
+        "rudeaabning": "Hexagonalt pitch 120 mm",
+        "min_daklag": 20,
+        "klasser": [
+          4,
+          5,
+          6
+        ],
+        "radial_stivhed": 540,
+        "gwp": null,
+        "min_levetid": "100 år (<15°C) / 50 år (<25°C)",
+        "overlap_eu_ge5_cm": 30,
+        "overlap_eu_lt5_cm": 40,
+        "maskestoerrelse_datablad_mm": null,
+        "gwp_bredder": null,
+        "knudepunkt_effektivitet": "100%",
+        "maskestabilitet_Nmm_grad": null,
+        "stivhedsforhold": 0.75,
+        "min_traekstyrke": null,
+        "traekstyrke_2pct": null,
+        "traekstyrke_5pct": null,
+        "max_deformation_pct": null,
+        "ribbetykkelse": null,
+        "resistens_kemisk_pct": null,
+        "resistens_uv_pct": null,
+        "resistens_oxidation_pct": null,
+        "resistens_installationsskader": null,
+        "bemærkning": "Effektindeks og belastningsklasser er vejledende (ikke officielt specificeret). Radial stivhed 540 kN/m (-90 tol.), hexagonalt pitch 120 mm, vægt 0,300 kg/m². ETA-certificeret (EAD 080002-00-0102). Min. levetid 100 år (T<15°C) / 50 år (T<25°C)."
+      },
+      {
+        "navn": "GS-GRID B20/20",
+        "serie": "GS-GRID",
+        "type": "Biaxialt",
+        "effektindeks": "80",
+        "korrektion": 0.2,
+        "max_korn": 64,
+        "anbefalet_tilslag": "0–80 mm",
+        "rudeaabning": "37×37 mm",
+        "maskestoerrelse_mm": 37,
+        "min_daklag": 20,
+        "klasser": [
+          1,
+          2,
+          3
+        ],
+        "radial_stivhed": null,
+        "gwp": 0.55,
+        "min_levetid": null,
+        "overlap_eu_ge5_cm": 30,
+        "overlap_eu_lt5_cm": 40,
+        "maskestoerrelse_datablad_mm": 35,
+        "gwp_bredder": null,
+        "knudepunkt_effektivitet": ">93%",
+        "maskestabilitet_Nmm_grad": 500,
+        "stivhedsforhold": null,
+        "min_traekstyrke": "20/20 kN/m",
+        "traekstyrke_2pct": "7/7 kN/m",
+        "traekstyrke_5pct": "14/14 kN/m",
+        "max_deformation_pct": 10,
+        "ribbetykkelse": "1,5/1,1 mm",
+        "resistens_kemisk_pct": null,
+        "resistens_uv_pct": null,
+        "resistens_oxidation_pct": null,
+        "resistens_installationsskader": null,
+        "bemærkning": "Effektindeks 80."
+      },
+      {
+        "navn": "GS-GRID B20/20L",
+        "serie": "GS-GRID",
+        "type": "Biaxialt",
+        "effektindeks": "80",
+        "korrektion": 0.2,
+        "max_korn": 64,
+        "anbefalet_tilslag": null,
+        "rudeaabning": null,
+        "min_daklag": 20,
+        "klasser": [
+          1,
+          2,
+          3
+        ],
+        "radial_stivhed": null,
+        "gwp": null,
+        "min_levetid": null,
+        "overlap_eu_ge5_cm": 30,
+        "overlap_eu_lt5_cm": 40,
+        "maskestoerrelse_datablad_mm": null,
+        "gwp_bredder": null,
+        "knudepunkt_effektivitet": null,
+        "maskestabilitet_Nmm_grad": null,
+        "stivhedsforhold": null,
+        "min_traekstyrke": null,
+        "traekstyrke_2pct": null,
+        "traekstyrke_5pct": null,
+        "max_deformation_pct": null,
+        "ribbetykkelse": null,
+        "resistens_kemisk_pct": null,
+        "resistens_uv_pct": null,
+        "resistens_oxidation_pct": null,
+        "resistens_installationsskader": null,
+        "bemærkning": "Effektindeks 80."
+      },
+      {
+        "navn": "GS-GRID B30/30",
+        "serie": "GS-GRID",
+        "type": "Biaxialt",
+        "effektindeks": "90",
+        "korrektion": 0.1,
+        "max_korn": 64,
+        "anbefalet_tilslag": "0–80 mm",
+        "rudeaabning": "35×35 mm",
+        "maskestoerrelse_mm": 35,
+        "min_daklag": 20,
+        "klasser": [
+          3,
+          4,
+          5
+        ],
+        "radial_stivhed": null,
+        "gwp": 0.79,
+        "min_levetid": null,
+        "overlap_eu_ge5_cm": 30,
+        "overlap_eu_lt5_cm": 40,
+        "maskestoerrelse_datablad_mm": 34,
+        "gwp_bredder": {
+          "1.975": 0.79,
+          "3.95": 0.79,
+          "5.95": 0.83
+        },
+        "knudepunkt_effektivitet": ">93%",
+        "maskestabilitet_Nmm_grad": 750,
+        "stivhedsforhold": null,
+        "min_traekstyrke": "30/30 kN/m",
+        "traekstyrke_2pct": "10,5/10,5 kN/m",
+        "traekstyrke_5pct": "21/21 kN/m",
+        "max_deformation_pct": 10,
+        "ribbetykkelse": "2,5/1,5 mm",
+        "resistens_kemisk_pct": null,
+        "resistens_uv_pct": null,
+        "resistens_oxidation_pct": null,
+        "resistens_installationsskader": null,
+        "bemærkning": "Effektindeks 90."
+      },
+      {
+        "navn": "GS-GRID B30/30L",
+        "serie": "GS-GRID",
+        "type": "Biaxialt",
+        "effektindeks": "90",
+        "korrektion": 0.1,
+        "max_korn": 120,
+        "anbefalet_tilslag": "0–150 mm",
+        "rudeaabning": "65×65 mm",
+        "maskestoerrelse_mm": 65,
+        "min_daklag": 40,
+        "klasser": [
+          3,
+          4,
+          5
+        ],
+        "radial_stivhed": null,
+        "gwp": 0.88,
+        "min_levetid": null,
+        "overlap_eu_ge5_cm": 30,
+        "overlap_eu_lt5_cm": 40,
+        "maskestoerrelse_datablad_mm": 57,
+        "gwp_bredder": {
+          "3.95": 0.88,
+          "5.95": 0.85
+        },
+        "knudepunkt_effektivitet": ">93%",
+        "maskestabilitet_Nmm_grad": 750,
+        "stivhedsforhold": null,
+        "min_traekstyrke": "30/30 kN/m",
+        "traekstyrke_2pct": "10,5/10,5 kN/m",
+        "traekstyrke_5pct": "21/21 kN/m",
+        "max_deformation_pct": 10,
+        "ribbetykkelse": "1,9/1,3 mm",
+        "resistens_kemisk_pct": null,
+        "resistens_uv_pct": null,
+        "resistens_oxidation_pct": null,
+        "resistens_installationsskader": null,
+        "bemærkning": "Effektindeks 90. Stor rudeåbning - egnet til groft tilslag."
+      },
+      {
+        "navn": "GS-GRID B30/30XL",
+        "serie": "GS-GRID",
+        "type": "Biaxialt",
+        "effektindeks": "90",
+        "korrektion": 0.1,
+        "max_korn": 200,
+        "anbefalet_tilslag": "0–200 mm",
+        "rudeaabning": "100×100 mm",
+        "maskestoerrelse_mm": 100,
+        "min_daklag": 60,
+        "klasser": [
+          4,
+          5,
+          6
+        ],
+        "radial_stivhed": null,
+        "gwp": 0.83,
+        "min_levetid": null,
+        "overlap_eu_ge5_cm": 30,
+        "overlap_eu_lt5_cm": 40,
+        "maskestoerrelse_datablad_mm": 95,
+        "gwp_bredder": null,
+        "knudepunkt_effektivitet": ">93%",
+        "maskestabilitet_Nmm_grad": 750,
+        "stivhedsforhold": null,
+        "min_traekstyrke": "30/30 kN/m",
+        "traekstyrke_2pct": "10,5/10,5 kN/m",
+        "traekstyrke_5pct": "21/21 kN/m",
+        "max_deformation_pct": 10,
+        "ribbetykkelse": "2,6/2,1 mm",
+        "resistens_kemisk_pct": null,
+        "resistens_uv_pct": null,
+        "resistens_oxidation_pct": null,
+        "resistens_installationsskader": null,
+        "bemærkning": "Effektindeks 90. Meget stor rudeåbning - til meget groft tilslag."
+      },
+      {
+        "navn": "GS-GRID B40/40",
+        "serie": "GS-GRID",
+        "type": "Biaxialt",
+        "effektindeks": "100",
+        "korrektion": 0.0,
+        "max_korn": 64,
+        "anbefalet_tilslag": "0–80 mm",
+        "rudeaabning": "35×35 mm",
+        "maskestoerrelse_mm": 35,
+        "min_daklag": 20,
+        "klasser": [
+          4,
+          5,
+          6
+        ],
+        "radial_stivhed": null,
+        "gwp": 1.15,
+        "min_levetid": null,
+        "overlap_eu_ge5_cm": 30,
+        "overlap_eu_lt5_cm": 40,
+        "maskestoerrelse_datablad_mm": 33,
+        "gwp_bredder": null,
+        "knudepunkt_effektivitet": ">93%",
+        "maskestabilitet_Nmm_grad": 980,
+        "stivhedsforhold": null,
+        "min_traekstyrke": "40/40 kN/m",
+        "traekstyrke_2pct": "15/15 kN/m",
+        "traekstyrke_5pct": "28/28 kN/m",
+        "max_deformation_pct": 10,
+        "ribbetykkelse": "3,4/2,1 mm",
+        "resistens_kemisk_pct": null,
+        "resistens_uv_pct": null,
+        "resistens_oxidation_pct": null,
+        "resistens_installationsskader": null,
+        "bemærkning": "Effektindeks 100. Svarende til E'GRID T6 på GS/E'GRID-skalaen."
+      },
+      {
+        "navn": "GS-GRID B40/40L",
+        "serie": "GS-GRID",
+        "type": "Biaxialt",
+        "effektindeks": "100",
+        "korrektion": 0.0,
+        "max_korn": 120,
+        "anbefalet_tilslag": "0–150 mm",
+        "rudeaabning": "60×60 mm",
+        "maskestoerrelse_mm": 60,
+        "min_daklag": 40,
+        "klasser": [
+          4,
+          5,
+          6
+        ],
+        "radial_stivhed": null,
+        "gwp": 1.17,
+        "min_levetid": null,
+        "overlap_eu_ge5_cm": 30,
+        "overlap_eu_lt5_cm": 40,
+        "maskestoerrelse_datablad_mm": 57,
+        "gwp_bredder": null,
+        "knudepunkt_effektivitet": ">93%",
+        "maskestabilitet_Nmm_grad": 980,
+        "stivhedsforhold": null,
+        "min_traekstyrke": "40/40 kN/m",
+        "traekstyrke_2pct": "15/15 kN/m",
+        "traekstyrke_5pct": "28/28 kN/m",
+        "max_deformation_pct": 10,
+        "ribbetykkelse": "3,0/2,0 mm",
+        "resistens_kemisk_pct": null,
+        "resistens_uv_pct": null,
+        "resistens_oxidation_pct": null,
+        "resistens_installationsskader": null,
+        "bemærkning": "Effektindeks 100. Stor rudeåbning - egnet til groft tilslag."
+      },
+      {
+        "navn": "GS-GRID SX160",
+        "serie": "GS-GRID",
+        "type": "Hexagonalt",
+        "effektindeks": "100",
+        "korrektion": 0.0,
+        "max_korn": 80,
+        "anbefalet_tilslag": "0–80 mm",
+        "rudeaabning": "Hexagonalt pitch 80 mm",
+        "min_daklag": 20,
+        "klasser": [
+          3,
+          4,
+          5,
+          6
+        ],
+        "radial_stivhed": 390,
+        "gwp": 0.51,
+        "min_levetid": ">25 år",
+        "overlap_eu_ge5_cm": 30,
+        "overlap_eu_lt5_cm": 40,
+        "maskestoerrelse_datablad_mm": null,
+        "gwp_bredder": null,
+        "knudepunkt_effektivitet": "100%",
+        "maskestabilitet_Nmm_grad": null,
+        "stivhedsforhold": 0.8,
+        "min_traekstyrke": null,
+        "traekstyrke_2pct": null,
+        "traekstyrke_5pct": null,
+        "max_deformation_pct": null,
+        "ribbetykkelse": null,
+        "resistens_kemisk_pct": null,
+        "resistens_uv_pct": null,
+        "resistens_oxidation_pct": null,
+        "resistens_installationsskader": null,
+        "bemærkning": "REFERENCE (GS/E'GRID-design) - effektindeks 100. Maks. tid uden afdækning: < 2 uger."
+      },
+      {
+        "navn": "GS-GRID SX170",
+        "serie": "GS-GRID",
+        "type": "Hexagonalt",
+        "effektindeks": "110",
+        "korrektion": -0.1,
+        "max_korn": 150,
+        "anbefalet_tilslag": "0–80 mm",
+        "rudeaabning": "Hexagonalt pitch 80 mm",
+        "min_daklag": 20,
+        "klasser": [
+          4,
+          5,
+          6
+        ],
+        "radial_stivhed": 480,
+        "gwp": 0.62,
+        "min_levetid": ">25 år",
+        "overlap_eu_ge5_cm": 30,
+        "overlap_eu_lt5_cm": 40,
+        "maskestoerrelse_datablad_mm": null,
+        "gwp_bredder": null,
+        "knudepunkt_effektivitet": "100%",
+        "maskestabilitet_Nmm_grad": null,
+        "stivhedsforhold": 0.8,
+        "min_traekstyrke": null,
+        "traekstyrke_2pct": null,
+        "traekstyrke_5pct": null,
+        "max_deformation_pct": null,
+        "ribbetykkelse": null,
+        "resistens_kemisk_pct": null,
+        "resistens_uv_pct": null,
+        "resistens_oxidation_pct": null,
+        "resistens_installationsskader": null,
+        "bemærkning": "Effektindeks 110. Maks. kornstørrelse 150 mm (datablad), men designmanualens anbefalede tilslag er 0–80 mm (samme som SX160, grundet identisk hexagonalt pitch). Maks. tid uden afdækning: < 2 uger."
+      },
+      {
+        "navn": "E'GRID T6",
+        "serie": "E'GRID",
+        "type": "Hexagonalt",
+        "effektindeks": "100",
+        "korrektion": 0.0,
+        "max_korn": 80,
+        "anbefalet_tilslag": "0–80 mm",
+        "rudeaabning": "Hexagonalt pitch 80 mm",
+        "min_daklag": 20,
+        "klasser": [
+          3,
+          4,
+          5,
+          6
+        ],
+        "radial_stivhed": null,
+        "gwp": null,
+        "min_levetid": null,
+        "overlap_eu_ge5_cm": 30,
+        "overlap_eu_lt5_cm": 40,
+        "maskestoerrelse_datablad_mm": null,
+        "gwp_bredder": null,
+        "knudepunkt_effektivitet": null,
+        "maskestabilitet_Nmm_grad": null,
+        "stivhedsforhold": null,
+        "min_traekstyrke": null,
+        "traekstyrke_2pct": null,
+        "traekstyrke_5pct": null,
+        "max_deformation_pct": null,
+        "ribbetykkelse": null,
+        "resistens_kemisk_pct": null,
+        "resistens_uv_pct": null,
+        "resistens_oxidation_pct": null,
+        "resistens_installationsskader": null,
+        "bemærkning": "Alternativ til GS-GRID SX160 - REFERENCE (GS/E'GRID-design), effektindeks 100."
+      },
+      {
+        "navn": "E'GRID T7",
+        "serie": "E'GRID",
+        "type": "Hexagonalt",
+        "effektindeks": "110",
+        "korrektion": -0.1,
+        "max_korn": 80,
+        "anbefalet_tilslag": "0–80 mm",
+        "rudeaabning": "Hexagonalt pitch 80 mm",
+        "min_daklag": 20,
+        "klasser": [
+          4,
+          5,
+          6
+        ],
+        "radial_stivhed": null,
+        "gwp": null,
+        "min_levetid": null,
+        "overlap_eu_ge5_cm": 30,
+        "overlap_eu_lt5_cm": 40,
+        "maskestoerrelse_datablad_mm": null,
+        "gwp_bredder": null,
+        "knudepunkt_effektivitet": null,
+        "maskestabilitet_Nmm_grad": null,
+        "stivhedsforhold": null,
+        "min_traekstyrke": null,
+        "traekstyrke_2pct": null,
+        "traekstyrke_5pct": null,
+        "max_deformation_pct": null,
+        "ribbetykkelse": null,
+        "resistens_kemisk_pct": null,
+        "resistens_uv_pct": null,
+        "resistens_oxidation_pct": null,
+        "resistens_installationsskader": null,
+        "bemærkning": "Alternativ til GS-GRID SX170 - effektindeks 110."
+      },
+      {
+        "navn": "E'GRID T9L",
+        "serie": "E'GRID",
+        "type": "Hexagonalt",
+        "effektindeks": "110",
+        "korrektion": -0.1,
+        "max_korn": 150,
+        "anbefalet_tilslag": "0–150 mm",
+        "rudeaabning": "Hexagonalt pitch 120 mm",
+        "min_daklag": 40,
+        "klasser": [
+          4,
+          5,
+          6
+        ],
+        "radial_stivhed": null,
+        "gwp": null,
+        "min_levetid": null,
+        "overlap_eu_ge5_cm": 30,
+        "overlap_eu_lt5_cm": 40,
+        "maskestoerrelse_datablad_mm": null,
+        "gwp_bredder": null,
+        "knudepunkt_effektivitet": null,
+        "maskestabilitet_Nmm_grad": null,
+        "stivhedsforhold": null,
+        "min_traekstyrke": null,
+        "traekstyrke_2pct": null,
+        "traekstyrke_5pct": null,
+        "max_deformation_pct": null,
+        "ribbetykkelse": null,
+        "resistens_kemisk_pct": null,
+        "resistens_uv_pct": null,
+        "resistens_oxidation_pct": null,
+        "resistens_installationsskader": null,
+        "bemærkning": "Effektindeks rettet til 110 (korrektionsfaktor −0,10). GS/E'GRID Designmanual fig. 7 angiver eksplicit: \"E'GRID T9L – Aflæst bærelagstykkelse REDUCERES med 10 %\"."
+      },
+      {
+        "navn": "Anden armering (manuel)",
+        "serie": "Manuel",
+        "type": "-",
+        "effektindeks": "-",
+        "korrektion": 0.0,
+        "max_korn": null,
+        "anbefalet_tilslag": null,
+        "rudeaabning": null,
+        "min_daklag": 20,
+        "klasser": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "radial_stivhed": null,
+        "gwp": null,
+        "min_levetid": null,
+        "overlap_eu_ge5_cm": 30,
+        "overlap_eu_lt5_cm": 40,
+        "maskestoerrelse_datablad_mm": null,
+        "gwp_bredder": null,
+        "knudepunkt_effektivitet": null,
+        "maskestabilitet_Nmm_grad": null,
+        "stivhedsforhold": null,
+        "min_traekstyrke": null,
+        "traekstyrke_2pct": null,
+        "traekstyrke_5pct": null,
+        "max_deformation_pct": null,
+        "ribbetykkelse": null,
+        "resistens_kemisk_pct": null,
+        "resistens_uv_pct": null,
+        "resistens_oxidation_pct": null,
+        "resistens_installationsskader": null,
+        "bemærkning": "Korrektionsfaktor indtastes manuelt"
+      }
+    ],
+    "GEONET_NOTER": [
+      {
+        "titel": "Rettelse: E'GRID T9L effektindeks",
+        "tekst": "E'GRID T9L er rettet fra effektindeks 100 (korrektionsfaktor 0,00) til effektindeks 110 (korrektionsfaktor −0,10). BEGRUNDELSE: GS-GRID/E'GRID Designmanual fig. 6 angiver indeks 100 for T9L, men fig. 7 (tekst) angiver eksplicit: \"E'GRID T9L – Aflæst bærelagstykkelse REDUCERES med 10 %\"."
+      },
+      {
+        "titel": "Forskel mellem datablad og designmanual: Maskestørrelse vs. rudeåbning",
+        "tekst": "For de biaxiale GS-GRID produkter angiver databladet 'maskestørrelse (ca.)' og designmanualen (figur 9) angiver 'rudeåbning'. Begge er vist i tabellen."
+      },
+      {
+        "titel": "Forskel mellem datablad og designmanual: Maks. kornstørrelse vs. anbefalet tilslag",
+        "tekst": "For enkelte geonet, GS-GRID B20/20, B30/30, B30/30L, B40/40, overstiger den anbefalede tilslagsstørrelse fra designmanualen den maksimale kornstørrelse fra databladet. For GS-GRID SX170 er det omvendt, hvor den anbefalede tilslagsstørrelse er mindre end den maksimale kornstørrelse. "
+      },
+      {
+        "titel": "Tensar-serien: Manglende tekniske data",
+        "tekst": "Datablade for Tensar SS30, HX5.5 og HX165 indgår ikke i de foreliggende kildedokumenter. For Tensar InterAx NX750 og NX850 findes kun Product Identification Data Sheet (PIDS, dec. 2024), som leverer identifikations- og holdbarhedsdata, men eksplicit ikke designværdier (trækstyrke, radial stivhed, GWP, maks. kornstørrelse). Korrektionsfaktorer og belastningsklasser er fra Tensar Geonet Designmanual sept. 2024."
+      },
+      {
+        "titel": "2-lags opbygning",
+        "tekst": "Begge designmanualer anbefaler ved total bærelagstykkelse > 50 cm at anvende 2 eller flere lag geonet. Afstand mellem lag: min. 20 cm og maks. 50 cm (GS/E'GRID) / maks. 40 cm (Tensar). Øverste lag skal placeres min. 20 cm under overside af bærelag. I designmanualerne vises eksempler på der kan anvendes forskellige produkter ved flerlagsopbygninger."
+      }
+    ],
+    "MATERIAL_DB": [
+      {
+        "navn": "Bundsikringssand",
+        "phi": 37,
+        "max_korn": 8,
+        "lagtype": "Bundsikring",
+        "anvendelse": "Frostsikring og drænlag",
+        "krav_maskestoerrelse_mm": 35
+      },
+      {
+        "navn": "Bundgrus 0-80",
+        "phi": 38,
+        "max_korn": 80,
+        "lagtype": "Bundsikring",
+        "anvendelse": "Frostsikring, dræning, bærelag",
+        "krav_maskestoerrelse_mm": 65
+      },
+      {
+        "navn": "Stabilgrus SGI 0-32",
+        "phi": 40,
+        "max_korn": 32,
+        "lagtype": "Bærelag",
+        "anvendelse": "Bærelag",
+        "krav_maskestoerrelse_mm": 35
+      },
+      {
+        "navn": "Stabilgrus SGII 0-32",
+        "phi": 40,
+        "max_korn": 32,
+        "lagtype": "Bærelag",
+        "anvendelse": "Bærelag",
+        "krav_maskestoerrelse_mm": 35
+      },
+      {
+        "navn": "Knust beton 0-32",
+        "phi": 40,
+        "max_korn": 32,
+        "lagtype": "Bærelag",
+        "anvendelse": "Genbrugsmateriale, bærelag",
+        "krav_maskestoerrelse_mm": 35
+      },
+      {
+        "navn": "Skærver 0-32",
+        "phi": 45,
+        "max_korn": 32,
+        "lagtype": "Bærelag",
+        "anvendelse": "Bærelag",
+        "krav_maskestoerrelse_mm": 35
+      },
+      {
+        "navn": "Skærver 0-64",
+        "phi": 45,
+        "max_korn": 64,
+        "lagtype": "Bærelag",
+        "anvendelse": "Bærelag",
+        "krav_maskestoerrelse_mm": 35
+      },
+      {
+        "navn": "Skærver 0-90",
+        "phi": 45,
+        "max_korn": 90,
+        "lagtype": "Bærelag",
+        "anvendelse": "Bærelag (kan også anvendes som bundsikring)",
+        "krav_maskestoerrelse_mm": 65
+      },
+      {
+        "navn": "Skærver 0-120",
+        "phi": 45,
+        "max_korn": 120,
+        "lagtype": "Bundsikring",
+        "anvendelse": "Bundsikring",
+        "krav_maskestoerrelse_mm": 65
+      },
+      {
+        "navn": "Skærver 0-150",
+        "phi": 45,
+        "max_korn": 150,
+        "lagtype": "Bundsikring",
+        "anvendelse": "Bundsikring grov",
+        "krav_maskestoerrelse_mm": 65
+      },
+      {
+        "navn": "Skærver 0-200",
+        "phi": 45,
+        "max_korn": 200,
+        "lagtype": "Bundsikring",
+        "anvendelse": "Bundsikring meget grov",
+        "krav_maskestoerrelse_mm": 100
+      },
+      {
+        "navn": "Skærver 0-250",
+        "phi": 45,
+        "max_korn": 250,
+        "lagtype": "Bundsikring",
+        "anvendelse": "Bundsikring ekstrem",
+        "krav_maskestoerrelse_mm": 100
+      }
+    ],
+    "CV_TIL_EU": [
+      [
+        0,
+        30,
+        5
+      ],
+      [
+        30,
+        60,
+        10
+      ],
+      [
+        60,
+        90,
+        15
+      ],
+      [
+        90,
+        120,
+        20
+      ],
+      [
+        120,
+        150,
+        25
+      ],
+      [
+        150,
+        180,
+        30
+      ]
+    ],
+    "BELASTNINGSKLASSER": {
+      "1": {
+        "eo": 30,
+        "navn": "Klasse 1 - Begrænset belastning",
+        "belastning": "Begrænset belastning",
+        "anvendelse": "Cykelstier, midlertidige byggeveje"
+      },
+      "2": {
+        "eo": 45,
+        "navn": "Klasse 2 - Større belastning",
+        "belastning": "Større belastning",
+        "anvendelse": "Markveje, midlertidige byggeveje med større belastning"
+      },
+      "3": {
+        "eo": 60,
+        "navn": "Klasse 3 - Let trafik",
+        "belastning": "Let trafik (akseltryk ≤ 6 t)",
+        "anvendelse": "Villaveje, p-pladser for personbiler"
+      },
+      "4": {
+        "eo": 80,
+        "navn": "Klasse 4 - Middel trafik",
+        "belastning": "Middel trafik (akseltryk ≤ 8 t)",
+        "anvendelse": "Middel trafikerede veje, p-arealer, flydende gulve i lagerhaller"
+      },
+      "5": {
+        "eo": 120,
+        "navn": "Klasse 5 - Tung trafik",
+        "belastning": "Tung trafik (akseltryk ≤ 12 t)",
+        "anvendelse": "Hovedveje, amtsveje, containerpladser"
+      },
+      "6": {
+        "eo": 150,
+        "navn": "Klasse 6 - Meget tung trafik",
+        "belastning": "Meget tung trafik (akseltryk ≤ 15 t)",
+        "anvendelse": "Landingsbaner, p-arealer for meget tunge køretøjer"
+      }
+    },
+    "TRAFIKKLASSER": {
+      "T1": {
+        "ikon": "🚲",
+        "naae10_mio_20aar": 0.0015,
+        "beskrivelse": "Meget let trafik",
+        "tunge_koeretoejer": "≤ 1",
+        "naae10_doegn": "0,5",
+        "naae10_aar": "75",
+        "anvendelse": "Fortove, cykelstier, stisystemer og mindre boligveje uden bustrafik"
+      },
+      "T2": {
+        "ikon": "🚜",
+        "naae10_mio_20aar": 0.146,
+        "beskrivelse": "Let trafik",
+        "tunge_koeretoejer": "≤ 65",
+        "naae10_doegn": "20",
+        "naae10_aar": "7.300",
+        "anvendelse": "Lokale boligveje og samleveje med begrænset servicetrafik"
+      },
+      "T3": {
+        "ikon": "🚗",
+        "naae10_mio_20aar": 0.366,
+        "beskrivelse": "Let–middel trafik",
+        "tunge_koeretoejer": "65 til 120",
+        "naae10_doegn": "50",
+        "naae10_aar": "18.300",
+        "anvendelse": "Lokale boligveje og samleveje med begrænset servicetrafik"
+      },
+      "T4": {
+        "ikon": "🚛",
+        "naae10_mio_20aar": 1.46,
+        "beskrivelse": "Middel trafik",
+        "tunge_koeretoejer": "120 til 560",
+        "naae10_doegn": "200",
+        "naae10_aar": "73.000",
+        "anvendelse": "Bybusruter, erhvervsveje og hovedfordelingsveje"
+      },
+      "T5": {
+        "ikon": "🏗️",
+        "naae10_mio_20aar": 3.6,
+        "beskrivelse": "Tung trafik",
+        "tunge_koeretoejer": "560 til 1.200",
+        "naae10_doegn": "500",
+        "naae10_aar": "180.000",
+        "anvendelse": "Bybusruter, erhvervsveje og hovedfordelingsveje"
+      },
+      "T6": {
+        "ikon": "✈️",
+        "naae10_mio_20aar": 6.0,
+        "beskrivelse": "Meget tung trafik",
+        "tunge_koeretoejer": "1.200 til 1.500",
+        "naae10_doegn": "800",
+        "naae10_aar": "300.000",
+        "anvendelse": "Hovedveje, motortrafikveje og motorveje"
+      }
+    },
+    "T_BASIS_TABLE": {
+      "1": {
+        "30": {
+          "uarmeret": null,
+          "1_lag": 86.7,
+          "2_lag": null
+        },
+        "45": {
+          "uarmeret": null,
+          "1_lag": 100.0,
+          "2_lag": 90.0
+        },
+        "60": {
+          "uarmeret": null,
+          "1_lag": 110.0,
+          "2_lag": 100.0
+        },
+        "80": {
+          "uarmeret": null,
+          "1_lag": 120.0,
+          "2_lag": 110.0
+        },
+        "120": {
+          "uarmeret": null,
+          "1_lag": 130.0,
+          "2_lag": 120.0
+        },
+        "150": {
+          "uarmeret": null,
+          "1_lag": 140.0,
+          "2_lag": 125.0
+        }
+      },
+      "2": {
+        "30": {
+          "uarmeret": null,
+          "1_lag": 80.0,
+          "2_lag": null
+        },
+        "45": {
+          "uarmeret": null,
+          "1_lag": 90.0,
+          "2_lag": 80.0
+        },
+        "60": {
+          "uarmeret": null,
+          "1_lag": 96.7,
+          "2_lag": 85.0
+        },
+        "80": {
+          "uarmeret": null,
+          "1_lag": 110.0,
+          "2_lag": 100.0
+        },
+        "120": {
+          "uarmeret": null,
+          "1_lag": 120.0,
+          "2_lag": 110.0
+        },
+        "150": {
+          "uarmeret": null,
+          "1_lag": 125.0,
+          "2_lag": 115.0
+        }
+      },
+      "3": {
+        "30": {
+          "uarmeret": 110.0,
+          "1_lag": 70.0,
+          "2_lag": null
+        },
+        "45": {
+          "uarmeret": 120.0,
+          "1_lag": 80.0,
+          "2_lag": 70.0
+        },
+        "60": {
+          "uarmeret": 130.0,
+          "1_lag": 90.0,
+          "2_lag": 77.5
+        },
+        "80": {
+          "uarmeret": 140.0,
+          "1_lag": 100.0,
+          "2_lag": 90.0
+        },
+        "120": {
+          "uarmeret": 150.0,
+          "1_lag": 107.5,
+          "2_lag": 100.0
+        },
+        "150": {
+          "uarmeret": 160.0,
+          "1_lag": 115.0,
+          "2_lag": 100.0
+        }
+      },
+      "4": {
+        "30": {
+          "uarmeret": 100.0,
+          "1_lag": 65.0,
+          "2_lag": null
+        },
+        "45": {
+          "uarmeret": 106.7,
+          "1_lag": 73.3,
+          "2_lag": 63.3
+        },
+        "60": {
+          "uarmeret": 116.7,
+          "1_lag": 83.3,
+          "2_lag": 72.5
+        },
+        "80": {
+          "uarmeret": 126.7,
+          "1_lag": 90.0,
+          "2_lag": 80.0
+        },
+        "120": {
+          "uarmeret": 136.7,
+          "1_lag": 102.5,
+          "2_lag": 93.3
+        },
+        "150": {
+          "uarmeret": 146.7,
+          "1_lag": 105.0,
+          "2_lag": 93.3
+        }
+      },
+      "5": {
+        "30": {
+          "uarmeret": 90.0,
+          "1_lag": 60.0,
+          "2_lag": null
+        },
+        "45": {
+          "uarmeret": 100.0,
+          "1_lag": 66.7,
+          "2_lag": 57.5
+        },
+        "60": {
+          "uarmeret": 110.0,
+          "1_lag": 77.5,
+          "2_lag": 67.5
+        },
+        "80": {
+          "uarmeret": 120.0,
+          "1_lag": 83.3,
+          "2_lag": 75.0
+        },
+        "120": {
+          "uarmeret": 130.0,
+          "1_lag": 96.7,
+          "2_lag": 86.7
+        },
+        "150": {
+          "uarmeret": 140.0,
+          "1_lag": 96.7,
+          "2_lag": 87.5
+        }
+      },
+      "6": {
+        "30": {
+          "uarmeret": 80.0,
+          "1_lag": 53.3,
+          "2_lag": null
+        },
+        "45": {
+          "uarmeret": 90.0,
+          "1_lag": 60.0,
+          "2_lag": 52.5
+        },
+        "60": {
+          "uarmeret": 100.0,
+          "1_lag": 72.5,
+          "2_lag": 62.5
+        },
+        "80": {
+          "uarmeret": 110.0,
+          "1_lag": 77.5,
+          "2_lag": 70.0
+        },
+        "120": {
+          "uarmeret": 120.0,
+          "1_lag": 90.0,
+          "2_lag": 80.0
+        },
+        "150": {
+          "uarmeret": 130.0,
+          "1_lag": 90.0,
+          "2_lag": 82.5
+        }
+      },
+      "7": {
+        "30": {
+          "uarmeret": 75.0,
+          "1_lag": 48.0,
+          "2_lag": null
+        },
+        "45": {
+          "uarmeret": 85.0,
+          "1_lag": 56.7,
+          "2_lag": null
+        },
+        "60": {
+          "uarmeret": 95.0,
+          "1_lag": 68.0,
+          "2_lag": 58.0
+        },
+        "80": {
+          "uarmeret": 105.0,
+          "1_lag": 72.5,
+          "2_lag": 65.0
+        },
+        "120": {
+          "uarmeret": 115.0,
+          "1_lag": 85.0,
+          "2_lag": 75.0
+        },
+        "150": {
+          "uarmeret": 125.0,
+          "1_lag": 86.0,
+          "2_lag": 78.0
+        }
+      },
+      "8": {
+        "30": {
+          "uarmeret": 70.0,
+          "1_lag": 44.0,
+          "2_lag": null
+        },
+        "45": {
+          "uarmeret": 80.0,
+          "1_lag": 53.3,
+          "2_lag": null
+        },
+        "60": {
+          "uarmeret": 90.0,
+          "1_lag": 64.0,
+          "2_lag": 54.0
+        },
+        "80": {
+          "uarmeret": 100.0,
+          "1_lag": 68.3,
+          "2_lag": 60.0
+        },
+        "120": {
+          "uarmeret": 110.0,
+          "1_lag": 80.0,
+          "2_lag": 70.0
+        },
+        "150": {
+          "uarmeret": 120.0,
+          "1_lag": 82.0,
+          "2_lag": 74.0
+        }
+      },
+      "9": {
+        "30": {
+          "uarmeret": 63.3,
+          "1_lag": 40.0,
+          "2_lag": null
+        },
+        "45": {
+          "uarmeret": 75.0,
+          "1_lag": 50.0,
+          "2_lag": null
+        },
+        "60": {
+          "uarmeret": 85.0,
+          "1_lag": 60.0,
+          "2_lag": 50.0
+        },
+        "80": {
+          "uarmeret": 95.0,
+          "1_lag": 65.0,
+          "2_lag": null
+        },
+        "120": {
+          "uarmeret": 105.0,
+          "1_lag": 73.3,
+          "2_lag": 65.0
+        },
+        "150": {
+          "uarmeret": 115.0,
+          "1_lag": 78.6,
+          "2_lag": 70.0
+        }
+      },
+      "10": {
+        "30": {
+          "uarmeret": 58.0,
+          "1_lag": 36.0,
+          "2_lag": null
+        },
+        "45": {
+          "uarmeret": 70.0,
+          "1_lag": 46.7,
+          "2_lag": null
+        },
+        "60": {
+          "uarmeret": 80.0,
+          "1_lag": 56.7,
+          "2_lag": null
+        },
+        "80": {
+          "uarmeret": 90.0,
+          "1_lag": 61.7,
+          "2_lag": null
+        },
+        "120": {
+          "uarmeret": 100.0,
+          "1_lag": 68.8,
+          "2_lag": 60.0
+        },
+        "150": {
+          "uarmeret": 110.0,
+          "1_lag": 75.7,
+          "2_lag": 66.7
+        }
+      },
+      "11": {
+        "30": {
+          "uarmeret": 54.0,
+          "1_lag": 32.0,
+          "2_lag": null
+        },
+        "45": {
+          "uarmeret": 65.0,
+          "1_lag": 43.3,
+          "2_lag": null
+        },
+        "60": {
+          "uarmeret": 75.0,
+          "1_lag": 53.3,
+          "2_lag": null
+        },
+        "80": {
+          "uarmeret": 85.0,
+          "1_lag": 58.6,
+          "2_lag": null
+        },
+        "120": {
+          "uarmeret": 95.0,
+          "1_lag": 66.3,
+          "2_lag": 57.5
+        },
+        "150": {
+          "uarmeret": 105.0,
+          "1_lag": 72.9,
+          "2_lag": 63.3
+        }
+      },
+      "12": {
+        "30": {
+          "uarmeret": 50.0,
+          "1_lag": 28.6,
+          "2_lag": null
+        },
+        "45": {
+          "uarmeret": 60.0,
+          "1_lag": 40.0,
+          "2_lag": null
+        },
+        "60": {
+          "uarmeret": 70.0,
+          "1_lag": 50.0,
+          "2_lag": null
+        },
+        "80": {
+          "uarmeret": 80.0,
+          "1_lag": 55.7,
+          "2_lag": null
+        },
+        "120": {
+          "uarmeret": 90.0,
+          "1_lag": 63.8,
+          "2_lag": 55.0
+        },
+        "150": {
+          "uarmeret": 100.0,
+          "1_lag": 70.0,
+          "2_lag": 60.0
+        }
+      },
+      "13": {
+        "30": {
+          "uarmeret": 46.0,
+          "1_lag": 25.7,
+          "2_lag": null
+        },
+        "45": {
+          "uarmeret": 56.7,
+          "1_lag": 37.5,
+          "2_lag": null
+        },
+        "60": {
+          "uarmeret": 66.7,
+          "1_lag": 47.5,
+          "2_lag": null
+        },
+        "80": {
+          "uarmeret": 76.7,
+          "1_lag": 52.9,
+          "2_lag": null
+        },
+        "120": {
+          "uarmeret": 86.7,
+          "1_lag": 61.3,
+          "2_lag": 52.5
+        },
+        "150": {
+          "uarmeret": 96.7,
+          "1_lag": 68.0,
+          "2_lag": 58.3
+        }
+      },
+      "14": {
+        "30": {
+          "uarmeret": 42.0,
+          "1_lag": 22.9,
+          "2_lag": null
+        },
+        "45": {
+          "uarmeret": 53.3,
+          "1_lag": 35.0,
+          "2_lag": null
+        },
+        "60": {
+          "uarmeret": 63.3,
+          "1_lag": 45.0,
+          "2_lag": null
+        },
+        "80": {
+          "uarmeret": 73.3,
+          "1_lag": 50.0,
+          "2_lag": null
+        },
+        "120": {
+          "uarmeret": 83.3,
+          "1_lag": 59.1,
+          "2_lag": 50.0
+        },
+        "150": {
+          "uarmeret": 93.3,
+          "1_lag": 66.0,
+          "2_lag": 56.7
+        }
+      },
+      "15": {
+        "30": {
+          "uarmeret": 38.6,
+          "1_lag": 20.0,
+          "2_lag": null
+        },
+        "45": {
+          "uarmeret": 50.0,
+          "1_lag": 32.5,
+          "2_lag": null
+        },
+        "60": {
+          "uarmeret": 60.0,
+          "1_lag": 42.5,
+          "2_lag": null
+        },
+        "80": {
+          "uarmeret": 70.0,
+          "1_lag": 48.3,
+          "2_lag": null
+        },
+        "120": {
+          "uarmeret": 80.0,
+          "1_lag": 57.3,
+          "2_lag": null
+        },
+        "150": {
+          "uarmeret": 90.0,
+          "1_lag": 64.0,
+          "2_lag": 55.0
+        }
+      },
+      "16": {
+        "30": {
+          "uarmeret": 35.7,
+          "1_lag": null,
+          "2_lag": null
+        },
+        "45": {
+          "uarmeret": 47.1,
+          "1_lag": 30.0,
+          "2_lag": null
+        },
+        "60": {
+          "uarmeret": 57.1,
+          "1_lag": 40.0,
+          "2_lag": null
+        },
+        "80": {
+          "uarmeret": 67.1,
+          "1_lag": 46.7,
+          "2_lag": null
+        },
+        "120": {
+          "uarmeret": 77.1,
+          "1_lag": 55.5,
+          "2_lag": null
+        },
+        "150": {
+          "uarmeret": 87.1,
+          "1_lag": 62.0,
+          "2_lag": 53.3
+        }
+      },
+      "17": {
+        "30": {
+          "uarmeret": 32.9,
+          "1_lag": null,
+          "2_lag": null
+        },
+        "45": {
+          "uarmeret": 44.3,
+          "1_lag": 27.5,
+          "2_lag": null
+        },
+        "60": {
+          "uarmeret": 54.3,
+          "1_lag": 37.5,
+          "2_lag": null
+        },
+        "80": {
+          "uarmeret": 64.3,
+          "1_lag": 45.0,
+          "2_lag": null
+        },
+        "120": {
+          "uarmeret": 74.3,
+          "1_lag": 53.6,
+          "2_lag": null
+        },
+        "150": {
+          "uarmeret": 84.3,
+          "1_lag": 60.0,
+          "2_lag": 51.7
+        }
+      },
+      "18": {
+        "30": {
+          "uarmeret": 30.0,
+          "1_lag": null,
+          "2_lag": null
+        },
+        "45": {
+          "uarmeret": 41.4,
+          "1_lag": 25.0,
+          "2_lag": null
+        },
+        "60": {
+          "uarmeret": 51.4,
+          "1_lag": 35.0,
+          "2_lag": null
+        },
+        "80": {
+          "uarmeret": 61.4,
+          "1_lag": 43.3,
+          "2_lag": null
+        },
+        "120": {
+          "uarmeret": 71.4,
+          "1_lag": 51.8,
+          "2_lag": null
+        },
+        "150": {
+          "uarmeret": 81.4,
+          "1_lag": 58.6,
+          "2_lag": 50.0
+        }
+      },
+      "19": {
+        "30": {
+          "uarmeret": 26.7,
+          "1_lag": null,
+          "2_lag": null
+        },
+        "45": {
+          "uarmeret": 38.9,
+          "1_lag": 22.5,
+          "2_lag": null
+        },
+        "60": {
+          "uarmeret": 48.9,
+          "1_lag": 32.5,
+          "2_lag": null
+        },
+        "80": {
+          "uarmeret": 58.9,
+          "1_lag": 41.7,
+          "2_lag": null
+        },
+        "120": {
+          "uarmeret": 68.9,
+          "1_lag": 50.0,
+          "2_lag": null
+        },
+        "150": {
+          "uarmeret": 78.9,
+          "1_lag": 57.1,
+          "2_lag": null
+        }
+      },
+      "20": {
+        "30": {
+          "uarmeret": 23.3,
+          "1_lag": null,
+          "2_lag": null
+        },
+        "45": {
+          "uarmeret": 36.7,
+          "1_lag": 20.0,
+          "2_lag": null
+        },
+        "60": {
+          "uarmeret": 46.7,
+          "1_lag": 30.0,
+          "2_lag": null
+        },
+        "80": {
+          "uarmeret": 56.7,
+          "1_lag": 40.0,
+          "2_lag": null
+        },
+        "120": {
+          "uarmeret": 66.7,
+          "1_lag": 48.3,
+          "2_lag": null
+        },
+        "150": {
+          "uarmeret": 76.7,
+          "1_lag": 55.7,
+          "2_lag": null
+        }
+      },
+      "21": {
+        "30": {
+          "uarmeret": 20.0,
+          "1_lag": null,
+          "2_lag": null
+        },
+        "45": {
+          "uarmeret": 34.4,
+          "1_lag": null,
+          "2_lag": null
+        },
+        "60": {
+          "uarmeret": 44.4,
+          "1_lag": 28.6,
+          "2_lag": null
+        },
+        "80": {
+          "uarmeret": 54.4,
+          "1_lag": 38.3,
+          "2_lag": null
+        },
+        "120": {
+          "uarmeret": 64.4,
+          "1_lag": 46.7,
+          "2_lag": null
+        },
+        "150": {
+          "uarmeret": 74.4,
+          "1_lag": 54.3,
+          "2_lag": null
+        }
+      },
+      "22": {
+        "30": {
+          "uarmeret": 17.5,
+          "1_lag": null,
+          "2_lag": null
+        },
+        "45": {
+          "uarmeret": 32.2,
+          "1_lag": null,
+          "2_lag": null
+        },
+        "60": {
+          "uarmeret": 42.2,
+          "1_lag": 27.1,
+          "2_lag": null
+        },
+        "80": {
+          "uarmeret": 52.2,
+          "1_lag": 36.7,
+          "2_lag": null
+        },
+        "120": {
+          "uarmeret": 62.2,
+          "1_lag": 45.0,
+          "2_lag": null
+        },
+        "150": {
+          "uarmeret": 72.2,
+          "1_lag": 52.9,
+          "2_lag": null
+        }
+      },
+      "23": {
+        "30": {
+          "uarmeret": 15.0,
+          "1_lag": null,
+          "2_lag": null
+        },
+        "45": {
+          "uarmeret": 30.0,
+          "1_lag": null,
+          "2_lag": null
+        },
+        "60": {
+          "uarmeret": 40.0,
+          "1_lag": 25.7,
+          "2_lag": null
+        },
+        "80": {
+          "uarmeret": 50.0,
+          "1_lag": 35.0,
+          "2_lag": null
+        },
+        "120": {
+          "uarmeret": 60.0,
+          "1_lag": 43.3,
+          "2_lag": null
+        },
+        "150": {
+          "uarmeret": 70.0,
+          "1_lag": 51.4,
+          "2_lag": null
+        }
+      },
+      "24": {
+        "30": {
+          "uarmeret": 12.5,
+          "1_lag": null,
+          "2_lag": null
+        },
+        "45": {
+          "uarmeret": 28.3,
+          "1_lag": null,
+          "2_lag": null
+        },
+        "60": {
+          "uarmeret": 38.3,
+          "1_lag": 24.3,
+          "2_lag": null
+        },
+        "80": {
+          "uarmeret": 48.3,
+          "1_lag": 33.3,
+          "2_lag": null
+        },
+        "120": {
+          "uarmeret": 58.3,
+          "1_lag": 41.7,
+          "2_lag": null
+        },
+        "150": {
+          "uarmeret": 68.3,
+          "1_lag": 50.0,
+          "2_lag": null
+        }
+      },
+      "25": {
+        "30": {
+          "uarmeret": 10.0,
+          "1_lag": null,
+          "2_lag": null
+        },
+        "45": {
+          "uarmeret": 26.7,
+          "1_lag": null,
+          "2_lag": null
+        },
+        "60": {
+          "uarmeret": 36.7,
+          "1_lag": 22.9,
+          "2_lag": null
+        },
+        "80": {
+          "uarmeret": 46.7,
+          "1_lag": 31.7,
+          "2_lag": null
+        },
+        "120": {
+          "uarmeret": 56.7,
+          "1_lag": 40.0,
+          "2_lag": null
+        },
+        "150": {
+          "uarmeret": 66.7,
+          "1_lag": 48.8,
+          "2_lag": null
+        }
+      },
+      "26": {
+        "30": {
+          "uarmeret": 8.0,
+          "1_lag": null,
+          "2_lag": null
+        },
+        "45": {
+          "uarmeret": 25.0,
+          "1_lag": null,
+          "2_lag": null
+        },
+        "60": {
+          "uarmeret": 35.0,
+          "1_lag": 21.4,
+          "2_lag": null
+        },
+        "80": {
+          "uarmeret": 45.0,
+          "1_lag": 30.0,
+          "2_lag": null
+        },
+        "120": {
+          "uarmeret": 55.0,
+          "1_lag": 38.8,
+          "2_lag": null
+        },
+        "150": {
+          "uarmeret": 65.0,
+          "1_lag": 47.5,
+          "2_lag": null
+        }
+      },
+      "27": {
+        "30": {
+          "uarmeret": 6.0,
+          "1_lag": null,
+          "2_lag": null
+        },
+        "45": {
+          "uarmeret": 23.3,
+          "1_lag": null,
+          "2_lag": null
+        },
+        "60": {
+          "uarmeret": 33.3,
+          "1_lag": 20.0,
+          "2_lag": null
+        },
+        "80": {
+          "uarmeret": 43.3,
+          "1_lag": 28.6,
+          "2_lag": null
+        },
+        "120": {
+          "uarmeret": 53.3,
+          "1_lag": 37.5,
+          "2_lag": null
+        },
+        "150": {
+          "uarmeret": 63.3,
+          "1_lag": 46.3,
+          "2_lag": null
+        }
+      },
+      "28": {
+        "30": {
+          "uarmeret": 4.0,
+          "1_lag": null,
+          "2_lag": null
+        },
+        "45": {
+          "uarmeret": 21.7,
+          "1_lag": null,
+          "2_lag": null
+        },
+        "60": {
+          "uarmeret": 31.7,
+          "1_lag": null,
+          "2_lag": null
+        },
+        "80": {
+          "uarmeret": 41.7,
+          "1_lag": 27.1,
+          "2_lag": null
+        },
+        "120": {
+          "uarmeret": 51.7,
+          "1_lag": 36.3,
+          "2_lag": null
+        },
+        "150": {
+          "uarmeret": 61.7,
+          "1_lag": 45.0,
+          "2_lag": null
+        }
+      },
+      "29": {
+        "30": {
+          "uarmeret": 2.0,
+          "1_lag": null,
+          "2_lag": null
+        },
+        "45": {
+          "uarmeret": 20.0,
+          "1_lag": null,
+          "2_lag": null
+        },
+        "60": {
+          "uarmeret": 30.0,
+          "1_lag": null,
+          "2_lag": null
+        },
+        "80": {
+          "uarmeret": 40.0,
+          "1_lag": 25.7,
+          "2_lag": null
+        },
+        "120": {
+          "uarmeret": 50.0,
+          "1_lag": 35.0,
+          "2_lag": null
+        },
+        "150": {
+          "uarmeret": 60.0,
+          "1_lag": 43.8,
+          "2_lag": null
+        }
+      },
+      "30": {
+        "30": {
+          "uarmeret": 0.0,
+          "1_lag": null,
+          "2_lag": null
+        },
+        "45": {
+          "uarmeret": 18.6,
+          "1_lag": null,
+          "2_lag": null
+        },
+        "60": {
+          "uarmeret": 28.6,
+          "1_lag": null,
+          "2_lag": null
+        },
+        "80": {
+          "uarmeret": 38.6,
+          "1_lag": 24.3,
+          "2_lag": null
+        },
+        "120": {
+          "uarmeret": 48.6,
+          "1_lag": 33.8,
+          "2_lag": null
+        },
+        "150": {
+          "uarmeret": 58.6,
+          "1_lag": 42.5,
+          "2_lag": null
+        }
+      },
+      "31": {
+        "45": {
+          "uarmeret": 17.1,
+          "1_lag": null,
+          "2_lag": null
+        },
+        "60": {
+          "uarmeret": 27.1,
+          "1_lag": null,
+          "2_lag": null
+        },
+        "80": {
+          "uarmeret": 37.1,
+          "1_lag": 22.9,
+          "2_lag": null
+        },
+        "120": {
+          "uarmeret": 47.1,
+          "1_lag": 32.5,
+          "2_lag": null
+        },
+        "150": {
+          "uarmeret": 57.1,
+          "1_lag": 41.3,
+          "2_lag": null
+        },
+        "30": {
+          "uarmeret": null,
+          "1_lag": null,
+          "2_lag": null
+        }
+      },
+      "32": {
+        "45": {
+          "uarmeret": 15.7,
+          "1_lag": null,
+          "2_lag": null
+        },
+        "60": {
+          "uarmeret": 25.7,
+          "1_lag": null,
+          "2_lag": null
+        },
+        "80": {
+          "uarmeret": 35.7,
+          "1_lag": 21.4,
+          "2_lag": null
+        },
+        "120": {
+          "uarmeret": 45.7,
+          "1_lag": 31.3,
+          "2_lag": null
+        },
+        "150": {
+          "uarmeret": 55.7,
+          "1_lag": 40.0,
+          "2_lag": null
+        },
+        "30": {
+          "uarmeret": null,
+          "1_lag": null,
+          "2_lag": null
+        }
+      },
+      "33": {
+        "45": {
+          "uarmeret": 14.3,
+          "1_lag": null,
+          "2_lag": null
+        },
+        "60": {
+          "uarmeret": 24.3,
+          "1_lag": null,
+          "2_lag": null
+        },
+        "80": {
+          "uarmeret": 34.3,
+          "1_lag": 20.0,
+          "2_lag": null
+        },
+        "120": {
+          "uarmeret": 44.3,
+          "1_lag": 30.0,
+          "2_lag": null
+        },
+        "150": {
+          "uarmeret": 54.3,
+          "1_lag": null,
+          "2_lag": null
+        },
+        "30": {
+          "uarmeret": null,
+          "1_lag": null,
+          "2_lag": null
+        }
+      },
+      "34": {
+        "45": {
+          "uarmeret": 12.9,
+          "1_lag": null,
+          "2_lag": null
+        },
+        "60": {
+          "uarmeret": 22.9,
+          "1_lag": null,
+          "2_lag": null
+        },
+        "80": {
+          "uarmeret": 32.9,
+          "1_lag": null,
+          "2_lag": null
+        },
+        "120": {
+          "uarmeret": 42.9,
+          "1_lag": null,
+          "2_lag": null
+        },
+        "150": {
+          "uarmeret": 52.9,
+          "1_lag": null,
+          "2_lag": null
+        },
+        "30": {
+          "uarmeret": null,
+          "1_lag": null,
+          "2_lag": null
+        }
+      },
+      "35": {
+        "45": {
+          "uarmeret": 11.4,
+          "1_lag": null,
+          "2_lag": null
+        },
+        "60": {
+          "uarmeret": 21.4,
+          "1_lag": null,
+          "2_lag": null
+        },
+        "80": {
+          "uarmeret": 31.4,
+          "1_lag": null,
+          "2_lag": null
+        },
+        "120": {
+          "uarmeret": 41.4,
+          "1_lag": null,
+          "2_lag": null
+        },
+        "150": {
+          "uarmeret": 51.4,
+          "1_lag": null,
+          "2_lag": null
+        },
+        "30": {
+          "uarmeret": null,
+          "1_lag": null,
+          "2_lag": null
+        }
+      },
+      "36": {
+        "45": {
+          "uarmeret": 10.0,
+          "1_lag": null,
+          "2_lag": null
+        },
+        "60": {
+          "uarmeret": 20.0,
+          "1_lag": null,
+          "2_lag": null
+        },
+        "80": {
+          "uarmeret": 30.0,
+          "1_lag": null,
+          "2_lag": null
+        },
+        "120": {
+          "uarmeret": 40.0,
+          "1_lag": null,
+          "2_lag": null
+        },
+        "150": {
+          "uarmeret": 50.0,
+          "1_lag": null,
+          "2_lag": null
+        },
+        "30": {
+          "uarmeret": null,
+          "1_lag": null,
+          "2_lag": null
+        }
+      },
+      "37": {
+        "45": {
+          "uarmeret": 8.9,
+          "1_lag": null,
+          "2_lag": null
+        },
+        "60": {
+          "uarmeret": 18.9,
+          "1_lag": null,
+          "2_lag": null
+        },
+        "80": {
+          "uarmeret": 28.9,
+          "1_lag": null,
+          "2_lag": null
+        },
+        "120": {
+          "uarmeret": 38.9,
+          "1_lag": null,
+          "2_lag": null
+        },
+        "150": {
+          "uarmeret": 48.9,
+          "1_lag": null,
+          "2_lag": null
+        },
+        "30": {
+          "uarmeret": null,
+          "1_lag": null,
+          "2_lag": null
+        }
+      },
+      "38": {
+        "45": {
+          "uarmeret": 7.8,
+          "1_lag": null,
+          "2_lag": null
+        },
+        "60": {
+          "uarmeret": 17.8,
+          "1_lag": null,
+          "2_lag": null
+        },
+        "80": {
+          "uarmeret": 27.8,
+          "1_lag": null,
+          "2_lag": null
+        },
+        "120": {
+          "uarmeret": 37.8,
+          "1_lag": null,
+          "2_lag": null
+        },
+        "150": {
+          "uarmeret": 47.8,
+          "1_lag": null,
+          "2_lag": null
+        },
+        "30": {
+          "uarmeret": null,
+          "1_lag": null,
+          "2_lag": null
+        }
+      },
+      "39": {
+        "45": {
+          "uarmeret": 6.7,
+          "1_lag": null,
+          "2_lag": null
+        },
+        "60": {
+          "uarmeret": 16.7,
+          "1_lag": null,
+          "2_lag": null
+        },
+        "80": {
+          "uarmeret": 26.7,
+          "1_lag": null,
+          "2_lag": null
+        },
+        "120": {
+          "uarmeret": 36.7,
+          "1_lag": null,
+          "2_lag": null
+        },
+        "150": {
+          "uarmeret": 46.7,
+          "1_lag": null,
+          "2_lag": null
+        },
+        "30": {
+          "uarmeret": null,
+          "1_lag": null,
+          "2_lag": null
+        }
+      },
+      "40": {
+        "45": {
+          "uarmeret": 5.6,
+          "1_lag": null,
+          "2_lag": null
+        },
+        "60": {
+          "uarmeret": 15.6,
+          "1_lag": null,
+          "2_lag": null
+        },
+        "80": {
+          "uarmeret": 25.6,
+          "1_lag": null,
+          "2_lag": null
+        },
+        "120": {
+          "uarmeret": 35.6,
+          "1_lag": null,
+          "2_lag": null
+        },
+        "150": {
+          "uarmeret": 45.6,
+          "1_lag": null,
+          "2_lag": null
+        },
+        "30": {
+          "uarmeret": null,
+          "1_lag": null,
+          "2_lag": null
+        }
+      },
+      "41": {
+        "45": {
+          "uarmeret": 4.4,
+          "1_lag": null,
+          "2_lag": null
+        },
+        "60": {
+          "uarmeret": 14.4,
+          "1_lag": null,
+          "2_lag": null
+        },
+        "80": {
+          "uarmeret": 24.4,
+          "1_lag": null,
+          "2_lag": null
+        },
+        "120": {
+          "uarmeret": 34.4,
+          "1_lag": null,
+          "2_lag": null
+        },
+        "150": {
+          "uarmeret": 44.4,
+          "1_lag": null,
+          "2_lag": null
+        },
+        "30": {
+          "uarmeret": null,
+          "1_lag": null,
+          "2_lag": null
+        }
+      },
+      "42": {
+        "45": {
+          "uarmeret": 3.3,
+          "1_lag": null,
+          "2_lag": null
+        },
+        "60": {
+          "uarmeret": 13.3,
+          "1_lag": null,
+          "2_lag": null
+        },
+        "80": {
+          "uarmeret": 23.3,
+          "1_lag": null,
+          "2_lag": null
+        },
+        "120": {
+          "uarmeret": 33.3,
+          "1_lag": null,
+          "2_lag": null
+        },
+        "150": {
+          "uarmeret": 43.3,
+          "1_lag": null,
+          "2_lag": null
+        },
+        "30": {
+          "uarmeret": null,
+          "1_lag": null,
+          "2_lag": null
+        }
+      },
+      "43": {
+        "45": {
+          "uarmeret": 2.2,
+          "1_lag": null,
+          "2_lag": null
+        },
+        "60": {
+          "uarmeret": 12.2,
+          "1_lag": null,
+          "2_lag": null
+        },
+        "80": {
+          "uarmeret": 22.2,
+          "1_lag": null,
+          "2_lag": null
+        },
+        "120": {
+          "uarmeret": 32.2,
+          "1_lag": null,
+          "2_lag": null
+        },
+        "150": {
+          "uarmeret": 42.2,
+          "1_lag": null,
+          "2_lag": null
+        },
+        "30": {
+          "uarmeret": null,
+          "1_lag": null,
+          "2_lag": null
+        }
+      },
+      "44": {
+        "45": {
+          "uarmeret": 1.1,
+          "1_lag": null,
+          "2_lag": null
+        },
+        "60": {
+          "uarmeret": 11.1,
+          "1_lag": null,
+          "2_lag": null
+        },
+        "80": {
+          "uarmeret": 21.1,
+          "1_lag": null,
+          "2_lag": null
+        },
+        "120": {
+          "uarmeret": 31.1,
+          "1_lag": null,
+          "2_lag": null
+        },
+        "150": {
+          "uarmeret": 41.1,
+          "1_lag": null,
+          "2_lag": null
+        },
+        "30": {
+          "uarmeret": null,
+          "1_lag": null,
+          "2_lag": null
+        }
+      },
+      "45": {
+        "45": {
+          "uarmeret": 0.0,
+          "1_lag": null,
+          "2_lag": null
+        },
+        "60": {
+          "uarmeret": 10.0,
+          "1_lag": null,
+          "2_lag": null
+        },
+        "80": {
+          "uarmeret": 20.0,
+          "1_lag": null,
+          "2_lag": null
+        },
+        "120": {
+          "uarmeret": 30.0,
+          "1_lag": null,
+          "2_lag": null
+        },
+        "150": {
+          "uarmeret": 40.0,
+          "1_lag": null,
+          "2_lag": null
+        },
+        "30": {
+          "uarmeret": null,
+          "1_lag": null,
+          "2_lag": null
+        }
+      }
+    },
+    "DESIGNDIAGRAM_RAW_TABLES": [
+      {
+        "diagram_nr": 1,
+        "eo": 30,
+        "klasse": 1,
+        "image_name": "Diagram 1.png",
+        "rows": [
+          {
+            "eu": 1,
+            "t_uarmeret_cm": null,
+            "t_1_lag_cm": 86.7,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 2,
+            "t_uarmeret_cm": null,
+            "t_1_lag_cm": 80.0,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 3,
+            "t_uarmeret_cm": 110.0,
+            "t_1_lag_cm": 70.0,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 4,
+            "t_uarmeret_cm": 100.0,
+            "t_1_lag_cm": 65.0,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 5,
+            "t_uarmeret_cm": 90.0,
+            "t_1_lag_cm": 60.0,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 6,
+            "t_uarmeret_cm": 80.0,
+            "t_1_lag_cm": 53.3,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 7,
+            "t_uarmeret_cm": 75.0,
+            "t_1_lag_cm": 48.0,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 8,
+            "t_uarmeret_cm": 70.0,
+            "t_1_lag_cm": 44.0,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 9,
+            "t_uarmeret_cm": 63.3,
+            "t_1_lag_cm": 40.0,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 10,
+            "t_uarmeret_cm": 58.0,
+            "t_1_lag_cm": 36.0,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 11,
+            "t_uarmeret_cm": 54.0,
+            "t_1_lag_cm": 32.0,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 12,
+            "t_uarmeret_cm": 50.0,
+            "t_1_lag_cm": 28.6,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 13,
+            "t_uarmeret_cm": 46.0,
+            "t_1_lag_cm": 25.7,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 14,
+            "t_uarmeret_cm": 42.0,
+            "t_1_lag_cm": 22.9,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 15,
+            "t_uarmeret_cm": 38.6,
+            "t_1_lag_cm": 20.0,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 16,
+            "t_uarmeret_cm": 35.7,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 17,
+            "t_uarmeret_cm": 32.9,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 18,
+            "t_uarmeret_cm": 30.0,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 19,
+            "t_uarmeret_cm": 26.7,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 20,
+            "t_uarmeret_cm": 23.3,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 21,
+            "t_uarmeret_cm": 20.0,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 22,
+            "t_uarmeret_cm": 17.5,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 23,
+            "t_uarmeret_cm": 15.0,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 24,
+            "t_uarmeret_cm": 12.5,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 25,
+            "t_uarmeret_cm": 10.0,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 26,
+            "t_uarmeret_cm": 8.0,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 27,
+            "t_uarmeret_cm": 6.0,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 28,
+            "t_uarmeret_cm": 4.0,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 29,
+            "t_uarmeret_cm": 2.0,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 30,
+            "t_uarmeret_cm": 0.0,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          }
+        ]
+      },
+      {
+        "diagram_nr": 2,
+        "eo": 45,
+        "klasse": 2,
+        "image_name": "Diagram 2.png",
+        "rows": [
+          {
+            "eu": 1,
+            "t_uarmeret_cm": null,
+            "t_1_lag_cm": 100.0,
+            "t_2_lag_cm": 90.0
+          },
+          {
+            "eu": 2,
+            "t_uarmeret_cm": null,
+            "t_1_lag_cm": 90.0,
+            "t_2_lag_cm": 80.0
+          },
+          {
+            "eu": 3,
+            "t_uarmeret_cm": 120.0,
+            "t_1_lag_cm": 80.0,
+            "t_2_lag_cm": 70.0
+          },
+          {
+            "eu": 4,
+            "t_uarmeret_cm": 106.7,
+            "t_1_lag_cm": 73.3,
+            "t_2_lag_cm": 63.3
+          },
+          {
+            "eu": 5,
+            "t_uarmeret_cm": 100.0,
+            "t_1_lag_cm": 66.7,
+            "t_2_lag_cm": 57.5
+          },
+          {
+            "eu": 6,
+            "t_uarmeret_cm": 90.0,
+            "t_1_lag_cm": 60.0,
+            "t_2_lag_cm": 52.5
+          },
+          {
+            "eu": 7,
+            "t_uarmeret_cm": 85.0,
+            "t_1_lag_cm": 56.7,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 8,
+            "t_uarmeret_cm": 80.0,
+            "t_1_lag_cm": 53.3,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 9,
+            "t_uarmeret_cm": 75.0,
+            "t_1_lag_cm": 50.0,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 10,
+            "t_uarmeret_cm": 70.0,
+            "t_1_lag_cm": 46.7,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 11,
+            "t_uarmeret_cm": 65.0,
+            "t_1_lag_cm": 43.3,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 12,
+            "t_uarmeret_cm": 60.0,
+            "t_1_lag_cm": 40.0,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 13,
+            "t_uarmeret_cm": 56.7,
+            "t_1_lag_cm": 37.5,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 14,
+            "t_uarmeret_cm": 53.3,
+            "t_1_lag_cm": 35.0,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 15,
+            "t_uarmeret_cm": 50.0,
+            "t_1_lag_cm": 32.5,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 16,
+            "t_uarmeret_cm": 47.1,
+            "t_1_lag_cm": 30.0,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 17,
+            "t_uarmeret_cm": 44.3,
+            "t_1_lag_cm": 27.5,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 18,
+            "t_uarmeret_cm": 41.4,
+            "t_1_lag_cm": 25.0,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 19,
+            "t_uarmeret_cm": 38.9,
+            "t_1_lag_cm": 22.5,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 20,
+            "t_uarmeret_cm": 36.7,
+            "t_1_lag_cm": 20.0,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 21,
+            "t_uarmeret_cm": 34.4,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 22,
+            "t_uarmeret_cm": 32.2,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 23,
+            "t_uarmeret_cm": 30.0,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 24,
+            "t_uarmeret_cm": 28.3,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 25,
+            "t_uarmeret_cm": 26.7,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 26,
+            "t_uarmeret_cm": 25.0,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 27,
+            "t_uarmeret_cm": 23.3,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 28,
+            "t_uarmeret_cm": 21.7,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 29,
+            "t_uarmeret_cm": 20.0,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 30,
+            "t_uarmeret_cm": 18.6,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 31,
+            "t_uarmeret_cm": 17.1,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 32,
+            "t_uarmeret_cm": 15.7,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 33,
+            "t_uarmeret_cm": 14.3,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 34,
+            "t_uarmeret_cm": 12.9,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 35,
+            "t_uarmeret_cm": 11.4,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 36,
+            "t_uarmeret_cm": 10.0,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 37,
+            "t_uarmeret_cm": 8.9,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 38,
+            "t_uarmeret_cm": 7.8,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 39,
+            "t_uarmeret_cm": 6.7,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 40,
+            "t_uarmeret_cm": 5.6,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 41,
+            "t_uarmeret_cm": 4.4,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 42,
+            "t_uarmeret_cm": 3.3,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 43,
+            "t_uarmeret_cm": 2.2,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 44,
+            "t_uarmeret_cm": 1.1,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 45,
+            "t_uarmeret_cm": 0.0,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          }
+        ]
+      },
+      {
+        "diagram_nr": 3,
+        "eo": 60,
+        "klasse": 3,
+        "image_name": "Diagram 3.png",
+        "rows": [
+          {
+            "eu": 1,
+            "t_uarmeret_cm": null,
+            "t_1_lag_cm": 110.0,
+            "t_2_lag_cm": 100.0
+          },
+          {
+            "eu": 2,
+            "t_uarmeret_cm": null,
+            "t_1_lag_cm": 96.7,
+            "t_2_lag_cm": 85.0
+          },
+          {
+            "eu": 3,
+            "t_uarmeret_cm": 130.0,
+            "t_1_lag_cm": 90.0,
+            "t_2_lag_cm": 77.5
+          },
+          {
+            "eu": 4,
+            "t_uarmeret_cm": 116.7,
+            "t_1_lag_cm": 83.3,
+            "t_2_lag_cm": 72.5
+          },
+          {
+            "eu": 5,
+            "t_uarmeret_cm": 110.0,
+            "t_1_lag_cm": 77.5,
+            "t_2_lag_cm": 67.5
+          },
+          {
+            "eu": 6,
+            "t_uarmeret_cm": 100.0,
+            "t_1_lag_cm": 72.5,
+            "t_2_lag_cm": 62.5
+          },
+          {
+            "eu": 7,
+            "t_uarmeret_cm": 95.0,
+            "t_1_lag_cm": 68.0,
+            "t_2_lag_cm": 58.0
+          },
+          {
+            "eu": 8,
+            "t_uarmeret_cm": 90.0,
+            "t_1_lag_cm": 64.0,
+            "t_2_lag_cm": 54.0
+          },
+          {
+            "eu": 9,
+            "t_uarmeret_cm": 85.0,
+            "t_1_lag_cm": 60.0,
+            "t_2_lag_cm": 50.0
+          },
+          {
+            "eu": 10,
+            "t_uarmeret_cm": 80.0,
+            "t_1_lag_cm": 56.7,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 11,
+            "t_uarmeret_cm": 75.0,
+            "t_1_lag_cm": 53.3,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 12,
+            "t_uarmeret_cm": 70.0,
+            "t_1_lag_cm": 50.0,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 13,
+            "t_uarmeret_cm": 66.7,
+            "t_1_lag_cm": 47.5,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 14,
+            "t_uarmeret_cm": 63.3,
+            "t_1_lag_cm": 45.0,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 15,
+            "t_uarmeret_cm": 60.0,
+            "t_1_lag_cm": 42.5,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 16,
+            "t_uarmeret_cm": 57.1,
+            "t_1_lag_cm": 40.0,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 17,
+            "t_uarmeret_cm": 54.3,
+            "t_1_lag_cm": 37.5,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 18,
+            "t_uarmeret_cm": 51.4,
+            "t_1_lag_cm": 35.0,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 19,
+            "t_uarmeret_cm": 48.9,
+            "t_1_lag_cm": 32.5,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 20,
+            "t_uarmeret_cm": 46.7,
+            "t_1_lag_cm": 30.0,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 21,
+            "t_uarmeret_cm": 44.4,
+            "t_1_lag_cm": 28.6,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 22,
+            "t_uarmeret_cm": 42.2,
+            "t_1_lag_cm": 27.1,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 23,
+            "t_uarmeret_cm": 40.0,
+            "t_1_lag_cm": 25.7,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 24,
+            "t_uarmeret_cm": 38.3,
+            "t_1_lag_cm": 24.3,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 25,
+            "t_uarmeret_cm": 36.7,
+            "t_1_lag_cm": 22.9,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 26,
+            "t_uarmeret_cm": 35.0,
+            "t_1_lag_cm": 21.4,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 27,
+            "t_uarmeret_cm": 33.3,
+            "t_1_lag_cm": 20.0,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 28,
+            "t_uarmeret_cm": 31.7,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 29,
+            "t_uarmeret_cm": 30.0,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 30,
+            "t_uarmeret_cm": 28.6,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 31,
+            "t_uarmeret_cm": 27.1,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 32,
+            "t_uarmeret_cm": 25.7,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 33,
+            "t_uarmeret_cm": 24.3,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 34,
+            "t_uarmeret_cm": 22.9,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 35,
+            "t_uarmeret_cm": 21.4,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 36,
+            "t_uarmeret_cm": 20.0,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 37,
+            "t_uarmeret_cm": 18.9,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 38,
+            "t_uarmeret_cm": 17.8,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 39,
+            "t_uarmeret_cm": 16.7,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 40,
+            "t_uarmeret_cm": 15.6,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 41,
+            "t_uarmeret_cm": 14.4,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 42,
+            "t_uarmeret_cm": 13.3,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 43,
+            "t_uarmeret_cm": 12.2,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 44,
+            "t_uarmeret_cm": 11.1,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 45,
+            "t_uarmeret_cm": 10.0,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          }
+        ]
+      },
+      {
+        "diagram_nr": 4,
+        "eo": 80,
+        "klasse": 4,
+        "image_name": "Diagram 4.png",
+        "rows": [
+          {
+            "eu": 1,
+            "t_uarmeret_cm": null,
+            "t_1_lag_cm": 120.0,
+            "t_2_lag_cm": 110.0
+          },
+          {
+            "eu": 2,
+            "t_uarmeret_cm": null,
+            "t_1_lag_cm": 110.0,
+            "t_2_lag_cm": 100.0
+          },
+          {
+            "eu": 3,
+            "t_uarmeret_cm": 140.0,
+            "t_1_lag_cm": 100.0,
+            "t_2_lag_cm": 90.0
+          },
+          {
+            "eu": 4,
+            "t_uarmeret_cm": 126.7,
+            "t_1_lag_cm": 90.0,
+            "t_2_lag_cm": 80.0
+          },
+          {
+            "eu": 5,
+            "t_uarmeret_cm": 120.0,
+            "t_1_lag_cm": 83.3,
+            "t_2_lag_cm": 75.0
+          },
+          {
+            "eu": 6,
+            "t_uarmeret_cm": 110.0,
+            "t_1_lag_cm": 77.5,
+            "t_2_lag_cm": 70.0
+          },
+          {
+            "eu": 7,
+            "t_uarmeret_cm": 105.0,
+            "t_1_lag_cm": 72.5,
+            "t_2_lag_cm": 65.0
+          },
+          {
+            "eu": 8,
+            "t_uarmeret_cm": 100.0,
+            "t_1_lag_cm": 68.3,
+            "t_2_lag_cm": 60.0
+          },
+          {
+            "eu": 9,
+            "t_uarmeret_cm": 95.0,
+            "t_1_lag_cm": 65.0,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 10,
+            "t_uarmeret_cm": 90.0,
+            "t_1_lag_cm": 61.7,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 11,
+            "t_uarmeret_cm": 85.0,
+            "t_1_lag_cm": 58.6,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 12,
+            "t_uarmeret_cm": 80.0,
+            "t_1_lag_cm": 55.7,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 13,
+            "t_uarmeret_cm": 76.7,
+            "t_1_lag_cm": 52.9,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 14,
+            "t_uarmeret_cm": 73.3,
+            "t_1_lag_cm": 50.0,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 15,
+            "t_uarmeret_cm": 70.0,
+            "t_1_lag_cm": 48.3,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 16,
+            "t_uarmeret_cm": 67.1,
+            "t_1_lag_cm": 46.7,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 17,
+            "t_uarmeret_cm": 64.3,
+            "t_1_lag_cm": 45.0,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 18,
+            "t_uarmeret_cm": 61.4,
+            "t_1_lag_cm": 43.3,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 19,
+            "t_uarmeret_cm": 58.9,
+            "t_1_lag_cm": 41.7,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 20,
+            "t_uarmeret_cm": 56.7,
+            "t_1_lag_cm": 40.0,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 21,
+            "t_uarmeret_cm": 54.4,
+            "t_1_lag_cm": 38.3,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 22,
+            "t_uarmeret_cm": 52.2,
+            "t_1_lag_cm": 36.7,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 23,
+            "t_uarmeret_cm": 50.0,
+            "t_1_lag_cm": 35.0,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 24,
+            "t_uarmeret_cm": 48.3,
+            "t_1_lag_cm": 33.3,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 25,
+            "t_uarmeret_cm": 46.7,
+            "t_1_lag_cm": 31.7,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 26,
+            "t_uarmeret_cm": 45.0,
+            "t_1_lag_cm": 30.0,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 27,
+            "t_uarmeret_cm": 43.3,
+            "t_1_lag_cm": 28.6,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 28,
+            "t_uarmeret_cm": 41.7,
+            "t_1_lag_cm": 27.1,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 29,
+            "t_uarmeret_cm": 40.0,
+            "t_1_lag_cm": 25.7,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 30,
+            "t_uarmeret_cm": 38.6,
+            "t_1_lag_cm": 24.3,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 31,
+            "t_uarmeret_cm": 37.1,
+            "t_1_lag_cm": 22.9,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 32,
+            "t_uarmeret_cm": 35.7,
+            "t_1_lag_cm": 21.4,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 33,
+            "t_uarmeret_cm": 34.3,
+            "t_1_lag_cm": 20.0,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 34,
+            "t_uarmeret_cm": 32.9,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 35,
+            "t_uarmeret_cm": 31.4,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 36,
+            "t_uarmeret_cm": 30.0,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 37,
+            "t_uarmeret_cm": 28.9,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 38,
+            "t_uarmeret_cm": 27.8,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 39,
+            "t_uarmeret_cm": 26.7,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 40,
+            "t_uarmeret_cm": 25.6,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 41,
+            "t_uarmeret_cm": 24.4,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 42,
+            "t_uarmeret_cm": 23.3,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 43,
+            "t_uarmeret_cm": 22.2,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 44,
+            "t_uarmeret_cm": 21.1,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 45,
+            "t_uarmeret_cm": 20.0,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          }
+        ]
+      },
+      {
+        "diagram_nr": 5,
+        "eo": 120,
+        "klasse": 5,
+        "image_name": "Diagram 5.png",
+        "rows": [
+          {
+            "eu": 1,
+            "t_uarmeret_cm": null,
+            "t_1_lag_cm": 130.0,
+            "t_2_lag_cm": 120.0
+          },
+          {
+            "eu": 2,
+            "t_uarmeret_cm": null,
+            "t_1_lag_cm": 120.0,
+            "t_2_lag_cm": 110.0
+          },
+          {
+            "eu": 3,
+            "t_uarmeret_cm": 150.0,
+            "t_1_lag_cm": 107.5,
+            "t_2_lag_cm": 100.0
+          },
+          {
+            "eu": 4,
+            "t_uarmeret_cm": 136.7,
+            "t_1_lag_cm": 102.5,
+            "t_2_lag_cm": 93.3
+          },
+          {
+            "eu": 5,
+            "t_uarmeret_cm": 130.0,
+            "t_1_lag_cm": 96.7,
+            "t_2_lag_cm": 86.7
+          },
+          {
+            "eu": 6,
+            "t_uarmeret_cm": 120.0,
+            "t_1_lag_cm": 90.0,
+            "t_2_lag_cm": 80.0
+          },
+          {
+            "eu": 7,
+            "t_uarmeret_cm": 115.0,
+            "t_1_lag_cm": 85.0,
+            "t_2_lag_cm": 75.0
+          },
+          {
+            "eu": 8,
+            "t_uarmeret_cm": 110.0,
+            "t_1_lag_cm": 80.0,
+            "t_2_lag_cm": 70.0
+          },
+          {
+            "eu": 9,
+            "t_uarmeret_cm": 105.0,
+            "t_1_lag_cm": 73.3,
+            "t_2_lag_cm": 65.0
+          },
+          {
+            "eu": 10,
+            "t_uarmeret_cm": 100.0,
+            "t_1_lag_cm": 68.8,
+            "t_2_lag_cm": 60.0
+          },
+          {
+            "eu": 11,
+            "t_uarmeret_cm": 95.0,
+            "t_1_lag_cm": 66.3,
+            "t_2_lag_cm": 57.5
+          },
+          {
+            "eu": 12,
+            "t_uarmeret_cm": 90.0,
+            "t_1_lag_cm": 63.8,
+            "t_2_lag_cm": 55.0
+          },
+          {
+            "eu": 13,
+            "t_uarmeret_cm": 86.7,
+            "t_1_lag_cm": 61.3,
+            "t_2_lag_cm": 52.5
+          },
+          {
+            "eu": 14,
+            "t_uarmeret_cm": 83.3,
+            "t_1_lag_cm": 59.1,
+            "t_2_lag_cm": 50.0
+          },
+          {
+            "eu": 15,
+            "t_uarmeret_cm": 80.0,
+            "t_1_lag_cm": 57.3,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 16,
+            "t_uarmeret_cm": 77.1,
+            "t_1_lag_cm": 55.5,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 17,
+            "t_uarmeret_cm": 74.3,
+            "t_1_lag_cm": 53.6,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 18,
+            "t_uarmeret_cm": 71.4,
+            "t_1_lag_cm": 51.8,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 19,
+            "t_uarmeret_cm": 68.9,
+            "t_1_lag_cm": 50.0,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 20,
+            "t_uarmeret_cm": 66.7,
+            "t_1_lag_cm": 48.3,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 21,
+            "t_uarmeret_cm": 64.4,
+            "t_1_lag_cm": 46.7,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 22,
+            "t_uarmeret_cm": 62.2,
+            "t_1_lag_cm": 45.0,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 23,
+            "t_uarmeret_cm": 60.0,
+            "t_1_lag_cm": 43.3,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 24,
+            "t_uarmeret_cm": 58.3,
+            "t_1_lag_cm": 41.7,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 25,
+            "t_uarmeret_cm": 56.7,
+            "t_1_lag_cm": 40.0,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 26,
+            "t_uarmeret_cm": 55.0,
+            "t_1_lag_cm": 38.8,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 27,
+            "t_uarmeret_cm": 53.3,
+            "t_1_lag_cm": 37.5,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 28,
+            "t_uarmeret_cm": 51.7,
+            "t_1_lag_cm": 36.3,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 29,
+            "t_uarmeret_cm": 50.0,
+            "t_1_lag_cm": 35.0,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 30,
+            "t_uarmeret_cm": 48.6,
+            "t_1_lag_cm": 33.8,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 31,
+            "t_uarmeret_cm": 47.1,
+            "t_1_lag_cm": 32.5,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 32,
+            "t_uarmeret_cm": 45.7,
+            "t_1_lag_cm": 31.3,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 33,
+            "t_uarmeret_cm": 44.3,
+            "t_1_lag_cm": 30.0,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 34,
+            "t_uarmeret_cm": 42.9,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 35,
+            "t_uarmeret_cm": 41.4,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 36,
+            "t_uarmeret_cm": 40.0,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 37,
+            "t_uarmeret_cm": 38.9,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 38,
+            "t_uarmeret_cm": 37.8,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 39,
+            "t_uarmeret_cm": 36.7,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 40,
+            "t_uarmeret_cm": 35.6,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 41,
+            "t_uarmeret_cm": 34.4,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 42,
+            "t_uarmeret_cm": 33.3,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 43,
+            "t_uarmeret_cm": 32.2,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 44,
+            "t_uarmeret_cm": 31.1,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 45,
+            "t_uarmeret_cm": 30.0,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          }
+        ]
+      },
+      {
+        "diagram_nr": 6,
+        "eo": 150,
+        "klasse": 6,
+        "image_name": "Diagram 6.png",
+        "rows": [
+          {
+            "eu": 1,
+            "t_uarmeret_cm": null,
+            "t_1_lag_cm": 140.0,
+            "t_2_lag_cm": 125.0
+          },
+          {
+            "eu": 2,
+            "t_uarmeret_cm": null,
+            "t_1_lag_cm": 125.0,
+            "t_2_lag_cm": 115.0
+          },
+          {
+            "eu": 3,
+            "t_uarmeret_cm": 160.0,
+            "t_1_lag_cm": 115.0,
+            "t_2_lag_cm": 100.0
+          },
+          {
+            "eu": 4,
+            "t_uarmeret_cm": 146.7,
+            "t_1_lag_cm": 105.0,
+            "t_2_lag_cm": 93.3
+          },
+          {
+            "eu": 5,
+            "t_uarmeret_cm": 140.0,
+            "t_1_lag_cm": 96.7,
+            "t_2_lag_cm": 87.5
+          },
+          {
+            "eu": 6,
+            "t_uarmeret_cm": 130.0,
+            "t_1_lag_cm": 90.0,
+            "t_2_lag_cm": 82.5
+          },
+          {
+            "eu": 7,
+            "t_uarmeret_cm": 125.0,
+            "t_1_lag_cm": 86.0,
+            "t_2_lag_cm": 78.0
+          },
+          {
+            "eu": 8,
+            "t_uarmeret_cm": 120.0,
+            "t_1_lag_cm": 82.0,
+            "t_2_lag_cm": 74.0
+          },
+          {
+            "eu": 9,
+            "t_uarmeret_cm": 115.0,
+            "t_1_lag_cm": 78.6,
+            "t_2_lag_cm": 70.0
+          },
+          {
+            "eu": 10,
+            "t_uarmeret_cm": 110.0,
+            "t_1_lag_cm": 75.7,
+            "t_2_lag_cm": 66.7
+          },
+          {
+            "eu": 11,
+            "t_uarmeret_cm": 105.0,
+            "t_1_lag_cm": 72.9,
+            "t_2_lag_cm": 63.3
+          },
+          {
+            "eu": 12,
+            "t_uarmeret_cm": 100.0,
+            "t_1_lag_cm": 70.0,
+            "t_2_lag_cm": 60.0
+          },
+          {
+            "eu": 13,
+            "t_uarmeret_cm": 96.7,
+            "t_1_lag_cm": 68.0,
+            "t_2_lag_cm": 58.3
+          },
+          {
+            "eu": 14,
+            "t_uarmeret_cm": 93.3,
+            "t_1_lag_cm": 66.0,
+            "t_2_lag_cm": 56.7
+          },
+          {
+            "eu": 15,
+            "t_uarmeret_cm": 90.0,
+            "t_1_lag_cm": 64.0,
+            "t_2_lag_cm": 55.0
+          },
+          {
+            "eu": 16,
+            "t_uarmeret_cm": 87.1,
+            "t_1_lag_cm": 62.0,
+            "t_2_lag_cm": 53.3
+          },
+          {
+            "eu": 17,
+            "t_uarmeret_cm": 84.3,
+            "t_1_lag_cm": 60.0,
+            "t_2_lag_cm": 51.7
+          },
+          {
+            "eu": 18,
+            "t_uarmeret_cm": 81.4,
+            "t_1_lag_cm": 58.6,
+            "t_2_lag_cm": 50.0
+          },
+          {
+            "eu": 19,
+            "t_uarmeret_cm": 78.9,
+            "t_1_lag_cm": 57.1,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 20,
+            "t_uarmeret_cm": 76.7,
+            "t_1_lag_cm": 55.7,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 21,
+            "t_uarmeret_cm": 74.4,
+            "t_1_lag_cm": 54.3,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 22,
+            "t_uarmeret_cm": 72.2,
+            "t_1_lag_cm": 52.9,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 23,
+            "t_uarmeret_cm": 70.0,
+            "t_1_lag_cm": 51.4,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 24,
+            "t_uarmeret_cm": 68.3,
+            "t_1_lag_cm": 50.0,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 25,
+            "t_uarmeret_cm": 66.7,
+            "t_1_lag_cm": 48.8,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 26,
+            "t_uarmeret_cm": 65.0,
+            "t_1_lag_cm": 47.5,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 27,
+            "t_uarmeret_cm": 63.3,
+            "t_1_lag_cm": 46.3,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 28,
+            "t_uarmeret_cm": 61.7,
+            "t_1_lag_cm": 45.0,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 29,
+            "t_uarmeret_cm": 60.0,
+            "t_1_lag_cm": 43.8,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 30,
+            "t_uarmeret_cm": 58.6,
+            "t_1_lag_cm": 42.5,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 31,
+            "t_uarmeret_cm": 57.1,
+            "t_1_lag_cm": 41.3,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 32,
+            "t_uarmeret_cm": 55.7,
+            "t_1_lag_cm": 40.0,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 33,
+            "t_uarmeret_cm": 54.3,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 34,
+            "t_uarmeret_cm": 52.9,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 35,
+            "t_uarmeret_cm": 51.4,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 36,
+            "t_uarmeret_cm": 50.0,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 37,
+            "t_uarmeret_cm": 48.9,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 38,
+            "t_uarmeret_cm": 47.8,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 39,
+            "t_uarmeret_cm": 46.7,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 40,
+            "t_uarmeret_cm": 45.6,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 41,
+            "t_uarmeret_cm": 44.4,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 42,
+            "t_uarmeret_cm": 43.3,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 43,
+            "t_uarmeret_cm": 42.2,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 44,
+            "t_uarmeret_cm": 41.1,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 45,
+            "t_uarmeret_cm": 40.0,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          }
+        ]
+      }
+    ],
+    "VEJDIM_KOERSLER_STANDARD_RAEKKER": [
+      {
+        "T": "T1",
+        "eu": 3,
+        "slidlag": "AB 1000",
+        "t_slid_mm": 40.0,
+        "bindelag": "-",
+        "t_bindelag_mm": 0.0,
+        "bundet_baerelag": "-",
+        "t_bundet_mm": 0.0,
+        "E_asf_vist_MPa": 1000.0,
+        "ubundet_baerelag": "SG II",
+        "t_SG_mm": 170.0,
+        "bundsikring": "BL II U≤3",
+        "t_BL_mm": 448.0,
+        "levetid_styrende_aar": 0.0,
+        "bemaerkning": ""
+      },
+      {
+        "T": "T1",
+        "eu": 4,
+        "slidlag": "AB 1000",
+        "t_slid_mm": 40.0,
+        "bindelag": "-",
+        "t_bindelag_mm": 0.0,
+        "bundet_baerelag": "-",
+        "t_bundet_mm": 0.0,
+        "E_asf_vist_MPa": 1000.0,
+        "ubundet_baerelag": "SG II",
+        "t_SG_mm": 120.0,
+        "bundsikring": "BL II U≤3",
+        "t_BL_mm": 470.0,
+        "levetid_styrende_aar": 0.0,
+        "bemaerkning": ""
+      },
+      {
+        "T": "T1",
+        "eu": 5,
+        "slidlag": "AB 1000",
+        "t_slid_mm": 40.0,
+        "bindelag": "-",
+        "t_bindelag_mm": 0.0,
+        "bundet_baerelag": "-",
+        "t_bundet_mm": 0.0,
+        "E_asf_vist_MPa": 1000.0,
+        "ubundet_baerelag": "SG II",
+        "t_SG_mm": 110.0,
+        "bundsikring": "BL II U≤3",
+        "t_BL_mm": 450.0,
+        "levetid_styrende_aar": 20.2,
+        "bemaerkning": ""
+      },
+      {
+        "T": "T1",
+        "eu": 10,
+        "slidlag": "AB 1000",
+        "t_slid_mm": 40.0,
+        "bindelag": "-",
+        "t_bindelag_mm": 0.0,
+        "bundet_baerelag": "-",
+        "t_bundet_mm": 0.0,
+        "E_asf_vist_MPa": 1000.0,
+        "ubundet_baerelag": "SG II",
+        "t_SG_mm": 100.0,
+        "bundsikring": "BL II U≤3",
+        "t_BL_mm": 356.0,
+        "levetid_styrende_aar": 20.0,
+        "bemaerkning": "SGII begrænset til minimumstykkelse 100"
+      },
+      {
+        "T": "T1",
+        "eu": 15,
+        "slidlag": "AB 1000",
+        "t_slid_mm": 40.0,
+        "bindelag": "-",
+        "t_bindelag_mm": 0.0,
+        "bundet_baerelag": "-",
+        "t_bundet_mm": 0.0,
+        "E_asf_vist_MPa": 1000.0,
+        "ubundet_baerelag": "SG II",
+        "t_SG_mm": 100.0,
+        "bundsikring": "BL II U≤3",
+        "t_BL_mm": 292.0,
+        "levetid_styrende_aar": 20.2,
+        "bemaerkning": "SGII begrænset til minimumstykkelse 100"
+      },
+      {
+        "T": "T1",
+        "eu": 20,
+        "slidlag": "AB 1000",
+        "t_slid_mm": 40.0,
+        "bindelag": "-",
+        "t_bindelag_mm": 0.0,
+        "bundet_baerelag": "-",
+        "t_bundet_mm": 0.0,
+        "E_asf_vist_MPa": 1000.0,
+        "ubundet_baerelag": "SG II",
+        "t_SG_mm": 100.0,
+        "bundsikring": "BL II U≤3",
+        "t_BL_mm": 243.0,
+        "levetid_styrende_aar": 20.1,
+        "bemaerkning": "SGII begrænset til minimumstykkelse 100"
+      },
+      {
+        "T": "T1",
+        "eu": 30,
+        "slidlag": "AB 1000",
+        "t_slid_mm": 40.0,
+        "bindelag": "-",
+        "t_bindelag_mm": 0.0,
+        "bundet_baerelag": "-",
+        "t_bundet_mm": 0.0,
+        "E_asf_vist_MPa": 1000.0,
+        "ubundet_baerelag": "SG II",
+        "t_SG_mm": 100.0,
+        "bundsikring": "BL II U≤3",
+        "t_BL_mm": 200.0,
+        "levetid_styrende_aar": 29.6,
+        "bemaerkning": "SGII begrænset til minimumstykkelse 100 og BLII begrænset til minimumstykkelse 200"
+      },
+      {
+        "T": "T1",
+        "eu": 40,
+        "slidlag": "AB 1000",
+        "t_slid_mm": 40.0,
+        "bindelag": "-",
+        "t_bindelag_mm": 0.0,
+        "bundet_baerelag": "-",
+        "t_bundet_mm": 0.0,
+        "E_asf_vist_MPa": 1000.0,
+        "ubundet_baerelag": "SG II",
+        "t_SG_mm": 100.0,
+        "bundsikring": "BL II U≤3",
+        "t_BL_mm": 200.0,
+        "levetid_styrende_aar": 30.1,
+        "bemaerkning": "SGII begrænset til minimumstykkelse 100 og BLII begrænset til minimumstykkelse 200"
+      },
+      {
+        "T": "T2",
+        "eu": 3,
+        "slidlag": "AB 1000",
+        "t_slid_mm": 40.0,
+        "bindelag": "-",
+        "t_bindelag_mm": 0.0,
+        "bundet_baerelag": "GAB 0 2000",
+        "t_bundet_mm": 74.0,
+        "E_asf_vist_MPa": 1690.0,
+        "ubundet_baerelag": "SG II",
+        "t_SG_mm": 180.0,
+        "bundsikring": "BL II U≤3",
+        "t_BL_mm": 866.0,
+        "levetid_styrende_aar": 0.0,
+        "bemaerkning": ""
+      },
+      {
+        "T": "T2",
+        "eu": 4,
+        "slidlag": "AB 1000",
+        "t_slid_mm": 40.0,
+        "bindelag": "-",
+        "t_bindelag_mm": 0.0,
+        "bundet_baerelag": "GAB 0 2000",
+        "t_bundet_mm": 74.0,
+        "E_asf_vist_MPa": 1690.0,
+        "ubundet_baerelag": "SG II",
+        "t_SG_mm": 180.0,
+        "bundsikring": "BL II U≤3",
+        "t_BL_mm": 797.0,
+        "levetid_styrende_aar": 0.0,
+        "bemaerkning": ""
+      },
+      {
+        "T": "T2",
+        "eu": 5,
+        "slidlag": "AB 1000",
+        "t_slid_mm": 40.0,
+        "bindelag": "-",
+        "t_bindelag_mm": 0.0,
+        "bundet_baerelag": "GAB 0 2000",
+        "t_bundet_mm": 74.0,
+        "E_asf_vist_MPa": 1690.0,
+        "ubundet_baerelag": "SG II",
+        "t_SG_mm": 170.0,
+        "bundsikring": "BL II U≤3",
+        "t_BL_mm": 757.0,
+        "levetid_styrende_aar": 20.1,
+        "bemaerkning": ""
+      },
+      {
+        "T": "T2",
+        "eu": 10,
+        "slidlag": "AB 1000",
+        "t_slid_mm": 40.0,
+        "bindelag": "-",
+        "t_bindelag_mm": 0.0,
+        "bundet_baerelag": "GAB 0 2000",
+        "t_bundet_mm": 74.0,
+        "E_asf_vist_MPa": 1690.0,
+        "ubundet_baerelag": "SG II",
+        "t_SG_mm": 170.0,
+        "bundsikring": "BL II U≤3",
+        "t_BL_mm": 590.0,
+        "levetid_styrende_aar": 20.0,
+        "bemaerkning": ""
+      },
+      {
+        "T": "T2",
+        "eu": 15,
+        "slidlag": "AB 1000",
+        "t_slid_mm": 40.0,
+        "bindelag": "-",
+        "t_bindelag_mm": 0.0,
+        "bundet_baerelag": "GAB 0 2000",
+        "t_bundet_mm": 73.0,
+        "E_asf_vist_MPa": 1680.0,
+        "ubundet_baerelag": "SG II",
+        "t_SG_mm": 160.0,
+        "bundsikring": "BL II U≤3",
+        "t_BL_mm": 508.0,
+        "levetid_styrende_aar": 20.1,
+        "bemaerkning": ""
+      },
+      {
+        "T": "T2",
+        "eu": 20,
+        "slidlag": "AB 1000",
+        "t_slid_mm": 40.0,
+        "bindelag": "-",
+        "t_bindelag_mm": 0.0,
+        "bundet_baerelag": "GAB 0 2000",
+        "t_bundet_mm": 73.0,
+        "E_asf_vist_MPa": 1680.0,
+        "ubundet_baerelag": "SG II",
+        "t_SG_mm": 160.0,
+        "bundsikring": "BL II U≤3",
+        "t_BL_mm": 439.0,
+        "levetid_styrende_aar": 20.1,
+        "bemaerkning": ""
+      },
+      {
+        "T": "T2",
+        "eu": 30,
+        "slidlag": "AB 1000",
+        "t_slid_mm": 40.0,
+        "bindelag": "-",
+        "t_bindelag_mm": 0.0,
+        "bundet_baerelag": "GAB 0 2000",
+        "t_bundet_mm": 72.0,
+        "E_asf_vist_MPa": 1671.0,
+        "ubundet_baerelag": "SG II",
+        "t_SG_mm": 160.0,
+        "bundsikring": "BL II U≤3",
+        "t_BL_mm": 337.0,
+        "levetid_styrende_aar": 20.2,
+        "bemaerkning": ""
+      },
+      {
+        "T": "T2",
+        "eu": 40,
+        "slidlag": "AB 1000",
+        "t_slid_mm": 40.0,
+        "bindelag": "-",
+        "t_bindelag_mm": 0.0,
+        "bundet_baerelag": "GAB 0 2000",
+        "t_bundet_mm": 72.0,
+        "E_asf_vist_MPa": 1671.0,
+        "ubundet_baerelag": "SG II",
+        "t_SG_mm": 160.0,
+        "bundsikring": "BL II U≤3",
+        "t_BL_mm": 264.0,
+        "levetid_styrende_aar": 20.1,
+        "bemaerkning": ""
+      },
+      {
+        "T": "T3",
+        "eu": 3,
+        "slidlag": "AB 1000",
+        "t_slid_mm": 40.0,
+        "bindelag": "-",
+        "t_bindelag_mm": 0.0,
+        "bundet_baerelag": "GAB 0 2000",
+        "t_bundet_mm": 95.0,
+        "E_asf_vist_MPa": 1862.0,
+        "ubundet_baerelag": "SG II",
+        "t_SG_mm": 200.0,
+        "bundsikring": "BL II U≤3",
+        "t_BL_mm": 957.0,
+        "levetid_styrende_aar": 0.0,
+        "bemaerkning": ""
+      },
+      {
+        "T": "T3",
+        "eu": 4,
+        "slidlag": "AB 1000",
+        "t_slid_mm": 40.0,
+        "bindelag": "-",
+        "t_bindelag_mm": 0.0,
+        "bundet_baerelag": "GAB 0 2000",
+        "t_bundet_mm": 95.0,
+        "E_asf_vist_MPa": 1862.0,
+        "ubundet_baerelag": "SG II",
+        "t_SG_mm": 200.0,
+        "bundsikring": "BL II U≤3",
+        "t_BL_mm": 879.0,
+        "levetid_styrende_aar": 0.0,
+        "bemaerkning": ""
+      },
+      {
+        "T": "T3",
+        "eu": 5,
+        "slidlag": "AB 1000",
+        "t_slid_mm": 40.0,
+        "bindelag": "-",
+        "t_bindelag_mm": 0.0,
+        "bundet_baerelag": "GAB 0 2000",
+        "t_bundet_mm": 95.0,
+        "E_asf_vist_MPa": 1862.0,
+        "ubundet_baerelag": "SG II",
+        "t_SG_mm": 200.0,
+        "bundsikring": "BL II U≤3",
+        "t_BL_mm": 818.0,
+        "levetid_styrende_aar": 20.0,
+        "bemaerkning": ""
+      },
+      {
+        "T": "T3",
+        "eu": 10,
+        "slidlag": "AB 1000",
+        "t_slid_mm": 40.0,
+        "bindelag": "-",
+        "t_bindelag_mm": 0.0,
+        "bundet_baerelag": "GAB 0 2000",
+        "t_bundet_mm": 94.0,
+        "E_asf_vist_MPa": 1854.0,
+        "ubundet_baerelag": "SG II",
+        "t_SG_mm": 190.0,
+        "bundsikring": "BL II U≤3",
+        "t_BL_mm": 649.0,
+        "levetid_styrende_aar": 20.1,
+        "bemaerkning": ""
+      },
+      {
+        "T": "T3",
+        "eu": 15,
+        "slidlag": "AB 1000",
+        "t_slid_mm": 40.0,
+        "bindelag": "-",
+        "t_bindelag_mm": 0.0,
+        "bundet_baerelag": "GAB 0 2000",
+        "t_bundet_mm": 94.0,
+        "E_asf_vist_MPa": 1854.0,
+        "ubundet_baerelag": "SG II",
+        "t_SG_mm": 190.0,
+        "bundsikring": "BL II U≤3",
+        "t_BL_mm": 539.0,
+        "levetid_styrende_aar": 20.1,
+        "bemaerkning": ""
+      },
+      {
+        "T": "T3",
+        "eu": 20,
+        "slidlag": "AB 1000",
+        "t_slid_mm": 40.0,
+        "bindelag": "-",
+        "t_bindelag_mm": 0.0,
+        "bundet_baerelag": "GAB 0 2000",
+        "t_bundet_mm": 94.0,
+        "E_asf_vist_MPa": 1854.0,
+        "ubundet_baerelag": "SG II",
+        "t_SG_mm": 190.0,
+        "bundsikring": "BL II U≤3",
+        "t_BL_mm": 460.0,
+        "levetid_styrende_aar": 20.0,
+        "bemaerkning": ""
+      },
+      {
+        "T": "T3",
+        "eu": 30,
+        "slidlag": "AB 1000",
+        "t_slid_mm": 40.0,
+        "bindelag": "-",
+        "t_bindelag_mm": 0.0,
+        "bundet_baerelag": "GAB 0 2000",
+        "t_bundet_mm": 94.0,
+        "E_asf_vist_MPa": 1854.0,
+        "ubundet_baerelag": "SG II",
+        "t_SG_mm": 200.0,
+        "bundsikring": "BL II U≤3",
+        "t_BL_mm": 334.0,
+        "levetid_styrende_aar": 20.0,
+        "bemaerkning": ""
+      },
+      {
+        "T": "T3",
+        "eu": 40,
+        "slidlag": "AB 1000",
+        "t_slid_mm": 40.0,
+        "bindelag": "-",
+        "t_bindelag_mm": 0.0,
+        "bundet_baerelag": "GAB 0 2000",
+        "t_bundet_mm": 94.0,
+        "E_asf_vist_MPa": 1854.0,
+        "ubundet_baerelag": "SG II",
+        "t_SG_mm": 200.0,
+        "bundsikring": "BL II U≤3",
+        "t_BL_mm": 255.0,
+        "levetid_styrende_aar": 20.1,
+        "bemaerkning": ""
+      },
+      {
+        "T": "T4",
+        "eu": 3,
+        "slidlag": "AB 2000",
+        "t_slid_mm": 40.0,
+        "bindelag": "-",
+        "t_bindelag_mm": 0.0,
+        "bundet_baerelag": "GAB 0 2000",
+        "t_bundet_mm": 125.0,
+        "E_asf_vist_MPa": 2362.0,
+        "ubundet_baerelag": "SG II",
+        "t_SG_mm": 240.0,
+        "bundsikring": "BL II U≤3",
+        "t_BL_mm": 1107.0,
+        "levetid_styrende_aar": 0.0,
+        "bemaerkning": "VejDim beregner tykkelsen af det bundne bærelag"
+      },
+      {
+        "T": "T4",
+        "eu": 4,
+        "slidlag": "AB 2000",
+        "t_slid_mm": 40.0,
+        "bindelag": "-",
+        "t_bindelag_mm": 0.0,
+        "bundet_baerelag": "GAB 0 2000",
+        "t_bundet_mm": 125.0,
+        "E_asf_vist_MPa": 2362.0,
+        "ubundet_baerelag": "SG II",
+        "t_SG_mm": 240.0,
+        "bundsikring": "BL II U≤3",
+        "t_BL_mm": 1014.0,
+        "levetid_styrende_aar": 0.0,
+        "bemaerkning": "VejDim beregner tykkelsen af det bundne bærelag"
+      },
+      {
+        "T": "T4",
+        "eu": 5,
+        "slidlag": "AB 2000",
+        "t_slid_mm": 40.0,
+        "bindelag": "-",
+        "t_bindelag_mm": 0.0,
+        "bundet_baerelag": "GAB 0 2000",
+        "t_bundet_mm": 125.0,
+        "E_asf_vist_MPa": 2362.0,
+        "ubundet_baerelag": "SG II",
+        "t_SG_mm": 240.0,
+        "bundsikring": "BL II U≤3",
+        "t_BL_mm": 944.0,
+        "levetid_styrende_aar": 20.0,
+        "bemaerkning": "VejDim beregner tykkelsen af det bundne bærelag"
+      },
+      {
+        "T": "T4",
+        "eu": 10,
+        "slidlag": "AB 2000",
+        "t_slid_mm": 40.0,
+        "bindelag": "-",
+        "t_bindelag_mm": 0.0,
+        "bundet_baerelag": "GAB 0 2000",
+        "t_bundet_mm": 125.0,
+        "E_asf_vist_MPa": 2362.0,
+        "ubundet_baerelag": "SG II",
+        "t_SG_mm": 230.0,
+        "bundsikring": "BL II U≤3",
+        "t_BL_mm": 739.0,
+        "levetid_styrende_aar": 20.0,
+        "bemaerkning": "VejDim beregner tykkelsen af det bundne bærelag"
+      },
+      {
+        "T": "T4",
+        "eu": 15,
+        "slidlag": "AB 2000",
+        "t_slid_mm": 40.0,
+        "bindelag": "-",
+        "t_bindelag_mm": 0.0,
+        "bundet_baerelag": "GAB 0 2000",
+        "t_bundet_mm": 123.0,
+        "E_asf_vist_MPa": 2355.0,
+        "ubundet_baerelag": "SG II",
+        "t_SG_mm": 220.0,
+        "bundsikring": "BL II U≤3",
+        "t_BL_mm": 629.0,
+        "levetid_styrende_aar": 20.1,
+        "bemaerkning": "VejDim beregner tykkelsen af det bundne bærelag"
+      },
+      {
+        "T": "T4",
+        "eu": 20,
+        "slidlag": "AB 2000",
+        "t_slid_mm": 40.0,
+        "bindelag": "-",
+        "t_bindelag_mm": 0.0,
+        "bundet_baerelag": "GAB 0 2000",
+        "t_bundet_mm": 123.0,
+        "E_asf_vist_MPa": 2355.0,
+        "ubundet_baerelag": "SG II",
+        "t_SG_mm": 220.0,
+        "bundsikring": "BL II U≤3",
+        "t_BL_mm": 537.0,
+        "levetid_styrende_aar": 20.0,
+        "bemaerkning": "VejDim beregner tykkelsen af det bundne bærelag"
+      },
+      {
+        "T": "T4",
+        "eu": 30,
+        "slidlag": "AB 2000",
+        "t_slid_mm": 40.0,
+        "bindelag": "-",
+        "t_bindelag_mm": 0.0,
+        "bundet_baerelag": "GAB 0 2000",
+        "t_bundet_mm": 123.0,
+        "E_asf_vist_MPa": 2355.0,
+        "ubundet_baerelag": "SG II",
+        "t_SG_mm": 230.0,
+        "bundsikring": "BL II U≤3",
+        "t_BL_mm": 392.0,
+        "levetid_styrende_aar": 20.1,
+        "bemaerkning": "VejDim beregner tykkelsen af det bundne bærelag"
+      },
+      {
+        "T": "T4",
+        "eu": 40,
+        "slidlag": "AB 2000",
+        "t_slid_mm": 40.0,
+        "bindelag": "-",
+        "t_bindelag_mm": 0.0,
+        "bundet_baerelag": "GAB 0 2000",
+        "t_bundet_mm": 123.0,
+        "E_asf_vist_MPa": 2355.0,
+        "ubundet_baerelag": "SG II",
+        "t_SG_mm": 230.0,
+        "bundsikring": "BL II U≤3",
+        "t_BL_mm": 301.0,
+        "levetid_styrende_aar": 20.0,
+        "bemaerkning": "VejDim beregner tykkelsen af det bundne bærelag"
+      },
+      {
+        "T": "T5",
+        "eu": 3,
+        "slidlag": "AB 2000",
+        "t_slid_mm": 40.0,
+        "bindelag": "-",
+        "t_bindelag_mm": 0.0,
+        "bundet_baerelag": "GAB I 3000",
+        "t_bundet_mm": 132.0,
+        "E_asf_vist_MPa": 3456.0,
+        "ubundet_baerelag": "SG II",
+        "t_SG_mm": 270.0,
+        "bundsikring": "BL II U≤3",
+        "t_BL_mm": 1224.0,
+        "levetid_styrende_aar": 0.0,
+        "bemaerkning": "VejDim beregner tykkelsen af det bundne bærelag"
+      },
+      {
+        "T": "T5",
+        "eu": 4,
+        "slidlag": "AB 2000",
+        "t_slid_mm": 40.0,
+        "bindelag": "-",
+        "t_bindelag_mm": 0.0,
+        "bundet_baerelag": "GAB I 3000",
+        "t_bundet_mm": 132.0,
+        "E_asf_vist_MPa": 3456.0,
+        "ubundet_baerelag": "SG II",
+        "t_SG_mm": 270.0,
+        "bundsikring": "BL II U≤3",
+        "t_BL_mm": 1119.0,
+        "levetid_styrende_aar": 0.0,
+        "bemaerkning": "VejDim beregner tykkelsen af det bundne bærelag"
+      },
+      {
+        "T": "T5",
+        "eu": 5,
+        "slidlag": "AB 2000",
+        "t_slid_mm": 40.0,
+        "bindelag": "-",
+        "t_bindelag_mm": 0.0,
+        "bundet_baerelag": "GAB I 3000",
+        "t_bundet_mm": 132.0,
+        "E_asf_vist_MPa": 3456.0,
+        "ubundet_baerelag": "SG II",
+        "t_SG_mm": 270.0,
+        "bundsikring": "BL II U≤3",
+        "t_BL_mm": 1042.0,
+        "levetid_styrende_aar": 20.0,
+        "bemaerkning": "VejDim beregner tykkelsen af det bundne bærelag"
+      },
+      {
+        "T": "T5",
+        "eu": 10,
+        "slidlag": "AB 2000",
+        "t_slid_mm": 40.0,
+        "bindelag": "-",
+        "t_bindelag_mm": 0.0,
+        "bundet_baerelag": "GAB I 3000",
+        "t_bundet_mm": 131.0,
+        "E_asf_vist_MPa": 3448.0,
+        "ubundet_baerelag": "SG II",
+        "t_SG_mm": 260.0,
+        "bundsikring": "BL II U≤3",
+        "t_BL_mm": 818.0,
+        "levetid_styrende_aar": 20.1,
+        "bemaerkning": "VejDim beregner tykkelsen af det bundne bærelag"
+      },
+      {
+        "T": "T5",
+        "eu": 15,
+        "slidlag": "AB 2000",
+        "t_slid_mm": 40.0,
+        "bindelag": "-",
+        "t_bindelag_mm": 0.0,
+        "bundet_baerelag": "GAB I 3000",
+        "t_bundet_mm": 131.0,
+        "E_asf_vist_MPa": 3448.0,
+        "ubundet_baerelag": "SG II",
+        "t_SG_mm": 250.0,
+        "bundsikring": "BL II U≤3",
+        "t_BL_mm": 689.0,
+        "levetid_styrende_aar": 20.0,
+        "bemaerkning": "VejDim beregner tykkelsen af det bundne bærelag"
+      },
+      {
+        "T": "T5",
+        "eu": 20,
+        "slidlag": "AB 2000",
+        "t_slid_mm": 40.0,
+        "bindelag": "-",
+        "t_bindelag_mm": 0.0,
+        "bundet_baerelag": "GAB I 3000",
+        "t_bundet_mm": 130.0,
+        "E_asf_vist_MPa": 3440.0,
+        "ubundet_baerelag": "SG II",
+        "t_SG_mm": 250.0,
+        "bundsikring": "BL II U≤3",
+        "t_BL_mm": 590.0,
+        "levetid_styrende_aar": 20.1,
+        "bemaerkning": "VejDim beregner tykkelsen af det bundne bærelag"
+      },
+      {
+        "T": "T5",
+        "eu": 30,
+        "slidlag": "AB 2000",
+        "t_slid_mm": 40.0,
+        "bindelag": "-",
+        "t_bindelag_mm": 0.0,
+        "bundet_baerelag": "GAB I 3000",
+        "t_bundet_mm": 130.0,
+        "E_asf_vist_MPa": 3440.0,
+        "ubundet_baerelag": "SG II",
+        "t_SG_mm": 240.0,
+        "bundsikring": "BL II U≤3",
+        "t_BL_mm": 459.0,
+        "levetid_styrende_aar": 20.1,
+        "bemaerkning": "VejDim beregner tykkelsen af det bundne bærelag"
+      },
+      {
+        "T": "T5",
+        "eu": 40,
+        "slidlag": "AB 2000",
+        "t_slid_mm": 40.0,
+        "bindelag": "-",
+        "t_bindelag_mm": 0.0,
+        "bundet_baerelag": "GAB I 3000",
+        "t_bundet_mm": 129.0,
+        "E_asf_vist_MPa": 3432.0,
+        "ubundet_baerelag": "SG II",
+        "t_SG_mm": 240.0,
+        "bundsikring": "BL II U≤3",
+        "t_BL_mm": 360.0,
+        "levetid_styrende_aar": 20.1,
+        "bemaerkning": "VejDim beregner tykkelsen af det bundne bærelag"
+      },
+      {
+        "T": "T6",
+        "eu": 3,
+        "slidlag": "SMA 3000",
+        "t_slid_mm": 40.0,
+        "bindelag": "-",
+        "t_bindelag_mm": 0.0,
+        "bundet_baerelag": "GAB II 3000",
+        "t_bundet_mm": 144.0,
+        "E_asf_vist_MPa": 3829.0,
+        "ubundet_baerelag": "SG II",
+        "t_SG_mm": 290.0,
+        "bundsikring": "BL II U≤3",
+        "t_BL_mm": 1290.0,
+        "levetid_styrende_aar": 0.0,
+        "bemaerkning": "VejDim beregner tykkelsen af det bundne bærelag"
+      },
+      {
+        "T": "T6",
+        "eu": 4,
+        "slidlag": "SMA 3000",
+        "t_slid_mm": 40.0,
+        "bindelag": "-",
+        "t_bindelag_mm": 0.0,
+        "bundet_baerelag": "GAB II 3000",
+        "t_bundet_mm": 143.0,
+        "E_asf_vist_MPa": 3823.0,
+        "ubundet_baerelag": "SG II",
+        "t_SG_mm": 280.0,
+        "bundsikring": "BL II U≤3",
+        "t_BL_mm": 1199.0,
+        "levetid_styrende_aar": 0.0,
+        "bemaerkning": "VejDim beregner tykkelsen af det bundne bærelag"
+      },
+      {
+        "T": "T6",
+        "eu": 5,
+        "slidlag": "SMA 3000",
+        "t_slid_mm": 40.0,
+        "bindelag": "-",
+        "t_bindelag_mm": 0.0,
+        "bundet_baerelag": "GAB II 3000",
+        "t_bundet_mm": 142.0,
+        "E_asf_vist_MPa": 3817.0,
+        "ubundet_baerelag": "SG II",
+        "t_SG_mm": 280.0,
+        "bundsikring": "BL II U≤3",
+        "t_BL_mm": 1117.0,
+        "levetid_styrende_aar": 20.0,
+        "bemaerkning": "VejDim beregner tykkelsen af det bundne bærelag"
+      },
+      {
+        "T": "T6",
+        "eu": 10,
+        "slidlag": "SMA 3000",
+        "t_slid_mm": 40.0,
+        "bindelag": "-",
+        "t_bindelag_mm": 0.0,
+        "bundet_baerelag": "GAB II 3000",
+        "t_bundet_mm": 141.0,
+        "E_asf_vist_MPa": 3811.0,
+        "ubundet_baerelag": "SG II",
+        "t_SG_mm": 270.0,
+        "bundsikring": "BL II U≤3",
+        "t_BL_mm": 876.0,
+        "levetid_styrende_aar": 20.0,
+        "bemaerkning": "VejDim beregner tykkelsen af det bundne bærelag"
+      },
+      {
+        "T": "T6",
+        "eu": 15,
+        "slidlag": "SMA 3000",
+        "t_slid_mm": 40.0,
+        "bindelag": "-",
+        "t_bindelag_mm": 0.0,
+        "bundet_baerelag": "GAB II 3000",
+        "t_bundet_mm": 141.0,
+        "E_asf_vist_MPa": 3811.0,
+        "ubundet_baerelag": "SG II",
+        "t_SG_mm": 270.0,
+        "bundsikring": "BL II U≤3",
+        "t_BL_mm": 723.0,
+        "levetid_styrende_aar": 20.0,
+        "bemaerkning": "VejDim beregner tykkelsen af det bundne bærelag"
+      },
+      {
+        "T": "T6",
+        "eu": 20,
+        "slidlag": "SMA 3000",
+        "t_slid_mm": 40.0,
+        "bindelag": "-",
+        "t_bindelag_mm": 0.0,
+        "bundet_baerelag": "GAB II 3000",
+        "t_bundet_mm": 141.0,
+        "E_asf_vist_MPa": 3811.0,
+        "ubundet_baerelag": "SG II",
+        "t_SG_mm": 260.0,
+        "bundsikring": "BL II U≤3",
+        "t_BL_mm": 629.0,
+        "levetid_styrende_aar": 20.0,
+        "bemaerkning": "VejDim beregner tykkelsen af det bundne bærelag"
+      },
+      {
+        "T": "T6",
+        "eu": 30,
+        "slidlag": "SMA 3000",
+        "t_slid_mm": 40.0,
+        "bindelag": "-",
+        "t_bindelag_mm": 0.0,
+        "bundet_baerelag": "GAB II 3000",
+        "t_bundet_mm": 140.0,
+        "E_asf_vist_MPa": 3805.0,
+        "ubundet_baerelag": "SG II",
+        "t_SG_mm": 260.0,
+        "bundsikring": "BL II U≤3",
+        "t_BL_mm": 478.0,
+        "levetid_styrende_aar": 20.0,
+        "bemaerkning": "VejDim beregner tykkelsen af det bundne bærelag"
+      },
+      {
+        "T": "T6",
+        "eu": 40,
+        "slidlag": "SMA 3000",
+        "t_slid_mm": 40.0,
+        "bindelag": "-",
+        "t_bindelag_mm": 0.0,
+        "bundet_baerelag": "GAB II 3000",
+        "t_bundet_mm": 140.0,
+        "E_asf_vist_MPa": 3805.0,
+        "ubundet_baerelag": "SG II",
+        "t_SG_mm": 260.0,
+        "bundsikring": "BL II U≤3",
+        "t_BL_mm": 370.0,
+        "levetid_styrende_aar": 20.1,
+        "bemaerkning": "VejDim beregner tykkelsen af det bundne bærelag"
+      }
+    ],
+    "STANDARD_YDER_REGLER": {
+      "tolerance_over_pct": 5.0,
+      "tolerance_under_pct": 5.0,
+      "under_inden": "laveste",
+      "over_uden": "afvis",
+      "under_uden": "afvis"
+    },
+    "EO_MIN": 30.0,
+    "EO_MAX": 150.0,
+    "PHI_MIN": 37.0,
+    "PHI_MAX": 50.0
+  }
+}

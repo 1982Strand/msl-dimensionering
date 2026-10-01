@@ -1,0 +1,3235 @@
+{
+  "source": {
+    "commit": "a330cfd6734ac2478be1304a362c69f94e412d25",
+    "data_profile": "built-in defaults; no user JSON",
+    "files": {
+      "app.py": "ba6b29870a92df46025a8d936b3ab6ea16f32b1f7122e48652a640182f9530e5",
+      "ui.py": "ffa3e583a19d4ede16873963bed70b819e3402b320878ba49166295fd5558d7c",
+      "core/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "core/afrunding.py": "9149c3536c388a82e2f242e939a1a1f998e01bf828a6ab378c927a757ad816e4",
+      "core/calculator.py": "bf46d2642d6083439b8c03c46e24eb18f156fe1a734af7e6fa866f16626ad227",
+      "core/data.py": "e164a0f3bb42cd0d565dfc45d2895031a03b2cb8e93b05a0a65097790d0f0540",
+      "core/diagram.py": "b171b7486e5aa1a43590f9f8a28376680bd2a50f7155535fcbfb7198d38df461",
+      "core/enhed.py": "256884745b59e94d0211a610e8bf092942a0fec5d147e48a7502833912583cf2",
+      "core/hjaelp.py": "5179b206a31224bf2582fdc31bf6520fd68552da1206dd5f7f034ab249e0ac78",
+      "core/lagfordeling.py": "0426d2021e037c8e993fefc104b69cfbf03526408cadd1303775c32f5577716b",
+      "core/placement.py": "9668ab8bfe106722e4735576d72dcb86280470ee60fea14feae08bf8f3ccf9d2",
+      "core/rapport.py": "b6235563354b72f81d386afc703db273eb08a2d6f9857d4f73499f7b2c61b898",
+      "core/validators.py": "5258b68728afa7d2224d1e5b090ff6c78f7a3c568408ad367dbcd210fb71428c"
+    }
+  },
+  "method": "Streamlit AppTest on isolated approved commit; actual rendered HTML",
+  "cases": [
+    {
+      "id": "standard-eu10",
+      "action": "Fresh Standard, Eu 10 MPa, built-in defaults",
+      "inputs": {
+        "mode": "Standard",
+        "eu": 10,
+        "basis": "Belastningsklasse",
+        "traffic": null,
+        "class": 4,
+        "selected_product": "Tensar TriAx TX160",
+        "unit": "mm",
+        "custom_layers": null,
+        "controls": {
+          "std_geonet": "Tensar TriAx TX160",
+          "std_eu_slider": 10,
+          "std_eu_mode": "Eᵤ — E-modul",
+          "std_grundlag": "Belastningsklasse",
+          "std_valgt_klasse": 4
+        },
+        "settings": {
+          "afrunding": {
+            "trin_mm": 50,
+            "reduktion_eksakt": false,
+            "vis_eksakt": false,
+            "phi_afrunding": "ingen"
+          },
+          "opbygning": {
+            "geonet_paaskrift": true,
+            "maal_streg": true,
+            "maal_tal": true,
+            "signatur": true,
+            "enhed": "mm"
+          },
+          "lagfordeling": {
+            "fordeling": "minimum",
+            "samlet_minimum": true,
+            "minimum_mm": {
+              "1": 200.0,
+              "2": 200.0,
+              "3": 200.0,
+              "4": 250.0,
+              "5": 275.0,
+              "6": 300.0
+            },
+            "restlag": "vis",
+            "restlag_graense_mm": 100.0,
+            "vd_minimum_mm": {
+              "Bærelag": 100.0,
+              "Bundsikring": 200.0
+            },
+            "phi_regel": "laveste",
+            "kraev_bundsikring": false,
+            "netplacering": "laggraense",
+            "standard_klassisk": false,
+            "standard_opdeling": true,
+            "standard_under_minimum": "stabilgrus"
+          },
+          "yderomraade": {
+            "tolerance_over_pct": 5.0,
+            "tolerance_under_pct": 5.0,
+            "under_inden": "laveste",
+            "over_uden": "afvis",
+            "under_uden": "afvis"
+          }
+        },
+        "available_materials": [
+          {
+            "navn": "Bundsikringssand",
+            "lagtype": "Bundsikring",
+            "phi": 37,
+            "max_korn": 8,
+            "krav_maskestoerrelse_mm": 35,
+            "anvendelse": "Frostsikring og drænlag"
+          },
+          {
+            "navn": "Bundgrus 0-80",
+            "lagtype": "Bundsikring",
+            "phi": 38,
+            "max_korn": 80,
+            "krav_maskestoerrelse_mm": 65,
+            "anvendelse": "Frostsikring, dræning, bærelag"
+          },
+          {
+            "navn": "Stabilgrus SGI 0-32",
+            "lagtype": "Bærelag",
+            "phi": 40,
+            "max_korn": 32,
+            "krav_maskestoerrelse_mm": 35,
+            "anvendelse": "Bærelag"
+          },
+          {
+            "navn": "Stabilgrus SGII 0-32",
+            "lagtype": "Bærelag",
+            "phi": 40,
+            "max_korn": 32,
+            "krav_maskestoerrelse_mm": 35,
+            "anvendelse": "Bærelag"
+          },
+          {
+            "navn": "Knust beton 0-32",
+            "lagtype": "Bærelag",
+            "phi": 40,
+            "max_korn": 32,
+            "krav_maskestoerrelse_mm": 35,
+            "anvendelse": "Genbrugsmateriale, bærelag"
+          },
+          {
+            "navn": "Skærver 0-32",
+            "lagtype": "Bærelag",
+            "phi": 45,
+            "max_korn": 32,
+            "krav_maskestoerrelse_mm": 35,
+            "anvendelse": "Bærelag"
+          },
+          {
+            "navn": "Skærver 0-64",
+            "lagtype": "Bærelag",
+            "phi": 45,
+            "max_korn": 64,
+            "krav_maskestoerrelse_mm": 35,
+            "anvendelse": "Bærelag"
+          },
+          {
+            "navn": "Skærver 0-90",
+            "lagtype": "Bærelag",
+            "phi": 45,
+            "max_korn": 90,
+            "krav_maskestoerrelse_mm": 65,
+            "anvendelse": "Bærelag (kan også anvendes som bundsikring)"
+          },
+          {
+            "navn": "Skærver 0-120",
+            "lagtype": "Bundsikring",
+            "phi": 45,
+            "max_korn": 120,
+            "krav_maskestoerrelse_mm": 65,
+            "anvendelse": "Bundsikring"
+          },
+          {
+            "navn": "Skærver 0-150",
+            "lagtype": "Bundsikring",
+            "phi": 45,
+            "max_korn": 150,
+            "krav_maskestoerrelse_mm": 65,
+            "anvendelse": "Bundsikring grov"
+          },
+          {
+            "navn": "Skærver 0-200",
+            "lagtype": "Bundsikring",
+            "phi": 45,
+            "max_korn": 200,
+            "krav_maskestoerrelse_mm": 100,
+            "anvendelse": "Bundsikring meget grov"
+          },
+          {
+            "navn": "Skærver 0-250",
+            "lagtype": "Bundsikring",
+            "phi": 45,
+            "max_korn": 250,
+            "krav_maskestoerrelse_mm": 100,
+            "anvendelse": "Bundsikring ekstrem"
+          }
+        ],
+        "construction_materials": []
+      },
+      "calculation": {
+        "eu": 10.0,
+        "eo": 80.0,
+        "phi": 37.0,
+        "valgt_klasse": 4,
+        "grundlag_type": "belastningsklasse",
+        "t_klasse": null,
+        "skala": 1.0
+      },
+      "raw_selected": {
+        "res_1": {
+          "navn": "Tensar TriAx TX160",
+          "serie": "Tensar",
+          "korrektion": 0.0,
+          "t_armeret_mm": 650.0,
+          "t_uarmeret_mm": 900.0,
+          "t_uarmeret_phi_kor_mm": 900.0,
+          "t_basis_arm_mm": 617.0,
+          "reduktion_mm": 250.0,
+          "reduktion_pct": 0.2778,
+          "klasse_ok": true,
+          "klasser": [
+            3,
+            4,
+            5,
+            6
+          ],
+          "min_daklag": 20,
+          "max_korn": 80,
+          "fejl": null,
+          "t_armeret_eksakt_mm": 617.0,
+          "t_uarmeret_eksakt_mm": 900.0,
+          "t_uarmeret_phi_kor_eksakt_mm": 900.0,
+          "reduktion_mm_eksakt": 283.0,
+          "reduktion_pct_eksakt": 0.3144,
+          "afrunding_trin_mm": 50,
+          "t_min_mm": 250.0,
+          "phi": 37.0,
+          "phi_uarmeret": 37.0,
+          "phi_eksakt": 37.0,
+          "phi_uarmeret_eksakt": 37.0,
+          "phi_afrunding": "ingen",
+          "min_top_cover_mm": 200.0,
+          "general_top_cover_mm": 200.0,
+          "product_cover_mm": 200.0,
+          "min_spacing_mm": 200.0,
+          "max_spacing_mm": 400.0,
+          "overlap_ge5_mm": 300.0,
+          "overlap_lt5_mm": 400.0,
+          "source": "Tensar",
+          "placering_ok": true,
+          "geonet_placeringer_mm_fra_top": [
+            650.0
+          ],
+          "geonet_y_fracs": [
+            1.0
+          ],
+          "topdaeklag_mm": 650.0,
+          "afstande_mellem_geonet_mm": [],
+          "placeringsadvarsler": [],
+          "t_min_placering_mm": 200.0,
+          "t_dimensionerende_mm": 650.0,
+          "placeringsbasis": "underbund"
+        },
+        "res_2": {
+          "navn": "Tensar TriAx TX160",
+          "serie": "Tensar",
+          "korrektion": 0.0,
+          "t_armeret_mm": null,
+          "t_uarmeret_mm": null,
+          "t_uarmeret_phi_kor_mm": null,
+          "t_basis_arm_mm": null,
+          "reduktion_mm": null,
+          "reduktion_pct": null,
+          "klasse_ok": true,
+          "klasser": [
+            3,
+            4,
+            5,
+            6
+          ],
+          "min_daklag": 20,
+          "max_korn": 80,
+          "fejl": "Kombinationen Eᵤ=10 MPa / Eₒ=80 MPa / 2 lag geonet er uden for diagrammets gyldighedsområde (\"—\" i opslagstabellen). Et lavere Eᵤ eller færre lag vil normalt ligge inden for gyldighedsområdet."
+        }
+      },
+      "headers": [
+        "Produkt",
+        "Klasse",
+        "Indeks",
+        "1 lag",
+        "Sparet",
+        "2 lag",
+        "Sparet"
+      ],
+      "rows": [
+        {
+          "selected": false,
+          "cells": [
+            "Tensar InterAx NX850",
+            "5-6",
+            "115–130",
+            "550 mm",
+            "−350 mm · 39 %",
+            "—",
+            "—"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "E'GRID T7",
+            "4-6",
+            "110",
+            "600 mm",
+            "−300 mm · 33 %",
+            "—",
+            "—"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "E'GRID T9L",
+            "4-6",
+            "110",
+            "600 mm",
+            "−300 mm · 33 %",
+            "—",
+            "—"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "GS-GRID SX170",
+            "4-6",
+            "110",
+            "600 mm",
+            "−300 mm · 33 %",
+            "—",
+            "—"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "Tensar InterAx NX750",
+            "5-6",
+            "110–120",
+            "600 mm",
+            "−300 mm · 33 %",
+            "—",
+            "—"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "Tensar HX165",
+            "4-6",
+            "105",
+            "600 mm",
+            "−300 mm · 33 %",
+            "—",
+            "—"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "E'GRID T6",
+            "3-6",
+            "100",
+            "650 mm",
+            "−250 mm · 28 %",
+            "—",
+            "—"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "GS-GRID B40/40",
+            "4-6",
+            "100",
+            "650 mm",
+            "−250 mm · 28 %",
+            "—",
+            "—"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "GS-GRID B40/40L",
+            "4-6",
+            "100",
+            "650 mm",
+            "−250 mm · 28 %",
+            "—",
+            "—"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "GS-GRID SX160",
+            "3-6",
+            "100",
+            "650 mm",
+            "−250 mm · 28 %",
+            "—",
+            "—"
+          ]
+        },
+        {
+          "selected": true,
+          "cells": [
+            "Tensar TriAx TX160",
+            "3-6",
+            "100",
+            "650 mm",
+            "−250 mm · 28 %",
+            "—",
+            "—"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "Tensar TriAx TX190L",
+            "4-6",
+            "100",
+            "650 mm",
+            "−250 mm · 28 %",
+            "—",
+            "—"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "Tensar HX5.5",
+            "1-5",
+            "95",
+            "650 mm",
+            "−250 mm · 28 %",
+            "—",
+            "—"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "GS-GRID B30/30",
+            "3-5",
+            "90",
+            "700 mm",
+            "−200 mm · 22 %",
+            "—",
+            "—"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "GS-GRID B30/30L",
+            "3-5",
+            "90",
+            "700 mm",
+            "−200 mm · 22 %",
+            "—",
+            "—"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "GS-GRID B30/30XL",
+            "4-6",
+            "90",
+            "700 mm",
+            "−200 mm · 22 %",
+            "—",
+            "—"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "Tensar SS30",
+            "3-5",
+            "90",
+            "700 mm",
+            "−200 mm · 22 %",
+            "—",
+            "—"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "Tensar TriAx TX150",
+            "1-4",
+            "90",
+            "700 mm",
+            "−200 mm · 22 %",
+            "—",
+            "—"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "GS-GRID B20/20",
+            "1-3",
+            "80",
+            "750 mm",
+            "−150 mm · 17 %",
+            "—",
+            "—"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "GS-GRID B20/20L",
+            "1-3",
+            "80",
+            "750 mm",
+            "−150 mm · 17 %",
+            "—",
+            "—"
+          ]
+        }
+      ],
+      "caption": "Produkterne er sorteret efter den tyndeste gyldige opbygning under de aktuelle forudsætninger.",
+      "html": "<div class=\"rt-alle-tabel\"><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">Tensar InterAx NX850</div><div>5-6</div><div class=\"rt-alle-num\">115–130</div><div class=\"rt-alle-num\">550 mm</div><div class=\"rt-alle-sparet\">−350 mm · 39 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">E&#x27;GRID T7</div><div>4-6</div><div class=\"rt-alle-num\">110</div><div class=\"rt-alle-num\">600 mm</div><div class=\"rt-alle-sparet\">−300 mm · 33 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">E&#x27;GRID T9L</div><div>4-6</div><div class=\"rt-alle-num\">110</div><div class=\"rt-alle-num\">600 mm</div><div class=\"rt-alle-sparet\">−300 mm · 33 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">GS-GRID SX170</div><div>4-6</div><div class=\"rt-alle-num\">110</div><div class=\"rt-alle-num\">600 mm</div><div class=\"rt-alle-sparet\">−300 mm · 33 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">Tensar InterAx NX750</div><div>5-6</div><div class=\"rt-alle-num\">110–120</div><div class=\"rt-alle-num\">600 mm</div><div class=\"rt-alle-sparet\">−300 mm · 33 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">Tensar HX165</div><div>4-6</div><div class=\"rt-alle-num\">105</div><div class=\"rt-alle-num\">600 mm</div><div class=\"rt-alle-sparet\">−300 mm · 33 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">E&#x27;GRID T6</div><div>3-6</div><div class=\"rt-alle-num\">100</div><div class=\"rt-alle-num\">650 mm</div><div class=\"rt-alle-sparet\">−250 mm · 28 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">GS-GRID B40/40</div><div>4-6</div><div class=\"rt-alle-num\">100</div><div class=\"rt-alle-num\">650 mm</div><div class=\"rt-alle-sparet\">−250 mm · 28 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">GS-GRID B40/40L</div><div>4-6</div><div class=\"rt-alle-num\">100</div><div class=\"rt-alle-num\">650 mm</div><div class=\"rt-alle-sparet\">−250 mm · 28 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">GS-GRID SX160</div><div>3-6</div><div class=\"rt-alle-num\">100</div><div class=\"rt-alle-num\">650 mm</div><div class=\"rt-alle-sparet\">−250 mm · 28 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div><div class=\"rt-alle-raekke rt-alle-valgt\"><div class=\"rt-alle-produkt\">Tensar TriAx TX160</div><div>3-6</div><div class=\"rt-alle-num\">100</div><div class=\"rt-alle-num\">650 mm</div><div class=\"rt-alle-sparet\">−250 mm · 28 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">Tensar TriAx TX190L</div><div>4-6</div><div class=\"rt-alle-num\">100</div><div class=\"rt-alle-num\">650 mm</div><div class=\"rt-alle-sparet\">−250 mm · 28 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">Tensar HX5.5</div><div>1-5</div><div class=\"rt-alle-num\">95</div><div class=\"rt-alle-num\">650 mm</div><div class=\"rt-alle-sparet\">−250 mm · 28 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">GS-GRID B30/30</div><div>3-5</div><div class=\"rt-alle-num\">90</div><div class=\"rt-alle-num\">700 mm</div><div class=\"rt-alle-sparet\">−200 mm · 22 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">GS-GRID B30/30L</div><div>3-5</div><div class=\"rt-alle-num\">90</div><div class=\"rt-alle-num\">700 mm</div><div class=\"rt-alle-sparet\">−200 mm · 22 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">GS-GRID B30/30XL</div><div>4-6</div><div class=\"rt-alle-num\">90</div><div class=\"rt-alle-num\">700 mm</div><div class=\"rt-alle-sparet\">−200 mm · 22 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">Tensar SS30</div><div>3-5</div><div class=\"rt-alle-num\">90</div><div class=\"rt-alle-num\">700 mm</div><div class=\"rt-alle-sparet\">−200 mm · 22 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">Tensar TriAx TX150</div><div>1-4</div><div class=\"rt-alle-num\">90</div><div class=\"rt-alle-num\">700 mm</div><div class=\"rt-alle-sparet\">−200 mm · 22 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">GS-GRID B20/20</div><div>1-3</div><div class=\"rt-alle-num\">80</div><div class=\"rt-alle-num\">750 mm</div><div class=\"rt-alle-sparet\">−150 mm · 17 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">GS-GRID B20/20L</div><div>1-3</div><div class=\"rt-alle-num\">80</div><div class=\"rt-alle-num\">750 mm</div><div class=\"rt-alle-sparet\">−150 mm · 17 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div></div><div class=\"rt-caption\">Produkterne er sorteret efter den tyndeste gyldige opbygning under de aktuelle forudsætninger.</div>"
+    },
+    {
+      "id": "standard-eu5-nx850",
+      "action": "Eu 5 MPa with interval product NX850 selected",
+      "inputs": {
+        "mode": "Standard",
+        "eu": 5,
+        "basis": "Belastningsklasse",
+        "traffic": null,
+        "class": 4,
+        "selected_product": "Tensar InterAx NX850",
+        "unit": "mm",
+        "custom_layers": null,
+        "controls": {
+          "std_geonet": "Tensar InterAx NX850",
+          "std_eu_slider": 5,
+          "std_eu_mode": "Eᵤ — E-modul",
+          "std_grundlag": "Belastningsklasse",
+          "std_valgt_klasse": 4
+        },
+        "settings": {
+          "afrunding": {
+            "trin_mm": 50,
+            "reduktion_eksakt": false,
+            "vis_eksakt": false,
+            "phi_afrunding": "ingen"
+          },
+          "opbygning": {
+            "geonet_paaskrift": true,
+            "maal_streg": true,
+            "maal_tal": true,
+            "signatur": true,
+            "enhed": "mm"
+          },
+          "lagfordeling": {
+            "fordeling": "minimum",
+            "samlet_minimum": true,
+            "minimum_mm": {
+              "1": 200.0,
+              "2": 200.0,
+              "3": 200.0,
+              "4": 250.0,
+              "5": 275.0,
+              "6": 300.0
+            },
+            "restlag": "vis",
+            "restlag_graense_mm": 100.0,
+            "vd_minimum_mm": {
+              "Bærelag": 100.0,
+              "Bundsikring": 200.0
+            },
+            "phi_regel": "laveste",
+            "kraev_bundsikring": false,
+            "netplacering": "laggraense",
+            "standard_klassisk": false,
+            "standard_opdeling": true,
+            "standard_under_minimum": "stabilgrus"
+          },
+          "yderomraade": {
+            "tolerance_over_pct": 5.0,
+            "tolerance_under_pct": 5.0,
+            "under_inden": "laveste",
+            "over_uden": "afvis",
+            "under_uden": "afvis"
+          }
+        },
+        "available_materials": [
+          {
+            "navn": "Bundsikringssand",
+            "lagtype": "Bundsikring",
+            "phi": 37,
+            "max_korn": 8,
+            "krav_maskestoerrelse_mm": 35,
+            "anvendelse": "Frostsikring og drænlag"
+          },
+          {
+            "navn": "Bundgrus 0-80",
+            "lagtype": "Bundsikring",
+            "phi": 38,
+            "max_korn": 80,
+            "krav_maskestoerrelse_mm": 65,
+            "anvendelse": "Frostsikring, dræning, bærelag"
+          },
+          {
+            "navn": "Stabilgrus SGI 0-32",
+            "lagtype": "Bærelag",
+            "phi": 40,
+            "max_korn": 32,
+            "krav_maskestoerrelse_mm": 35,
+            "anvendelse": "Bærelag"
+          },
+          {
+            "navn": "Stabilgrus SGII 0-32",
+            "lagtype": "Bærelag",
+            "phi": 40,
+            "max_korn": 32,
+            "krav_maskestoerrelse_mm": 35,
+            "anvendelse": "Bærelag"
+          },
+          {
+            "navn": "Knust beton 0-32",
+            "lagtype": "Bærelag",
+            "phi": 40,
+            "max_korn": 32,
+            "krav_maskestoerrelse_mm": 35,
+            "anvendelse": "Genbrugsmateriale, bærelag"
+          },
+          {
+            "navn": "Skærver 0-32",
+            "lagtype": "Bærelag",
+            "phi": 45,
+            "max_korn": 32,
+            "krav_maskestoerrelse_mm": 35,
+            "anvendelse": "Bærelag"
+          },
+          {
+            "navn": "Skærver 0-64",
+            "lagtype": "Bærelag",
+            "phi": 45,
+            "max_korn": 64,
+            "krav_maskestoerrelse_mm": 35,
+            "anvendelse": "Bærelag"
+          },
+          {
+            "navn": "Skærver 0-90",
+            "lagtype": "Bærelag",
+            "phi": 45,
+            "max_korn": 90,
+            "krav_maskestoerrelse_mm": 65,
+            "anvendelse": "Bærelag (kan også anvendes som bundsikring)"
+          },
+          {
+            "navn": "Skærver 0-120",
+            "lagtype": "Bundsikring",
+            "phi": 45,
+            "max_korn": 120,
+            "krav_maskestoerrelse_mm": 65,
+            "anvendelse": "Bundsikring"
+          },
+          {
+            "navn": "Skærver 0-150",
+            "lagtype": "Bundsikring",
+            "phi": 45,
+            "max_korn": 150,
+            "krav_maskestoerrelse_mm": 65,
+            "anvendelse": "Bundsikring grov"
+          },
+          {
+            "navn": "Skærver 0-200",
+            "lagtype": "Bundsikring",
+            "phi": 45,
+            "max_korn": 200,
+            "krav_maskestoerrelse_mm": 100,
+            "anvendelse": "Bundsikring meget grov"
+          },
+          {
+            "navn": "Skærver 0-250",
+            "lagtype": "Bundsikring",
+            "phi": 45,
+            "max_korn": 250,
+            "krav_maskestoerrelse_mm": 100,
+            "anvendelse": "Bundsikring ekstrem"
+          }
+        ],
+        "construction_materials": []
+      },
+      "calculation": {
+        "eu": 5.0,
+        "eo": 80.0,
+        "phi": 37.0,
+        "valgt_klasse": 4,
+        "grundlag_type": "belastningsklasse",
+        "t_klasse": null,
+        "skala": 1.0
+      },
+      "raw_selected": {
+        "res_1": {
+          "navn": "Tensar InterAx NX850",
+          "serie": "Tensar",
+          "korrektion": -0.15,
+          "t_armeret_mm": 750.0,
+          "t_uarmeret_mm": 1200.0,
+          "t_uarmeret_phi_kor_mm": 1200.0,
+          "t_basis_arm_mm": 833.0,
+          "reduktion_mm": 450.0,
+          "reduktion_pct": 0.375,
+          "klasse_ok": false,
+          "klasser": [
+            5,
+            6
+          ],
+          "min_daklag": 20,
+          "max_korn": null,
+          "fejl": null,
+          "t_armeret_eksakt_mm": 708.0,
+          "t_uarmeret_eksakt_mm": 1200.0,
+          "t_uarmeret_phi_kor_eksakt_mm": 1200.0,
+          "reduktion_mm_eksakt": 492.0,
+          "reduktion_pct_eksakt": 0.41,
+          "afrunding_trin_mm": 50,
+          "t_min_mm": 250.0,
+          "phi": 37.0,
+          "phi_uarmeret": 37.0,
+          "phi_eksakt": 37.0,
+          "phi_uarmeret_eksakt": 37.0,
+          "phi_afrunding": "ingen",
+          "min_top_cover_mm": 200.0,
+          "general_top_cover_mm": 200.0,
+          "product_cover_mm": 200.0,
+          "min_spacing_mm": 200.0,
+          "max_spacing_mm": 400.0,
+          "overlap_ge5_mm": 300.0,
+          "overlap_lt5_mm": 400.0,
+          "source": "Tensar",
+          "placering_ok": true,
+          "geonet_placeringer_mm_fra_top": [
+            750.0
+          ],
+          "geonet_y_fracs": [
+            1.0
+          ],
+          "topdaeklag_mm": 750.0,
+          "afstande_mellem_geonet_mm": [],
+          "placeringsadvarsler": [],
+          "t_min_placering_mm": 200.0,
+          "t_dimensionerende_mm": 750.0,
+          "placeringsbasis": "underbund",
+          "korrektion_min": -0.3,
+          "korrektion_max": -0.15,
+          "t_armeret_mm_min": 600.0,
+          "t_armeret_mm_max": 750.0,
+          "t_armeret_eksakt_mm_min": 583.0,
+          "phi_min": 37.0,
+          "reduktion_mm_min": 450.0,
+          "reduktion_mm_max": 600.0,
+          "reduktion_pct_min": 0.375,
+          "reduktion_pct_max": 0.5,
+          "placering_best": {
+            "min_top_cover_mm": 200.0,
+            "general_top_cover_mm": 200.0,
+            "product_cover_mm": 200.0,
+            "min_spacing_mm": 200.0,
+            "max_spacing_mm": 400.0,
+            "overlap_ge5_mm": 300.0,
+            "overlap_lt5_mm": 400.0,
+            "source": "Tensar",
+            "placering_ok": true,
+            "geonet_placeringer_mm_fra_top": [
+              600.0
+            ],
+            "geonet_y_fracs": [
+              1.0
+            ],
+            "topdaeklag_mm": 600.0,
+            "afstande_mellem_geonet_mm": [],
+            "placeringsadvarsler": [],
+            "t_min_placering_mm": 200.0,
+            "t_dimensionerende_mm": 600.0,
+            "placeringsbasis": "underbund"
+          }
+        },
+        "res_2": {
+          "navn": "Tensar InterAx NX850",
+          "serie": "Tensar",
+          "korrektion": -0.15,
+          "t_armeret_mm": 650.0,
+          "t_uarmeret_mm": 1200.0,
+          "t_uarmeret_phi_kor_mm": 1200.0,
+          "t_basis_arm_mm": 750.0,
+          "reduktion_mm": 550.0,
+          "reduktion_pct": 0.4583,
+          "klasse_ok": false,
+          "klasser": [
+            5,
+            6
+          ],
+          "min_daklag": 20,
+          "max_korn": null,
+          "fejl": null,
+          "t_armeret_eksakt_mm": 638.0,
+          "t_uarmeret_eksakt_mm": 1200.0,
+          "t_uarmeret_phi_kor_eksakt_mm": 1200.0,
+          "reduktion_mm_eksakt": 562.0,
+          "reduktion_pct_eksakt": 0.4688,
+          "afrunding_trin_mm": 50,
+          "t_min_mm": 250.0,
+          "phi": 37.0,
+          "phi_uarmeret": 37.0,
+          "phi_eksakt": 37.0,
+          "phi_uarmeret_eksakt": 37.0,
+          "phi_afrunding": "ingen",
+          "min_top_cover_mm": 200.0,
+          "general_top_cover_mm": 200.0,
+          "product_cover_mm": 200.0,
+          "min_spacing_mm": 200.0,
+          "max_spacing_mm": 400.0,
+          "overlap_ge5_mm": 300.0,
+          "overlap_lt5_mm": 400.0,
+          "source": "Tensar",
+          "placering_ok": false,
+          "geonet_placeringer_mm_fra_top": [
+            200.0,
+            650.0
+          ],
+          "geonet_y_fracs": [
+            0.3076923076923077,
+            1.0
+          ],
+          "topdaeklag_mm": 200.0,
+          "afstande_mellem_geonet_mm": [
+            450.0
+          ],
+          "placeringsadvarsler": [
+            "Afstanden mellem geonetlagene er 450 mm. Anbefalingen for bedst effekt er højst 400 mm for Tensar."
+          ],
+          "t_min_placering_mm": 400.0,
+          "t_dimensionerende_mm": 650.0,
+          "placeringsbasis": "minimumsdæklag",
+          "korrektion_min": -0.3,
+          "korrektion_max": -0.15,
+          "t_armeret_mm_min": 550.0,
+          "t_armeret_mm_max": 650.0,
+          "t_armeret_eksakt_mm_min": 525.0,
+          "phi_min": 37.0,
+          "reduktion_mm_min": 550.0,
+          "reduktion_mm_max": 650.0,
+          "reduktion_pct_min": 0.4583,
+          "reduktion_pct_max": 0.5417,
+          "placering_best": {
+            "min_top_cover_mm": 200.0,
+            "general_top_cover_mm": 200.0,
+            "product_cover_mm": 200.0,
+            "min_spacing_mm": 200.0,
+            "max_spacing_mm": 400.0,
+            "overlap_ge5_mm": 300.0,
+            "overlap_lt5_mm": 400.0,
+            "source": "Tensar",
+            "placering_ok": true,
+            "geonet_placeringer_mm_fra_top": [
+              200.0,
+              550.0
+            ],
+            "geonet_y_fracs": [
+              0.36363636363636365,
+              1.0
+            ],
+            "topdaeklag_mm": 200.0,
+            "afstande_mellem_geonet_mm": [
+              350.0
+            ],
+            "placeringsadvarsler": [],
+            "t_min_placering_mm": 400.0,
+            "t_dimensionerende_mm": 550.0,
+            "placeringsbasis": "minimumsdæklag"
+          }
+        }
+      },
+      "headers": [
+        "Produkt",
+        "Klasse",
+        "Indeks",
+        "1 lag",
+        "Sparet",
+        "2 lag",
+        "Sparet"
+      ],
+      "rows": [
+        {
+          "selected": true,
+          "cells": [
+            "Tensar InterAx NX850",
+            "5-6",
+            "115–130",
+            "750 mm",
+            "−450 mm · 38 %",
+            "650 mm",
+            "−550 mm · 46 %"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "E'GRID T7",
+            "4-6",
+            "110",
+            "750 mm",
+            "−450 mm · 38 %",
+            "700 mm",
+            "−500 mm · 42 %"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "E'GRID T9L",
+            "4-6",
+            "110",
+            "750 mm",
+            "−450 mm · 38 %",
+            "700 mm",
+            "−500 mm · 42 %"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "GS-GRID SX170",
+            "4-6",
+            "110",
+            "750 mm",
+            "−450 mm · 38 %",
+            "700 mm",
+            "−500 mm · 42 %"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "Tensar InterAx NX750",
+            "5-6",
+            "110–120",
+            "750 mm",
+            "−450 mm · 38 %",
+            "700 mm",
+            "−500 mm · 42 %"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "Tensar HX165",
+            "4-6",
+            "105",
+            "800 mm",
+            "−400 mm · 33 %",
+            "750 mm",
+            "−450 mm · 38 %"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "E'GRID T6",
+            "3-6",
+            "100",
+            "850 mm",
+            "−350 mm · 29 %",
+            "750 mm",
+            "−450 mm · 38 %"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "GS-GRID B40/40",
+            "4-6",
+            "100",
+            "850 mm",
+            "−350 mm · 29 %",
+            "750 mm",
+            "−450 mm · 38 %"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "GS-GRID B40/40L",
+            "4-6",
+            "100",
+            "850 mm",
+            "−350 mm · 29 %",
+            "750 mm",
+            "−450 mm · 38 %"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "GS-GRID SX160",
+            "3-6",
+            "100",
+            "850 mm",
+            "−350 mm · 29 %",
+            "750 mm",
+            "−450 mm · 38 %"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "Tensar TriAx TX160",
+            "3-6",
+            "100",
+            "850 mm",
+            "−350 mm · 29 %",
+            "750 mm",
+            "−450 mm · 38 %"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "Tensar TriAx TX190L",
+            "4-6",
+            "100",
+            "850 mm",
+            "−350 mm · 29 %",
+            "750 mm",
+            "−450 mm · 38 %"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "Tensar HX5.5",
+            "1-5",
+            "95",
+            "900 mm",
+            "−300 mm · 25 %",
+            "800 mm",
+            "−400 mm · 33 %"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "GS-GRID B30/30",
+            "3-5",
+            "90",
+            "950 mm",
+            "−250 mm · 21 %",
+            "850 mm",
+            "−350 mm · 29 %"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "GS-GRID B30/30L",
+            "3-5",
+            "90",
+            "950 mm",
+            "−250 mm · 21 %",
+            "850 mm",
+            "−350 mm · 29 %"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "GS-GRID B30/30XL",
+            "4-6",
+            "90",
+            "950 mm",
+            "−250 mm · 21 %",
+            "850 mm",
+            "−350 mm · 29 %"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "Tensar SS30",
+            "3-5",
+            "90",
+            "950 mm",
+            "−250 mm · 21 %",
+            "850 mm",
+            "−350 mm · 29 %"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "Tensar TriAx TX150",
+            "1-4",
+            "90",
+            "950 mm",
+            "−250 mm · 21 %",
+            "850 mm",
+            "−350 mm · 29 %"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "GS-GRID B20/20",
+            "1-3",
+            "80",
+            "1.000 mm",
+            "−200 mm · 17 %",
+            "900 mm",
+            "−300 mm · 25 %"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "GS-GRID B20/20L",
+            "1-3",
+            "80",
+            "1.000 mm",
+            "−200 mm · 17 %",
+            "900 mm",
+            "−300 mm · 25 %"
+          ]
+        }
+      ],
+      "caption": "Produkterne er sorteret efter den tyndeste gyldige opbygning under de aktuelle forudsætninger.",
+      "html": "<div class=\"rt-alle-tabel\"><div class=\"rt-alle-raekke rt-alle-valgt\"><div class=\"rt-alle-produkt\">Tensar InterAx NX850</div><div>5-6</div><div class=\"rt-alle-num\">115–130</div><div class=\"rt-alle-num\">750 mm</div><div class=\"rt-alle-sparet\">−450 mm · 38 %</div><div class=\"rt-alle-num\">650 mm</div><div class=\"rt-alle-sparet\">−550 mm · 46 %</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">E&#x27;GRID T7</div><div>4-6</div><div class=\"rt-alle-num\">110</div><div class=\"rt-alle-num\">750 mm</div><div class=\"rt-alle-sparet\">−450 mm · 38 %</div><div class=\"rt-alle-num\">700 mm</div><div class=\"rt-alle-sparet\">−500 mm · 42 %</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">E&#x27;GRID T9L</div><div>4-6</div><div class=\"rt-alle-num\">110</div><div class=\"rt-alle-num\">750 mm</div><div class=\"rt-alle-sparet\">−450 mm · 38 %</div><div class=\"rt-alle-num\">700 mm</div><div class=\"rt-alle-sparet\">−500 mm · 42 %</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">GS-GRID SX170</div><div>4-6</div><div class=\"rt-alle-num\">110</div><div class=\"rt-alle-num\">750 mm</div><div class=\"rt-alle-sparet\">−450 mm · 38 %</div><div class=\"rt-alle-num\">700 mm</div><div class=\"rt-alle-sparet\">−500 mm · 42 %</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">Tensar InterAx NX750</div><div>5-6</div><div class=\"rt-alle-num\">110–120</div><div class=\"rt-alle-num\">750 mm</div><div class=\"rt-alle-sparet\">−450 mm · 38 %</div><div class=\"rt-alle-num\">700 mm</div><div class=\"rt-alle-sparet\">−500 mm · 42 %</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">Tensar HX165</div><div>4-6</div><div class=\"rt-alle-num\">105</div><div class=\"rt-alle-num\">800 mm</div><div class=\"rt-alle-sparet\">−400 mm · 33 %</div><div class=\"rt-alle-num\">750 mm</div><div class=\"rt-alle-sparet\">−450 mm · 38 %</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">E&#x27;GRID T6</div><div>3-6</div><div class=\"rt-alle-num\">100</div><div class=\"rt-alle-num\">850 mm</div><div class=\"rt-alle-sparet\">−350 mm · 29 %</div><div class=\"rt-alle-num\">750 mm</div><div class=\"rt-alle-sparet\">−450 mm · 38 %</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">GS-GRID B40/40</div><div>4-6</div><div class=\"rt-alle-num\">100</div><div class=\"rt-alle-num\">850 mm</div><div class=\"rt-alle-sparet\">−350 mm · 29 %</div><div class=\"rt-alle-num\">750 mm</div><div class=\"rt-alle-sparet\">−450 mm · 38 %</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">GS-GRID B40/40L</div><div>4-6</div><div class=\"rt-alle-num\">100</div><div class=\"rt-alle-num\">850 mm</div><div class=\"rt-alle-sparet\">−350 mm · 29 %</div><div class=\"rt-alle-num\">750 mm</div><div class=\"rt-alle-sparet\">−450 mm · 38 %</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">GS-GRID SX160</div><div>3-6</div><div class=\"rt-alle-num\">100</div><div class=\"rt-alle-num\">850 mm</div><div class=\"rt-alle-sparet\">−350 mm · 29 %</div><div class=\"rt-alle-num\">750 mm</div><div class=\"rt-alle-sparet\">−450 mm · 38 %</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">Tensar TriAx TX160</div><div>3-6</div><div class=\"rt-alle-num\">100</div><div class=\"rt-alle-num\">850 mm</div><div class=\"rt-alle-sparet\">−350 mm · 29 %</div><div class=\"rt-alle-num\">750 mm</div><div class=\"rt-alle-sparet\">−450 mm · 38 %</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">Tensar TriAx TX190L</div><div>4-6</div><div class=\"rt-alle-num\">100</div><div class=\"rt-alle-num\">850 mm</div><div class=\"rt-alle-sparet\">−350 mm · 29 %</div><div class=\"rt-alle-num\">750 mm</div><div class=\"rt-alle-sparet\">−450 mm · 38 %</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">Tensar HX5.5</div><div>1-5</div><div class=\"rt-alle-num\">95</div><div class=\"rt-alle-num\">900 mm</div><div class=\"rt-alle-sparet\">−300 mm · 25 %</div><div class=\"rt-alle-num\">800 mm</div><div class=\"rt-alle-sparet\">−400 mm · 33 %</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">GS-GRID B30/30</div><div>3-5</div><div class=\"rt-alle-num\">90</div><div class=\"rt-alle-num\">950 mm</div><div class=\"rt-alle-sparet\">−250 mm · 21 %</div><div class=\"rt-alle-num\">850 mm</div><div class=\"rt-alle-sparet\">−350 mm · 29 %</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">GS-GRID B30/30L</div><div>3-5</div><div class=\"rt-alle-num\">90</div><div class=\"rt-alle-num\">950 mm</div><div class=\"rt-alle-sparet\">−250 mm · 21 %</div><div class=\"rt-alle-num\">850 mm</div><div class=\"rt-alle-sparet\">−350 mm · 29 %</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">GS-GRID B30/30XL</div><div>4-6</div><div class=\"rt-alle-num\">90</div><div class=\"rt-alle-num\">950 mm</div><div class=\"rt-alle-sparet\">−250 mm · 21 %</div><div class=\"rt-alle-num\">850 mm</div><div class=\"rt-alle-sparet\">−350 mm · 29 %</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">Tensar SS30</div><div>3-5</div><div class=\"rt-alle-num\">90</div><div class=\"rt-alle-num\">950 mm</div><div class=\"rt-alle-sparet\">−250 mm · 21 %</div><div class=\"rt-alle-num\">850 mm</div><div class=\"rt-alle-sparet\">−350 mm · 29 %</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">Tensar TriAx TX150</div><div>1-4</div><div class=\"rt-alle-num\">90</div><div class=\"rt-alle-num\">950 mm</div><div class=\"rt-alle-sparet\">−250 mm · 21 %</div><div class=\"rt-alle-num\">850 mm</div><div class=\"rt-alle-sparet\">−350 mm · 29 %</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">GS-GRID B20/20</div><div>1-3</div><div class=\"rt-alle-num\">80</div><div class=\"rt-alle-num\">1.000 mm</div><div class=\"rt-alle-sparet\">−200 mm · 17 %</div><div class=\"rt-alle-num\">900 mm</div><div class=\"rt-alle-sparet\">−300 mm · 25 %</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">GS-GRID B20/20L</div><div>1-3</div><div class=\"rt-alle-num\">80</div><div class=\"rt-alle-num\">1.000 mm</div><div class=\"rt-alle-sparet\">−200 mm · 17 %</div><div class=\"rt-alle-num\">900 mm</div><div class=\"rt-alle-sparet\">−300 mm · 25 %</div></div></div><div class=\"rt-caption\">Produkterne er sorteret efter den tyndeste gyldige opbygning under de aktuelle forudsætninger.</div>"
+    },
+    {
+      "id": "traffic-t4-eu10",
+      "action": "Traffic class T4, Eu 10 MPa",
+      "inputs": {
+        "mode": "Standard",
+        "eu": 10,
+        "basis": "Trafikklasse",
+        "traffic": "T4",
+        "class": null,
+        "selected_product": "Tensar InterAx NX850",
+        "unit": "mm",
+        "custom_layers": null,
+        "controls": {
+          "std_geonet": "Tensar InterAx NX850",
+          "std_eu_slider": 10,
+          "std_eu_mode": "Eᵤ — E-modul",
+          "std_grundlag": "Trafikklasse",
+          "std_valgt_tklasse": "T4"
+        },
+        "settings": {
+          "afrunding": {
+            "trin_mm": 50,
+            "reduktion_eksakt": false,
+            "vis_eksakt": false,
+            "phi_afrunding": "ingen"
+          },
+          "opbygning": {
+            "geonet_paaskrift": true,
+            "maal_streg": true,
+            "maal_tal": true,
+            "signatur": true,
+            "enhed": "mm"
+          },
+          "lagfordeling": {
+            "fordeling": "minimum",
+            "samlet_minimum": true,
+            "minimum_mm": {
+              "1": 200.0,
+              "2": 200.0,
+              "3": 200.0,
+              "4": 250.0,
+              "5": 275.0,
+              "6": 300.0
+            },
+            "restlag": "vis",
+            "restlag_graense_mm": 100.0,
+            "vd_minimum_mm": {
+              "Bærelag": 100.0,
+              "Bundsikring": 200.0
+            },
+            "phi_regel": "laveste",
+            "kraev_bundsikring": false,
+            "netplacering": "laggraense",
+            "standard_klassisk": false,
+            "standard_opdeling": true,
+            "standard_under_minimum": "stabilgrus"
+          },
+          "yderomraade": {
+            "tolerance_over_pct": 5.0,
+            "tolerance_under_pct": 5.0,
+            "under_inden": "laveste",
+            "over_uden": "afvis",
+            "under_uden": "afvis"
+          }
+        },
+        "available_materials": [
+          {
+            "navn": "Bundsikringssand",
+            "lagtype": "Bundsikring",
+            "phi": 37,
+            "max_korn": 8,
+            "krav_maskestoerrelse_mm": 35,
+            "anvendelse": "Frostsikring og drænlag"
+          },
+          {
+            "navn": "Bundgrus 0-80",
+            "lagtype": "Bundsikring",
+            "phi": 38,
+            "max_korn": 80,
+            "krav_maskestoerrelse_mm": 65,
+            "anvendelse": "Frostsikring, dræning, bærelag"
+          },
+          {
+            "navn": "Stabilgrus SGI 0-32",
+            "lagtype": "Bærelag",
+            "phi": 40,
+            "max_korn": 32,
+            "krav_maskestoerrelse_mm": 35,
+            "anvendelse": "Bærelag"
+          },
+          {
+            "navn": "Stabilgrus SGII 0-32",
+            "lagtype": "Bærelag",
+            "phi": 40,
+            "max_korn": 32,
+            "krav_maskestoerrelse_mm": 35,
+            "anvendelse": "Bærelag"
+          },
+          {
+            "navn": "Knust beton 0-32",
+            "lagtype": "Bærelag",
+            "phi": 40,
+            "max_korn": 32,
+            "krav_maskestoerrelse_mm": 35,
+            "anvendelse": "Genbrugsmateriale, bærelag"
+          },
+          {
+            "navn": "Skærver 0-32",
+            "lagtype": "Bærelag",
+            "phi": 45,
+            "max_korn": 32,
+            "krav_maskestoerrelse_mm": 35,
+            "anvendelse": "Bærelag"
+          },
+          {
+            "navn": "Skærver 0-64",
+            "lagtype": "Bærelag",
+            "phi": 45,
+            "max_korn": 64,
+            "krav_maskestoerrelse_mm": 35,
+            "anvendelse": "Bærelag"
+          },
+          {
+            "navn": "Skærver 0-90",
+            "lagtype": "Bærelag",
+            "phi": 45,
+            "max_korn": 90,
+            "krav_maskestoerrelse_mm": 65,
+            "anvendelse": "Bærelag (kan også anvendes som bundsikring)"
+          },
+          {
+            "navn": "Skærver 0-120",
+            "lagtype": "Bundsikring",
+            "phi": 45,
+            "max_korn": 120,
+            "krav_maskestoerrelse_mm": 65,
+            "anvendelse": "Bundsikring"
+          },
+          {
+            "navn": "Skærver 0-150",
+            "lagtype": "Bundsikring",
+            "phi": 45,
+            "max_korn": 150,
+            "krav_maskestoerrelse_mm": 65,
+            "anvendelse": "Bundsikring grov"
+          },
+          {
+            "navn": "Skærver 0-200",
+            "lagtype": "Bundsikring",
+            "phi": 45,
+            "max_korn": 200,
+            "krav_maskestoerrelse_mm": 100,
+            "anvendelse": "Bundsikring meget grov"
+          },
+          {
+            "navn": "Skærver 0-250",
+            "lagtype": "Bundsikring",
+            "phi": 45,
+            "max_korn": 250,
+            "krav_maskestoerrelse_mm": 100,
+            "anvendelse": "Bundsikring ekstrem"
+          }
+        ],
+        "construction_materials": []
+      },
+      "calculation": {
+        "eu": 10.0,
+        "eo": 107.6,
+        "phi": 37.0,
+        "valgt_klasse": 5,
+        "grundlag_type": "trafikklasse",
+        "t_klasse": "T4",
+        "skala": 1.0
+      },
+      "raw_selected": {
+        "res_1": {
+          "navn": "Tensar InterAx NX850",
+          "serie": "Tensar",
+          "korrektion": -0.15,
+          "t_armeret_mm": 600.0,
+          "t_uarmeret_mm": 1000.0,
+          "t_uarmeret_phi_kor_mm": 1000.0,
+          "t_basis_arm_mm": 666.0,
+          "reduktion_mm": 400.0,
+          "reduktion_pct": 0.4,
+          "klasse_ok": true,
+          "klasser": [
+            5,
+            6
+          ],
+          "min_daklag": 20,
+          "max_korn": null,
+          "fejl": null,
+          "t_armeret_eksakt_mm": 566.0,
+          "t_uarmeret_eksakt_mm": 969.0,
+          "t_uarmeret_phi_kor_eksakt_mm": 969.0,
+          "reduktion_mm_eksakt": 403.0,
+          "reduktion_pct_eksakt": 0.4158,
+          "afrunding_trin_mm": 50,
+          "t_min_mm": 300.0,
+          "phi": 37.0,
+          "phi_uarmeret": 37.0,
+          "phi_eksakt": 37.0,
+          "phi_uarmeret_eksakt": 37.0,
+          "phi_afrunding": "ingen",
+          "min_top_cover_mm": 200.0,
+          "general_top_cover_mm": 200.0,
+          "product_cover_mm": 200.0,
+          "min_spacing_mm": 200.0,
+          "max_spacing_mm": 400.0,
+          "overlap_ge5_mm": 300.0,
+          "overlap_lt5_mm": 400.0,
+          "source": "Tensar",
+          "placering_ok": true,
+          "geonet_placeringer_mm_fra_top": [
+            600.0
+          ],
+          "geonet_y_fracs": [
+            1.0
+          ],
+          "topdaeklag_mm": 600.0,
+          "afstande_mellem_geonet_mm": [],
+          "placeringsadvarsler": [],
+          "t_min_placering_mm": 200.0,
+          "t_dimensionerende_mm": 600.0,
+          "placeringsbasis": "underbund",
+          "korrektion_min": -0.3,
+          "korrektion_max": -0.15,
+          "t_armeret_mm_min": 500.0,
+          "t_armeret_mm_max": 600.0,
+          "t_armeret_eksakt_mm_min": 466.0,
+          "phi_min": 37.0,
+          "reduktion_mm_min": 400.0,
+          "reduktion_mm_max": 500.0,
+          "reduktion_pct_min": 0.4,
+          "reduktion_pct_max": 0.5,
+          "placering_best": {
+            "min_top_cover_mm": 200.0,
+            "general_top_cover_mm": 200.0,
+            "product_cover_mm": 200.0,
+            "min_spacing_mm": 200.0,
+            "max_spacing_mm": 400.0,
+            "overlap_ge5_mm": 300.0,
+            "overlap_lt5_mm": 400.0,
+            "source": "Tensar",
+            "placering_ok": true,
+            "geonet_placeringer_mm_fra_top": [
+              500.0
+            ],
+            "geonet_y_fracs": [
+              1.0
+            ],
+            "topdaeklag_mm": 500.0,
+            "afstande_mellem_geonet_mm": [],
+            "placeringsadvarsler": [],
+            "t_min_placering_mm": 200.0,
+            "t_dimensionerende_mm": 500.0,
+            "placeringsbasis": "underbund"
+          }
+        },
+        "res_2": {
+          "navn": "Tensar InterAx NX850",
+          "serie": "Tensar",
+          "korrektion": -0.15,
+          "t_armeret_mm": null,
+          "t_uarmeret_mm": null,
+          "t_uarmeret_phi_kor_mm": null,
+          "t_basis_arm_mm": null,
+          "reduktion_mm": null,
+          "reduktion_pct": null,
+          "klasse_ok": true,
+          "klasser": [
+            5,
+            6
+          ],
+          "min_daklag": 20,
+          "max_korn": null,
+          "fejl": "Kombinationen Eᵤ=10 MPa / Eₒ=108 MPa / 2 lag geonet er uden for diagrammets gyldighedsområde (\"—\" i opslagstabellen). Et lavere Eᵤ eller færre lag vil normalt ligge inden for gyldighedsområdet."
+        }
+      },
+      "headers": [
+        "Produkt",
+        "Klasse",
+        "Indeks",
+        "1 lag",
+        "Sparet",
+        "2 lag",
+        "Sparet"
+      ],
+      "rows": [
+        {
+          "selected": true,
+          "cells": [
+            "Tensar InterAx NX850",
+            "T4-T6",
+            "115–130",
+            "600 mm",
+            "−400 mm · 40 %",
+            "—",
+            "—"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "E'GRID T7",
+            "T4-T6",
+            "110",
+            "600 mm",
+            "−400 mm · 40 %",
+            "—",
+            "—"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "E'GRID T9L",
+            "T4-T6",
+            "110",
+            "600 mm",
+            "−400 mm · 40 %",
+            "—",
+            "—"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "GS-GRID SX170",
+            "T4-T6",
+            "110",
+            "600 mm",
+            "−400 mm · 40 %",
+            "—",
+            "—"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "Tensar InterAx NX750",
+            "T4-T6",
+            "110–120",
+            "600 mm",
+            "−400 mm · 40 %",
+            "—",
+            "—"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "Tensar HX165",
+            "T4-T6",
+            "105",
+            "650 mm",
+            "−350 mm · 35 %",
+            "—",
+            "—"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "E'GRID T6",
+            "T2-T6",
+            "100",
+            "700 mm",
+            "−300 mm · 30 %",
+            "—",
+            "—"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "GS-GRID B40/40",
+            "T4-T6",
+            "100",
+            "700 mm",
+            "−300 mm · 30 %",
+            "—",
+            "—"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "GS-GRID B40/40L",
+            "T4-T6",
+            "100",
+            "700 mm",
+            "−300 mm · 30 %",
+            "—",
+            "—"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "GS-GRID SX160",
+            "T2-T6",
+            "100",
+            "700 mm",
+            "−300 mm · 30 %",
+            "—",
+            "—"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "Tensar TriAx TX160",
+            "T2-T6",
+            "100",
+            "700 mm",
+            "−300 mm · 30 %",
+            "—",
+            "—"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "Tensar TriAx TX190L",
+            "T4-T6",
+            "100",
+            "700 mm",
+            "−300 mm · 30 %",
+            "—",
+            "—"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "Tensar HX5.5",
+            "T2-T4",
+            "95",
+            "700 mm",
+            "−300 mm · 30 %",
+            "—",
+            "—"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "GS-GRID B30/30",
+            "T2-T4",
+            "90",
+            "750 mm",
+            "−250 mm · 25 %",
+            "—",
+            "—"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "GS-GRID B30/30L",
+            "T2-T4",
+            "90",
+            "750 mm",
+            "−250 mm · 25 %",
+            "—",
+            "—"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "GS-GRID B30/30XL",
+            "T4-T6",
+            "90",
+            "750 mm",
+            "−250 mm · 25 %",
+            "—",
+            "—"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "Tensar SS30",
+            "T2-T4",
+            "90",
+            "750 mm",
+            "−250 mm · 25 %",
+            "—",
+            "—"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "Tensar TriAx TX150",
+            "T2-T3",
+            "90",
+            "750 mm",
+            "−250 mm · 25 %",
+            "—",
+            "—"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "GS-GRID B20/20",
+            "T2-T3",
+            "80",
+            "800 mm",
+            "−200 mm · 20 %",
+            "—",
+            "—"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "GS-GRID B20/20L",
+            "T2-T3",
+            "80",
+            "800 mm",
+            "−200 mm · 20 %",
+            "—",
+            "—"
+          ]
+        }
+      ],
+      "caption": "Produkterne er sorteret efter den tyndeste gyldige opbygning under de aktuelle forudsætninger.",
+      "html": "<div class=\"rt-alle-tabel\"><div class=\"rt-alle-raekke rt-alle-valgt\"><div class=\"rt-alle-produkt\">Tensar InterAx NX850</div><div>T4-T6</div><div class=\"rt-alle-num\">115–130</div><div class=\"rt-alle-num\">600 mm</div><div class=\"rt-alle-sparet\">−400 mm · 40 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">E&#x27;GRID T7</div><div>T4-T6</div><div class=\"rt-alle-num\">110</div><div class=\"rt-alle-num\">600 mm</div><div class=\"rt-alle-sparet\">−400 mm · 40 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">E&#x27;GRID T9L</div><div>T4-T6</div><div class=\"rt-alle-num\">110</div><div class=\"rt-alle-num\">600 mm</div><div class=\"rt-alle-sparet\">−400 mm · 40 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">GS-GRID SX170</div><div>T4-T6</div><div class=\"rt-alle-num\">110</div><div class=\"rt-alle-num\">600 mm</div><div class=\"rt-alle-sparet\">−400 mm · 40 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">Tensar InterAx NX750</div><div>T4-T6</div><div class=\"rt-alle-num\">110–120</div><div class=\"rt-alle-num\">600 mm</div><div class=\"rt-alle-sparet\">−400 mm · 40 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">Tensar HX165</div><div>T4-T6</div><div class=\"rt-alle-num\">105</div><div class=\"rt-alle-num\">650 mm</div><div class=\"rt-alle-sparet\">−350 mm · 35 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">E&#x27;GRID T6</div><div>T2-T6</div><div class=\"rt-alle-num\">100</div><div class=\"rt-alle-num\">700 mm</div><div class=\"rt-alle-sparet\">−300 mm · 30 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">GS-GRID B40/40</div><div>T4-T6</div><div class=\"rt-alle-num\">100</div><div class=\"rt-alle-num\">700 mm</div><div class=\"rt-alle-sparet\">−300 mm · 30 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">GS-GRID B40/40L</div><div>T4-T6</div><div class=\"rt-alle-num\">100</div><div class=\"rt-alle-num\">700 mm</div><div class=\"rt-alle-sparet\">−300 mm · 30 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">GS-GRID SX160</div><div>T2-T6</div><div class=\"rt-alle-num\">100</div><div class=\"rt-alle-num\">700 mm</div><div class=\"rt-alle-sparet\">−300 mm · 30 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">Tensar TriAx TX160</div><div>T2-T6</div><div class=\"rt-alle-num\">100</div><div class=\"rt-alle-num\">700 mm</div><div class=\"rt-alle-sparet\">−300 mm · 30 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">Tensar TriAx TX190L</div><div>T4-T6</div><div class=\"rt-alle-num\">100</div><div class=\"rt-alle-num\">700 mm</div><div class=\"rt-alle-sparet\">−300 mm · 30 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">Tensar HX5.5</div><div>T2-T4</div><div class=\"rt-alle-num\">95</div><div class=\"rt-alle-num\">700 mm</div><div class=\"rt-alle-sparet\">−300 mm · 30 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">GS-GRID B30/30</div><div>T2-T4</div><div class=\"rt-alle-num\">90</div><div class=\"rt-alle-num\">750 mm</div><div class=\"rt-alle-sparet\">−250 mm · 25 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">GS-GRID B30/30L</div><div>T2-T4</div><div class=\"rt-alle-num\">90</div><div class=\"rt-alle-num\">750 mm</div><div class=\"rt-alle-sparet\">−250 mm · 25 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">GS-GRID B30/30XL</div><div>T4-T6</div><div class=\"rt-alle-num\">90</div><div class=\"rt-alle-num\">750 mm</div><div class=\"rt-alle-sparet\">−250 mm · 25 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">Tensar SS30</div><div>T2-T4</div><div class=\"rt-alle-num\">90</div><div class=\"rt-alle-num\">750 mm</div><div class=\"rt-alle-sparet\">−250 mm · 25 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">Tensar TriAx TX150</div><div>T2-T3</div><div class=\"rt-alle-num\">90</div><div class=\"rt-alle-num\">750 mm</div><div class=\"rt-alle-sparet\">−250 mm · 25 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">GS-GRID B20/20</div><div>T2-T3</div><div class=\"rt-alle-num\">80</div><div class=\"rt-alle-num\">800 mm</div><div class=\"rt-alle-sparet\">−200 mm · 20 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">GS-GRID B20/20L</div><div>T2-T3</div><div class=\"rt-alle-num\">80</div><div class=\"rt-alle-num\">800 mm</div><div class=\"rt-alle-sparet\">−200 mm · 20 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div></div><div class=\"rt-caption\">Produkterne er sorteret efter den tyndeste gyldige opbygning under de aktuelle forudsætninger.</div>"
+    },
+    {
+      "id": "traffic-t4-eu10-cm",
+      "action": "Same traffic case displayed in cm",
+      "inputs": {
+        "mode": "Standard",
+        "eu": 10,
+        "basis": "Trafikklasse",
+        "traffic": "T4",
+        "class": null,
+        "selected_product": "Tensar TriAx TX160",
+        "unit": "cm",
+        "custom_layers": null,
+        "controls": {
+          "std_geonet": "Tensar TriAx TX160",
+          "std_eu_slider": 10,
+          "std_eu_mode": "Eᵤ — E-modul",
+          "std_grundlag": "Trafikklasse",
+          "std_valgt_tklasse": "T4"
+        },
+        "settings": {
+          "afrunding": {
+            "trin_mm": 50,
+            "reduktion_eksakt": false,
+            "vis_eksakt": false,
+            "phi_afrunding": "ingen"
+          },
+          "opbygning": {
+            "geonet_paaskrift": true,
+            "maal_streg": true,
+            "maal_tal": true,
+            "signatur": true,
+            "enhed": "cm"
+          },
+          "lagfordeling": {
+            "fordeling": "minimum",
+            "samlet_minimum": true,
+            "minimum_mm": {
+              "1": 200.0,
+              "2": 200.0,
+              "3": 200.0,
+              "4": 250.0,
+              "5": 275.0,
+              "6": 300.0
+            },
+            "restlag": "vis",
+            "restlag_graense_mm": 100.0,
+            "vd_minimum_mm": {
+              "Bærelag": 100.0,
+              "Bundsikring": 200.0
+            },
+            "phi_regel": "laveste",
+            "kraev_bundsikring": false,
+            "netplacering": "laggraense",
+            "standard_klassisk": false,
+            "standard_opdeling": true,
+            "standard_under_minimum": "stabilgrus"
+          },
+          "yderomraade": {
+            "tolerance_over_pct": 5.0,
+            "tolerance_under_pct": 5.0,
+            "under_inden": "laveste",
+            "over_uden": "afvis",
+            "under_uden": "afvis"
+          }
+        },
+        "available_materials": [
+          {
+            "navn": "Bundsikringssand",
+            "lagtype": "Bundsikring",
+            "phi": 37,
+            "max_korn": 8,
+            "krav_maskestoerrelse_mm": 35,
+            "anvendelse": "Frostsikring og drænlag"
+          },
+          {
+            "navn": "Bundgrus 0-80",
+            "lagtype": "Bundsikring",
+            "phi": 38,
+            "max_korn": 80,
+            "krav_maskestoerrelse_mm": 65,
+            "anvendelse": "Frostsikring, dræning, bærelag"
+          },
+          {
+            "navn": "Stabilgrus SGI 0-32",
+            "lagtype": "Bærelag",
+            "phi": 40,
+            "max_korn": 32,
+            "krav_maskestoerrelse_mm": 35,
+            "anvendelse": "Bærelag"
+          },
+          {
+            "navn": "Stabilgrus SGII 0-32",
+            "lagtype": "Bærelag",
+            "phi": 40,
+            "max_korn": 32,
+            "krav_maskestoerrelse_mm": 35,
+            "anvendelse": "Bærelag"
+          },
+          {
+            "navn": "Knust beton 0-32",
+            "lagtype": "Bærelag",
+            "phi": 40,
+            "max_korn": 32,
+            "krav_maskestoerrelse_mm": 35,
+            "anvendelse": "Genbrugsmateriale, bærelag"
+          },
+          {
+            "navn": "Skærver 0-32",
+            "lagtype": "Bærelag",
+            "phi": 45,
+            "max_korn": 32,
+            "krav_maskestoerrelse_mm": 35,
+            "anvendelse": "Bærelag"
+          },
+          {
+            "navn": "Skærver 0-64",
+            "lagtype": "Bærelag",
+            "phi": 45,
+            "max_korn": 64,
+            "krav_maskestoerrelse_mm": 35,
+            "anvendelse": "Bærelag"
+          },
+          {
+            "navn": "Skærver 0-90",
+            "lagtype": "Bærelag",
+            "phi": 45,
+            "max_korn": 90,
+            "krav_maskestoerrelse_mm": 65,
+            "anvendelse": "Bærelag (kan også anvendes som bundsikring)"
+          },
+          {
+            "navn": "Skærver 0-120",
+            "lagtype": "Bundsikring",
+            "phi": 45,
+            "max_korn": 120,
+            "krav_maskestoerrelse_mm": 65,
+            "anvendelse": "Bundsikring"
+          },
+          {
+            "navn": "Skærver 0-150",
+            "lagtype": "Bundsikring",
+            "phi": 45,
+            "max_korn": 150,
+            "krav_maskestoerrelse_mm": 65,
+            "anvendelse": "Bundsikring grov"
+          },
+          {
+            "navn": "Skærver 0-200",
+            "lagtype": "Bundsikring",
+            "phi": 45,
+            "max_korn": 200,
+            "krav_maskestoerrelse_mm": 100,
+            "anvendelse": "Bundsikring meget grov"
+          },
+          {
+            "navn": "Skærver 0-250",
+            "lagtype": "Bundsikring",
+            "phi": 45,
+            "max_korn": 250,
+            "krav_maskestoerrelse_mm": 100,
+            "anvendelse": "Bundsikring ekstrem"
+          }
+        ],
+        "construction_materials": []
+      },
+      "calculation": {
+        "eu": 10.0,
+        "eo": 107.6,
+        "phi": 37.0,
+        "valgt_klasse": 5,
+        "grundlag_type": "trafikklasse",
+        "t_klasse": "T4",
+        "skala": 1.0
+      },
+      "raw_selected": {
+        "res_1": {
+          "navn": "Tensar TriAx TX160",
+          "serie": "Tensar",
+          "korrektion": 0.0,
+          "t_armeret_mm": 700.0,
+          "t_uarmeret_mm": 1000.0,
+          "t_uarmeret_phi_kor_mm": 1000.0,
+          "t_basis_arm_mm": 666.0,
+          "reduktion_mm": 300.0,
+          "reduktion_pct": 0.3,
+          "klasse_ok": true,
+          "klasser": [
+            3,
+            4,
+            5,
+            6
+          ],
+          "min_daklag": 20,
+          "max_korn": 80,
+          "fejl": null,
+          "t_armeret_eksakt_mm": 666.0,
+          "t_uarmeret_eksakt_mm": 969.0,
+          "t_uarmeret_phi_kor_eksakt_mm": 969.0,
+          "reduktion_mm_eksakt": 303.0,
+          "reduktion_pct_eksakt": 0.3127,
+          "afrunding_trin_mm": 50,
+          "t_min_mm": 300.0,
+          "phi": 37.0,
+          "phi_uarmeret": 37.0,
+          "phi_eksakt": 37.0,
+          "phi_uarmeret_eksakt": 37.0,
+          "phi_afrunding": "ingen",
+          "min_top_cover_mm": 200.0,
+          "general_top_cover_mm": 200.0,
+          "product_cover_mm": 200.0,
+          "min_spacing_mm": 200.0,
+          "max_spacing_mm": 400.0,
+          "overlap_ge5_mm": 300.0,
+          "overlap_lt5_mm": 400.0,
+          "source": "Tensar",
+          "placering_ok": true,
+          "geonet_placeringer_mm_fra_top": [
+            700.0
+          ],
+          "geonet_y_fracs": [
+            1.0
+          ],
+          "topdaeklag_mm": 700.0,
+          "afstande_mellem_geonet_mm": [],
+          "placeringsadvarsler": [],
+          "t_min_placering_mm": 200.0,
+          "t_dimensionerende_mm": 700.0,
+          "placeringsbasis": "underbund"
+        },
+        "res_2": {
+          "navn": "Tensar TriAx TX160",
+          "serie": "Tensar",
+          "korrektion": 0.0,
+          "t_armeret_mm": null,
+          "t_uarmeret_mm": null,
+          "t_uarmeret_phi_kor_mm": null,
+          "t_basis_arm_mm": null,
+          "reduktion_mm": null,
+          "reduktion_pct": null,
+          "klasse_ok": true,
+          "klasser": [
+            3,
+            4,
+            5,
+            6
+          ],
+          "min_daklag": 20,
+          "max_korn": 80,
+          "fejl": "Kombinationen Eᵤ=10 MPa / Eₒ=108 MPa / 2 lag geonet er uden for diagrammets gyldighedsområde (\"—\" i opslagstabellen). Et lavere Eᵤ eller færre lag vil normalt ligge inden for gyldighedsområdet."
+        }
+      },
+      "headers": [
+        "Produkt",
+        "Klasse",
+        "Indeks",
+        "1 lag",
+        "Sparet",
+        "2 lag",
+        "Sparet"
+      ],
+      "rows": [
+        {
+          "selected": false,
+          "cells": [
+            "Tensar InterAx NX850",
+            "T4-T6",
+            "115–130",
+            "60 cm",
+            "−40 cm · 40 %",
+            "—",
+            "—"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "E'GRID T7",
+            "T4-T6",
+            "110",
+            "60 cm",
+            "−40 cm · 40 %",
+            "—",
+            "—"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "E'GRID T9L",
+            "T4-T6",
+            "110",
+            "60 cm",
+            "−40 cm · 40 %",
+            "—",
+            "—"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "GS-GRID SX170",
+            "T4-T6",
+            "110",
+            "60 cm",
+            "−40 cm · 40 %",
+            "—",
+            "—"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "Tensar InterAx NX750",
+            "T4-T6",
+            "110–120",
+            "60 cm",
+            "−40 cm · 40 %",
+            "—",
+            "—"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "Tensar HX165",
+            "T4-T6",
+            "105",
+            "65 cm",
+            "−35 cm · 35 %",
+            "—",
+            "—"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "E'GRID T6",
+            "T2-T6",
+            "100",
+            "70 cm",
+            "−30 cm · 30 %",
+            "—",
+            "—"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "GS-GRID B40/40",
+            "T4-T6",
+            "100",
+            "70 cm",
+            "−30 cm · 30 %",
+            "—",
+            "—"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "GS-GRID B40/40L",
+            "T4-T6",
+            "100",
+            "70 cm",
+            "−30 cm · 30 %",
+            "—",
+            "—"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "GS-GRID SX160",
+            "T2-T6",
+            "100",
+            "70 cm",
+            "−30 cm · 30 %",
+            "—",
+            "—"
+          ]
+        },
+        {
+          "selected": true,
+          "cells": [
+            "Tensar TriAx TX160",
+            "T2-T6",
+            "100",
+            "70 cm",
+            "−30 cm · 30 %",
+            "—",
+            "—"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "Tensar TriAx TX190L",
+            "T4-T6",
+            "100",
+            "70 cm",
+            "−30 cm · 30 %",
+            "—",
+            "—"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "Tensar HX5.5",
+            "T2-T4",
+            "95",
+            "70 cm",
+            "−30 cm · 30 %",
+            "—",
+            "—"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "GS-GRID B30/30",
+            "T2-T4",
+            "90",
+            "75 cm",
+            "−25 cm · 25 %",
+            "—",
+            "—"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "GS-GRID B30/30L",
+            "T2-T4",
+            "90",
+            "75 cm",
+            "−25 cm · 25 %",
+            "—",
+            "—"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "GS-GRID B30/30XL",
+            "T4-T6",
+            "90",
+            "75 cm",
+            "−25 cm · 25 %",
+            "—",
+            "—"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "Tensar SS30",
+            "T2-T4",
+            "90",
+            "75 cm",
+            "−25 cm · 25 %",
+            "—",
+            "—"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "Tensar TriAx TX150",
+            "T2-T3",
+            "90",
+            "75 cm",
+            "−25 cm · 25 %",
+            "—",
+            "—"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "GS-GRID B20/20",
+            "T2-T3",
+            "80",
+            "80 cm",
+            "−20 cm · 20 %",
+            "—",
+            "—"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "GS-GRID B20/20L",
+            "T2-T3",
+            "80",
+            "80 cm",
+            "−20 cm · 20 %",
+            "—",
+            "—"
+          ]
+        }
+      ],
+      "caption": "Produkterne er sorteret efter den tyndeste gyldige opbygning under de aktuelle forudsætninger.",
+      "html": "<div class=\"rt-alle-tabel\"><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">Tensar InterAx NX850</div><div>T4-T6</div><div class=\"rt-alle-num\">115–130</div><div class=\"rt-alle-num\">60 cm</div><div class=\"rt-alle-sparet\">−40 cm · 40 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">E&#x27;GRID T7</div><div>T4-T6</div><div class=\"rt-alle-num\">110</div><div class=\"rt-alle-num\">60 cm</div><div class=\"rt-alle-sparet\">−40 cm · 40 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">E&#x27;GRID T9L</div><div>T4-T6</div><div class=\"rt-alle-num\">110</div><div class=\"rt-alle-num\">60 cm</div><div class=\"rt-alle-sparet\">−40 cm · 40 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">GS-GRID SX170</div><div>T4-T6</div><div class=\"rt-alle-num\">110</div><div class=\"rt-alle-num\">60 cm</div><div class=\"rt-alle-sparet\">−40 cm · 40 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">Tensar InterAx NX750</div><div>T4-T6</div><div class=\"rt-alle-num\">110–120</div><div class=\"rt-alle-num\">60 cm</div><div class=\"rt-alle-sparet\">−40 cm · 40 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">Tensar HX165</div><div>T4-T6</div><div class=\"rt-alle-num\">105</div><div class=\"rt-alle-num\">65 cm</div><div class=\"rt-alle-sparet\">−35 cm · 35 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">E&#x27;GRID T6</div><div>T2-T6</div><div class=\"rt-alle-num\">100</div><div class=\"rt-alle-num\">70 cm</div><div class=\"rt-alle-sparet\">−30 cm · 30 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">GS-GRID B40/40</div><div>T4-T6</div><div class=\"rt-alle-num\">100</div><div class=\"rt-alle-num\">70 cm</div><div class=\"rt-alle-sparet\">−30 cm · 30 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">GS-GRID B40/40L</div><div>T4-T6</div><div class=\"rt-alle-num\">100</div><div class=\"rt-alle-num\">70 cm</div><div class=\"rt-alle-sparet\">−30 cm · 30 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">GS-GRID SX160</div><div>T2-T6</div><div class=\"rt-alle-num\">100</div><div class=\"rt-alle-num\">70 cm</div><div class=\"rt-alle-sparet\">−30 cm · 30 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div><div class=\"rt-alle-raekke rt-alle-valgt\"><div class=\"rt-alle-produkt\">Tensar TriAx TX160</div><div>T2-T6</div><div class=\"rt-alle-num\">100</div><div class=\"rt-alle-num\">70 cm</div><div class=\"rt-alle-sparet\">−30 cm · 30 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">Tensar TriAx TX190L</div><div>T4-T6</div><div class=\"rt-alle-num\">100</div><div class=\"rt-alle-num\">70 cm</div><div class=\"rt-alle-sparet\">−30 cm · 30 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">Tensar HX5.5</div><div>T2-T4</div><div class=\"rt-alle-num\">95</div><div class=\"rt-alle-num\">70 cm</div><div class=\"rt-alle-sparet\">−30 cm · 30 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">GS-GRID B30/30</div><div>T2-T4</div><div class=\"rt-alle-num\">90</div><div class=\"rt-alle-num\">75 cm</div><div class=\"rt-alle-sparet\">−25 cm · 25 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">GS-GRID B30/30L</div><div>T2-T4</div><div class=\"rt-alle-num\">90</div><div class=\"rt-alle-num\">75 cm</div><div class=\"rt-alle-sparet\">−25 cm · 25 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">GS-GRID B30/30XL</div><div>T4-T6</div><div class=\"rt-alle-num\">90</div><div class=\"rt-alle-num\">75 cm</div><div class=\"rt-alle-sparet\">−25 cm · 25 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">Tensar SS30</div><div>T2-T4</div><div class=\"rt-alle-num\">90</div><div class=\"rt-alle-num\">75 cm</div><div class=\"rt-alle-sparet\">−25 cm · 25 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">Tensar TriAx TX150</div><div>T2-T3</div><div class=\"rt-alle-num\">90</div><div class=\"rt-alle-num\">75 cm</div><div class=\"rt-alle-sparet\">−25 cm · 25 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">GS-GRID B20/20</div><div>T2-T3</div><div class=\"rt-alle-num\">80</div><div class=\"rt-alle-num\">80 cm</div><div class=\"rt-alle-sparet\">−20 cm · 20 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">GS-GRID B20/20L</div><div>T2-T3</div><div class=\"rt-alle-num\">80</div><div class=\"rt-alle-num\">80 cm</div><div class=\"rt-alle-sparet\">−20 cm · 20 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div></div><div class=\"rt-caption\">Produkterne er sorteret efter den tyndeste gyldige opbygning under de aktuelle forudsætninger.</div>"
+    },
+    {
+      "id": "custom-default-cm",
+      "action": "Custom mode with default two-layer construction",
+      "inputs": {
+        "mode": "Brugerdefineret",
+        "eu": 10,
+        "basis": "Belastningsklasse",
+        "traffic": null,
+        "class": 4,
+        "selected_product": "Tensar TriAx TX160",
+        "unit": "cm",
+        "custom_layers": 2,
+        "controls": {
+          "bd_mat_0": "Stabilgrus SGII 0-32",
+          "bd_mat_1": "Bundsikringssand",
+          "bd_geonet": "Tensar TriAx TX160",
+          "bd_eu_slider": 10,
+          "bd_antal_lag": 2,
+          "bd_t_0": 300,
+          "bd_t_1": 400,
+          "bd_phi_override": false,
+          "bd_dd_vis_din_prik": true,
+          "bd_dd_vis_lag_prikker": true,
+          "bd_eu_mode": "Eᵤ — E-modul",
+          "bd_grundlag": "Belastningsklasse",
+          "bd_valgt_klasse": 4
+        },
+        "settings": {
+          "afrunding": {
+            "trin_mm": 50,
+            "reduktion_eksakt": false,
+            "vis_eksakt": false,
+            "phi_afrunding": "ingen"
+          },
+          "opbygning": {
+            "geonet_paaskrift": true,
+            "maal_streg": true,
+            "maal_tal": true,
+            "signatur": true,
+            "enhed": "cm"
+          },
+          "lagfordeling": {
+            "fordeling": "minimum",
+            "samlet_minimum": true,
+            "minimum_mm": {
+              "1": 200.0,
+              "2": 200.0,
+              "3": 200.0,
+              "4": 250.0,
+              "5": 275.0,
+              "6": 300.0
+            },
+            "restlag": "vis",
+            "restlag_graense_mm": 100.0,
+            "vd_minimum_mm": {
+              "Bærelag": 100.0,
+              "Bundsikring": 200.0
+            },
+            "phi_regel": "laveste",
+            "kraev_bundsikring": false,
+            "netplacering": "laggraense",
+            "standard_klassisk": false,
+            "standard_opdeling": true,
+            "standard_under_minimum": "stabilgrus"
+          },
+          "yderomraade": {
+            "tolerance_over_pct": 5.0,
+            "tolerance_under_pct": 5.0,
+            "under_inden": "laveste",
+            "over_uden": "afvis",
+            "under_uden": "afvis"
+          }
+        },
+        "available_materials": [
+          {
+            "navn": "Bundsikringssand",
+            "lagtype": "Bundsikring",
+            "phi": 37,
+            "max_korn": 8,
+            "krav_maskestoerrelse_mm": 35,
+            "anvendelse": "Frostsikring og drænlag"
+          },
+          {
+            "navn": "Bundgrus 0-80",
+            "lagtype": "Bundsikring",
+            "phi": 38,
+            "max_korn": 80,
+            "krav_maskestoerrelse_mm": 65,
+            "anvendelse": "Frostsikring, dræning, bærelag"
+          },
+          {
+            "navn": "Stabilgrus SGI 0-32",
+            "lagtype": "Bærelag",
+            "phi": 40,
+            "max_korn": 32,
+            "krav_maskestoerrelse_mm": 35,
+            "anvendelse": "Bærelag"
+          },
+          {
+            "navn": "Stabilgrus SGII 0-32",
+            "lagtype": "Bærelag",
+            "phi": 40,
+            "max_korn": 32,
+            "krav_maskestoerrelse_mm": 35,
+            "anvendelse": "Bærelag"
+          },
+          {
+            "navn": "Knust beton 0-32",
+            "lagtype": "Bærelag",
+            "phi": 40,
+            "max_korn": 32,
+            "krav_maskestoerrelse_mm": 35,
+            "anvendelse": "Genbrugsmateriale, bærelag"
+          },
+          {
+            "navn": "Skærver 0-32",
+            "lagtype": "Bærelag",
+            "phi": 45,
+            "max_korn": 32,
+            "krav_maskestoerrelse_mm": 35,
+            "anvendelse": "Bærelag"
+          },
+          {
+            "navn": "Skærver 0-64",
+            "lagtype": "Bærelag",
+            "phi": 45,
+            "max_korn": 64,
+            "krav_maskestoerrelse_mm": 35,
+            "anvendelse": "Bærelag"
+          },
+          {
+            "navn": "Skærver 0-90",
+            "lagtype": "Bærelag",
+            "phi": 45,
+            "max_korn": 90,
+            "krav_maskestoerrelse_mm": 65,
+            "anvendelse": "Bærelag (kan også anvendes som bundsikring)"
+          },
+          {
+            "navn": "Skærver 0-120",
+            "lagtype": "Bundsikring",
+            "phi": 45,
+            "max_korn": 120,
+            "krav_maskestoerrelse_mm": 65,
+            "anvendelse": "Bundsikring"
+          },
+          {
+            "navn": "Skærver 0-150",
+            "lagtype": "Bundsikring",
+            "phi": 45,
+            "max_korn": 150,
+            "krav_maskestoerrelse_mm": 65,
+            "anvendelse": "Bundsikring grov"
+          },
+          {
+            "navn": "Skærver 0-200",
+            "lagtype": "Bundsikring",
+            "phi": 45,
+            "max_korn": 200,
+            "krav_maskestoerrelse_mm": 100,
+            "anvendelse": "Bundsikring meget grov"
+          },
+          {
+            "navn": "Skærver 0-250",
+            "lagtype": "Bundsikring",
+            "phi": 45,
+            "max_korn": 250,
+            "krav_maskestoerrelse_mm": 100,
+            "anvendelse": "Bundsikring ekstrem"
+          }
+        ],
+        "construction_materials": [
+          {
+            "navn": "Stabilgrus SGII 0-32",
+            "phi": 40.0,
+            "max_korn": 32,
+            "lagtype": "Bærelag",
+            "tykkelse_mm": 300.0,
+            "pct": null,
+            "krav_maskestoerrelse_mm": 35
+          },
+          {
+            "navn": "Bundsikringssand",
+            "phi": 37.0,
+            "max_korn": 8,
+            "lagtype": "Bundsikring",
+            "tykkelse_mm": 400.0,
+            "pct": null,
+            "krav_maskestoerrelse_mm": 35
+          }
+        ]
+      },
+      "calculation": {
+        "eu": 10.0,
+        "eo": 80.0,
+        "phi": 38.285714285714285,
+        "valgt_klasse": 4,
+        "grundlag_type": "belastningsklasse",
+        "t_klasse": null,
+        "skala": 1.0
+      },
+      "raw_selected": {
+        "res_1": {
+          "eu": 10.0,
+          "eo": 80.0,
+          "phi": 38.285714285714285,
+          "phi_uarmeret": 38.285714285714285,
+          "phi_eksakt": 38.285714285714285,
+          "phi_uarmeret_eksakt": 38.285714285714285,
+          "phi_afrunding": "ingen",
+          "lag_mode": "1_lag",
+          "net_korrektion": 0.0,
+          "eu_lower": 10.0,
+          "eu_upper": 10.0,
+          "t_low_arm_cm": 61.7,
+          "t_high_arm_cm": 61.7,
+          "t_low_uarm_cm": 90.0,
+          "t_high_uarm_cm": 90.0,
+          "t_basis_arm_cm": 61.7,
+          "t_basis_arm_mm": 617.0,
+          "t_basis_uarm_cm": 90.0,
+          "t_basis_uarm_mm": 900.0,
+          "phi_korrektion": -0.0257,
+          "phi_korrektion_uarmeret": -0.0257,
+          "samlet_faktor": 0.9743,
+          "skala": 1.0,
+          "t_armeret_mm": 650.0,
+          "t_uarmeret_mm": 900.0,
+          "t_uarmeret_phi_kor_mm": 900.0,
+          "reduktion_mm": 250.0,
+          "reduktion_pct": 0.2778,
+          "uarmeret_mangler": false,
+          "uarmeret_fejl": null,
+          "fejl": null,
+          "t_armeret_eksakt_mm": 601.0,
+          "t_uarmeret_eksakt_mm": 900.0,
+          "t_uarmeret_phi_kor_eksakt_mm": 877.0,
+          "t_min_mm": 250.0,
+          "reduktion_mm_eksakt": 276.0,
+          "reduktion_pct_eksakt": 0.3144,
+          "afrunding_trin_mm": 50,
+          "phi_indtastet": 38.285714285714285,
+          "phi_regel": "laveste",
+          "min_top_cover_mm": 200.0,
+          "general_top_cover_mm": 200.0,
+          "product_cover_mm": 200.0,
+          "min_spacing_mm": 200.0,
+          "max_spacing_mm": 400.0,
+          "overlap_ge5_mm": 300.0,
+          "overlap_lt5_mm": 400.0,
+          "source": "Tensar",
+          "placering_ok": true,
+          "geonet_placeringer_mm_fra_top": [
+            650.0
+          ],
+          "geonet_y_fracs": [
+            1.0
+          ],
+          "topdaeklag_mm": 650.0,
+          "afstande_mellem_geonet_mm": [],
+          "placeringsadvarsler": [],
+          "t_min_placering_mm": 200.0,
+          "t_dimensionerende_mm": 650.0,
+          "placeringsbasis": "underbund"
+        },
+        "res_2": {
+          "fejl": "Kombinationen Eᵤ=10 MPa / Eₒ=80 MPa / 2 lag geonet er uden for diagrammets gyldighedsområde (\"—\" i opslagstabellen). Et lavere Eᵤ eller færre lag vil normalt ligge inden for gyldighedsområdet."
+        }
+      },
+      "headers": [
+        "Produkt",
+        "Klasse",
+        "Indeks",
+        "1 lag",
+        "Sparet",
+        "2 lag",
+        "Sparet"
+      ],
+      "rows": [
+        {
+          "selected": false,
+          "cells": [
+            "Tensar InterAx NX850",
+            "5-6",
+            "115–130",
+            "55 cm",
+            "−35 cm · 39 %",
+            "—",
+            "—"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "E'GRID T7",
+            "4-6",
+            "110",
+            "55 cm",
+            "−35 cm · 39 %",
+            "—",
+            "—"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "E'GRID T9L",
+            "4-6",
+            "110",
+            "55 cm",
+            "−35 cm · 39 %",
+            "—",
+            "—"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "GS-GRID SX170",
+            "4-6",
+            "110",
+            "55 cm",
+            "−35 cm · 39 %",
+            "—",
+            "—"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "Tensar InterAx NX750",
+            "5-6",
+            "110–120",
+            "55 cm",
+            "−35 cm · 39 %",
+            "—",
+            "—"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "Tensar HX165",
+            "4-6",
+            "105",
+            "60 cm",
+            "−30 cm · 33 %",
+            "—",
+            "—"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "E'GRID T6",
+            "3-6",
+            "100",
+            "65 cm",
+            "−25 cm · 28 %",
+            "—",
+            "—"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "GS-GRID B40/40",
+            "4-6",
+            "100",
+            "65 cm",
+            "−25 cm · 28 %",
+            "—",
+            "—"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "GS-GRID B40/40L",
+            "4-6",
+            "100",
+            "65 cm",
+            "−25 cm · 28 %",
+            "—",
+            "—"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "GS-GRID SX160",
+            "3-6",
+            "100",
+            "65 cm",
+            "−25 cm · 28 %",
+            "—",
+            "—"
+          ]
+        },
+        {
+          "selected": true,
+          "cells": [
+            "Tensar TriAx TX160",
+            "3-6",
+            "100",
+            "65 cm",
+            "−25 cm · 28 %",
+            "—",
+            "—"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "Tensar TriAx TX190L",
+            "4-6",
+            "100",
+            "65 cm",
+            "−25 cm · 28 %",
+            "—",
+            "—"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "Tensar HX5.5",
+            "1-5",
+            "95",
+            "65 cm",
+            "−25 cm · 28 %",
+            "—",
+            "—"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "GS-GRID B30/30",
+            "3-5",
+            "90",
+            "70 cm",
+            "−20 cm · 22 %",
+            "—",
+            "—"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "GS-GRID B30/30L",
+            "3-5",
+            "90",
+            "70 cm",
+            "−20 cm · 22 %",
+            "—",
+            "—"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "GS-GRID B30/30XL",
+            "4-6",
+            "90",
+            "70 cm",
+            "−20 cm · 22 %",
+            "—",
+            "—"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "Tensar SS30",
+            "3-5",
+            "90",
+            "70 cm",
+            "−20 cm · 22 %",
+            "—",
+            "—"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "Tensar TriAx TX150",
+            "1-4",
+            "90",
+            "70 cm",
+            "−20 cm · 22 %",
+            "—",
+            "—"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "GS-GRID B20/20",
+            "1-3",
+            "80",
+            "75 cm",
+            "−15 cm · 17 %",
+            "—",
+            "—"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "GS-GRID B20/20L",
+            "1-3",
+            "80",
+            "75 cm",
+            "−15 cm · 17 %",
+            "—",
+            "—"
+          ]
+        }
+      ],
+      "caption": "Produkterne er sorteret efter den tyndeste gyldige opbygning under de aktuelle forudsætninger.",
+      "html": "<div class=\"rt-alle-tabel\"><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">Tensar InterAx NX850</div><div>5-6</div><div class=\"rt-alle-num\">115–130</div><div class=\"rt-alle-num\">55 cm</div><div class=\"rt-alle-sparet\">−35 cm · 39 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">E&#x27;GRID T7</div><div>4-6</div><div class=\"rt-alle-num\">110</div><div class=\"rt-alle-num\">55 cm</div><div class=\"rt-alle-sparet\">−35 cm · 39 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">E&#x27;GRID T9L</div><div>4-6</div><div class=\"rt-alle-num\">110</div><div class=\"rt-alle-num\">55 cm</div><div class=\"rt-alle-sparet\">−35 cm · 39 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">GS-GRID SX170</div><div>4-6</div><div class=\"rt-alle-num\">110</div><div class=\"rt-alle-num\">55 cm</div><div class=\"rt-alle-sparet\">−35 cm · 39 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">Tensar InterAx NX750</div><div>5-6</div><div class=\"rt-alle-num\">110–120</div><div class=\"rt-alle-num\">55 cm</div><div class=\"rt-alle-sparet\">−35 cm · 39 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">Tensar HX165</div><div>4-6</div><div class=\"rt-alle-num\">105</div><div class=\"rt-alle-num\">60 cm</div><div class=\"rt-alle-sparet\">−30 cm · 33 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">E&#x27;GRID T6</div><div>3-6</div><div class=\"rt-alle-num\">100</div><div class=\"rt-alle-num\">65 cm</div><div class=\"rt-alle-sparet\">−25 cm · 28 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">GS-GRID B40/40</div><div>4-6</div><div class=\"rt-alle-num\">100</div><div class=\"rt-alle-num\">65 cm</div><div class=\"rt-alle-sparet\">−25 cm · 28 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">GS-GRID B40/40L</div><div>4-6</div><div class=\"rt-alle-num\">100</div><div class=\"rt-alle-num\">65 cm</div><div class=\"rt-alle-sparet\">−25 cm · 28 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">GS-GRID SX160</div><div>3-6</div><div class=\"rt-alle-num\">100</div><div class=\"rt-alle-num\">65 cm</div><div class=\"rt-alle-sparet\">−25 cm · 28 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div><div class=\"rt-alle-raekke rt-alle-valgt\"><div class=\"rt-alle-produkt\">Tensar TriAx TX160</div><div>3-6</div><div class=\"rt-alle-num\">100</div><div class=\"rt-alle-num\">65 cm</div><div class=\"rt-alle-sparet\">−25 cm · 28 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">Tensar TriAx TX190L</div><div>4-6</div><div class=\"rt-alle-num\">100</div><div class=\"rt-alle-num\">65 cm</div><div class=\"rt-alle-sparet\">−25 cm · 28 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">Tensar HX5.5</div><div>1-5</div><div class=\"rt-alle-num\">95</div><div class=\"rt-alle-num\">65 cm</div><div class=\"rt-alle-sparet\">−25 cm · 28 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">GS-GRID B30/30</div><div>3-5</div><div class=\"rt-alle-num\">90</div><div class=\"rt-alle-num\">70 cm</div><div class=\"rt-alle-sparet\">−20 cm · 22 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">GS-GRID B30/30L</div><div>3-5</div><div class=\"rt-alle-num\">90</div><div class=\"rt-alle-num\">70 cm</div><div class=\"rt-alle-sparet\">−20 cm · 22 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">GS-GRID B30/30XL</div><div>4-6</div><div class=\"rt-alle-num\">90</div><div class=\"rt-alle-num\">70 cm</div><div class=\"rt-alle-sparet\">−20 cm · 22 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">Tensar SS30</div><div>3-5</div><div class=\"rt-alle-num\">90</div><div class=\"rt-alle-num\">70 cm</div><div class=\"rt-alle-sparet\">−20 cm · 22 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">Tensar TriAx TX150</div><div>1-4</div><div class=\"rt-alle-num\">90</div><div class=\"rt-alle-num\">70 cm</div><div class=\"rt-alle-sparet\">−20 cm · 22 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">GS-GRID B20/20</div><div>1-3</div><div class=\"rt-alle-num\">80</div><div class=\"rt-alle-num\">75 cm</div><div class=\"rt-alle-sparet\">−15 cm · 17 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">GS-GRID B20/20L</div><div>1-3</div><div class=\"rt-alle-num\">80</div><div class=\"rt-alle-num\">75 cm</div><div class=\"rt-alle-sparet\">−15 cm · 17 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div></div><div class=\"rt-caption\">Produkterne er sorteret efter den tyndeste gyldige opbygning under de aktuelle forudsætninger.</div>"
+    },
+    {
+      "id": "custom-three-layers-cm",
+      "action": "Custom mode with three material layers",
+      "inputs": {
+        "mode": "Brugerdefineret",
+        "eu": 10,
+        "basis": "Belastningsklasse",
+        "traffic": null,
+        "class": 4,
+        "selected_product": "Tensar TriAx TX160",
+        "unit": "cm",
+        "custom_layers": 3,
+        "controls": {
+          "bd_mat_0": "Stabilgrus SGII 0-32",
+          "bd_mat_1": "Bundsikringssand",
+          "bd_mat_2": "Bundsikringssand",
+          "bd_geonet": "Tensar TriAx TX160",
+          "bd_eu_slider": 10,
+          "bd_antal_lag": 3,
+          "bd_t_0": 300,
+          "bd_t_1": 400,
+          "bd_t_2": 200,
+          "bd_phi_override": false,
+          "bd_dd_vis_din_prik": true,
+          "bd_dd_vis_lag_prikker": true,
+          "bd_eu_mode": "Eᵤ — E-modul",
+          "bd_grundlag": "Belastningsklasse",
+          "bd_valgt_klasse": 4
+        },
+        "settings": {
+          "afrunding": {
+            "trin_mm": 50,
+            "reduktion_eksakt": false,
+            "vis_eksakt": false,
+            "phi_afrunding": "ingen"
+          },
+          "opbygning": {
+            "geonet_paaskrift": true,
+            "maal_streg": true,
+            "maal_tal": true,
+            "signatur": true,
+            "enhed": "cm"
+          },
+          "lagfordeling": {
+            "fordeling": "minimum",
+            "samlet_minimum": true,
+            "minimum_mm": {
+              "1": 200.0,
+              "2": 200.0,
+              "3": 200.0,
+              "4": 250.0,
+              "5": 275.0,
+              "6": 300.0
+            },
+            "restlag": "vis",
+            "restlag_graense_mm": 100.0,
+            "vd_minimum_mm": {
+              "Bærelag": 100.0,
+              "Bundsikring": 200.0
+            },
+            "phi_regel": "laveste",
+            "kraev_bundsikring": false,
+            "netplacering": "laggraense",
+            "standard_klassisk": false,
+            "standard_opdeling": true,
+            "standard_under_minimum": "stabilgrus"
+          },
+          "yderomraade": {
+            "tolerance_over_pct": 5.0,
+            "tolerance_under_pct": 5.0,
+            "under_inden": "laveste",
+            "over_uden": "afvis",
+            "under_uden": "afvis"
+          }
+        },
+        "available_materials": [
+          {
+            "navn": "Bundsikringssand",
+            "lagtype": "Bundsikring",
+            "phi": 37,
+            "max_korn": 8,
+            "krav_maskestoerrelse_mm": 35,
+            "anvendelse": "Frostsikring og drænlag"
+          },
+          {
+            "navn": "Bundgrus 0-80",
+            "lagtype": "Bundsikring",
+            "phi": 38,
+            "max_korn": 80,
+            "krav_maskestoerrelse_mm": 65,
+            "anvendelse": "Frostsikring, dræning, bærelag"
+          },
+          {
+            "navn": "Stabilgrus SGI 0-32",
+            "lagtype": "Bærelag",
+            "phi": 40,
+            "max_korn": 32,
+            "krav_maskestoerrelse_mm": 35,
+            "anvendelse": "Bærelag"
+          },
+          {
+            "navn": "Stabilgrus SGII 0-32",
+            "lagtype": "Bærelag",
+            "phi": 40,
+            "max_korn": 32,
+            "krav_maskestoerrelse_mm": 35,
+            "anvendelse": "Bærelag"
+          },
+          {
+            "navn": "Knust beton 0-32",
+            "lagtype": "Bærelag",
+            "phi": 40,
+            "max_korn": 32,
+            "krav_maskestoerrelse_mm": 35,
+            "anvendelse": "Genbrugsmateriale, bærelag"
+          },
+          {
+            "navn": "Skærver 0-32",
+            "lagtype": "Bærelag",
+            "phi": 45,
+            "max_korn": 32,
+            "krav_maskestoerrelse_mm": 35,
+            "anvendelse": "Bærelag"
+          },
+          {
+            "navn": "Skærver 0-64",
+            "lagtype": "Bærelag",
+            "phi": 45,
+            "max_korn": 64,
+            "krav_maskestoerrelse_mm": 35,
+            "anvendelse": "Bærelag"
+          },
+          {
+            "navn": "Skærver 0-90",
+            "lagtype": "Bærelag",
+            "phi": 45,
+            "max_korn": 90,
+            "krav_maskestoerrelse_mm": 65,
+            "anvendelse": "Bærelag (kan også anvendes som bundsikring)"
+          },
+          {
+            "navn": "Skærver 0-120",
+            "lagtype": "Bundsikring",
+            "phi": 45,
+            "max_korn": 120,
+            "krav_maskestoerrelse_mm": 65,
+            "anvendelse": "Bundsikring"
+          },
+          {
+            "navn": "Skærver 0-150",
+            "lagtype": "Bundsikring",
+            "phi": 45,
+            "max_korn": 150,
+            "krav_maskestoerrelse_mm": 65,
+            "anvendelse": "Bundsikring grov"
+          },
+          {
+            "navn": "Skærver 0-200",
+            "lagtype": "Bundsikring",
+            "phi": 45,
+            "max_korn": 200,
+            "krav_maskestoerrelse_mm": 100,
+            "anvendelse": "Bundsikring meget grov"
+          },
+          {
+            "navn": "Skærver 0-250",
+            "lagtype": "Bundsikring",
+            "phi": 45,
+            "max_korn": 250,
+            "krav_maskestoerrelse_mm": 100,
+            "anvendelse": "Bundsikring ekstrem"
+          }
+        ],
+        "construction_materials": [
+          {
+            "navn": "Stabilgrus SGII 0-32",
+            "phi": 40.0,
+            "max_korn": 32,
+            "lagtype": "Bærelag",
+            "tykkelse_mm": 300.0,
+            "pct": null,
+            "krav_maskestoerrelse_mm": 35
+          },
+          {
+            "navn": "Bundsikringssand",
+            "phi": 37.0,
+            "max_korn": 8,
+            "lagtype": "Bundsikring",
+            "tykkelse_mm": 400.0,
+            "pct": null,
+            "krav_maskestoerrelse_mm": 35
+          },
+          {
+            "navn": "Bundsikringssand",
+            "phi": 37.0,
+            "max_korn": 8,
+            "lagtype": "Bundsikring",
+            "tykkelse_mm": 200.0,
+            "pct": null,
+            "krav_maskestoerrelse_mm": 35
+          }
+        ]
+      },
+      "calculation": {
+        "eu": 10.0,
+        "eo": 80.0,
+        "phi": 38.0,
+        "valgt_klasse": 4,
+        "grundlag_type": "belastningsklasse",
+        "t_klasse": null,
+        "skala": 1.0
+      },
+      "raw_selected": {
+        "res_1": {
+          "eu": 10.0,
+          "eo": 80.0,
+          "phi": 38.0,
+          "phi_uarmeret": 38.0,
+          "phi_eksakt": 38.0,
+          "phi_uarmeret_eksakt": 38.0,
+          "phi_afrunding": "ingen",
+          "lag_mode": "1_lag",
+          "net_korrektion": 0.0,
+          "eu_lower": 10.0,
+          "eu_upper": 10.0,
+          "t_low_arm_cm": 61.7,
+          "t_high_arm_cm": 61.7,
+          "t_low_uarm_cm": 90.0,
+          "t_high_uarm_cm": 90.0,
+          "t_basis_arm_cm": 61.7,
+          "t_basis_arm_mm": 617.0,
+          "t_basis_uarm_cm": 90.0,
+          "t_basis_uarm_mm": 900.0,
+          "phi_korrektion": -0.02,
+          "phi_korrektion_uarmeret": -0.02,
+          "samlet_faktor": 0.98,
+          "skala": 1.0,
+          "t_armeret_mm": 650.0,
+          "t_uarmeret_mm": 900.0,
+          "t_uarmeret_phi_kor_mm": 900.0,
+          "reduktion_mm": 250.0,
+          "reduktion_pct": 0.2778,
+          "uarmeret_mangler": false,
+          "uarmeret_fejl": null,
+          "fejl": null,
+          "t_armeret_eksakt_mm": 605.0,
+          "t_uarmeret_eksakt_mm": 900.0,
+          "t_uarmeret_phi_kor_eksakt_mm": 882.0,
+          "t_min_mm": 250.0,
+          "reduktion_mm_eksakt": 277.0,
+          "reduktion_pct_eksakt": 0.3144,
+          "afrunding_trin_mm": 50,
+          "phi_indtastet": 38.0,
+          "phi_regel": "laveste",
+          "min_top_cover_mm": 200.0,
+          "general_top_cover_mm": 200.0,
+          "product_cover_mm": 200.0,
+          "min_spacing_mm": 200.0,
+          "max_spacing_mm": 400.0,
+          "overlap_ge5_mm": 300.0,
+          "overlap_lt5_mm": 400.0,
+          "source": "Tensar",
+          "placering_ok": true,
+          "geonet_placeringer_mm_fra_top": [
+            650.0
+          ],
+          "geonet_y_fracs": [
+            1.0
+          ],
+          "topdaeklag_mm": 650.0,
+          "afstande_mellem_geonet_mm": [],
+          "placeringsadvarsler": [],
+          "t_min_placering_mm": 200.0,
+          "t_dimensionerende_mm": 650.0,
+          "placeringsbasis": "underbund"
+        },
+        "res_2": {
+          "fejl": "Kombinationen Eᵤ=10 MPa / Eₒ=80 MPa / 2 lag geonet er uden for diagrammets gyldighedsområde (\"—\" i opslagstabellen). Et lavere Eᵤ eller færre lag vil normalt ligge inden for gyldighedsområdet."
+        }
+      },
+      "headers": [
+        "Produkt",
+        "Klasse",
+        "Indeks",
+        "1 lag",
+        "Sparet",
+        "2 lag",
+        "Sparet"
+      ],
+      "rows": [
+        {
+          "selected": false,
+          "cells": [
+            "Tensar InterAx NX850",
+            "5-6",
+            "115–130",
+            "55 cm",
+            "−35 cm · 39 %",
+            "—",
+            "—"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "E'GRID T7",
+            "4-6",
+            "110",
+            "55 cm",
+            "−35 cm · 39 %",
+            "—",
+            "—"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "E'GRID T9L",
+            "4-6",
+            "110",
+            "55 cm",
+            "−35 cm · 39 %",
+            "—",
+            "—"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "GS-GRID SX170",
+            "4-6",
+            "110",
+            "55 cm",
+            "−35 cm · 39 %",
+            "—",
+            "—"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "Tensar InterAx NX750",
+            "5-6",
+            "110–120",
+            "55 cm",
+            "−35 cm · 39 %",
+            "—",
+            "—"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "Tensar HX165",
+            "4-6",
+            "105",
+            "60 cm",
+            "−30 cm · 33 %",
+            "—",
+            "—"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "E'GRID T6",
+            "3-6",
+            "100",
+            "65 cm",
+            "−25 cm · 28 %",
+            "—",
+            "—"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "GS-GRID B40/40",
+            "4-6",
+            "100",
+            "65 cm",
+            "−25 cm · 28 %",
+            "—",
+            "—"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "GS-GRID B40/40L",
+            "4-6",
+            "100",
+            "65 cm",
+            "−25 cm · 28 %",
+            "—",
+            "—"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "GS-GRID SX160",
+            "3-6",
+            "100",
+            "65 cm",
+            "−25 cm · 28 %",
+            "—",
+            "—"
+          ]
+        },
+        {
+          "selected": true,
+          "cells": [
+            "Tensar TriAx TX160",
+            "3-6",
+            "100",
+            "65 cm",
+            "−25 cm · 28 %",
+            "—",
+            "—"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "Tensar TriAx TX190L",
+            "4-6",
+            "100",
+            "65 cm",
+            "−25 cm · 28 %",
+            "—",
+            "—"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "Tensar HX5.5",
+            "1-5",
+            "95",
+            "65 cm",
+            "−25 cm · 28 %",
+            "—",
+            "—"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "GS-GRID B30/30",
+            "3-5",
+            "90",
+            "70 cm",
+            "−20 cm · 22 %",
+            "—",
+            "—"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "GS-GRID B30/30L",
+            "3-5",
+            "90",
+            "70 cm",
+            "−20 cm · 22 %",
+            "—",
+            "—"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "GS-GRID B30/30XL",
+            "4-6",
+            "90",
+            "70 cm",
+            "−20 cm · 22 %",
+            "—",
+            "—"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "Tensar SS30",
+            "3-5",
+            "90",
+            "70 cm",
+            "−20 cm · 22 %",
+            "—",
+            "—"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "Tensar TriAx TX150",
+            "1-4",
+            "90",
+            "70 cm",
+            "−20 cm · 22 %",
+            "—",
+            "—"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "GS-GRID B20/20",
+            "1-3",
+            "80",
+            "75 cm",
+            "−15 cm · 17 %",
+            "—",
+            "—"
+          ]
+        },
+        {
+          "selected": false,
+          "cells": [
+            "GS-GRID B20/20L",
+            "1-3",
+            "80",
+            "75 cm",
+            "−15 cm · 17 %",
+            "—",
+            "—"
+          ]
+        }
+      ],
+      "caption": "Produkterne er sorteret efter den tyndeste gyldige opbygning under de aktuelle forudsætninger.",
+      "html": "<div class=\"rt-alle-tabel\"><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">Tensar InterAx NX850</div><div>5-6</div><div class=\"rt-alle-num\">115–130</div><div class=\"rt-alle-num\">55 cm</div><div class=\"rt-alle-sparet\">−35 cm · 39 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">E&#x27;GRID T7</div><div>4-6</div><div class=\"rt-alle-num\">110</div><div class=\"rt-alle-num\">55 cm</div><div class=\"rt-alle-sparet\">−35 cm · 39 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">E&#x27;GRID T9L</div><div>4-6</div><div class=\"rt-alle-num\">110</div><div class=\"rt-alle-num\">55 cm</div><div class=\"rt-alle-sparet\">−35 cm · 39 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">GS-GRID SX170</div><div>4-6</div><div class=\"rt-alle-num\">110</div><div class=\"rt-alle-num\">55 cm</div><div class=\"rt-alle-sparet\">−35 cm · 39 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">Tensar InterAx NX750</div><div>5-6</div><div class=\"rt-alle-num\">110–120</div><div class=\"rt-alle-num\">55 cm</div><div class=\"rt-alle-sparet\">−35 cm · 39 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">Tensar HX165</div><div>4-6</div><div class=\"rt-alle-num\">105</div><div class=\"rt-alle-num\">60 cm</div><div class=\"rt-alle-sparet\">−30 cm · 33 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">E&#x27;GRID T6</div><div>3-6</div><div class=\"rt-alle-num\">100</div><div class=\"rt-alle-num\">65 cm</div><div class=\"rt-alle-sparet\">−25 cm · 28 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">GS-GRID B40/40</div><div>4-6</div><div class=\"rt-alle-num\">100</div><div class=\"rt-alle-num\">65 cm</div><div class=\"rt-alle-sparet\">−25 cm · 28 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">GS-GRID B40/40L</div><div>4-6</div><div class=\"rt-alle-num\">100</div><div class=\"rt-alle-num\">65 cm</div><div class=\"rt-alle-sparet\">−25 cm · 28 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">GS-GRID SX160</div><div>3-6</div><div class=\"rt-alle-num\">100</div><div class=\"rt-alle-num\">65 cm</div><div class=\"rt-alle-sparet\">−25 cm · 28 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div><div class=\"rt-alle-raekke rt-alle-valgt\"><div class=\"rt-alle-produkt\">Tensar TriAx TX160</div><div>3-6</div><div class=\"rt-alle-num\">100</div><div class=\"rt-alle-num\">65 cm</div><div class=\"rt-alle-sparet\">−25 cm · 28 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">Tensar TriAx TX190L</div><div>4-6</div><div class=\"rt-alle-num\">100</div><div class=\"rt-alle-num\">65 cm</div><div class=\"rt-alle-sparet\">−25 cm · 28 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">Tensar HX5.5</div><div>1-5</div><div class=\"rt-alle-num\">95</div><div class=\"rt-alle-num\">65 cm</div><div class=\"rt-alle-sparet\">−25 cm · 28 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">GS-GRID B30/30</div><div>3-5</div><div class=\"rt-alle-num\">90</div><div class=\"rt-alle-num\">70 cm</div><div class=\"rt-alle-sparet\">−20 cm · 22 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">GS-GRID B30/30L</div><div>3-5</div><div class=\"rt-alle-num\">90</div><div class=\"rt-alle-num\">70 cm</div><div class=\"rt-alle-sparet\">−20 cm · 22 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">GS-GRID B30/30XL</div><div>4-6</div><div class=\"rt-alle-num\">90</div><div class=\"rt-alle-num\">70 cm</div><div class=\"rt-alle-sparet\">−20 cm · 22 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">Tensar SS30</div><div>3-5</div><div class=\"rt-alle-num\">90</div><div class=\"rt-alle-num\">70 cm</div><div class=\"rt-alle-sparet\">−20 cm · 22 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">Tensar TriAx TX150</div><div>1-4</div><div class=\"rt-alle-num\">90</div><div class=\"rt-alle-num\">70 cm</div><div class=\"rt-alle-sparet\">−20 cm · 22 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">GS-GRID B20/20</div><div>1-3</div><div class=\"rt-alle-num\">80</div><div class=\"rt-alle-num\">75 cm</div><div class=\"rt-alle-sparet\">−15 cm · 17 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div><div class=\"rt-alle-raekke\"><div class=\"rt-alle-produkt\">GS-GRID B20/20L</div><div>1-3</div><div class=\"rt-alle-num\">80</div><div class=\"rt-alle-num\">75 cm</div><div class=\"rt-alle-sparet\">−15 cm · 17 %</div><div class=\"rt-alle-num\">—</div><div class=\"rt-alle-sparet\">—</div></div></div><div class=\"rt-caption\">Produkterne er sorteret efter den tyndeste gyldige opbygning under de aktuelle forudsætninger.</div>"
+    }
+  ]
+}

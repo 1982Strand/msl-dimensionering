@@ -5,6 +5,7 @@
 - React + TypeScript + Vite + shadcn/ui er valgt til den nye brugerflade.
 - Arbejd i `C:\MSL-Dimensionering`. Den gamle app i `C:\geonet_beregning` er reference og må ikke ændres som led i migreringen uden særskilt instruktion.
 - Bevar alle beregninger, funktioner, standardværdier, gyldighedsområder, enheder, afrundinger, advarsler, fejltilstande og datagrundlag fra den godkendte reference.
+- Den nye app skal starte med den gamle apps indbyggede standardværdier, jf. B-008. Lokale brugerdefinerede JSON-filer må ikke blive nye standarder.
 - Ingen ændring i gammel virkemåde må indføres uden brugerens udtrykkelige godkendelse, heller ikke en tilsyneladende forbedring eller fejlrettelse.
 - Design og visualiseringer af opbygninger kræver brugerens godkendelse. Vis konkrete udkast med realistiske data før endelig implementering.
 - Stil afklarende spørgsmål, når et valg påvirker faglighed, funktionalitet, arbejdsgang eller visuel fremstilling. Fortsæt samtidig uafhængigt arbejde, når det er muligt.
@@ -22,7 +23,16 @@
 8. Offentliggørelse er en senere beslutning. Repository oprettes privat under planlægningen.
 9. Udvikling efter initialiseringen sker som udgangspunkt på `codex/`-grene.
 
+## Roller og grene (B-033)
+
+- Claude Code styrer udviklingen: planlægning, opgavefordeling, gennemgang af al kode, test og referencekontrol, commits, forelæggelse for brugeren og registrering i `docs/BESLUTNINGER.md`.
+- Codex er hjælper og startes med `codex exec` på afgrænsede opgaver. Hver opgave kører i sin egen worktree under `C:\MSL-Dimensionering-opgaver\<opgave>` på grenen `codex/<opgave>`, oprettet fra `main`.
+- Som hjælper arbejder Codex kun i den tildelte mappe, committer og merger ikke, ændrer ikke `docs/BESLUTNINGER.md` og forelægger ikke selv for brugeren. Den afslutter med ændrede filer, kørte kontroller og åbne spørgsmål.
+- Alt samles på `main` (B-061). Hjælpegrene merges til `main` efter Claudes gennemgang og test, og grenen og dens worktree slettes straks bagefter, både lokalt og på GitHub. Der holdes ingen langvarige grene. Offentliggørelse, fx på firmaets hjemmeside, kræver fortsat brugerens særskilte aftale (B-060).
+
 ## Kodesøgning
+
+Brug både Serena og Semble, jf. B-015. Aktivér Serena for `C:\MSL-Dimensionering`; brug TypeScript- og Python-sprogserverne til symboler, referencer og projekthukommelse. Semble bruges først til at lokalisere implementeringer. Den gamle app må fortsat kun læses som reference.
 
 Brug `mcp__semble__search` til at finde implementeringer. Læs derefter direkte ved den returnerede fil og linje. Brug `content="docs"`, `content="config"` eller `content="all"` ved søgning uden for kode. Brug ikke grep til at genfinde det samme indhold. Grep kan bruges, når alle forekomster af en konkret streng er nødvendige.
 

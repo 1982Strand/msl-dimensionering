@@ -1,0 +1,903 @@
+{
+  "source": {
+    "commit": "a330cfd6734ac2478be1304a362c69f94e412d25",
+    "data_profile": "built-in defaults; no user JSON",
+    "files": {
+      "app.py": "ba6b29870a92df46025a8d936b3ab6ea16f32b1f7122e48652a640182f9530e5",
+      "ui.py": "ffa3e583a19d4ede16873963bed70b819e3402b320878ba49166295fd5558d7c",
+      "core/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "core/afrunding.py": "9149c3536c388a82e2f242e939a1a1f998e01bf828a6ab378c927a757ad816e4",
+      "core/calculator.py": "bf46d2642d6083439b8c03c46e24eb18f156fe1a734af7e6fa866f16626ad227",
+      "core/data.py": "e164a0f3bb42cd0d565dfc45d2895031a03b2cb8e93b05a0a65097790d0f0540",
+      "core/diagram.py": "b171b7486e5aa1a43590f9f8a28376680bd2a50f7155535fcbfb7198d38df461",
+      "core/enhed.py": "256884745b59e94d0211a610e8bf092942a0fec5d147e48a7502833912583cf2",
+      "core/hjaelp.py": "5179b206a31224bf2582fdc31bf6520fd68552da1206dd5f7f034ab249e0ac78",
+      "core/lagfordeling.py": "0426d2021e037c8e993fefc104b69cfbf03526408cadd1303775c32f5577716b",
+      "core/placement.py": "9668ab8bfe106722e4735576d72dcb86280470ee60fea14feae08bf8f3ccf9d2",
+      "core/rapport.py": "b6235563354b72f81d386afc703db273eb08a2d6f9857d4f73499f7b2c61b898",
+      "core/validators.py": "5258b68728afa7d2224d1e5b090ff6c78f7a3c568408ad367dbcd210fb71428c"
+    }
+  },
+  "snapshots": [
+    {
+      "id": "defaults",
+      "settings": {
+        "afrunding": {
+          "trin_mm": 50,
+          "reduktion_eksakt": false,
+          "vis_eksakt": false,
+          "phi_afrunding": "ingen"
+        },
+        "opbygning": {
+          "geonet_paaskrift": true,
+          "maal_streg": true,
+          "maal_tal": true,
+          "signatur": true,
+          "enhed": "mm"
+        },
+        "lagfordeling": {
+          "fordeling": "minimum",
+          "samlet_minimum": true,
+          "minimum_mm": {
+            "1": 200.0,
+            "2": 200.0,
+            "3": 200.0,
+            "4": 250.0,
+            "5": 275.0,
+            "6": 300.0
+          },
+          "restlag": "vis",
+          "restlag_graense_mm": 100.0,
+          "vd_minimum_mm": {
+            "Bærelag": 100.0,
+            "Bundsikring": 200.0
+          },
+          "phi_regel": "laveste",
+          "kraev_bundsikring": false,
+          "netplacering": "laggraense",
+          "standard_klassisk": false,
+          "standard_opdeling": true,
+          "standard_under_minimum": "stabilgrus"
+        },
+        "yderomraade": {
+          "tolerance_over_pct": 5.0,
+          "tolerance_under_pct": 5.0,
+          "under_inden": "laveste",
+          "over_uden": "afvis",
+          "under_uden": "afvis"
+        }
+      },
+      "controls": {
+        "ind_lf_restlag_graense": {
+          "value": 100.0,
+          "disabled": true
+        },
+        "ind_lf_vd_baerelag": {
+          "value": 100.0,
+          "disabled": true
+        },
+        "ind_lf_vd_bundsikring": {
+          "value": 200.0,
+          "disabled": true
+        },
+        "ind_lf_kraev_bundsikring": {
+          "value": false,
+          "disabled": true
+        },
+        "ind_std_opdeling": {
+          "value": true,
+          "disabled": false
+        },
+        "ind_std_under_minimum": {
+          "value": "stabilgrus",
+          "disabled": true
+        }
+      },
+      "outerRangeCaptions": [
+        "Inden for tolerancen: 3 kørte punkter, 0,8–4,3 %.",
+        "Uden for tolerancen: 9 kørte punkter, 6,1–38,2 %.",
+        "Inden for tolerancen: 2 kørte punkter, 2,3–4,9 %.",
+        "Uden for tolerancen: 4 kørte punkter, 21,4–43,8 %.",
+        "Afvigelsen fra randkurven i procent af randkurvens tykkelse for de kørte punkter uden for diagrammets kurver, + over den øverste kurve og − under den laveste, og den håndtering, de gældende regler giver: \\* = inden for tolerancen, † = uden for tolerancen, med advarsel. Tomme celler ligger inden for kurverne."
+      ],
+      "outerRangeTables": [
+        {
+          "T1": {
+            "Eᵤ 3": "−43,8 % · afvist",
+            "Eᵤ 4": "−41,0 % · afvist",
+            "Eᵤ 5": "−37,8 % · afvist",
+            "Eᵤ 10": "−21,4 % · afvist",
+            "Eᵤ 15": "",
+            "Eᵤ 20": "",
+            "Eᵤ 30": "",
+            "Eᵤ 40": ""
+          },
+          "T2": {
+            "Eᵤ 3": "−4,9 % · laveste kurve*",
+            "Eᵤ 4": "−2,3 % · laveste kurve*",
+            "Eᵤ 5": "",
+            "Eᵤ 10": "",
+            "Eᵤ 15": "",
+            "Eᵤ 20": "",
+            "Eᵤ 30": "",
+            "Eᵤ 40": ""
+          },
+          "T3": {
+            "Eᵤ 3": "",
+            "Eᵤ 4": "",
+            "Eᵤ 5": "",
+            "Eᵤ 10": "",
+            "Eᵤ 15": "",
+            "Eᵤ 20": "",
+            "Eᵤ 30": "",
+            "Eᵤ 40": ""
+          },
+          "T4": {
+            "Eᵤ 3": "",
+            "Eᵤ 4": "",
+            "Eᵤ 5": "",
+            "Eᵤ 10": "",
+            "Eᵤ 15": "",
+            "Eᵤ 20": "",
+            "Eᵤ 30": "+6,1 % · afvist",
+            "Eᵤ 40": "+16,4 % · afvist"
+          },
+          "T5": {
+            "Eᵤ 3": "",
+            "Eᵤ 4": "",
+            "Eᵤ 5": "",
+            "Eᵤ 10": "",
+            "Eᵤ 15": "+4,3 % · VejDim*",
+            "Eᵤ 20": "+9,5 % · afvist",
+            "Eᵤ 30": "+19,3 % · afvist",
+            "Eᵤ 40": "+31,6 % · afvist"
+          },
+          "T6": {
+            "Eᵤ 3": "",
+            "Eᵤ 4": "+0,8 % · VejDim*",
+            "Eᵤ 5": "",
+            "Eᵤ 10": "+4,2 % · VejDim*",
+            "Eᵤ 15": "+10,3 % · afvist",
+            "Eᵤ 20": "+15,9 % · afvist",
+            "Eᵤ 30": "+25,9 % · afvist",
+            "Eᵤ 40": "+38,2 % · afvist"
+          }
+        }
+      ]
+    },
+    {
+      "id": "merge-underlying-layer",
+      "settings": {
+        "afrunding": {
+          "trin_mm": 50,
+          "reduktion_eksakt": false,
+          "vis_eksakt": false,
+          "phi_afrunding": "ingen"
+        },
+        "opbygning": {
+          "geonet_paaskrift": true,
+          "maal_streg": true,
+          "maal_tal": true,
+          "signatur": true,
+          "enhed": "mm"
+        },
+        "lagfordeling": {
+          "fordeling": "minimum",
+          "samlet_minimum": true,
+          "minimum_mm": {
+            "1": 200.0,
+            "2": 200.0,
+            "3": 200.0,
+            "4": 250.0,
+            "5": 275.0,
+            "6": 300.0
+          },
+          "restlag": "flet",
+          "restlag_graense_mm": 100.0,
+          "vd_minimum_mm": {
+            "Bærelag": 100.0,
+            "Bundsikring": 200.0
+          },
+          "phi_regel": "laveste",
+          "kraev_bundsikring": false,
+          "netplacering": "laggraense",
+          "standard_klassisk": false,
+          "standard_opdeling": true,
+          "standard_under_minimum": "stabilgrus"
+        },
+        "yderomraade": {
+          "tolerance_over_pct": 5.0,
+          "tolerance_under_pct": 5.0,
+          "under_inden": "laveste",
+          "over_uden": "afvis",
+          "under_uden": "afvis"
+        }
+      },
+      "controls": {
+        "ind_lf_restlag_graense": {
+          "value": 100.0,
+          "disabled": false
+        },
+        "ind_lf_vd_baerelag": {
+          "value": 100.0,
+          "disabled": true
+        },
+        "ind_lf_vd_bundsikring": {
+          "value": 200.0,
+          "disabled": true
+        },
+        "ind_lf_kraev_bundsikring": {
+          "value": false,
+          "disabled": true
+        },
+        "ind_std_opdeling": {
+          "value": true,
+          "disabled": false
+        },
+        "ind_std_under_minimum": {
+          "value": "stabilgrus",
+          "disabled": true
+        }
+      },
+      "outerRangeCaptions": [
+        "Inden for tolerancen: 3 kørte punkter, 0,8–4,3 %.",
+        "Uden for tolerancen: 9 kørte punkter, 6,1–38,2 %.",
+        "Inden for tolerancen: 2 kørte punkter, 2,3–4,9 %.",
+        "Uden for tolerancen: 4 kørte punkter, 21,4–43,8 %.",
+        "Afvigelsen fra randkurven i procent af randkurvens tykkelse for de kørte punkter uden for diagrammets kurver, + over den øverste kurve og − under den laveste, og den håndtering, de gældende regler giver: \\* = inden for tolerancen, † = uden for tolerancen, med advarsel. Tomme celler ligger inden for kurverne."
+      ],
+      "outerRangeTables": [
+        {
+          "T1": {
+            "Eᵤ 3": "−43,8 % · afvist",
+            "Eᵤ 4": "−41,0 % · afvist",
+            "Eᵤ 5": "−37,8 % · afvist",
+            "Eᵤ 10": "−21,4 % · afvist",
+            "Eᵤ 15": "",
+            "Eᵤ 20": "",
+            "Eᵤ 30": "",
+            "Eᵤ 40": ""
+          },
+          "T2": {
+            "Eᵤ 3": "−4,9 % · laveste kurve*",
+            "Eᵤ 4": "−2,3 % · laveste kurve*",
+            "Eᵤ 5": "",
+            "Eᵤ 10": "",
+            "Eᵤ 15": "",
+            "Eᵤ 20": "",
+            "Eᵤ 30": "",
+            "Eᵤ 40": ""
+          },
+          "T3": {
+            "Eᵤ 3": "",
+            "Eᵤ 4": "",
+            "Eᵤ 5": "",
+            "Eᵤ 10": "",
+            "Eᵤ 15": "",
+            "Eᵤ 20": "",
+            "Eᵤ 30": "",
+            "Eᵤ 40": ""
+          },
+          "T4": {
+            "Eᵤ 3": "",
+            "Eᵤ 4": "",
+            "Eᵤ 5": "",
+            "Eᵤ 10": "",
+            "Eᵤ 15": "",
+            "Eᵤ 20": "",
+            "Eᵤ 30": "+6,1 % · afvist",
+            "Eᵤ 40": "+16,4 % · afvist"
+          },
+          "T5": {
+            "Eᵤ 3": "",
+            "Eᵤ 4": "",
+            "Eᵤ 5": "",
+            "Eᵤ 10": "",
+            "Eᵤ 15": "+4,3 % · VejDim*",
+            "Eᵤ 20": "+9,5 % · afvist",
+            "Eᵤ 30": "+19,3 % · afvist",
+            "Eᵤ 40": "+31,6 % · afvist"
+          },
+          "T6": {
+            "Eᵤ 3": "",
+            "Eᵤ 4": "+0,8 % · VejDim*",
+            "Eᵤ 5": "",
+            "Eᵤ 10": "+4,2 % · VejDim*",
+            "Eᵤ 15": "+10,3 % · afvist",
+            "Eᵤ 20": "+15,9 % · afvist",
+            "Eᵤ 30": "+25,9 % · afvist",
+            "Eᵤ 40": "+38,2 % · afvist"
+          }
+        }
+      ]
+    },
+    {
+      "id": "vd-minimum-underlying-layer",
+      "settings": {
+        "afrunding": {
+          "trin_mm": 50,
+          "reduktion_eksakt": false,
+          "vis_eksakt": false,
+          "phi_afrunding": "ingen"
+        },
+        "opbygning": {
+          "geonet_paaskrift": true,
+          "maal_streg": true,
+          "maal_tal": true,
+          "signatur": true,
+          "enhed": "mm"
+        },
+        "lagfordeling": {
+          "fordeling": "minimum",
+          "samlet_minimum": true,
+          "minimum_mm": {
+            "1": 200.0,
+            "2": 200.0,
+            "3": 200.0,
+            "4": 250.0,
+            "5": 275.0,
+            "6": 300.0
+          },
+          "restlag": "vd",
+          "restlag_graense_mm": 100.0,
+          "vd_minimum_mm": {
+            "Bærelag": 100.0,
+            "Bundsikring": 200.0
+          },
+          "phi_regel": "laveste",
+          "kraev_bundsikring": false,
+          "netplacering": "laggraense",
+          "standard_klassisk": false,
+          "standard_opdeling": true,
+          "standard_under_minimum": "stabilgrus"
+        },
+        "yderomraade": {
+          "tolerance_over_pct": 5.0,
+          "tolerance_under_pct": 5.0,
+          "under_inden": "laveste",
+          "over_uden": "afvis",
+          "under_uden": "afvis"
+        }
+      },
+      "controls": {
+        "ind_lf_restlag_graense": {
+          "value": 100.0,
+          "disabled": true
+        },
+        "ind_lf_vd_baerelag": {
+          "value": 100.0,
+          "disabled": false
+        },
+        "ind_lf_vd_bundsikring": {
+          "value": 200.0,
+          "disabled": false
+        },
+        "ind_lf_kraev_bundsikring": {
+          "value": false,
+          "disabled": false
+        },
+        "ind_std_opdeling": {
+          "value": true,
+          "disabled": false
+        },
+        "ind_std_under_minimum": {
+          "value": "stabilgrus",
+          "disabled": true
+        }
+      },
+      "outerRangeCaptions": [
+        "Inden for tolerancen: 3 kørte punkter, 0,8–4,3 %.",
+        "Uden for tolerancen: 9 kørte punkter, 6,1–38,2 %.",
+        "Inden for tolerancen: 2 kørte punkter, 2,3–4,9 %.",
+        "Uden for tolerancen: 4 kørte punkter, 21,4–43,8 %.",
+        "Afvigelsen fra randkurven i procent af randkurvens tykkelse for de kørte punkter uden for diagrammets kurver, + over den øverste kurve og − under den laveste, og den håndtering, de gældende regler giver: \\* = inden for tolerancen, † = uden for tolerancen, med advarsel. Tomme celler ligger inden for kurverne."
+      ],
+      "outerRangeTables": [
+        {
+          "T1": {
+            "Eᵤ 3": "−43,8 % · afvist",
+            "Eᵤ 4": "−41,0 % · afvist",
+            "Eᵤ 5": "−37,8 % · afvist",
+            "Eᵤ 10": "−21,4 % · afvist",
+            "Eᵤ 15": "",
+            "Eᵤ 20": "",
+            "Eᵤ 30": "",
+            "Eᵤ 40": ""
+          },
+          "T2": {
+            "Eᵤ 3": "−4,9 % · laveste kurve*",
+            "Eᵤ 4": "−2,3 % · laveste kurve*",
+            "Eᵤ 5": "",
+            "Eᵤ 10": "",
+            "Eᵤ 15": "",
+            "Eᵤ 20": "",
+            "Eᵤ 30": "",
+            "Eᵤ 40": ""
+          },
+          "T3": {
+            "Eᵤ 3": "",
+            "Eᵤ 4": "",
+            "Eᵤ 5": "",
+            "Eᵤ 10": "",
+            "Eᵤ 15": "",
+            "Eᵤ 20": "",
+            "Eᵤ 30": "",
+            "Eᵤ 40": ""
+          },
+          "T4": {
+            "Eᵤ 3": "",
+            "Eᵤ 4": "",
+            "Eᵤ 5": "",
+            "Eᵤ 10": "",
+            "Eᵤ 15": "",
+            "Eᵤ 20": "",
+            "Eᵤ 30": "+6,1 % · afvist",
+            "Eᵤ 40": "+16,4 % · afvist"
+          },
+          "T5": {
+            "Eᵤ 3": "",
+            "Eᵤ 4": "",
+            "Eᵤ 5": "",
+            "Eᵤ 10": "",
+            "Eᵤ 15": "+4,3 % · VejDim*",
+            "Eᵤ 20": "+9,5 % · afvist",
+            "Eᵤ 30": "+19,3 % · afvist",
+            "Eᵤ 40": "+31,6 % · afvist"
+          },
+          "T6": {
+            "Eᵤ 3": "",
+            "Eᵤ 4": "+0,8 % · VejDim*",
+            "Eᵤ 5": "",
+            "Eᵤ 10": "+4,2 % · VejDim*",
+            "Eᵤ 15": "+10,3 % · afvist",
+            "Eᵤ 20": "+15,9 % · afvist",
+            "Eᵤ 30": "+25,9 % · afvist",
+            "Eᵤ 40": "+38,2 % · afvist"
+          }
+        }
+      ]
+    },
+    {
+      "id": "classic-standard",
+      "settings": {
+        "afrunding": {
+          "trin_mm": 50,
+          "reduktion_eksakt": false,
+          "vis_eksakt": false,
+          "phi_afrunding": "ingen"
+        },
+        "opbygning": {
+          "geonet_paaskrift": true,
+          "maal_streg": true,
+          "maal_tal": true,
+          "signatur": true,
+          "enhed": "mm"
+        },
+        "lagfordeling": {
+          "fordeling": "minimum",
+          "samlet_minimum": true,
+          "minimum_mm": {
+            "1": 200.0,
+            "2": 200.0,
+            "3": 200.0,
+            "4": 250.0,
+            "5": 275.0,
+            "6": 300.0
+          },
+          "restlag": "vd",
+          "restlag_graense_mm": 100.0,
+          "vd_minimum_mm": {
+            "Bærelag": 100.0,
+            "Bundsikring": 200.0
+          },
+          "phi_regel": "laveste",
+          "kraev_bundsikring": false,
+          "netplacering": "laggraense",
+          "standard_klassisk": true,
+          "standard_opdeling": true,
+          "standard_under_minimum": "stabilgrus"
+        },
+        "yderomraade": {
+          "tolerance_over_pct": 5.0,
+          "tolerance_under_pct": 5.0,
+          "under_inden": "laveste",
+          "over_uden": "afvis",
+          "under_uden": "afvis"
+        }
+      },
+      "controls": {
+        "ind_lf_restlag_graense": {
+          "value": 100.0,
+          "disabled": true
+        },
+        "ind_lf_vd_baerelag": {
+          "value": 100.0,
+          "disabled": false
+        },
+        "ind_lf_vd_bundsikring": {
+          "value": 200.0,
+          "disabled": false
+        },
+        "ind_lf_kraev_bundsikring": {
+          "value": false,
+          "disabled": false
+        },
+        "ind_std_opdeling": {
+          "value": true,
+          "disabled": true
+        },
+        "ind_std_under_minimum": {
+          "value": "stabilgrus",
+          "disabled": true
+        }
+      },
+      "outerRangeCaptions": [
+        "Inden for tolerancen: 3 kørte punkter, 0,8–4,3 %.",
+        "Uden for tolerancen: 9 kørte punkter, 6,1–38,2 %.",
+        "Inden for tolerancen: 2 kørte punkter, 2,3–4,9 %.",
+        "Uden for tolerancen: 4 kørte punkter, 21,4–43,8 %.",
+        "Afvigelsen fra randkurven i procent af randkurvens tykkelse for de kørte punkter uden for diagrammets kurver, + over den øverste kurve og − under den laveste, og den håndtering, de gældende regler giver: \\* = inden for tolerancen, † = uden for tolerancen, med advarsel. Tomme celler ligger inden for kurverne."
+      ],
+      "outerRangeTables": [
+        {
+          "T1": {
+            "Eᵤ 3": "−43,8 % · afvist",
+            "Eᵤ 4": "−41,0 % · afvist",
+            "Eᵤ 5": "−37,8 % · afvist",
+            "Eᵤ 10": "−21,4 % · afvist",
+            "Eᵤ 15": "",
+            "Eᵤ 20": "",
+            "Eᵤ 30": "",
+            "Eᵤ 40": ""
+          },
+          "T2": {
+            "Eᵤ 3": "−4,9 % · laveste kurve*",
+            "Eᵤ 4": "−2,3 % · laveste kurve*",
+            "Eᵤ 5": "",
+            "Eᵤ 10": "",
+            "Eᵤ 15": "",
+            "Eᵤ 20": "",
+            "Eᵤ 30": "",
+            "Eᵤ 40": ""
+          },
+          "T3": {
+            "Eᵤ 3": "",
+            "Eᵤ 4": "",
+            "Eᵤ 5": "",
+            "Eᵤ 10": "",
+            "Eᵤ 15": "",
+            "Eᵤ 20": "",
+            "Eᵤ 30": "",
+            "Eᵤ 40": ""
+          },
+          "T4": {
+            "Eᵤ 3": "",
+            "Eᵤ 4": "",
+            "Eᵤ 5": "",
+            "Eᵤ 10": "",
+            "Eᵤ 15": "",
+            "Eᵤ 20": "",
+            "Eᵤ 30": "+6,1 % · afvist",
+            "Eᵤ 40": "+16,4 % · afvist"
+          },
+          "T5": {
+            "Eᵤ 3": "",
+            "Eᵤ 4": "",
+            "Eᵤ 5": "",
+            "Eᵤ 10": "",
+            "Eᵤ 15": "+4,3 % · VejDim*",
+            "Eᵤ 20": "+9,5 % · afvist",
+            "Eᵤ 30": "+19,3 % · afvist",
+            "Eᵤ 40": "+31,6 % · afvist"
+          },
+          "T6": {
+            "Eᵤ 3": "",
+            "Eᵤ 4": "+0,8 % · VejDim*",
+            "Eᵤ 5": "",
+            "Eᵤ 10": "+4,2 % · VejDim*",
+            "Eᵤ 15": "+10,3 % · afvist",
+            "Eᵤ 20": "+15,9 % · afvist",
+            "Eᵤ 30": "+25,9 % · afvist",
+            "Eᵤ 40": "+38,2 % · afvist"
+          }
+        }
+      ]
+    },
+    {
+      "id": "standard-below-minimum-enabled",
+      "settings": {
+        "afrunding": {
+          "trin_mm": 50,
+          "reduktion_eksakt": false,
+          "vis_eksakt": false,
+          "phi_afrunding": "ingen"
+        },
+        "opbygning": {
+          "geonet_paaskrift": true,
+          "maal_streg": true,
+          "maal_tal": true,
+          "signatur": true,
+          "enhed": "mm"
+        },
+        "lagfordeling": {
+          "fordeling": "minimum",
+          "samlet_minimum": false,
+          "minimum_mm": {
+            "1": 200.0,
+            "2": 200.0,
+            "3": 200.0,
+            "4": 250.0,
+            "5": 275.0,
+            "6": 300.0
+          },
+          "restlag": "vd",
+          "restlag_graense_mm": 100.0,
+          "vd_minimum_mm": {
+            "Bærelag": 100.0,
+            "Bundsikring": 200.0
+          },
+          "phi_regel": "laveste",
+          "kraev_bundsikring": false,
+          "netplacering": "laggraense",
+          "standard_klassisk": false,
+          "standard_opdeling": true,
+          "standard_under_minimum": "stabilgrus"
+        },
+        "yderomraade": {
+          "tolerance_over_pct": 5.0,
+          "tolerance_under_pct": 5.0,
+          "under_inden": "laveste",
+          "over_uden": "afvis",
+          "under_uden": "afvis"
+        }
+      },
+      "controls": {
+        "ind_lf_restlag_graense": {
+          "value": 100.0,
+          "disabled": true
+        },
+        "ind_lf_vd_baerelag": {
+          "value": 100.0,
+          "disabled": false
+        },
+        "ind_lf_vd_bundsikring": {
+          "value": 200.0,
+          "disabled": false
+        },
+        "ind_lf_kraev_bundsikring": {
+          "value": false,
+          "disabled": false
+        },
+        "ind_std_opdeling": {
+          "value": true,
+          "disabled": false
+        },
+        "ind_std_under_minimum": {
+          "value": "stabilgrus",
+          "disabled": false
+        }
+      },
+      "outerRangeCaptions": [
+        "Inden for tolerancen: 3 kørte punkter, 0,8–4,3 %.",
+        "Uden for tolerancen: 9 kørte punkter, 6,1–38,2 %.",
+        "Inden for tolerancen: 2 kørte punkter, 2,3–4,9 %.",
+        "Uden for tolerancen: 4 kørte punkter, 21,4–43,8 %.",
+        "Afvigelsen fra randkurven i procent af randkurvens tykkelse for de kørte punkter uden for diagrammets kurver, + over den øverste kurve og − under den laveste, og den håndtering, de gældende regler giver: \\* = inden for tolerancen, † = uden for tolerancen, med advarsel. Tomme celler ligger inden for kurverne."
+      ],
+      "outerRangeTables": [
+        {
+          "T1": {
+            "Eᵤ 3": "−43,8 % · afvist",
+            "Eᵤ 4": "−41,0 % · afvist",
+            "Eᵤ 5": "−37,8 % · afvist",
+            "Eᵤ 10": "−21,4 % · afvist",
+            "Eᵤ 15": "",
+            "Eᵤ 20": "",
+            "Eᵤ 30": "",
+            "Eᵤ 40": ""
+          },
+          "T2": {
+            "Eᵤ 3": "−4,9 % · laveste kurve*",
+            "Eᵤ 4": "−2,3 % · laveste kurve*",
+            "Eᵤ 5": "",
+            "Eᵤ 10": "",
+            "Eᵤ 15": "",
+            "Eᵤ 20": "",
+            "Eᵤ 30": "",
+            "Eᵤ 40": ""
+          },
+          "T3": {
+            "Eᵤ 3": "",
+            "Eᵤ 4": "",
+            "Eᵤ 5": "",
+            "Eᵤ 10": "",
+            "Eᵤ 15": "",
+            "Eᵤ 20": "",
+            "Eᵤ 30": "",
+            "Eᵤ 40": ""
+          },
+          "T4": {
+            "Eᵤ 3": "",
+            "Eᵤ 4": "",
+            "Eᵤ 5": "",
+            "Eᵤ 10": "",
+            "Eᵤ 15": "",
+            "Eᵤ 20": "",
+            "Eᵤ 30": "+6,1 % · afvist",
+            "Eᵤ 40": "+16,4 % · afvist"
+          },
+          "T5": {
+            "Eᵤ 3": "",
+            "Eᵤ 4": "",
+            "Eᵤ 5": "",
+            "Eᵤ 10": "",
+            "Eᵤ 15": "+4,3 % · VejDim*",
+            "Eᵤ 20": "+9,5 % · afvist",
+            "Eᵤ 30": "+19,3 % · afvist",
+            "Eᵤ 40": "+31,6 % · afvist"
+          },
+          "T6": {
+            "Eᵤ 3": "",
+            "Eᵤ 4": "+0,8 % · VejDim*",
+            "Eᵤ 5": "",
+            "Eᵤ 10": "+4,2 % · VejDim*",
+            "Eᵤ 15": "+10,3 % · afvist",
+            "Eᵤ 20": "+15,9 % · afvist",
+            "Eᵤ 30": "+25,9 % · afvist",
+            "Eᵤ 40": "+38,2 % · afvist"
+          }
+        }
+      ]
+    },
+    {
+      "id": "zero-outer-range-tolerances",
+      "settings": {
+        "afrunding": {
+          "trin_mm": 50,
+          "reduktion_eksakt": false,
+          "vis_eksakt": false,
+          "phi_afrunding": "ingen"
+        },
+        "opbygning": {
+          "geonet_paaskrift": true,
+          "maal_streg": true,
+          "maal_tal": true,
+          "signatur": true,
+          "enhed": "mm"
+        },
+        "lagfordeling": {
+          "fordeling": "minimum",
+          "samlet_minimum": false,
+          "minimum_mm": {
+            "1": 200.0,
+            "2": 200.0,
+            "3": 200.0,
+            "4": 250.0,
+            "5": 275.0,
+            "6": 300.0
+          },
+          "restlag": "vd",
+          "restlag_graense_mm": 100.0,
+          "vd_minimum_mm": {
+            "Bærelag": 100.0,
+            "Bundsikring": 200.0
+          },
+          "phi_regel": "laveste",
+          "kraev_bundsikring": false,
+          "netplacering": "laggraense",
+          "standard_klassisk": false,
+          "standard_opdeling": true,
+          "standard_under_minimum": "stabilgrus"
+        },
+        "yderomraade": {
+          "tolerance_over_pct": 0.0,
+          "tolerance_under_pct": 0.0,
+          "under_inden": "laveste",
+          "over_uden": "afvis",
+          "under_uden": "afvis"
+        }
+      },
+      "controls": {
+        "ind_lf_restlag_graense": {
+          "value": 100.0,
+          "disabled": true
+        },
+        "ind_lf_vd_baerelag": {
+          "value": 100.0,
+          "disabled": false
+        },
+        "ind_lf_vd_bundsikring": {
+          "value": 200.0,
+          "disabled": false
+        },
+        "ind_lf_kraev_bundsikring": {
+          "value": false,
+          "disabled": false
+        },
+        "ind_std_opdeling": {
+          "value": true,
+          "disabled": false
+        },
+        "ind_std_under_minimum": {
+          "value": "stabilgrus",
+          "disabled": false
+        }
+      },
+      "outerRangeCaptions": [
+        "Inden for tolerancen: ingen af de kørte punkter.",
+        "Uden for tolerancen: 12 kørte punkter, 0,8–38,2 %.",
+        "Inden for tolerancen: ingen af de kørte punkter.",
+        "Uden for tolerancen: 6 kørte punkter, 2,3–43,8 %.",
+        "Afvigelsen fra randkurven i procent af randkurvens tykkelse for de kørte punkter uden for diagrammets kurver, + over den øverste kurve og − under den laveste, og den håndtering, de gældende regler giver: \\* = inden for tolerancen, † = uden for tolerancen, med advarsel. Tomme celler ligger inden for kurverne."
+      ],
+      "outerRangeTables": [
+        {
+          "T1": {
+            "Eᵤ 3": "−43,8 % · afvist",
+            "Eᵤ 4": "−41,0 % · afvist",
+            "Eᵤ 5": "−37,8 % · afvist",
+            "Eᵤ 10": "−21,4 % · afvist",
+            "Eᵤ 15": "",
+            "Eᵤ 20": "",
+            "Eᵤ 30": "",
+            "Eᵤ 40": ""
+          },
+          "T2": {
+            "Eᵤ 3": "−4,9 % · afvist",
+            "Eᵤ 4": "−2,3 % · afvist",
+            "Eᵤ 5": "",
+            "Eᵤ 10": "",
+            "Eᵤ 15": "",
+            "Eᵤ 20": "",
+            "Eᵤ 30": "",
+            "Eᵤ 40": ""
+          },
+          "T3": {
+            "Eᵤ 3": "",
+            "Eᵤ 4": "",
+            "Eᵤ 5": "",
+            "Eᵤ 10": "",
+            "Eᵤ 15": "",
+            "Eᵤ 20": "",
+            "Eᵤ 30": "",
+            "Eᵤ 40": ""
+          },
+          "T4": {
+            "Eᵤ 3": "",
+            "Eᵤ 4": "",
+            "Eᵤ 5": "",
+            "Eᵤ 10": "",
+            "Eᵤ 15": "",
+            "Eᵤ 20": "",
+            "Eᵤ 30": "+6,1 % · afvist",
+            "Eᵤ 40": "+16,4 % · afvist"
+          },
+          "T5": {
+            "Eᵤ 3": "",
+            "Eᵤ 4": "",
+            "Eᵤ 5": "",
+            "Eᵤ 10": "",
+            "Eᵤ 15": "+4,3 % · afvist",
+            "Eᵤ 20": "+9,5 % · afvist",
+            "Eᵤ 30": "+19,3 % · afvist",
+            "Eᵤ 40": "+31,6 % · afvist"
+          },
+          "T6": {
+            "Eᵤ 3": "",
+            "Eᵤ 4": "+0,8 % · afvist",
+            "Eᵤ 5": "",
+            "Eᵤ 10": "+4,2 % · afvist",
+            "Eᵤ 15": "+10,3 % · afvist",
+            "Eᵤ 20": "+15,9 % · afvist",
+            "Eᵤ 30": "+25,9 % · afvist",
+            "Eᵤ 40": "+38,2 % · afvist"
+          }
+        }
+      ]
+    }
+  ],
+  "sourceHelpers": {
+    "outerRangeTable": "app.py:10426 _yder_afvigelsestabel",
+    "outerRangeScope": "app.py:10454 _yder_omfang"
+  }
+}

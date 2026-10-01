@@ -1,0 +1,14 @@
+.settings-page .settings-fields {
+  grid-template-columns: repeat(var(--settings-columns, 2), minmax(0, 1fr));
+}
+.settings-page .settings-fields > div {
+  min-width: 0;
+}
+.settings-page .setting-field {
+  margin-bottom: 20px;
+}
+@media (max-width: 700px) {
+  .settings-page .settings-fields {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

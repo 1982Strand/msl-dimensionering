@@ -19,5 +19,7 @@ Thumbs.db
 # Lokale referencekopier og brugerdata
 .local/
 reference-private/
+output/
 *_brugerdefineret.json
 ~$*
+.serena/cache/
