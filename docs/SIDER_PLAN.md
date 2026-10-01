@@ -23,6 +23,10 @@
 
 **Kontrol:** parserens output matcher referencen for alle otte kapitler; ét browserforløb for navigation mellem kapitler og »gå til«.
 
+**Status 01.10.2026 (hjælpegren `codex/s2-hjaelp`):** TypeScript-parser, `#hjaelp`, navigationspunkt, Accordion og Tooltip er implementeret til gennemgang. Åbne kapitler gemmes som `session.values.hjaelp_aabne` i appens eksisterende localStorage-dokument; også et bevidst tomt udvalg bevares. Sidens egne styles ligger i `src/ui/Help.css`. Formler og figurtabeller vises i højre kolonne efter hjælpeopgaven og under teksten på smal skærm; originalen satte formler i brødteksten. Gå-til-knapper til `rapport` og `geonet_database` er midlertidigt skjult, da siderne endnu ikke findes i denne worktree (B-036).
+
+Fire målrettede Node-tests sammenligner alle otte kapitlers fulde parseroutput og kildedokumenterne præcist samt hele tekst-/knapstrømmen fra `default` og `all_open` uden DOM: sidehoved, intro, trin, begreber/forklaringer, kapitelhoveder, afsnit, markdown, formel-HTML, figurnumre/-tekster og kildelinks. De skjulte knapper kontrolleres særskilt. Typekontrol, alle 2.808 Node-tests, formatering og build består. Playwright-forløbet er skrevet og forsøgt på port 5184, men sandkassen afviser Chromium-start med `browserType.launch: spawn EPERM`; browser- og visuel kontrol udestår. Det konkrete sidelayout afventer fortsat gennemgang og brugerens visuelle accept; ingen commit eller merge er foretaget.
+
 ## Rækkefølge og afhængigheder
 
 S1 og S2 er uafhængige af mellemregninger og rapport og kan laves sideløbende af hjælperen. Den samlede navigation (MIGRATIONSPLAN punkt 6) samler til sidst alle otte sider.
