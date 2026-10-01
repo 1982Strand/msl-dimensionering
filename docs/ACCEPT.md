@@ -1,6 +1,6 @@
 # Dæknings- og afvigelsesoversigt til samlet accept
 
-Opdateret 01.10.2026 til commit `7fe7aff` på `codex/accept-oversigt`. Referencegrundlaget er den gamle app `a330cfd6734ac2478be1304a362c69f94e412d25` med indbyggede standardværdier (B-007/B-008). Oversigten bygger på de læste tests og [beslutningsloggen](BESLUTNINGER.md), ikke på en ny godkendelse. Den detaljerede funktionskobling står i [FUNKTIONSMATRIX.md](FUNKTIONSMATRIX.md).
+Opdateret 01.10.2026 efter oprydningen (B-059), tilgængelighedskontrollen og fastlåsningen af R6-sættet (B-055) samt rammerne i B-060. Referencegrundlaget er den gamle app `a330cfd6734ac2478be1304a362c69f94e412d25` med indbyggede standardværdier (B-007/B-008). Oversigten bygger på de læste tests og [beslutningsloggen](BESLUTNINGER.md), ikke på en ny godkendelse. Den detaljerede funktionskobling står i [FUNKTIONSMATRIX.md](FUNKTIONSMATRIX.md).
 
 ## 1. Referencedækning
 
@@ -93,7 +93,7 @@ Tabellen medtager ændringer af brugerflade, arbejdsgang, tekst og output, som f
 | B-034 | Variant 4: selvstændig SVG for M1/M5, kurvepunkter, intervalbånd, prikkede optimale kurver, hover/tastatur og samme SVG på skærm/PDF. Afløser B-031; farver revideres i B-040. | Figurstil | `src/engine/personal-diagram-svg.ts`, `src/engine/kobling-figures-svg.ts`; `tests/personal-diagram-svg.test.ts`, `tests/kobling-figures.test.ts` og deres browserforløb. |
 | B-035 | Decimalkomma i hover, akser og etiketter; værdier/afrunding uændrede. | Figurer | Samme SVG-motorer; `tests/personal-diagram-svg.test.ts`, `tests/browser/personal-diagram.spec.ts`, `tests/browser/kobling.spec.ts`. |
 | B-036 | Geonet-/Hjælp-delplan godkendt; genveje til endnu ikke eksisterende sider skjules midlertidigt. | Opslag og hjælp | `src/engine/hjaelp.ts`, `src/ui/Help.tsx`; `tests/hjaelp.test.ts`. Rapport-ruten findes nu; originalens otte kapitler har ingen Rapport-genvej. |
-| B-037 | Sidebar, Accordion, Tooltip/Hover Card, Data Table, Alert, Sonner, Tabs/Sheet og Progress godkendt som komponentvalg. Konkrete sidelayouts og R-004 har separat omfang. | Fælles brugerflade | `src/components/ui/`, `src/ui/App.tsx`; `tests/browser/design-draft.spec.ts` og konkrete sideforløb. Designudkastforløbet er fortsat med ved denne commit. |
+| B-037 | Sidebar, Accordion, Tooltip/Hover Card, Data Table, Alert, Sonner, Tabs/Sheet og Progress godkendt som komponentvalg. Konkrete sidelayouts og R-004 har separat omfang. | Fælles brugerflade | `src/components/ui/`, `src/ui/App.tsx`; konkrete sideforløb. Designudkastet og dets test er fjernet ved oprydningen (B-059); Sonner og Progress blev ikke taget i brug og er fjernet. |
 | B-038 | Én lukket udfoldelig »Sådan er resultatet beregnet« med alle originale trin; forkastede M1-udkast merges ikke. | M1-layout | `src/ui/CouplingExplanation.tsx`; `tests/kobling-explanation.test.ts`, `tests/browser/kobling.spec.ts`. |
 | B-039 | Konkret M1 godkendt efter rettelse, signatur under figuren; M5 beholder signaturboks inde i plottet. | M1/M5-layout | `src/ui/CouplingExplanation.tsx`, `src/engine/personal-diagram-svg.ts`; `tests/browser/kobling.spec.ts` og SVG-tests. |
 | B-040 | Appskrift i M1, fastbredde kun i regnestykker; 2 lag lilla; bruger-Eu grønt/gråt. M5's indtastede opbygning blev rød, men er ifølge loggen ikke særskilt bekræftet. | Figurer og mellemregningstekst | `src/engine/personal-diagram-svg.ts`, `src/engine/kobling-figures-svg.ts`, `src/ui/CouplingExplanation.tsx`; figurtests. **Godkendelsesforbeholdet for M5 bevares**, se afsnit 6. |
@@ -115,7 +115,8 @@ Tabellen medtager ændringer af brugerflade, arbejdsgang, tekst og output, som f
 | B-056 | Bredere produktvælger med højrestillede mærker, »Optimal korrektion«, fokuslinje og mobilombrydning. | Produktvælgerlayout/-tekst | `src/ui/ProductPicker.tsx`, `src/engine/product-picker.ts`, `src/index.css`; `tests/product-picker.test.ts`, `tests/browser/product-picker.spec.ts`. De præcise 820/640 px-mål og fokuslinjen har ingen særskilt automatisk assertion. |
 | B-057 | Rigtigt »−« i vælgerens korrektionsmærker; originaletiketter/data/beregninger uændrede. | Produktvælgertekst | `src/engine/product-picker.ts`; `tests/product-picker.test.ts` kontrollerer alle originale korrektionstal/minustegn. |
 | B-058 | Tema: farver/skrift, fælles topbjælke/sidehoved/stier, segmenterede radiovalg, nye shadcn-kontroller, fliser/mærker/Alerts, tabeller, knapper og rapportfaner. Tal/valg/tekster/beregninger uændrede. | Hele appens udseende | `src/index.css`, `src/ui/page.tsx`, `src/ui/SettingField.tsx`, `src/ui/Notice.tsx`, `src/components/ui/`; udvalgte temaassertions i `tests/browser/navigation.spec.ts`, `tests/browser/settings.spec.ts`, `tests/browser/traffic-popover.spec.ts`. Ikke automatisk fuld temaparitet. |
-| B-059 | Temaets gennemførelse godkendt: også segmenterede T1–T6, fjernet Under udvikling/Udkast-fodnote, talfelter uden pile og korrelationsmarkering i temafarve. Roller B-033 uændrede. | Tema | Samme temafiler; `tests/browser/navigation.spec.ts` kontrollerer fravær af Under udvikling, `tests/browser/traffic-popover.spec.ts` markering. Alle nævnte detaljer har ikke særskilte automatiske assertions. |
+| B-059 | Temaets gennemførelse godkendt: også segmenterede T1–T6, fjernet Under udvikling/Udkast-fodnote, talfelter uden pile og korrelationsmarkering i temafarve. Oprydning af udkast, ubrugte komponenter og rapportforsøget. Codex bruges til flere opgaver; roller B-033 uændrede. | Tema | Samme temafiler; `tests/browser/navigation.spec.ts` kontrollerer fravær af Under udvikling, `tests/browser/traffic-popover.spec.ts` markering. Alle nævnte detaljer har ikke særskilte automatiske assertions. |
+| B-060 | Rammer for accept: Chrome som browser, intern brug nu, offentliggørelse på hjemmesiden afklares senere, versionsnummeret v0.6 bevares. | Accept og adgang | `playwright.config.ts` (Desktop Chrome); sidebjælkens versionsfod uændret, `tests/browser/navigation.spec.ts`. |
 
 Rene procesbeslutninger og bevaringskrav, som ikke i sig selv godkender en ændring af originalens brugeradfærd, samles særskilt:
 
@@ -127,7 +128,7 @@ Rene procesbeslutninger og bevaringskrav, som ikke i sig selv godkender en ændr
 - **B-021, B-022, B-033:** målrettede tests/tokenforbrug, model-/hjælpeagentvalg og Claude/Codex-roller. Procesdelen i B-059 viderefører B-033.
 - **P-001/P-002:** foreløbige praktiske opstartsvalg, herunder privat repository; ikke B-beslutninger om offentliggørelse.
 
-A-004, A-006 og A-008/R-004 er åbne afklaringer, ikke godkendte afvigelser.
+A-004 er afklaret for nu ved B-060. A-006 og A-008/R-004 er åbne afklaringer, ikke godkendte afvigelser.
 
 ## 3. Fund i originalen
 
@@ -143,23 +144,26 @@ Alle fem fund fra [FUND.md](FUND.md) bevares i oversigten. Den gamle app og de f
 
 ## 4. Automatiske kontroller
 
-Kørt i denne worktree 01.10.2026 på commit `7fe7aff` med Node `v26.4.0`:
+Kørt 01.10.2026 på integrationsgrenen med Node `v26.4.0`:
 
 | Kontrol | Resultat |
 | --- | --- |
 | `npm run typecheck` | Bestået: begge TypeScript-konfigurationer. |
 | `npm test` | **2.998 enhedstests/Node-tests**, 2.998 bestået, 0 fejl, 0 oversprunget, 0 annulleret, 0 todo. |
 | `npm run format:check` | Bestået for de konfigurerede kode-/CSS-filer; Markdown indgår ikke i Prettier-scriptet. |
+| `npm run build` | Bestået. |
+| Playwright (Chromium, Desktop Chrome) | **54 browserforløb**, alle bestået. |
+| `node tools/build-r6-pdfs.ts` | Alle 31 PDF'er byte-identiske med det godkendte R6-sæt. |
 
 På Windows blev kommandoerne kørt med `npm.cmd`, da PowerShell blokerer `npm.ps1`. Node-testene omfatter både løkker over referencecases og særskilte adfærdstests; et testtal alene dokumenterer ikke fuld UI-/PDF-dækning.
 
-Der findes **52 browserforløb i 19 filer**. Numrene i hver celle følger testenes rækkefølge i filen og beskriver hvert selvstændigt `test(...)`. **Browserforløbene køres af Claude**; Chromium og netværk er ikke tilgængelige i denne opgave, og der registreres ingen browserbeståelse her. Den nuværende Playwright-konfiguration bruger Desktop Chrome og 1440 × 1050 px; konkrete tests skifter bl.a. til 390 × 844 og 600 × 900 px. Dette er eksisterende testopsætning, ikke en aftale om understøttede browsere/enheder.
+Der findes **54 browserforløb i 19 filer**, kørt af Claude og alle bestået. Numrene i hver celle følger testenes rækkefølge i filen og beskriver hvert selvstændigt `test(...)`. Den nuværende Playwright-konfiguration bruger Desktop Chrome og 1440 × 1050 px; konkrete tests skifter bl.a. til 390 × 844 og 600 × 900 px. Chrome er aftalt som browser (B-060); andre browsere testes ikke nu.
 
 | Fil i `tests/browser/` | Antal | Forløb og kontroller |
 | --- | --- | --- |
+| `accessibility.spec.ts` | 3 | 1–2) Axe (WCAG 2.1 A/AA) på alle otte sider med udfoldede afsnit og åbne detaljer ved 1440 og 390 px. 3) Brugerdefineret/trafikklasse, korrelationspopup, produktvælger, firmaprofil, medarbejder-Popover og kartotek. |
 | `company-profile.spec.ts` | 3 | 1) Medarbejder-Popover, validering, Sheet, opret/ret/slet med bekræftelse, kopier til rapport, telefon/revisionsspærring, genåbning, mobil og profilrundtur. 2) Live profilrevision, PNG-logo i PDF, ugyldige feltværdier, genåbning, eksport/import, afsnitsflytning, bekræftet nulstilling og mobil. 3) Faktisk IndexedDB-fejl bevarer sidst konsistente profil/logo efter genåbning. |
 | `construction.spec.ts` | 1 | Originale søjler/ugyldigt snit, fælles skala, netplacering ved laggrænse/dæklag, intervalmarkeringer, cm, figurfravalg, genåbning og mobil rulning inden for figuren. |
-| `design-draft.spec.ts` | 1 | Otte komponentudkast, Accordion, produktsøgning og begge sorteringsretninger uden sidefejl. Udkastruten findes ved denne commit; oprydning skal afstemmes med denne test. |
 | `dimensioning-page.spec.ts` | 1 | M9 Standard/belastningsklasse og Brugerdefineret/trafikklasse: tekster/tabeller/nøgletal, tyndest-mærke, rækkefølge, produktliste, cm, mobil og afvist driftspunkt. |
 | `dimensioning.spec.ts` | 3 | 1) Standardreference, intervalprodukt, B-023-navigation/genåbning, trafikafvisning og Cv. 2) Originale brugerlag, ugyldigt lagantal, manuelt materiale/phi, afrundingsændring, mobil og afgrænset nulstilling. 3) Vandrette klassevalg, layoutstabile diagram-/Cv-popupper, produktkolonner/-celler, sortering og mobilpopup. |
 | `geonet-database.spec.ts` | 1 | Navigation, 20 produkter/25 kolonner, søgning/tom søgning, stigende/faldende sortering, titelhjælp, fast produktkolonne og fem noter. |
@@ -177,7 +181,7 @@ Der findes **52 browserforløb i 19 filer**. Numrene i hver celle følger testen
 | `tables.spec.ts` | 6 | 1) Diagramredigering i faktisk Plotly, diagramvalg/genåbning, tværgående historik og afgrænset nulstilling. 2) Tilføj/dublet/slet/gendan diagramrække/celle. 3) Tomt felt kontra nul efter genåbning og afvist negativt tal. 4) VejDim-redigering mod original matrix, faktisk CSV-download med redigerede værdier, genåbning/nulstilling. 5) Diagramredigering ændrer VejDim-matrix/regneeksempel og kan fortrydes. 6) Alle seks scans/rådiagrammer, desktop og mobil med indeholdt rulning. |
 | `traffic-popover.spec.ts` | 1 | M8 kun ved trafikgrundlag; T4/Eu 10-tabel, aktive rækker/celle, temamarkering, randkursiv, præcis note og Escape-fokus. |
 
-Der findes ingen samlet automatisk tilgængelighedsaudit. De målrettede tastatur-/fokus-/mobilassertions ovenfor erstatter ikke den gennemgang. Matrixen markerer andre konkrete testhuller, bl.a. F-02.7, F-06.4 og F-11.2.
+Den automatiske tilgængelighedskontrol (axe) fandt ved første kørsel manglende tastaturadgang til vandret rullende tabeller og regnestykker, en rolle på designdiagrammets optegning og for lav kontrast i M1's 1-lagsoverskrift; alle er rettet. Axe dækker ikke alt; skærmlæser, zoom og touch er ikke gennemgået manuelt. Matrixen markerer andre konkrete testhuller, bl.a. F-02.7, F-06.4 og F-11.2.
 
 ## 5. PDF-kontrol
 
@@ -191,22 +195,27 @@ Kontrollerne er følgende:
 - Kun whitespace/linjeombrydning normaliseres, også efter en eksisterende bindestreg. En præcist verificeret sidebaggrundsprefix fjernes i en separat brødtekststrøm for tekst over sideskift; prefixet kontrolleres selv. Ingen ændring af værdier, tegnsætning eller Unicode.
 - Figurernes snitvalg, kald og eksportmål kontrolleres i `tests/report-figures.test.ts`. PDF bruger samme SVG-motorer som skærmen, i original målestok op til tilgængelig bredde.
 - Layout-delkontrol bruger compilerens query/measure til logo/slogan/titel, plads til sidefod/sidetal, figurbredde og billedankre. Querys 0,01 pt er layoutgeometri, ikke beregningstolerance. Scriptets `layoutStatus: partial` dokumenterer, at dette alene ikke kontrollerer alle færdige tekst-/figurbokse eller intern clipping.
-- De første ti standardprofil-PDF'er kræves byteidentiske med R3. `*.expected.json`, `*.content-check.json`, `*.layout-check.json` og `manifest.json` gemmer indhold, kontrolresultater, sidetal og SHA-256 lokalt.
+- Hver PDF kræves byte-identisk med SHA-256 i `tools/r6-godkendt.json` (det godkendte B-055-sæt); scriptet fejler ved enhver afvigelse, så en ændring forelægges igen. `*.expected.json`, `*.content-check.json`, `*.layout-check.json` og `manifest.json` gemmer indhold, kontrolresultater, sidetal og SHA-256 lokalt.
 - B-055's visuelle godkendelse accepterer de kendte Word-forskelle: Carlito/Liberation Sans frem for Calibri/Helvetica, nye figurudseender og B-026–B-054. Tomme tekster har fortsat overskrifter; `empty-text` har tre sider mod originalens to. Nye layoutændringer kræver ny forelæggelse.
 
-R6 er ikke genbygget i denne dokumentationsopgave. [RAPPORT_PLAN.md](RAPPORT_PLAN.md) indeholder fortsat en historisk overdragelse med udestående uafhængig renderer-/billedkontrol efter en Windows-rendererafvigelse; B-055 er den senere endelige PDF-godkendelse. Loggen dokumenterer brugeraccepten, men giver ikke i sig selv en særskilt teknisk resultatlog for alle historiske overdragelsespunkter. Den styrende agent skal koble den konkrete forelagte PDF-manifest og billedkontrol til den samlede acceptversion; der opfindes ingen gennemført kontrol.
+R6 er genbygget 01.10.2026 efter temaet og oprydningen; alle 31 PDF'er er byte-identiske med det forelagte og godkendte sæt. [RAPPORT_PLAN.md](RAPPORT_PLAN.md) indeholder en historisk overdragelse med udestående renderer-/billedkontrol. Den blev fulgt op før forelæggelsen af Claudes kontrol af alle 99 sider med PyMuPDF og sidebilleder (tekst inden for margener, ingen overlap, kun Carlito og Liberation Sans indlejret; ingen fund efter rettelser), dokumenteret lokalt i `.local/output/r6/R6-GENNEMGANG.md`. Brugeren godkendte derefter sættet i B-055.
 
 ## 6. Udestående til samlet accept
 
 Handlingerne følger fase 5 i [MIGRATIONSPLAN.md](MIGRATIONSPLAN.md). Enkelte delgodkendelser, herunder B-055/B-059, er ikke en beslutning om offentliggørelse.
 
-1. **Browsere og enheder:** Aftal understøttede browsere/versioner og konkrete desktop-, tablet- og mobilenheder; det er ikke aftalt endnu. Kør de 52 browserforløb og hele input→PDF-forløbet på acceptversionen hos Claude, og registrer resultater og relevante begrænsninger.
-2. **Skærmstørrelser:** Aftal skærmstørrelser/orienteringer og zoom. Kontroller alle otte sider, popupper, tabeller, figurer, sidebjælke og PDF-forhåndsvisning ved de aftalte størrelser. Eksisterende 1440/600/390 px-tests er delkontrol.
-3. **Tilgængelighed:** Aftal niveau/acceptkriterier; gennemgå tastatur, fokus, skærmlæser, etiketter, fejl/statusbeskeder, kontrast, zoom og touch. Registrer den samlede kontrol.
-4. **Lagring og nulstilling:** Genkør første start med B-008-standarder, genåbning af redigerede data/felter/tomme værdier, de afgrænsede nulstillinger, dato-undtagelsen, localStorage/IndexedDB-fejl og samtidige faner i de aftalte browsere. Kontroller profilens eksport/import inkl. logo/kartotek og at nulstilling ikke sletter uvedkommende data.
-5. **Versionsmærkning og tilbagerulning:** Fastlæg og mærk den konkrete acceptversion; dokumenter reproducerbar build, tilhørende PDF-/kontrolmanifest og mulighed for at vende tilbage til seneste accepterede version, inklusive håndtering af gemte browserdata.
-6. **Adgang og hosting (A-004):** Afklar offentlig adgang uden login eller login samt hosting og adgang til redigering af grunddata. B-019/B-027's lokale lagring/webapp er ikke en hosting-/adgangsbeslutning.
-7. **Merge til main:** Forelæg den konkrete samlede version med dækning, afvigelser og kontrolresultater for brugeren. Registrer brugerens svar hos Claude; merge til `main` og offentliggørelse gennemføres først efter aftale.
-8. **Afstem dokumentation og resterende delafklaringer:** Afklar B-040's udtrykkelige forbehold om rød indtastet M5-kurve i forhold til de senere side-/PDF-godkendelser; antag ingen særskilt skærmgodkendelse. Bekræft håndteringen af FUND-002 og eventuel faglig vurdering af FUND-003, samt om A-006/FUND-005 og A-008/R-004 skal forblive uden for udgivelsesomfanget.
-9. **Afklar konkrete testhuller:** Vurder behov for manuel kontrol af F-02.4's historiske fravalg, F-02.7's inputgrænser, F-06.4's ustabilitet, F-11.2's advarsel/sletningsforløb og B-053's Hover Card på mus/fokus/touch. Registrer udfald; ændringer af originalens virkemåde kræver særskilt godkendelse.
-10. **Afstem oprydning og PDF-beviser:** Koordinér fjernelse af udkastruter/prototype med `tests/browser/design-draft.spec.ts` og acceptoversigten. Identificér B-055's konkrete R6-manifest og slutkontrol for rendererafvigelsen; den historiske overdragelsesstatus i rapportplanen skal kunne skelnes fra den senere brugeraccept.
+1. **Browsere og enheder:** Afklaret i B-060: Chrome. Alle 54 browserforløb kører i Chromium (Desktop Chrome) og består.
+2. **Skærmstørrelser:** Testene dækker 1440, 600 og 390 px, herunder ingen vandret siderulning og mobilskuffe. Spørgsmål: er det tilstrækkeligt for intern brug, eller skal andre størrelser (fx bærbar 1366 px eller tablet) kontrolleres?
+3. **Tilgængelighed:** Automatisk axe-kontrol (WCAG 2.1 A/AA) indgår og består. Spørgsmål: skal der også laves en manuel gennemgang med skærmlæser, zoom og touch før intern brug, eller først før offentliggørelse?
+4. **Lagring og nulstilling:** Dækket af enheds- og browserforløb (første start med B-008-standarder, genåbning, afgrænsede nulstillinger, dato-undtagelsen, localStorage-/IndexedDB-fejl, flere faner, profilens eksport/import). Ingen handling udestår ud over brugerens accept.
+5. **Versionsmærkning og tilbagerulning:** Versionsnummeret v0.6 bevares (B-060). Tilbagerulning sker via Git-historikken på `main`.
+6. **Adgang og hosting:** Intern brug nu (B-060). Offentliggørelse på hjemmesiden og hvad der da skal fjernes, ændres, låses eller ligge bag login afklares senere.
+7. **Merge til main:** Aftalt og udført (B-061). Alt ligger på `main`; integrationsgrenen og de øvrige grene er slettet.
+8. **Resterende delafklaringer, spørgsmål til brugeren:**
+   - B-040: den røde farve for indtastet opbygning i designdiagrammet (M5) blev forelagt, men ikke særskilt bekræftet. Den har siden indgået i den godkendte dimensioneringsside (B-042) og R6-sættet (B-055).
+   - FUND-002: manuel armering findes i motoren, men kan ikke vælges i produktvælgeren, som i originalen.
+   - FUND-003: minimumstykkelserne 200/200/200/250/275/300 mm er i originalens kildekode kommenteret som foreløbige.
+   - A-006/FUND-005: automatisk udfyldning af rapportens oplyste forudsætninger.
+   - A-008/R-004: tastaturbetjening, søgning og indsætning fra Excel i redigerbare tabeller.
+9. **Testhuller:** Matrixen angiver delkrav uden særskilt automatisk kontrol, bl.a. F-02.1/F-02.2 (slidergrænser), F-02.6/F-02.7 (inputgrænser), F-04.3, F-06.4, F-06.6, F-11.2, F-11.3 og B-053's Hover Card. Ændringer af originalens virkemåde kræver særskilt godkendelse.
+10. **Oprydning og PDF-beviser:** Udført. Udkast og rapportforsøg er fjernet (B-059), og R6-sættet er fastlåst med kontrolsummer (B-055).

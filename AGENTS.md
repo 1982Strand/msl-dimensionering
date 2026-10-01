@@ -26,9 +26,9 @@
 ## Roller og grene (B-033)
 
 - Claude Code styrer udviklingen: planlægning, opgavefordeling, gennemgang af al kode, test og referencekontrol, commits, forelæggelse for brugeren og registrering i `docs/BESLUTNINGER.md`.
-- Codex er hjælper og startes med `codex exec` på afgrænsede opgaver. Hver opgave kører i sin egen worktree under `C:\MSL-Dimensionering-opgaver\<opgave>` på grenen `codex/<opgave>`, oprettet fra integrationsgrenen.
+- Codex er hjælper og startes med `codex exec` på afgrænsede opgaver. Hver opgave kører i sin egen worktree under `C:\MSL-Dimensionering-opgaver\<opgave>` på grenen `codex/<opgave>`, oprettet fra `main`.
 - Som hjælper arbejder Codex kun i den tildelte mappe, committer og merger ikke, ændrer ikke `docs/BESLUTNINGER.md` og forelægger ikke selv for brugeren. Den afslutter med ændrede filer, kørte kontroller og åbne spørgsmål.
-- Integrationsgrenen er `codex/reference-kortlaegning` (udkast-PR #1). Hjælpegrene merges dertil efter gennemgang. Intet merges til `main` eller offentliggøres uden brugerens aftale.
+- Alt samles på `main` (B-061). Hjælpegrene merges til `main` efter Claudes gennemgang og test, og grenen og dens worktree slettes straks bagefter, både lokalt og på GitHub. Der holdes ingen langvarige grene. Offentliggørelse, fx på firmaets hjemmeside, kræver fortsat brugerens særskilte aftale (B-060).
 
 ## Kodesøgning
 
