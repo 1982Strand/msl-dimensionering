@@ -1,10 +1,12 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { useEditor } from './EditorContext';
 import { EditorFeedback, SaveState } from './EditorFeedback';
 import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
 import { Textarea } from '../components/ui/textarea';
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '../components/ui/tabs';
+import { CompanyProfile, useCompanyProfile } from './CompanyProfile';
 import {
   Accordion,
   AccordionItem,
@@ -25,7 +27,7 @@ import {
 import { reportData, STANDARD_TEKSTER, type SectionKey } from '../report/report-data';
 import { reportFigures } from '../report/report-figures';
 import { reportDocument, loadReportAssets, type ReportAssets } from '../report/report-document';
-import { DEFAULT_COMPANY_PROFILE } from '../report/profile-defaults';
+import { logoDataUrl, logoExtension } from '../report/company-profile';
 import layoutSource from '../report/typst/layout.typ?raw';
 import reportSource from '../report/typst/rapport.typ?raw';
 import {
@@ -58,6 +60,21 @@ export function Report({
   startLive: () => void;
 }) {
   const ctx = useEditor();
+  const company = useCompanyProfile();
+  const [tab, setTab] = useState(() => {
+    try {
+      return sessionStorage.getItem('msl.report-tab') === 'profile' ? 'profile' : 'report';
+    } catch {
+      return 'report';
+    }
+  });
+  useEffect(() => {
+    if (tab === 'profile' && !live) startLive();
+  }, [tab, live, startLive]);
+  const logoFingerprint = useMemo(
+    () => (company.state.logo ? logoDataUrl(company.state.logo) : null),
+    [company.state.logo],
+  );
   const date = sessionDate ?? localReportDate();
   useEffect(() => {
     if (sessionDate === null) setDate(date);
@@ -113,14 +130,20 @@ export function Report({
     figureChoices: model.figureChoices,
     data,
     figures,
-    profile: DEFAULT_COMPANY_PROFILE,
+    profile: company.state.profile,
+    logo: logoFingerprint,
     layoutSource,
     reportSource,
     filename: reportFilename(model.metadata),
   });
   const canGenerate = model.available && !!figures?.constructionCall?.snit_liste.length;
   const current =
-    !!preview && preview.fingerprint === fingerprint && state.status === 'ready' && canGenerate;
+    !!preview &&
+    preview.fingerprint === fingerprint &&
+    state.status === 'ready' &&
+    canGenerate &&
+    company.ready &&
+    !company.saving;
 
   useEffect(() => {
     let active = true;
@@ -152,7 +175,7 @@ export function Report({
   }, []);
 
   useEffect(() => {
-    if (!live || !canGenerate || !data || !figures) return;
+    if (!live || !canGenerate || !data || !figures || !company.ready || company.saving) return;
     let active = true;
     // Saml tastetryk; spærringen er allerede aktiv i render via fingeraftrykket.
     const timer = window.setTimeout(() => {
@@ -169,7 +192,13 @@ export function Report({
         .then((loaded) => {
           if (!active) return;
           // Skabelonbytes er faste i denne appversion, men indgår i revisionens request.
-          const request = reportDocument(data, figures, loaded, DEFAULT_COMPANY_PROFILE);
+          const logo = company.state.logo;
+          const request = reportDocument(
+            data,
+            figures,
+            logo ? { ...loaded, logo: logo.bytes, logoExtension: logoExtension(logo) } : loaded,
+            company.state.profile,
+          );
           submitted.current = fingerprint;
           queue.current?.request(request);
         })
@@ -181,7 +210,62 @@ export function Report({
       active = false;
       window.clearTimeout(timer);
     };
-  }, [live, canGenerate, fingerprint, attempt]);
+  }, [live, canGenerate, fingerprint, attempt, company.ready, company.saving]);
+
+  function renderPdf(buttons?: ReactNode, info?: ReactNode) {
+    return (
+      <>
+        <div className="report-generate-toolbar">
+          {buttons}
+          {current ? (
+            <Button asChild>
+              <a href={preview!.url} download={reportFilename(model.metadata)}>
+                Hent PDF
+              </a>
+            </Button>
+          ) : (
+            <Button disabled>Hent PDF</Button>
+          )}
+          <div className="report-compile-status">
+            <p
+              role="status"
+              data-testid="compile-state"
+              data-state={state.status}
+              data-revision={state.status === 'ready' ? state.revision : undefined}
+            >
+              {current
+                ? 'Rapporten er genereret.'
+                : states[state.status === 'ready' ? 'compiling' : state.status]}
+            </p>
+            {elapsed !== null && (
+              <p className="report-caption">
+                Kompileringstid: <output data-testid="compile-time">{elapsed}</output> ms (inklusive
+                eventuel indlæsning)
+              </p>
+            )}
+          </div>
+        </div>
+        {info}
+        {state.status === 'error' && (
+          <div role="alert" className="warning-banner">
+            <p>{state.message}</p>
+            <pre>{state.details}</pre>
+          </div>
+        )}
+        {preview && (
+          <div className="report-pdf">
+            {!current && (
+              <p role="status" className="warning-banner report-stale">
+                Forhåndsvisningen er forældet. Hent PDF er spærret, indtil rapporten for de aktuelle
+                oplysninger er klar.
+              </p>
+            )}
+            <iframe title="PDF-forhåndsvisning" src={preview.url} />
+          </div>
+        )}
+      </>
+    );
+  }
 
   function action(key: string) {
     if (key === 'generate') {
@@ -345,58 +429,15 @@ export function Report({
       );
     }
     if (step.number === 4) {
-      return (
-        <>
-          <div className="report-generate-toolbar">
-            {nodes.filter((node) => node.kind === 'button').map(renderNode)}
-            {current ? (
-              <Button asChild>
-                <a href={preview!.url} download={reportFilename(model.metadata)}>
-                  Hent PDF
-                </a>
-              </Button>
-            ) : (
-              <Button disabled>Hent PDF</Button>
-            )}
-            <div className="report-compile-status">
-              <p role="status" data-testid="compile-state" data-state={state.status}>
-                {current
-                  ? 'Rapporten er genereret.'
-                  : states[state.status === 'ready' ? 'compiling' : state.status]}
-              </p>
-              {elapsed !== null && (
-                <p className="report-caption">
-                  Kompileringstid: <output data-testid="compile-time">{elapsed}</output> ms
-                  (inklusive eventuel indlæsning)
-                </p>
-              )}
+      return renderPdf(
+        nodes.filter((node) => node.kind === 'button').map(renderNode),
+        nodes
+          .filter((node) => node.kind !== 'button')
+          .map((node, i) => (
+            <div key={i} className="info-banner">
+              {renderNode(node, i)}
             </div>
-          </div>
-          {nodes
-            .filter((node) => node.kind !== 'button')
-            .map((node, i) => (
-              <div key={i} className="info-banner">
-                {renderNode(node, i)}
-              </div>
-            ))}
-          {state.status === 'error' && (
-            <div role="alert" className="warning-banner">
-              <p>{state.message}</p>
-              <pre>{state.details}</pre>
-            </div>
-          )}
-          {preview && (
-            <div className="report-pdf">
-              {!current && (
-                <p role="status" className="warning-banner report-stale">
-                  Forhåndsvisningen er forældet. Hent PDF er spærret, indtil rapporten for de
-                  aktuelle oplysninger er klar.
-                </p>
-              )}
-              <iframe title="PDF-forhåndsvisning" src={preview.url} />
-            </div>
-          )}
-        </>
+          )),
       );
     }
     return (
@@ -426,32 +467,74 @@ export function Report({
       </div>
       <EditorFeedback />
       {renderNode(model.banner, 0)}
-      {!model.available ? (
-        <Button asChild>
-          <a href="#dimensionering">{model.emptyAction!.label}</a>
-        </Button>
-      ) : (
-        <fieldset disabled={ctx.externalChange} className="report-form">
-          {model.steps.map((step) => (
-            <section
-              key={step.number}
-              className="section-card settings-card"
-              aria-labelledby={'report-step-' + step.number}
-            >
-              <div data-m9-slot="report">
-                <div className="bg-trin-hoved">
-                  <h2 id={'report-step-' + step.number}>
-                    <span className="bg-trin-nr">{step.number}</span>
-                    <span className="bg-trin-titel">{step.title}</span>
-                  </h2>
-                  <span className="bg-trin-opsum">{step.summary}</span>
-                </div>
-              </div>
-              <div className={'report-step report-step-' + step.number}>{renderStep(step)}</div>
-            </section>
-          ))}
-        </fieldset>
-      )}
+      <Tabs
+        value={tab}
+        onValueChange={(value) => {
+          setTab(value);
+          try {
+            sessionStorage.setItem('msl.report-tab', value);
+          } catch {
+            /* Fanen huskes stadig i den åbne visning. */
+          }
+        }}
+      >
+        <TabsList aria-label="Rapport og firmaprofil">
+          <TabsTrigger value="report">Rapport</TabsTrigger>
+          <TabsTrigger value="profile">Firmaprofil</TabsTrigger>
+        </TabsList>
+        <TabsContent value="report">
+          {!model.available ? (
+            <Button asChild>
+              <a href="#dimensionering">{model.emptyAction!.label}</a>
+            </Button>
+          ) : (
+            <fieldset disabled={ctx.externalChange} className="report-form">
+              {model.steps.map((step) => (
+                <section
+                  key={step.number}
+                  className="section-card settings-card"
+                  aria-labelledby={'report-step-' + step.number}
+                >
+                  <div data-m9-slot="report">
+                    <div className="bg-trin-hoved">
+                      <h2 id={'report-step-' + step.number}>
+                        <span className="bg-trin-nr">{step.number}</span>
+                        <span className="bg-trin-titel">{step.title}</span>
+                      </h2>
+                      <span className="bg-trin-opsum">{step.summary}</span>
+                    </div>
+                  </div>
+                  <div className={'report-step report-step-' + step.number}>{renderStep(step)}</div>
+                </section>
+              ))}
+            </fieldset>
+          )}
+        </TabsContent>
+        <TabsContent value="profile">
+          <CompanyProfile
+            controller={company}
+            standardLogo={async () => {
+              const loaded = await (assets.current ??= loadReportAssets(
+                import.meta.env.BASE_URL,
+              ).catch((error) => {
+                assets.current = null;
+                throw error;
+              }));
+              return { mime: 'image/jpeg', bytes: loaded.logo };
+            }}
+            preview={
+              model.available ? (
+                renderPdf()
+              ) : (
+                <p className="info-banner">
+                  {model.emptyAction &&
+                    'Der skal først foretages en dimensionering med et valgt geonet, før rapporten kan genereres.'}
+                </p>
+              )
+            }
+          />
+        </TabsContent>
+      </Tabs>
     </main>
   );
 }

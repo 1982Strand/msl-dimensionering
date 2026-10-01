@@ -206,6 +206,30 @@ Et fingeraftryk omfatter beregningsinput/resultater, aktive indstillinger, rappo
 
 ## R5 — firmaprofil og lagring
 
+**R5-hjælperstatus — 01.10.2026:** Implementeret i worktree `r5-firmaprofil`:
+ren profilmodel med feltvalidering, streng JSON-import/eksport inklusive MIME/base64-logo,
+fletning i originalstandarden og bevarelse af alle fem afsnitsnøgler. Firmaprofil-fanen
+bruger de godkendte kort/Tabs-komponenter og rapportens eksisterende kompileringskø,
+PDF-visning og downloadspærring. Fanen huskes i sessionStorage. Små profilværdier ligger
+i `msl.company-profile.v1`; logobytes ligger i IndexedDB under en uforanderlig revision.
+Logoets transaktion afsluttes før profilen publiceres. Ved fejl vises en dansk besked,
+og den sidst konsistente profil bruges; forrige revision bevares til genåbning.
+
+Originalprofilen og Typst-layoutet er uændrede. `report-document.ts` understøttede allerede
+PNG/JPEG/SVG og samtlige profilfelter, så yderligere layoutændringer var ikke nødvendige.
+Supplerende kompilering med samme typst.ts/WASM bekræfter byteidentisk standard-PDF,
+PNG-billedobjekt i ændret PDF og SVG-kompilering uden diagnoser. Eksempler ligger lokalt
+i `.local/output/r5/`. Ni nye Node-tests dækker grænser, logoformat/checksum, fletning,
+rundtur, ugyldig import, lagerfejl og konsistent genåbning. Alle 2.959 Node-tests,
+typekontrol, formattering/formatteringskontrol og build består.
+
+`PW_PORT=5198 npx playwright test tests/browser/company-profile.spec.ts tests/browser/report.spec.ts`
+er forsøgt: alle otte browserstarter afvises med **`browserType.launch: spawn EPERM`**,
+før testhandlingerne udføres. Browserforløb, netværks-/sidefejlskontrol og visuel gennemgang
+skal derfor køres af den styrende agent uden denne sandkassebegrænsning. Serena er forsøgt,
+men Python-sprogserveren kan ikke starte uden `uv`/`uvx`; Semble CLI er brugt.
+Ingen pakker er installeret. Firmaprofilens visuelle accept og R6 udestår fortsat.
+
 **Placering foreslået:** en særskilt Firmaprofil-fane på rapportsiden, med felter og PDF-forhåndsvisning ved siden af hinanden. Placeringen er et designforslag; et konkret udkast forelægges til godkendelse. Demoens Layout (kode)-fane medtages ikke, og der kommer ingen upload af hele Typst-skabeloner.
 
 Profilen gælder alle rapporter. **Standardværdier udledes af originalrapporten og prototypens målte værdier, ikke demoens margener.** Hver værdi dokumenteres med kilde/måling; uundgåelige forskelle, fx fontsubstitution og linje-/sidefordeling, listes særskilt ved PDF-accept. Demoens redigeringsgrænser er kontrolgrænser, ikke nye standardværdier.
