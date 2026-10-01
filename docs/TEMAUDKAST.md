@@ -1,5 +1,7 @@
 # Temaudkast (B-042)
 
+Bemærkning 01.10.2026: Udkastsiden og dens skærmudklip er fjernet ved oprydningen efter godkendelsen (B-059). Dokumentet bevares som historik.
+
 Direkte adgang: `/#temaudkast`. Siden er skjult fra navigationen og er kun til forelæggelse. Hvert afsnit kan skiftes mellem Forslag (levende shadcn-komponenter med appens rigtige tekster og data) og Nu (udklip af de rigtige sider i `public/temaudkast/`). De rigtige sider er uændrede, indtil forslaget er godkendt.
 
 ## Kortlægning af nuværende stil

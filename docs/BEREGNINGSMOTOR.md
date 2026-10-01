@@ -1,5 +1,7 @@
 # TypeScript-beregningsmotor
 
+Bemærkning 01.10.2026: Rapportforsøget `spikes/report-typescript/` og kommandoen `npm run test:reports` er fjernet ved oprydningen (B-059). Omtaler nedenfor bevares som historik; forsøget findes i Git-historikken.
+
 Implementeret efter brugerens B-014 den 29. september 2026. Reference: `a330cfd6734ac2478be1304a362c69f94e412d25`. Der er ingen godkendte ændringer af faglige regler eller standardværdier.
 
 ## Implementeret og sammenlignet

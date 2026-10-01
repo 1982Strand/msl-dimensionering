@@ -1,5 +1,6 @@
 ﻿// Oprindelse: kopieret fra C:/Users/dst/Documents/MSL-rapportdemo/skabelon/layout.typ.
-// R3: Word-skabelon/a330cfd; mål fra spikes/report-typescript/layout.typ.
+// R3: Word-skabelon/a330cfd; mål oprindeligt afprøvet i forsøget
+// spikes/report-typescript (fjernet ved oprydningen, B-059; se Git-historikken).
 // Alle variable værdier læses som JSON; ingen eval/markup fra formularfelter.
 #let felt-bredde = 85.05pt
 #let tabel-bredde = 198.2pt

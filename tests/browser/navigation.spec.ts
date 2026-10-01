@@ -70,8 +70,11 @@ test('startside, ukendte ruter, direkte links og browserens frem/tilbage', async
   const errors = observeErrors(page);
   await page.goto('/');
   await expectPage(page, 'dimensionering', 'Dimensionering');
-  await page.goto('/#ukendt-side');
-  await expectPage(page, 'dimensionering', 'Dimensionering');
+  // B-059: de fjernede udkastruter følger samme fallback som andre ukendte ruter.
+  for (const route of ['ukendt-side', 'designudkast', 'designudkast-sidebar', 'temaudkast']) {
+    await page.goto(`/#${route}`);
+    await expectPage(page, 'dimensionering', 'Dimensionering');
+  }
   await page.goto('/#hjaelp');
   await expectPage(page, 'hjaelp', 'Hjælp og dokumentation');
   const navigation = page.getByRole('navigation', { name: 'Navigation' });

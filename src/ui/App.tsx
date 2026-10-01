@@ -21,18 +21,13 @@ import { GeonetDatabase } from './GeonetDatabase';
 import { DataTables } from './DataTables';
 import { Settings } from './Settings';
 import { Dimensioning } from './Dimensioning';
-import { DesignDraft, SidebarPreview } from './DesignDraft';
-import { ThemeDraft } from './ThemeDraft';
 import { Help } from './Help';
 import { Report } from './Report';
 import { navigationGroups } from './page';
 
 function currentPage() {
   const hash = location.hash.slice(1);
-  return navigationGroups.some((group) => group.items.some(([key]) => key === hash)) ||
-    hash === 'designudkast' ||
-    hash === 'temaudkast' ||
-    hash === 'designudkast-sidebar'
+  return navigationGroups.some((group) => group.items.some(([key]) => key === hash))
     ? hash
     : 'dimensionering';
 }
@@ -123,7 +118,6 @@ export function App() {
     window.addEventListener('hashchange', update);
     return () => window.removeEventListener('hashchange', update);
   }, []);
-  if (page === 'designudkast-sidebar') return <SidebarPreview />;
   return (
     <SidebarProvider className="app-shell">
       <header className="topbar">
@@ -149,10 +143,6 @@ export function App() {
               <GeonetDatabase />
             ) : page === 'hjaelp' ? (
               <Help />
-            ) : page === 'designudkast' ? (
-              <DesignDraft />
-            ) : page === 'temaudkast' ? (
-              <ThemeDraft />
             ) : page === 'dimensionering' ? (
               <Dimensioning />
             ) : page === 'indstillinger' ? (

@@ -1,5 +1,7 @@
 # Typst som rapportmotor
 
+Bemærkning 01.10.2026: Rapportforsøget `spikes/report-typescript/` og kommandoen `npm run test:reports` er fjernet ved oprydningen (B-059). Omtaler nedenfor bevares som historik; forsøget findes i Git-historikken.
+
 29. september 2026. Beslutningsgrundlag og afgrænset prototype. Brugeren har valgt at arbejde videre med Typst og bevarelse af rapportdata (B-012); endeligt rapportdesign, samlet arkitekturvalg og bortfald af Word er fortsat åbne.
 
 **Opdatering efter formateringsarbejdet:** Firmaprofil og layout er adskilt, og rapportdata/skabelon/billeder/PDF arkiveres samlet i prototypen. Alle ti cases har nu samme sideantal og synlige tekstlinjer på samme sider som Word-referencen, inklusive tomme linjer ved sideskift. Største målte lodrette forskydning af tekstlinjer er 0,53 punkt. Syv automatiske tests består. Se `RAPPORTSKABELON.md` og `reference/report-format-results.json`. De nedenstående første målinger er historik fra før denne tilpasning.

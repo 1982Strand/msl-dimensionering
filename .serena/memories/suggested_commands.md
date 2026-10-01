@@ -1,4 +1,7 @@
 # Projektkommandoer
+
+Bemærkning 01.10.2026: Rapportforsøget `spikes/report-typescript/` og kommandoen `npm run test:reports` er fjernet ved oprydningen (B-059). Omtaler nedenfor bevares som historik; forsøget findes i Git-historikken.
+
 - npm ci; npm run typecheck; npm test; npm run format:check.
 - npm run test:reports kræver først lokal Typst-installation og rapportinputs efter spikes/report-typescript/README.md. Ikke del af den afhængighedsfri core-testkørsel.
 - PowerShell fra C:\MSL-Dimensionering: & 'C:\geonet_beregning\.venv\Scripts\python.exe' tools/export_engine_data.py --check

@@ -20,7 +20,6 @@
   "include": [
     "src/engine/**/*.ts",
     "tests/**/*.ts",
-    "spikes/report-typescript/*.ts",
     "vite.config.ts",
     "playwright.config.ts",
     "tests/browser/**/*.ts"
