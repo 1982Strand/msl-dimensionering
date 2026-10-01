@@ -13,19 +13,28 @@ const snapshot = (id: string) =>
 async function results(page: Page, id: string) {
   const dim = snapshot(id);
   const cards = page.locator('.dim-results > div');
-  await expect(cards).toHaveCount(3);
+  const alternatives = [dim.res_1, dim.res_2]
+    .map((r, i) => ({ r, i }))
+    .filter(({ r }) => !r.fejl && r.t_armeret_mm != null);
+  await expect(cards).toHaveCount(1 + alternatives.length);
   await expect(cards.nth(0).locator('strong')).toHaveText(
     laengde(
       dim.res_1.t_uarmeret_phi_kor_mm ?? dim.res_2.t_uarmeret_phi_kor_mm ?? dim.t_uarmeret_mm,
     ),
   );
-  await expect(cards.nth(1).locator('strong')).toHaveText(laengde(dim.res_1.t_armeret_mm ?? null));
-  await expect(cards.nth(2).locator('strong')).toHaveText(laengde(dim.res_2.t_armeret_mm ?? null));
-  for (const [i, r] of [dim.res_1, dim.res_2].entries())
+  for (const [index, { r, i }] of alternatives.entries()) {
+    await expect(cards.nth(index + 1).getByRole('heading')).toHaveText(`${i + 1} lag geonet`);
+    await expect(cards.nth(index + 1).locator('strong')).toHaveText(laengde(r.t_armeret_mm));
     if (r.reduktion_pct != null)
-      await expect(cards.nth(i + 1)).toContainText(
+      await expect(cards.nth(index + 1)).toContainText(
         `${pythonFixed(r.reduktion_pct * 100, 0).replace('.', ',')} %`,
       );
+  }
+  for (const [i, r] of [dim.res_1, dim.res_2].entries())
+    if (r.fejl || r.t_armeret_mm == null)
+      await expect(
+        cards.getByRole('heading', { name: `${i + 1} lag geonet`, exact: true }),
+      ).toHaveCount(0);
 }
 async function range(page: Page, id: string, value: number, min = 1, step = 1) {
   const control = page.locator(`#${id}`);
@@ -115,11 +124,11 @@ test('class choices are horizontal, reference popups keep layout stable and prod
   expect(new Set(rowTops).size).toBe(1);
   const section = page
     .getByRole('heading', {
-      name: '1. Underbund og dimensioneringsgrundlag',
+      name: '1 Underbund og dimensioneringsgrundlag',
       exact: true,
       includeHidden: true,
     })
-    .locator('..');
+    .locator('xpath=ancestor::section[1]');
   const heightBefore = (await section.boundingBox())!.height;
   await page.getByRole('button', { name: 'Se designdiagram', exact: true }).click();
   const diagram = page.getByRole('dialog', {
@@ -145,7 +154,7 @@ test('class choices are horizontal, reference popups keep layout stable and prod
   expect(await cv.evaluate((el) => el.scrollWidth <= el.clientWidth)).toBeTruthy();
   expect((await section.boundingBox())!.height).toBeCloseTo(cvHeight, 0);
   await cv.getByRole('button', { name: 'Luk popup' }).click();
-  await page.getByText('Alle produkter', { exact: true }).click();
+  await page.getByRole('button', { name: 'Alle produkter · 20 produkter', exact: true }).click();
   const table = page.getByRole('table', { name: 'Alle produkter', exact: true });
   await expect(table.getByRole('columnheader')).toHaveText([
     'Produkt',

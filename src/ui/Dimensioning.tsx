@@ -16,12 +16,19 @@ import {
   phi_fra_materialer,
 } from '../engine/dimensionering';
 import { beregn_alle_produkter } from '../engine/products';
-import { defaults, PHI_BASIS } from '../engine/data';
+import { defaults } from '../engine/data';
 import schema from '../engine/dimensioning-ui.json';
 import { laengde } from '../engine/enhed';
 import { pythonFixed, pythonRound } from '../engine/python-numbers';
-import { er_oprundet } from '../engine/afrunding';
-import type { CalculationResult } from '../engine/types';
+import { dimensioningPage, pageIntroduction } from '../engine/dimensioning-page';
+import { PageContent, PageResultCards } from './DimensioningPageContent';
+import {
+  Accordion,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionContent,
+} from '../components/ui/accordion';
+import './dimensioning-page.css';
 import { InfoPopup } from './InfoPopup';
 import { TrafficCorrelationPopup } from './TrafficCorrelationPopup';
 import { ConstructionFigure } from './ConstructionFigure';
@@ -68,6 +75,8 @@ export function Dimensioning() {
       two: beregn_alle_produkter({ ...common, lag_mode: '2_lag' }),
     };
   }, [input, result]);
+  const page = useMemo(() => dimensioningPage(input, result, products), [input, result, products]);
+  const content = (slot: string) => <PageContent model={page} slot={slot} />;
   const options = geonet_valgliste(
     [...products.one, ...products.two]
       .filter((p) => p.fejl === null && p.t_armeret_mm != null)
@@ -170,18 +179,14 @@ export function Dimensioning() {
       </div>
     );
   }
-  const weighted = phi_fra_materialer(input.materialer ?? []);
   const count = Number(values.bd_antal_lag);
   return (
-    <main>
+    <main className="m9-page">
       <div className="breadcrumb">Dimensionering</div>
       <div className="page-heading">
         <div>
           <h1>Dimensionering</h1>
-          <p className="intro">
-            Bærelagstykkelse med og uden geonetarmering. Grundlaget er BG Byggros' designmanualer
-            til Tensar og GS-GRID samt interne forsøgsdata.
-          </p>
+          <p className="intro">{pageIntroduction}</p>
         </div>
         <SaveState />
       </div>
@@ -206,9 +211,10 @@ export function Dimensioning() {
           </Button>
         </div>
         <section className="section-card settings-card">
-          <h2>1. Underbund og dimensioneringsgrundlag</h2>
+          {content('step1')}
           <div className="dim-input-grid">
-            <div>
+            <div className="m9-collapsed-labels">
+              {content('subgradeLabel')}
               {choice(`${prefix}_eu_mode`, 'Input-form', ['Eᵤ — E-modul', 'Cv — vingestyrke'])}
               {String(values[`${prefix}_eu_mode`]).startsWith('Cv') ? (
                 <>
@@ -255,7 +261,8 @@ export function Dimensioning() {
                 )
               )}
             </div>
-            <div>
+            <div className="m9-collapsed-labels">
+              {content('basisLabel')}
               {choice(`${prefix}_grundlag`, 'Dimensioneringsgrundlag', [
                 'Belastningsklasse',
                 'Trafikklasse',
@@ -281,90 +288,52 @@ export function Dimensioning() {
                 </InfoPopup>
               )}
               {basis.type === 'trafikklasse' && <TrafficCorrelationPopup input={input} />}
+              {page.messageKind && (
+                <div className={page.messageKind === 'warning' ? 'warning-banner' : 'info-banner'}>
+                  {content('basisMessage')}
+                </div>
+              )}
             </div>
-            <dl className="dim-keyfigures">
-              <dt>Eᵤ</dt>
-              <dd>{input.eu} MPa</dd>
-              <dt>{basis.type === 'trafikklasse' ? 'Eₒ,ækv' : 'Eₒ'}</dt>
-              <dd>{basis.eo === null ? '—' : dk(basis.eo)} MPa</dd>
-              <dt>Grundlag</dt>
-              <dd>{basis.t_klasse ?? `Belastningsklasse ${basis.valgt_klasse}`}</dd>
-            </dl>
+            {content('keyFigures')}
           </div>
-          {basis.yder && (
-            <p
-              className={
-                basis.eo === null || !basis.yder.inden_tolerance ? 'warning-banner' : 'info-banner'
-              }
-            >
-              {basis.t_klasse} · Eᵤ = {input.eu} MPa ligger {dk(Number(basis.yder.afvigelse_pct))} %{' '}
-              {basis.zone === 'over'
-                ? 'over diagrammets øverste kurve'
-                : 'under diagrammets laveste kurve'}
-              , {basis.yder.inden_tolerance ? 'inden for' : 'uden for'} tolerancen på{' '}
-              {dk(Number(basis.yder.tolerance_pct))} %. VejDim kræver{' '}
-              {laengde(Number(basis.yder.t_vejdim_mm), unit)} ubundet mod{' '}
-              {laengde(Number(basis.yder.t_rand_mm), unit)} for kurven Eₒ ={' '}
-              {String(basis.yder.eo_rand)} MPa.{' '}
-              {basis.eo === null
-                ? 'Beregningen afvises efter Indstillinger, afsnit 8, og opbygningen kræver en konkret vurdering. Der kan i stedet dimensioneres efter Belastningsklasse-grundlaget, eller reglerne kan ændres under Indstillinger.'
-                : basis.yder.handling === 'laveste'
-                  ? 'Der regnes med diagrammets laveste kurve.'
-                  : 'Der regnes med VejDims tykkelse; reduktionen aflæses på randkurven.'}
-            </p>
-          )}
-          {basis.eo === null && !basis.yder && (
-            <p className="warning-banner">
-              Eᵤ = {input.eu} MPa er uden for de kørte punkter for {basis.t_klasse}. Vælg et Eᵤ i
-              intervallet, udfyld kørslen under Trafikklasse-korrelation, eller brug
-              Belastningsklasse-grundlaget.
-            </p>
-          )}
         </section>
         {(standard || basis.eo !== null) && (
           <section className="section-card settings-card">
-            <h2>2. {standard ? 'Forudsætninger' : 'Opbygning'}</h2>
+            {content('step2')}
             {standard ? (
-              <p className="settings-prose">
-                I standardberegningen regnes med designdiagrammernes referencemateriale, φᵥ ={' '}
-                {PHI_BASIS}°. Der kan derfor ikke vælges forskellige materialelag. Reduktion i
-                bærelagstykkelser korrigeres for de forskellige geonets effektindeks, som er
-                virkningsgraden set i forhold til referencenettene, med indeks 100.{' '}
-                {ctx.session.data.indstillinger.lagfordeling.standard_klassisk
-                  ? 'Der regnes med klassisk standardberegning: opbygningen vises som ét samlet bærelag uden minimumstykkelse, jf. Indstillinger, afsnit 6.'
-                  : ctx.session.data.indstillinger.lagfordeling.standard_opdeling
-                    ? 'Opbygningen vises som stabilgrus og bundsikring, hvor stabilgruset er minimumstykkelsen for klassen, jf. Indstillinger, afsnit 6.'
-                    : 'Opbygningen vises som ét samlet bærelag.'}
-              </p>
+              <>
+                {content('fixedLabel')}
+                {content('assumptions')}
+              </>
             ) : (
               <>
                 <div className="phi-input-layout">
                   <div>
-                    {field({
-                      key: 'bd_antal_lag',
-                      integer: true,
-                      label: 'Antal lag',
-                      kind: 'number',
-                      min: 1,
-                      max: 3,
-                      step: 1,
-                    })}
-                    <div className="dim-layers">
+                    <div className="m9-materials-title">
+                      {content('materialsLabel')}
+                      {field({
+                        key: 'bd_antal_lag',
+                        integer: true,
+                        label: 'Antal lag',
+                        kind: 'number',
+                        min: 1,
+                        max: 3,
+                        step: 1,
+                      })}
+                    </div>
+                    {content('materialsHead')}
+                    <div className="m9-layers">
                       {Array.from({ length: count }, (_, i) => {
                         const material = input.materialer![i];
-                        const deleted =
-                          ctx.session.values[`bd_mat_${i}`] &&
-                          ctx.session.values[`bd_mat_${i}`] !== values[`bd_mat_${i}`];
                         return (
-                          <div className="dim-layer" key={i}>
-                            <h3>
-                              {count === 2
-                                ? ['Øverste lag', 'Nederste lag'][i]
-                                : count === 3
-                                  ? ['Øverste lag', 'Midterste lag', 'Nederste lag'][i]
-                                  : 'Lag 1'}
-                            </h3>
-                            <div className="settings-fields">
+                          <div
+                            className="m9-layer"
+                            key={i}
+                            role="group"
+                            aria-label={`Lag ${i + 1}`}
+                          >
+                            <div className="m9-layer-row">
+                              {content(`layerNumber${i}`)}
                               {choice(
                                 `bd_mat_${i}`,
                                 `Materiale · lag ${i + 1}`,
@@ -382,17 +351,19 @@ export function Dimensioning() {
                                 max: 2000,
                                 step: 50,
                               })}
+                              {material.navn === MANUAL_MATERIAL
+                                ? field({
+                                    key: `bd_phi_m_${i}`,
+                                    label: `φᵢ (°) · lag ${i + 1}`,
+                                    kind: 'number',
+                                    min: 20,
+                                    max: 60,
+                                    step: 0.5,
+                                  })
+                                : content(`layerPhi${i}`)}
                             </div>
                             {material.navn === MANUAL_MATERIAL ? (
                               <div className="dim-manual-fields">
-                                {field({
-                                  key: `bd_phi_m_${i}`,
-                                  label: `φᵢ (°) · lag ${i + 1}`,
-                                  kind: 'number',
-                                  min: 20,
-                                  max: 60,
-                                  step: 0.5,
-                                })}
                                 {field({
                                   integer: true,
                                   key: `bd_korn_m_${i}`,
@@ -410,33 +381,14 @@ export function Dimensioning() {
                                 )}
                               </div>
                             ) : (
-                              <p className="settings-note">
-                                φᵢ = {dk(material.phi)}° · {String(material.lagtype)} · maks. korn{' '}
-                                {String(material.max_korn)} mm
-                                {material.krav_maskestoerrelse_mm != null
-                                  ? ` · krav til geonet maskestørrelse ${material.krav_maskestoerrelse_mm} mm`
-                                  : ''}
-                              </p>
-                            )}
-                            {deleted && (
-                              <p className="warning-banner">
-                                Materialet '{String(ctx.session.values[`bd_mat_${i}`])}' findes ikke
-                                længere i databasen. Laget er skiftet til manuel indtastning.
-                              </p>
+                              content(`layerNote${i}`)
                             )}
                           </div>
                         );
                       })}
                     </div>
-                    <p className="settings-note">
-                      Samlet:{' '}
-                      {laengde(
-                        input.materialer!.reduce((sum, m) => sum + (m.tykkelse_mm ?? 0), 0),
-                        unit,
-                      )}{' '}
-                      · vægtet φᵥ = {dk(weighted, 2)}°. Mindste lagtykkelse der kan indtastes er 200
-                      mm.
-                    </p>
+                    {content('materialsSum')}
+                    {content('materialsHelp')}
                     {field({
                       key: 'bd_phi_override',
                       label: 'Overskriv φᵥ manuelt',
@@ -452,11 +404,6 @@ export function Dimensioning() {
                           max: 60,
                           step: 0.5,
                         })}
-                        <p className="warning-banner">
-                          Den manuelt indtastede værdi anvendes i stedet for den vægtede.
-                          Opmærksomheden henledes på, at værdien ikke længere følger ændringer i
-                          materialelagene.
-                        </p>
                       </>
                     )}
                   </div>
@@ -467,132 +414,121 @@ export function Dimensioning() {
           </section>
         )}
         {result ? (
-          <section className="section-card settings-card">
-            <h2>Resultater</h2>
-            {field({
-              key: `${prefix}_geonet`,
-              label: 'Produkt',
-              kind: 'select',
-              options: options.map((value) => ({ value, label: productLabel(value) })),
-            })}
-            <NetIntervalNote result={result} />
-            <div className="dim-results" aria-label="Beregnet bærelagstykkelse">
-              <div>
-                <h3>Uden geonet</h3>
-                <strong>
-                  {laengde(
-                    (result.res_1 as CalculationResult).t_uarmeret_phi_kor_mm ??
-                      (result.res_2 as CalculationResult).t_uarmeret_phi_kor_mm ??
-                      result.t_uarmeret_mm,
-                    unit,
-                  )}
-                </strong>
-              </div>
-              {([result.res_1, result.res_2] as CalculationResult[]).map((r, i) => (
-                <div key={i}>
-                  <h3>{i + 1} lag geonet</h3>
-                  <strong>{laengde(r.t_armeret_mm ?? null, unit)}</strong>
-                  {ctx.session.data.indstillinger.afrunding.vis_eksakt &&
-                    er_oprundet(r.t_armeret_mm ?? null, r.t_armeret_eksakt_mm ?? null) && (
-                      <p>beregnet {laengde(r.t_armeret_eksakt_mm ?? null, unit)}</p>
-                    )}
-                  <p>
-                    {r.fejl ??
-                      `Reduktion: ${laengde(r.reduktion_mm ?? null, unit)} (${r.reduktion_pct == null ? '—' : dk(r.reduktion_pct * 100, 0)} %)`}
-                  </p>
-                </div>
-              ))}
+          <section className="section-card settings-card m9-result-block">
+            {content('resultHeading')}
+            {content('netHeading')}
+            <div className="m9-product-choice">
+              {field({
+                key: `${prefix}_geonet`,
+                label: 'Produkt',
+                kind: 'select',
+                options: options.map((value) => ({ value, label: productLabel(value) })),
+              })}
             </div>
+            <NetIntervalNote result={result} />
+            <PageResultCards model={page} />
             <ResultStatus input={input} result={result} unit={unit} products={products} />
-            <details className="settings-deviations">
-              <summary>Alle produkter</summary>
-              <div className="table-wrap">
-                <table className="summary-table product-overview" aria-label="Alle produkter">
-                  <thead>
-                    <tr>
-                      {overviewColumns.map((c) => (
-                        <th
-                          key={c.key}
-                          aria-sort={
-                            sort?.column === c.key
-                              ? sort.direction === 'asc'
-                                ? 'ascending'
-                                : 'descending'
-                              : 'none'
-                          }
-                        >
-                          <button
-                            type="button"
-                            title={
-                              c.key === 'klasse' && basis.type === 'trafikklasse'
-                                ? `Viser anbefalede trafikklasser ved Eᵤ = ${dk(input.eu, 0)} MPa. Oversættelsen gælder kun dette Eᵤ — samme trafikklasse rammer forskellige belastningsklasser ved en anden underbund.`
-                                : undefined
-                            }
-                            aria-label={`Sorter efter ${c.key === 'sparet1' ? 'sparet med 1 lag' : c.key === 'sparet2' ? 'sparet med 2 lag' : c.label}`}
-                            onClick={() =>
-                              ctx.remember({
-                                [sortKey]: {
-                                  column: c.key,
-                                  direction:
-                                    sort?.column === c.key
-                                      ? sort.direction === 'asc'
-                                        ? 'desc'
-                                        : 'asc'
-                                      : c.direction,
-                                },
-                              })
-                            }
-                          >
-                            {c.label}
-                            {sort?.column === c.key ? (sort.direction === 'asc' ? ' ▲' : ' ▼') : ''}
-                          </button>
-                        </th>
-                      ))}
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {overview.rows.map((row) => (
-                      <tr
-                        key={row.name}
-                        className={row.name === result.geonet_navn ? 'dim-selected' : ''}
-                      >
-                        {row.cells.map((cell, i) => (
-                          <td key={i}>{cell}</td>
-                        ))}
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
+            <div className="section-card settings-card m9-figure">
+              {content('constructionHeading')}
+              <ConstructionFigure
+                result={result}
+                products={products}
+                display={ctx.session.data.indstillinger.opbygning}
+                netplacering={ctx.session.data.indstillinger.lagfordeling.netplacering}
+              />
+            </div>
+            <div className="section-card settings-card m9-details-card">
+              <NetDetails input={input} result={result} products={products} />
+              <div className="m9-figure">
+                {content('diagramHeading')}
+                <PersonalDiagram
+                  result={result}
+                  products={products}
+                  table={input.t_basis_table}
+                  showInput={ctx.session.values.bd_dd_vis_din_prik !== false}
+                  showEndpoints={ctx.session.values.bd_dd_vis_lag_prikker !== false}
+                  onChange={(key, value) => ctx.remember({ [key]: value })}
+                />
               </div>
-              <p className="product-overview-caption">{overview.caption}</p>
-            </details>
+            </div>
+            <Accordion type="single" collapsible className="m9-products">
+              <AccordionItem value="products">
+                <AccordionTrigger>{page.productExpander?.label}</AccordionTrigger>
+                <AccordionContent>
+                  <div className="table-wrap">
+                    <table className="summary-table product-overview" aria-label="Alle produkter">
+                      <thead>
+                        <tr>
+                          {overviewColumns.map((c) => (
+                            <th
+                              key={c.key}
+                              aria-sort={
+                                sort?.column === c.key
+                                  ? sort.direction === 'asc'
+                                    ? 'ascending'
+                                    : 'descending'
+                                  : 'none'
+                              }
+                            >
+                              <button
+                                type="button"
+                                title={
+                                  c.key === 'klasse' && basis.type === 'trafikklasse'
+                                    ? `Viser anbefalede trafikklasser ved Eᵤ = ${dk(input.eu, 0)} MPa. Oversættelsen gælder kun dette Eᵤ — samme trafikklasse rammer forskellige belastningsklasser ved en anden underbund.`
+                                    : undefined
+                                }
+                                aria-label={`Sorter efter ${c.key === 'sparet1' ? 'sparet med 1 lag' : c.key === 'sparet2' ? 'sparet med 2 lag' : c.label}`}
+                                onClick={() =>
+                                  ctx.remember({
+                                    [sortKey]: {
+                                      column: c.key,
+                                      direction:
+                                        sort?.column === c.key
+                                          ? sort.direction === 'asc'
+                                            ? 'desc'
+                                            : 'asc'
+                                          : c.direction,
+                                    },
+                                  })
+                                }
+                              >
+                                {c.label}
+                                {sort?.column === c.key
+                                  ? sort.direction === 'asc'
+                                    ? ' ▲'
+                                    : ' ▼'
+                                  : ''}
+                              </button>
+                            </th>
+                          ))}
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {overview.rows.map((row) => (
+                          <tr
+                            key={row.name}
+                            className={row.name === result.geonet_navn ? 'dim-selected' : ''}
+                          >
+                            {row.cells.map((cell, i) => (
+                              <td key={i}>{cell}</td>
+                            ))}
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                  <p className="product-overview-caption">{overview.caption}</p>
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
+            <CouplingExplanation input={input} result={result} />
+            <ResultChecks input={input} result={result} unit={unit} products={products} />
           </section>
         ) : (
           basis.eo !== null && (
             <p className="warning-banner">Ingen gyldig dimensionering for denne kombination.</p>
           )
         )}
-        {result && (
-          <ConstructionFigure
-            result={result}
-            products={products}
-            display={ctx.session.data.indstillinger.opbygning}
-            netplacering={ctx.session.data.indstillinger.lagfordeling.netplacering}
-          />
-        )}
-        {result && <NetDetails input={input} result={result} products={products} />}
-        {result && (
-          <PersonalDiagram
-            result={result}
-            products={products}
-            table={input.t_basis_table}
-            showInput={ctx.session.values.bd_dd_vis_din_prik !== false}
-            showEndpoints={ctx.session.values.bd_dd_vis_lag_prikker !== false}
-            onChange={(key, value) => ctx.remember({ [key]: value })}
-          />
-        )}
-        {result && <CouplingExplanation input={input} result={result} />}
-        {result && <ResultChecks input={input} result={result} unit={unit} products={products} />}
       </fieldset>
       <footer className="page-footer">
         <span>Udkast · fulde mellemregninger og rapport tilføjes senere.</span>
