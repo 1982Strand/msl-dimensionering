@@ -331,6 +331,8 @@ Forelæg PDF'er for Standard og Brugerdefineret, belastnings- og trafikklasse, m
 
 Kontrol omfatter indhold, figurdata, fonte, logo, indrykninger, punktopstillinger, alle sideskift, sidehoved/-fod, sidetal, snitvalg, filnavn og spærring efter ændringer. Firmaprofilens yderværdier må ikke producere overlappende indhold uden en tydelig fejl. Endelig PDF-layoutgodkendelse registreres med brugerens ordlyd; B-026's krav om perfekt opsætning er først opfyldt ved denne konkrete gennemgang.
 
+**Fastholdelse efter godkendelsen (B-055).** `tools/r6-godkendt.json` indeholder SHA-256 for de 31 godkendte PDF'er. `node tools/build-r6-pdfs.ts` kontrollerer, at en ny kørsel er byte-identisk, og fejler ellers. En ændring af layout eller indhold forelægges igen, og filen opdateres først efter godkendelse. Sammenligningen med R3 er udgået, fordi R3-filerne er fra før B-046–B-052. Efter temaet og oprydningen (B-058, B-059) er alle 31 PDF'er kontrolleret byte-identiske med det godkendte sæt.
+
 **R6-forberedelse — hjælperstatus 01.10.2026.**
 `node tools/build-r6-pdfs.ts` danner 31 PDF'er i `.local/output/r6/`. R3 og R6
 deler rå cases, B-046/B-048/B-049-varianter og lokal compiler-/fontindlæsning.

@@ -13,6 +13,9 @@ import { createReportBuilder, expectedContents, root } from './report-pdf-builde
 import { auditReportLayout } from './report-layout-audit.ts';
 
 const output = new URL('.local/output/r6/', root);
+const approved = JSON.parse(await readFile(new URL('tools/r6-godkendt.json', root), 'utf8')) as {
+  filer: Record<string, string>;
+};
 await mkdir(output, { recursive: true });
 const builder = await createReportBuilder();
 const normalize = (s: string) => s.replace(/\s+/gu, ' ').trim();
@@ -133,25 +136,22 @@ for (const c of r6ReportCases()) {
     pages.length,
   );
   await writeFile(new URL(`${c.name}.layout-check.json`, output), JSON.stringify(layout, null, 2));
-  // R3 sammenlignes kun ved uændrede originalinput/profil (de første ti).
-  let identicalToR3: boolean | null = null;
-  if (summary.length < 10) {
-    const r3 = await readFile(new URL(`.local/output/r3/${c.source}.pdf`, root));
-    identicalToR3 = r3.equals(pdf);
-  }
+  // Sammenlignes med det godkendte R6-sæt (B-055); R3 er forældet efter B-046–B-052.
+  const sha256 = createHash('sha256').update(pdf).digest('hex');
+  const identicalToApproved = approved.filer[`${c.name}.pdf`] === sha256;
   summary.push({
     name: `${c.name}.pdf`,
     description: c.description,
     sourceCase: c.source,
     bytes: pdf.length,
-    sha256: createHash('sha256').update(pdf).digest('hex'),
-    identicalToR3,
+    sha256,
+    identicalToApproved,
     contentCheck,
     layoutStatus: layout.status,
     layoutChecks: layout.checks,
   });
   console.log(
-    `${c.name}: ${pages.length} sider, indhold ${contentCheck.passed ? 'OK' : 'FEJL'}, layout DELKONTROL`,
+    `${c.name}: ${pages.length} sider, indhold ${contentCheck.passed ? 'OK' : 'FEJL'}, layout DELKONTROL, ${identicalToApproved ? 'identisk med godkendt R6' : 'AFVIGER fra godkendt R6'}`,
   );
 }
 await writeFile(
@@ -176,9 +176,10 @@ assert.ok(
   'PDF-indholdskontrol fejlede; se *.content-check.json',
 );
 assert.ok(
-  summary.every((c) => c.identicalToR3 !== false),
-  'Originaltilfælde afviger fra R3',
+  summary.every((c) => c.identicalToApproved),
+  'PDF afviger fra det godkendte R6-sæt (B-055); forelæg ændringen, og opdatér tools/r6-godkendt.json efter godkendelse',
 );
+assert.equal(summary.length, Object.keys(approved.filer).length, 'R6-sættets antal er ændret');
 assert.ok(
   summary.every((c) => Object.values(c.layoutChecks).every(Boolean)),
   'Layout-delkontrol fejlede; se *.layout-check.json',
