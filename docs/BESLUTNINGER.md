@@ -153,3 +153,4 @@ Beslutning B-025 følger brugerens besked i denne chat. B-026–028 registreres 
   9. Knapper i sidens skriftstørrelse med ikon og én hovedknap pr. side.
   10. Rapportens faner med ikon.
   Tekster, tal, valg og beregninger er uændrede.
+- **B-059:** Temaets gennemførelse (B-058) er godkendt, som den blev forelagt 01.10.2026 på alle sider. Det omfatter fortolkningen, at trafikklasse T1–T6 også er segmenteret; at »Under udvikling« og sidefoden »Udkast · …« er fjernet; at talfelterne i tabellerne er uden pileknapper; og at korrelationspopup'ens markering bruger temaets fremhævningsfarve. Brugeren: »godkendt, fortsæt med oprydningen. I øvrigt, så fungerer det godt med at få codex til at arbejde for os. Sæt den bare til at udføre flere opgaver hvis det kan give mening fremover.« Codex bruges derfor fremover til flere afgrænsede opgaver, også parallelt i hver sin worktree, når det giver mening. Rollerne efter B-033 er uændrede.
