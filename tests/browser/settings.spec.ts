@@ -1,6 +1,10 @@
 import { test, expect, type Page } from '@playwright/test';
 import { readFileSync } from 'node:fs';
 import { SESSION_STORAGE_KEY } from '../../src/engine/session-storage.ts';
+import { elements, elementText, isBlock, type PageNode } from '../helpers/dimensioning-page.ts';
+const pageReference: { cases: { id: string; page: PageNode[] }[] } = JSON.parse(
+  readFileSync(new URL('../../reference/settings-page-cases.json', import.meta.url), 'utf8'),
+);
 const original = JSON.parse(
   readFileSync(new URL('../../reference/settings-ui-cases.json', import.meta.url), 'utf8'),
 );
@@ -11,6 +15,49 @@ const number = async (page: Page, id: string, value: string) => {
   await input.fill(value);
   await input.press('Tab');
 };
+
+test('opsummeringer og Gælder følger straks aktive valg og klassisk Standard', async ({ page }) => {
+  const reference = (id: string) => pageReference.cases.find((c) => c.id === id)!.page;
+  const applies = (id: string) =>
+    elements(reference(id))
+      .filter((node) => node.type === 'caption' && elementText(node)?.startsWith('Gælder:'))
+      .map((node) => elementText(node)!);
+  const headings = reference('IND-STD').filter(
+    (node) =>
+      isBlock(node) &&
+      node.children.some(
+        (child) => !isBlock(child) && elementText(child)?.includes('bg-trin-hoved'),
+      ),
+  );
+  const summaries = headings.map((node) => {
+    if (!isBlock(node)) throw new Error('Afsnitsblok mangler');
+    return elementText(node.children[0] as { type: string })!.match(
+      /<div class="bg-trin-opsum">(.*?)<\/div>/,
+    )![1];
+  });
+  await page.goto('/#indstillinger');
+  await expect(page.locator('[data-settings-summary]')).toHaveText(summaries);
+  const marks = page.locator('[data-settings-caption]').filter({ hasText: /^Gælder:/ });
+  await expect(marks).toHaveText(applies('IND-STD'));
+  const distribution = page.getByRole('group', {
+    name: 'Fordeling af lagtykkelsen på materialelagene',
+    exact: true,
+  });
+  await expect(distribution.locator('..').locator('xpath=following-sibling::p[1]')).toHaveText(
+    'Gælder: Brugerdefineret',
+  );
+  await page.getByLabel('Oprundingstrin', { exact: true }).selectOption({ label: '100 mm' });
+  await expect(
+    page.locator('#settings-afrunding').locator('..').locator('[data-settings-summary]'),
+  ).toHaveText('100 mm · reduktion af oprundede tykkelser');
+  await page.getByRole('checkbox', { name: 'Klassisk standardberegning', exact: true }).check();
+  await expect(
+    page.locator('#settings-standard').locator('..').locator('[data-settings-summary]'),
+  ).toHaveText('klassisk standardberegning');
+  await expect(marks).toHaveText(applies('IND-KLASSISK'));
+  await page.getByRole('checkbox', { name: 'Klassisk standardberegning', exact: true }).uncheck();
+  await expect(marks).toHaveText(applies('IND-STD'));
+});
 
 test('settings retain original defaults, bounds and dependent controls; changes persist', async ({
   page,
