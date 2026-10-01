@@ -126,9 +126,16 @@ export function CompanyProfile({
     [state.logo],
   );
   function field(path: string, label: string, options?: [string, string][] | 'textarea') {
-    const value = drafts[path] ?? String(profileValue(profile, path));
-    const id = 'profile-' + path;
     const range = PROFILE_LIMITS[path];
+    // Standardværdierne er omregnet nøjagtigt fra Word-skabelonens enheder (fx 42,626… mm);
+    // feltet viser højst én decimal, mens profilen bevarer den nøjagtige værdi, til feltet ændres.
+    const raw = profileValue(profile, path);
+    const shown =
+      range && typeof raw === 'number' && !Number.isInteger(raw)
+        ? String(Math.round(raw * 10) / 10)
+        : String(raw);
+    const value = drafts[path] ?? shown;
+    const id = 'profile-' + path;
     const change = (text: string) => {
       const parsed = range ? (text.trim() === '' ? NaN : Number(text)) : text;
       const result = changeProfileField(profile, path, parsed);
@@ -179,30 +186,35 @@ export function CompanyProfile({
   }
   function checkbox(path: string, label: string) {
     return (
-      <label className="setting-checkbox profile-checkbox" key={path}>
-        <input
-          type="checkbox"
-          checked={!!profileValue(profile, path)}
-          onChange={(e) => {
-            const checked = e.target.checked;
-            update((prev) => ({
-              ...prev,
-              profile: changeProfileField(prev.profile, path, checked).profile,
-            }));
-          }}
-        />
-        {label}
-      </label>
+      <div className="setting-field" key={path}>
+        <label className="setting-checkbox profile-checkbox">
+          <input
+            type="checkbox"
+            checked={!!profileValue(profile, path)}
+            onChange={(e) => {
+              const checked = e.target.checked;
+              update((prev) => ({
+                ...prev,
+                profile: changeProfileField(prev.profile, path, checked).profile,
+              }));
+            }}
+          />
+          {label}
+        </label>
+      </div>
     );
   }
   function card(number: number, title: string, content: ReactNode) {
     return (
       <section className="section-card settings-card" aria-labelledby={'profile-card-' + number}>
-        <div className="bg-trin-hoved">
-          <h2 id={'profile-card-' + number}>
-            <span className="bg-trin-nr">{number}</span>
-            <span className="bg-trin-titel">{title}</span>
-          </h2>
+        {/* Samme afsnitshoved som rapport- og dimensioneringssiden (data-m9-slot giver stilen). */}
+        <div data-m9-slot="profile">
+          <div className="bg-trin-hoved">
+            <h2 id={'profile-card-' + number}>
+              <span className="bg-trin-nr">{number}</span>
+              <span className="bg-trin-titel">{title}</span>
+            </h2>
+          </div>
         </div>
         <div className="profile-card-content">{content}</div>
       </section>
