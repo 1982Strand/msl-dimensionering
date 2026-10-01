@@ -864,6 +864,28 @@
         "bemærkning": "Korrektionsfaktor indtastes manuelt"
       }
     ],
+    "GEONET_NOTER": [
+      {
+        "titel": "Rettelse: E'GRID T9L effektindeks",
+        "tekst": "E'GRID T9L er rettet fra effektindeks 100 (korrektionsfaktor 0,00) til effektindeks 110 (korrektionsfaktor −0,10). BEGRUNDELSE: GS-GRID/E'GRID Designmanual fig. 6 angiver indeks 100 for T9L, men fig. 7 (tekst) angiver eksplicit: \"E'GRID T9L – Aflæst bærelagstykkelse REDUCERES med 10 %\"."
+      },
+      {
+        "titel": "Forskel mellem datablad og designmanual: Maskestørrelse vs. rudeåbning",
+        "tekst": "For de biaxiale GS-GRID produkter angiver databladet 'maskestørrelse (ca.)' og designmanualen (figur 9) angiver 'rudeåbning'. Begge er vist i tabellen."
+      },
+      {
+        "titel": "Forskel mellem datablad og designmanual: Maks. kornstørrelse vs. anbefalet tilslag",
+        "tekst": "For enkelte geonet, GS-GRID B20/20, B30/30, B30/30L, B40/40, overstiger den anbefalede tilslagsstørrelse fra designmanualen den maksimale kornstørrelse fra databladet. For GS-GRID SX170 er det omvendt, hvor den anbefalede tilslagsstørrelse er mindre end den maksimale kornstørrelse. "
+      },
+      {
+        "titel": "Tensar-serien: Manglende tekniske data",
+        "tekst": "Datablade for Tensar SS30, HX5.5 og HX165 indgår ikke i de foreliggende kildedokumenter. For Tensar InterAx NX750 og NX850 findes kun Product Identification Data Sheet (PIDS, dec. 2024), som leverer identifikations- og holdbarhedsdata, men eksplicit ikke designværdier (trækstyrke, radial stivhed, GWP, maks. kornstørrelse). Korrektionsfaktorer og belastningsklasser er fra Tensar Geonet Designmanual sept. 2024."
+      },
+      {
+        "titel": "2-lags opbygning",
+        "tekst": "Begge designmanualer anbefaler ved total bærelagstykkelse > 50 cm at anvende 2 eller flere lag geonet. Afstand mellem lag: min. 20 cm og maks. 50 cm (GS/E'GRID) / maks. 40 cm (Tensar). Øverste lag skal placeres min. 20 cm under overside af bærelag. I designmanualerne vises eksempler på der kan anvendes forskellige produkter ved flerlagsopbygninger."
+      }
+    ],
     "MATERIAL_DB": [
       {
         "navn": "Bundsikringssand",

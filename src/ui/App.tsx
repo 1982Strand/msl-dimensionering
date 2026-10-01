@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Layers3 } from 'lucide-react';
 import { EditorProvider } from './EditorContext';
 import { Materials } from './Materials';
+import { GeonetDatabase } from './GeonetDatabase';
 import { DataTables } from './DataTables';
 import { Settings } from './Settings';
 import { Dimensioning } from './Dimensioning';
@@ -28,6 +29,7 @@ export function App() {
         {[
           ['dimensionering', 'Dimensionering'],
           ['materialer', 'Materialer'],
+          ['geonet-database', 'Geonet-database'],
           ['diagrammer', 'Designdiagrammer'],
           ['vejdim', 'Trafikklasse-korrelation'],
           ['indstillinger', 'Indstillinger'],
@@ -38,7 +40,9 @@ export function App() {
         ))}
       </nav>
       <EditorProvider>
-        {page === 'designudkast' ? (
+        {page === 'geonet-database' ? (
+          <GeonetDatabase />
+        ) : page === 'designudkast' ? (
           <DesignDraft />
         ) : page === 'dimensionering' ? (
           <Dimensioning />
