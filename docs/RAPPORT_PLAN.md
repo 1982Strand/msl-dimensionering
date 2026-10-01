@@ -2,6 +2,39 @@
 
 30.09.2026. **Godkendt i A-011/B-029 med brugerens præciseringer.** Følger den genlæste/rettede `CODEX-OPGAVE.md`, AGENTS.md og B-026–030. Browserkompilering med typst.ts og rækkefølgen er godkendt. De konkrete visuelle udkast forelægges særskilt; demoen ændres ikke.
 
+**B-049-hjælperstatus — 01.10.2026:** Implementeret i worktree `b049`:
+Kvalitetssikring erstatter Kontrollant/Kontrol i brugerfladen og PDF-etiketten;
+lagringsnøgler og eksisterende persondata bevares. Afkrydsningen står i
+kvalitetssikringens kolonne. `formatPhone` bruges i PDF, kartotekets visning og
+ved telefonfelternes blur; underskriften viser navn, telefon, mail.
+Grundlags- og resultatlinjer har stabile nøgler, visningsvalg, tekst-/værdifelter
+(også flerliniers værdier) og Nulstil. Rettelser gemmes sammen med deres
+beregnede tekst/værdi; ændret eller bortfaldet linje fjerner rettelsen med en
+info-besked. Visningsvalg bevares særskilt; fælles nulstilling dækker begge dele.
+Standard-materialenavne danner fortsat den beregnede materialelinje. Tomt grundlag
+udelades med overskrift; tom resultattabel udelades med bevaret overskrift/indledning.
+
+Typekontrol, alle **2.993 Node-tests**, formattering/formatteringskontrol og build
+består. De ti originale rapportkontekster matcher præcist uden ændrede referencer.
+B-049-elementerne er eksplicit indført som afvigelser i rapportsidereferencetesten.
+`node tools/build-report-pdfs.ts` danner 17 PDF'er uden compilerdiagnoser, inklusive
+opdaterede B-048-personcases, `b049-rettede-linjer` og `b049-skjult-resultattabel`
+i `.local/output/r3/`. Første/sidste side af personcasen samt de to sider med
+rettede tabellinjer er renderet med Windows' PDF-renderer og visuelt kontrolleret.
+PDF-tekstudtræk kontrollerer omdøbning, telefonrækkefølge, rettelser og fravalg;
+den skjulte resultattabel og underskriften uden kvalitetssikring er også visuelt kontrolleret.
+
+`PW_PORT=5203 npx playwright test tests/browser/report.spec.ts tests/browser/company-profile.spec.ts`
+er forsøgt: alle **11** forløb afvises ved Chromium-start med **`spawn EPERM`**, før
+testhandlingerne udføres. B-049-forløbet bruger eksisterende `ready()`, filnavnsprædikat
+ved download og MutationObserver til kortvarig spærring/forældelse; det kontrollerer
+PDF-tekst med den eksisterende systemkommando `pdftotext`, lagring ved genåbning,
+Eᵤ-ændring med nulstillingsbesked og telefonfeltets formatering. Browserkontrol og
+samlet visuel forelæggelse ved den styrende agent/R6 udestår. Semble CLI er anvendt
+(cachelagring afvist); Serena-start afvises af skrivebeskyttet logmappe i sandkassen.
+Build har den eksisterende advarsel om store chunks. Ingen pakker er installeret,
+ingen beskyttede reference-/dimensioneringsfiler er ændret, og intet er committet.
+
 ## Arkitekturforslag
 
 PDF'en dannes i browseren med typst.ts. Rapportdata og firmaprofil sendes ikke til en rapportserver. Resultatet hentes som lokal fil. Appen beholder samme beregningsmotor som resultatvisningen; rapportmotoren **genberegner intet**.

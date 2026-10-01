@@ -5,6 +5,11 @@ import { laengde } from '../engine/enhed.ts';
 import { pythonFixed } from '../engine/python-numbers.ts';
 import {
   grundlag_linjer,
+  resultat_linjer,
+  reconcileReportLines,
+  type ReportLineKey,
+  type ReportLineEdit,
+  type CalculatedReportLine,
   SECTION_KEYS,
   SECTION_TITLER,
   STANDARD_TEKSTER,
@@ -30,14 +35,14 @@ export const PROJECT_FIELDS = [
   ['omfang', 'Omfang'],
   ['sagsbehandler', 'Sagsbehandler'],
   ['sagsbehandler_mail', 'Sagsbehandler-mail'],
-  ['kontrol', 'Kontrollant'],
+  ['kontrol', 'Kvalitetssikring'],
   ['beskrivelse', 'Beskrivelse'],
   ['udfoeres_for', 'Udføres for'],
   ['sagsbehandler_initialer', 'Sagsbehandler-initialer'],
   ['sagsbehandler_telefon', 'Sagsbehandler-telefon'],
-  ['kontrol_initialer', 'Kontrollant-initialer'],
-  ['kontrol_mail', 'Kontrollant-mail'],
-  ['kontrol_telefon', 'Kontrollant-telefon'],
+  ['kontrol_initialer', 'Kvalitetssikring-initialer'],
+  ['kontrol_mail', 'Kvalitetssikring-mail'],
+  ['kontrol_telefon', 'Kvalitetssikring-telefon'],
 ] as const;
 export const PERSON_FIELDS = {
   sagsbehandler: [
@@ -73,6 +78,15 @@ export interface ReportWidget {
   help: string | null;
 }
 export type ReportNode =
+  | {
+      kind: 'table_line';
+      key: ReportLineKey;
+      visibilityKey: string;
+      label: string;
+      value: string;
+      shown: boolean;
+      calculated: ReportLineEdit;
+    }
   | { kind: 'employee_select'; key: keyof typeof PERSON_FIELDS; label: string }
   | { kind: 'caption'; text: string }
   | { kind: 'info'; text: string }
@@ -149,7 +163,10 @@ export function reportPage(
       string(`rap_std_materiale_${i}`, name),
     ),
     grundlag_linjer: {},
+    resultat_linjer: {},
+    linje_rettelser: {},
   };
+  const resetLines: { key: ReportLineKey; label: string }[] = [];
   const figureChoices: ReportFigureChoices = {};
   const steps: ReportStep[] = [];
   const base = {
@@ -159,6 +176,7 @@ export function reportPage(
     texts,
     choices,
     figureChoices,
+    resetLines,
     steps,
   };
   if (!dim?.geonet)
@@ -206,18 +224,67 @@ export function reportPage(
       widget(
         'checkbox',
         'rap_kontrollant_i_bunden',
-        'Kontrollant i bunden af rapporten',
+        'Kvalitetssikring i bunden af rapporten',
         metadata.kontrollant_i_bunden,
       ),
       { kind: 'divider' },
     ],
   });
-  // Originalens grundlagshjælp bruger mm også når rapportens enhed er cm.
-  const lines = grundlag_linjer(dim, { standard_materialer: choices.standard_materialer });
-  const basisWidgets = lines.map(([key, label, text]) => {
-    const value = bool(`rap_grundlag_${key}`, true);
-    choices.grundlag_linjer![key] = value;
-    return widget('checkbox', `rap_grundlag_${key}`, label, value, false, `I rapporten: ${text}`);
+  const entered = dim.materialer.some((m) => !!m.tykkelse_mm);
+  choices.vis_indtastet = entered ? bool('rap_vis_indtastet', true) : false;
+  const basisLines = grundlag_linjer(dim, choices);
+  const resultLines = resultat_linjer(dim, choices);
+  const calculated: CalculatedReportLine[] = [
+    ...basisLines.map(([key, label, value]): CalculatedReportLine => [
+      `basis_${key}`,
+      label,
+      value,
+    ]),
+    ...resultLines.map(([key, label, value]): CalculatedReportLine => [
+      `resultat_${key}`,
+      label,
+      value,
+    ]),
+  ];
+  for (const [key, value] of Object.entries(values)) {
+    if (!key.startsWith('rap_linje_') || !value || typeof value !== 'object') continue;
+    const edit = value as Record<string, unknown>;
+    if (
+      ['beregnet_tekst', 'beregnet_vaerdi', 'tekst', 'vaerdi'].every(
+        (field) => typeof edit[field] === 'string',
+      )
+    )
+      choices.linje_rettelser![key.slice(10) as ReportLineKey] = edit as unknown as ReportLineEdit;
+  }
+  const reconciled = reconcileReportLines(calculated, choices.linje_rettelser);
+  choices.linje_rettelser = reconciled.active;
+  resetLines.push(...reconciled.reset);
+  function lineNode(
+    key: ReportLineKey,
+    label: string,
+    value: string,
+    visibilityKey: string,
+    fallback = true,
+  ): ReportNode {
+    const edit = choices.linje_rettelser![key];
+    return {
+      kind: 'table_line',
+      key,
+      visibilityKey,
+      label: edit?.tekst ?? label,
+      value: edit?.vaerdi ?? value,
+      shown: bool(visibilityKey, fallback),
+      calculated: { beregnet_tekst: label, beregnet_vaerdi: value, tekst: label, vaerdi: value },
+    };
+  }
+  const basisWidgets = basisLines.map(([key, label, value]) => {
+    choices.grundlag_linjer![key] = bool(`rap_grundlag_${key}`, true);
+    return lineNode(`basis_${key}`, label, value, `rap_grundlag_${key}`);
+  });
+  const resultWidgets = resultLines.map(([key, label, value]) => {
+    const fallback = key === 'indtastet' ? choices.vis_indtastet! : true;
+    choices.resultat_linjer![key] = bool(`rap_resultat_${key}`, fallback);
+    return lineNode(`resultat_${key}`, label, value, `rap_resultat_${key}`, fallback);
   });
   const basisChildren: ReportNode[] = [
     caption(
@@ -267,13 +334,22 @@ export function reportPage(
         title: 'Grundlag for beregning',
         children: basisChildren,
       });
+    if (key === 'generelle_forudsaetninger')
+      content.push({
+        kind: 'expander',
+        key: 'results',
+        title: 'Dimensioneringsresultat',
+        children: [
+          caption('Linjerne kan tilpasses og fravælges i rapporten; beregningen berøres ikke.'),
+          ...resultWidgets,
+        ],
+      });
   }
   content.push({ kind: 'divider' });
   steps.push({ number: 2, title: 'Indhold', summary: '7 afsnit', children: content });
   const r1 = dim.res_1 as CalculationResult,
     r2 = dim.res_2 as CalculationResult;
   const t1 = r1.fejl ? null : r1.t_armeret_mm;
-  const entered = dim.materialer.some((m) => !!m.tykkelse_mm);
   const diagramPossible = !!dim.geonet.navn;
   function check(
     key: keyof ReportFigureChoices,
@@ -376,7 +452,9 @@ export function reportPage(
 export function resetReportChoices(values: ReportValues): Record<string, null> {
   return Object.fromEntries(
     Object.keys(values)
-      .filter((key) => /^rap_(tekst_|medtag_|grundlag_|std_materiale_|vis_|dd_vis_)/.test(key))
+      .filter((key) =>
+        /^rap_(tekst_|medtag_|grundlag_|resultat_|linje_|std_materiale_|vis_|dd_vis_)/.test(key),
+      )
       .map((key) => [key, null]),
   );
 }

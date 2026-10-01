@@ -8,6 +8,7 @@ import { normaliser as afrunding, eksakt_navn, er_oprundet } from '../engine/afr
 import { normaliser as enhed, laengde } from '../engine/enhed.ts';
 import { pythonFixed } from '../engine/python-numbers.ts';
 import { parseReportText, type FormattedText } from './text-format.ts';
+import { formatPhone } from './phone-format.ts';
 
 export const SECTION_KEYS = [
   'oplyste_forudsaetninger',
@@ -104,7 +105,42 @@ export const STANDARD_TEKSTER: Readonly<Record<SectionKey, string>> = {
 
 export const STANDARD_MATERIALER_RAPPORT = ['Stabilgrus SG II', 'Bundsikring BL II'] as const;
 export type BasisLineKey = 'eu' | 'grundlag' | 'eo_aekv' | 'yderomraade' | 'materialer' | 'phi';
+export type ResultLineKey = 'geonet' | 'uarmeret' | 'indtastet' | '1lag' | '2lag';
+export type ReportLineKey = `basis_${BasisLineKey}` | `resultat_${ResultLineKey}`;
+export interface ReportLineEdit {
+  beregnet_tekst: string;
+  beregnet_vaerdi: string;
+  tekst: string;
+  vaerdi: string;
+}
+export type ReportLineEdits = Partial<Record<ReportLineKey, ReportLineEdit>>;
+export type CalculatedReportLine = [ReportLineKey, string, string];
+/** Kun rettelser med samme beregnede tekst OG værdi kan anvendes. */
+export function reconcileReportLines(lines: CalculatedReportLine[], edits: ReportLineEdits = {}) {
+  const active: ReportLineEdits = {};
+  const reset: { key: ReportLineKey; label: string }[] = [];
+  for (const [key, edit] of Object.entries(edits) as [ReportLineKey, ReportLineEdit][]) {
+    const current = lines.find(([id]) => id === key);
+    if (current && current[1] === edit.beregnet_tekst && current[2] === edit.beregnet_vaerdi)
+      active[key] = edit;
+    else reset.push({ key, label: edit.beregnet_tekst });
+  }
+  return { active, reset };
+}
+function applyLineEdit(
+  key: ReportLineKey,
+  label: string,
+  value: string,
+  valg: ReportChoices,
+): [string, string] {
+  const edit = valg.linje_rettelser?.[key];
+  return edit && edit.beregnet_tekst === label && edit.beregnet_vaerdi === value
+    ? [edit.tekst, edit.vaerdi]
+    : [label, value];
+}
 export interface ReportChoices {
+  linje_rettelser?: ReportLineEdits;
+  resultat_linjer?: Partial<Record<ResultLineKey, boolean>>;
   /** B-046: fravalg er adskilt fra bevidst tom tekst. */
   medtag_afsnit?: Partial<Record<SectionKey, boolean>>;
   enhed?: string | null;
@@ -287,13 +323,13 @@ export function formatér_dimensioneringsgrundlag(
         (valg.grundlag_linjer?.[lid] ?? true) &&
         (lid !== 'yderomraade' || (valg.vis_yderomraade ?? true)),
     )
-    .map(([, etiket, vaerdi]) => [etiket, vaerdi]);
+    .map(([key, etiket, vaerdi]) => applyLineEdit(`basis_${key}`, etiket, vaerdi, valg));
 }
 
-export function formatér_dimensioneringsresultat(
+export function resultat_linjer(
   dim: DimensioningResult,
   valg: ReportChoices = {},
-): [string, string][] {
+): [ResultLineKey, string, string][] {
   const res1 = dim.res_1,
     res2 = dim.res_2;
   const unit = enhed(valg.enhed);
@@ -330,16 +366,28 @@ export function formatér_dimensioneringsresultat(
     }
   }
   const indtastet = dim.materialer.reduce((sum, m) => sum + (m.tykkelse_mm || 0), 0) || null;
-  const rows: [string, string][] = [
-    ['Valgt geonet', dim.geonet?.navn ?? '—'],
-    ['Ustabiliseret referenceopbygning', uarm],
+  const rows: [ResultLineKey, string, string][] = [
+    ['geonet', 'Valgt geonet', dim.geonet?.navn ?? '—'],
+    ['uarmeret', 'Ustabiliseret referenceopbygning', uarm],
+    ['indtastet', 'Samlet tykkelse af valgt opbygning', mm(indtastet)],
   ];
-  if (valg.vis_indtastet ?? true) rows.push(['Samlet tykkelse af valgt opbygning', mm(indtastet)]);
   rows.push(
-    ['Stabiliseret tykkelse — 1 lag', mmRes(res1, 't_armeret_mm')],
-    ['Stabiliseret tykkelse — 2 lag', mmRes(res2, 't_armeret_mm')],
+    ['1lag', 'Stabiliseret tykkelse — 1 lag', mmRes(res1, 't_armeret_mm')],
+    ['2lag', 'Stabiliseret tykkelse — 2 lag', mmRes(res2, 't_armeret_mm')],
   );
   return rows;
+}
+
+export function formatér_dimensioneringsresultat(
+  dim: DimensioningResult,
+  valg: ReportChoices = {},
+): [string, string][] {
+  return resultat_linjer(dim, valg)
+    .filter(
+      ([key]) =>
+        valg.resultat_linjer?.[key] ?? (key === 'indtastet' ? (valg.vis_indtastet ?? true) : true),
+    )
+    .map(([key, label, value]) => applyLineEdit(`resultat_${key}`, label, value, valg));
 }
 
 /** Dataækvivalent til originalens fjernelse af den tomme Word-tabel/overskrift.
@@ -383,13 +431,13 @@ export function reportData(
       kontrol: strip(metadata.kontrol_initialer || '') || context.kontrol,
       sagsbehandler: [
         context.sagsbehandler,
+        formatPhone(metadata.sagsbehandler_telefon || ''),
         context.sagsbehandler_mail,
-        strip(metadata.sagsbehandler_telefon || ''),
       ].filter(Boolean),
       kontrollant: metadata.kontrollant_i_bunden
         ? [
             context.kontrol,
-            strip(metadata.kontrol_telefon || ''),
+            formatPhone(metadata.kontrol_telefon || ''),
             strip(metadata.kontrol_mail || ''),
           ].filter(Boolean)
         : null,

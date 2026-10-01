@@ -9,6 +9,9 @@ import { parseReportText } from '../src/report/text-format.ts';
 import { reportCases } from '../tools/report-cases.ts';
 import {
   reportData,
+  reconcileReportLines,
+  grundlag_linjer,
+  resultat_linjer,
   SECTION_KEYS,
   formatér_dimensioneringsgrundlag,
   formatér_dimensioneringsresultat,
@@ -41,13 +44,13 @@ test('B-048: initialer øverst med navnefallback, underskrift med/uden kontrolla
   assert.deepEqual(data.medarbejdere, {
     udfoert_af: 'AJ',
     kontrol: 'BN',
-    sagsbehandler: [c.metadata.sagsbehandler, c.metadata.sagsbehandler_mail, '12345678'],
+    sagsbehandler: [c.metadata.sagsbehandler, '12 34 56 78', c.metadata.sagsbehandler_mail],
     kontrollant: null,
   });
   const both = reportData(c.result, { ...metadata, kontrollant_i_bunden: true });
   assert.deepEqual(both.medarbejdere.kontrollant, [
     c.metadata.kontrol,
-    '87654321',
+    '87 65 43 21',
     'bo@example.invalid',
   ]);
   const fallback = reportData(c.result, {
@@ -60,7 +63,7 @@ test('B-048: initialer øverst med navnefallback, underskrift med/uden kontrolla
   });
   assert.equal(fallback.medarbejdere.udfoert_af, c.metadata.sagsbehandler);
   assert.equal(fallback.medarbejdere.kontrol, c.metadata.kontrol);
-  assert.deepEqual(fallback.medarbejdere.sagsbehandler, [c.metadata.sagsbehandler, '12345678']);
+  assert.deepEqual(fallback.medarbejdere.sagsbehandler, [c.metadata.sagsbehandler, '12 34 56 78']);
   assert.deepEqual(fallback.medarbejdere.kontrollant, [c.metadata.kontrol, 'bo@example.invalid']);
   const empty = reportData(c.result, { kontrollant_i_bunden: true });
   assert.deepEqual(empty.medarbejdere.sagsbehandler, []);
@@ -238,4 +241,91 @@ test('R1: aktive UI-snapshots med rapportdata matcher også originalens rapportt
       snapshot.id,
     );
   }
+});
+
+test('B-049: redigeret tekst/værdi, tom værdi, skjulte linjer og identitet ved ændret rækkeantal', () => {
+  const c = reportCases()[0];
+  const basis = grundlag_linjer(c.result);
+  const results = resultat_linjer(c.result);
+  const one = results.find(([key]) => key === '1lag')!;
+  const edits: NonNullable<ReportChoices['linje_rettelser']> = {
+    basis_eu: {
+      beregnet_tekst: basis[0][1],
+      beregnet_vaerdi: basis[0][2],
+      tekst: 'Eftervist E-modul',
+      vaerdi: '22 MPa',
+    },
+    resultat_1lag: {
+      beregnet_tekst: one[1],
+      beregnet_vaerdi: one[2],
+      tekst: 'Tilpasset tykkelse',
+      vaerdi: '',
+    },
+  };
+  const choices: ReportChoices = {
+    linje_rettelser: edits,
+    resultat_linjer: { '2lag': false },
+    grundlag_linjer: { phi: false },
+  };
+  const data = reportData(c.result, c.metadata, choices);
+  assert.deepEqual(data.context.dim_grundlag[0], { label: 'Eftervist E-modul', vaerdi: '22 MPa' });
+  assert.ok(
+    data.context.dim_resultat.some((r) => r.label === 'Tilpasset tykkelse' && r.vaerdi === ''),
+  );
+  assert.ok(!data.context.dim_resultat.some((r) => r.label === 'Stabiliseret tykkelse — 2 lag'));
+  assert.ok(!data.context.dim_grundlag.some((r) => r.label === 'Vægtet friktionsvinkel (φᵥ)'));
+  assert.deepEqual(
+    formatér_dimensioneringsresultat(c.result, { ...choices, vis_indtastet: false }).at(-1),
+    ['Tilpasset tykkelse', ''],
+  );
+  assert.deepEqual(
+    reconcileReportLines(
+      [
+        ...basis.map(([key, label, value]) => [`basis_${key}`, label, value] as const),
+        ...results.map(([key, label, value]) => [`resultat_${key}`, label, value] as const),
+      ].map((line) => [...line]),
+      edits,
+    ),
+    { active: edits, reset: [] },
+  );
+});
+
+test('B-049: automatisk nulstilling ved ændret beregnet tekst eller værdi; gyldige rettelser består', () => {
+  const c = reportCases()[0];
+  const one = resultat_linjer(c.result).find(([key]) => key === '1lag')!;
+  const edit = { beregnet_tekst: one[1], beregnet_vaerdi: one[2], tekst: 'Rettet', vaerdi: 'Test' };
+  for (const changed of [
+    [one[1] + ' ændret', one[2]],
+    [one[1], one[2] + ' ændret'],
+  ]) {
+    assert.deepEqual(
+      reconcileReportLines([['resultat_1lag', changed[0], changed[1]]], { resultat_1lag: edit }),
+      {
+        active: {},
+        reset: [{ key: 'resultat_1lag', label: one[1] }],
+      },
+    );
+  }
+  const changed = structuredClone(c.result);
+  assert.ok('t_armeret_mm' in changed.res_1);
+  changed.res_1.t_armeret_mm = Number(changed.res_1.t_armeret_mm) + 10;
+  assert.deepEqual(
+    formatér_dimensioneringsresultat(changed, { linje_rettelser: { resultat_1lag: edit } }),
+    formatér_dimensioneringsresultat(changed),
+  );
+  assert.deepEqual(reconcileReportLines([], { resultat_1lag: edit }).reset, [
+    { key: 'resultat_1lag', label: one[1] },
+  ]);
+});
+
+test('B-049: alle resultatlinjer skjult giver tom tabel; alle grundlagslinjer skjult fjerner også overskrift', () => {
+  const c = reportCases()[0];
+  const choices: ReportChoices = {
+    resultat_linjer: Object.fromEntries(resultat_linjer(c.result).map(([key]) => [key, false])),
+    grundlag_linjer: Object.fromEntries(grundlag_linjer(c.result).map(([key]) => [key, false])),
+  };
+  const data = reportData(c.result, c.metadata, choices);
+  assert.deepEqual(data.context.dim_resultat, []);
+  assert.deepEqual(data.context.dim_grundlag, []);
+  assert.equal(data.grundlag, null);
 });

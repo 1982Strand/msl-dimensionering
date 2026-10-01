@@ -142,7 +142,27 @@
   white-space: pre-wrap;
   overflow-wrap: anywhere;
 }
+.report-table-line {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) minmax(0, 1fr) auto;
+  align-items: start;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+.report-table-line .setting-checkbox {
+  padding-top: 0.5rem;
+}
+.report-table-line textarea {
+  min-height: 36px;
+  resize: vertical;
+}
 @media (max-width: 700px) {
+  .report-table-line {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .report-table-line button {
+    justify-self: start;
+  }
   .report-project-columns,
   .report-fields-toolbar,
   .report-cut-choices,

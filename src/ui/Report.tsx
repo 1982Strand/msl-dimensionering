@@ -3,6 +3,7 @@ import ReactMarkdown from 'react-markdown';
 import { Bold, Italic, List } from 'lucide-react';
 import { Tooltip, TooltipTrigger, TooltipContent } from '../components/ui/tooltip';
 import { formatTextSelection, type TextFormatAction } from '../report/text-format';
+import { formatPhone } from '../report/phone-format';
 import { useEditor } from './EditorContext';
 import { EditorFeedback, SaveState } from './EditorFeedback';
 import { Button } from '../components/ui/button';
@@ -100,6 +101,22 @@ export function Report({
   const result = useMemo(() => dimensioner(input), [input]);
   const unit = ctx.session.data.indstillinger.opbygning.enhed;
   const model = reportPage(result, ctx.session.values, date, unit);
+  const [resetMessages, setResetMessages] = useState<string[]>([]);
+  const handledReset = useRef('');
+  useEffect(() => {
+    if (ctx.externalChange) return;
+    const token = JSON.stringify(model.resetLines);
+    if (handledReset.current === token) return;
+    handledReset.current = token;
+    if (!model.resetLines.length) return;
+    setResetMessages((previous) => [
+      ...previous,
+      ...model.resetLines.map(
+        ({ label }) => `Rettelsen af linjen ›${label}‹ er nulstillet, fordi beregningen er ændret.`,
+      ),
+    ]);
+    ctx.remember(Object.fromEntries(model.resetLines.map(({ key }) => [`rap_linje_${key}`, null])));
+  }, [JSON.stringify(model.resetLines), ctx.externalChange]);
   const figures = useMemo(
     () =>
       model.available && result
@@ -287,6 +304,62 @@ export function Report({
   function renderNode(node: ReportNode, i: number) {
     const key = 'key' in node ? node.key : i;
     if (node.kind === 'divider') return <hr key={key} />;
+    if (node.kind === 'table_line') {
+      const label = node.calculated.beregnet_tekst;
+      const edit = (field: 'tekst' | 'vaerdi', value: string) => {
+        ctx.remember({
+          [`rap_linje_${node.key}`]: {
+            ...node.calculated,
+            tekst: node.label,
+            vaerdi: node.value,
+            [field]: value,
+          },
+        });
+      };
+      return (
+        <div
+          key={key}
+          className="report-table-line"
+          role="group"
+          aria-label={label}
+          data-line={node.key}
+        >
+          <label className="setting-checkbox" htmlFor={node.visibilityKey}>
+            <input
+              id={node.visibilityKey}
+              type="checkbox"
+              checked={node.shown}
+              onChange={(event) => ctx.remember({ [node.visibilityKey]: event.target.checked })}
+            />
+            <span>Vis i rapporten</span>
+          </label>
+          <Textarea
+            rows={node.label.includes('\n') ? 2 : 1}
+            aria-label={`Tekst: ${label}`}
+            value={node.label}
+            onChange={(event) => edit('tekst', event.target.value)}
+          />
+          <Textarea
+            rows={node.value.includes('\n') ? 2 : 1}
+            aria-label={`Værdi: ${label}`}
+            value={node.value}
+            onChange={(event) => edit('vaerdi', event.target.value)}
+          />
+          <Button
+            type="button"
+            variant="outline"
+            onClick={() =>
+              ctx.remember({
+                [`rap_linje_${node.key}`]: null,
+                [node.visibilityKey]: null,
+              })
+            }
+          >
+            Nulstil
+          </Button>
+        </div>
+      );
+    }
     if (node.kind === 'employee_select') {
       const employees = company.state.profile.medarbejdere;
       return employees.length ? (
@@ -471,6 +544,9 @@ export function Report({
               disabled={node.disabled}
               aria-describedby={node.help ? `${node.key}-help` : undefined}
               onChange={(e) => change(e.target.value)}
+              onBlur={(e) => {
+                if (node.key.endsWith('_telefon')) change(formatPhone(e.target.value));
+              }}
             />
           )
         )}
@@ -515,7 +591,7 @@ export function Report({
           <div className="report-project-columns">
             {(['sagsbehandler', 'kontrollant'] as const).map((role) => (
               <fieldset key={role} className="report-person">
-                <legend>{role === 'sagsbehandler' ? 'Sagsbehandler' : 'Kontrollant'}</legend>
+                <legend>{role === 'sagsbehandler' ? 'Sagsbehandler' : 'Kvalitetssikring'}</legend>
                 {nodes
                   .filter((node) => node.kind === 'employee_select' && node.key === role)
                   .map(renderNode)}
@@ -524,10 +600,11 @@ export function Report({
                     .filter((node) => 'key' in node && node.key === 'rap_' + name)
                     .map(renderNode),
                 )}
+                {role === 'kontrollant' &&
+                  nodes.filter((node) => node.kind === 'checkbox').map(renderNode)}
               </fieldset>
             ))}
           </div>
-          {nodes.filter((node) => node.kind === 'checkbox').map(renderNode)}
           {nodes.filter((node) => node.kind === 'divider').map(renderNode)}
         </>
       );
@@ -564,7 +641,10 @@ export function Report({
           className="report-reset-content"
           variant="outline"
           type="button"
-          onClick={() => ctx.remember(resetReportChoices(ctx.session.values))}
+          onClick={() => {
+            ctx.remember(resetReportChoices(ctx.session.values));
+            setResetMessages([]);
+          }}
         >
           Nulstil tekster og valg til standard
         </Button>
@@ -583,6 +663,13 @@ export function Report({
         <SaveState />
       </div>
       <EditorFeedback />
+      {resetMessages.length > 0 && (
+        <div className="info-banner" role="status">
+          {resetMessages.map((message, index) => (
+            <p key={index}>{message}</p>
+          ))}
+        </div>
+      )}
       {renderNode(model.banner, 0)}
       <Tabs
         value={tab}

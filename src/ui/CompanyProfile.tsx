@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { Button } from '../components/ui/button';
+import { formatPhone } from '../report/phone-format';
 import { Input } from '../components/ui/input';
 import { Textarea } from '../components/ui/textarea';
 import { Alert, AlertDescription } from '../components/ui/alert';
@@ -522,7 +523,10 @@ function Employees({
   onChange: (people: Employee[]) => void;
 }) {
   const [rows, setRows] = useState(() =>
-    profile.map((value) => ({ value, applied: value as Employee | null })),
+    profile.map((value) => ({
+      value: { ...value, telefon: formatPhone(value.telefon) },
+      applied: value as Employee | null,
+    })),
   );
   function change(next: typeof rows) {
     setRows(next);
@@ -531,7 +535,7 @@ function Employees({
   return (
     <>
       <p className="report-caption">
-        Personerne kan vælges som sagsbehandler og kontrollant under Sagsoplysninger. Gyldige
+        Personerne kan vælges som sagsbehandler og kvalitetssikring under Sagsoplysninger. Gyldige
         oplysninger gemmes automatisk.
       </p>
       {rows.map((row, index) => {
@@ -553,6 +557,22 @@ function Employees({
                     value={row.value[key]}
                     aria-invalid={!!errors[key]}
                     aria-describedby={errors[key] ? id + '-error' : undefined}
+                    onBlur={(event) => {
+                      if (key !== 'telefon') return;
+                      const value = { ...row.value, telefon: formatPhone(event.target.value) };
+                      change(
+                        rows.map((r, i) =>
+                          i === index
+                            ? {
+                                value,
+                                applied: Object.keys(employeeErrors(value)).length
+                                  ? r.applied
+                                  : value,
+                              }
+                            : r,
+                        ),
+                      );
+                    }}
                     onChange={(event) => {
                       const value = { ...row.value, [key]: event.target.value };
                       change(
