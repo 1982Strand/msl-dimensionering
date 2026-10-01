@@ -36,6 +36,7 @@
     "@tanstack/react-table": "9.2.4",
     "class-variance-authority": "0.7.1",
     "clsx": "2.1.1",
+    "cmdk": "1.1.1",
     "cn": "0.4.0",
     "lucide-react": "1.49.0",
     "plotly.js-basic-dist-min": "4.1.1",
