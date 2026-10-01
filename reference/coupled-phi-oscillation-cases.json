@@ -1,0 +1,876 @@
+{
+  "source": {
+    "commit": "a330cfd6734ac2478be1304a362c69f94e412d25",
+    "data_profile": "built-in defaults; no user JSON",
+    "files": {
+      "app.py": "ba6b29870a92df46025a8d936b3ab6ea16f32b1f7122e48652a640182f9530e5",
+      "ui.py": "ffa3e583a19d4ede16873963bed70b819e3402b320878ba49166295fd5558d7c",
+      "core/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "core/afrunding.py": "9149c3536c388a82e2f242e939a1a1f998e01bf828a6ab378c927a757ad816e4",
+      "core/calculator.py": "bf46d2642d6083439b8c03c46e24eb18f156fe1a734af7e6fa866f16626ad227",
+      "core/data.py": "e164a0f3bb42cd0d565dfc45d2895031a03b2cb8e93b05a0a65097790d0f0540",
+      "core/diagram.py": "b171b7486e5aa1a43590f9f8a28376680bd2a50f7155535fcbfb7198d38df461",
+      "core/enhed.py": "256884745b59e94d0211a610e8bf092942a0fec5d147e48a7502833912583cf2",
+      "core/hjaelp.py": "5179b206a31224bf2582fdc31bf6520fd68552da1206dd5f7f034ab249e0ac78",
+      "core/lagfordeling.py": "0426d2021e037c8e993fefc104b69cfbf03526408cadd1303775c32f5577716b",
+      "core/placement.py": "9668ab8bfe106722e4735576d72dcb86280470ee60fea14feae08bf8f3ccf9d2",
+      "core/rapport.py": "b6235563354b72f81d386afc703db273eb08a2d6f9857d4f73499f7b2c61b898",
+      "core/validators.py": "5258b68728afa7d2224d1e5b090ff6c78f7a3c568408ad367dbcd210fb71428c"
+    }
+  },
+  "description": "F-06.4: koblet φ uden stabil tilstand efter 12 gentagelser; originalen bruger laveste mødte φᵥ for hver opbygning. lookups = antal opslag i designdiagrammet.",
+  "cases": [
+    {
+      "id": "coupled-phi-oscillation-0001",
+      "group": "coupled-phi-oscillation",
+      "function": "core.calculator.beregn",
+      "input": {
+        "eu": 5,
+        "eo": 80,
+        "phi": 40.833333333333336,
+        "net_korrektion": -0.2,
+        "lag_mode": "2_lag",
+        "afrunding": {
+          "trin_mm": 50,
+          "reduktion_eksakt": false,
+          "vis_eksakt": false,
+          "phi_afrunding": "ingen",
+          "t_min_mm": 250.0,
+          "lagopbygning": {
+            "lag": [
+              {
+                "navn": "Stabilgrus SGII 0-32",
+                "andel": 0.36666666666666664,
+                "phi": 40,
+                "lagtype": "Bærelag"
+              },
+              {
+                "navn": "Skærver 0-250",
+                "andel": 0.16666666666666666,
+                "phi": 45,
+                "lagtype": "Bundsikring"
+              },
+              {
+                "navn": "Stabilgrus SGI 0-32",
+                "andel": 0.4666666666666667,
+                "phi": 40,
+                "lagtype": "Bærelag"
+              }
+            ],
+            "fordeling": "fastholdt",
+            "min_mm": 250.0,
+            "oeverst_ref_mm": 550,
+            "restlag": "vd",
+            "restlag_graense_mm": 100,
+            "vd_minimum_mm": {
+              "Bærelag": 100.0,
+              "Bundsikring": 200.0
+            },
+            "phi_regel": "soejle"
+          }
+        }
+      },
+      "expected": {
+        "eu": 5,
+        "eo": 80,
+        "phi": 40.0,
+        "phi_uarmeret": 40.8,
+        "phi_eksakt": 40.0,
+        "phi_uarmeret_eksakt": 40.8,
+        "phi_afrunding": "ingen",
+        "lag_mode": "2_lag",
+        "net_korrektion": -0.2,
+        "eu_lower": 5,
+        "eu_upper": 5,
+        "t_low_arm_cm": 75.0,
+        "t_high_arm_cm": 75.0,
+        "t_low_uarm_cm": 120.0,
+        "t_high_uarm_cm": 120.0,
+        "t_basis_arm_cm": 75.0,
+        "t_basis_arm_mm": 750.0,
+        "t_basis_uarm_cm": 120.0,
+        "t_basis_uarm_mm": 1200.0,
+        "phi_korrektion": -0.06,
+        "phi_korrektion_uarmeret": -0.076,
+        "samlet_faktor": 0.74,
+        "skala": 1.0,
+        "t_armeret_mm": 1250.0,
+        "t_uarmeret_mm": 1200.0,
+        "t_uarmeret_phi_kor_mm": 1250.0,
+        "reduktion_mm": 0.0,
+        "reduktion_pct": 0.0,
+        "uarmeret_mangler": false,
+        "uarmeret_fejl": null,
+        "fejl": null,
+        "t_armeret_eksakt_mm": 555.0,
+        "t_uarmeret_eksakt_mm": 1200.0,
+        "t_uarmeret_phi_kor_eksakt_mm": 1109.0,
+        "t_min_mm": 250.0,
+        "t_uarmeret_phi_kor_til_lagminimum": true,
+        "t_armeret_til_lagminimum": true,
+        "t_armeret_lagtillaeg_lag": {
+          "foer": [
+            {
+              "navn": "Stabilgrus SGII 0-32",
+              "tykkelse_mm": 550.0
+            },
+            {
+              "navn": "Stabilgrus SGI 0-32",
+              "tykkelse_mm": 50.0
+            }
+          ],
+          "efter": [
+            {
+              "navn": "Stabilgrus SGII 0-32",
+              "tykkelse_mm": 550.0
+            },
+            {
+              "navn": "Skærver 0-250",
+              "tykkelse_mm": 200.0
+            },
+            {
+              "navn": "Stabilgrus SGI 0-32",
+              "tykkelse_mm": 500.0
+            }
+          ]
+        },
+        "reduktion_mm_eksakt": 554.0,
+        "reduktion_pct_eksakt": 0.4995,
+        "afrunding_trin_mm": 50,
+        "phi_indtastet": 40.833333333333336,
+        "phi_regel": "soejle"
+      },
+      "lookups": 14,
+      "stable": false
+    },
+    {
+      "id": "coupled-phi-oscillation-0002",
+      "group": "coupled-phi-oscillation",
+      "function": "core.calculator.beregn",
+      "input": {
+        "eu": 9,
+        "eo": 150,
+        "phi": 40.86363636363637,
+        "net_korrektion": 0.05,
+        "lag_mode": "2_lag",
+        "afrunding": {
+          "trin_mm": 10,
+          "reduktion_eksakt": false,
+          "vis_eksakt": false,
+          "phi_afrunding": "ingen",
+          "t_min_mm": 300.0,
+          "lagopbygning": {
+            "lag": [
+              {
+                "navn": "Bundsikringssand",
+                "andel": 0.3181818181818182,
+                "phi": 37,
+                "lagtype": "Bundsikring"
+              },
+              {
+                "navn": "Skærver 0-90",
+                "andel": 0.45454545454545453,
+                "phi": 45,
+                "lagtype": "Bærelag"
+              },
+              {
+                "navn": "Bundgrus 0-80",
+                "andel": 0.22727272727272727,
+                "phi": 38,
+                "lagtype": "Bundsikring"
+              }
+            ],
+            "fordeling": "fastholdt",
+            "min_mm": 300.0,
+            "oeverst_ref_mm": 700,
+            "restlag": "flet",
+            "restlag_graense_mm": 100,
+            "vd_minimum_mm": {
+              "Bærelag": 100.0,
+              "Bundsikring": 200.0
+            },
+            "phi_regel": "soejle"
+          }
+        }
+      },
+      "expected": {
+        "eu": 9,
+        "eo": 150,
+        "phi": 37.0,
+        "phi_uarmeret": 39.57364341085271,
+        "phi_eksakt": 37.0,
+        "phi_uarmeret_eksakt": 39.57364341085271,
+        "phi_afrunding": "ingen",
+        "lag_mode": "2_lag",
+        "net_korrektion": 0.05,
+        "eu_lower": 9,
+        "eu_upper": 9,
+        "t_low_arm_cm": 70.0,
+        "t_high_arm_cm": 70.0,
+        "t_low_uarm_cm": 115.0,
+        "t_high_uarm_cm": 115.0,
+        "t_basis_arm_cm": 70.0,
+        "t_basis_arm_mm": 700.0,
+        "t_basis_uarm_cm": 115.0,
+        "t_basis_uarm_mm": 1150.0,
+        "phi_korrektion": -0.0,
+        "phi_korrektion_uarmeret": -0.0515,
+        "samlet_faktor": 1.05,
+        "skala": 1.0,
+        "t_armeret_mm": 1290.0,
+        "t_uarmeret_mm": 1150.0,
+        "t_uarmeret_phi_kor_mm": 1290.0,
+        "reduktion_mm": 0.0,
+        "reduktion_pct": 0.0,
+        "uarmeret_mangler": false,
+        "uarmeret_fejl": null,
+        "fejl": null,
+        "t_armeret_eksakt_mm": 735.0,
+        "t_uarmeret_eksakt_mm": 1150.0,
+        "t_uarmeret_phi_kor_eksakt_mm": 1091.0,
+        "t_min_mm": 300.0,
+        "t_uarmeret_phi_kor_til_lagminimum": true,
+        "t_armeret_til_lagminimum": true,
+        "t_armeret_lagtillaeg_lag": {
+          "foer": [
+            {
+              "navn": "Bundsikringssand",
+              "tykkelse_mm": 700.0
+            },
+            {
+              "navn": "Skærver 0-90",
+              "tykkelse_mm": 30.0
+            },
+            {
+              "navn": "Bundgrus 0-80",
+              "tykkelse_mm": 10.0
+            }
+          ],
+          "efter": [
+            {
+              "navn": "Bundsikringssand",
+              "tykkelse_mm": 700.0
+            },
+            {
+              "navn": "Skærver 0-90",
+              "tykkelse_mm": 390.0
+            },
+            {
+              "navn": "Bundgrus 0-80",
+              "tykkelse_mm": 200.0
+            }
+          ]
+        },
+        "reduktion_mm_eksakt": 356.0,
+        "reduktion_pct_eksakt": 0.3262,
+        "afrunding_trin_mm": 10,
+        "phi_indtastet": 40.86363636363637,
+        "phi_regel": "soejle"
+      },
+      "lookups": 14,
+      "stable": false
+    },
+    {
+      "id": "coupled-phi-oscillation-0003",
+      "group": "coupled-phi-oscillation",
+      "function": "core.calculator.beregn",
+      "input": {
+        "eu": 7,
+        "eo": 60,
+        "phi": 39.666666666666664,
+        "net_korrektion": -0.2,
+        "lag_mode": "2_lag",
+        "afrunding": {
+          "trin_mm": 50,
+          "reduktion_eksakt": false,
+          "vis_eksakt": false,
+          "phi_afrunding": "ingen",
+          "t_min_mm": 200.0,
+          "lagopbygning": {
+            "lag": [
+              {
+                "navn": "Bundgrus 0-80",
+                "andel": 0.7619047619047619,
+                "phi": 38,
+                "lagtype": "Bundsikring"
+              },
+              {
+                "navn": "Skærver 0-150",
+                "andel": 0.23809523809523808,
+                "phi": 45,
+                "lagtype": "Bundsikring"
+              }
+            ],
+            "fordeling": "minimum",
+            "min_mm": 200.0,
+            "oeverst_ref_mm": 800,
+            "restlag": "vd",
+            "restlag_graense_mm": 100,
+            "vd_minimum_mm": {
+              "Bærelag": 100.0,
+              "Bundsikring": 200.0
+            },
+            "phi_regel": "soejle"
+          }
+        }
+      },
+      "expected": {
+        "eu": 7,
+        "eo": 60,
+        "phi": 39.666666666666664,
+        "phi_uarmeret": 39.55555555555556,
+        "phi_eksakt": 39.666666666666664,
+        "phi_uarmeret_eksakt": 39.55555555555556,
+        "phi_afrunding": "ingen",
+        "lag_mode": "2_lag",
+        "net_korrektion": -0.2,
+        "eu_lower": 7,
+        "eu_upper": 7,
+        "t_low_arm_cm": 58.0,
+        "t_high_arm_cm": 58.0,
+        "t_low_uarm_cm": 95.0,
+        "t_high_uarm_cm": 95.0,
+        "t_basis_arm_cm": 58.0,
+        "t_basis_arm_mm": 580.0,
+        "t_basis_uarm_cm": 95.0,
+        "t_basis_uarm_mm": 950.0,
+        "phi_korrektion": -0.0533,
+        "phi_korrektion_uarmeret": -0.0511,
+        "samlet_faktor": 0.7467,
+        "skala": 1.0,
+        "t_armeret_mm": 750.0,
+        "t_uarmeret_mm": 950.0,
+        "t_uarmeret_phi_kor_mm": 950.0,
+        "reduktion_mm": 200.0,
+        "reduktion_pct": 0.2105,
+        "uarmeret_mangler": false,
+        "uarmeret_fejl": null,
+        "fejl": null,
+        "t_armeret_eksakt_mm": 433.0,
+        "t_uarmeret_eksakt_mm": 950.0,
+        "t_uarmeret_phi_kor_eksakt_mm": 901.0,
+        "t_min_mm": 200.0,
+        "t_armeret_til_lagminimum": true,
+        "t_armeret_lagtillaeg_lag": {
+          "foer": [
+            {
+              "navn": "Bundgrus 0-80",
+              "tykkelse_mm": 350.0
+            },
+            {
+              "navn": "Skærver 0-150",
+              "tykkelse_mm": 100.0
+            }
+          ],
+          "efter": [
+            {
+              "navn": "Bundgrus 0-80",
+              "tykkelse_mm": 550.0
+            },
+            {
+              "navn": "Skærver 0-150",
+              "tykkelse_mm": 200.0
+            }
+          ]
+        },
+        "reduktion_mm_eksakt": 468.0,
+        "reduktion_pct_eksakt": 0.5196,
+        "afrunding_trin_mm": 50,
+        "phi_indtastet": 39.666666666666664,
+        "phi_regel": "soejle"
+      },
+      "lookups": 14,
+      "stable": false
+    },
+    {
+      "id": "coupled-phi-oscillation-0004",
+      "group": "coupled-phi-oscillation",
+      "function": "core.calculator.beregn",
+      "input": {
+        "eu": 25,
+        "eo": 120,
+        "phi": 43.958333333333336,
+        "net_korrektion": -0.2,
+        "lag_mode": "1_lag",
+        "afrunding": {
+          "trin_mm": 10,
+          "reduktion_eksakt": false,
+          "vis_eksakt": false,
+          "phi_afrunding": "ingen",
+          "t_min_mm": 275.0,
+          "lagopbygning": {
+            "lag": [
+              {
+                "navn": "Knust beton 0-32",
+                "andel": 0.20833333333333334,
+                "phi": 40,
+                "lagtype": "Bærelag"
+              },
+              {
+                "navn": "Skærver 0-64",
+                "andel": 0.4166666666666667,
+                "phi": 45,
+                "lagtype": "Bærelag"
+              },
+              {
+                "navn": "Skærver 0-250",
+                "andel": 0.375,
+                "phi": 45,
+                "lagtype": "Bundsikring"
+              }
+            ],
+            "fordeling": "minimum",
+            "min_mm": 275.0,
+            "oeverst_ref_mm": 500,
+            "restlag": "vis",
+            "restlag_graense_mm": 100,
+            "vd_minimum_mm": {
+              "Bærelag": 100.0,
+              "Bundsikring": 200.0
+            },
+            "phi_regel": "soejle"
+          }
+        }
+      },
+      "expected": {
+        "eu": 25,
+        "eo": 120,
+        "phi": 40.0,
+        "phi_uarmeret": 43.0,
+        "phi_eksakt": 40.0,
+        "phi_uarmeret_eksakt": 43.0,
+        "phi_afrunding": "ingen",
+        "lag_mode": "1_lag",
+        "net_korrektion": -0.2,
+        "eu_lower": 25,
+        "eu_upper": 25,
+        "t_low_arm_cm": 40.0,
+        "t_high_arm_cm": 40.0,
+        "t_low_uarm_cm": 56.7,
+        "t_high_uarm_cm": 56.7,
+        "t_basis_arm_cm": 40.0,
+        "t_basis_arm_mm": 400.0,
+        "t_basis_uarm_cm": 56.7,
+        "t_basis_uarm_mm": 567.0,
+        "phi_korrektion": -0.06,
+        "phi_korrektion_uarmeret": -0.12,
+        "samlet_faktor": 0.74,
+        "skala": 1.0,
+        "t_armeret_mm": 700.0,
+        "t_uarmeret_mm": 570.0,
+        "t_uarmeret_phi_kor_mm": 700.0,
+        "reduktion_mm": 0.0,
+        "reduktion_pct": 0.0,
+        "uarmeret_mangler": false,
+        "uarmeret_fejl": null,
+        "fejl": null,
+        "t_armeret_eksakt_mm": 296.0,
+        "t_uarmeret_eksakt_mm": 567.0,
+        "t_uarmeret_phi_kor_eksakt_mm": 499.0,
+        "t_min_mm": 280.0,
+        "t_uarmeret_phi_kor_til_lagminimum": true,
+        "t_armeret_til_lagminimum": true,
+        "t_armeret_lagtillaeg_lag": {
+          "foer": [
+            {
+              "navn": "Knust beton 0-32",
+              "tykkelse_mm": 280.0
+            },
+            {
+              "navn": "Skærver 0-64",
+              "tykkelse_mm": 10.0
+            },
+            {
+              "navn": "Skærver 0-250",
+              "tykkelse_mm": 10.0
+            }
+          ],
+          "efter": [
+            {
+              "navn": "Knust beton 0-32",
+              "tykkelse_mm": 280.0
+            },
+            {
+              "navn": "Skærver 0-64",
+              "tykkelse_mm": 220.0
+            },
+            {
+              "navn": "Skærver 0-250",
+              "tykkelse_mm": 200.0
+            }
+          ]
+        },
+        "reduktion_mm_eksakt": 203.0,
+        "reduktion_pct_eksakt": 0.4068,
+        "afrunding_trin_mm": 10,
+        "phi_indtastet": 43.958333333333336,
+        "phi_regel": "soejle"
+      },
+      "lookups": 14,
+      "stable": false
+    },
+    {
+      "id": "coupled-phi-oscillation-0005",
+      "group": "coupled-phi-oscillation",
+      "function": "core.calculator.beregn",
+      "input": {
+        "eu": 10,
+        "eo": 80,
+        "phi": 43.75,
+        "net_korrektion": -0.2,
+        "lag_mode": "1_lag",
+        "afrunding": {
+          "trin_mm": 10,
+          "reduktion_eksakt": false,
+          "vis_eksakt": false,
+          "phi_afrunding": "ingen",
+          "t_min_mm": 250.0,
+          "lagopbygning": {
+            "lag": [
+              {
+                "navn": "Stabilgrus SGII 0-32",
+                "andel": 0.25,
+                "phi": 40,
+                "lagtype": "Bærelag"
+              },
+              {
+                "navn": "Skærver 0-90",
+                "andel": 0.75,
+                "phi": 45,
+                "lagtype": "Bærelag"
+              }
+            ],
+            "fordeling": "minimum",
+            "min_mm": 250.0,
+            "oeverst_ref_mm": 250,
+            "restlag": "vd",
+            "restlag_graense_mm": 100,
+            "vd_minimum_mm": {
+              "Bærelag": 100.0,
+              "Bundsikring": 200.0
+            },
+            "phi_regel": "laveste"
+          }
+        }
+      },
+      "expected": {
+        "eu": 10,
+        "eo": 80,
+        "phi": 41.951219512195124,
+        "phi_uarmeret": 43.3974358974359,
+        "phi_eksakt": 41.951219512195124,
+        "phi_uarmeret_eksakt": 43.3974358974359,
+        "phi_afrunding": "ingen",
+        "lag_mode": "1_lag",
+        "net_korrektion": -0.2,
+        "eu_lower": 10,
+        "eu_upper": 10,
+        "t_low_arm_cm": 61.7,
+        "t_high_arm_cm": 61.7,
+        "t_low_uarm_cm": 90.0,
+        "t_high_uarm_cm": 90.0,
+        "t_basis_arm_cm": 61.7,
+        "t_basis_arm_mm": 617.0,
+        "t_basis_uarm_cm": 90.0,
+        "t_basis_uarm_mm": 900.0,
+        "phi_korrektion": -0.099,
+        "phi_korrektion_uarmeret": -0.1279,
+        "samlet_faktor": 0.701,
+        "skala": 1.0,
+        "t_armeret_mm": 440.0,
+        "t_uarmeret_mm": 900.0,
+        "t_uarmeret_phi_kor_mm": 790.0,
+        "reduktion_mm": 350.0,
+        "reduktion_pct": 0.443,
+        "uarmeret_mangler": false,
+        "uarmeret_fejl": null,
+        "fejl": null,
+        "t_armeret_eksakt_mm": 433.0,
+        "t_uarmeret_eksakt_mm": 900.0,
+        "t_uarmeret_phi_kor_eksakt_mm": 785.0,
+        "t_min_mm": 250.0,
+        "reduktion_mm_eksakt": 352.0,
+        "reduktion_pct_eksakt": 0.4489,
+        "afrunding_trin_mm": 10,
+        "phi_indtastet": 43.75,
+        "phi_regel": "laveste"
+      },
+      "lookups": 14,
+      "stable": false
+    },
+    {
+      "id": "coupled-phi-oscillation-0006",
+      "group": "coupled-phi-oscillation",
+      "function": "core.calculator.beregn",
+      "input": {
+        "eu": 12,
+        "eo": 120,
+        "phi": 42.75,
+        "net_korrektion": -0.3,
+        "lag_mode": "1_lag",
+        "afrunding": {
+          "trin_mm": 100,
+          "reduktion_eksakt": false,
+          "vis_eksakt": false,
+          "phi_afrunding": "ingen",
+          "t_min_mm": 275.0,
+          "lagopbygning": {
+            "lag": [
+              {
+                "navn": "Skærver 0-150",
+                "andel": 0.55,
+                "phi": 45,
+                "lagtype": "Bundsikring"
+              },
+              {
+                "navn": "Stabilgrus SGII 0-32",
+                "andel": 0.45,
+                "phi": 40,
+                "lagtype": "Bærelag"
+              }
+            ],
+            "fordeling": "minimum",
+            "min_mm": 275.0,
+            "oeverst_ref_mm": 550,
+            "restlag": "vd",
+            "restlag_graense_mm": 100,
+            "vd_minimum_mm": {
+              "Bærelag": 100.0,
+              "Bundsikring": 200.0
+            },
+            "phi_regel": "soejle"
+          }
+        }
+      },
+      "expected": {
+        "eu": 12,
+        "eo": 120,
+        "phi": 42.75,
+        "phi_uarmeret": 42.5,
+        "phi_eksakt": 42.75,
+        "phi_uarmeret_eksakt": 42.5,
+        "phi_afrunding": "ingen",
+        "lag_mode": "1_lag",
+        "net_korrektion": -0.3,
+        "eu_lower": 12,
+        "eu_upper": 12,
+        "t_low_arm_cm": 63.8,
+        "t_high_arm_cm": 63.8,
+        "t_low_uarm_cm": 90.0,
+        "t_high_uarm_cm": 90.0,
+        "t_basis_arm_cm": 63.8,
+        "t_basis_arm_mm": 638.0,
+        "t_basis_uarm_cm": 90.0,
+        "t_basis_uarm_mm": 900.0,
+        "phi_korrektion": -0.115,
+        "phi_korrektion_uarmeret": -0.11,
+        "samlet_faktor": 0.585,
+        "skala": 1.0,
+        "t_armeret_mm": 400.0,
+        "t_uarmeret_mm": 900.0,
+        "t_uarmeret_phi_kor_mm": 900.0,
+        "reduktion_mm": 500.0,
+        "reduktion_pct": 0.5556,
+        "uarmeret_mangler": false,
+        "uarmeret_fejl": null,
+        "fejl": null,
+        "t_armeret_eksakt_mm": 373.0,
+        "t_uarmeret_eksakt_mm": 900.0,
+        "t_uarmeret_phi_kor_eksakt_mm": 801.0,
+        "t_min_mm": 300.0,
+        "reduktion_mm_eksakt": 428.0,
+        "reduktion_pct_eksakt": 0.534,
+        "afrunding_trin_mm": 100,
+        "phi_indtastet": 42.75,
+        "phi_regel": "soejle"
+      },
+      "lookups": 14,
+      "stable": false
+    },
+    {
+      "id": "coupled-phi-oscillation-0007",
+      "group": "coupled-phi-oscillation",
+      "function": "core.calculator.beregn",
+      "input": {
+        "eu": 9,
+        "eo": 150,
+        "phi": 41.48888888888889,
+        "net_korrektion": -0.15,
+        "lag_mode": "1_lag",
+        "afrunding": {
+          "trin_mm": 1,
+          "reduktion_eksakt": false,
+          "vis_eksakt": false,
+          "phi_afrunding": "ingen",
+          "t_min_mm": 300.0,
+          "lagopbygning": {
+            "lag": [
+              {
+                "navn": "Bundgrus 0-80",
+                "andel": 0.3111111111111111,
+                "phi": 38,
+                "lagtype": "Bundsikring"
+              },
+              {
+                "navn": "Skærver 0-32",
+                "andel": 0.4222222222222222,
+                "phi": 45,
+                "lagtype": "Bærelag"
+              },
+              {
+                "navn": "Knust beton 0-32",
+                "andel": 0.26666666666666666,
+                "phi": 40,
+                "lagtype": "Bærelag"
+              }
+            ],
+            "fordeling": "proportional",
+            "min_mm": 300.0,
+            "oeverst_ref_mm": 700,
+            "restlag": "vis",
+            "restlag_graense_mm": 100,
+            "vd_minimum_mm": {
+              "Bærelag": 100.0,
+              "Bundsikring": 200.0
+            },
+            "phi_regel": "soejle"
+          }
+        }
+      },
+      "expected": {
+        "eu": 9,
+        "eo": 150,
+        "phi": 41.48743718592965,
+        "phi_uarmeret": 41.48806112702961,
+        "phi_eksakt": 41.48743718592965,
+        "phi_uarmeret_eksakt": 41.48806112702961,
+        "phi_afrunding": "ingen",
+        "lag_mode": "1_lag",
+        "net_korrektion": -0.15,
+        "eu_lower": 9,
+        "eu_upper": 9,
+        "t_low_arm_cm": 78.6,
+        "t_high_arm_cm": 78.6,
+        "t_low_uarm_cm": 115.0,
+        "t_high_uarm_cm": 115.0,
+        "t_basis_arm_cm": 78.6,
+        "t_basis_arm_mm": 786.0,
+        "t_basis_uarm_cm": 115.0,
+        "t_basis_uarm_mm": 1150.0,
+        "phi_korrektion": -0.0897,
+        "phi_korrektion_uarmeret": -0.0898,
+        "samlet_faktor": 0.7603,
+        "skala": 1.0,
+        "t_armeret_mm": 598.0,
+        "t_uarmeret_mm": 1150.0,
+        "t_uarmeret_phi_kor_mm": 1047.0,
+        "reduktion_mm": 449.0,
+        "reduktion_pct": 0.4288,
+        "uarmeret_mangler": false,
+        "uarmeret_fejl": null,
+        "fejl": null,
+        "t_armeret_eksakt_mm": 598.0,
+        "t_uarmeret_eksakt_mm": 1150.0,
+        "t_uarmeret_phi_kor_eksakt_mm": 1047.0,
+        "t_min_mm": 300.0,
+        "reduktion_mm_eksakt": 449.0,
+        "reduktion_pct_eksakt": 0.4291,
+        "afrunding_trin_mm": 1,
+        "phi_indtastet": 41.48888888888889,
+        "phi_regel": "soejle"
+      },
+      "lookups": 14,
+      "stable": false
+    },
+    {
+      "id": "coupled-phi-oscillation-0008",
+      "group": "coupled-phi-oscillation",
+      "function": "core.calculator.beregn",
+      "input": {
+        "eu": 7,
+        "eo": 30,
+        "phi": 42.58620689655172,
+        "net_korrektion": 0.2,
+        "lag_mode": "1_lag",
+        "afrunding": {
+          "trin_mm": 1,
+          "reduktion_eksakt": false,
+          "vis_eksakt": false,
+          "phi_afrunding": "ingen",
+          "t_min_mm": 200.0,
+          "lagopbygning": {
+            "lag": [
+              {
+                "navn": "Knust beton 0-32",
+                "andel": 0.4827586206896552,
+                "phi": 40,
+                "lagtype": "Bærelag"
+              },
+              {
+                "navn": "Skærver 0-250",
+                "andel": 0.5172413793103449,
+                "phi": 45,
+                "lagtype": "Bundsikring"
+              }
+            ],
+            "fordeling": "fastholdt",
+            "min_mm": 200.0,
+            "oeverst_ref_mm": 700,
+            "restlag": "flet",
+            "restlag_graense_mm": 100,
+            "vd_minimum_mm": {
+              "Bærelag": 100.0,
+              "Bundsikring": 200.0
+            },
+            "phi_regel": "soejle"
+          }
+        }
+      },
+      "expected": {
+        "eu": 7,
+        "eo": 30,
+        "phi": 40.0,
+        "phi_uarmeret": 40.0,
+        "phi_eksakt": 40.0,
+        "phi_uarmeret_eksakt": 40.0,
+        "phi_afrunding": "ingen",
+        "lag_mode": "1_lag",
+        "net_korrektion": 0.2,
+        "eu_lower": 7,
+        "eu_upper": 7,
+        "t_low_arm_cm": 48.0,
+        "t_high_arm_cm": 48.0,
+        "t_low_uarm_cm": 75.0,
+        "t_high_uarm_cm": 75.0,
+        "t_basis_arm_cm": 48.0,
+        "t_basis_arm_mm": 480.0,
+        "t_basis_uarm_cm": 75.0,
+        "t_basis_uarm_mm": 750.0,
+        "phi_korrektion": -0.06,
+        "phi_korrektion_uarmeret": -0.06,
+        "samlet_faktor": 1.14,
+        "skala": 1.0,
+        "t_armeret_mm": 547.0,
+        "t_uarmeret_mm": 750.0,
+        "t_uarmeret_phi_kor_mm": 900.0,
+        "reduktion_mm": 353.0,
+        "reduktion_pct": 0.3922,
+        "uarmeret_mangler": false,
+        "uarmeret_fejl": null,
+        "fejl": null,
+        "t_armeret_eksakt_mm": 547.0,
+        "t_uarmeret_eksakt_mm": 750.0,
+        "t_uarmeret_phi_kor_eksakt_mm": 705.0,
+        "t_min_mm": 200.0,
+        "t_uarmeret_phi_kor_til_lagminimum": true,
+        "reduktion_mm_eksakt": 158.0,
+        "reduktion_pct_eksakt": 0.2238,
+        "afrunding_trin_mm": 1,
+        "phi_indtastet": 42.58620689655172,
+        "phi_regel": "soejle"
+      },
+      "lookups": 14,
+      "stable": false
+    }
+  ]
+}

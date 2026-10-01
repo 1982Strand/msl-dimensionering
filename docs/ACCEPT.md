@@ -4,7 +4,7 @@ Opdateret 01.10.2026 efter oprydningen (B-059), tilgængelighedskontrollen og fa
 
 ## 1. Referencedækning
 
-Alle **34 filer** i `reference/*.json` er optalt nedenfor. »Cases« betyder antal elementer i `cases`; »snapshots« og andre navngivne arrays tælles særskilt. Optællinger af historiske resultaters `tests`/`checks` er antal registrerede felter, ikke nye testcases. Filer med overlappende input lægges ikke sammen til ét antal uafhængige sager. »Ingen« betyder, at ingen af de nuværende `tests/*.test.ts` eller `tests/browser/*.spec.ts` læser filen; filen kan fortsat være historisk dokumentation.
+Alle **35 filer** i `reference/*.json` er optalt nedenfor. »Cases« betyder antal elementer i `cases`; »snapshots« og andre navngivne arrays tælles særskilt. Optællinger af historiske resultaters `tests`/`checks` er antal registrerede felter, ikke nye testcases. Filer med overlappende input lægges ikke sammen til ét antal uafhængige sager. »Ingen« betyder, at ingen af de nuværende `tests/*.test.ts` eller `tests/browser/*.spec.ts` læser filen; filen kan fortsat være historisk dokumentation.
 
 Henvisninger via `tests/helpers/dimensioning-page.ts` og `tools/report-cases.ts` er angivet som indirekte læsning. Rapportens Node-tests og PDF-byggescripts er forskellige kontroller.
 
@@ -12,6 +12,7 @@ Henvisninger via `tests/helpers/dimensioning-page.ts` og `tools/report-cases.ts`
 | --- | --- | --- | --- |
 | `construction-cases.json` | 6 cases | `tests/construction.test.ts` | Hele `ui.snit`-kolonner og effektive figurvalg: lag, netpositioner, optimale noter og status; desuden SVG-fravalg/escaping. |
 | `core-cases.json` | 2.062 cases; 18 standardfelter | `tests/engine-reference.test.ts` | Fuld streng objektlighed og uændret input: opslag, korrektion, afrunding, lagfordeling, trafikregler, produktgrupper, placering og valideringsbeskeder; også indbyggede standarder. |
+| `coupled-phi-oscillation-cases.json` | 8 cases | `tests/coupled-phi-oscillation.test.ts` | F-06.4: koblet φ uden stabil tilstand efter 12 gentagelser. Fuld streng objektlighed med originalens konservative afslutning (laveste mødte φᵥ) og uændret input; optaget af `tools/capture_coupled_phi_oscillation.py`. |
 | `data-flow-cases.json` | 86 cases | `tests/data-flow.test.ts` | Korrelation og redigeret beregningsgrundlag, returværdier/fejltyper og uændrede input. |
 | `dimensioning-page-cases.json` | 14 cases | Via `tests/helpers/dimensioning-page.ts`: `tests/dimensioning-page-reference.test.ts`, `tests/dimensioning-page.test.ts`, `tests/result-checks.test.ts`, `tests/net-details.test.ts`, `tests/traffic-popover.test.ts`; også `tests/settings-page.test.ts`, `tests/report-page.test.ts` og `tests/browser/settings.spec.ts` importerer hjælperen, men sammenligner deres egne referencer | M3/M7 komplette afsnit/status, M4 HTML og titelhjælp, M8 popuptræ og M9 elementer/rækkefølge/fravær. Hjælperkontrollen genskaber input og finder viste tykkelser; ingen fuld DOM-/pixelparitet. |
 | `dimensioning-page-extra-cases.json` | 3 cases: LT-1, LT-2, MIN-1 | Samme læsere som `dimensioning-page-cases.json` | Tillæg for restlag/VD-minima og samlet minimum; samme delvise sidetræskontrol som ovenfor. |
@@ -151,7 +152,7 @@ Kørt 01.10.2026 på integrationsgrenen med Node `v26.4.0`:
 | Kontrol | Resultat |
 | --- | --- |
 | `npm run typecheck` | Bestået: begge TypeScript-konfigurationer. |
-| `npm test` | **2.998 enhedstests/Node-tests**, 2.998 bestået, 0 fejl, 0 oversprunget, 0 annulleret, 0 todo. |
+| `npm test` | **3.012 enhedstests/Node-tests**, alle bestået, 0 fejl, 0 oversprunget. |
 | `npm run format:check` | Bestået for de konfigurerede kode-/CSS-filer; Markdown indgår ikke i Prettier-scriptet. |
 | `npm run build` | Bestået. |
 | Playwright (Chromium, Desktop Chrome) | **75 browserforløb**, alle bestået. |
@@ -186,7 +187,7 @@ Der findes **75 browserforløb i 20 filer**, kørt af Claude og alle bestået. N
 
 Den automatiske tilgængelighedskontrol (axe) fandt ved første kørsel manglende tastaturadgang til vandret rullende tabeller og regnestykker, en rolle på designdiagrammets optegning og for lav kontrast i M1's 1-lagsoverskrift; alle er rettet. Axe dækker ikke alt; skærmlæser, zoom og touch er ikke gennemgået manuelt. Matrixen markerer andre konkrete testhuller; de nye kontroller for bl.a. F-02.7 og F-11.2 afventer kørsel, mens F-06.4 fortsat er åbent (afsnit 6, punkt 9).
 
-Efter lukningen af testhullerne 01.10.2026: `npm test` **3.003 bestået, 0 fejl**, og Playwright **75 browserforløb bestået** (de 54 ovenfor plus 21 i `tests/browser/acceptance-gaps.spec.ts`).
+Efter lukningen af testhullerne 01.10.2026, inkl. F-06.4: `npm test` **3.012 bestået, 0 fejl**, og Playwright **75 browserforløb bestået** (de 54 ovenfor plus 21 i `tests/browser/acceptance-gaps.spec.ts`).
 
 ## 5. PDF-kontrol
 
@@ -225,5 +226,5 @@ Handlingerne følger fase 5 i [MIGRATIONSPLAN.md](MIGRATIONSPLAN.md). Enkelte de
    - **F-11.2:** advarslen »Materialet '…' findes ikke længere i databasen. Laget er skiftet til manuel indtastning.« manglede, og laget blev ikke gemt som manuelt (`app.py:6540–6575, 6650–6654`).
    - **B-053:** andet klik eller tryk på hjælpeikonet genåbnede forklaringen.
 
-   F-06.4 (oscillation i koblet φ) og matrixens øvrige testhuller er fortsat åbne. Ændringer af originalens virkemåde kræver særskilt godkendelse.
+   F-06.4 (ustabil koblet φ) er lukket med 8 optagne originaltilfælde (`reference/coupled-phi-oscillation-cases.json`, `tests/coupled-phi-oscillation.test.ts`). Matrixens øvrige mindre forbehold om »ikke kontrolleret automatisk« står i de enkelte rækker. Ændringer af originalens virkemåde kræver særskilt godkendelse.
 10. **Oprydning og PDF-beviser:** Udført. Udkast og rapportforsøg er fjernet (B-059), og R6-sættet er fastlåst med kontrolsummer (B-055).
