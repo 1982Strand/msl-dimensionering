@@ -9,6 +9,8 @@ import {
   reportFilename,
   resetReportChoices,
   localReportDate,
+  REPORT_INTRO,
+  REPORT_INTRO_ORIGINAL,
   type ReportNode,
 } from '../src/report/report-page.ts';
 import { STANDARD_TEKSTER, SECTION_KEYS, SECTION_TITLER } from '../src/report/report-data.ts';
@@ -135,6 +137,10 @@ for (const c of reference.cases)
     const start = original.findIndex(
       (e) => e.type === 'html' && String(e.text).includes('bg-sidehoved'),
     );
+    // Godkendt afvigelse (B-043): Word-omtalen i underteksten er erstattet af PDF.
+    const header = original[start];
+    assert.ok(String(header.text).includes(`<p>${REPORT_INTRO_ORIGINAL}</p>`));
+    header.text = String(header.text).replace(REPORT_INTRO_ORIGINAL, REPORT_INTRO);
     // Kun appens globale topbjælke udelades. Widgets: ingen Streamlit-nøgler.
     assert.deepEqual(modelEvents(model), original.slice(start));
     if (model.available) {

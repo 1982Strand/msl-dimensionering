@@ -15,8 +15,11 @@ import {
 import type { ReportFigureChoices } from './report-figures.ts';
 
 export const REPORT_TITLE = 'Rapport';
-export const REPORT_INTRO =
+/** Originalens undertekst; Word-eksporten udgår (B-026), så teksten er ændret efter B-043. */
+export const REPORT_INTRO_ORIGINAL =
   'Dokumentation af beregningen til projektmateriale. Rapporten samler forudsætninger, resultat og udførelseskrav i ét dokument i Word og PDF. Standardteksterne kan redigeres pr. rapport.';
+export const REPORT_INTRO =
+  'Dokumentation af beregningen til projektmateriale. Rapporten samler forudsætninger, resultat og udførelseskrav i ét PDF-dokument. Standardteksterne kan redigeres pr. rapport.';
 export const REPORT_NO_CALCULATION =
   'Der skal først foretages en dimensionering med et valgt geonet, før rapporten kan genereres.\n\nDimensioneringen udføres under **Dimensionering**, i Standard eller Brugerdefineret. Rapporten bygger på den seneste dimensionering.';
 export const PROJECT_FIELDS = [

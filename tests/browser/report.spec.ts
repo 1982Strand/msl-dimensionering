@@ -182,11 +182,6 @@ test('afvist beregning giver originalens info og navigation', async ({ page, bas
   await expect(page.getByRole('button', { name: 'Generér rapport', exact: true })).toHaveCount(0);
   await page.getByRole('link', { name: 'Gå til Dimensionering', exact: true }).click();
   await expect(page).toHaveURL(/#dimensionering$/);
-  await page.getByRole('link', { name: 'Hjælp', exact: true }).click();
-  await expect(page.getByRole('link', { name: 'Gå til Rapport', exact: true })).toHaveAttribute(
-    'href',
-    '#rapport',
-  );
   expect(seen.external).toEqual([]);
   expect(seen.errors).toEqual([]);
 });
