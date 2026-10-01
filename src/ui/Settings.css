@@ -1,0 +1,44 @@
+.settings-page .bg-trin-hoved {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  margin-bottom: 20px;
+}
+.settings-page .bg-trin-hoved h2 {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0;
+}
+.settings-page .bg-trin-nr {
+  display: inline-grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 4px;
+  background: var(--primary);
+  color: var(--color-primary-foreground);
+  font-size: 14px;
+  flex-shrink: 0;
+}
+.settings-page .bg-trin-opsum {
+  color: var(--color-muted-foreground);
+  font-size: 13px;
+  overflow-wrap: anywhere;
+}
+.settings-page .settings-fields {
+  grid-template-columns: repeat(var(--settings-columns, 2), minmax(0, 1fr));
+}
+.settings-page .settings-fields > div {
+  min-width: 0;
+}
+.settings-page .setting-field {
+  margin-bottom: 20px;
+}
+@media (max-width: 700px) {
+  .settings-page .settings-fields {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
