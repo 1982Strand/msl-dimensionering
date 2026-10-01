@@ -59,7 +59,9 @@ test('originalens grupper, rækkefølge, sider, aktiv markering og versionsfod',
   await expect(footer.getByText('Beregningsværktøj v0.6', { exact: true })).toBeVisible();
   await expect(page.locator('.topbar')).toHaveCSS('background-color', 'rgb(23, 61, 57)');
   await expect(page.locator('.topbar .brand strong')).toHaveText('MSL');
-  await expect(page.getByText('Under udvikling', { exact: true })).toBeVisible();
+  // B-058: lavere topbjælke uden »Under udvikling«.
+  await expect(page.locator('.topbar')).toHaveCSS('height', '56px');
+  await expect(page.getByText('Under udvikling', { exact: true })).toHaveCount(0);
   await expect(page.locator('.topbar').getByRole('button')).toHaveText(['Menu']);
   expect(errors).toEqual([]);
 });

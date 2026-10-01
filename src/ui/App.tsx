@@ -1,16 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import {
-  CircleHelp,
-  FileText,
-  Grid3x3,
-  Layers,
-  Layers3,
-  LineChart,
-  PanelLeft,
-  Ruler,
-  Settings as SettingsIcon,
-  Table,
-} from 'lucide-react';
+import { Layers3, PanelLeft } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import {
   Sidebar,
@@ -33,34 +22,16 @@ import { DataTables } from './DataTables';
 import { Settings } from './Settings';
 import { Dimensioning } from './Dimensioning';
 import { DesignDraft, SidebarPreview } from './DesignDraft';
+import { ThemeDraft } from './ThemeDraft';
 import { Help } from './Help';
 import { Report } from './Report';
-
-const navigationGroups = [
-  {
-    label: 'Beregning',
-    items: [
-      ['dimensionering', 'Dimensionering', Ruler],
-      ['rapport', 'Rapport', FileText],
-    ],
-  },
-  {
-    label: 'Opslag',
-    items: [
-      ['materialer', 'Materialer', Layers],
-      ['geonet-database', 'Geonet-database', Grid3x3],
-      ['diagrammer', 'Designdiagrammer', LineChart],
-      ['vejdim', 'Trafikklasse-korrelation', Table],
-      ['hjaelp', 'Hjælp og dokumentation', CircleHelp],
-    ],
-  },
-  { label: 'Opsætning', items: [['indstillinger', 'Indstillinger', SettingsIcon]] },
-] as const;
+import { navigationGroups } from './page';
 
 function currentPage() {
   const hash = location.hash.slice(1);
   return navigationGroups.some((group) => group.items.some(([key]) => key === hash)) ||
     hash === 'designudkast' ||
+    hash === 'temaudkast' ||
     hash === 'designudkast-sidebar'
     ? hash
     : 'dimensionering';
@@ -77,7 +48,7 @@ function MenuButton({ returnFocus = false }: { returnFocus?: boolean }) {
   return (
     <Button
       ref={button}
-      variant="outline"
+      variant="ghost"
       size="sm"
       className="menu-toggle"
       aria-label="Menu"
@@ -158,11 +129,10 @@ export function App() {
       <header className="topbar">
         <MenuButton returnFocus />
         <div className="brand">
-          <Layers3 size={30} strokeWidth={1.5} />
+          <Layers3 size={24} strokeWidth={1.6} aria-hidden="true" />
           <strong>MSL</strong>
           <span>Dimensionering</span>
         </div>
-        <span className="draft-label">Under udvikling</span>
       </header>
       <div className="app-body">
         <Navigation page={page} />
@@ -181,6 +151,8 @@ export function App() {
               <Help />
             ) : page === 'designudkast' ? (
               <DesignDraft />
+            ) : page === 'temaudkast' ? (
+              <ThemeDraft />
             ) : page === 'dimensionering' ? (
               <Dimensioning />
             ) : page === 'indstillinger' ? (

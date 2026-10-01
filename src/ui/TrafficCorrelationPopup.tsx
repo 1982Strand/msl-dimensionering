@@ -1,4 +1,5 @@
 import ReactMarkdown from 'react-markdown';
+import { Table as TableIcon } from 'lucide-react';
 import type { DimensioningInput } from '../engine/dimensionering';
 import { trafficPopover } from '../engine/traffic-popover';
 import { InfoPopup } from './InfoPopup';
@@ -9,7 +10,7 @@ export function TrafficCorrelationPopup({ input }: { input: DimensioningInput })
   if (!model) return null;
   const [intro, table, caption] = model.children;
   return (
-    <InfoPopup label={model.label} title={model.label} wide>
+    <InfoPopup label={model.label} title={model.label} icon={<TableIcon aria-hidden="true" />} wide>
       <div className="traffic-correlation-popup">
         <ReactMarkdown>{intro.body}</ReactMarkdown>
         <div className="traffic-correlation-scroll">

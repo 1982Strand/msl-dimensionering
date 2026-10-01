@@ -1,3 +1,4 @@
+import { chooseOption } from './helpers/choose-option.ts';
 import { test, expect, type Page } from '@playwright/test';
 import { readFileSync } from 'node:fs';
 import { SESSION_STORAGE_KEY } from '../../src/engine/session-storage.ts';
@@ -43,10 +44,11 @@ test('opsummeringer og Gælder følger straks aktive valg og klassisk Standard',
     name: 'Fordeling af lagtykkelsen på materialelagene',
     exact: true,
   });
-  await expect(distribution.locator('..').locator('xpath=following-sibling::p[1]')).toHaveText(
-    'Gælder: Brugerdefineret',
-  );
-  await page.getByLabel('Oprundingstrin', { exact: true }).selectOption({ label: '100 mm' });
+  // B-058: »Gælder: …« er et mærke lige efter feltet.
+  await expect(
+    distribution.locator('..').locator('xpath=following-sibling::*[@data-settings-caption][1]'),
+  ).toHaveText('Gælder: Brugerdefineret');
+  await chooseOption(page, page.getByLabel('Oprundingstrin', { exact: true }), '100 mm');
   await expect(
     page.locator('#settings-afrunding').locator('..').locator('[data-settings-summary]'),
   ).toHaveText('100 mm · reduktion af oprundede tykkelser');
@@ -77,7 +79,7 @@ test('settings retain original defaults, bounds and dependent controls; changes 
     if (widget.kind === 'checkbox') await expect(control).toBeChecked({ checked: widget.value });
     if (widget.kind === 'number') await expect(control).toHaveValue(String(widget.value));
   }
-  await page.getByLabel('Oprundingstrin', { exact: true }).selectOption({ label: '100 mm' });
+  await chooseOption(page, page.getByLabel('Oprundingstrin', { exact: true }), '100 mm');
   await expect(
     page.getByText('Eksempel: en beregnet lagtykkelse på 532 mm angives som 600 mm.', {
       exact: true,

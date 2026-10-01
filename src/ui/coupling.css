@@ -2,22 +2,22 @@
 .coupling-explanation {
   --kob-text-font: 'Segoe UI', system-ui, sans-serif;
   --bg-ink: var(--foreground);
-  --bg-ink-70: #4a554e;
-  --bg-ink-45: var(--color-muted-foreground);
-  --bg-ink-25: #9aa39c;
-  --bg-line: var(--color-border);
-  --bg-line-soft: #e6eae6;
-  --bg-surface: #fff;
+  --bg-ink-70: var(--foreground);
+  --bg-ink-45: var(--muted-foreground);
+  --bg-ink-25: var(--muted-foreground);
+  --bg-line: var(--border);
+  --bg-line-soft: var(--border);
+  --bg-surface: var(--card);
   --bg-green-900: var(--primary);
   --bg-green-700: var(--primary);
-  --bg-green-lys: #f7fbf8;
+  --bg-green-lys: var(--accent);
   margin-top: 20px;
   min-width: 0;
 }
 .coupling-explanation .coupling-trigger {
-  padding: 18px 24px;
+  padding: 16px 24px;
   font-family: inherit;
-  font-size: 13px;
+  font-size: var(--fs-body);
   font-weight: 400;
   color: var(--bg-ink);
 }
@@ -111,7 +111,7 @@
     400 11px/1.75 'IBM Plex Mono',
     monospace;
   color: var(--bg-ink-70);
-  background: #fbfcfb;
+  background: var(--background);
   border: 1px solid var(--bg-line-soft);
   border-radius: 4px;
   padding: 10px 12px;
@@ -158,9 +158,9 @@
     500 9.5px/1 'Segoe UI',
     system-ui,
     sans-serif;
-  color: #8a6a1f;
-  background: #fdf6e7;
-  border: 1px solid #ebdcb8;
+  color: var(--warning-foreground);
+  background: var(--warning);
+  border: 1px solid var(--warning-border);
   border-radius: 3px;
   padding: 3px 6px;
   margin-left: 4px;
@@ -174,7 +174,7 @@
 .coupling-explanation .kob-kort {
   border: 1px solid var(--bg-line-soft);
   border-radius: 4px;
-  background: #fbfcfb;
+  background: var(--background);
   padding: 9px 11px;
 }
 .coupling-explanation .kob-kort-hoved {
@@ -244,7 +244,7 @@
 .coupling-explanation .kob-figur {
   border: 1px solid var(--bg-line-soft);
   border-radius: 4px;
-  background: #fbfcfb;
+  background: var(--background);
   padding: 12px;
 }
 .coupling-explanation .kob-figur img {
@@ -310,7 +310,7 @@
 }
 .coupling-explanation .kob-skel {
   height: 1px;
-  background: #f0f2f0;
+  background: var(--border);
   margin: 0;
 }
 .coupling-explanation .kob-fod {
@@ -371,7 +371,7 @@
   font-family: 'Segoe UI', Carlito, system-ui, sans-serif;
 }
 .coupling-canvas:focus-visible {
-  outline: 2px solid #417e6c;
+  outline: 2px solid var(--primary);
   outline-offset: 4px;
   border-radius: 6px;
 }

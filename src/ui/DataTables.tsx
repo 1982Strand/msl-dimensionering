@@ -1,17 +1,13 @@
 import { useState } from 'react';
-import {
-  AlertCircle,
-  CheckCircle2,
-  Undo2,
-  Redo2,
-  RotateCcw,
-  Plus,
-  Trash2,
-  Download,
-} from 'lucide-react';
+import { Undo2, Redo2, RotateCcw, Plus, Trash2, Download } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { Checkbox } from '@/components/ui/checkbox';
+import { Label } from '@/components/ui/label';
 import { useEditor } from './EditorContext';
+import { SaveState } from './EditorFeedback';
+import { Notice } from './Notice';
+import { PageFooter, PageHeader } from './page';
 import { Cell } from './Cell';
 import { RawChart } from './RawChart';
 import { CorrelationExample } from './CorrelationExample';
@@ -46,7 +42,7 @@ function ReadTable({ rows, label }: { rows: Record<string, unknown>[]; label: st
   if (!rows.length) return null;
   return (
     <div className="table-wrap">
-      <table className="summary-table" aria-label={label}>
+      <table className="data-table summary-table" aria-label={label}>
         <thead>
           <tr>
             {Object.keys(rows[0]).map((k) => (
@@ -161,7 +157,7 @@ export function DataTables({ mode }: { mode: 'diagrammer' | 'vejdim' }) {
           <thead>
             <tr>
               {columns.map((c) => (
-                <th key={c.field} title={c.help}>
+                <th key={c.field} title={c.help} className={c.numeric ? 'num' : undefined}>
                   {c.label}
                 </th>
               ))}
@@ -291,25 +287,16 @@ export function DataTables({ mode }: { mode: 'diagrammer' | 'vejdim' }) {
   );
   return (
     <main>
-      <div className="breadcrumb">
-        Grunddata / {isDiagram ? 'Designdiagrammer' : 'Trafikklasse-korrelation'}
-      </div>
-      <div className="page-heading">
-        <div>
-          <h1>{isDiagram ? 'Designdiagrammer' : 'Trafikklasse-korrelation'}</h1>
-          <p className="intro">
-            {isDiagram
-              ? 'Diagrammer fra designmanualerne med tilhørende aflæste data. Tabellerne er bestemt ved lineær interpolation mellem kurvernes aflæste punkter, og beregningerne slår op direkte i dem.'
-              : 'Vejledende kobling mellem Vejdirektoratets trafikklasser og designmanualernes Eₒ-kurver. Kørslerne kan redigeres — den ækvivalente Eₒ genberegnes og anvendes med det samme i dimensioneringen.'}
-          </p>
-        </div>
-        <div className="save-state" role="status">
-          {ctx.saveError ? <AlertCircle size={15} /> : <CheckCircle2 size={15} />}
-          <span>
-            {ctx.saveError ? 'Ikke gemt' : ctx.saved ? 'Gemt i denne browser' : 'Standarddata'}
-          </span>
-        </div>
-      </div>
+      <PageHeader
+        page={isDiagram ? 'diagrammer' : 'vejdim'}
+        title={isDiagram ? 'Designdiagrammer' : 'Trafikklasse-korrelation'}
+        intro={
+          isDiagram
+            ? 'Diagrammer fra designmanualerne med tilhørende aflæste data. Tabellerne er bestemt ved lineær interpolation mellem kurvernes aflæste punkter, og beregningerne slår op direkte i dem.'
+            : 'Vejledende kobling mellem Vejdirektoratets trafikklasser og designmanualernes Eₒ-kurver. Kørslerne kan redigeres — den ækvivalente Eₒ genberegnes og anvendes med det samme i dimensioneringen.'
+        }
+        aside={<SaveState />}
+      />
       <div className="toolbar">
         <div className="toolbar-group">
           <Button
@@ -330,14 +317,16 @@ export function DataTables({ mode }: { mode: 'diagrammer' | 'vejdim' }) {
             <Redo2 />
             Gentag
           </Button>
-          <label className="filter">
-            <input
-              type="checkbox"
+          <div className="filter">
+            <Checkbox
+              id="table-only-changed"
               checked={onlyChanged}
-              onChange={(e) => setOnlyChanged(e.target.checked)}
+              onCheckedChange={(checked) => setOnlyChanged(checked === true)}
             />
-            Vis kun ændringer <Badge variant="secondary">{changed.length}</Badge>
-          </label>
+            <Label htmlFor="table-only-changed">
+              Vis kun ændringer <Badge variant="secondary">{changed.length}</Badge>
+            </Label>
+          </div>
         </div>
         <Button variant="outline" size="sm" disabled={externalChange} onClick={reset}>
           <RotateCcw />
@@ -345,20 +334,23 @@ export function DataTables({ mode }: { mode: 'diagrammer' | 'vejdim' }) {
         </Button>
       </div>
       {externalChange && (
-        <div className="message warning" role="alert">
+        <Notice kind="warning" className="message warning" role="alert">
           Data er ændret i en anden fane.{' '}
-          <Button onClick={() => location.reload()}>Genindlæs data</Button>
-        </div>
+          <Button size="sm" onClick={() => location.reload()}>
+            Genindlæs data
+          </Button>
+        </Notice>
       )}
       {ctx.errors.map((e) => (
-        <div className="message error" role="alert" key={e}>
+        <Notice kind="error" className="message error" role="alert" key={e}>
           {e}
-        </div>
+        </Notice>
       ))}
       {ctx.saveError && (
-        <div className="message error" role="alert">
+        <Notice kind="error" className="message error" role="alert">
           {ctx.saveError} Ændringerne er stadig i denne åbne fane.
           <Button
+            size="sm"
             disabled={externalChange}
             onClick={() => {
               const r = editor.retrySave();
@@ -368,7 +360,7 @@ export function DataTables({ mode }: { mode: 'diagrammer' | 'vejdim' }) {
           >
             Prøv at gemme igen
           </Button>
-        </div>
+        </Notice>
       )}
       <fieldset disabled={externalChange} className="m-0 min-w-0 border-0 p-0">
         {isDiagram ? (
@@ -444,6 +436,7 @@ export function DataTables({ mode }: { mode: 'diagrammer' | 'vejdim' }) {
                 setDraft(null);
               }}
             >
+              <RotateCcw />
               Nulstil alle diagramdata til standard
             </Button>
           </>
@@ -546,10 +539,7 @@ export function DataTables({ mode }: { mode: 'diagrammer' | 'vejdim' }) {
           </>
         )}
       </fieldset>
-      <footer className="page-footer">
-        <span>Gyldige ændringer anvendes og gemmes automatisk.</span>
-        <span>MSL Dimensionering · Grunddata</span>
-      </footer>
+      <PageFooter>Gyldige ændringer anvendes og gemmes automatisk.</PageFooter>
     </main>
   );
 }

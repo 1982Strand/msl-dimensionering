@@ -10,7 +10,13 @@
   min-width: 0;
 }
 .profile-card-content {
-  padding-top: 20px;
+  padding-top: 0;
+}
+.profile-save-state {
+  font-size: var(--fs-meta);
+  color: var(--primary);
+  font-weight: 500;
+  margin: 0 0 12px;
 }
 .profile-actions {
   display: flex;
@@ -53,11 +59,11 @@
   margin-bottom: 16px;
 }
 .profile-field [aria-invalid='true'] {
-  border-color: var(--color-destructive, #b42318);
+  border-color: var(--destructive);
 }
 .profile-field-error {
-  color: var(--color-destructive, #b42318);
-  font-size: 13px;
+  color: var(--destructive);
+  font-size: var(--fs-meta);
   margin: 6px 0 0;
 }
 .profile-preview {
@@ -112,14 +118,14 @@
   }
 }
 
-/* Ophæver de globale tabelregler fra materialesiden (min-width, fast layout, kolonnebredder). */
-.profile-employee-sheet table {
-  min-width: 0;
-  table-layout: auto;
-}
 .profile-employee-sheet th,
 .profile-employee-sheet td {
-  width: auto;
   padding: 10px 12px;
   white-space: nowrap;
+}
+.profile-employee-sheet th {
+  font-size: var(--fs-meta);
+  font-weight: 500;
+  color: var(--muted-foreground);
+  background: var(--background);
 }

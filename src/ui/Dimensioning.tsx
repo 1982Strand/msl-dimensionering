@@ -3,6 +3,10 @@ import { useEditor } from './EditorContext';
 import { EditorFeedback, SaveState } from './EditorFeedback';
 import { SettingField, type SettingDefinition, type SettingValue } from './SettingField';
 import { Button } from '@/components/ui/button';
+import { Slider } from '@/components/ui/slider';
+import { LineChart, RotateCcw, Table as TableIcon } from 'lucide-react';
+import { Notice } from './Notice';
+import { PageFooter, PageHeader } from './page';
 import {
   dimensioningValues,
   dimensioningInput,
@@ -148,6 +152,8 @@ export function Dimensioning() {
       label,
       kind,
       inline: key.endsWith('_valgt_klasse') || key.endsWith('_valgt_tklasse'),
+      segmented:
+        key === 'tilstand' || key.endsWith('_valgt_klasse') || key.endsWith('_valgt_tklasse'),
       options: options.map((value) => ({ value, label: String(value) })),
     });
   function slider(
@@ -160,17 +166,21 @@ export function Dimensioning() {
   ) {
     return (
       <div className="setting-field dim-slider">
-        <label htmlFor={key}>
-          {label}: <output>{String(values[key])}</output>
-        </label>
-        <input
-          id={key}
-          type="range"
+        <div className="dim-slider-head">
+          <span id={`${key}-label`} className="dim-slider-label">
+            {label}
+          </span>
+          <output htmlFor={key} className="dim-slider-value">
+            {String(values[key])}
+          </output>
+        </div>
+        <Slider
           min={min}
           max={max}
           step={step}
-          value={Number(values[key])}
-          onChange={(e) => change(key, Number(e.target.value))}
+          value={[Number(values[key])]}
+          onValueChange={([next]) => change(key, next)}
+          thumbProps={{ id: key, 'aria-labelledby': `${key}-label` }}
         />
         <p>{help}</p>
       </div>
@@ -179,14 +189,12 @@ export function Dimensioning() {
   const count = Number(values.bd_antal_lag);
   return (
     <main className="m9-page">
-      <div className="breadcrumb">Dimensionering</div>
-      <div className="page-heading">
-        <div>
-          <h1>Dimensionering</h1>
-          <p className="intro">{pageIntroduction}</p>
-        </div>
-        <SaveState />
-      </div>
+      <PageHeader
+        page="dimensionering"
+        title="Dimensionering"
+        intro={pageIntroduction}
+        aside={<SaveState />}
+      />
       <div className="settings-start">
         <EditorFeedback />
       </div>
@@ -204,6 +212,7 @@ export function Dimensioning() {
               );
             }}
           >
+            <RotateCcw aria-hidden="true" />
             Nulstil dimensionering
           </Button>
         </div>
@@ -223,11 +232,15 @@ export function Dimensioning() {
                     5,
                     'Ukorrigeret vingerstyrke fra feltmåling/markjournal.',
                   )}
-                  <p className="settings-note">
+                  <Notice>
                     Cv = {String(values[`${prefix}_cv_slider`])} kN/m² → Eᵤ = {input.eu} MPa
-                  </p>
-                  <InfoPopup label="Se korrelationstabel" title="Korrelation mellem Cv og Eᵤ">
-                    <table className="summary-table">
+                  </Notice>
+                  <InfoPopup
+                    label="Se korrelationstabel"
+                    title="Korrelation mellem Cv og Eᵤ"
+                    icon={<TableIcon aria-hidden="true" />}
+                  >
+                    <table className="data-table summary-table">
                       <thead>
                         <tr>
                           <th>Cv (kN/m²)</th>
@@ -275,6 +288,7 @@ export function Dimensioning() {
                 <InfoPopup
                   label="Se designdiagram"
                   title={`Designdiagram · belastningsklasse ${basis.valgt_klasse}`}
+                  icon={<LineChart aria-hidden="true" />}
                   wide
                 >
                   <img
@@ -286,9 +300,9 @@ export function Dimensioning() {
               )}
               {basis.type === 'trafikklasse' && <TrafficCorrelationPopup input={input} />}
               {page.messageKind && (
-                <div className={page.messageKind === 'warning' ? 'warning-banner' : 'info-banner'}>
+                <Notice kind={page.messageKind === 'warning' ? 'warning' : 'info'}>
                   {content('basisMessage')}
-                </div>
+                </Notice>
               )}
             </div>
             {content('keyFigures')}
@@ -467,7 +481,10 @@ export function Dimensioning() {
                 <AccordionTrigger>{page.productExpander?.label}</AccordionTrigger>
                 <AccordionContent>
                   <div className="table-wrap">
-                    <table className="summary-table product-overview" aria-label="Alle produkter">
+                    <table
+                      className="data-table summary-table product-overview"
+                      aria-label="Alle produkter"
+                    >
                       <thead>
                         <tr>
                           {overviewColumns.map((c) => (
@@ -537,14 +554,11 @@ export function Dimensioning() {
           </section>
         ) : (
           basis.eo !== null && (
-            <p className="warning-banner">Ingen gyldig dimensionering for denne kombination.</p>
+            <Notice kind="warning">Ingen gyldig dimensionering for denne kombination.</Notice>
           )
         )}
       </fieldset>
-      <footer className="page-footer">
-        <span>Udkast · fulde mellemregninger og rapport tilføjes senere.</span>
-        <span>MSL Dimensionering</span>
-      </footer>
+      <PageFooter />
     </main>
   );
 }

@@ -1,57 +1,50 @@
 .help-page {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
   color: var(--foreground);
 }
-.help-page h1 {
-  font-size: 1.7rem;
-  font-weight: 650;
-  margin-bottom: 0.5rem;
-}
 .help-page .page-heading {
-  margin-bottom: 1.5rem;
-}
-.help-page .page-heading p,
-.help-card-header p {
-  color: var(--color-muted-foreground);
+  margin-bottom: 24px;
 }
 .help-intro,
 .help-chapter {
-  background: white;
-  border: 1px solid var(--color-border);
-  border-radius: 0.6rem;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: 0 1px 2px rgb(16 36 29 / 5%);
 }
 .help-card-header {
-  padding: 1rem 1.5rem;
-  border-bottom: 1px solid var(--color-border);
+  padding: 20px 24px 16px;
+  border-bottom: 1px solid var(--border);
 }
 .help-card-header h2 {
-  font-size: 1.15rem;
-  font-weight: 650;
+  font-size: var(--fs-section);
+  font-weight: 600;
+}
+.help-card-header p {
+  color: var(--muted-foreground);
+  font-size: var(--fs-small);
 }
 .help-intro-grid {
   display: grid;
   grid-template-columns: 1.35fr 1fr;
-  gap: 2rem;
-  padding: 1.5rem;
+  gap: 32px;
+  padding: 24px;
 }
 .help-page h3 {
-  font-size: 1rem;
-  font-weight: 650;
-  margin-bottom: 0.75rem;
+  font-size: var(--fs-body);
+  font-weight: 600;
+  margin-bottom: 12px;
 }
 .help-markdown {
   line-height: 1.65;
   overflow-x: auto;
 }
 .help-markdown p {
-  margin: 0 0 1rem;
+  margin: 0 0 16px;
 }
 .help-markdown ul,
 .help-markdown ol {
-  padding-left: 1.5rem;
-  margin-bottom: 1rem;
+  padding-left: 24px;
+  margin-bottom: 16px;
 }
 .help-markdown ul {
   list-style: disc;
@@ -60,201 +53,215 @@
   list-style: decimal;
 }
 .help-markdown li {
-  margin-bottom: 0.3rem;
+  margin-bottom: 4px;
 }
 .help-markdown a {
   text-decoration: underline;
 }
-/* Ophæver de globale tabelregler fra materialesiden (min-width, faste kolonnebredder). */
 .help-markdown table {
   width: 100%;
-  min-width: 0;
-  table-layout: auto;
   border-collapse: collapse;
-  font-size: 0.85rem;
+  font-size: var(--fs-small);
+  font-variant-numeric: tabular-nums;
 }
 .help-markdown th,
 .help-markdown td {
-  width: auto;
-  border-bottom: 1px solid var(--color-border);
-  padding: 0.5rem 0.6rem;
+  border-bottom: 1px solid var(--border);
+  padding: 8px 10px;
+  text-align: left;
 }
 .help-markdown th {
-  background: var(--color-muted);
+  background: var(--background);
+  color: var(--muted-foreground);
+  font-size: var(--fs-meta);
+  font-weight: 500;
 }
 .help-steps {
-  padding: 1rem;
-  background: var(--color-muted);
-  border-radius: 0.4rem;
+  padding: 16px;
+  background: var(--accent);
+  border: 1px solid var(--accent-border);
+  border-radius: 10px;
 }
 .help-steps ol {
   list-style: decimal;
-  padding-left: 1.5rem;
-  margin-bottom: 1.5rem;
+  padding-left: 24px;
+  margin-bottom: 24px;
 }
 .help-steps li {
-  padding: 0.45rem 0;
+  padding: 6px 0;
 }
 .help-concepts {
   display: flex;
-  gap: 0.6rem;
+  gap: 8px;
   flex-wrap: wrap;
 }
 .help-concept {
-  border: 1px solid var(--color-border);
-  border-radius: 0.3rem;
-  background: white;
-  padding: 0.4rem 0.8rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--card);
+  padding: 6px 12px;
+  font-size: var(--fs-small);
   cursor: help;
 }
-.help-concept:focus-visible {
-  outline: 2px solid var(--color-ring);
-  outline-offset: 2px;
+.help-concept:hover {
+  border-color: var(--primary);
 }
 .help-chapters {
-  margin-top: 1.5rem;
+  margin-top: 24px;
   display: grid;
-  gap: 0.8rem;
+  gap: 12px;
 }
 .help-chapter-trigger {
-  padding: 1.2rem 1.5rem;
+  padding: 18px 24px;
   align-items: center;
-  font-size: 1rem;
+  gap: 14px;
+  font-size: var(--fs-body);
 }
 .help-chapter-trigger:hover {
   text-decoration: none;
-  background: var(--color-muted);
+  background: var(--background);
 }
+/* Kapitelnummer som afsnitsnumrene på de øvrige sider (B-058). */
 .help-chapter-number {
-  font-size: 1.5rem;
-  color: var(--primary);
-  width: 2rem;
+  display: inline-grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 6px;
+  background: var(--primary);
+  color: var(--card);
+  font-size: var(--fs-small);
+  font-weight: 600;
   flex-shrink: 0;
 }
 .help-chapter-summary {
   flex: 1;
   display: grid;
-  gap: 0.4rem;
+  gap: 4px;
 }
 .help-chapter-title {
-  font-size: 1.1rem;
-  font-weight: 650;
+  font-size: var(--fs-section);
+  font-weight: 600;
 }
 .help-chapter-resume,
 .help-chapter-count {
-  font-size: 0.85rem;
-  color: var(--color-muted-foreground);
+  font-size: var(--fs-small);
+  color: var(--muted-foreground);
   font-weight: 400;
 }
 .help-chapter-count {
   white-space: nowrap;
 }
 .help-chapter-content {
-  padding: 0 1.5rem 1.5rem;
+  padding: 0 24px 24px;
 }
 .help-section {
   display: grid;
   grid-template-columns: 1.75fr 1fr;
-  gap: 2rem;
-  padding-top: 1.5rem;
-  margin-top: 1rem;
-  border-top: 1px solid var(--color-border);
+  gap: 32px;
+  padding-top: 24px;
+  margin-top: 16px;
+  border-top: 1px solid var(--border);
 }
 .help-section-number {
-  margin-right: 0.7rem;
+  margin-right: 10px;
   color: var(--primary);
 }
 .help-aside {
   min-width: 0;
 }
 .help-aside figure {
-  margin: 0 0 1.5rem;
+  margin: 0 0 24px;
 }
 .help-figure-number {
-  font-size: 0.8rem;
-  font-weight: 650;
-  margin-bottom: 0.5rem;
+  font-size: var(--fs-meta);
+  font-weight: 600;
+  margin-bottom: 8px;
   color: var(--primary);
 }
 .help-aside figcaption {
-  font-size: 0.8rem;
-  color: var(--color-muted-foreground);
-  margin-top: 0.5rem;
+  font-size: var(--fs-meta);
+  color: var(--muted-foreground);
+  margin-top: 8px;
   line-height: 1.5;
 }
 .help-formula {
-  border: 1px solid var(--color-border);
-  border-radius: 4px;
-  background: var(--color-muted);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--background);
   padding: 14px 16px;
-  margin: 0.5rem 0 1rem;
+  margin: 8px 0 16px;
 }
 /* Originalens formelramme; skriften er appens fastbreddeskrift som .formula (B-040). */
 .help-expression {
   font:
-    500 13px/2 'IBM Plex Mono',
+    500 var(--fs-small) / 2 ui-monospace,
+    'Cascadia Mono',
+    Consolas,
     monospace;
   color: var(--foreground);
   overflow-x: auto;
 }
-.help-expression sub {
-  font-size: 9.5px;
+.help-expression sub,
+.help-where sub {
+  font-size: 0.72em;
 }
 .help-where {
-  margin-top: 0.6rem;
-  padding-top: 0.6rem;
-  border-top: 1px solid var(--color-border);
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
   font:
-    400 11px/1.8 'IBM Plex Mono',
+    400 var(--fs-overline) / 1.8 ui-monospace,
+    'Cascadia Mono',
+    Consolas,
     monospace;
-  color: var(--color-muted-foreground);
-}
-.help-where sub {
-  font-size: 8.5px;
+  color: var(--muted-foreground);
 }
 .help-goto {
-  margin: 0.25rem 0 1rem;
+  margin: 4px 0 16px;
 }
 .help-sources {
   display: grid;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
+  gap: 8px;
+  margin-bottom: 16px;
 }
 .help-sources a {
   display: grid;
-  padding: 0.7rem;
-  border: 1px solid var(--color-border);
-  border-radius: 0.3rem;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--card);
+}
+.help-sources a:hover {
+  border-color: var(--primary);
 }
 .help-sources a:hover span {
   text-decoration: underline;
 }
 .help-sources small {
-  color: var(--color-muted-foreground);
-  margin-top: 0.3rem;
+  color: var(--muted-foreground);
+  font-size: var(--fs-meta);
+  margin-top: 4px;
 }
 @media (max-width: 760px) {
-  .help-page {
-    padding: 1rem;
-  }
   .help-intro-grid,
   .help-section {
     grid-template-columns: minmax(0, 1fr);
-    gap: 1rem;
+    gap: 16px;
   }
   .help-chapter-trigger {
-    padding: 1rem;
+    padding: 16px;
     flex-wrap: wrap;
-    gap: 0.7rem;
+    gap: 10px;
   }
   .help-chapter-summary {
     min-width: 65%;
   }
   .help-chapter-count {
-    margin-left: 2.7rem;
+    margin-left: 36px;
   }
   .help-chapter-content {
-    padding: 0 1rem 1rem;
+    padding: 0 16px 16px;
   }
 }
 

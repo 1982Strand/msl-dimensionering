@@ -9,6 +9,7 @@ import {
 import { resultChecks, type CheckNode, type CheckElement } from '../engine/result-checks';
 import type { DimensioningInput, dimensioner } from '../engine/dimensionering';
 import type { ProductRow } from '../engine/products';
+import { Notice } from './Notice';
 import './result-checks.css';
 
 type Props = {
@@ -35,19 +36,22 @@ function Element({ element }: { element: CheckElement }) {
     const outer = element.nodes[0];
     const message = typeof outer !== 'string' && outer.style;
     const warning = message && outer.style?.startsWith('background:#FCF5E8');
+    if (!message)
+      return (
+        <div>
+          <Content nodes={element.nodes} />
+        </div>
+      );
     return (
-      <div
-        className={
-          message
-            ? `result-check-message ${warning ? 'result-check-warning' : 'result-check-info'}`
-            : undefined
-        }
+      <Notice
+        kind={warning ? 'warning' : 'info'}
+        className={`result-check-message ${warning ? 'result-check-warning' : 'result-check-info'}`}
       >
         <Content nodes={element.nodes} />
-      </div>
+      </Notice>
     );
   }
-  if (element.type === 'warning') return <p className="warning-banner">{element.body}</p>;
+  if (element.type === 'warning') return <Notice kind="warning">{element.body}</Notice>;
   return (
     <div
       className={

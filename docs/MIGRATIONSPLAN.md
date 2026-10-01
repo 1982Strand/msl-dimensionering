@@ -24,8 +24,8 @@ Den eksisterende Streamlit-app (`C:\geonet_beregning`, reference `a330cfd`) omsk
 
 ## Resterende arbejde i rækkefølge
 
-1. **Samlet temagennemgang** (B-042): et mere konsistent tema gennem appen med flere shadcn-elementer, herunder oprydning i de globale tabelregler fra materialesiden. Forelægges samlet.
-2. **Oprydning før brug:** designudkastets sider (`#designudkast`, `#designudkast-sidebar`), `spikes/report-typescript/`, mærket »Under udvikling« og fodnoten »Udkast · …«.
+1. **Samlet temagennemgang** (B-042): temaudkastet er godkendt (B-058) og ført ud på alle sider på grenen `codex/tema`. Det omfatter tokens, fælles sidehoved, shadcn-kontroller, beskeder og tabeller, og de globale tabelregler er fjernet. Implementeringen forelægges brugeren før merge.
+2. **Oprydning før brug:** designudkastets sider (`#designudkast`, `#designudkast-sidebar`), temaudkastet (`#temaudkast`) og `spikes/report-typescript/`. Mærket »Under udvikling« og fodnoten »Udkast · …« er fjernet sammen med temaet (B-058).
 3. **Samlet accept** (fase 5 nedenfor) og afklaring af adgang og hosting (A-004). Merge til `main` og offentliggørelse kun efter brugerens aftale.
 
 ## Faser og acceptkriterier

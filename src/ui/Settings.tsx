@@ -5,6 +5,8 @@ import { standard_indstillinger } from '../engine/editing';
 import { useEditor } from './EditorContext';
 import { EditorFeedback, SaveState } from './EditorFeedback';
 import { SettingField, type SettingValue } from './SettingField';
+import { RotateCcw } from 'lucide-react';
+import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { aktivt_beregningsgrundlag } from '../engine/auto-edit';
 import {
@@ -12,6 +14,8 @@ import {
   settingsPage,
   type SettingsPageItem,
 } from '../engine/settings-presentation';
+import { Notice } from './Notice';
+import { PageFooter, PageHeader } from './page';
 import './Settings.css';
 
 function valueAt(value: unknown, path: string[]): SettingValue {
@@ -83,23 +87,28 @@ export function Settings() {
           </p>
         );
       case 'caption':
-        return (
-          <p className="settings-note" data-settings-caption key={index}>
+        // »Gælder …« er et mærke; øvrige forklaringer er infobeskeder (B-058).
+        return item.text.startsWith('Gælder') ? (
+          <Badge variant="outline" className="applies-badge" data-settings-caption key={index}>
             {plain(item.text)}
-          </p>
+          </Badge>
+        ) : (
+          <Notice data-settings-caption key={index}>
+            {plain(item.text)}
+          </Notice>
         );
       case 'info':
       case 'warning': {
         const split = item.text.indexOf('. ') + 1;
         return (
-          <p
-            className={item.kind === 'info' ? 'info-banner' : 'warning-banner'}
+          <Notice
+            kind={item.kind}
             role={item.kind === 'warning' ? 'status' : undefined}
+            title={item.text.slice(0, split)}
             key={index}
           >
-            <b>{item.text.slice(0, split)}</b>
             {item.text.slice(split)}
-          </p>
+          </Notice>
         );
       }
       case 'minimumTable':
@@ -108,7 +117,10 @@ export function Settings() {
             <div className="settings-minimums">
               <h3>Minimumstykkelse pr. belastningsklasse</h3>
               <div className="table-wrap">
-                <table className="summary-table minimum-table" aria-label="Minimumstykkelser">
+                <table
+                  className="data-table summary-table minimum-table"
+                  aria-label="Minimumstykkelser"
+                >
                   <thead>
                     <tr>
                       {item.table.columns.map((label) => (
@@ -153,6 +165,7 @@ export function Settings() {
                   ctx.receive(ctx.editor.edit({ section: 'indstillinger', value: next }), true);
                 }}
               >
+                <RotateCcw aria-hidden="true" />
                 {item.table.resetLabel}
               </Button>
             </div>
@@ -167,7 +180,10 @@ export function Settings() {
               components={{
                 table: ({ children }) => (
                   <div className="table-wrap">
-                    <table className="summary-table" aria-label="Eksempel på stabilgrusminimum">
+                    <table
+                      className="data-table summary-table"
+                      aria-label="Eksempel på stabilgrusminimum"
+                    >
                       {children}
                     </table>
                   </div>
@@ -184,7 +200,7 @@ export function Settings() {
             <summary>{item.label}</summary>
             <p>{plain(item.text)}</p>
             <div className="table-wrap">
-              <table className="summary-table" aria-label="Målte afvigelser">
+              <table className="data-table summary-table" aria-label="Målte afvigelser">
                 <thead>
                   <tr>
                     <th>Trafikklasse</th>
@@ -211,14 +227,12 @@ export function Settings() {
   }
   return (
     <main className="settings-page">
-      <div className="breadcrumb">Indstillinger</div>
-      <div className="page-heading">
-        <div>
-          <h1>{model.title}</h1>
-          <p className="intro">{model.intro}</p>
-        </div>
-        <SaveState />
-      </div>
+      <PageHeader
+        page="indstillinger"
+        title={model.title}
+        intro={model.intro}
+        aside={<SaveState />}
+      />
       <div className="settings-start">
         <EditorFeedback />
       </div>
@@ -242,10 +256,7 @@ export function Settings() {
           </section>
         ))}
       </fieldset>
-      <footer className="page-footer">
-        <span>Gyldige ændringer gemmes automatisk i denne browser.</span>
-        <span>MSL Dimensionering</span>
-      </footer>
+      <PageFooter>Gyldige ændringer gemmes automatisk i denne browser.</PageFooter>
     </main>
   );
 }

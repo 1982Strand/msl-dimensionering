@@ -4,6 +4,8 @@ import type { SavedEditor } from '../engine/saved-editor';
 import type { AutoEditResult } from '../engine/auto-edit';
 import type { SaveResult, JsonValue } from '../engine/session-storage';
 import { SESSION_STORAGE_KEY } from '../engine/session-storage';
+import { Button } from '@/components/ui/button';
+import { Notice } from './Notice';
 type Result = AutoEditResult & { saved: SaveResult | null };
 function useEditorState(editor: SavedEditor, isNew: boolean) {
   const [session, setSession] = useState(() => editor.snapshot());
@@ -65,10 +67,10 @@ export function EditorProvider({ children }: { children: ReactNode }) {
     return (
       <main>
         <h1>Data kunne ikke indlæses</h1>
-        <p className="message error" role="alert">
+        <Notice kind="error" className="message error" role="alert">
           {opened.message} De eksisterende data er ikke overskrevet.
-        </p>
-        <button onClick={() => location.reload()}>Prøv igen</button>
+        </Notice>
+        <Button onClick={() => location.reload()}>Prøv igen</Button>
       </main>
     );
   return (

@@ -1,9 +1,19 @@
 import { useEffect, useMemo, useRef, useState, type ReactNode, type Ref } from 'react';
+import { Download, ImageUp, Plus, RotateCcw, Trash2, Upload, UserPlus, Users } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { formatPhone } from '../report/phone-format';
 import { Input } from '../components/ui/input';
 import { Textarea } from '../components/ui/textarea';
-import { Alert, AlertDescription } from '../components/ui/alert';
+import { Checkbox } from '../components/ui/checkbox';
+import { Label } from '../components/ui/label';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '../components/ui/select';
+import { Notice } from './Notice';
 import { Popover, PopoverContent, PopoverTrigger } from '../components/ui/popover';
 import {
   Sheet,
@@ -178,13 +188,23 @@ export function CompanyProfile({
       <div className="setting-field profile-field" key={path}>
         <label htmlFor={id}>{label}</label>
         {Array.isArray(options) ? (
-          <select {...props} onChange={(e) => change(e.target.value)}>
-            {options.map(([v, l]) => (
-              <option key={v} value={v}>
-                {l}
-              </option>
-            ))}
-          </select>
+          <Select value={String(value)} onValueChange={change}>
+            <SelectTrigger
+              id={id}
+              className="setting-select"
+              aria-invalid={!!errors[path]}
+              aria-describedby={errors[path] ? id + '-error' : undefined}
+            >
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              {options.map(([v, l]) => (
+                <SelectItem key={v} value={v}>
+                  {l}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
         ) : options === 'textarea' ? (
           <Textarea {...props} rows={2} onChange={(e) => change(e.target.value)} />
         ) : (
@@ -208,20 +228,20 @@ export function CompanyProfile({
   function checkbox(path: string, label: string) {
     return (
       <div className="setting-field" key={path}>
-        <label className="setting-checkbox profile-checkbox">
-          <input
-            type="checkbox"
+        <div className="setting-checkbox profile-checkbox">
+          <Checkbox
+            id={'profile-' + path}
             checked={!!profileValue(profile, path)}
-            onChange={(e) => {
-              const checked = e.target.checked;
+            onCheckedChange={(value) => {
+              const checked = value === true;
               update((prev) => ({
                 ...prev,
                 profile: changeProfileField(prev.profile, path, checked).profile,
               }));
             }}
           />
-          {label}
-        </label>
+          <Label htmlFor={'profile-' + path}>{label}</Label>
+        </div>
       </div>
     );
   }
@@ -264,6 +284,7 @@ export function CompanyProfile({
         </p>
         <p
           role="status"
+          className="profile-save-state"
           data-testid="profile-save-state"
           data-state={!ready ? 'loading' : saving ? 'saving' : error ? 'error' : 'saved'}
         >
@@ -276,9 +297,9 @@ export function CompanyProfile({
                 : 'Firmaprofil gemt i denne browser'}
         </p>
         {(error || fileError) && (
-          <Alert variant="destructive">
-            <AlertDescription>{error ?? fileError}</AlertDescription>
-          </Alert>
+          <Notice kind="error" role="alert">
+            {error ?? fileError}
+          </Notice>
         )}
         <fieldset className="report-form" disabled={!ready || busy}>
           {card(
@@ -288,6 +309,7 @@ export function CompanyProfile({
               <img className="profile-logo" alt="Aktuelt firmalogo" src={logoSource} />
               <div className="profile-actions">
                 <Button type="button" variant="outline" onClick={() => logoInput.current?.click()}>
+                  <ImageUp aria-hidden="true" />
                   Vælg logo …
                 </Button>
                 <Button
@@ -295,6 +317,7 @@ export function CompanyProfile({
                   variant="outline"
                   onClick={() => update((prev) => ({ ...prev, logo: null }))}
                 >
+                  <RotateCcw aria-hidden="true" />
                   Brug standardlogo
                 </Button>
               </div>
@@ -475,6 +498,7 @@ export function CompanyProfile({
                   update(defaultProfileState, true);
               }}
             >
+              <RotateCcw aria-hidden="true" />
               Nulstil firmaprofil til standard
             </Button>
             <Button
@@ -496,6 +520,7 @@ export function CompanyProfile({
                 })
               }
             >
+              <Download aria-hidden="true" />
               Eksportér profil
             </Button>
             <Button
@@ -504,6 +529,7 @@ export function CompanyProfile({
               disabled={saving}
               onClick={() => importInput.current?.click()}
             >
+              <Upload aria-hidden="true" />
               Importér profil …
             </Button>
             <input
@@ -695,6 +721,7 @@ function EmployeeRow({
                   if (window.confirm(`Slet medarbejderen ${person.navn}?`)) onDelete();
                 }}
               >
+                <Trash2 aria-hidden="true" />
                 Slet
               </Button>
             </>
@@ -740,6 +767,7 @@ function Employees({
         <Popover open={adding} onOpenChange={setAdding}>
           <PopoverTrigger asChild>
             <Button type="button" variant="outline" disabled={disabled}>
+              <UserPlus aria-hidden="true" />
               Tilføj medarbejder
             </Button>
           </PopoverTrigger>
@@ -776,7 +804,10 @@ function Employees({
                     }}
                   />
                 ))}
-                <Button type="submit">Tilføj</Button>
+                <Button type="submit">
+                  <Plus aria-hidden="true" />
+                  Tilføj
+                </Button>
               </fieldset>
             </form>
           </PopoverContent>
@@ -788,6 +819,7 @@ function Employees({
         >
           <SheetTrigger asChild>
             <Button type="button" variant="outline" disabled={disabled}>
+              <Users aria-hidden="true" />
               Åbn kartotek ({profile.length})
             </Button>
           </SheetTrigger>

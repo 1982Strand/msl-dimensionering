@@ -27,6 +27,7 @@ import {
   type Formel,
 } from '../engine/hjaelp';
 import './Help.css';
+import { PageHeader } from './page';
 
 const kapitler = laes_kapitler(
   import.meta.glob<string>('../content/hjaelp/*.md', {
@@ -79,12 +80,7 @@ export function Help() {
   }
   return (
     <main className="help-page">
-      <div className="page-heading">
-        <div>
-          <h1>{HJAELP_SIDEHOVED}</h1>
-          <p>{HJAELP_UNDERTEKST}</p>
-        </div>
-      </div>
+      <PageHeader page="hjaelp" title={HJAELP_SIDEHOVED} intro={HJAELP_UNDERTEKST} />
       <section className="help-intro" aria-labelledby="help-intro-title">
         <div className="help-card-header">
           <h2 id="help-intro-title">{HJAELP_INTRO_TITEL}</h2>

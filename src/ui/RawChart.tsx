@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import type { Data, Layout } from 'plotly.js';
 import { rawDiagram } from '../engine/table-presentation';
 import type { DesignDiagram } from '../engine/editing';
+import { Notice } from './Notice';
 export function RawChart({ diagram }: { diagram: DesignDiagram }) {
   const ref = useRef<HTMLDivElement>(null),
     [failed, setFailed] = useState(false);
@@ -44,9 +45,9 @@ export function RawChart({ diagram }: { diagram: DesignDiagram }) {
   }, [diagram, empty]);
   if (empty)
     return (
-      <p className="message warning">
+      <Notice kind="warning" className="message warning">
         Diagrammet kan ikke optegnes, da tabellen ikke indeholder aflæste værdier.
-      </p>
+      </Notice>
     );
   if (failed) return <p role="alert">Diagrammet kunne ikke vises. Tabelværdierne er bevaret.</p>;
   return <div ref={ref} className="raw-chart" aria-label="Optegnet af tabellens værdier" />;

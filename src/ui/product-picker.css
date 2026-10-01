@@ -1,5 +1,6 @@
 .product-picker-trigger {
   width: 100%;
+  background: var(--card);
   height: auto;
   min-height: 44px;
   justify-content: space-between;
@@ -35,8 +36,10 @@
   padding: 0;
 }
 .product-picker-filter {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   margin: 10px 12px;
-  font-size: 13px;
 }
 .product-picker-badge.product-picker-green {
   background: var(--color-secondary);
@@ -44,12 +47,12 @@
   border-color: var(--color-border);
 }
 .product-picker-badge.product-picker-yellow {
-  background: #fcf5e8;
-  color: #a8600b;
-  border-color: #f0e2c6;
+  background: var(--warning);
+  color: var(--warning-foreground);
+  border-color: var(--warning-border);
 }
 .product-picker-badge.product-picker-neutral {
-  background: var(--color-muted);
+  background: var(--background);
 }
 /* Søgefeltets fokus vises på feltets linje; den globale fokusramme blev skåret af. */
 .product-picker-popover [cmdk-input]:focus-visible {

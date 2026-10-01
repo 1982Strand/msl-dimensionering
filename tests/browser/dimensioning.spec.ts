@@ -1,3 +1,4 @@
+import { chooseOption } from './helpers/choose-option.ts';
 import { chooseProduct } from './helpers/choose-product.ts';
 import { test, expect, type Page } from '@playwright/test';
 import { readFileSync } from 'node:fs';
@@ -66,7 +67,7 @@ test('Standard default, product interval, approved retained selection and traffi
   await expect(page.locator('.dim-results')).toHaveCount(0);
   await expect(page.getByText(/Beregningen afvises efter Indstillinger/)).toBeVisible();
   await page.getByRole('radio', { name: 'Cv — vingestyrke', exact: true }).check();
-  await expect(page.locator('#std_cv_slider')).toHaveAttribute('max', '180');
+  await expect(page.locator('#std_cv_slider')).toHaveAttribute('aria-valuemax', '180');
   await expect(page.getByText('Cv = 60 kN/m² → Eᵤ = 10 MPa')).toBeVisible();
   expect(errors).toEqual([]);
 });
@@ -82,7 +83,7 @@ test('Custom original layers, manual material and phi, scoped reset and responsi
   await number(page, 'bd_antal_lag', '2.5');
   await expect(page.locator('#bd_antal_lag')).toHaveAttribute('aria-invalid', 'true');
   await number(page, 'bd_antal_lag', '3');
-  await page.locator('#bd_mat_2').selectOption({ label: 'Manuel indtastning' });
+  await chooseOption(page, page.locator('#bd_mat_2'), 'Manuel indtastning');
   await results(page, 'UI-010');
   await page.getByRole('checkbox', { name: 'Overskriv φᵥ manuelt', exact: true }).check();
   await number(page, 'bd_phi_man', '38.5');
@@ -90,11 +91,11 @@ test('Custom original layers, manual material and phi, scoped reset and responsi
   await page.reload();
   await results(page, 'UI-011');
   await page.getByRole('link', { name: 'Indstillinger', exact: true }).click();
-  await page.locator('#ind_afr_trin').selectOption({ label: '100 mm' });
+  await chooseOption(page, page.locator('#ind_afr_trin'), '100 mm');
   await page.getByRole('link', { name: 'Dimensionering', exact: true }).click();
   await results(page, 'UI-014');
   await page.getByRole('link', { name: 'Indstillinger', exact: true }).click();
-  await page.locator('#ind_afr_trin').selectOption({ label: '50 mm' });
+  await chooseOption(page, page.locator('#ind_afr_trin'), '50 mm');
   await page.getByRole('link', { name: 'Dimensionering', exact: true }).click();
   await page.setViewportSize({ width: 390, height: 844 });
   expect(
@@ -113,9 +114,14 @@ test('class choices are horizontal, reference popups keep layout stable and prod
   page,
 }, info) => {
   await page.goto('/#dimensionering');
-  const rowTops = await page
-    .locator('input[name="std_valgt_klasse"]')
-    .evaluateAll((inputs) => inputs.map((input) => Math.round(input.getBoundingClientRect().top)));
+  // B-058: belastningsklasse 1–6 er en segmenteret knaprække af radioknapper.
+  const classes = page
+    .getByRole('radiogroup', { name: 'Belastningsklasse', exact: true })
+    .getByRole('radio');
+  await expect(classes).toHaveText(['1', '2', '3', '4', '5', '6']);
+  const rowTops = await classes.evaluateAll((inputs) =>
+    inputs.map((input) => Math.round(input.getBoundingClientRect().top)),
+  );
   expect(new Set(rowTops).size).toBe(1);
   const section = page
     .getByRole('heading', {

@@ -7,6 +7,7 @@ import {
 import { constructionSvg } from '../engine/construction-svg';
 import type { ProductRow } from '../engine/products';
 import { laengde } from '../engine/enhed';
+import { Notice } from './Notice';
 
 export function ConstructionFigure({
   result,
@@ -31,7 +32,7 @@ export function ConstructionFigure({
       <div className="construction-heading">
         <h2 id={`${id}-heading`}>Opbygning</h2>
       </div>
-      <p className="settings-note">
+      <p className="figure-note">
         Snit i samme lodrette skala
         {data.reference_mm
           ? ` · stiplet linje = indtastet ${laengde(data.reference_mm, data.enhed)}`
@@ -53,12 +54,9 @@ export function ConstructionFigure({
         />
       </div>
       {warnings.map((w) => (
-        <p
-          className={w.recommendation ? 'info-banner' : 'warning-banner'}
-          key={`${w.lag}-${w.message}`}
-        >
+        <Notice kind={w.recommendation ? 'info' : 'warning'} key={`${w.lag}-${w.message}`}>
           {w.lag} lag geonet: {w.message}
-        </p>
+        </Notice>
       ))}
     </section>
   );

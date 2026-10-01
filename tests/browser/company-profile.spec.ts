@@ -1,3 +1,4 @@
+import { chooseOption } from './helpers/choose-option.ts';
 import { expect, test, type Page } from '@playwright/test';
 import { readFile } from 'node:fs/promises';
 import { DEFAULT_COMPANY_PROFILE } from '../../src/report/profile-defaults.ts';
@@ -138,9 +139,11 @@ test('B-048/B-050/B-051: Popover, kartotek, rapportkopier og profilrundtur', asy
     ['Kvalitetssikring', people[1]],
   ] as const) {
     const group = page.getByRole('group', { name: role, exact: true });
-    await group
-      .getByLabel('Vælg fra kartotek …', { exact: true })
-      .selectOption({ label: `${person.initialer} – ${person.navn}` });
+    await chooseOption(
+      page,
+      group.getByLabel('Vælg fra kartotek …', { exact: true }),
+      `${person.initialer} – ${person.navn}`,
+    );
     await expect(group.locator('input[type=text]')).toHaveCount(4);
     expect(
       await group

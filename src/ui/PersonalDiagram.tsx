@@ -14,6 +14,9 @@ import {
   dk,
   type PersonalDiagramModel,
 } from '../engine/personal-diagram-svg';
+import { Checkbox } from '@/components/ui/checkbox';
+import { Label } from '@/components/ui/label';
+import { Notice } from './Notice';
 import './PersonalDiagram.css';
 
 type Active = { li: number; pi: number } | { punkt: number };
@@ -257,36 +260,36 @@ export function PersonalDiagram({
       <div className="construction-heading">
         <h2 id={`${id}-heading`}>Designdiagram</h2>
       </div>
-      <p className="settings-note">
+      <p className="figure-note">
         Eₒ = {pythonFixed(result.eo, 0)} MPa · {basis}
         {custom ? ` · φᵥ = ${pythonFixed(result.phi, 1).replace('.', ',')}°` : ''} ·{' '}
         {result.geonet_navn}
       </p>
       {custom && (
-        <div className="flex flex-wrap gap-5 mb-3">
-          <label className="flex items-center gap-2">
-            <input
-              type="checkbox"
+        <div className="figure-choices">
+          <div className="setting-checkbox">
+            <Checkbox
+              id={`${id}-input`}
               checked={showInput}
               disabled={!result.materialer.length}
-              onChange={(e) => onChange('bd_dd_vis_din_prik', e.target.checked)}
+              onCheckedChange={(checked) => onChange('bd_dd_vis_din_prik', checked === true)}
             />
-            Vis indtastet opbygning
-          </label>
-          <label className="flex items-center gap-2">
-            <input
-              type="checkbox"
+            <Label htmlFor={`${id}-input`}>Vis indtastet opbygning</Label>
+          </div>
+          <div className="setting-checkbox">
+            <Checkbox
+              id={`${id}-endpoints`}
               checked={showEndpoints}
-              onChange={(e) => onChange('bd_dd_vis_lag_prikker', e.target.checked)}
+              onCheckedChange={(checked) => onChange('bd_dd_vis_lag_prikker', checked === true)}
             />
-            Vis endepunkter for 1 og 2 lag geonet
-          </label>
+            <Label htmlFor={`${id}-endpoints`}>Vis endepunkter for 1 og 2 lag geonet</Label>
+          </div>
         </div>
       )}
       {diagram.failure && (
-        <p role="alert" className="warning-banner">
+        <Notice kind="warning" role="alert">
           Kunne ikke generere designdiagram: {diagram.failure}
-        </p>
+        </Notice>
       )}
       {diagram.model && <DiagramCanvas m={diagram.model} svg={diagram.svg} uid={uid} />}
     </section>

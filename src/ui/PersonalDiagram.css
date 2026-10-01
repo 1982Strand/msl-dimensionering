@@ -5,7 +5,7 @@
   font-family: 'Segoe UI', Carlito, system-ui, sans-serif;
 }
 .personal-diagram-canvas:focus-visible {
-  outline: 2px solid #417e6c;
+  outline: 2px solid var(--primary);
   outline-offset: 4px;
   border-radius: 6px;
 }
@@ -29,12 +29,12 @@
   max-width: min(320px, 70%);
   padding: 6px 10px;
   min-width: 160px;
-  border: 1px solid #dce3dd;
+  border: 1px solid var(--border);
   border-radius: 8px;
-  background: #fff;
-  color: #263a32;
+  background: var(--card);
+  color: var(--foreground);
   box-shadow: 0 8px 24px rgba(16, 24, 20, 0.12);
-  font-size: 12px;
+  font-size: var(--fs-meta);
 }
 .personal-diagram-tooltip-row {
   display: flex;
@@ -48,7 +48,7 @@
   min-width: 44px;
 }
 .personal-diagram-tooltip-row > span:last-child {
-  color: #65736d;
+  color: var(--muted-foreground);
 }
 .personal-diagram-key {
   display: inline-block;
@@ -63,5 +63,5 @@
 }
 .personal-diagram-tooltip-sub {
   margin-left: 24px;
-  color: #65736d;
+  color: var(--muted-foreground);
 }

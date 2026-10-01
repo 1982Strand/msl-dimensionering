@@ -1,6 +1,7 @@
 import { AlertCircle, CheckCircle2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useEditor } from './EditorContext';
+import { Notice } from './Notice';
 
 export function SaveState() {
   const { saveError, saved } = useEditor();
@@ -17,20 +18,23 @@ export function EditorFeedback() {
   return (
     <>
       {ctx.externalChange && (
-        <div className="message warning" role="alert">
+        <Notice kind="warning" className="message warning" role="alert">
           Data er ændret i en anden fane.{' '}
-          <Button onClick={() => location.reload()}>Genindlæs data</Button>
-        </div>
+          <Button size="sm" onClick={() => location.reload()}>
+            Genindlæs data
+          </Button>
+        </Notice>
       )}
       {ctx.errors.map((message) => (
-        <div className="message error" role="alert" key={message}>
+        <Notice kind="error" className="message error" role="alert" key={message}>
           {message}
-        </div>
+        </Notice>
       ))}
       {ctx.saveError && (
-        <div className="message error" role="alert">
+        <Notice kind="error" className="message error" role="alert">
           {ctx.saveError} Ændringerne er stadig i denne åbne fane.
           <Button
+            size="sm"
             disabled={ctx.externalChange}
             onClick={() => {
               const result = ctx.editor.retrySave();
@@ -40,7 +44,7 @@ export function EditorFeedback() {
           >
             Prøv at gemme igen
           </Button>
-        </div>
+        </Notice>
       )}
     </>
   );

@@ -50,7 +50,14 @@ export function Cell({
     if (ok && next === value) setText(value == null ? '' : String(value));
   }
   return (
-    <td className={changed ? 'changed-cell' : emphasized ? 'read-point' : ''}>
+    <td
+      className={[
+        changed ? 'changed-cell' : emphasized ? 'read-point' : '',
+        column.numeric ? 'num' : '',
+      ]
+        .filter(Boolean)
+        .join(' ')}
+    >
       <Input
         ref={input}
         className="cell-input"

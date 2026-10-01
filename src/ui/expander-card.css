@@ -1,15 +1,19 @@
 /* Sidens udfoldelige afsnit (originalens expandere) som ens kort, i M1's udseende. */
 .dim-expander-card {
-  background: white;
-  border: 1px solid #dce3dd;
-  border-radius: 9px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
   margin: 12px 0 0;
   overflow: hidden;
 }
 .dim-expander-card [data-slot='accordion-trigger'] {
-  padding: 18px 24px;
-  font-size: 13px;
-  font-weight: 400;
+  padding: 16px 24px;
+  font-size: var(--fs-body);
+  font-weight: 500;
+}
+.dim-expander-card [data-slot='accordion-trigger']:hover {
+  text-decoration: none;
+  background: var(--background);
 }
 .dim-expander-card [data-slot='accordion-content'] > div {
   padding: 0 24px 24px;
