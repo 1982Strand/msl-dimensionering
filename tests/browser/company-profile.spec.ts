@@ -44,7 +44,8 @@ async function exported(page: Page) {
 }
 async function stored(page: Page) {
   return page.evaluate(
-    (key) => JSON.parse(localStorage.getItem(key)!).current.profile,
+    // Profilen gemmes først ved første ændring; et tomt lager er standardprofilen.
+    (key) => JSON.parse(localStorage.getItem(key) ?? 'null')?.current.profile ?? null,
     PROFILE_STORAGE_KEY,
   );
 }
@@ -104,7 +105,7 @@ test('B-048/B-050/B-051: Popover, kartotek, rapportkopier og profilrundtur', asy
       await expect(
         addForm.getByText('Angiv en gyldig mailadresse.', { exact: true }),
       ).toBeVisible();
-      expect((await stored(page)).medarbejdere).toEqual([]);
+      expect((await stored(page))?.medarbejdere ?? []).toEqual([]);
       await addForm.getByLabel('Mail', { exact: true }).fill(person.mail);
       await addForm.getByLabel('Initialer', { exact: true }).fill(person.initialer);
       await addForm.getByRole('button', { name: 'Tilføj', exact: true }).click();
