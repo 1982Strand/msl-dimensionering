@@ -154,15 +154,16 @@ Kørt 01.10.2026 på integrationsgrenen med Node `v26.4.0`:
 | `npm test` | **2.998 enhedstests/Node-tests**, 2.998 bestået, 0 fejl, 0 oversprunget, 0 annulleret, 0 todo. |
 | `npm run format:check` | Bestået for de konfigurerede kode-/CSS-filer; Markdown indgår ikke i Prettier-scriptet. |
 | `npm run build` | Bestået. |
-| Playwright (Chromium, Desktop Chrome) | **54 browserforløb**, alle bestået. |
+| Playwright (Chromium, Desktop Chrome) | **75 browserforløb**, alle bestået. |
 | `node tools/build-r6-pdfs.ts` | Alle 31 PDF'er byte-identiske med det godkendte R6-sæt. |
 
 På Windows blev kommandoerne kørt med `npm.cmd`, da PowerShell blokerer `npm.ps1`. Node-testene omfatter både løkker over referencecases og særskilte adfærdstests; et testtal alene dokumenterer ikke fuld UI-/PDF-dækning.
 
-Der findes **54 browserforløb i 19 filer**, kørt af Claude og alle bestået. Numrene i hver celle følger testenes rækkefølge i filen og beskriver hvert selvstændigt `test(...)`. Den nuværende Playwright-konfiguration bruger Desktop Chrome og 1440 × 1050 px; konkrete tests skifter bl.a. til 390 × 844 og 600 × 900 px. Chrome er aftalt som browser (B-060); andre browsere testes ikke nu.
+Der findes **75 browserforløb i 20 filer**, kørt af Claude og alle bestået. Numrene i hver celle følger testenes rækkefølge i filen og beskriver hvert selvstændigt `test(...)`. Den nuværende Playwright-konfiguration bruger Desktop Chrome og 1440 × 1050 px; konkrete tests skifter bl.a. til 390 × 844 og 600 × 900 px. Chrome er aftalt som browser (B-060); andre browsere testes ikke nu.
 
 | Fil i `tests/browser/` | Antal | Forløb og kontroller |
 | --- | --- | --- |
+| `acceptance-gaps.spec.ts` | 21 | Lukkede testhuller: slidergrænser og trin, inputgrænser og lagtyper, alle sorteringskolonner, Vis alle/9 kørsler, slettet materiale med advarsel og genskabelse, nulstil alle diagrammer, under-minimum (LT-1/LT-2/MIN-1) og hjælpeikonets Hover Card med mus, tastatur, klik og touch. |
 | `accessibility.spec.ts` | 3 | 1–2) Axe (WCAG 2.1 A/AA) på alle otte sider med udfoldede afsnit og åbne detaljer ved 1440 og 390 px. 3) Brugerdefineret/trafikklasse, korrelationspopup, produktvælger, firmaprofil, medarbejder-Popover og kartotek. |
 | `company-profile.spec.ts` | 3 | 1) Medarbejder-Popover, validering, Sheet, opret/ret/slet med bekræftelse, kopier til rapport, telefon/revisionsspærring, genåbning, mobil og profilrundtur. 2) Live profilrevision, PNG-logo i PDF, ugyldige feltværdier, genåbning, eksport/import, afsnitsflytning, bekræftet nulstilling og mobil. 3) Faktisk IndexedDB-fejl bevarer sidst konsistente profil/logo efter genåbning. |
 | `construction.spec.ts` | 1 | Originale søjler/ugyldigt snit, fælles skala, netplacering ved laggrænse/dæklag, intervalmarkeringer, cm, figurfravalg, genåbning og mobil rulning inden for figuren. |
@@ -208,7 +209,7 @@ R6 er genbygget 01.10.2026 efter temaet og oprydningen; alle 31 PDF'er er byte-i
 
 Handlingerne følger fase 5 i [MIGRATIONSPLAN.md](MIGRATIONSPLAN.md). Enkelte delgodkendelser, herunder B-055/B-059, er ikke en beslutning om offentliggørelse.
 
-1. **Browsere og enheder:** Afklaret i B-060: Chrome. Alle 54 browserforløb kører i Chromium (Desktop Chrome) og består.
+1. **Browsere og enheder:** Afklaret i B-060: Chrome. Alle 75 browserforløb kører i Chromium (Desktop Chrome) og består.
 2. **Skærmstørrelser:** Afklaret i B-062: 1440, 600 og 390 px er tilstrækkeligt til intern brug.
 3. **Tilgængelighed:** Automatisk axe-kontrol (WCAG 2.1 A/AA) indgår og består. Afklaret i B-062: tilstrækkeligt til intern brug. En manuel gennemgang med skærmlæser, zoom og touch tages før offentliggørelse.
 4. **Lagring og nulstilling:** Dækket af enheds- og browserforløb (første start med B-008-standarder, genåbning, afgrænsede nulstillinger, dato-undtagelsen, localStorage-/IndexedDB-fejl, flere faner, profilens eksport/import). Ingen handling udestår ud over brugerens accept.
