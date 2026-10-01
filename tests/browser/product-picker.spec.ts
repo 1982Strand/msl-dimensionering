@@ -66,7 +66,7 @@ test('B-054: søgbar produktvælger, tastatur, filter, resultat og nummer 3', as
   await expect(trigger).toContainText('Tensar InterAx NX850');
   await chooseProduct(page, 'std', 'Tensar InterAx NX850');
   await expect(trigger).toContainText('Net-korrektion −15 %');
-  await expect(trigger).toContainText('Optimalt −30 %');
+  await expect(trigger).toContainText('Optimal korrektion −30 %');
   await expect(
     page.getByRole('heading', { name: 'Detaljer · Tensar InterAx NX850', exact: true }),
   ).toBeVisible();

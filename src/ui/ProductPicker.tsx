@@ -92,6 +92,7 @@ export function ProductPicker({
         </PopoverTrigger>
         <PopoverContent
           align="start"
+          collisionPadding={8}
           className="product-picker-popover"
           onOpenAutoFocus={(event) => {
             event.preventDefault();

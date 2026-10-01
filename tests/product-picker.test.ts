@@ -38,7 +38,7 @@ test('B-054: samme 20 produkter, seriegrupper og rækkefølge som originalens va
   );
 });
 
-test('B-054: klasser, net-korrektion, Optimalt og Referencenet mod alle 20 originale etiketter', () => {
+test('B-054: klasser, net-korrektion, Optimal korrektion og Referencenet mod alle 20 originale etiketter', () => {
   const items = flatten(productPicker(names, { selectedClass: 4 }));
   assert.equal(items.length, 20);
   for (const [i, item] of items.entries()) {
@@ -56,7 +56,7 @@ test('B-054: klasser, net-korrektion, Optimalt og Referencenet mod alle 20 origi
           tone: recommended ? 'green' : 'yellow',
         },
         { text: `Net-korrektion ${correction}`, tone: 'neutral' },
-        ...(optimal ? [{ text: `Optimalt ${optimal}`, tone: 'neutral' }] : []),
+        ...(optimal ? [{ text: `Optimal korrektion ${optimal}`, tone: 'neutral' }] : []),
         ...(label.includes('· Referencenet') ? [{ text: 'Referencenet', tone: 'neutral' }] : []),
       ],
       item.name,
@@ -68,7 +68,7 @@ test('B-054: klasser, net-korrektion, Optimalt og Referencenet mod alle 20 origi
       .find((p) => p.name === 'Tensar InterAx NX850')!
       .badges.slice(1)
       .map((b) => b.text),
-    ['Net-korrektion −15 %', 'Optimalt −30 %'],
+    ['Net-korrektion −15 %', 'Optimal korrektion −30 %'],
   );
   assert.deepEqual(
     items.filter((p) => p.badges.some((b) => b.text === 'Referencenet')).map((p) => p.name),

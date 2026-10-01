@@ -64,7 +64,7 @@ export function productPicker(
     const correction = label.match(/Net-korrektion: ([+−-]?\d+ %)/)?.[1];
     const optimal = label.match(/opt\. ([+−-]?\d+ %)/)?.[1];
     if (correction) badges.push({ text: `Net-korrektion ${correction}`, tone: 'neutral' });
-    if (optimal) badges.push({ text: `Optimalt ${optimal}`, tone: 'neutral' });
+    if (optimal) badges.push({ text: `Optimal korrektion ${optimal}`, tone: 'neutral' });
     if (label.includes('· Referencenet')) badges.push({ text: 'Referencenet', tone: 'neutral' });
     const series = product?.serie ?? '';
     let group = groups.find((g) => g.series === series);
