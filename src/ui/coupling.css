@@ -302,8 +302,9 @@
   letter-spacing: 0.08em;
   margin-bottom: 7px;
 }
+/* Figurens blå (#2a78d6) gør den lille overskrift for svag; teksten er en mørkere udgave. */
 .coupling-explanation .kob-1lag {
-  color: #2a78d6;
+  color: color-mix(in srgb, #2a78d6 78%, black);
 }
 .coupling-explanation .kob-2lag {
   color: #7b1fa2;

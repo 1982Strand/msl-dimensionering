@@ -14,8 +14,10 @@ function Content({ nodes }: { nodes: CouplingNode[] }) {
   return nodes.map((n, i) => {
     if (typeof n === 'string') return <Fragment key={i}>{n}</Fragment>;
     const Tag = n.tag;
+    // Regnestykker ruller vandret på smalle skærme og skal kunne nås med tastaturet.
+    const scrolls = n.className?.split(' ').includes('kob-formel');
     return (
-      <Tag key={i} className={n.className}>
+      <Tag key={i} className={n.className} tabIndex={scrolls ? 0 : undefined}>
         {Tag === 'br' ? undefined : <Content nodes={n.children} />}
       </Tag>
     );

@@ -41,7 +41,8 @@ const diagramColumns: TableColumn[] = [
 function ReadTable({ rows, label }: { rows: Record<string, unknown>[]; label: string }) {
   if (!rows.length) return null;
   return (
-    <div className="table-wrap">
+    // Rulleområdet kan nås med tastaturet, når tabellen er bredere end skærmen.
+    <div className="table-wrap" tabIndex={0} role="region" aria-label={label}>
       <table className="data-table summary-table" aria-label={label}>
         <thead>
           <tr>
