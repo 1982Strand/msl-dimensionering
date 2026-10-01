@@ -8,6 +8,10 @@ Migrering af det eksisterende Streamlit-værktøj til dimensionering af MSL-opby
 
 Kræver Node 24 eller nyere.
 
+**Start appen:** dobbeltklik på `Start MSL Dimensionering.cmd`. Filen installerer afhængigheder første gang, bygger appen, når koden er ændret, starter serveren og åbner http://127.0.0.1:5174/ i browseren. Kører serveren allerede, åbnes appen blot. Luk serverens vindue for at stoppe den.
+
+For udviklere:
+
 ```powershell
 npm ci
 npm run dev            # udviklingsserver
