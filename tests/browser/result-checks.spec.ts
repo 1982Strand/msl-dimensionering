@@ -1,3 +1,4 @@
+import { chooseProduct } from './helpers/choose-product.ts';
 import { test, expect } from '@playwright/test';
 
 test('M3: status, closed expanders, FIG-003 recommendation and execution requirements', async ({
@@ -12,11 +13,7 @@ test('M3: status, closed expanders, FIG-003 recommendation and execution require
   await page.locator('#bd_eu_slider').focus();
   await page.locator('#bd_eu_slider').press('Home');
   for (let i = 1; i < 5; i++) await page.locator('#bd_eu_slider').press('ArrowRight');
-  const productLabel = await page
-    .locator('#bd_geonet option')
-    .filter({ hasText: 'Tensar InterAx NX850' })
-    .innerText();
-  await page.locator('#bd_geonet').selectOption({ label: productLabel });
+  await chooseProduct(page, 'bd', 'Tensar InterAx NX850');
 
   const status = page.locator('.bg-resultat-status');
   await expect(status).toHaveText('⚠ 1 kontrolpunktⓘ 1 anbefaling');

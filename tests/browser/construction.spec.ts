@@ -1,10 +1,6 @@
+import { chooseProduct } from './helpers/choose-product.ts';
 import { test, expect, type Page } from '@playwright/test';
-async function nx850(page: Page, prefix: string) {
-  const field = page.locator(`#${prefix}_geonet`);
-  await field.selectOption({
-    label: await field.locator('option').filter({ hasText: 'Tensar InterAx NX850' }).innerText(),
-  });
-}
+
 async function eu(page: Page, prefix: string) {
   const field = page.locator(`#${prefix}_eu_slider`);
   await field.focus();
@@ -26,7 +22,7 @@ test('construction figures preserve original sections, shared scale, placement s
   );
   await figure.screenshot({ path: info.outputPath('standard-default.png') });
   await eu(page, 'std');
-  await nx850(page, 'std');
+  await chooseProduct(page, 'std', 'Tensar InterAx NX850');
   await expect(svg.locator('[data-column="1"]')).toHaveAttribute('data-total-mm', '750');
   await expect(svg.locator('[data-column="2"] [data-elevation-mm]').first()).toHaveAttribute(
     'data-elevation-mm',
@@ -63,7 +59,7 @@ test('construction figures preserve original sections, shared scale, placement s
   await expect(svg.locator('[data-column="1"] [data-kind="dimension-value"]')).toHaveText('75 cm');
   await page.getByRole('radio', { name: 'Brugerdefineret', exact: true }).check();
   await eu(page, 'bd');
-  await nx850(page, 'bd');
+  await chooseProduct(page, 'bd', 'Tensar InterAx NX850');
   await expect(svg.locator('[data-column]')).toHaveCount(4);
   await expect(svg.locator('[data-column="0"]')).toHaveAttribute('data-total-mm', '700');
   await expect(svg.locator('[data-kind="reference"]')).toHaveCount(4);

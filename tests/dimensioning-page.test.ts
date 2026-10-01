@@ -23,6 +23,19 @@ export function serializePageNode(n: PageDisplayNode): string {
     .map(([key, value]) => ` ${key}="${key === 'style' ? value : escape(value)}"`)
     .join('')}>${n.children.map(serializePageNode).join('')}</${n.tag}>`;
 }
+/** Godkendt afvigelse B-054: kun Resultats overskrift får nummer 3 som afsnit 1/2. */
+function resultHeadingWithNumberB054(original: string): string {
+  const oldHeading =
+    '<div class="bg-resultat-hoved-a"><div class="bg-resultat-titel">Resultat</div>';
+  assert.ok(
+    original.startsWith(oldHeading),
+    'B-054 kræver originalens præcise Resultat-overskrift',
+  );
+  return original.replace(
+    oldHeading,
+    '<div class="bg-trin-hoved"><div class="bg-trin-nr">3</div><div class="bg-trin-titel">Resultat</div>',
+  );
+}
 for (const c of pageCases)
   test(`M9 ${c.id}: hvert element, rækkefølge, fremhævelser og fravær`, () => {
     const input = pageCaseInput(c),
@@ -56,7 +69,13 @@ for (const c of pageCases)
       })),
       original.map((e) => {
         assert.ok(!isBlock(e.node));
-        return { slot: e.slot, type: e.node.type, text: elementText(e.node) };
+        const originalText = elementText(e.node);
+        return {
+          slot: e.slot,
+          type: e.node.type,
+          text:
+            e.slot === 'resultHeading' ? resultHeadingWithNumberB054(originalText!) : originalText,
+        };
       }),
     );
     const expander = inventory.find(
