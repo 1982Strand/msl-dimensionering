@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useEditor } from './EditorContext';
 import { EditorFeedback, SaveState } from './EditorFeedback';
 import { SettingField, type SettingDefinition, type SettingValue } from './SettingField';
@@ -113,17 +113,33 @@ export function Dimensioning() {
     )
       ctx.remember({ [`${prefix}_geonet`]: result.geonet_navn });
   }, [result?.geonet_navn, prefix, ctx.externalChange]);
+  // Originalen (app.py:6540–6575, 6650–6654): et lag, hvis materiale er slettet, skiftes til
+  // manuel indtastning med en advarsel, til næste ændring. Lag 1–2 har originalens standardvalg.
+  const [deletedMaterials, setDeletedMaterials] = useState<Record<number, string>>({});
   useEffect(() => {
     if (standard || basis.eo === null || ctx.externalChange) return;
     const normalized: Record<string, SettingValue> = {};
+    const deleted: Record<number, string> = {};
     for (let i = 0; i < Number(values.bd_antal_lag); i++) {
+      const stored = ctx.session.values[`bd_mat_${i}`];
+      const intended = stored ?? ['Stabilgrus SGII 0-32', 'Bundsikringssand'][i];
+      if (
+        typeof intended === 'string' &&
+        intended !== MANUAL_MATERIAL &&
+        !ctx.session.data.materialer.some((m) => m.navn === intended)
+      ) {
+        normalized[`bd_mat_${i}`] = MANUAL_MATERIAL;
+        deleted[i] = intended;
+      }
       for (const key of [`bd_mat_${i}`, `bd_t_${i}`])
         if (ctx.session.values[key] != null && ctx.session.values[key] !== values[key])
           normalized[key] = values[key] as SettingValue;
     }
+    if (Object.keys(deleted).length) setDeletedMaterials((prev) => ({ ...prev, ...deleted }));
     if (Object.keys(normalized).length) ctx.remember(normalized);
   }, [ctx.session, standard, basis.eo, ctx.externalChange]);
   function change(key: string, value: SettingValue) {
+    setDeletedMaterials({});
     const updates: Record<string, SettingValue> = { [key]: value };
     if (key === 'bd_phi_override' && value && ctx.session.values.bd_phi_man == null)
       updates.bd_phi_man = pythonRound(phi_fra_materialer(input.materialer ?? []), 1);
@@ -393,6 +409,12 @@ export function Dimensioning() {
                               </div>
                             ) : (
                               content(`layerNote${i}`)
+                            )}
+                            {deletedMaterials[i] && (
+                              <Notice kind="warning">
+                                Materialet '{deletedMaterials[i]}' findes ikke længere i databasen.
+                                Laget er skiftet til manuel indtastning.
+                              </Notice>
                             )}
                           </div>
                         );

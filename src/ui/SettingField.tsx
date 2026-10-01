@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { CircleHelp } from 'lucide-react';
 import { RadioGroup as RadioGroupPrimitive } from 'radix-ui';
 import { Checkbox } from '@/components/ui/checkbox';
@@ -18,24 +18,56 @@ import { HoverCard, HoverCardContent, HoverCardTrigger } from '@/components/ui/h
  * Åbner ved mus og tastaturfokus; et tryk åbner og lukker på berøringsskærme. */
 export function HelpHint({ label, help }: { label: string; help: string }) {
   const [open, setOpen] = useState(false);
+  // Et klik eller tryk giver også fokus; kun tastaturfokus åbner, så klikket alene skifter.
+  const pointer = useRef(false);
+  const trigger = useRef<HTMLButtonElement>(null);
+  // Hover-åbningen er forsinket; efter et klik må den ikke genåbne et kort, klikket lige lukkede.
+  const clicked = useRef(-Infinity);
   return (
-    <HoverCard open={open} onOpenChange={setOpen} openDelay={150} closeDelay={100}>
+    <HoverCard
+      open={open}
+      onOpenChange={(next) => {
+        if (next && performance.now() - clicked.current < 400) return;
+        setOpen(next);
+      }}
+      openDelay={150}
+      closeDelay={100}
+    >
       <HoverCardTrigger asChild>
         <button
+          ref={trigger}
           type="button"
           className="help-hint"
           aria-label={`Forklaring: ${label}`}
+          onPointerDown={() => {
+            pointer.current = true;
+          }}
           onClick={(e) => {
             e.preventDefault();
+            pointer.current = false;
+            clicked.current = performance.now();
             setOpen((v) => !v);
           }}
-          onFocus={() => setOpen(true)}
-          onBlur={() => setOpen(false)}
+          onFocus={() => {
+            if (!pointer.current) setOpen(true);
+          }}
+          onBlur={() => {
+            pointer.current = false;
+            setOpen(false);
+          }}
         >
           <CircleHelp aria-hidden="true" />
         </button>
       </HoverCardTrigger>
-      <HoverCardContent className="help-hint-content" side="top" align="start">
+      <HoverCardContent
+        className="help-hint-content"
+        side="top"
+        align="start"
+        // Et tryk på ikonet er ikke »udenfor«; ellers lukker kortet og åbnes igen af klikket.
+        onPointerDownOutside={(e) => {
+          if (trigger.current?.contains(e.target as Node)) e.preventDefault();
+        }}
+      >
         {help}
       </HoverCardContent>
     </HoverCard>
