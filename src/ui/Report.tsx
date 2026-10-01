@@ -1,5 +1,8 @@
 import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import ReactMarkdown from 'react-markdown';
+import { Bold, Italic, List } from 'lucide-react';
+import { Tooltip, TooltipTrigger, TooltipContent } from '../components/ui/tooltip';
+import { formatTextSelection, type TextFormatAction } from '../report/text-format';
 import { useEditor } from './EditorContext';
 import { EditorFeedback, SaveState } from './EditorFeedback';
 import { Button } from '../components/ui/button';
@@ -24,7 +27,7 @@ import {
   type ReportNode,
   type ReportStep,
 } from '../report/report-page';
-import { reportData, STANDARD_TEKSTER, type SectionKey } from '../report/report-data';
+import { reportData, STANDARD_TEKSTER, SECTION_KEYS, type SectionKey } from '../report/report-data';
 import { reportFigures } from '../report/report-figures';
 import { reportDocument, loadReportAssets, type ReportAssets } from '../report/report-document';
 import { logoDataUrl, logoExtension } from '../report/company-profile';
@@ -294,14 +297,84 @@ export function Report({
           <AccordionItem value={node.key}>
             <AccordionTrigger>{node.title}</AccordionTrigger>
             <AccordionContent>
-              <div className="report-editor">{node.children.map(renderNode)}</div>
+              <div className="report-editor">
+                {SECTION_KEYS.includes(node.key as SectionKey) ? (
+                  <>
+                    <div className="report-section-actions">
+                      {node.children
+                        .filter((child) => child.kind === 'button' || child.kind === 'checkbox')
+                        .map(renderNode)}
+                    </div>
+                    {node.children
+                      .filter((child) => child.kind !== 'button' && child.kind !== 'checkbox')
+                      .map(renderNode)}
+                  </>
+                ) : (
+                  node.children.map(renderNode)
+                )}
+              </div>
             </AccordionContent>
           </AccordionItem>
         </Accordion>
       );
+    if (node.kind === 'text_toolbar') {
+      const fieldKey = node.key;
+      function format(action: TextFormatAction) {
+        const field = document.getElementById(fieldKey) as HTMLTextAreaElement | null;
+        if (!field) return;
+        const next = formatTextSelection(
+          field.value,
+          field.selectionStart,
+          field.selectionEnd,
+          action,
+        );
+        ctx.remember({ [fieldKey]: next.value });
+        requestAnimationFrame(() => {
+          field.focus();
+          field.setSelectionRange(next.start, next.end);
+        });
+      }
+      return (
+        <div
+          key={`toolbar-${key}`}
+          className="report-text-toolbar"
+          role="group"
+          aria-label="Tekstformatering"
+        >
+          {(
+            [
+              ['bold', 'Fed', Bold],
+              ['italic', 'Kursiv', Italic],
+              ['bullet', 'Punkt', List],
+            ] as const
+          ).map(([action, label, Icon]) => (
+            <Tooltip key={action}>
+              <TooltipTrigger asChild>
+                <Button
+                  type="button"
+                  variant="ghost"
+                  size="sm"
+                  aria-label={label}
+                  onMouseDown={(event) => event.preventDefault()}
+                  onClick={() => format(action)}
+                >
+                  <Icon aria-hidden="true" />
+                  {label}
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>
+                {label === 'Punkt'
+                  ? 'Sæt punkt foran de markerede linjer'
+                  : `Formatér markeringen: ${label.toLowerCase()}`}
+              </TooltipContent>
+            </Tooltip>
+          ))}
+        </div>
+      );
+    }
     if (node.kind === 'figure') {
       const figure = figures?.[node.key];
-      return figure ? (
+      return figure || node.key === 'designdiagram' ? (
         <section key={key} className="section-card settings-card m9-figure report-figure">
           <div data-m9-slot={node.key}>
             <div className="bg-kort-hoved">
@@ -309,7 +382,10 @@ export function Report({
               <p className="bg-kort-note">{node.note}</p>
             </div>
           </div>
-          <div dangerouslySetInnerHTML={{ __html: figure.svg }} />
+          {node.children && (
+            <div className="report-diagram-choices">{node.children.map(renderNode)}</div>
+          )}
+          {figure && <div dangerouslySetInnerHTML={{ __html: figure.svg }} />}
         </section>
       ) : null;
     }
@@ -411,18 +487,6 @@ export function Report({
             {nodes
               .filter((node) => node.kind === 'checkbox' && cuts.includes(node.key))
               .map(renderNode)}
-          </div>
-          <div className="report-diagram-choices">
-            <div>
-              {nodes
-                .filter((node) => 'key' in node && node.key === 'rap_vis_designdiagram')
-                .map(renderNode)}
-            </div>
-            <div>
-              {nodes
-                .filter((node) => node.kind === 'checkbox' && node.key.startsWith('rap_dd_'))
-                .map(renderNode)}
-            </div>
           </div>
           {nodes.filter((node) => node.kind !== 'checkbox').map(renderNode)}
         </>

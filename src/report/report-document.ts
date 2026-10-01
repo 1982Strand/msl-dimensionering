@@ -1,5 +1,5 @@
 import type { PdfRequest } from './compile-queue.ts';
-import type { ReportData } from './report-data.ts';
+import { SECTION_KEYS, type ReportData } from './report-data.ts';
 import type { ReportFigures } from './report-figures.ts';
 import {
   DEFAULT_COMPANY_PROFILE,
@@ -50,11 +50,22 @@ export function reportDocument(
   assets: ReportAssets,
   profile: CompanyProfile = DEFAULT_COMPANY_PROFILE,
 ): PdfRequest {
+  // B-046: fravalgte afsnit sendes hverken som rå tekst eller overskrift til dokumentet.
+  const context = { ...data.context };
+  const sections = { ...data.sections };
+  for (const key of SECTION_KEYS) {
+    if (!(key in data.formattedTexts)) {
+      Reflect.deleteProperty(context, `tekst_${key}`);
+      Reflect.deleteProperty(sections, key);
+    }
+  }
   const logoPath = `assets/logo.${assets.logoExtension ?? 'jpeg'}`;
   const files: Record<string, string | Uint8Array> = {
     'layout.typ': assets.layout,
     'data.json': JSON.stringify({
       ...data,
+      context,
+      sections,
       visualisering: figures.visualisering
         ? { image: 'figures/construction.svg', width_mm: figures.visualisering.width_mm }
         : null,

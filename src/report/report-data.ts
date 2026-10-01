@@ -7,6 +7,7 @@ import { PHI_BASIS } from '../engine/data.ts';
 import { normaliser as afrunding, eksakt_navn, er_oprundet } from '../engine/afrunding.ts';
 import { normaliser as enhed, laengde } from '../engine/enhed.ts';
 import { pythonFixed } from '../engine/python-numbers.ts';
+import { parseReportText, type FormattedText } from './text-format.ts';
 
 export const SECTION_KEYS = [
   'oplyste_forudsaetninger',
@@ -104,6 +105,8 @@ export const STANDARD_TEKSTER: Readonly<Record<SectionKey, string>> = {
 export const STANDARD_MATERIALER_RAPPORT = ['Stabilgrus SG II', 'Bundsikring BL II'] as const;
 export type BasisLineKey = 'eu' | 'grundlag' | 'eo_aekv' | 'yderomraade' | 'materialer' | 'phi';
 export interface ReportChoices {
+  /** B-046: fravalg er adskilt fra bevidst tom tekst. */
+  medtag_afsnit?: Partial<Record<SectionKey, boolean>>;
   enhed?: string | null;
   grundlag_linjer?: Partial<Record<BasisLineKey, boolean>> | null;
   standard_materialer?: readonly (string | null)[] | null;
@@ -137,6 +140,8 @@ export interface ReportBasis {
 export interface ReportData {
   context: ReportContext;
   sections: Record<SectionKey, string>;
+  /** Kun medtagne tekster. Rå kontekststrenge bevares til referencekontrol. */
+  formattedTexts: Partial<Record<SectionKey, FormattedText>>;
   /** R3 skal udelade både tabel og overskrift, når grundlag er null. */
   grundlag: ReportBasis | null;
 }
@@ -348,6 +353,12 @@ export function reportData(
   return {
     context,
     sections: { ...SECTION_TITLER },
+    formattedTexts: Object.fromEntries(
+      SECTION_KEYS.filter((key) => valg.medtag_afsnit?.[key] !== false).map((key) => [
+        key,
+        parseReportText(context[`tekst_${key}`]),
+      ]),
+    ),
     grundlag: _fjern_tomt_grundlag(context.dim_grundlag),
   };
 }

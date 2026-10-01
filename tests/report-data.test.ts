@@ -5,6 +5,7 @@ import { dimensioner } from '../src/engine/dimensionering.ts';
 import type { DimensioningInput, Material, Settings } from '../src/engine/dimensionering.ts';
 import type { BasisTable } from '../src/engine/types.ts';
 import { cv_til_eu } from '../src/engine/data.ts';
+import { parseReportText } from '../src/report/text-format.ts';
 import {
   reportData,
   SECTION_KEYS,
@@ -131,6 +132,13 @@ for (const c of reference.cases) {
     // TypeScript-tupler er arrays. Derfor kræves ingen typenormalisering her.
     const { visualisering: _vis, designdiagram: _diagram, ...expected } = c.context;
     assert.deepEqual(actual.context, expected);
+    // B-046 er et ekstra lag; de originale kontekststrenge ovenfor er uændrede.
+    assert.deepEqual(
+      actual.formattedTexts,
+      Object.fromEntries(
+        SECTION_KEYS.map((key) => [key, parseReportText(expected[`tekst_${key}`])]),
+      ),
+    );
     assert.deepEqual(actual.sections, c.sections);
     assert.deepEqual(Object.keys(actual.sections), SECTION_KEYS, 'original afsnitsrækkefølge');
     if (c.case === 'no-basis') {

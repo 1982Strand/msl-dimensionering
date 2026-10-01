@@ -50,6 +50,26 @@ special.tekster.udfoerelse =
   'Bogstavelig tekst: # $ * _ @ < > [ ] \\\n#panic("MUST NOT RUN")\n\n   • Indrykket punkt\n           o Underpunkt';
 special.data = reportData(special.result, special.metadata, special.valg, special.tekster);
 cases.push(special);
+const formatted = structuredClone(cases[0]);
+formatted.name = 'b046-formatted-text';
+formatted.tekster.udfoerelse =
+  'Et afsnit med **fed tekst** og *kursiv tekst*.\n\n' +
+  '• Første punkt\n  - Underpunkt med **fed** tekst\n    o Underpunkt med *kursiv* tekst\n' +
+  '- ' +
+  'En lang punktlinje skal fortsætte under teksten med hængende indrykning. '.repeat(8) +
+  '\n\n  Almindelig indrykning\n# $ [ ] \\ @ < > #panic("MUST NOT RUN")\n**Uafsluttet';
+formatted.data = reportData(
+  formatted.result,
+  formatted.metadata,
+  formatted.valg,
+  formatted.tekster,
+);
+cases.push(formatted);
+const omitted = structuredClone(cases[0]);
+omitted.name = 'b046-omitted-sections';
+omitted.valg.medtag_afsnit = { oplyste_forudsaetninger: false, udfoerelse: false };
+omitted.data = reportData(omitted.result, omitted.metadata, omitted.valg, omitted.tekster);
+cases.push(omitted);
 await mkdir(new URL('.local/output/r3/', root), { recursive: true });
 for (const c of cases) {
   const figures = reportFigures(c.result, c.settings, c.table);
@@ -80,8 +100,15 @@ for (const c of cases) {
     normalization:
       'PDF whitespace/line wrapping only; no value, punctuation or Unicode normalization',
     strings: [
-      ...Object.values(c.data.context).filter(
-        (v): v is string => typeof v === 'string' && v.length > 0,
+      ...Object.entries(c.data.context)
+        .filter(([key, v]) => !key.startsWith('tekst_') && typeof v === 'string' && v.length > 0)
+        .map(([, v]) => v),
+      // B-046: synlig tekst udledes af datamodellen. Opmærkning og punktmarkører
+      // tegnes separat; rå tekst og modellen gemmes nedenfor til formateringskontrol.
+      ...Object.values(c.data.formattedTexts).flatMap((text) =>
+        text!.paragraphs.flatMap((p) =>
+          p.lines.map((l) => l.pieces.map((piece) => piece.text).join('')).filter(Boolean),
+        ),
       ),
       ...[...c.data.context.dim_grundlag, ...c.data.context.dim_resultat].flatMap((r) => [
         r.label,
@@ -90,10 +117,19 @@ for (const c of cases) {
       DEFAULT_COMPANY_PROFILE.titel,
       DEFAULT_COMPANY_PROFILE.slogan,
       DEFAULT_COMPANY_PROFILE.sidefod,
-      ...DEFAULT_COMPANY_PROFILE.afsluttende_afsnit.map((a) => a.titel),
+      ...DEFAULT_COMPANY_PROFILE.afsluttende_afsnit
+        .filter((a) => a.noegle.slice(6) in c.data.formattedTexts)
+        .map((a) => a.titel),
+      'Dimensioneringsgrundlag:',
+      ...('oplyste_forudsaetninger' in c.data.formattedTexts ? ['Forudsætninger:'] : []),
+      ...('generelle_forudsaetninger' in c.data.formattedTexts
+        ? ['Generelle dimensioneringsforudsætninger for MSL opbygning:']
+        : []),
       ...(c.data.grundlag ? [c.data.grundlag.overskrift + ':'] : []),
     ],
     context: c.data.context,
+    formattedTexts: c.data.formattedTexts,
+    forbiddenStrings: c.name === 'b046-omitted-sections' ? ['Forudsætninger:', 'Udførelse:'] : [],
     grundlag: c.data.grundlag,
     sections: c.data.sections,
     profile: DEFAULT_COMPANY_PROFILE,

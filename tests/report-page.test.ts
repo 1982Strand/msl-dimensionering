@@ -11,6 +11,7 @@ import {
   localReportDate,
   REPORT_INTRO,
   REPORT_INTRO_ORIGINAL,
+  REPORT_FORMAT_HELP,
   type ReportNode,
 } from '../src/report/report-page.ts';
 import { STANDARD_TEKSTER, SECTION_KEYS, SECTION_TITLER } from '../src/report/report-data.ts';
@@ -99,15 +100,15 @@ function modelEvents(model: ReturnType<typeof reportPage>): Event[] {
     if (n.kind === 'expander') {
       events.push({ type: 'expander', label: n.title, expanded: false });
       n.children.forEach(node);
-    } else if (n.kind === 'figure')
-      events.push(
-        {
-          type: 'html',
-          text: `<div class="bg-kort-hoved"><div class="bg-kort-titel">${n.title}</div><div class="bg-kort-note">${n.note}</div></div>`,
-        },
-        { type: 'figure' },
-      );
-    else if (n.kind === 'divider') events.push({ type: 'divider', text: '---' });
+    } else if (n.kind === 'text_toolbar') events.push({ type: 'text_toolbar', key: n.key });
+    else if (n.kind === 'figure') {
+      events.push({
+        type: 'html',
+        text: `<div class="bg-kort-hoved"><div class="bg-kort-titel">${n.title}</div><div class="bg-kort-note">${n.note}</div></div>`,
+      });
+      n.children?.forEach(node);
+      events.push({ type: 'figure' });
+    } else if (n.kind === 'divider') events.push({ type: 'divider', text: '---' });
     else if ('text' in n) events.push({ type: n.kind, text: n.text });
     else
       events.push({
@@ -141,6 +142,7 @@ for (const c of reference.cases)
     const header = original[start];
     assert.ok(String(header.text).includes(`<p>${REPORT_INTRO_ORIGINAL}</p>`));
     header.text = String(header.text).replace(REPORT_INTRO_ORIGINAL, REPORT_INTRO);
+    applyB046ApprovedChanges(original);
     // Kun appens globale topbjælke udelades. Widgets: ingen Streamlit-nøgler.
     assert.deepEqual(modelEvents(model), original.slice(start));
     if (model.available) {
@@ -175,6 +177,43 @@ test('R4: originalens filnavn, fallback, skråstreger, trim og 60 Unicode-tegn',
     'Dimensionering - \ufeffMSL\ufeff.pdf',
   );
 });
+
+/** B-046: præcis navngiven udvidelse af originalens forventninger; ingen normalisering. */
+function applyB046ApprovedChanges(events: Event[]) {
+  for (const key of SECTION_KEYS) {
+    const expander = events.findIndex(
+      (e) => e.type === 'expander' && e.label === SECTION_TITLER[key],
+    );
+    if (expander < 0) continue;
+    assert.equal(events[expander + 1].label, 'Nulstil');
+    assert.equal(events[expander + 2].type, 'text_area');
+    events.splice(
+      expander + 2,
+      0,
+      { type: 'checkbox', label: 'Medtag i rapporten', value: true, disabled: false, help: null },
+      { type: 'text_toolbar', key: `rap_tekst_${key}` },
+    );
+    events.splice(expander + 5, 0, { type: 'caption', text: REPORT_FORMAT_HELP });
+  }
+  const first = events.findIndex(
+    (e) => e.type === 'checkbox' && e.label === 'Personligt designdiagram',
+  );
+  if (first < 0) return;
+  const choices = events.splice(first, 3);
+  assert.deepEqual(
+    choices.map((e) => e.label),
+    [
+      'Personligt designdiagram',
+      "Vis 'Indtastet opbygning'-prik i designdiagram",
+      'Vis endepunkter for 1/2 lag i designdiagram',
+    ],
+  );
+  const diagram = events.findIndex(
+    (e) => e.type === 'html' && String(e.text).includes('bg-kort-titel">Designdiagram'),
+  );
+  assert.ok(diagram >= 0);
+  events.splice(diagram + 1, 0, ...choices);
+}
 test('R4: tomme tekster/navne bevares; fælles nulstilling berører kun tekster og valg', () => {
   const values = {
     rap_projekt: 'MSL test',
@@ -182,11 +221,13 @@ test('R4: tomme tekster/navne bevares; fælles nulstilling berører kun tekster 
     rap_tekst_kontrolplan: '',
     rap_std_materiale_0: '',
     rap_vis_uarm: false,
+    rap_medtag_kontrolplan: false,
     hjaelp_aabne: [],
     profil: 'bevares',
   };
   const model = reportPage(calculation(reference.cases[0]), values, '2026-09-29');
   assert.equal(model.texts.kontrolplan, '');
+  assert.equal(model.choices.medtag_afsnit!.kontrolplan, false);
   assert.equal(model.choices.standard_materialer![0], '');
   const reset = { ...values, ...resetReportChoices(values) };
   assert.equal(reset.rap_projekt, 'MSL test');
@@ -195,6 +236,7 @@ test('R4: tomme tekster/navne bevares; fælles nulstilling berører kun tekster 
   const restored = reportPage(calculation(reference.cases[0]), reset, '2026-09-29');
   assert.equal(restored.texts.kontrolplan, STANDARD_TEKSTER.kontrolplan);
   assert.equal(restored.figureChoices.rap_vis_uarm, true);
+  assert.equal(restored.choices.medtag_afsnit!.kontrolplan, true);
   assert.equal(localReportDate(new Date(2026, 8, 29, 23, 59)), '2026-09-29');
 });
 test('R4: ugyldigt gemt snit følger den aktuelle betingelse, gyldigt fravalg og diagramvalg huskes', () => {
@@ -208,7 +250,12 @@ test('R4: ugyldigt gemt snit følger den aktuelle betingelse, gyldigt fravalg og
   assert.equal(model.figureChoices.rap_vis_indtastet, false);
   assert.equal(model.figureChoices.rap_vis_2lag, false);
   assert.equal(model.figureChoices.rap_dd_vis_din_prik, true); // inaktivt valg følger originalstandarden
-  assert.ok(!model.steps[2].children.some((n) => n.kind === 'figure' && n.key === 'designdiagram'));
+  const diagram = model.steps[2].children.find(
+    (n) => n.kind === 'figure' && n.key === 'designdiagram',
+  );
+  assert.ok(diagram?.kind === 'figure'); // B-046: kortet bliver stående ved fravalg.
+  assert.equal(diagram.children?.length, 3);
+  assert.ok(diagram.children?.slice(1).every((n) => n.kind === 'checkbox' && n.disabled));
   const noSections = reportPage(dim, {
     rap_vis_uarm: false,
     rap_vis_1lag: false,
