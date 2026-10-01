@@ -267,22 +267,6 @@
 .m9-page .m9-result-block > .section-card {
   margin: 24px 0;
 }
-/* Sidens udfoldelige afsnit (originalens expandere) som ens kort, i M1's udseende. */
-.m9-page .dim-expander-card {
-  background: white;
-  border: 1px solid #dce3dd;
-  border-radius: 9px;
-  margin: 12px 0 0;
-  overflow: hidden;
-}
-.m9-page .dim-expander-card [data-slot='accordion-trigger'] {
-  padding: 18px 24px;
-  font-size: 13px;
-  font-weight: 400;
-}
-.m9-page .dim-expander-card [data-slot='accordion-content'] > div {
-  padding: 0 24px 24px;
-}
 .m9-page .m9-products {
   margin-top: 24px;
 }

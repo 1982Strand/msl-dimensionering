@@ -22,6 +22,44 @@ async function ready(page: Page) {
   });
   await expect(page.getByRole('link', { name: 'Hent PDF', exact: true })).toBeVisible();
 }
+test('faste rapportkort og synlige formularer ved 1440 og 390 px', async ({ page }, info) => {
+  await page.goto('/#rapport');
+  await expect(page.locator('.report-form > .section-card.settings-card')).toHaveCount(4);
+  await expect(page.locator('.report-step-2 .dim-expander-card')).toHaveCount(8);
+  for (const name of ['Sagsoplysninger', 'Indhold', 'Gennemsyn', 'Generér']) {
+    await expect(page.getByRole('heading', { name: new RegExp(name) }).first()).toBeVisible();
+    await expect(page.getByRole('button', { name: new RegExp(`^\\d ${name}`) })).toHaveCount(0);
+  }
+  const project = await page.getByLabel('Projekt', { exact: true }).boundingBox();
+  const description = await page.getByLabel('Beskrivelse', { exact: true }).boundingBox();
+  expect(description!.x).toBeGreaterThan(project!.x + project!.width);
+  expect(description!.y).toBe(project!.y);
+  const cuts = await page
+    .locator('.report-cut-choices input')
+    .evaluateAll((nodes) => nodes.map((node) => node.getBoundingClientRect().top));
+  expect(cuts).toHaveLength(4);
+  expect(new Set(cuts).size).toBe(1);
+  await page.getByRole('button', { name: 'Krav til komprimering', exact: true }).click();
+  for (const id of ['rap_projekt', 'rap_beskrivelse', 'rap_dato', 'rap_tekst_krav_komprimering']) {
+    const field = page.locator(`#${id}`);
+    await expect(field).toBeVisible();
+    await expect(field).toHaveCSS('border-top-style', 'solid');
+    await expect(field).toHaveCSS('border-top-width', '1px');
+  }
+  await page.screenshot({ path: info.outputPath('report-desktop.png'), fullPage: true });
+  await page.setViewportSize({ width: 390, height: 844 });
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  const mobileProject = await page.getByLabel('Projekt', { exact: true }).boundingBox();
+  const mobileDescription = await page.getByLabel('Beskrivelse', { exact: true }).boundingBox();
+  expect(mobileDescription!.x).toBe(mobileProject!.x);
+  expect(mobileDescription!.y).toBeGreaterThan(mobileProject!.y + mobileProject!.height);
+  for (const figure of await page.locator('.report-figure svg').all()) {
+    const box = await figure.boundingBox();
+    expect(box!.x + box!.width).toBeLessThanOrEqual(390);
+  }
+  await page.screenshot({ path: info.outputPath('report-mobile.png'), fullPage: true });
+});
+
 test('felter, afsnit, automatisk lagring, dato og de tre nulstillinger', async ({
   page,
   baseURL,
@@ -30,7 +68,7 @@ test('felter, afsnit, automatisk lagring, dato og de tre nulstillinger', async (
   await page.goto('/#rapport');
   await expect(page.getByRole('heading', { name: 'Rapport', exact: true })).toBeVisible();
   for (const name of ['Sagsoplysninger', 'Indhold', 'Gennemsyn', 'Generér'])
-    await expect(page.getByRole('button', { name: new RegExp(name) }).first()).toBeVisible();
+    await expect(page.getByRole('heading', { name: new RegExp(name) }).first()).toBeVisible();
   const today = await page.getByLabel('Dato', { exact: true }).inputValue();
   for (const [label, value] of [
     ['Projekt', 'MSL test'],
