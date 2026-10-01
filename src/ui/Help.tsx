@@ -45,7 +45,18 @@ function readOpenChapters(saved: unknown): string[] {
 function Markdown({ children }: { children: string }) {
   return (
     <div className="help-markdown">
-      <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]}>
+      <ReactMarkdown
+        remarkPlugins={[remarkGfm]}
+        rehypePlugins={[rehypeRaw]}
+        components={{
+          // Brede tabeller ruller vandret og skal kunne nås med tastaturet.
+          table: ({ node: _node, ...props }) => (
+            <div className="help-table-scroll" tabIndex={0} role="region" aria-label="Tabel">
+              <table {...props} />
+            </div>
+          ),
+        }}
+      >
         {children}
       </ReactMarkdown>
     </div>

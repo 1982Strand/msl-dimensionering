@@ -36,7 +36,10 @@
 }
 .help-markdown {
   line-height: 1.65;
+}
+.help-table-scroll {
   overflow-x: auto;
+  margin-bottom: 16px;
 }
 .help-markdown p {
   margin: 0 0 16px;

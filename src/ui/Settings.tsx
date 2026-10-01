@@ -179,7 +179,12 @@ export function Settings() {
               remarkPlugins={[remarkGfm]}
               components={{
                 table: ({ children }) => (
-                  <div className="table-wrap">
+                  <div
+                    className="table-wrap"
+                    tabIndex={0}
+                    role="region"
+                    aria-label="Eksempel på stabilgrusminimum"
+                  >
                     <table
                       className="data-table summary-table"
                       aria-label="Eksempel på stabilgrusminimum"
@@ -199,7 +204,7 @@ export function Settings() {
           <details className="settings-deviations" key={index}>
             <summary>{item.label}</summary>
             <p>{plain(item.text)}</p>
-            <div className="table-wrap">
+            <div className="table-wrap" tabIndex={0} role="region" aria-label="Målte afvigelser">
               <table className="data-table summary-table" aria-label="Målte afvigelser">
                 <thead>
                   <tr>

@@ -13,7 +13,12 @@ export function TrafficCorrelationPopup({ input }: { input: DimensioningInput })
     <InfoPopup label={model.label} title={model.label} icon={<TableIcon aria-hidden="true" />} wide>
       <div className="traffic-correlation-popup">
         <ReactMarkdown>{intro.body}</ReactMarkdown>
-        <div className="traffic-correlation-scroll">
+        <div
+          className="traffic-correlation-scroll"
+          tabIndex={0}
+          role="region"
+          aria-label="Trafikklasse-korrelation"
+        >
           <table aria-label="Trafikklasse-korrelation">
             <thead>
               <tr>

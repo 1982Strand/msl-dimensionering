@@ -50,5 +50,7 @@ export function RawChart({ diagram }: { diagram: DesignDiagram }) {
       </Notice>
     );
   if (failed) return <p role="alert">Diagrammet kunne ikke vises. Tabelværdierne er bevaret.</p>;
-  return <div ref={ref} className="raw-chart" aria-label="Optegnet af tabellens værdier" />;
+  return (
+    <div ref={ref} className="raw-chart" role="img" aria-label="Optegnet af tabellens værdier" />
+  );
 }
