@@ -16,7 +16,7 @@ export interface PageCase {
     klasse: number | string;
     enhed: 'mm' | 'cm';
     geonet_navn: string;
-    variant: null | 'vis_eksakt' | 'daeklag' | 'sg' | 'vejdim' | 'phi40' | 'soejle';
+    variant: null | 'vis_eksakt' | 'daeklag' | 'sg' | 'vejdim' | 'phi40' | 'soejle' | 'restlag_vd';
     indstillinger: NonNullable<DimensioningInput['indstillinger']>;
     vejdim_koersel_raekker: Record<string, unknown>[] | null;
     materialer: NonNullable<DimensioningInput['materialer']>;
@@ -24,10 +24,12 @@ export interface PageCase {
   page: PageNode[];
 }
 
-export const pageReference: { cases: PageCase[] } = JSON.parse(
-  readFileSync(new URL('../../reference/dimensioning-page-cases.json', import.meta.url), 'utf8'),
-);
-export const pageCases = pageReference.cases;
+const load = (file: string): { cases: PageCase[] } =>
+  JSON.parse(readFileSync(new URL(`../../reference/${file}`, import.meta.url), 'utf8'));
+export const pageReference = load('dimensioning-page-cases.json');
+// LT-1/LT-2 (tillæg for mindste lagtykkelse, restlag = vd) og MIN-1 (samlet minimum).
+export const extraPageReference = load('dimensioning-page-extra-cases.json');
+export const pageCases = [...pageReference.cases, ...extraPageReference.cases];
 export const pageCase = (id: string) => pageCases.find((c) => c.id === id)!;
 
 /** Originalens sessionsværdier for casen, oversat til motorens input. */

@@ -143,8 +143,16 @@ CASES = [
     ("PH-2", "Brugerdefineret", 5, "Belastningsklasse", 4, "mm", "Tensar InterAx NX850", "soejle"),
 ]
 
+# Supplerende tilfælde for grene, de første 14 ikke dækker (M4): tillæg for mindste
+# lagtykkelse pr. lagtype (`lagfordeling.restlag = vd`) og samlet minimumstykkelse.
+EXTRA_CASES = [
+    ("LT-1", "Brugerdefineret", 15, "Belastningsklasse", 3, "mm", "Tensar TriAx TX160", "restlag_vd"),
+    ("LT-2", "Brugerdefineret", 15, "Belastningsklasse", 3, "cm", "Tensar InterAx NX850", "restlag_vd"),
+    ("MIN-1", "Brugerdefineret", 30, "Belastningsklasse", 4, "mm", "Tensar InterAx NX850", None),
+]
 
-def capture(source, only=None):
+
+def capture(source, only=None, case_list=CASES):
     from streamlit.testing.v1 import AppTest
 
     at = AppTest.from_file(str(source / "app.py"), default_timeout=60).run()
@@ -153,7 +161,7 @@ def capture(source, only=None):
     settings = deepcopy(at.session_state["indstillinger"])
     rows_standard = deepcopy(at.session_state["vejdim_koersel_raekker"])
     cases = []
-    for case_id, mode, eu, basis, klasse, unit, net, variant in CASES:
+    for case_id, mode, eu, basis, klasse, unit, net, variant in case_list:
         if only and case_id not in only:
             continue
         ind = deepcopy(settings)
@@ -166,6 +174,8 @@ def capture(source, only=None):
         elif variant == "vejdim":
             ind["yderomraade"]["under_uden"] = "vejdim"
             ind["yderomraade"]["under_inden"] = "vejdim"
+        elif variant == "restlag_vd":
+            ind["lagfordeling"]["restlag"] = "vd"
         elif variant == "soejle":
             ind["lagfordeling"]["phi_regel"] = "soejle"
         elif variant == "sg":
@@ -216,15 +226,18 @@ if __name__ == "__main__":
     parser.add_argument("--record", action="store_true")
     parser.add_argument("--dry-run", type=Path, help="write a fresh capture here without comparing")
     parser.add_argument("--only", nargs="*")
+    parser.add_argument("--extra", action="store_true",
+                        help="the supplementary cases in reference/dimensioning-page-extra-cases.json")
     parser.add_argument("--legacy-repo", type=Path, default=Path(r"C:\geonet_beregning"))
     args = parser.parse_args()
     if Path(sys.executable).resolve() != (args.legacy_repo / ".venv/Scripts/python.exe").resolve():
         raise RuntimeError("Use the approved legacy .venv/Scripts/python.exe")
-    target = ROOT / "reference/dimensioning-page-cases.json"
+    target = ROOT / ("reference/dimensioning-page-extra-cases.json" if args.extra
+                     else "reference/dimensioning-page-cases.json")
     if args.record and target.exists():
         raise FileExistsError(f"Refusing to overwrite {target}")
     with legacy_source(args.legacy_repo) as source:
-        result = capture(source, args.only)
+        result = capture(source, args.only, EXTRA_CASES if args.extra else CASES)
     text = json.dumps(result, ensure_ascii=False, indent=2, allow_nan=False) + "\n"
     if args.dry_run:
         args.dry_run.write_text(text, encoding="utf-8", newline="\n")
