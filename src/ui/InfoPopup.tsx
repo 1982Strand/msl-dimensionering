@@ -8,16 +8,20 @@ export function InfoPopup({
   title,
   children,
   wide = false,
+  icon,
 }: {
   label: string;
   title: string;
   children: ReactNode;
   wide?: boolean;
+  /** Ikon foran linket, så det ses, at det kan klikkes (B-058). */
+  icon?: ReactNode;
 }) {
   return (
     <Dialog.Root>
       <Dialog.Trigger asChild>
         <Button variant="link" size="sm" className="dim-popup-trigger">
+          {icon}
           {label}
         </Button>
       </Dialog.Trigger>

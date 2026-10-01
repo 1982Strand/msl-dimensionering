@@ -74,7 +74,7 @@ export function PageResultCards({ model }: { model: DimensioningPage }) {
           </div>
           {card.delta !== null ? (
             <p className="m9-result-delta">
-              <b className="formula">{card.delta}</b> <span>{card.deltaNote}</span>
+              <b>{card.delta}</b> <span>{card.deltaNote}</span>
             </p>
           ) : (
             <p>{card.note}</p>

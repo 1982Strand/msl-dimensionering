@@ -15,8 +15,8 @@
 }
 .net-details .bg-kort-note,
 .bg-produkt-interval-note {
-  font-size: 12px;
-  color: var(--color-muted-foreground);
+  font-size: var(--fs-meta);
+  color: var(--muted-foreground);
 }
 .bg-produkt-interval-note {
   margin: 8px 0 16px;
@@ -30,7 +30,7 @@
   min-width: 0;
 }
 .net-details .rt-detaljer-lag-titel {
-  font-size: 11px;
+  font-size: var(--fs-overline);
   font-weight: 600;
   letter-spacing: 0.06em;
   margin-bottom: 12px;
@@ -42,8 +42,8 @@
   gap: 8px;
   align-items: baseline;
   padding: 7px 0;
-  border-bottom: 1px solid var(--color-border);
-  font-size: 12px;
+  border-bottom: 1px solid var(--border);
+  font-size: var(--fs-meta);
   line-height: 1.5;
 }
 .net-details .rt-detaljer-vaerdi,
@@ -57,7 +57,7 @@
   cursor: help;
 }
 .net-details [tabindex]:focus-visible {
-  outline: 2px solid var(--color-ring);
+  outline: 2px solid var(--primary);
   outline-offset: 3px;
   border-radius: 3px;
 }
@@ -68,15 +68,15 @@
   align-items: baseline;
   gap: 4px 12px;
   margin-top: 14px;
-  font-size: 12px;
+  font-size: var(--fs-meta);
 }
 .net-details .rt-detaljer-resultat-tal {
-  font-size: 19px;
+  font-size: var(--fs-section);
   font-weight: 600;
   color: var(--primary);
 }
 .net-details .rt-detaljer-samlet {
-  font-size: 12px;
+  font-size: var(--fs-meta);
   margin-top: 4px;
 }
 .net-details .rt-detaljer-optimal {
@@ -87,7 +87,7 @@
   border-top: 1px dotted var(--primary);
   padding-top: 12px;
   margin-top: 16px;
-  font-size: 12px;
+  font-size: var(--fs-meta);
   color: var(--primary);
 }
 .net-details .rt-detaljer-optimal-tal {
@@ -95,9 +95,9 @@
 }
 .net-details .rt-detaljer-optimal-note,
 .net-details .rt-detaljer-tom {
-  font-size: 11px;
+  font-size: var(--fs-overline);
   line-height: 1.6;
-  color: var(--color-muted-foreground);
+  color: var(--muted-foreground);
   margin-top: 8px;
 }
 .net-details-tooltip {

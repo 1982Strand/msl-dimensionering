@@ -1,5 +1,6 @@
 import { phiSummary } from '../engine/phi-summary';
 import type { DimensioningInput } from '../engine/dimensionering';
+import { Notice } from './Notice';
 
 export function PhiSummary({ input }: { input: DimensioningInput }) {
   const summary = phiSummary(input);
@@ -15,7 +16,7 @@ export function PhiSummary({ input }: { input: DimensioningInput }) {
         <h4>φᵥ-korrektionsfaktor</h4>
         <div dangerouslySetInnerHTML={{ __html: summary.factor_html! }} />
       </div>
-      <p className="settings-note">Korrektionen anvendes på basistykkelsen.</p>
+      <Notice>Korrektionen anvendes på basistykkelsen.</Notice>
     </aside>
   );
 }

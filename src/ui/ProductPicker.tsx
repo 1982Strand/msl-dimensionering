@@ -2,6 +2,8 @@ import { useRef, useState } from 'react';
 import { Check, ChevronsUpDown } from 'lucide-react';
 import { Badge } from '../components/ui/badge';
 import { Button } from '../components/ui/button';
+import { Checkbox } from '../components/ui/checkbox';
+import { Label } from '../components/ui/label';
 import { Popover, PopoverContent, PopoverTrigger } from '../components/ui/popover';
 import {
   Command,
@@ -108,14 +110,14 @@ export function ProductPicker({
               value={query}
               onValueChange={setQuery}
             />
-            <label className="setting-checkbox product-picker-filter">
-              <input
-                type="checkbox"
+            <div className="product-picker-filter">
+              <Checkbox
+                id={`${id}-recommended`}
                 checked={onlyRecommended}
-                onChange={(event) => setOnlyRecommended(event.target.checked)}
+                onCheckedChange={(checked) => setOnlyRecommended(checked === true)}
               />
-              <span>Kun anbefalet til {classLabel}</span>
-            </label>
+              <Label htmlFor={`${id}-recommended`}>Kun anbefalet til {classLabel}</Label>
+            </div>
             <CommandList label="Produkter">
               <CommandEmpty>Ingen produkter fundet.</CommandEmpty>
               {visible.map((group) => (

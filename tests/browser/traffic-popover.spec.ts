@@ -34,7 +34,8 @@ test('local T4/Eᵤ10 correlation popup, original marking and load-class visibil
   await expect(row.getByRole('rowheader')).toHaveText('T4');
   await expect(row.locator('[aria-current="true"]')).toHaveText('108');
   await expect(row.locator('[aria-current="true"]')).toHaveCSS('font-weight', '700');
-  await expect(row.getByRole('cell').first()).toHaveCSS('background-color', 'rgb(245, 250, 241)');
+  // B-058: markeringen bruger temaets fremhævningsfarve (#edf3ef).
+  await expect(row.getByRole('cell').first()).toHaveCSS('background-color', 'rgb(237, 243, 239)');
   await expect(table.getByRole('cell', { name: '30* (−4,9 %)', exact: true })).toHaveCSS(
     'font-style',
     'italic',

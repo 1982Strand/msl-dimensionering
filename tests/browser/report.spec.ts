@@ -171,14 +171,15 @@ test('B-046: tekstværktøjer, afsnitsfravalg/revision og diagramvalg i diagramk
   const diagram = page
     .locator('.report-figure')
     .filter({ has: page.getByRole('heading', { name: 'Designdiagram', exact: true }) });
-  await expect(diagram.locator('input[type=checkbox]')).toHaveCount(3);
-  await expect(page.locator('.report-cut-choices input[type=checkbox]')).toHaveCount(4);
+  await expect(diagram.getByRole('checkbox')).toHaveCount(3);
+  await expect(page.locator('.report-cut-choices').getByRole('checkbox')).toHaveCount(4);
   await diagram
     .getByLabel("Vis 'Indtastet opbygning'-prik i designdiagram", { exact: true })
     .uncheck();
   await diagram.getByRole('checkbox', { name: 'Personligt designdiagram', exact: true }).uncheck();
   await expect(diagram).toBeVisible();
-  await expect(diagram.locator('svg')).toHaveCount(0);
+  // Afkrydsningsfelternes flueben er også svg; kun figuren tælles (B-058).
+  await expect(diagram.locator('.report-figure-svg svg')).toHaveCount(0);
   await expect(diagram.getByLabel('Vis endepunkter for 1/2 lag i designdiagram')).toBeDisabled();
 
   await page.getByRole('button', { name: 'Generér rapport', exact: true }).click();
@@ -244,7 +245,8 @@ test('faste rapportkort og synlige formularer ved 1440 og 390 px', async ({ page
   expect(description!.x).toBeGreaterThan(project!.x + project!.width);
   expect(description!.y).toBe(project!.y);
   const cuts = await page
-    .locator('.report-cut-choices input')
+    .locator('.report-cut-choices')
+    .getByRole('checkbox')
     .evaluateAll((nodes) => nodes.map((node) => node.getBoundingClientRect().top));
   expect(cuts).toHaveLength(4);
   expect(new Set(cuts).size).toBe(1);
@@ -262,7 +264,7 @@ test('faste rapportkort og synlige formularer ved 1440 og 390 px', async ({ page
   const mobileDescription = await page.getByLabel('Beskrivelse', { exact: true }).boundingBox();
   expect(mobileDescription!.x).toBe(mobileProject!.x);
   expect(mobileDescription!.y).toBeGreaterThan(mobileProject!.y + mobileProject!.height);
-  for (const figure of await page.locator('.report-figure svg').all()) {
+  for (const figure of await page.locator('.report-figure-svg svg').all()) {
     const box = await figure.boundingBox();
     expect(box!.x + box!.width).toBeLessThanOrEqual(390);
   }

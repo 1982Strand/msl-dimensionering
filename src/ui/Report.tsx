@@ -1,6 +1,15 @@
 import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import ReactMarkdown from 'react-markdown';
-import { Bold, IndentIncrease, Italic, List } from 'lucide-react';
+import {
+  Bold,
+  Building2,
+  Download,
+  FileText,
+  IndentIncrease,
+  Italic,
+  List,
+  RotateCcw,
+} from 'lucide-react';
 import { Tooltip, TooltipTrigger, TooltipContent } from '../components/ui/tooltip';
 import { formatTextSelection, type TextFormatAction } from '../report/text-format';
 import { formatPhone } from '../report/phone-format';
@@ -9,6 +18,17 @@ import { EditorFeedback, SaveState } from './EditorFeedback';
 import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
 import { Textarea } from '../components/ui/textarea';
+import { Checkbox } from '../components/ui/checkbox';
+import { Label } from '../components/ui/label';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '../components/ui/select';
+import { Notice } from './Notice';
+import { PageHeader } from './page';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '../components/ui/tabs';
 import { CompanyProfile, useCompanyProfile } from './CompanyProfile';
 import {
@@ -242,11 +262,15 @@ export function Report({
           {current ? (
             <Button asChild>
               <a href={preview!.url} download={reportFilename(model.metadata)}>
+                <Download aria-hidden="true" />
                 Hent PDF
               </a>
             </Button>
           ) : (
-            <Button disabled>Hent PDF</Button>
+            <Button disabled>
+              <Download aria-hidden="true" />
+              Hent PDF
+            </Button>
           )}
           <div className="report-compile-status">
             <p
@@ -269,18 +293,18 @@ export function Report({
         </div>
         {info}
         {state.status === 'error' && (
-          <div role="alert" className="warning-banner">
+          <Notice kind="error" role="alert">
             <p>{state.message}</p>
             <pre>{state.details}</pre>
-          </div>
+          </Notice>
         )}
         {preview && (
           <div className="report-pdf">
             {!current && (
-              <p role="status" className="warning-banner report-stale">
+              <Notice kind="warning" role="status" className="report-stale">
                 Forhåndsvisningen er forældet. Hent PDF er spærret, indtil rapporten for de aktuelle
                 oplysninger er klar.
-              </p>
+              </Notice>
             )}
             <iframe title="PDF-forhåndsvisning" src={preview.url} />
           </div>
@@ -324,15 +348,16 @@ export function Report({
           aria-label={label}
           data-line={node.key}
         >
-          <label className="setting-checkbox" htmlFor={node.visibilityKey}>
-            <input
+          <div className="setting-checkbox">
+            <Checkbox
               id={node.visibilityKey}
-              type="checkbox"
               checked={node.shown}
-              onChange={(event) => ctx.remember({ [node.visibilityKey]: event.target.checked })}
+              onCheckedChange={(checked) =>
+                ctx.remember({ [node.visibilityKey]: checked === true })
+              }
             />
-            <span>Vis i rapporten</span>
-          </label>
+            <Label htmlFor={node.visibilityKey}>Vis i rapporten</Label>
+          </div>
           <Textarea
             rows={node.label.includes('\n') ? 2 : 1}
             aria-label={`Tekst: ${label}`}
@@ -355,6 +380,7 @@ export function Report({
               })
             }
           >
+            <RotateCcw aria-hidden="true" />
             Nulstil
           </Button>
         </div>
@@ -365,23 +391,26 @@ export function Report({
       return employees.length ? (
         <div key={key} className="setting-field report-field">
           <label htmlFor={'employee-' + node.key}>{node.label}</label>
-          <select
-            id={'employee-' + node.key}
+          {/* Valget udfylder felterne; listen står derefter igen på »Vælg fra kartotek …«. */}
+          <Select
             value=""
             disabled={!company.ready || company.saving}
-            onChange={(event) => {
-              if (event.target.value === '') return;
-              const person = employees[Number(event.target.value)];
+            onValueChange={(value) => {
+              const person = employees[Number(value)];
               if (person) ctx.remember(selectReportEmployee(node.key, person));
             }}
           >
-            <option value="">Vælg fra kartotek …</option>
-            {employees.map((person, index) => (
-              <option key={index} value={index}>
-                {person.initialer ? `${person.initialer} – ${person.navn}` : person.navn}
-              </option>
-            ))}
-          </select>
+            <SelectTrigger id={'employee-' + node.key} className="setting-select">
+              <SelectValue placeholder="Vælg fra kartotek …" />
+            </SelectTrigger>
+            <SelectContent>
+              {employees.map((person, index) => (
+                <SelectItem key={index} value={String(index)}>
+                  {person.initialer ? `${person.initialer} – ${person.navn}` : person.navn}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
         </div>
       ) : (
         <p key={key} className="report-caption">
@@ -389,11 +418,17 @@ export function Report({
         </p>
       );
     }
-    if (node.kind === 'caption' || node.kind === 'info' || node.kind === 'success')
+    if (node.kind === 'caption')
       return (
-        <div key={key} className={node.kind === 'info' ? 'info-banner' : `report-${node.kind}`}>
+        <div key={key} className="report-caption">
           <ReactMarkdown>{node.text}</ReactMarkdown>
         </div>
+      );
+    if (node.kind === 'info' || node.kind === 'success')
+      return (
+        <Notice key={key} className={`report-${node.kind}`}>
+          <ReactMarkdown>{node.text}</ReactMarkdown>
+        </Notice>
       );
     if (node.kind === 'expander')
       return (
@@ -492,7 +527,9 @@ export function Report({
           {node.children && (
             <div className="report-diagram-choices">{node.children.map(renderNode)}</div>
           )}
-          {figure && <div dangerouslySetInnerHTML={{ __html: figure.svg }} />}
+          {figure && (
+            <div className="report-figure-svg" dangerouslySetInnerHTML={{ __html: figure.svg }} />
+          )}
         </section>
       ) : null;
     }
@@ -506,6 +543,11 @@ export function Report({
           disabled={node.disabled || (node.key === 'generate' && !canGenerate)}
           onClick={() => action(node.key)}
         >
+          {node.key === 'generate' ? (
+            <FileText aria-hidden="true" />
+          ) : node.key.startsWith('reset') ? (
+            <RotateCcw aria-hidden="true" />
+          ) : null}
           {node.label}
         </Button>
       );
@@ -513,22 +555,20 @@ export function Report({
       node.key === 'rap_dato' ? setDate(String(value)) : ctx.remember({ [node.key]: value });
     return (
       <div key={key} className={`setting-field report-field report-${node.kind}`}>
-        <label
-          htmlFor={node.key}
-          className={node.kind === 'checkbox' ? 'setting-checkbox' : undefined}
-        >
-          {node.kind === 'checkbox' && (
-            <input
+        {node.kind === 'checkbox' ? (
+          <div className="setting-checkbox">
+            <Checkbox
               id={node.key}
-              type="checkbox"
               checked={!!node.value}
               disabled={node.disabled}
               aria-describedby={node.help ? `${node.key}-help` : undefined}
-              onChange={(e) => change(e.target.checked)}
+              onCheckedChange={(checked) => change(checked === true)}
             />
-          )}
-          <span>{node.label}</span>
-        </label>
+            <Label htmlFor={node.key}>{node.label}</Label>
+          </div>
+        ) : (
+          <label htmlFor={node.key}>{node.label}</label>
+        )}
         {node.kind === 'text_area' ? (
           <Textarea
             id={node.key}
@@ -630,11 +670,7 @@ export function Report({
         nodes.filter((node) => node.kind === 'button').map(renderNode),
         nodes
           .filter((node) => node.kind !== 'button')
-          .map((node, i) => (
-            <div key={i} className="info-banner">
-              {renderNode(node, i)}
-            </div>
-          )),
+          .map((node, i) => <Notice key={i}>{renderNode(node, i)}</Notice>),
       );
     }
     return (
@@ -649,6 +685,7 @@ export function Report({
             setResetMessages([]);
           }}
         >
+          <RotateCcw aria-hidden="true" />
           Nulstil tekster og valg til standard
         </Button>
       </>
@@ -657,21 +694,16 @@ export function Report({
 
   return (
     <main className="m9-page report-page">
-      <div className="breadcrumb">Rapport</div>
-      <div className="page-heading">
-        <div>
-          <h1>{model.title}</h1>
-          <p className="intro">{model.intro}</p>
-        </div>
-        <SaveState />
+      <PageHeader page="rapport" title={model.title} intro={model.intro} aside={<SaveState />} />
+      <div className="settings-start">
+        <EditorFeedback />
       </div>
-      <EditorFeedback />
       {resetMessages.length > 0 && (
-        <div className="info-banner" role="status">
+        <Notice role="status">
           {resetMessages.map((message, index) => (
             <p key={index}>{message}</p>
           ))}
-        </div>
+        </Notice>
       )}
       {renderNode(model.banner, 0)}
       <Tabs
@@ -686,8 +718,14 @@ export function Report({
         }}
       >
         <TabsList aria-label="Rapport og firmaprofil">
-          <TabsTrigger value="report">Rapport</TabsTrigger>
-          <TabsTrigger value="profile">Firmaprofil</TabsTrigger>
+          <TabsTrigger value="report">
+            <FileText aria-hidden="true" />
+            Rapport
+          </TabsTrigger>
+          <TabsTrigger value="profile">
+            <Building2 aria-hidden="true" />
+            Firmaprofil
+          </TabsTrigger>
         </TabsList>
         <TabsContent value="report">
           {!model.available ? (
@@ -733,10 +771,10 @@ export function Report({
               model.available ? (
                 renderPdf()
               ) : (
-                <p className="info-banner">
+                <Notice>
                   {model.emptyAction &&
                     'Der skal først foretages en dimensionering med et valgt geonet, før rapporten kan genereres.'}
-                </p>
+                </Notice>
               )
             }
           />

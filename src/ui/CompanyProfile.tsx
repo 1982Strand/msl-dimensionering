@@ -3,7 +3,16 @@ import { Button } from '../components/ui/button';
 import { formatPhone } from '../report/phone-format';
 import { Input } from '../components/ui/input';
 import { Textarea } from '../components/ui/textarea';
-import { Alert, AlertDescription } from '../components/ui/alert';
+import { Checkbox } from '../components/ui/checkbox';
+import { Label } from '../components/ui/label';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '../components/ui/select';
+import { Notice } from './Notice';
 import { Popover, PopoverContent, PopoverTrigger } from '../components/ui/popover';
 import {
   Sheet,
@@ -178,13 +187,23 @@ export function CompanyProfile({
       <div className="setting-field profile-field" key={path}>
         <label htmlFor={id}>{label}</label>
         {Array.isArray(options) ? (
-          <select {...props} onChange={(e) => change(e.target.value)}>
-            {options.map(([v, l]) => (
-              <option key={v} value={v}>
-                {l}
-              </option>
-            ))}
-          </select>
+          <Select value={String(value)} onValueChange={change}>
+            <SelectTrigger
+              id={id}
+              className="setting-select"
+              aria-invalid={!!errors[path]}
+              aria-describedby={errors[path] ? id + '-error' : undefined}
+            >
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              {options.map(([v, l]) => (
+                <SelectItem key={v} value={v}>
+                  {l}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
         ) : options === 'textarea' ? (
           <Textarea {...props} rows={2} onChange={(e) => change(e.target.value)} />
         ) : (
@@ -208,20 +227,20 @@ export function CompanyProfile({
   function checkbox(path: string, label: string) {
     return (
       <div className="setting-field" key={path}>
-        <label className="setting-checkbox profile-checkbox">
-          <input
-            type="checkbox"
+        <div className="setting-checkbox profile-checkbox">
+          <Checkbox
+            id={'profile-' + path}
             checked={!!profileValue(profile, path)}
-            onChange={(e) => {
-              const checked = e.target.checked;
+            onCheckedChange={(value) => {
+              const checked = value === true;
               update((prev) => ({
                 ...prev,
                 profile: changeProfileField(prev.profile, path, checked).profile,
               }));
             }}
           />
-          {label}
-        </label>
+          <Label htmlFor={'profile-' + path}>{label}</Label>
+        </div>
       </div>
     );
   }
@@ -276,9 +295,9 @@ export function CompanyProfile({
                 : 'Firmaprofil gemt i denne browser'}
         </p>
         {(error || fileError) && (
-          <Alert variant="destructive">
-            <AlertDescription>{error ?? fileError}</AlertDescription>
-          </Alert>
+          <Notice kind="error" role="alert">
+            {error ?? fileError}
+          </Notice>
         )}
         <fieldset className="report-form" disabled={!ready || busy}>
           {card(

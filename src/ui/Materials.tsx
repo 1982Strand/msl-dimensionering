@@ -1,18 +1,14 @@
 import { Cell } from './Cell';
 import { useEditor } from './EditorContext';
 import { useState } from 'react';
-import {
-  CheckCircle2,
-  Undo2,
-  Redo2,
-  RotateCcw,
-  Plus,
-  Trash2,
-  AlertCircle,
-  Layers3,
-} from 'lucide-react';
+import { Undo2, Redo2, RotateCcw, Plus, Trash2, Layers3 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { Checkbox } from '@/components/ui/checkbox';
+import { Label } from '@/components/ui/label';
+import { SaveState } from './EditorFeedback';
+import { Notice } from './Notice';
+import { PageFooter, PageHeader } from './page';
 import { review_table, type ReviewedRow } from '../engine/edit-review';
 import type { EditableMaterial } from '../engine/editing';
 
@@ -57,7 +53,6 @@ export function Materials() {
     session,
     errors,
     saveError,
-    saved,
     refresh,
     externalChange,
     receive,
@@ -121,20 +116,12 @@ export function Materials() {
   }
   return (
     <main>
-      <div className="breadcrumb">Grunddata / Materialer</div>
-      <div className="page-heading">
-        <div>
-          <h1>Materialer</h1>
-          <p className="intro">
-            Friktionsvinkler og kornstørrelser anvendt i dimensioneringen. Værdierne kan tilpasses;
-            ændringer gemmes lokalt og indgår i beregningen i Brugerdefineret-tilstand.
-          </p>
-        </div>
-        <div className="save-state" role="status">
-          {saveError ? <AlertCircle size={15} /> : <CheckCircle2 size={15} />}
-          <span>{saveError ? 'Ikke gemt' : saved ? 'Gemt i denne browser' : 'Standarddata'}</span>
-        </div>
-      </div>
+      <PageHeader
+        page="materialer"
+        title="Materialer"
+        intro="Friktionsvinkler og kornstørrelser anvendt i dimensioneringen. Værdierne kan tilpasses; ændringer gemmes lokalt og indgår i beregningen i Brugerdefineret-tilstand."
+        aside={<SaveState />}
+      />
       <div className="toolbar">
         <div className="toolbar-group">
           <Button
@@ -155,14 +142,16 @@ export function Materials() {
             <Redo2 />
             Gentag
           </Button>
-          <label className="filter">
-            <input
-              type="checkbox"
+          <div className="filter">
+            <Checkbox
+              id="materials-only-changed"
               checked={onlyChanged}
-              onChange={(e) => setOnlyChanged(e.target.checked)}
+              onCheckedChange={(checked) => setOnlyChanged(checked === true)}
             />
-            Vis kun ændringer <Badge variant="secondary">{changes.length}</Badge>
-          </label>
+            <Label htmlFor="materials-only-changed">
+              Vis kun ændringer <Badge variant="secondary">{changes.length}</Badge>
+            </Label>
+          </div>
         </div>
         <Button
           variant="outline"
@@ -178,20 +167,16 @@ export function Materials() {
         </Button>
       </div>
       {externalChange && (
-        <div className="message warning" role="alert">
-          <AlertCircle size={18} />
-          <div>
-            Data er ændret i en anden fane. Genindlæs siden, før der redigeres videre.
-            <br />
-            <Button variant="outline" size="sm" onClick={() => location.reload()}>
-              Genindlæs data
-            </Button>
-          </div>
-        </div>
+        <Notice kind="warning" className="message warning" role="alert">
+          Data er ændret i en anden fane. Genindlæs siden, før der redigeres videre.
+          <br />
+          <Button variant="outline" size="sm" onClick={() => location.reload()}>
+            Genindlæs data
+          </Button>
+        </Notice>
       )}
       {saveError && (
-        <div className="message error" role="alert">
-          <AlertCircle size={18} />
+        <Notice kind="error" className="message error" role="alert">
           <div>
             {saveError} Ændringerne er stadig i denne åbne fane.{' '}
             <Button
@@ -207,22 +192,18 @@ export function Materials() {
               Prøv at gemme igen
             </Button>
           </div>
-        </div>
+        </Notice>
       )}
       {errors.map((error) => (
-        <div className="message error" role="alert" key={error}>
-          <AlertCircle size={18} />
+        <Notice kind="error" className="message error" role="alert" key={error}>
           {error}
-        </div>
+        </Notice>
       ))}
       {alteredPhi.length > 0 && (
-        <div className="message warning">
-          <AlertCircle size={17} />
-          <span>
-            Friktionsvinklen afviger fra standarden for <strong>{alteredPhi.join(', ')}</strong>.
-            Brug <i>Nulstil til standard</i> for at gendanne værdierne.
-          </span>
-        </div>
+        <Notice kind="warning" className="message warning">
+          Friktionsvinklen afviger fra standarden for <strong>{alteredPhi.join(', ')}</strong>. Brug{' '}
+          <i>Nulstil til standard</i> for at gendanne værdierne.
+        </Notice>
       )}
       <fieldset disabled={externalChange} className="m-0 min-w-0 border-0 p-0">
         {(['Bærelag', 'Bundsikring'] as const).map((group, gi) => {
@@ -234,7 +215,7 @@ export function Materials() {
             <section className="section-card" key={group} aria-labelledby={`group-${gi}`}>
               <div className="section-heading">
                 <div className="section-title">
-                  <span className="section-number">0{gi + 1}</span>
+                  <span className="section-number">{gi + 1}</span>
                   <div>
                     <h2 id={`group-${gi}`}>
                       {group === 'Bærelag' ? 'Bærelagsmaterialer' : 'Bundsikringsmaterialer'}
@@ -267,11 +248,11 @@ export function Materials() {
                 </Button>
               </div>
               <div className="table-wrap">
-                <table aria-label={`${group} materialer`}>
+                <table className="data-table materials-table" aria-label={`${group} materialer`}>
                   <thead>
                     <tr>
                       {columns.map((c) => (
-                        <th key={c.field} scope="col">
+                        <th key={c.field} scope="col" className={c.numeric ? 'num' : undefined}>
                           {c.label}
                         </th>
                       ))}
@@ -384,10 +365,7 @@ export function Materials() {
           );
         })}
       </fieldset>
-      <footer className="page-footer">
-        <span>Gyldige ændringer gemmes automatisk, når feltet forlades.</span>
-        <span>MSL Dimensionering · Materialeoversigt</span>
-      </footer>
+      <PageFooter>Gyldige ændringer gemmes automatisk, når feltet forlades.</PageFooter>
     </main>
   );
 }
