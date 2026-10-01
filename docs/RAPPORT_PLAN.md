@@ -47,6 +47,16 @@ Overskrifter, afsnitsrækkefølge og tekstindhold bevares. Bevidst tom tekst gen
 
 ## R2 — browsercompiler og driftsforløb
 
+**R2-status — 01.10.2026:** `compiler.ts` indlæser typst.ts 0.7.0 og lokal WASM ved behov samt otte lokale Carlito/Liberation Sans-snit via Vites `BASE_URL`, uden standardfontaktiver/CDN. `compilePdf({ main, files })` erstatter filgrundlaget med `resetShadow`, `addSource` og `mapShadow`. Fulde diagnoser kræver `compiler.compile` som i demoen; `$typst.pdf()` skjuler dem. Initialiseringen deles og kan gentages efter fejl: wrapperen initialiseres før bibliotekets `LazyWasmModule`, som også gemmer afviste promises. Skrifter gives til `preloadFonts` som bytes efter HTTP-kontrol.
+
+`compile-queue.ts` samler ventende ændringer og kasserer ældre revisioner/fejl. Objekt-URL'er frigives ved ny revision, fejl og nedlukning. Danske fejl adskiller indlæsning, skrift, kilde og kompilering og viser fil samt linje/kolonne med +1. Ti tests med falsk compiler dækker forløbene. **`#rapport-kompilering` og `ReportCompileCheck.tsx` fjernes ved R4**; testsiden er uden navigationspunkt.
+
+Bygget WASM i `dist/assets/typst_ts_web_compiler_bg-D2mWRS72.wasm`: **28.325.178 bytes**. Samme WASM rapporterer **Typst 0.14.2** via `str(sys.version)` og PDF'ens Creator. Supplerende Node-kørsel danner PDF med begge fontfamilier indlejret, viser den faktiske diagnose `{ path: '/rapport.typ', range: '11:14-11:15', severity: 'error', message: 'unclosed delimiter' }` som linje 12/kolonne 15 og kompilerer efter rettelse. **173/6 ms er rene Node-kompileringstider med indlæst WASM, ikke browsermålinger.**
+
+Typekontrol, 2.885 Node-tests, formattering/formatteringskontrol og build består. `PW_PORT=5195 npx playwright test tests/browser/report-compile.spec.ts` er forsøgt, men Chromium-start afvises med **`spawn EPERM`**; computer-use har ingen browsere. Browserfilen dækker lokal/lazy indlæsning, indlejrede fonte, PDF-header/størrelse, ingen eksterne HTTP-kald, syntaksfejl uden download, rettelse og nyt WASM-forsøg. **Browser-/cachetider og netværkskontrol skal stadig verificeres uden sandkassebegrænsningen.**
+
+Compiler-worker er vurderet og udskudt til **R4**, hvor formularens reaktion kan måles. 0.7.0's installerede API'er tilbyder ingen indbygget compiler-worker; en egen worker kræver beskedprotokol, fejltransport og livscyklus. Køen kan senere bruge en worker som sin compiler uden Typst-afhængighed.
+
 Integrér compilerens lokale WASM-indlæsning, `disableDefaultFontAssets`, lokale `preloadFonts`, `mapShadow`/`addSource` og PDF-kompilering efter demoens mønster. Fejl skal vises forståeligt; diagnosernes nulbaserede linjer omregnes til viste linjenumre. Sammenfaldende liveændringer samles, og kun den seneste revision kan blive gældende PDF. Midlertidige PDF-URL'er frigives.
 
 Fejl i indlæsning, font, skabelon eller kompilering må ikke efterlade en downloadknap til en forældet rapport. Der er ingen Word-nødudgang. Kompilering kontrolleres i den understøttede browser med samme pakke/version som produktionen.
