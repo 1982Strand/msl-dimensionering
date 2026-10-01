@@ -80,6 +80,10 @@ FIG-001–004 i `reference/figures.json` er udgangspunkt for M5. Nye cases tilf�
 
 **Leverance og kontrol:** genskab afsnit, rækkefølge, åbningstilstande og synlighedsregler omkring de eksisterende beskeder. Sammenlign overskrifter, alle betingede tekster, punktopstillinger og værdier med originale renderoptagelser. Afhænger af resultater og opbygningsdata; ingen ændring fra anbefaling til krav eller omvendt.
 
+**Hjælpestatus 01.10.2026:** `result-checks.ts` og `ResultChecks.tsx` genskaber begge informations-expandere og status-slottet. Alle 14 sidereferencecases sammenlignes på hele undertræet: etiket, `expanded`, elementtyper, HTML-/markdown-kroppe, rækkefølge og statuslinjens tilstedeværelse; OUT-1 har ingen af delene. Ingen tolerance eller whitespace-normalisering. Trafikbeskeder uden for expanderne bevares; originalens særskilte advarsel ved manglende ustabiliseret reference bevares også. Visuel godkendelse udestår.
+
+Typecheck, 2.838 tests, formatering/formateringskontrol og build bestået i hjælpeworktree. `tests/browser/result-checks.spec.ts` dækker status, begge lukkede Accordion-punkter, åbning/lukning, FIG-003-teksten, OUT-1 og sidefejl. Forsøget på port 5191 blokeres før sideindlæsning af sandkassen (`browserType.launch: spawn EPERM`); browser- og visuel kontrol skal derfor genkøres ved integration.
+
 ## M4 — valgt net og referencenoter
 
 **Original:** `_render_valgt_net_detaljer` (3657), `_optimal_*` (3493–3616), `_lagtillaeg_tekst` (3616), `_eksakt_*` (3280–3310), `_korrektion_interval_note` (3229).
@@ -95,6 +99,8 @@ FIG-001–004 i `reference/figures.json` er udgangspunkt for M5. Nye cases tilf�
 **Tilstande:** begge tilstande/grundlag/enheder; intervalprodukter, ugyldige kombinationer/yderområde, anbefalede klasser, referencegrupper og bedste løsninger.
 
 **Leverance og kontrol:** komplette tabeller med originalens gruppering, sortering, kolonner, betingede celler og krav. Sammenlign originalens gruppedata og gengivne tabeller, inklusive tomme/ugyldige værdier og noteforklaringer. De porterede produktfunktioner genbruges. Afhænger af M2/M4; ingen ny produktanbefaling eller sortering.
+
+**Hjælpestatus 01.10.2026:** enkeltprodukt-/referencegrupper, referenceberegninger og gruppernes udførelseskrav er porteret i `result-checks.ts`. Visningen følger det valgte net. Originalens forskel bevares: Standard kopierer ikke intervalfelterne til enkeltproduktgruppen, mens Brugerdefineret tilføjer optimale endepunkter. Sidereferencens 14 cases kontrollerer gruppernes bidrag til kontrolpunkter, anbefalinger og udførelseskrav. Eksisterende produktgruppering og produkttabeller ændres ikke i denne hjælpeopgave; komplet M7-tabelkontrol er derfor fortsat særskilt arbejde.
 
 ## M8 — lokal trafikklasse-korrelation
 

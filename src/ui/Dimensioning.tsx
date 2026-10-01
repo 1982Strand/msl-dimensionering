@@ -16,7 +16,6 @@ import {
   phi_fra_materialer,
 } from '../engine/dimensionering';
 import { beregn_alle_produkter } from '../engine/products';
-import { valider_input } from '../engine/validators';
 import { defaults, PHI_BASIS } from '../engine/data';
 import schema from '../engine/dimensioning-ui.json';
 import { laengde } from '../engine/enhed';
@@ -28,6 +27,7 @@ import { ConstructionFigure } from './ConstructionFigure';
 import { PersonalDiagram } from './PersonalDiagram';
 import { PhiSummary } from './PhiSummary';
 import { CouplingExplanation } from './CouplingExplanation';
+import { ResultChecks, ResultStatus } from './ResultChecks';
 import { productOverview, overviewColumns, type OverviewSort } from '../engine/product-overview';
 
 const dk = (n: number, digits = 1) => pythonFixed(n, digits).replace('.', ',');
@@ -168,25 +168,6 @@ export function Dimensioning() {
       </div>
     );
   }
-  const checks = result
-    ? ['1_lag', '2_lag'].map((mode, i) => {
-        const r = (i === 0 ? result.res_1 : result.res_2) as CalculationResult;
-        return valider_input({
-          eu: result.eu,
-          eo: result.eo!,
-          phi: result.phi,
-          lag_mode: mode,
-          geonet: result.geonet,
-          materialer: result.materialer,
-          t_armeret_mm: r.t_armeret_mm,
-          t_basis_table: input.t_basis_table,
-          tillad_interpoleret_eo: basis.type === 'trafikklasse',
-        });
-      })
-    : [];
-  const messages = (key: 'fejl' | 'advarsler' | 'anbefalinger') => [
-    ...new Set(checks.flatMap((v) => v[key])),
-  ];
   const weighted = phi_fra_materialer(input.materialer ?? []);
   const count = Number(values.bd_antal_lag);
   return (
@@ -529,16 +510,7 @@ export function Dimensioning() {
                 </div>
               ))}
             </div>
-            {(['fejl', 'advarsler', 'anbefalinger'] as const).flatMap((key) =>
-              messages(key).map((message) => (
-                <p
-                  className={key === 'anbefalinger' ? 'info-banner' : 'warning-banner'}
-                  key={message}
-                >
-                  {message}
-                </p>
-              )),
-            )}
+            <ResultStatus input={input} result={result} unit={unit} products={products} />
             <details className="settings-deviations">
               <summary>Alle produkter</summary>
               <div className="table-wrap">
@@ -626,6 +598,7 @@ export function Dimensioning() {
           />
         )}
         {result && <CouplingExplanation input={input} result={result} />}
+        {result && <ResultChecks input={input} result={result} unit={unit} products={products} />}
       </fieldset>
       <footer className="page-footer">
         <span>Udkast · fulde mellemregninger og rapport tilføjes senere.</span>
