@@ -183,10 +183,8 @@ test('rapportkæden, lokal compiler/skrifter, PDF-download og revisionens spærr
   // Med varm compiler er den nye revision klar på få millisekunder; mellemtilstanden
   // (spærret download og forældet forhåndsvisning) registreres derfor, mens den står i DOM.
   await page.evaluate(() => {
-    const seen = ((window as unknown as { __revision: Record<string, boolean> }).__revision = {
-      disabled: false,
-      stale: false,
-    });
+    const seen: Record<string, boolean> = { disabled: false, stale: false };
+    (window as unknown as { __revision: Record<string, boolean> }).__revision = seen;
     const check = () => {
       if (
         [...document.querySelectorAll('button')].some(
