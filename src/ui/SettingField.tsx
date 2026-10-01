@@ -15,23 +15,31 @@ import {
 import { HoverCard, HoverCardContent, HoverCardTrigger } from '@/components/ui/hover-card';
 
 /** Forklaring som spørgsmålstegn med Hover Card ved etiketten (B-053), som originalens hjælpeikon.
- * Åbner ved mus og tastaturfokus; et tryk åbner og lukker på berøringsskærme. */
+ * Åbner ved mus og tastaturfokus; et tryk åbner og lukker på berøringsskærme.
+ * Åbningen styres her: Radix' egne forsinkede åbninger rydder ikke op ved Escape eller klik og
+ * kunne genåbne et netop lukket kort. Radix bruges kun til at lukke (Escape, udenfor, mus væk). */
 export function HelpHint({ label, help }: { label: string; help: string }) {
   const [open, setOpen] = useState(false);
+  const timer = useRef<number | undefined>(undefined);
   // Et klik eller tryk giver også fokus; kun tastaturfokus åbner, så klikket alene skifter.
   const pointer = useRef(false);
   const trigger = useRef<HTMLButtonElement>(null);
-  // Hover-åbningen er forsinket; efter et klik må den ikke genåbne et kort, klikket lige lukkede.
-  const clicked = useRef(-Infinity);
+  useEffect(() => () => window.clearTimeout(timer.current), []);
+  const set = (next: boolean) => {
+    window.clearTimeout(timer.current);
+    setOpen(next);
+  };
+  const hover = (e: React.PointerEvent, next: boolean, delay: number) => {
+    if (e.pointerType === 'touch') return;
+    window.clearTimeout(timer.current);
+    timer.current = window.setTimeout(() => setOpen(next), delay);
+  };
   return (
     <HoverCard
       open={open}
       onOpenChange={(next) => {
-        if (next && performance.now() - clicked.current < 400) return;
-        setOpen(next);
+        if (!next) set(false);
       }}
-      openDelay={150}
-      closeDelay={100}
     >
       <HoverCardTrigger asChild>
         <button
@@ -39,21 +47,22 @@ export function HelpHint({ label, help }: { label: string; help: string }) {
           type="button"
           className="help-hint"
           aria-label={`Forklaring: ${label}`}
+          onPointerEnter={(e) => hover(e, true, 150)}
+          onPointerLeave={(e) => hover(e, false, 100)}
           onPointerDown={() => {
             pointer.current = true;
           }}
           onClick={(e) => {
             e.preventDefault();
             pointer.current = false;
-            clicked.current = performance.now();
-            setOpen((v) => !v);
+            set(!open);
           }}
           onFocus={() => {
-            if (!pointer.current) setOpen(true);
+            if (!pointer.current) set(true);
           }}
           onBlur={() => {
             pointer.current = false;
-            setOpen(false);
+            set(false);
           }}
         >
           <CircleHelp aria-hidden="true" />
@@ -67,6 +76,11 @@ export function HelpHint({ label, help }: { label: string; help: string }) {
         onPointerDownOutside={(e) => {
           if (trigger.current?.contains(e.target as Node)) e.preventDefault();
         }}
+        // Musen kan flyttes ind i kortet (fx for at rulle lang tekst) uden at det lukker.
+        onPointerEnter={(e) => {
+          if (e.pointerType !== 'touch') window.clearTimeout(timer.current);
+        }}
+        onPointerLeave={(e) => hover(e, false, 100)}
       >
         {help}
       </HoverCardContent>
