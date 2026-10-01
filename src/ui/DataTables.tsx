@@ -436,6 +436,7 @@ export function DataTables({ mode }: { mode: 'diagrammer' | 'vejdim' }) {
                 setDraft(null);
               }}
             >
+              <RotateCcw />
               Nulstil alle diagramdata til standard
             </Button>
           </>

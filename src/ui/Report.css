@@ -79,7 +79,7 @@
 .report-fields-toolbar .report-caption p {
   margin: 0;
 }
-.report-fields-toolbar button {
+.report-fields-toolbar [data-slot='button'] {
   justify-self: end;
 }
 .report-cut-choices {
@@ -154,7 +154,7 @@
   .report-table-line {
     grid-template-columns: minmax(0, 1fr);
   }
-  .report-table-line button {
+  .report-table-line [data-slot='button'] {
     justify-self: start;
   }
   .report-project-columns,
@@ -164,11 +164,11 @@
     grid-template-columns: minmax(0, 1fr);
     gap: 0;
   }
-  .report-fields-toolbar button {
+  .report-fields-toolbar [data-slot='button'] {
     justify-self: start;
     margin-top: 12px;
   }
-  .report-page button {
+  .report-page [data-slot='button'] {
     max-width: 100%;
     height: auto;
     min-height: 36px;

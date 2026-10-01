@@ -10,7 +10,13 @@
   min-width: 0;
 }
 .profile-card-content {
-  padding-top: 20px;
+  padding-top: 0;
+}
+.profile-save-state {
+  font-size: var(--fs-meta);
+  color: var(--primary);
+  font-weight: 500;
+  margin: 0 0 12px;
 }
 .profile-actions {
   display: flex;

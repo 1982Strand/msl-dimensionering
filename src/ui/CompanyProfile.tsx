@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState, type ReactNode, type Ref } from 'react';
+import { Download, ImageUp, Plus, RotateCcw, Trash2, Upload, UserPlus, Users } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { formatPhone } from '../report/phone-format';
 import { Input } from '../components/ui/input';
@@ -283,6 +284,7 @@ export function CompanyProfile({
         </p>
         <p
           role="status"
+          className="profile-save-state"
           data-testid="profile-save-state"
           data-state={!ready ? 'loading' : saving ? 'saving' : error ? 'error' : 'saved'}
         >
@@ -307,6 +309,7 @@ export function CompanyProfile({
               <img className="profile-logo" alt="Aktuelt firmalogo" src={logoSource} />
               <div className="profile-actions">
                 <Button type="button" variant="outline" onClick={() => logoInput.current?.click()}>
+                  <ImageUp aria-hidden="true" />
                   Vælg logo …
                 </Button>
                 <Button
@@ -314,6 +317,7 @@ export function CompanyProfile({
                   variant="outline"
                   onClick={() => update((prev) => ({ ...prev, logo: null }))}
                 >
+                  <RotateCcw aria-hidden="true" />
                   Brug standardlogo
                 </Button>
               </div>
@@ -494,6 +498,7 @@ export function CompanyProfile({
                   update(defaultProfileState, true);
               }}
             >
+              <RotateCcw aria-hidden="true" />
               Nulstil firmaprofil til standard
             </Button>
             <Button
@@ -515,6 +520,7 @@ export function CompanyProfile({
                 })
               }
             >
+              <Download aria-hidden="true" />
               Eksportér profil
             </Button>
             <Button
@@ -523,6 +529,7 @@ export function CompanyProfile({
               disabled={saving}
               onClick={() => importInput.current?.click()}
             >
+              <Upload aria-hidden="true" />
               Importér profil …
             </Button>
             <input
@@ -714,6 +721,7 @@ function EmployeeRow({
                   if (window.confirm(`Slet medarbejderen ${person.navn}?`)) onDelete();
                 }}
               >
+                <Trash2 aria-hidden="true" />
                 Slet
               </Button>
             </>
@@ -759,6 +767,7 @@ function Employees({
         <Popover open={adding} onOpenChange={setAdding}>
           <PopoverTrigger asChild>
             <Button type="button" variant="outline" disabled={disabled}>
+              <UserPlus aria-hidden="true" />
               Tilføj medarbejder
             </Button>
           </PopoverTrigger>
@@ -795,7 +804,10 @@ function Employees({
                     }}
                   />
                 ))}
-                <Button type="submit">Tilføj</Button>
+                <Button type="submit">
+                  <Plus aria-hidden="true" />
+                  Tilføj
+                </Button>
               </fieldset>
             </form>
           </PopoverContent>
@@ -807,6 +819,7 @@ function Employees({
         >
           <SheetTrigger asChild>
             <Button type="button" variant="outline" disabled={disabled}>
+              <Users aria-hidden="true" />
               Åbn kartotek ({profile.length})
             </Button>
           </SheetTrigger>

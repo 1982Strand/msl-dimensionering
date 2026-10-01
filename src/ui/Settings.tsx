@@ -5,6 +5,7 @@ import { standard_indstillinger } from '../engine/editing';
 import { useEditor } from './EditorContext';
 import { EditorFeedback, SaveState } from './EditorFeedback';
 import { SettingField, type SettingValue } from './SettingField';
+import { RotateCcw } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { aktivt_beregningsgrundlag } from '../engine/auto-edit';
@@ -164,6 +165,7 @@ export function Settings() {
                   ctx.receive(ctx.editor.edit({ section: 'indstillinger', value: next }), true);
                 }}
               >
+                <RotateCcw aria-hidden="true" />
                 {item.table.resetLabel}
               </Button>
             </div>

@@ -491,6 +491,11 @@
 }
 
 /* Mærker */
+.status-badge {
+  color: var(--muted-foreground);
+  background: var(--card);
+  font-weight: 500;
+}
 .applies-badge {
   margin: 4px 0 16px;
   color: var(--muted-foreground);
@@ -568,7 +573,7 @@
   margin-bottom: 16px;
   font-size: var(--fs-small);
 }
-.settings-minimums button {
+.settings-minimums > [data-slot='button'] {
   margin-top: 16px;
 }
 .minimum-table .setting-label-row,

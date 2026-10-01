@@ -18,6 +18,7 @@ import { EditorFeedback, SaveState } from './EditorFeedback';
 import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
 import { Textarea } from '../components/ui/textarea';
+import { Badge } from '../components/ui/badge';
 import { Checkbox } from '../components/ui/checkbox';
 import { Label } from '../components/ui/label';
 import {
@@ -746,7 +747,13 @@ export function Report({
                         <span className="bg-trin-nr">{step.number}</span>
                         <span className="bg-trin-titel">{step.title}</span>
                       </h2>
-                      <span className="bg-trin-opsum">{step.summary}</span>
+                      {step.summary === 'Ikke udfyldt' ? (
+                        <Badge variant="outline" className="bg-trin-opsum status-badge">
+                          {step.summary}
+                        </Badge>
+                      ) : (
+                        <span className="bg-trin-opsum">{step.summary}</span>
+                      )}
                     </div>
                   </div>
                   <div className={'report-step report-step-' + step.number}>{renderStep(step)}</div>
