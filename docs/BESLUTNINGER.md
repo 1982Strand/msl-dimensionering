@@ -141,3 +141,15 @@ Beslutning B-025 følger brugerens besked i denne chat. B-026–028 registreres 
 - **B-055:** Endelig PDF-godkendelse (R6). Brugeren: »godkendt, PDF'en ser fin ud«. Godkendelsen gælder det forelagte R6-sæt på 31 PDF'er/99 sider (`tools/build-r6-pdfs.ts`, liste i RAPPORT_PLAN.md) med de kendte forskelle fra Word-rapporten: Carlito/Liberation Sans i stedet for Calibri/Helvetica, figurernes nye udseende (B-025, B-034) i originalens målestok og de godkendte ændringer B-026–B-054. Hermed er B-026's krav om perfekt opsætning opfyldt for det forelagte sæt. Fremtidige layoutændringer forelægges igen.
 - **B-056:** Justering af produktvælgeren (B-054). Brugeren: »Den skal lige justeres lidt.. For det første, kan vi så ikke få trafikklasse, korrektion osv, ud til højre for produktnavnet? Så altså hele vælgeren bliver bredere. Også i listen når man åbner vælgeren. 'Optimalt' må gerne omdøbes til 'Optimal korrektion'. Når man åbner vælgeren, er der en grøn outline omkring 'søg produkt..', men den er skåret af i toppen.« Mærkerne står til højre for navnet i felt og liste (navnet i fast bredde, så mærkerne flugter); feltet er op til 820 px og listen mindst 640 px bred; »Optimalt« hedder »Optimal korrektion«; søgefeltets fokus vises som en linje under feltet. På smal skærm står mærkerne under navnet, og listen holdes inden for skærmen.
 - **B-057:** Rigtigt minustegn i produktvælgerens mærker. Originalens etiketter blander bindestreg og minustegn (fx »Net-korrektion: -5 %« og »−10 %«). Brugeren: »ja, ensret til rigtigt minustegn.« Mærkerne »Net-korrektion« og »Optimal korrektion« viser altid »−«. Det gælder kun visningen i vælgeren; originalens etiketter, produktdata og beregninger er uændrede.
+- **B-058:** Temaudkastet (`#temaudkast`, `docs/TEMAUDKAST.md`) er godkendt, som det blev forelagt 01.10.2026. Brugeren: »ja til segmenterede knapper og stien efter menuens grupper. Temaændringer er alle godkendt«. Godkendelsen omfatter alle otte afsnit:
+  1. Farver og skrift: ti farver og seks skriftstørrelser i hele appen, med Segoe UI og ens cifferbredde. Figurernes datafarver (B-034, B-040) er uændrede.
+  2. Topbjælke og sidehoved: topbjælken er 56 px, og alle sider har samme sidehoved. Stien følger menuens grupper, fx »Opslag / Materialer«.
+  3. Segmenterede knapper til korte valg: Tilstand og belastningsklasse 1–6, og ligeså trafikklassevalget, som er samme slags valg. De er fortsat radioknapper for tastatur og skærmlæser.
+  4. shadcn-komponenterne Card, Checkbox, RadioGroup, Select, Slider og Label. De er nye ud over B-037 og hermed godkendt.
+  5. Resultatfliser med reduktionen i almindelig skrift og »Tyndest« som mærke.
+  6. »Gælder: …« som mærke.
+  7. Beskeder som shadcn Alert i udgaverne info, advarsel og fejl.
+  8. Tabeller med lavere rækker og højrestillede tal, og uden de globale tabelregler.
+  9. Knapper i sidens skriftstørrelse med ikon og én hovedknap pr. side.
+  10. Rapportens faner med ikon.
+  Tekster, tal, valg og beregninger er uændrede.
