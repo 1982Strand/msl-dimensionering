@@ -180,9 +180,37 @@ test('rapportkæden, lokal compiler/skrifter, PDF-download og revisionens spærr
   await ready(page); // Liveforløbet fortsætter ved navigation uden ny Generér-handling.
   await expect(page.getByLabel('Dato', { exact: true })).toHaveValue('2026-09-29');
   const old = await page.getByTitle('PDF-forhåndsvisning', { exact: true }).getAttribute('src');
+  // Med varm compiler er den nye revision klar på få millisekunder; mellemtilstanden
+  // (spærret download og forældet forhåndsvisning) registreres derfor, mens den står i DOM.
+  await page.evaluate(() => {
+    const seen = ((window as unknown as { __revision: Record<string, boolean> }).__revision = {
+      disabled: false,
+      stale: false,
+    });
+    const check = () => {
+      if (
+        [...document.querySelectorAll('button')].some(
+          (b) => b.textContent?.trim() === 'Hent PDF' && b.disabled,
+        )
+      )
+        seen.disabled = true;
+      if (document.body.textContent?.includes('Forhåndsvisningen er forældet.')) seen.stale = true;
+    };
+    new MutationObserver(check).observe(document.body, {
+      subtree: true,
+      childList: true,
+      attributes: true,
+      characterData: true,
+    });
+  });
   await page.getByLabel('Projekt', { exact: true }).fill('Ny revision');
-  await expect(page.getByRole('button', { name: 'Hent PDF', exact: true })).toBeDisabled();
-  await expect(page.getByText('Forhåndsvisningen er forældet.', { exact: false })).toBeVisible();
+  await expect
+    .poll(() =>
+      page.evaluate(
+        () => (window as unknown as { __revision: Record<string, boolean> }).__revision,
+      ),
+    )
+    .toEqual({ disabled: true, stale: true });
   await page.getByLabel('Projekt', { exact: true }).fill('Seneste revision');
   await ready(page);
   await expect(page.getByTitle('PDF-forhåndsvisning', { exact: true })).not.toHaveAttribute(
