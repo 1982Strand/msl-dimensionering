@@ -103,6 +103,8 @@ Seneste UI-udvidelse: `table-ui-cases.json` fastlåser 20 sammenligninger af rå
 
 `report-figure-cases.json` registrerer syv originale rapport-preview-forløb: renderargumenter, faktisk snitliste, effektive standarder, størrelse, signatur og eksportlayout. Chrome/rastereksport er erstattet af en neutral PNG under optagelsen; argumentdannelse og geometri udføres af originalen. Dette er en kald-/geometrireference, ikke en raster- eller PDF-sammenligning. Scenarienavne er ikke bevis for snitvalg; de observerede `snit_liste`-værdier er normative, jf. rapportplanens note om custom-input-only.
 
+`report-figure-extra-cases.json` (`tools/capture_report_figure_reference.py --extra`) er den rene input-snitcase, som RAPPORT_PLAN.md kræver før R3: Brugerdefineret, Eᵤ 5, NX850, i rapporten kun »Indtastet opbygning« valgt (uarmeret, 1 og 2 lag fravalgt). Den observerede snitliste er `['Indtastet opbygning']`. Optaget 01.10.2026 fra isoleret `a330cfd`; ny sammenligning af begge filer gav samme resultat.
+
 Genkørsel: `tools/capture_personal_diagram_reference.py` og `tools/capture_report_figure_reference.py` med den gamle apps Python-miljø. Uden `--record` sammenlignes; med flag nægtes eksisterende målfiler, også før originalen startes. Begge kører isoleret a330cfd. Ingen eksisterende forventninger er overskrevet.
 
 ## Aktiv M6 og korrigeret M2-kortlægning

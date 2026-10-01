@@ -1,0 +1,3128 @@
+{
+  "source": {
+    "commit": "a330cfd6734ac2478be1304a362c69f94e412d25",
+    "data_profile": "built-in defaults; no user JSON",
+    "files": {
+      "app.py": "ba6b29870a92df46025a8d936b3ab6ea16f32b1f7122e48652a640182f9530e5",
+      "ui.py": "ffa3e583a19d4ede16873963bed70b819e3402b320878ba49166295fd5558d7c",
+      "core/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "core/afrunding.py": "9149c3536c388a82e2f242e939a1a1f998e01bf828a6ab378c927a757ad816e4",
+      "core/calculator.py": "bf46d2642d6083439b8c03c46e24eb18f156fe1a734af7e6fa866f16626ad227",
+      "core/data.py": "e164a0f3bb42cd0d565dfc45d2895031a03b2cb8e93b05a0a65097790d0f0540",
+      "core/diagram.py": "b171b7486e5aa1a43590f9f8a28376680bd2a50f7155535fcbfb7198d38df461",
+      "core/enhed.py": "256884745b59e94d0211a610e8bf092942a0fec5d147e48a7502833912583cf2",
+      "core/hjaelp.py": "5179b206a31224bf2582fdc31bf6520fd68552da1206dd5f7f034ab249e0ac78",
+      "core/lagfordeling.py": "0426d2021e037c8e993fefc104b69cfbf03526408cadd1303775c32f5577716b",
+      "core/placement.py": "9668ab8bfe106722e4735576d72dcb86280470ee60fea14feae08bf8f3ccf9d2",
+      "core/rapport.py": "b6235563354b72f81d386afc703db273eb08a2d6f9857d4f73499f7b2c61b898",
+      "core/validators.py": "5258b68728afa7d2224d1e5b090ff6c78f7a3c568408ad367dbcd210fb71428c"
+    }
+  },
+  "method": "Actual original report calls with all effective defaults; unchanged geometry, only raster/Chrome stubbed",
+  "cases": [
+    {
+      "id": "RFIG-custom-input-pure",
+      "dimensioning": {
+        "tilstand": "Brugerdefineret",
+        "eu": 5.0,
+        "eo": 80.0,
+        "valgt_klasse": 4,
+        "grundlag_type": "belastningsklasse",
+        "t_klasse": null,
+        "eo_aekv": null,
+        "zone": null,
+        "skala": 1.0,
+        "yder": null,
+        "phi": 38.285714285714285,
+        "materialer": [
+          {
+            "navn": "Stabilgrus SGII 0-32",
+            "phi": 40.0,
+            "max_korn": 32,
+            "lagtype": "Bærelag",
+            "tykkelse_mm": 300.0,
+            "pct": null,
+            "krav_maskestoerrelse_mm": 35
+          },
+          {
+            "navn": "Bundsikringssand",
+            "phi": 37.0,
+            "max_korn": 8,
+            "lagtype": "Bundsikring",
+            "tykkelse_mm": 400.0,
+            "pct": null,
+            "krav_maskestoerrelse_mm": 35
+          }
+        ],
+        "geonet": {
+          "navn": "Tensar InterAx NX850",
+          "serie": "Tensar",
+          "type": "Hexagonalt",
+          "effektindeks": "115–130",
+          "korrektion": -0.15,
+          "korrektion_interval": [
+            -0.3,
+            -0.15
+          ],
+          "max_korn": null,
+          "anbefalet_tilslag": null,
+          "rudeaabning": "Hexagonal/trapezoidal/triangulær, ribbeafstand 80 mm",
+          "min_daklag": 20,
+          "klasser": [
+            5,
+            6
+          ],
+          "radial_stivhed": null,
+          "gwp": null,
+          "min_levetid": null,
+          "overlap_eu_ge5_cm": 30,
+          "overlap_eu_lt5_cm": 40,
+          "maskestoerrelse_datablad_mm": null,
+          "gwp_bredder": null,
+          "knudepunkt_effektivitet": null,
+          "maskestabilitet_Nmm_grad": null,
+          "stivhedsforhold": null,
+          "min_traekstyrke": null,
+          "traekstyrke_2pct": null,
+          "traekstyrke_5pct": null,
+          "max_deformation_pct": null,
+          "ribbetykkelse": null,
+          "resistens_kemisk_pct": null,
+          "resistens_uv_pct": null,
+          "resistens_oxidation_pct": null,
+          "resistens_installationsskader": null,
+          "bemærkning": "Effektindeks 115–130 ⇒ korrektion fra −30 % (bedste) til −15 % (konservativ). Coekstruderet, integralt formet hexagonalt geonet med rektangulære ribber og knudetykkelse 4,5 mm. EPD-certificeret (EN 15804+A2:2019). 100 % modstand mod kemisk nedbrydning, 90 % modstand mod UV/forvitring. PIDS angiver ikke designværdier (trækstyrke, radial stivhed, GWP, maks. korn)."
+        },
+        "geonet_navn": "Tensar InterAx NX850",
+        "res_1": {
+          "eu": 5.0,
+          "eo": 80.0,
+          "phi": 38.285714285714285,
+          "phi_uarmeret": 38.25,
+          "phi_eksakt": 38.285714285714285,
+          "phi_uarmeret_eksakt": 38.25,
+          "phi_afrunding": "ingen",
+          "lag_mode": "1_lag",
+          "net_korrektion": -0.15,
+          "eu_lower": 5.0,
+          "eu_upper": 5.0,
+          "t_low_arm_cm": 83.3,
+          "t_high_arm_cm": 83.3,
+          "t_low_uarm_cm": 120.0,
+          "t_high_uarm_cm": 120.0,
+          "t_basis_arm_cm": 83.3,
+          "t_basis_arm_mm": 833.0,
+          "t_basis_uarm_cm": 120.0,
+          "t_basis_uarm_mm": 1200.0,
+          "phi_korrektion": -0.0257,
+          "phi_korrektion_uarmeret": -0.025,
+          "samlet_faktor": 0.8243,
+          "skala": 1.0,
+          "t_armeret_mm": 700.0,
+          "t_uarmeret_mm": 1200.0,
+          "t_uarmeret_phi_kor_mm": 1200.0,
+          "reduktion_mm": 500.0,
+          "reduktion_pct": 0.4167,
+          "uarmeret_mangler": false,
+          "uarmeret_fejl": null,
+          "fejl": null,
+          "t_armeret_eksakt_mm": 687.0,
+          "t_uarmeret_eksakt_mm": 1200.0,
+          "t_uarmeret_phi_kor_eksakt_mm": 1170.0,
+          "t_min_mm": 250.0,
+          "reduktion_mm_eksakt": 483.0,
+          "reduktion_pct_eksakt": 0.4131,
+          "afrunding_trin_mm": 50,
+          "phi_indtastet": 38.285714285714285,
+          "phi_regel": "laveste",
+          "min_top_cover_mm": 200.0,
+          "general_top_cover_mm": 200.0,
+          "product_cover_mm": 200.0,
+          "min_spacing_mm": 200.0,
+          "max_spacing_mm": 400.0,
+          "overlap_ge5_mm": 300.0,
+          "overlap_lt5_mm": 400.0,
+          "source": "Tensar",
+          "placering_ok": true,
+          "geonet_placeringer_mm_fra_top": [
+            700.0
+          ],
+          "geonet_y_fracs": [
+            1.0
+          ],
+          "topdaeklag_mm": 700.0,
+          "afstande_mellem_geonet_mm": [],
+          "placeringsadvarsler": [],
+          "t_min_placering_mm": 200.0,
+          "t_dimensionerende_mm": 700.0,
+          "placeringsbasis": "underbund"
+        },
+        "res_2": {
+          "eu": 5.0,
+          "eo": 80.0,
+          "phi": 38.285714285714285,
+          "phi_uarmeret": 38.25,
+          "phi_eksakt": 38.285714285714285,
+          "phi_uarmeret_eksakt": 38.25,
+          "phi_afrunding": "ingen",
+          "lag_mode": "2_lag",
+          "net_korrektion": -0.15,
+          "eu_lower": 5.0,
+          "eu_upper": 5.0,
+          "t_low_arm_cm": 75.0,
+          "t_high_arm_cm": 75.0,
+          "t_low_uarm_cm": 120.0,
+          "t_high_uarm_cm": 120.0,
+          "t_basis_arm_cm": 75.0,
+          "t_basis_arm_mm": 750.0,
+          "t_basis_uarm_cm": 120.0,
+          "t_basis_uarm_mm": 1200.0,
+          "phi_korrektion": -0.0257,
+          "phi_korrektion_uarmeret": -0.025,
+          "samlet_faktor": 0.8243,
+          "skala": 1.0,
+          "t_armeret_mm": 650.0,
+          "t_uarmeret_mm": 1200.0,
+          "t_uarmeret_phi_kor_mm": 1200.0,
+          "reduktion_mm": 550.0,
+          "reduktion_pct": 0.4583,
+          "uarmeret_mangler": false,
+          "uarmeret_fejl": null,
+          "fejl": null,
+          "t_armeret_eksakt_mm": 618.0,
+          "t_uarmeret_eksakt_mm": 1200.0,
+          "t_uarmeret_phi_kor_eksakt_mm": 1170.0,
+          "t_min_mm": 250.0,
+          "reduktion_mm_eksakt": 552.0,
+          "reduktion_pct_eksakt": 0.4716,
+          "afrunding_trin_mm": 50,
+          "phi_indtastet": 38.285714285714285,
+          "phi_regel": "laveste",
+          "min_top_cover_mm": 200.0,
+          "general_top_cover_mm": 200.0,
+          "product_cover_mm": 200.0,
+          "min_spacing_mm": 200.0,
+          "max_spacing_mm": 400.0,
+          "overlap_ge5_mm": 300.0,
+          "overlap_lt5_mm": 400.0,
+          "source": "Tensar",
+          "placering_ok": false,
+          "geonet_placeringer_mm_fra_top": [
+            200.0,
+            650.0
+          ],
+          "geonet_y_fracs": [
+            0.3076923076923077,
+            1.0
+          ],
+          "topdaeklag_mm": 200.0,
+          "afstande_mellem_geonet_mm": [
+            450.0
+          ],
+          "placeringsadvarsler": [
+            "Afstanden mellem geonetlagene er 450 mm. Anbefalingen for bedst effekt er højst 400 mm for Tensar."
+          ],
+          "t_min_placering_mm": 400.0,
+          "t_dimensionerende_mm": 650.0,
+          "placeringsbasis": "minimumsdæklag"
+        },
+        "afrunding": {
+          "trin_mm": 50,
+          "reduktion_eksakt": false,
+          "vis_eksakt": false,
+          "phi_afrunding": "ingen",
+          "t_min_mm": 250.0,
+          "lagopbygning": {
+            "lag": [
+              {
+                "navn": "Stabilgrus SGII 0-32",
+                "andel": 300.0,
+                "lagtype": "Bærelag",
+                "phi": 40.0
+              },
+              {
+                "navn": "Bundsikringssand",
+                "andel": 400.0,
+                "lagtype": "Bundsikring",
+                "phi": 37.0
+              }
+            ],
+            "fordeling": "minimum",
+            "min_mm": 250.0,
+            "oeverst_ref_mm": null,
+            "restlag": "vis",
+            "restlag_graense_mm": 100.0,
+            "vd_minimum_mm": null,
+            "phi_regel": "laveste",
+            "kraev_bundsikring": false
+          }
+        },
+        "fordeling": {
+          "fordeling": "minimum",
+          "klasse": 4,
+          "min_mm": 250.0,
+          "samlet_min_mm": 250.0,
+          "restlag": "vis",
+          "restlag_graense_mm": 100.0,
+          "vd_minimum_mm": {
+            "Bærelag": 100.0,
+            "Bundsikring": 200.0
+          },
+          "phi_regel": "laveste",
+          "kraev_bundsikring": false,
+          "netplacering": "laggraense"
+        },
+        "t_uarmeret_mm": 1200.0,
+        "t_1_lag_best_mm": 600.0,
+        "t_2_lag_best_mm": 550.0,
+        "t_1_lag_best_eksakt_mm": 562.0,
+        "t_2_lag_best_eksakt_mm": 506.0,
+        "phi_1_lag_best": 38.25,
+        "phi_2_lag_best": 38.285714285714285
+      },
+      "settings": {
+        "afrunding": {
+          "trin_mm": 50,
+          "reduktion_eksakt": false,
+          "vis_eksakt": false,
+          "phi_afrunding": "ingen"
+        },
+        "opbygning": {
+          "geonet_paaskrift": true,
+          "maal_streg": true,
+          "maal_tal": true,
+          "signatur": true,
+          "enhed": "mm"
+        },
+        "lagfordeling": {
+          "fordeling": "minimum",
+          "samlet_minimum": true,
+          "minimum_mm": {
+            "1": 200.0,
+            "2": 200.0,
+            "3": 200.0,
+            "4": 250.0,
+            "5": 275.0,
+            "6": 300.0
+          },
+          "restlag": "vis",
+          "restlag_graense_mm": 100.0,
+          "vd_minimum_mm": {
+            "Bærelag": 100.0,
+            "Bundsikring": 200.0
+          },
+          "phi_regel": "laveste",
+          "kraev_bundsikring": false,
+          "netplacering": "laggraense",
+          "standard_klassisk": false,
+          "standard_opdeling": true,
+          "standard_under_minimum": "stabilgrus"
+        },
+        "yderomraade": {
+          "tolerance_over_pct": 5.0,
+          "tolerance_under_pct": 5.0,
+          "under_inden": "laveste",
+          "over_uden": "afvis",
+          "under_uden": "afvis"
+        }
+      },
+      "choices": {
+        "rap_dd_vis_din_prik": true,
+        "rap_dd_vis_lag_prikker": true,
+        "rap_vis_1lag": false,
+        "rap_vis_designdiagram": true,
+        "rap_vis_indtastet": true,
+        "rap_vis_uarm": false,
+        "rap_vis_2lag": false
+      },
+      "calls": [
+        {
+          "function": "render_opbygning_png",
+          "kwargs": {
+            "eu": 5.0,
+            "snit_liste": [
+              {
+                "titel": "Indtastet opbygning",
+                "t_baerelag_mm": 700.0,
+                "geonet_y_fracs": [],
+                "sub_lag": [
+                  {
+                    "navn": "Stabilgrus SGII 0-32",
+                    "tykkelse_mm": 300.0
+                  },
+                  {
+                    "navn": "Bundsikringssand",
+                    "tykkelse_mm": 400.0
+                  }
+                ],
+                "ikke_defineret_tekst": null,
+                "best_case_mm": null,
+                "best_case_note": null,
+                "placement": null,
+                "er_krav_soejle": false,
+                "t_indtastet_mm": 700.0,
+                "status_tekst": null,
+                "status_farve": null,
+                "phi_vaegtet": true
+              }
+            ],
+            "geonet_label": "Tensar InterAx NX850",
+            "materialer": [
+              {
+                "navn": "Stabilgrus SGII 0-32",
+                "phi": 40.0,
+                "max_korn": 32,
+                "lagtype": "Bærelag",
+                "tykkelse_mm": 300.0,
+                "pct": null,
+                "krav_maskestoerrelse_mm": 35
+              },
+              {
+                "navn": "Bundsikringssand",
+                "phi": 37.0,
+                "max_korn": 8,
+                "lagtype": "Bundsikring",
+                "tykkelse_mm": 400.0,
+                "pct": null,
+                "krav_maskestoerrelse_mm": 35
+              }
+            ],
+            "reference_mm": 700.0,
+            "dpi": 200,
+            "figsize": [
+              10.0,
+              3.4
+            ],
+            "geonet_paaskrift": true,
+            "geonet_maerkat": null,
+            "vis_maal_streg": true,
+            "vis_maal_tal": true,
+            "vis_signatur": true,
+            "enhed": "mm"
+          }
+        },
+        {
+          "function": "render_personligt_designdiagram_png",
+          "kwargs": {
+            "eu": 5.0,
+            "eo": 80.0,
+            "klasse": 4,
+            "phi": 38.285714285714285,
+            "geonet": {
+              "navn": "Tensar InterAx NX850",
+              "serie": "Tensar",
+              "type": "Hexagonalt",
+              "effektindeks": "115–130",
+              "korrektion": -0.15,
+              "korrektion_interval": [
+                -0.3,
+                -0.15
+              ],
+              "max_korn": null,
+              "anbefalet_tilslag": null,
+              "rudeaabning": "Hexagonal/trapezoidal/triangulær, ribbeafstand 80 mm",
+              "min_daklag": 20,
+              "klasser": [
+                5,
+                6
+              ],
+              "radial_stivhed": null,
+              "gwp": null,
+              "min_levetid": null,
+              "overlap_eu_ge5_cm": 30,
+              "overlap_eu_lt5_cm": 40,
+              "maskestoerrelse_datablad_mm": null,
+              "gwp_bredder": null,
+              "knudepunkt_effektivitet": null,
+              "maskestabilitet_Nmm_grad": null,
+              "stivhedsforhold": null,
+              "min_traekstyrke": null,
+              "traekstyrke_2pct": null,
+              "traekstyrke_5pct": null,
+              "max_deformation_pct": null,
+              "ribbetykkelse": null,
+              "resistens_kemisk_pct": null,
+              "resistens_uv_pct": null,
+              "resistens_oxidation_pct": null,
+              "resistens_installationsskader": null,
+              "bemærkning": "Effektindeks 115–130 ⇒ korrektion fra −30 % (bedste) til −15 % (konservativ). Coekstruderet, integralt formet hexagonalt geonet med rektangulære ribber og knudetykkelse 4,5 mm. EPD-certificeret (EN 15804+A2:2019). 100 % modstand mod kemisk nedbrydning, 90 % modstand mod UV/forvitring. PIDS angiver ikke designværdier (trækstyrke, radial stivhed, GWP, maks. korn)."
+            },
+            "t_indtastet_mm": 700.0,
+            "t_basis_table": {
+              "1": {
+                "30": {
+                  "uarmeret": null,
+                  "1_lag": 86.7,
+                  "2_lag": null
+                },
+                "45": {
+                  "uarmeret": null,
+                  "1_lag": 100.0,
+                  "2_lag": 90.0
+                },
+                "60": {
+                  "uarmeret": null,
+                  "1_lag": 110.0,
+                  "2_lag": 100.0
+                },
+                "80": {
+                  "uarmeret": null,
+                  "1_lag": 120.0,
+                  "2_lag": 110.0
+                },
+                "120": {
+                  "uarmeret": null,
+                  "1_lag": 130.0,
+                  "2_lag": 120.0
+                },
+                "150": {
+                  "uarmeret": null,
+                  "1_lag": 140.0,
+                  "2_lag": 125.0
+                }
+              },
+              "2": {
+                "30": {
+                  "uarmeret": null,
+                  "1_lag": 80.0,
+                  "2_lag": null
+                },
+                "45": {
+                  "uarmeret": null,
+                  "1_lag": 90.0,
+                  "2_lag": 80.0
+                },
+                "60": {
+                  "uarmeret": null,
+                  "1_lag": 96.7,
+                  "2_lag": 85.0
+                },
+                "80": {
+                  "uarmeret": null,
+                  "1_lag": 110.0,
+                  "2_lag": 100.0
+                },
+                "120": {
+                  "uarmeret": null,
+                  "1_lag": 120.0,
+                  "2_lag": 110.0
+                },
+                "150": {
+                  "uarmeret": null,
+                  "1_lag": 125.0,
+                  "2_lag": 115.0
+                }
+              },
+              "3": {
+                "30": {
+                  "uarmeret": 110.0,
+                  "1_lag": 70.0,
+                  "2_lag": null
+                },
+                "45": {
+                  "uarmeret": 120.0,
+                  "1_lag": 80.0,
+                  "2_lag": 70.0
+                },
+                "60": {
+                  "uarmeret": 130.0,
+                  "1_lag": 90.0,
+                  "2_lag": 77.5
+                },
+                "80": {
+                  "uarmeret": 140.0,
+                  "1_lag": 100.0,
+                  "2_lag": 90.0
+                },
+                "120": {
+                  "uarmeret": 150.0,
+                  "1_lag": 107.5,
+                  "2_lag": 100.0
+                },
+                "150": {
+                  "uarmeret": 160.0,
+                  "1_lag": 115.0,
+                  "2_lag": 100.0
+                }
+              },
+              "4": {
+                "30": {
+                  "uarmeret": 100.0,
+                  "1_lag": 65.0,
+                  "2_lag": null
+                },
+                "45": {
+                  "uarmeret": 106.7,
+                  "1_lag": 73.3,
+                  "2_lag": 63.3
+                },
+                "60": {
+                  "uarmeret": 116.7,
+                  "1_lag": 83.3,
+                  "2_lag": 72.5
+                },
+                "80": {
+                  "uarmeret": 126.7,
+                  "1_lag": 90.0,
+                  "2_lag": 80.0
+                },
+                "120": {
+                  "uarmeret": 136.7,
+                  "1_lag": 102.5,
+                  "2_lag": 93.3
+                },
+                "150": {
+                  "uarmeret": 146.7,
+                  "1_lag": 105.0,
+                  "2_lag": 93.3
+                }
+              },
+              "5": {
+                "30": {
+                  "uarmeret": 90.0,
+                  "1_lag": 60.0,
+                  "2_lag": null
+                },
+                "45": {
+                  "uarmeret": 100.0,
+                  "1_lag": 66.7,
+                  "2_lag": 57.5
+                },
+                "60": {
+                  "uarmeret": 110.0,
+                  "1_lag": 77.5,
+                  "2_lag": 67.5
+                },
+                "80": {
+                  "uarmeret": 120.0,
+                  "1_lag": 83.3,
+                  "2_lag": 75.0
+                },
+                "120": {
+                  "uarmeret": 130.0,
+                  "1_lag": 96.7,
+                  "2_lag": 86.7
+                },
+                "150": {
+                  "uarmeret": 140.0,
+                  "1_lag": 96.7,
+                  "2_lag": 87.5
+                }
+              },
+              "6": {
+                "30": {
+                  "uarmeret": 80.0,
+                  "1_lag": 53.3,
+                  "2_lag": null
+                },
+                "45": {
+                  "uarmeret": 90.0,
+                  "1_lag": 60.0,
+                  "2_lag": 52.5
+                },
+                "60": {
+                  "uarmeret": 100.0,
+                  "1_lag": 72.5,
+                  "2_lag": 62.5
+                },
+                "80": {
+                  "uarmeret": 110.0,
+                  "1_lag": 77.5,
+                  "2_lag": 70.0
+                },
+                "120": {
+                  "uarmeret": 120.0,
+                  "1_lag": 90.0,
+                  "2_lag": 80.0
+                },
+                "150": {
+                  "uarmeret": 130.0,
+                  "1_lag": 90.0,
+                  "2_lag": 82.5
+                }
+              },
+              "7": {
+                "30": {
+                  "uarmeret": 75.0,
+                  "1_lag": 48.0,
+                  "2_lag": null
+                },
+                "45": {
+                  "uarmeret": 85.0,
+                  "1_lag": 56.7,
+                  "2_lag": null
+                },
+                "60": {
+                  "uarmeret": 95.0,
+                  "1_lag": 68.0,
+                  "2_lag": 58.0
+                },
+                "80": {
+                  "uarmeret": 105.0,
+                  "1_lag": 72.5,
+                  "2_lag": 65.0
+                },
+                "120": {
+                  "uarmeret": 115.0,
+                  "1_lag": 85.0,
+                  "2_lag": 75.0
+                },
+                "150": {
+                  "uarmeret": 125.0,
+                  "1_lag": 86.0,
+                  "2_lag": 78.0
+                }
+              },
+              "8": {
+                "30": {
+                  "uarmeret": 70.0,
+                  "1_lag": 44.0,
+                  "2_lag": null
+                },
+                "45": {
+                  "uarmeret": 80.0,
+                  "1_lag": 53.3,
+                  "2_lag": null
+                },
+                "60": {
+                  "uarmeret": 90.0,
+                  "1_lag": 64.0,
+                  "2_lag": 54.0
+                },
+                "80": {
+                  "uarmeret": 100.0,
+                  "1_lag": 68.3,
+                  "2_lag": 60.0
+                },
+                "120": {
+                  "uarmeret": 110.0,
+                  "1_lag": 80.0,
+                  "2_lag": 70.0
+                },
+                "150": {
+                  "uarmeret": 120.0,
+                  "1_lag": 82.0,
+                  "2_lag": 74.0
+                }
+              },
+              "9": {
+                "30": {
+                  "uarmeret": 63.3,
+                  "1_lag": 40.0,
+                  "2_lag": null
+                },
+                "45": {
+                  "uarmeret": 75.0,
+                  "1_lag": 50.0,
+                  "2_lag": null
+                },
+                "60": {
+                  "uarmeret": 85.0,
+                  "1_lag": 60.0,
+                  "2_lag": 50.0
+                },
+                "80": {
+                  "uarmeret": 95.0,
+                  "1_lag": 65.0,
+                  "2_lag": null
+                },
+                "120": {
+                  "uarmeret": 105.0,
+                  "1_lag": 73.3,
+                  "2_lag": 65.0
+                },
+                "150": {
+                  "uarmeret": 115.0,
+                  "1_lag": 78.6,
+                  "2_lag": 70.0
+                }
+              },
+              "10": {
+                "30": {
+                  "uarmeret": 58.0,
+                  "1_lag": 36.0,
+                  "2_lag": null
+                },
+                "45": {
+                  "uarmeret": 70.0,
+                  "1_lag": 46.7,
+                  "2_lag": null
+                },
+                "60": {
+                  "uarmeret": 80.0,
+                  "1_lag": 56.7,
+                  "2_lag": null
+                },
+                "80": {
+                  "uarmeret": 90.0,
+                  "1_lag": 61.7,
+                  "2_lag": null
+                },
+                "120": {
+                  "uarmeret": 100.0,
+                  "1_lag": 68.8,
+                  "2_lag": 60.0
+                },
+                "150": {
+                  "uarmeret": 110.0,
+                  "1_lag": 75.7,
+                  "2_lag": 66.7
+                }
+              },
+              "11": {
+                "30": {
+                  "uarmeret": 54.0,
+                  "1_lag": 32.0,
+                  "2_lag": null
+                },
+                "45": {
+                  "uarmeret": 65.0,
+                  "1_lag": 43.3,
+                  "2_lag": null
+                },
+                "60": {
+                  "uarmeret": 75.0,
+                  "1_lag": 53.3,
+                  "2_lag": null
+                },
+                "80": {
+                  "uarmeret": 85.0,
+                  "1_lag": 58.6,
+                  "2_lag": null
+                },
+                "120": {
+                  "uarmeret": 95.0,
+                  "1_lag": 66.3,
+                  "2_lag": 57.5
+                },
+                "150": {
+                  "uarmeret": 105.0,
+                  "1_lag": 72.9,
+                  "2_lag": 63.3
+                }
+              },
+              "12": {
+                "30": {
+                  "uarmeret": 50.0,
+                  "1_lag": 28.6,
+                  "2_lag": null
+                },
+                "45": {
+                  "uarmeret": 60.0,
+                  "1_lag": 40.0,
+                  "2_lag": null
+                },
+                "60": {
+                  "uarmeret": 70.0,
+                  "1_lag": 50.0,
+                  "2_lag": null
+                },
+                "80": {
+                  "uarmeret": 80.0,
+                  "1_lag": 55.7,
+                  "2_lag": null
+                },
+                "120": {
+                  "uarmeret": 90.0,
+                  "1_lag": 63.8,
+                  "2_lag": 55.0
+                },
+                "150": {
+                  "uarmeret": 100.0,
+                  "1_lag": 70.0,
+                  "2_lag": 60.0
+                }
+              },
+              "13": {
+                "30": {
+                  "uarmeret": 46.0,
+                  "1_lag": 25.7,
+                  "2_lag": null
+                },
+                "45": {
+                  "uarmeret": 56.7,
+                  "1_lag": 37.5,
+                  "2_lag": null
+                },
+                "60": {
+                  "uarmeret": 66.7,
+                  "1_lag": 47.5,
+                  "2_lag": null
+                },
+                "80": {
+                  "uarmeret": 76.7,
+                  "1_lag": 52.9,
+                  "2_lag": null
+                },
+                "120": {
+                  "uarmeret": 86.7,
+                  "1_lag": 61.3,
+                  "2_lag": 52.5
+                },
+                "150": {
+                  "uarmeret": 96.7,
+                  "1_lag": 68.0,
+                  "2_lag": 58.3
+                }
+              },
+              "14": {
+                "30": {
+                  "uarmeret": 42.0,
+                  "1_lag": 22.9,
+                  "2_lag": null
+                },
+                "45": {
+                  "uarmeret": 53.3,
+                  "1_lag": 35.0,
+                  "2_lag": null
+                },
+                "60": {
+                  "uarmeret": 63.3,
+                  "1_lag": 45.0,
+                  "2_lag": null
+                },
+                "80": {
+                  "uarmeret": 73.3,
+                  "1_lag": 50.0,
+                  "2_lag": null
+                },
+                "120": {
+                  "uarmeret": 83.3,
+                  "1_lag": 59.1,
+                  "2_lag": 50.0
+                },
+                "150": {
+                  "uarmeret": 93.3,
+                  "1_lag": 66.0,
+                  "2_lag": 56.7
+                }
+              },
+              "15": {
+                "30": {
+                  "uarmeret": 38.6,
+                  "1_lag": 20.0,
+                  "2_lag": null
+                },
+                "45": {
+                  "uarmeret": 50.0,
+                  "1_lag": 32.5,
+                  "2_lag": null
+                },
+                "60": {
+                  "uarmeret": 60.0,
+                  "1_lag": 42.5,
+                  "2_lag": null
+                },
+                "80": {
+                  "uarmeret": 70.0,
+                  "1_lag": 48.3,
+                  "2_lag": null
+                },
+                "120": {
+                  "uarmeret": 80.0,
+                  "1_lag": 57.3,
+                  "2_lag": null
+                },
+                "150": {
+                  "uarmeret": 90.0,
+                  "1_lag": 64.0,
+                  "2_lag": 55.0
+                }
+              },
+              "16": {
+                "30": {
+                  "uarmeret": 35.7,
+                  "1_lag": null,
+                  "2_lag": null
+                },
+                "45": {
+                  "uarmeret": 47.1,
+                  "1_lag": 30.0,
+                  "2_lag": null
+                },
+                "60": {
+                  "uarmeret": 57.1,
+                  "1_lag": 40.0,
+                  "2_lag": null
+                },
+                "80": {
+                  "uarmeret": 67.1,
+                  "1_lag": 46.7,
+                  "2_lag": null
+                },
+                "120": {
+                  "uarmeret": 77.1,
+                  "1_lag": 55.5,
+                  "2_lag": null
+                },
+                "150": {
+                  "uarmeret": 87.1,
+                  "1_lag": 62.0,
+                  "2_lag": 53.3
+                }
+              },
+              "17": {
+                "30": {
+                  "uarmeret": 32.9,
+                  "1_lag": null,
+                  "2_lag": null
+                },
+                "45": {
+                  "uarmeret": 44.3,
+                  "1_lag": 27.5,
+                  "2_lag": null
+                },
+                "60": {
+                  "uarmeret": 54.3,
+                  "1_lag": 37.5,
+                  "2_lag": null
+                },
+                "80": {
+                  "uarmeret": 64.3,
+                  "1_lag": 45.0,
+                  "2_lag": null
+                },
+                "120": {
+                  "uarmeret": 74.3,
+                  "1_lag": 53.6,
+                  "2_lag": null
+                },
+                "150": {
+                  "uarmeret": 84.3,
+                  "1_lag": 60.0,
+                  "2_lag": 51.7
+                }
+              },
+              "18": {
+                "30": {
+                  "uarmeret": 30.0,
+                  "1_lag": null,
+                  "2_lag": null
+                },
+                "45": {
+                  "uarmeret": 41.4,
+                  "1_lag": 25.0,
+                  "2_lag": null
+                },
+                "60": {
+                  "uarmeret": 51.4,
+                  "1_lag": 35.0,
+                  "2_lag": null
+                },
+                "80": {
+                  "uarmeret": 61.4,
+                  "1_lag": 43.3,
+                  "2_lag": null
+                },
+                "120": {
+                  "uarmeret": 71.4,
+                  "1_lag": 51.8,
+                  "2_lag": null
+                },
+                "150": {
+                  "uarmeret": 81.4,
+                  "1_lag": 58.6,
+                  "2_lag": 50.0
+                }
+              },
+              "19": {
+                "30": {
+                  "uarmeret": 26.7,
+                  "1_lag": null,
+                  "2_lag": null
+                },
+                "45": {
+                  "uarmeret": 38.9,
+                  "1_lag": 22.5,
+                  "2_lag": null
+                },
+                "60": {
+                  "uarmeret": 48.9,
+                  "1_lag": 32.5,
+                  "2_lag": null
+                },
+                "80": {
+                  "uarmeret": 58.9,
+                  "1_lag": 41.7,
+                  "2_lag": null
+                },
+                "120": {
+                  "uarmeret": 68.9,
+                  "1_lag": 50.0,
+                  "2_lag": null
+                },
+                "150": {
+                  "uarmeret": 78.9,
+                  "1_lag": 57.1,
+                  "2_lag": null
+                }
+              },
+              "20": {
+                "30": {
+                  "uarmeret": 23.3,
+                  "1_lag": null,
+                  "2_lag": null
+                },
+                "45": {
+                  "uarmeret": 36.7,
+                  "1_lag": 20.0,
+                  "2_lag": null
+                },
+                "60": {
+                  "uarmeret": 46.7,
+                  "1_lag": 30.0,
+                  "2_lag": null
+                },
+                "80": {
+                  "uarmeret": 56.7,
+                  "1_lag": 40.0,
+                  "2_lag": null
+                },
+                "120": {
+                  "uarmeret": 66.7,
+                  "1_lag": 48.3,
+                  "2_lag": null
+                },
+                "150": {
+                  "uarmeret": 76.7,
+                  "1_lag": 55.7,
+                  "2_lag": null
+                }
+              },
+              "21": {
+                "30": {
+                  "uarmeret": 20.0,
+                  "1_lag": null,
+                  "2_lag": null
+                },
+                "45": {
+                  "uarmeret": 34.4,
+                  "1_lag": null,
+                  "2_lag": null
+                },
+                "60": {
+                  "uarmeret": 44.4,
+                  "1_lag": 28.6,
+                  "2_lag": null
+                },
+                "80": {
+                  "uarmeret": 54.4,
+                  "1_lag": 38.3,
+                  "2_lag": null
+                },
+                "120": {
+                  "uarmeret": 64.4,
+                  "1_lag": 46.7,
+                  "2_lag": null
+                },
+                "150": {
+                  "uarmeret": 74.4,
+                  "1_lag": 54.3,
+                  "2_lag": null
+                }
+              },
+              "22": {
+                "30": {
+                  "uarmeret": 17.5,
+                  "1_lag": null,
+                  "2_lag": null
+                },
+                "45": {
+                  "uarmeret": 32.2,
+                  "1_lag": null,
+                  "2_lag": null
+                },
+                "60": {
+                  "uarmeret": 42.2,
+                  "1_lag": 27.1,
+                  "2_lag": null
+                },
+                "80": {
+                  "uarmeret": 52.2,
+                  "1_lag": 36.7,
+                  "2_lag": null
+                },
+                "120": {
+                  "uarmeret": 62.2,
+                  "1_lag": 45.0,
+                  "2_lag": null
+                },
+                "150": {
+                  "uarmeret": 72.2,
+                  "1_lag": 52.9,
+                  "2_lag": null
+                }
+              },
+              "23": {
+                "30": {
+                  "uarmeret": 15.0,
+                  "1_lag": null,
+                  "2_lag": null
+                },
+                "45": {
+                  "uarmeret": 30.0,
+                  "1_lag": null,
+                  "2_lag": null
+                },
+                "60": {
+                  "uarmeret": 40.0,
+                  "1_lag": 25.7,
+                  "2_lag": null
+                },
+                "80": {
+                  "uarmeret": 50.0,
+                  "1_lag": 35.0,
+                  "2_lag": null
+                },
+                "120": {
+                  "uarmeret": 60.0,
+                  "1_lag": 43.3,
+                  "2_lag": null
+                },
+                "150": {
+                  "uarmeret": 70.0,
+                  "1_lag": 51.4,
+                  "2_lag": null
+                }
+              },
+              "24": {
+                "30": {
+                  "uarmeret": 12.5,
+                  "1_lag": null,
+                  "2_lag": null
+                },
+                "45": {
+                  "uarmeret": 28.3,
+                  "1_lag": null,
+                  "2_lag": null
+                },
+                "60": {
+                  "uarmeret": 38.3,
+                  "1_lag": 24.3,
+                  "2_lag": null
+                },
+                "80": {
+                  "uarmeret": 48.3,
+                  "1_lag": 33.3,
+                  "2_lag": null
+                },
+                "120": {
+                  "uarmeret": 58.3,
+                  "1_lag": 41.7,
+                  "2_lag": null
+                },
+                "150": {
+                  "uarmeret": 68.3,
+                  "1_lag": 50.0,
+                  "2_lag": null
+                }
+              },
+              "25": {
+                "30": {
+                  "uarmeret": 10.0,
+                  "1_lag": null,
+                  "2_lag": null
+                },
+                "45": {
+                  "uarmeret": 26.7,
+                  "1_lag": null,
+                  "2_lag": null
+                },
+                "60": {
+                  "uarmeret": 36.7,
+                  "1_lag": 22.9,
+                  "2_lag": null
+                },
+                "80": {
+                  "uarmeret": 46.7,
+                  "1_lag": 31.7,
+                  "2_lag": null
+                },
+                "120": {
+                  "uarmeret": 56.7,
+                  "1_lag": 40.0,
+                  "2_lag": null
+                },
+                "150": {
+                  "uarmeret": 66.7,
+                  "1_lag": 48.8,
+                  "2_lag": null
+                }
+              },
+              "26": {
+                "30": {
+                  "uarmeret": 8.0,
+                  "1_lag": null,
+                  "2_lag": null
+                },
+                "45": {
+                  "uarmeret": 25.0,
+                  "1_lag": null,
+                  "2_lag": null
+                },
+                "60": {
+                  "uarmeret": 35.0,
+                  "1_lag": 21.4,
+                  "2_lag": null
+                },
+                "80": {
+                  "uarmeret": 45.0,
+                  "1_lag": 30.0,
+                  "2_lag": null
+                },
+                "120": {
+                  "uarmeret": 55.0,
+                  "1_lag": 38.8,
+                  "2_lag": null
+                },
+                "150": {
+                  "uarmeret": 65.0,
+                  "1_lag": 47.5,
+                  "2_lag": null
+                }
+              },
+              "27": {
+                "30": {
+                  "uarmeret": 6.0,
+                  "1_lag": null,
+                  "2_lag": null
+                },
+                "45": {
+                  "uarmeret": 23.3,
+                  "1_lag": null,
+                  "2_lag": null
+                },
+                "60": {
+                  "uarmeret": 33.3,
+                  "1_lag": 20.0,
+                  "2_lag": null
+                },
+                "80": {
+                  "uarmeret": 43.3,
+                  "1_lag": 28.6,
+                  "2_lag": null
+                },
+                "120": {
+                  "uarmeret": 53.3,
+                  "1_lag": 37.5,
+                  "2_lag": null
+                },
+                "150": {
+                  "uarmeret": 63.3,
+                  "1_lag": 46.3,
+                  "2_lag": null
+                }
+              },
+              "28": {
+                "30": {
+                  "uarmeret": 4.0,
+                  "1_lag": null,
+                  "2_lag": null
+                },
+                "45": {
+                  "uarmeret": 21.7,
+                  "1_lag": null,
+                  "2_lag": null
+                },
+                "60": {
+                  "uarmeret": 31.7,
+                  "1_lag": null,
+                  "2_lag": null
+                },
+                "80": {
+                  "uarmeret": 41.7,
+                  "1_lag": 27.1,
+                  "2_lag": null
+                },
+                "120": {
+                  "uarmeret": 51.7,
+                  "1_lag": 36.3,
+                  "2_lag": null
+                },
+                "150": {
+                  "uarmeret": 61.7,
+                  "1_lag": 45.0,
+                  "2_lag": null
+                }
+              },
+              "29": {
+                "30": {
+                  "uarmeret": 2.0,
+                  "1_lag": null,
+                  "2_lag": null
+                },
+                "45": {
+                  "uarmeret": 20.0,
+                  "1_lag": null,
+                  "2_lag": null
+                },
+                "60": {
+                  "uarmeret": 30.0,
+                  "1_lag": null,
+                  "2_lag": null
+                },
+                "80": {
+                  "uarmeret": 40.0,
+                  "1_lag": 25.7,
+                  "2_lag": null
+                },
+                "120": {
+                  "uarmeret": 50.0,
+                  "1_lag": 35.0,
+                  "2_lag": null
+                },
+                "150": {
+                  "uarmeret": 60.0,
+                  "1_lag": 43.8,
+                  "2_lag": null
+                }
+              },
+              "30": {
+                "30": {
+                  "uarmeret": 0.0,
+                  "1_lag": null,
+                  "2_lag": null
+                },
+                "45": {
+                  "uarmeret": 18.6,
+                  "1_lag": null,
+                  "2_lag": null
+                },
+                "60": {
+                  "uarmeret": 28.6,
+                  "1_lag": null,
+                  "2_lag": null
+                },
+                "80": {
+                  "uarmeret": 38.6,
+                  "1_lag": 24.3,
+                  "2_lag": null
+                },
+                "120": {
+                  "uarmeret": 48.6,
+                  "1_lag": 33.8,
+                  "2_lag": null
+                },
+                "150": {
+                  "uarmeret": 58.6,
+                  "1_lag": 42.5,
+                  "2_lag": null
+                }
+              },
+              "31": {
+                "45": {
+                  "uarmeret": 17.1,
+                  "1_lag": null,
+                  "2_lag": null
+                },
+                "60": {
+                  "uarmeret": 27.1,
+                  "1_lag": null,
+                  "2_lag": null
+                },
+                "80": {
+                  "uarmeret": 37.1,
+                  "1_lag": 22.9,
+                  "2_lag": null
+                },
+                "120": {
+                  "uarmeret": 47.1,
+                  "1_lag": 32.5,
+                  "2_lag": null
+                },
+                "150": {
+                  "uarmeret": 57.1,
+                  "1_lag": 41.3,
+                  "2_lag": null
+                },
+                "30": {
+                  "uarmeret": null,
+                  "1_lag": null,
+                  "2_lag": null
+                }
+              },
+              "32": {
+                "45": {
+                  "uarmeret": 15.7,
+                  "1_lag": null,
+                  "2_lag": null
+                },
+                "60": {
+                  "uarmeret": 25.7,
+                  "1_lag": null,
+                  "2_lag": null
+                },
+                "80": {
+                  "uarmeret": 35.7,
+                  "1_lag": 21.4,
+                  "2_lag": null
+                },
+                "120": {
+                  "uarmeret": 45.7,
+                  "1_lag": 31.3,
+                  "2_lag": null
+                },
+                "150": {
+                  "uarmeret": 55.7,
+                  "1_lag": 40.0,
+                  "2_lag": null
+                },
+                "30": {
+                  "uarmeret": null,
+                  "1_lag": null,
+                  "2_lag": null
+                }
+              },
+              "33": {
+                "45": {
+                  "uarmeret": 14.3,
+                  "1_lag": null,
+                  "2_lag": null
+                },
+                "60": {
+                  "uarmeret": 24.3,
+                  "1_lag": null,
+                  "2_lag": null
+                },
+                "80": {
+                  "uarmeret": 34.3,
+                  "1_lag": 20.0,
+                  "2_lag": null
+                },
+                "120": {
+                  "uarmeret": 44.3,
+                  "1_lag": 30.0,
+                  "2_lag": null
+                },
+                "150": {
+                  "uarmeret": 54.3,
+                  "1_lag": null,
+                  "2_lag": null
+                },
+                "30": {
+                  "uarmeret": null,
+                  "1_lag": null,
+                  "2_lag": null
+                }
+              },
+              "34": {
+                "45": {
+                  "uarmeret": 12.9,
+                  "1_lag": null,
+                  "2_lag": null
+                },
+                "60": {
+                  "uarmeret": 22.9,
+                  "1_lag": null,
+                  "2_lag": null
+                },
+                "80": {
+                  "uarmeret": 32.9,
+                  "1_lag": null,
+                  "2_lag": null
+                },
+                "120": {
+                  "uarmeret": 42.9,
+                  "1_lag": null,
+                  "2_lag": null
+                },
+                "150": {
+                  "uarmeret": 52.9,
+                  "1_lag": null,
+                  "2_lag": null
+                },
+                "30": {
+                  "uarmeret": null,
+                  "1_lag": null,
+                  "2_lag": null
+                }
+              },
+              "35": {
+                "45": {
+                  "uarmeret": 11.4,
+                  "1_lag": null,
+                  "2_lag": null
+                },
+                "60": {
+                  "uarmeret": 21.4,
+                  "1_lag": null,
+                  "2_lag": null
+                },
+                "80": {
+                  "uarmeret": 31.4,
+                  "1_lag": null,
+                  "2_lag": null
+                },
+                "120": {
+                  "uarmeret": 41.4,
+                  "1_lag": null,
+                  "2_lag": null
+                },
+                "150": {
+                  "uarmeret": 51.4,
+                  "1_lag": null,
+                  "2_lag": null
+                },
+                "30": {
+                  "uarmeret": null,
+                  "1_lag": null,
+                  "2_lag": null
+                }
+              },
+              "36": {
+                "45": {
+                  "uarmeret": 10.0,
+                  "1_lag": null,
+                  "2_lag": null
+                },
+                "60": {
+                  "uarmeret": 20.0,
+                  "1_lag": null,
+                  "2_lag": null
+                },
+                "80": {
+                  "uarmeret": 30.0,
+                  "1_lag": null,
+                  "2_lag": null
+                },
+                "120": {
+                  "uarmeret": 40.0,
+                  "1_lag": null,
+                  "2_lag": null
+                },
+                "150": {
+                  "uarmeret": 50.0,
+                  "1_lag": null,
+                  "2_lag": null
+                },
+                "30": {
+                  "uarmeret": null,
+                  "1_lag": null,
+                  "2_lag": null
+                }
+              },
+              "37": {
+                "45": {
+                  "uarmeret": 8.9,
+                  "1_lag": null,
+                  "2_lag": null
+                },
+                "60": {
+                  "uarmeret": 18.9,
+                  "1_lag": null,
+                  "2_lag": null
+                },
+                "80": {
+                  "uarmeret": 28.9,
+                  "1_lag": null,
+                  "2_lag": null
+                },
+                "120": {
+                  "uarmeret": 38.9,
+                  "1_lag": null,
+                  "2_lag": null
+                },
+                "150": {
+                  "uarmeret": 48.9,
+                  "1_lag": null,
+                  "2_lag": null
+                },
+                "30": {
+                  "uarmeret": null,
+                  "1_lag": null,
+                  "2_lag": null
+                }
+              },
+              "38": {
+                "45": {
+                  "uarmeret": 7.8,
+                  "1_lag": null,
+                  "2_lag": null
+                },
+                "60": {
+                  "uarmeret": 17.8,
+                  "1_lag": null,
+                  "2_lag": null
+                },
+                "80": {
+                  "uarmeret": 27.8,
+                  "1_lag": null,
+                  "2_lag": null
+                },
+                "120": {
+                  "uarmeret": 37.8,
+                  "1_lag": null,
+                  "2_lag": null
+                },
+                "150": {
+                  "uarmeret": 47.8,
+                  "1_lag": null,
+                  "2_lag": null
+                },
+                "30": {
+                  "uarmeret": null,
+                  "1_lag": null,
+                  "2_lag": null
+                }
+              },
+              "39": {
+                "45": {
+                  "uarmeret": 6.7,
+                  "1_lag": null,
+                  "2_lag": null
+                },
+                "60": {
+                  "uarmeret": 16.7,
+                  "1_lag": null,
+                  "2_lag": null
+                },
+                "80": {
+                  "uarmeret": 26.7,
+                  "1_lag": null,
+                  "2_lag": null
+                },
+                "120": {
+                  "uarmeret": 36.7,
+                  "1_lag": null,
+                  "2_lag": null
+                },
+                "150": {
+                  "uarmeret": 46.7,
+                  "1_lag": null,
+                  "2_lag": null
+                },
+                "30": {
+                  "uarmeret": null,
+                  "1_lag": null,
+                  "2_lag": null
+                }
+              },
+              "40": {
+                "45": {
+                  "uarmeret": 5.6,
+                  "1_lag": null,
+                  "2_lag": null
+                },
+                "60": {
+                  "uarmeret": 15.6,
+                  "1_lag": null,
+                  "2_lag": null
+                },
+                "80": {
+                  "uarmeret": 25.6,
+                  "1_lag": null,
+                  "2_lag": null
+                },
+                "120": {
+                  "uarmeret": 35.6,
+                  "1_lag": null,
+                  "2_lag": null
+                },
+                "150": {
+                  "uarmeret": 45.6,
+                  "1_lag": null,
+                  "2_lag": null
+                },
+                "30": {
+                  "uarmeret": null,
+                  "1_lag": null,
+                  "2_lag": null
+                }
+              },
+              "41": {
+                "45": {
+                  "uarmeret": 4.4,
+                  "1_lag": null,
+                  "2_lag": null
+                },
+                "60": {
+                  "uarmeret": 14.4,
+                  "1_lag": null,
+                  "2_lag": null
+                },
+                "80": {
+                  "uarmeret": 24.4,
+                  "1_lag": null,
+                  "2_lag": null
+                },
+                "120": {
+                  "uarmeret": 34.4,
+                  "1_lag": null,
+                  "2_lag": null
+                },
+                "150": {
+                  "uarmeret": 44.4,
+                  "1_lag": null,
+                  "2_lag": null
+                },
+                "30": {
+                  "uarmeret": null,
+                  "1_lag": null,
+                  "2_lag": null
+                }
+              },
+              "42": {
+                "45": {
+                  "uarmeret": 3.3,
+                  "1_lag": null,
+                  "2_lag": null
+                },
+                "60": {
+                  "uarmeret": 13.3,
+                  "1_lag": null,
+                  "2_lag": null
+                },
+                "80": {
+                  "uarmeret": 23.3,
+                  "1_lag": null,
+                  "2_lag": null
+                },
+                "120": {
+                  "uarmeret": 33.3,
+                  "1_lag": null,
+                  "2_lag": null
+                },
+                "150": {
+                  "uarmeret": 43.3,
+                  "1_lag": null,
+                  "2_lag": null
+                },
+                "30": {
+                  "uarmeret": null,
+                  "1_lag": null,
+                  "2_lag": null
+                }
+              },
+              "43": {
+                "45": {
+                  "uarmeret": 2.2,
+                  "1_lag": null,
+                  "2_lag": null
+                },
+                "60": {
+                  "uarmeret": 12.2,
+                  "1_lag": null,
+                  "2_lag": null
+                },
+                "80": {
+                  "uarmeret": 22.2,
+                  "1_lag": null,
+                  "2_lag": null
+                },
+                "120": {
+                  "uarmeret": 32.2,
+                  "1_lag": null,
+                  "2_lag": null
+                },
+                "150": {
+                  "uarmeret": 42.2,
+                  "1_lag": null,
+                  "2_lag": null
+                },
+                "30": {
+                  "uarmeret": null,
+                  "1_lag": null,
+                  "2_lag": null
+                }
+              },
+              "44": {
+                "45": {
+                  "uarmeret": 1.1,
+                  "1_lag": null,
+                  "2_lag": null
+                },
+                "60": {
+                  "uarmeret": 11.1,
+                  "1_lag": null,
+                  "2_lag": null
+                },
+                "80": {
+                  "uarmeret": 21.1,
+                  "1_lag": null,
+                  "2_lag": null
+                },
+                "120": {
+                  "uarmeret": 31.1,
+                  "1_lag": null,
+                  "2_lag": null
+                },
+                "150": {
+                  "uarmeret": 41.1,
+                  "1_lag": null,
+                  "2_lag": null
+                },
+                "30": {
+                  "uarmeret": null,
+                  "1_lag": null,
+                  "2_lag": null
+                }
+              },
+              "45": {
+                "45": {
+                  "uarmeret": 0.0,
+                  "1_lag": null,
+                  "2_lag": null
+                },
+                "60": {
+                  "uarmeret": 10.0,
+                  "1_lag": null,
+                  "2_lag": null
+                },
+                "80": {
+                  "uarmeret": 20.0,
+                  "1_lag": null,
+                  "2_lag": null
+                },
+                "120": {
+                  "uarmeret": 30.0,
+                  "1_lag": null,
+                  "2_lag": null
+                },
+                "150": {
+                  "uarmeret": 40.0,
+                  "1_lag": null,
+                  "2_lag": null
+                },
+                "30": {
+                  "uarmeret": null,
+                  "1_lag": null,
+                  "2_lag": null
+                }
+              }
+            },
+            "grundlag_label": null,
+            "t_1_lag_mm": 687.0,
+            "t_2_lag_mm": 618.0,
+            "t_1_lag_best_mm": 562.0,
+            "t_2_lag_best_mm": 506.0,
+            "skala": 1.0,
+            "dpi": 300,
+            "figsize": [
+              9.0,
+              5.5
+            ],
+            "phi_kurver": {
+              "uarmeret": 38.25,
+              "1_lag": 38.285714285714285,
+              "2_lag": 38.285714285714285
+            }
+          }
+        }
+      ],
+      "exports": [
+        {
+          "kwargs": {
+            "format": "png",
+            "width": 1000,
+            "height": 386,
+            "scale": 2.0
+          },
+          "layout": {
+            "template": {
+              "data": {
+                "candlestick": [
+                  {
+                    "decreasing": {
+                      "line": {
+                        "color": "#000033"
+                      }
+                    },
+                    "increasing": {
+                      "line": {
+                        "color": "#000032"
+                      }
+                    },
+                    "type": "candlestick"
+                  }
+                ],
+                "contourcarpet": [
+                  {
+                    "colorscale": [
+                      [
+                        0.0,
+                        "#000011"
+                      ],
+                      [
+                        0.1111111111111111,
+                        "#000012"
+                      ],
+                      [
+                        0.2222222222222222,
+                        "#000013"
+                      ],
+                      [
+                        0.3333333333333333,
+                        "#000014"
+                      ],
+                      [
+                        0.4444444444444444,
+                        "#000015"
+                      ],
+                      [
+                        0.5555555555555556,
+                        "#000016"
+                      ],
+                      [
+                        0.6666666666666666,
+                        "#000017"
+                      ],
+                      [
+                        0.7777777777777778,
+                        "#000018"
+                      ],
+                      [
+                        0.8888888888888888,
+                        "#000019"
+                      ],
+                      [
+                        1.0,
+                        "#000020"
+                      ]
+                    ],
+                    "type": "contourcarpet"
+                  }
+                ],
+                "contour": [
+                  {
+                    "colorscale": [
+                      [
+                        0.0,
+                        "#000011"
+                      ],
+                      [
+                        0.1111111111111111,
+                        "#000012"
+                      ],
+                      [
+                        0.2222222222222222,
+                        "#000013"
+                      ],
+                      [
+                        0.3333333333333333,
+                        "#000014"
+                      ],
+                      [
+                        0.4444444444444444,
+                        "#000015"
+                      ],
+                      [
+                        0.5555555555555556,
+                        "#000016"
+                      ],
+                      [
+                        0.6666666666666666,
+                        "#000017"
+                      ],
+                      [
+                        0.7777777777777778,
+                        "#000018"
+                      ],
+                      [
+                        0.8888888888888888,
+                        "#000019"
+                      ],
+                      [
+                        1.0,
+                        "#000020"
+                      ]
+                    ],
+                    "type": "contour"
+                  }
+                ],
+                "heatmap": [
+                  {
+                    "colorscale": [
+                      [
+                        0.0,
+                        "#000011"
+                      ],
+                      [
+                        0.1111111111111111,
+                        "#000012"
+                      ],
+                      [
+                        0.2222222222222222,
+                        "#000013"
+                      ],
+                      [
+                        0.3333333333333333,
+                        "#000014"
+                      ],
+                      [
+                        0.4444444444444444,
+                        "#000015"
+                      ],
+                      [
+                        0.5555555555555556,
+                        "#000016"
+                      ],
+                      [
+                        0.6666666666666666,
+                        "#000017"
+                      ],
+                      [
+                        0.7777777777777778,
+                        "#000018"
+                      ],
+                      [
+                        0.8888888888888888,
+                        "#000019"
+                      ],
+                      [
+                        1.0,
+                        "#000020"
+                      ]
+                    ],
+                    "type": "heatmap"
+                  }
+                ],
+                "histogram2d": [
+                  {
+                    "colorscale": [
+                      [
+                        0.0,
+                        "#000011"
+                      ],
+                      [
+                        0.1111111111111111,
+                        "#000012"
+                      ],
+                      [
+                        0.2222222222222222,
+                        "#000013"
+                      ],
+                      [
+                        0.3333333333333333,
+                        "#000014"
+                      ],
+                      [
+                        0.4444444444444444,
+                        "#000015"
+                      ],
+                      [
+                        0.5555555555555556,
+                        "#000016"
+                      ],
+                      [
+                        0.6666666666666666,
+                        "#000017"
+                      ],
+                      [
+                        0.7777777777777778,
+                        "#000018"
+                      ],
+                      [
+                        0.8888888888888888,
+                        "#000019"
+                      ],
+                      [
+                        1.0,
+                        "#000020"
+                      ]
+                    ],
+                    "type": "histogram2d"
+                  }
+                ],
+                "icicle": [
+                  {
+                    "textfont": {
+                      "color": "white"
+                    },
+                    "type": "icicle"
+                  }
+                ],
+                "sankey": [
+                  {
+                    "textfont": {
+                      "color": "#000036"
+                    },
+                    "type": "sankey"
+                  }
+                ],
+                "scatter": [
+                  {
+                    "marker": {
+                      "line": {
+                        "width": 0
+                      }
+                    },
+                    "type": "scatter"
+                  }
+                ],
+                "table": [
+                  {
+                    "cells": {
+                      "fill": {
+                        "color": "#000038"
+                      },
+                      "font": {
+                        "color": "#000037"
+                      },
+                      "line": {
+                        "color": "#000039"
+                      }
+                    },
+                    "header": {
+                      "fill": {
+                        "color": "#000040"
+                      },
+                      "font": {
+                        "color": "#000036"
+                      },
+                      "line": {
+                        "color": "#000039"
+                      }
+                    },
+                    "type": "table"
+                  }
+                ],
+                "waterfall": [
+                  {
+                    "connector": {
+                      "line": {
+                        "color": "#000036",
+                        "width": 2
+                      }
+                    },
+                    "decreasing": {
+                      "marker": {
+                        "color": "#000033"
+                      }
+                    },
+                    "increasing": {
+                      "marker": {
+                        "color": "#000032"
+                      }
+                    },
+                    "totals": {
+                      "marker": {
+                        "color": "#000034"
+                      }
+                    },
+                    "type": "waterfall"
+                  }
+                ]
+              },
+              "layout": {
+                "coloraxis": {
+                  "colorscale": [
+                    [
+                      0.0,
+                      "#000011"
+                    ],
+                    [
+                      0.1111111111111111,
+                      "#000012"
+                    ],
+                    [
+                      0.2222222222222222,
+                      "#000013"
+                    ],
+                    [
+                      0.3333333333333333,
+                      "#000014"
+                    ],
+                    [
+                      0.4444444444444444,
+                      "#000015"
+                    ],
+                    [
+                      0.5555555555555556,
+                      "#000016"
+                    ],
+                    [
+                      0.6666666666666666,
+                      "#000017"
+                    ],
+                    [
+                      0.7777777777777778,
+                      "#000018"
+                    ],
+                    [
+                      0.8888888888888888,
+                      "#000019"
+                    ],
+                    [
+                      1.0,
+                      "#000020"
+                    ]
+                  ]
+                },
+                "colorscale": {
+                  "diverging": [
+                    [
+                      0.0,
+                      "#000021"
+                    ],
+                    [
+                      0.1111111111111111,
+                      "#000022"
+                    ],
+                    [
+                      0.2222222222222222,
+                      "#000023"
+                    ],
+                    [
+                      0.3333333333333333,
+                      "#000024"
+                    ],
+                    [
+                      0.4444444444444444,
+                      "#000025"
+                    ],
+                    [
+                      0.5555555555555556,
+                      "#000026"
+                    ],
+                    [
+                      0.6666666666666666,
+                      "#000027"
+                    ],
+                    [
+                      0.7777777777777778,
+                      "#000028"
+                    ],
+                    [
+                      0.8888888888888888,
+                      "#000029"
+                    ],
+                    [
+                      1.0,
+                      "#000030"
+                    ]
+                  ],
+                  "sequential": [
+                    [
+                      0.0,
+                      "#000011"
+                    ],
+                    [
+                      0.1111111111111111,
+                      "#000012"
+                    ],
+                    [
+                      0.2222222222222222,
+                      "#000013"
+                    ],
+                    [
+                      0.3333333333333333,
+                      "#000014"
+                    ],
+                    [
+                      0.4444444444444444,
+                      "#000015"
+                    ],
+                    [
+                      0.5555555555555556,
+                      "#000016"
+                    ],
+                    [
+                      0.6666666666666666,
+                      "#000017"
+                    ],
+                    [
+                      0.7777777777777778,
+                      "#000018"
+                    ],
+                    [
+                      0.8888888888888888,
+                      "#000019"
+                    ],
+                    [
+                      1.0,
+                      "#000020"
+                    ]
+                  ],
+                  "sequentialminus": [
+                    [
+                      0.0,
+                      "#000011"
+                    ],
+                    [
+                      0.1111111111111111,
+                      "#000012"
+                    ],
+                    [
+                      0.2222222222222222,
+                      "#000013"
+                    ],
+                    [
+                      0.3333333333333333,
+                      "#000014"
+                    ],
+                    [
+                      0.4444444444444444,
+                      "#000015"
+                    ],
+                    [
+                      0.5555555555555556,
+                      "#000016"
+                    ],
+                    [
+                      0.6666666666666666,
+                      "#000017"
+                    ],
+                    [
+                      0.7777777777777778,
+                      "#000018"
+                    ],
+                    [
+                      0.8888888888888888,
+                      "#000019"
+                    ],
+                    [
+                      1.0,
+                      "#000020"
+                    ]
+                  ]
+                },
+                "colorway": [
+                  "#000001",
+                  "#000002",
+                  "#000003",
+                  "#000004",
+                  "#000005",
+                  "#000006",
+                  "#000007",
+                  "#000008",
+                  "#000009",
+                  "#000010"
+                ]
+              }
+            },
+            "xaxis": {
+              "anchor": "y",
+              "domain": [
+                0.0,
+                1.0
+              ],
+              "showgrid": false,
+              "zeroline": false,
+              "showticklabels": false,
+              "showline": false,
+              "range": [
+                -0.62,
+                0.92
+              ]
+            },
+            "yaxis": {
+              "anchor": "x",
+              "domain": [
+                0.0,
+                1.0
+              ],
+              "range": [
+                -88.55,
+                756.0
+              ],
+              "showgrid": false,
+              "zeroline": false,
+              "showticklabels": false,
+              "showline": false
+            },
+            "annotations": [
+              {
+                "font": {
+                  "color": "#15211A",
+                  "family": "IBM Plex Sans, Segoe UI, system-ui, sans-serif",
+                  "size": 11.5
+                },
+                "showarrow": false,
+                "text": "Indtastet opbygning",
+                "x": 0,
+                "xanchor": "center",
+                "xref": "x",
+                "y": 1.0,
+                "yanchor": "bottom",
+                "yref": "paper"
+              },
+              {
+                "font": {
+                  "color": "#FFFFFF",
+                  "size": 8
+                },
+                "showarrow": false,
+                "text": "<b>Underbund Eᵤ = 5 MPa</b>",
+                "x": 0,
+                "xref": "x",
+                "y": -38.5,
+                "yref": "y"
+              },
+              {
+                "font": {
+                  "color": "#15211A",
+                  "size": 10.5
+                },
+                "showarrow": false,
+                "text": "700 mm",
+                "x": 0.475,
+                "xanchor": "left",
+                "xref": "x",
+                "y": 350.0,
+                "yref": "y"
+              }
+            ],
+            "shapes": [
+              {
+                "line": {
+                  "color": "#7A857D",
+                  "width": 1
+                },
+                "type": "line",
+                "x0": 0.42,
+                "x1": 0.42,
+                "xref": "x",
+                "y0": 0,
+                "y1": 700.0,
+                "yref": "y"
+              },
+              {
+                "line": {
+                  "color": "#7A857D",
+                  "width": 1
+                },
+                "type": "line",
+                "x0": 0.385,
+                "x1": 0.45499999999999996,
+                "xref": "x",
+                "y0": 0,
+                "y1": 0,
+                "yref": "y"
+              },
+              {
+                "line": {
+                  "color": "#7A857D",
+                  "width": 1
+                },
+                "type": "line",
+                "x0": 0.385,
+                "x1": 0.45499999999999996,
+                "xref": "x",
+                "y0": 700.0,
+                "y1": 700.0,
+                "yref": "y"
+              },
+              {
+                "line": {
+                  "color": "#9AA39C",
+                  "dash": "dash",
+                  "width": 1.5
+                },
+                "type": "line",
+                "x0": -0.62,
+                "x1": 0.92,
+                "xref": "x",
+                "y0": 700.0,
+                "y1": 700.0,
+                "yref": "y"
+              }
+            ],
+            "margin": {
+              "l": 10,
+              "r": 10,
+              "t": 34,
+              "b": 96
+            },
+            "font": {
+              "family": "IBM Plex Sans, Segoe UI, system-ui, sans-serif",
+              "size": 11,
+              "color": "#15211A"
+            },
+            "legend": {
+              "font": {
+                "size": 10.5,
+                "color": "#7A857D",
+                "family": "IBM Plex Sans, Segoe UI, system-ui, sans-serif"
+              },
+              "orientation": "h",
+              "x": 0,
+              "xanchor": "left",
+              "y": -0.19,
+              "yanchor": "top",
+              "bgcolor": "rgba(0,0,0,0)",
+              "borderwidth": 0,
+              "itemclick": false,
+              "itemdoubleclick": false,
+              "tracegroupgap": 0
+            },
+            "height": 386,
+            "barmode": "overlay",
+            "bargap": 0,
+            "paper_bgcolor": "white",
+            "plot_bgcolor": "white",
+            "showlegend": true,
+            "hovermode": "closest"
+          }
+        },
+        {
+          "kwargs": {
+            "format": "png",
+            "width": 900,
+            "height": 550,
+            "scale": 3.0
+          },
+          "layout": {
+            "template": {
+              "data": {
+                "candlestick": [
+                  {
+                    "decreasing": {
+                      "line": {
+                        "color": "#000033"
+                      }
+                    },
+                    "increasing": {
+                      "line": {
+                        "color": "#000032"
+                      }
+                    },
+                    "type": "candlestick"
+                  }
+                ],
+                "contourcarpet": [
+                  {
+                    "colorscale": [
+                      [
+                        0.0,
+                        "#000011"
+                      ],
+                      [
+                        0.1111111111111111,
+                        "#000012"
+                      ],
+                      [
+                        0.2222222222222222,
+                        "#000013"
+                      ],
+                      [
+                        0.3333333333333333,
+                        "#000014"
+                      ],
+                      [
+                        0.4444444444444444,
+                        "#000015"
+                      ],
+                      [
+                        0.5555555555555556,
+                        "#000016"
+                      ],
+                      [
+                        0.6666666666666666,
+                        "#000017"
+                      ],
+                      [
+                        0.7777777777777778,
+                        "#000018"
+                      ],
+                      [
+                        0.8888888888888888,
+                        "#000019"
+                      ],
+                      [
+                        1.0,
+                        "#000020"
+                      ]
+                    ],
+                    "type": "contourcarpet"
+                  }
+                ],
+                "contour": [
+                  {
+                    "colorscale": [
+                      [
+                        0.0,
+                        "#000011"
+                      ],
+                      [
+                        0.1111111111111111,
+                        "#000012"
+                      ],
+                      [
+                        0.2222222222222222,
+                        "#000013"
+                      ],
+                      [
+                        0.3333333333333333,
+                        "#000014"
+                      ],
+                      [
+                        0.4444444444444444,
+                        "#000015"
+                      ],
+                      [
+                        0.5555555555555556,
+                        "#000016"
+                      ],
+                      [
+                        0.6666666666666666,
+                        "#000017"
+                      ],
+                      [
+                        0.7777777777777778,
+                        "#000018"
+                      ],
+                      [
+                        0.8888888888888888,
+                        "#000019"
+                      ],
+                      [
+                        1.0,
+                        "#000020"
+                      ]
+                    ],
+                    "type": "contour"
+                  }
+                ],
+                "heatmap": [
+                  {
+                    "colorscale": [
+                      [
+                        0.0,
+                        "#000011"
+                      ],
+                      [
+                        0.1111111111111111,
+                        "#000012"
+                      ],
+                      [
+                        0.2222222222222222,
+                        "#000013"
+                      ],
+                      [
+                        0.3333333333333333,
+                        "#000014"
+                      ],
+                      [
+                        0.4444444444444444,
+                        "#000015"
+                      ],
+                      [
+                        0.5555555555555556,
+                        "#000016"
+                      ],
+                      [
+                        0.6666666666666666,
+                        "#000017"
+                      ],
+                      [
+                        0.7777777777777778,
+                        "#000018"
+                      ],
+                      [
+                        0.8888888888888888,
+                        "#000019"
+                      ],
+                      [
+                        1.0,
+                        "#000020"
+                      ]
+                    ],
+                    "type": "heatmap"
+                  }
+                ],
+                "histogram2d": [
+                  {
+                    "colorscale": [
+                      [
+                        0.0,
+                        "#000011"
+                      ],
+                      [
+                        0.1111111111111111,
+                        "#000012"
+                      ],
+                      [
+                        0.2222222222222222,
+                        "#000013"
+                      ],
+                      [
+                        0.3333333333333333,
+                        "#000014"
+                      ],
+                      [
+                        0.4444444444444444,
+                        "#000015"
+                      ],
+                      [
+                        0.5555555555555556,
+                        "#000016"
+                      ],
+                      [
+                        0.6666666666666666,
+                        "#000017"
+                      ],
+                      [
+                        0.7777777777777778,
+                        "#000018"
+                      ],
+                      [
+                        0.8888888888888888,
+                        "#000019"
+                      ],
+                      [
+                        1.0,
+                        "#000020"
+                      ]
+                    ],
+                    "type": "histogram2d"
+                  }
+                ],
+                "icicle": [
+                  {
+                    "textfont": {
+                      "color": "white"
+                    },
+                    "type": "icicle"
+                  }
+                ],
+                "sankey": [
+                  {
+                    "textfont": {
+                      "color": "#000036"
+                    },
+                    "type": "sankey"
+                  }
+                ],
+                "scatter": [
+                  {
+                    "marker": {
+                      "line": {
+                        "width": 0
+                      }
+                    },
+                    "type": "scatter"
+                  }
+                ],
+                "table": [
+                  {
+                    "cells": {
+                      "fill": {
+                        "color": "#000038"
+                      },
+                      "font": {
+                        "color": "#000037"
+                      },
+                      "line": {
+                        "color": "#000039"
+                      }
+                    },
+                    "header": {
+                      "fill": {
+                        "color": "#000040"
+                      },
+                      "font": {
+                        "color": "#000036"
+                      },
+                      "line": {
+                        "color": "#000039"
+                      }
+                    },
+                    "type": "table"
+                  }
+                ],
+                "waterfall": [
+                  {
+                    "connector": {
+                      "line": {
+                        "color": "#000036",
+                        "width": 2
+                      }
+                    },
+                    "decreasing": {
+                      "marker": {
+                        "color": "#000033"
+                      }
+                    },
+                    "increasing": {
+                      "marker": {
+                        "color": "#000032"
+                      }
+                    },
+                    "totals": {
+                      "marker": {
+                        "color": "#000034"
+                      }
+                    },
+                    "type": "waterfall"
+                  }
+                ]
+              },
+              "layout": {
+                "coloraxis": {
+                  "colorscale": [
+                    [
+                      0.0,
+                      "#000011"
+                    ],
+                    [
+                      0.1111111111111111,
+                      "#000012"
+                    ],
+                    [
+                      0.2222222222222222,
+                      "#000013"
+                    ],
+                    [
+                      0.3333333333333333,
+                      "#000014"
+                    ],
+                    [
+                      0.4444444444444444,
+                      "#000015"
+                    ],
+                    [
+                      0.5555555555555556,
+                      "#000016"
+                    ],
+                    [
+                      0.6666666666666666,
+                      "#000017"
+                    ],
+                    [
+                      0.7777777777777778,
+                      "#000018"
+                    ],
+                    [
+                      0.8888888888888888,
+                      "#000019"
+                    ],
+                    [
+                      1.0,
+                      "#000020"
+                    ]
+                  ]
+                },
+                "colorscale": {
+                  "diverging": [
+                    [
+                      0.0,
+                      "#000021"
+                    ],
+                    [
+                      0.1111111111111111,
+                      "#000022"
+                    ],
+                    [
+                      0.2222222222222222,
+                      "#000023"
+                    ],
+                    [
+                      0.3333333333333333,
+                      "#000024"
+                    ],
+                    [
+                      0.4444444444444444,
+                      "#000025"
+                    ],
+                    [
+                      0.5555555555555556,
+                      "#000026"
+                    ],
+                    [
+                      0.6666666666666666,
+                      "#000027"
+                    ],
+                    [
+                      0.7777777777777778,
+                      "#000028"
+                    ],
+                    [
+                      0.8888888888888888,
+                      "#000029"
+                    ],
+                    [
+                      1.0,
+                      "#000030"
+                    ]
+                  ],
+                  "sequential": [
+                    [
+                      0.0,
+                      "#000011"
+                    ],
+                    [
+                      0.1111111111111111,
+                      "#000012"
+                    ],
+                    [
+                      0.2222222222222222,
+                      "#000013"
+                    ],
+                    [
+                      0.3333333333333333,
+                      "#000014"
+                    ],
+                    [
+                      0.4444444444444444,
+                      "#000015"
+                    ],
+                    [
+                      0.5555555555555556,
+                      "#000016"
+                    ],
+                    [
+                      0.6666666666666666,
+                      "#000017"
+                    ],
+                    [
+                      0.7777777777777778,
+                      "#000018"
+                    ],
+                    [
+                      0.8888888888888888,
+                      "#000019"
+                    ],
+                    [
+                      1.0,
+                      "#000020"
+                    ]
+                  ],
+                  "sequentialminus": [
+                    [
+                      0.0,
+                      "#000011"
+                    ],
+                    [
+                      0.1111111111111111,
+                      "#000012"
+                    ],
+                    [
+                      0.2222222222222222,
+                      "#000013"
+                    ],
+                    [
+                      0.3333333333333333,
+                      "#000014"
+                    ],
+                    [
+                      0.4444444444444444,
+                      "#000015"
+                    ],
+                    [
+                      0.5555555555555556,
+                      "#000016"
+                    ],
+                    [
+                      0.6666666666666666,
+                      "#000017"
+                    ],
+                    [
+                      0.7777777777777778,
+                      "#000018"
+                    ],
+                    [
+                      0.8888888888888888,
+                      "#000019"
+                    ],
+                    [
+                      1.0,
+                      "#000020"
+                    ]
+                  ]
+                },
+                "colorway": [
+                  "#000001",
+                  "#000002",
+                  "#000003",
+                  "#000004",
+                  "#000005",
+                  "#000006",
+                  "#000007",
+                  "#000008",
+                  "#000009",
+                  "#000010"
+                ]
+              }
+            },
+            "shapes": [
+              {
+                "line": {
+                  "color": "#B42318",
+                  "dash": "dash",
+                  "width": 1
+                },
+                "type": "line",
+                "x0": 70.0,
+                "x1": 70.0,
+                "y0": 0,
+                "y1": 5.0
+              }
+            ],
+            "margin": {
+              "l": 70,
+              "r": 20,
+              "t": 70,
+              "b": 60
+            },
+            "font": {
+              "family": "IBM Plex Sans, Segoe UI, system-ui, sans-serif",
+              "size": 11,
+              "color": "#15211A"
+            },
+            "legend": {
+              "font": {
+                "size": 10
+              },
+              "orientation": "v",
+              "yanchor": "top",
+              "y": 0.98,
+              "xanchor": "right",
+              "x": 0.99,
+              "bgcolor": "rgba(255,255,255,0.85)",
+              "bordercolor": "#DCE1DD",
+              "borderwidth": 1
+            },
+            "xaxis": {
+              "tickfont": {
+                "size": 10
+              },
+              "title": {
+                "text": "Bærelagstykkelse [cm]"
+              },
+              "range": [
+                0,
+                147.42000000000002
+              ],
+              "gridcolor": "#EDEFED",
+              "zeroline": false,
+              "linecolor": "#DCE1DD",
+              "ticks": "outside",
+              "tickcolor": "#DCE1DD"
+            },
+            "yaxis": {
+              "tickfont": {
+                "size": 10
+              },
+              "title": {
+                "text": "Bundmodul Eᵤ [MN/m²]"
+              },
+              "range": [
+                0,
+                50
+              ],
+              "gridcolor": "#EDEFED",
+              "zeroline": false,
+              "linecolor": "#DCE1DD",
+              "ticks": "outside",
+              "tickcolor": "#DCE1DD"
+            },
+            "height": 380,
+            "paper_bgcolor": "white",
+            "plot_bgcolor": "white",
+            "hovermode": "closest",
+            "title": {
+              "font": {
+                "size": 13
+              },
+              "text": "Eₒ = 80 MN/m² · Klasse 4 · φᵥ = 38,3° · Tensar InterAx NX850",
+              "x": 0,
+              "xanchor": "left",
+              "y": 0.98,
+              "yanchor": "top"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

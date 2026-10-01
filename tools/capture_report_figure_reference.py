@@ -29,7 +29,7 @@ def plain(value):
     return value
 
 
-def capture(source):
+def capture(source, extra=False):
     from streamlit.testing.v1 import AppTest
     from core import rapport, diagram
     import plotly.graph_objects as go
@@ -63,6 +63,23 @@ def capture(source):
             calls.clear(); exports.clear()
             print(name, len(cases[-1]["calls"]), flush=True)
 
+        if extra:
+            # Ren input-snitcase (RAPPORT_PLAN.md, R3): Brugerdefineret med kun den
+            # indtastede opbygning; uarmeret, 1 og 2 lag fravalgt i rapporten.
+            at.session_state["tilstand"] = "Brugerdefineret"
+            at.run()
+            at.slider(key="bd_eu_slider").set_value(5).run()
+            at.selectbox(key="bd_geonet").select("Tensar InterAx NX850").run()
+            at.button(key="_nav_rapport").click().run()
+            at.checkbox(key="rap_vis_indtastet").set_value(True).run()
+            at.checkbox(key="rap_vis_uarm").set_value(False).run()
+            at.checkbox(key="rap_vis_1lag").set_value(False).run()
+            at.checkbox(key="rap_vis_2lag").set_value(False).run()
+            calls.clear(); exports.clear(); at.run()
+            record("RFIG-custom-input-pure")
+            return {"source": source_manifest(source),
+                    "method": "Actual original report calls with all effective defaults; unchanged geometry, only raster/Chrome stubbed",
+                    "cases": cases}
         at.button(key="_nav_rapport").click().run()
         record("RFIG-standard-default")
         at.checkbox(key="rap_vis_uarm").set_value(False).run()
@@ -106,11 +123,13 @@ def capture(source):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--record", action="store_true")
+    parser.add_argument("--extra", action="store_true",
+                        help="the pure input-section case in reference/report-figure-extra-cases.json")
     parser.add_argument("--legacy-repo", type=Path, default=Path(r"C:\geonet_beregning"))
     args = parser.parse_args()
-    target = ROOT / "reference" / "report-figure-cases.json"
+    target = ROOT / "reference" / ("report-figure-extra-cases.json" if args.extra else "report-figure-cases.json")
     if args.record and target.exists():
         raise FileExistsError(f"Refusing to overwrite {target}")
     with legacy_source(args.legacy_repo) as source:
-        result = capture(source)
+        result = capture(source, args.extra)
     compare_or_record(target, result, args.record)
