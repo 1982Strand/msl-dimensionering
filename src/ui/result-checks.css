@@ -14,6 +14,15 @@
 .bg-resultat-status-info {
   color: var(--muted-foreground);
 }
+.help-hint-content.hint-content-warning:has(> .result-status-hint),
+.help-hint-content.hint-content-info:has(> .result-status-hint) {
+  width: min(520px, 90vw);
+}
+.result-status-hint {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
 .result-check-content {
   line-height: 1.6;
 }

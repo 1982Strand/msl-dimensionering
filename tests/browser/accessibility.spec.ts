@@ -1,5 +1,6 @@
 import { AxeBuilder } from '@axe-core/playwright';
 import { test, expect, type Page } from '@playwright/test';
+import { chooseProduct } from './helpers/choose-product.ts';
 
 // Fase 5: automatisk tilgængelighedskontrol (WCAG 2.1 A/AA) af alle sider, også med
 // udfoldede afsnit, i computer- og mobilbredde. Axe finder ikke alt; tastatur og
@@ -33,6 +34,21 @@ async function expandAll(page: Page) {
   await page.evaluate(() => document.querySelectorAll('details').forEach((d) => (d.open = true)));
 }
 
+async function checkStatusHints(page: Page) {
+  for (const [label, kind] of [
+    ['Kontrolpunkter', 'warning'],
+    ['Anbefalinger', 'info'],
+  ]) {
+    const trigger = page.locator(`.bg-resultat-status [aria-label="${label}"]`);
+    if (!(await trigger.count())) continue;
+    await trigger.hover();
+    await expect(page.locator(`.hint-content-${kind}`)).toBeVisible();
+    expect(await violations(page), `resultat: ${label}`).toEqual([]);
+    await page.mouse.move(0, 0);
+    await expect(page.getByRole('tooltip')).toHaveCount(0);
+  }
+}
+
 for (const width of [1440, 390])
   test(`ingen axe-fund på siderne ved ${width} px`, async ({ page }) => {
     test.setTimeout(180_000);
@@ -42,6 +58,7 @@ for (const width of [1440, 390])
       await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
       await expandAll(page);
       expect(await violations(page), name).toEqual([]);
+      if (name === 'dimensionering') await checkStatusHints(page);
     }
   });
 
@@ -51,6 +68,8 @@ test('ingen axe-fund i Brugerdefineret, trafikklasse, popup, produktvælger og f
   test.setTimeout(180_000);
   await page.goto('/#dimensionering');
   await page.getByRole('radio', { name: 'Brugerdefineret', exact: true }).check();
+  await chooseProduct(page, 'bd', 'Tensar InterAx NX850');
+  await checkStatusHints(page);
   await page.getByRole('radio', { name: 'Trafikklasse', exact: true }).check();
   await expandAll(page);
   expect(await violations(page), 'brugerdefineret').toEqual([]);
