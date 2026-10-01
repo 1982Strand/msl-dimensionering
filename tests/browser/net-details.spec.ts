@@ -20,7 +20,10 @@ test('M4: punktprodukt, intervalprodukt og hover-hjælp uden sidefejl', async ({
   await page.locator('#std_eu_slider').focus();
   await page.locator('#std_eu_slider').press('Home');
   for (let i = 1; i < 5; i++) await page.locator('#std_eu_slider').press('ArrowRight');
-  await page.locator('#std_geonet').selectOption('Tensar InterAx NX850');
+  const product = page.locator('#std_geonet');
+  await product.selectOption({
+    label: await product.locator('option').filter({ hasText: 'Tensar InterAx NX850' }).innerText(),
+  });
   await expect(
     details.getByRole('heading', { name: 'Detaljer · Tensar InterAx NX850' }),
   ).toBeVisible();
@@ -45,22 +48,22 @@ test('M4: punktprodukt, intervalprodukt og hover-hjælp uden sidefejl', async ({
     .filter({ hasText: 'Net-korrektion, konservativ' })
     .first();
   await row.hover();
-  await page.mouse.move(0, 0);
+  await page.mouse.move(0, 0, { steps: 5 });
   await row.hover();
   await expect(page.getByRole('tooltip')).toContainText(
     'Effektindeks 115–130. Hovedresultatet tager udgangspunkt i den konservative ende, indeks 115, svarende til net-korrektionen −15 %.',
   );
-  await page.mouse.move(0, 0);
+  await page.mouse.move(0, 0, { steps: 5 });
   await expect(page.getByRole('tooltip')).toHaveCount(0);
   const optimal = details.locator('.rt-detaljer-optimal').first();
   await optimal.hover();
-  await page.mouse.move(0, 0);
+  await page.mouse.move(0, 0, { steps: 5 });
   await optimal.hover();
   await expect(page.getByRole('tooltip')).toContainText(
     'Optimal korrektion · effektindeks 130 · net-korrektion −30 %',
   );
   await expect(page.getByRole('tooltip')).toContainText('= Stabiliseret bærelagstykkelse: 600 mm');
-  await page.mouse.move(0, 0);
+  await page.mouse.move(0, 0, { steps: 5 });
   await expect(page.getByRole('tooltip')).toHaveCount(0);
   expect(errors).toEqual([]);
 });
