@@ -1,5 +1,7 @@
 # Redigering af rapportens basisskabelon
 
+Bemærkning 01.10.2026: De lokale filer, der omtales nedenfor (`.local/report-prototype/` og `.local/typst/`), er slettet ved oprydningen efter brugerens godkendelse. Omtalerne bevares som historik.
+
 Bemærkning 01.10.2026: Rapportforsøget `spikes/report-typescript/` og kommandoen `npm run test:reports` er fjernet ved oprydningen (B-059). Omtaler nedenfor bevares som historik; forsøget findes i Git-historikken.
 
 29. september 2026. Implementeret i den isolerede prototype; endnu ingen administrationsside i appen.

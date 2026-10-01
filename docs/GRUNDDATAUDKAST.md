@@ -1,5 +1,7 @@
 # Grunddata — Materialer, Designdiagrammer og VejDim
 
+Bemærkning 01.10.2026: De lokale filer, der omtales nedenfor (`output/`), er slettet ved oprydningen efter brugerens godkendelse. Omtalerne bevares som historik.
+
 30. september 2026. Fungerende React-udkast i den godkendte designretning B-020. Hele appen er fortsat under migrering.
 
 ## Afprøvning

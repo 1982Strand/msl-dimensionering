@@ -1,5 +1,7 @@
 # Delplan: PDF-rapport og redigerbar firmaprofil
 
+Bemærkning 01.10.2026: De lokale filer i `.local/output/r3/`, `b048` og `b049` samt sammenligningsscripts, som omtales nedenfor, er slettet ved oprydningen efter brugerens godkendelse; omtalerne bevares som historik. R3 kan genskabes med `node tools/build-report-pdfs.ts`, og det godkendte R6-sæt i `.local/output/r6/` er bevaret.
+
 30.09.2026. **Godkendt i A-011/B-029 med brugerens præciseringer.** Følger den genlæste/rettede `CODEX-OPGAVE.md`, AGENTS.md og B-026–030. Browserkompilering med typst.ts og rækkefølgen er godkendt. De konkrete visuelle udkast forelægges særskilt; demoen ændres ikke.
 
 **B-049-hjælperstatus — 01.10.2026:** Implementeret i worktree `b049`:

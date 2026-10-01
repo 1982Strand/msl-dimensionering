@@ -1,5 +1,7 @@
 # Opbygningsfigurer — visuelt udkast
 
+Bemærkning 01.10.2026: De lokale filer, der omtales nedenfor (`output/`), er slettet ved oprydningen efter brugerens godkendelse. Omtalerne bevares som historik.
+
 Udkastet vises under Resultater på `/#dimensionering`. Brugeren har bedt om at tage opbygningsfigurerne som næste trin. Endelig visuel godkendelse afventes; generel designgodkendelse B-020 omfatter ikke automatisk figurerne.
 
 ## Indhold og reference
