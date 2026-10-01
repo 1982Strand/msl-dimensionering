@@ -35,7 +35,8 @@ export type CheckNode =
     };
 export type CheckElement =
   | { type: 'html'; nodes: CheckNode[] }
-  | { type: 'markdown'; body: string; element_type: 'NATIVE' | 'CAPTION' }
+  | { type: 'markdown'; body: string; element_type: 'NATIVE' }
+  | { type: 'caption'; body: string; element_type: 'CAPTION' }
   | { type: 'warning'; body: string };
 export interface CheckExpander {
   block: 'expander';
@@ -92,11 +93,11 @@ const node = (
   attrs: Omit<Exclude<CheckNode, string>, 'tag' | 'children'> = {},
 ): CheckNode => ({ tag, ...attrs, children });
 const bold = (text: string) => node('b', [text]);
-const markdown = (body: string, element_type: 'NATIVE' | 'CAPTION' = 'NATIVE'): CheckElement => ({
-  type: 'markdown',
-  body,
-  element_type,
-});
+// st.markdown og st.caption: Streamlits elementtype følger med, som i referencen.
+const markdown = (body: string, element_type: 'NATIVE' | 'CAPTION' = 'NATIVE'): CheckElement =>
+  element_type === 'CAPTION'
+    ? { type: 'caption', body, element_type }
+    : { type: 'markdown', body, element_type };
 const html = (...nodes: CheckNode[]): CheckElement => ({ type: 'html', nodes });
 
 /** _reduktion_fra_res: the fallback applies only to older results without reduction fields. */
