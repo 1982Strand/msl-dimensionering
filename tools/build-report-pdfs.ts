@@ -70,6 +70,24 @@ omitted.name = 'b046-omitted-sections';
 omitted.valg.medtag_afsnit = { oplyste_forudsaetninger: false, udfoerelse: false };
 omitted.data = reportData(omitted.result, omitted.metadata, omitted.valg, omitted.tekster);
 cases.push(omitted);
+// B-048: ekstra lag oven på originaltilfældene; forventningerne ændres ikke.
+for (const control of [false, true]) {
+  const c = structuredClone(cases[0]);
+  c.name = control ? 'b048-med-kontrollant' : 'b048-uden-kontrollant';
+  Object.assign(c.metadata, {
+    sagsbehandler: 'Anna Jensen',
+    sagsbehandler_initialer: 'AJ',
+    sagsbehandler_mail: 'anna@example.invalid',
+    sagsbehandler_telefon: '12345678',
+    kontrol: 'Bo Nielsen',
+    kontrol_initialer: 'BN',
+    kontrol_telefon: '87654321',
+    kontrol_mail: 'bo@example.invalid',
+    kontrollant_i_bunden: control,
+  });
+  c.data = reportData(c.result, c.metadata, c.valg, c.tekster);
+  cases.push(c);
+}
 await mkdir(new URL('.local/output/r3/', root), { recursive: true });
 for (const c of cases) {
   const figures = reportFigures(c.result, c.settings, c.table);
@@ -101,8 +119,18 @@ for (const c of cases) {
       'PDF whitespace/line wrapping only; no value, punctuation or Unicode normalization',
     strings: [
       ...Object.entries(c.data.context)
-        .filter(([key, v]) => !key.startsWith('tekst_') && typeof v === 'string' && v.length > 0)
+        .filter(
+          ([key, v]) =>
+            !key.startsWith('tekst_') &&
+            !['sagsbehandler', 'sagsbehandler_mail', 'kontrol'].includes(key) &&
+            typeof v === 'string' &&
+            v.length > 0,
+        )
         .map(([, v]) => v),
+      c.data.medarbejdere.udfoert_af,
+      c.data.medarbejdere.kontrol,
+      ...c.data.medarbejdere.sagsbehandler,
+      ...(c.data.medarbejdere.kontrollant ?? []),
       // B-046: synlig tekst udledes af datamodellen. Opmærkning og punktmarkører
       // tegnes separat; rå tekst og modellen gemmes nedenfor til formateringskontrol.
       ...Object.values(c.data.formattedTexts).flatMap((text) =>
@@ -128,6 +156,7 @@ for (const c of cases) {
       ...(c.data.grundlag ? [c.data.grundlag.overskrift + ':'] : []),
     ],
     context: c.data.context,
+    medarbejdere: c.data.medarbejdere,
     formattedTexts: c.data.formattedTexts,
     forbiddenStrings: c.name === 'b046-omitted-sections' ? ['Forudsætninger:', 'Udførelse:'] : [],
     grundlag: c.data.grundlag,

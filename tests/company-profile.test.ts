@@ -11,6 +11,7 @@ import {
   mergeCompanyProfile,
   PROFILE_LIMITS,
   validateLogo,
+  employeeErrors,
   type ProfileLogo,
 } from '../src/report/company-profile.ts';
 import { DEFAULT_COMPANY_PROFILE } from '../src/report/profile-defaults.ts';
@@ -41,6 +42,57 @@ const jpeg: ProfileLogo = {
     readFileSync(new URL('../public/report/logo/byggros_logo.jpeg', import.meta.url)),
   ),
 };
+
+test('B-048: kartotek valideres, rundtur/gem/genåbn/nulstil og ældre profil uden kartotek', async () => {
+  const person = {
+    navn: 'Anna Jensen',
+    initialer: 'AJ',
+    mail: 'anna@example.invalid',
+    telefon: '12345678',
+  };
+  const employees = [person, { ...person, navn: 'Bo Nielsen', initialer: 'BN', mail: '' }];
+  const standard = defaultProfileState();
+  assert.deepEqual(standard.profile.medarbejdere, []);
+  const changed = changeProfileField(standard.profile, 'medarbejdere', employees);
+  assert.equal(changed.error, null);
+  const state = { ...standard, profile: changed.profile };
+  const json = exportCompanyProfile(state, jpeg);
+  assert.deepEqual(importCompanyProfile(json, jpeg), state);
+  const s = stores();
+  const store = new CompanyProfileStorage(s.valueStorage, s.logoStorage);
+  await store.save(state);
+  assert.deepEqual(
+    (await new CompanyProfileStorage(s.valueStorage, s.logoStorage).load()).state,
+    state,
+  );
+  await store.save(defaultProfileState());
+  assert.deepEqual((await store.load()).state.profile.medarbejdere, []);
+  assert.deepEqual(employeeErrors({ ...person, initialer: 'ÆØÅ123' }), {});
+  for (const invalid of [
+    null,
+    {},
+    [null],
+    [{ ...person, navn: '  ' }],
+    [{ ...person, mail: 'anna@' }],
+    [{ ...person, initialer: '1234567' }],
+    [{ ...person, telefon: 123 }],
+    [{ ...person, ukendt: '' }],
+  ]) {
+    const result = changeProfileField(state.profile, 'medarbejdere', invalid);
+    assert.ok(result.error);
+    assert.equal(result.profile, state.profile);
+    const raw = JSON.parse(json);
+    raw.profile.medarbejdere = invalid;
+    assert.throws(
+      () => importCompanyProfile(JSON.stringify(raw), jpeg),
+      /Firmaprofilen er ugyldig/,
+    );
+    assert.equal(exportCompanyProfile(state, jpeg), json);
+  }
+  const legacy = JSON.parse(exportCompanyProfile(standard, jpeg));
+  delete legacy.profile.medarbejdere;
+  assert.deepEqual(importCompanyProfile(JSON.stringify(legacy), jpeg), standard);
+});
 
 test('R5 alle talgrænser: yderværdier tillades; fejl beholder den sidst gyldige værdi', () => {
   for (const [field, [min, max]] of Object.entries(PROFILE_LIMITS)) {

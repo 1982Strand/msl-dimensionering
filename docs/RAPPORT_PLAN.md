@@ -210,6 +210,42 @@ Typekontrol, alle **2.972 Node-tests**, formattering/formatteringskontrol og bui
 
 ## R5 — firmaprofil og lagring
 
+**B-048-hjælperstatus — 01.10.2026:** Firmaprofilen har kortet »Medarbejdere« med
+Navn, Initialer, Mail og Telefon samt tilføj/ret/slet. Gyldige værdier gemmes
+automatisk og indgår i profilens eksport/import og nulstilling; standardkartoteket
+er tomt. Ugyldige kladder markeres og erstatter ikke sidst gyldige data. Ugyldigt
+kartotek i import afvises samlet. Version 1-profiler fra før B-048 uden kartotek
+kan fortsat indlæses med tomt kartotek.
+
+Sagsoplysninger har to personkolonner med kartotekvalg og manuelt redigerbare
+felter. Den eksisterende `rap_kontrol` bevarer gemte navne. Nye felter og
+»Kontrollant i bunden af rapporten« huskes og ryddes med »Nulstil felter«;
+datoens hidtidige sessions-/nulstillingsforløb er bevaret. Personfelter, valg og
+kartotek indgår i PDF-revisionens fingeraftryk. Rapportens separate JSON-personlag
+viser initialer øverst med navnefallback, sagsbehandlerens navn/mail/telefon og
+valgfrit kontrollantens navn/telefon/mail i en nabokolonne uden overskrifter.
+Tomme linjer udelades. Originalens kontekststrenge og ti referenceforventninger
+er uændrede; rapportsideudvidelserne navngives eksplicit som B-048 i testen.
+
+Typekontrol, alle **2.976 Node-tests**, formattering/formatteringskontrol og build
+består. `node tools/build-report-pdfs.ts` danner 15 PDF'er uden diagnoser, inklusive
+`b048-uden-kontrollant` og `b048-med-kontrollant`, i `.local/output/r3/`. Alle 15
+PDF'ers forventede tekster er kontrolleret med PyMuPDF med kun whitespace-normalisering.
+De ti originale PDF'er er desuden byteidentiske med en isoleret kompilering med
+layoutet fra worktreens HEAD før B-048; sammenligningen ligger lokalt i
+`.local/compare-original-pdfs.mjs` og `.local/output/b048-before/`.
+Begge B-048-eksemplers første og sidste sider er renderet og visuelt gennemgået;
+initialer, telefonrækkefølge og de to underskriftskolonner er kontrolleret.
+
+`PW_PORT=5202 npx playwright test tests/browser/report.spec.ts tests/browser/company-profile.spec.ts`
+er forsøgt: alle ti forløb afvises ved Chromium-start med **`spawn EPERM`**, før
+testhandlingerne udføres. Den nye browsertest dækker to personer, validering,
+valg af begge roller, manuel rettelse, MutationObserver-spærring/ny revision,
+genåbning, profilrundtur, sletning og nulstilling. Browserkontrol og den styrende
+agents visuelle forelæggelse/R6 udestår. Semble CLI er anvendt (cachelagring afvist);
+Serena-start er forsøgt, men logmappen under brugerens `.serena` er skrivebeskyttet
+i sandkassen. Ingen pakker er installeret, og ingen referencefiler er ændret.
+
 **R5-hjælperstatus — 01.10.2026:** Implementeret i worktree `r5-firmaprofil`:
 ren profilmodel med feltvalidering, streng JSON-import/eksport inklusive MIME/base64-logo,
 fletning i originalstandarden og bevarelse af alle fem afsnitsnøgler. Firmaprofil-fanen

@@ -13,6 +13,8 @@ import {
   PROFILE_LIMITS,
   profileValue,
   validateLogo,
+  employeeErrors,
+  type Employee,
   type ProfileLogo,
   type ProfileState,
 } from '../report/company-profile';
@@ -426,6 +428,19 @@ export function CompanyProfile({
               ))}
             </>,
           )}
+          {card(
+            8,
+            'Medarbejdere',
+            ready && (
+              <Employees
+                key={reset}
+                profile={profile.medarbejdere}
+                onChange={(medarbejdere) =>
+                  update((prev) => ({ ...prev, profile: { ...prev.profile, medarbejdere } }))
+                }
+              />
+            ),
+          )}
           <div className="profile-actions">
             <Button
               type="button"
@@ -495,5 +510,95 @@ export function CompanyProfile({
         {preview}
       </aside>
     </div>
+  );
+}
+
+/** B-048: ugyldige kladder markeres; kun gyldige værdier erstatter profildata. */
+function Employees({
+  profile,
+  onChange,
+}: {
+  profile: Employee[];
+  onChange: (people: Employee[]) => void;
+}) {
+  const [rows, setRows] = useState(() =>
+    profile.map((value) => ({ value, applied: value as Employee | null })),
+  );
+  function change(next: typeof rows) {
+    setRows(next);
+    onChange(next.flatMap((row) => (row.applied ? [row.applied] : [])));
+  }
+  return (
+    <>
+      <p className="report-caption">
+        Personerne kan vælges som sagsbehandler og kontrollant under Sagsoplysninger. Gyldige
+        oplysninger gemmes automatisk.
+      </p>
+      {rows.map((row, index) => {
+        const errors = employeeErrors(row.value);
+        return (
+          <fieldset
+            key={index}
+            className="profile-employee"
+            aria-label={`Medarbejder ${index + 1}`}
+          >
+            <legend>Medarbejder {index + 1}</legend>
+            {(['navn', 'initialer', 'mail', 'telefon'] as const).map((key, fieldIndex) => {
+              const id = `employee-${index}-${key}`;
+              return (
+                <div className="setting-field profile-field" key={key}>
+                  <label htmlFor={id}>{['Navn', 'Initialer', 'Mail', 'Telefon'][fieldIndex]}</label>
+                  <Input
+                    id={id}
+                    value={row.value[key]}
+                    aria-invalid={!!errors[key]}
+                    aria-describedby={errors[key] ? id + '-error' : undefined}
+                    onChange={(event) => {
+                      const value = { ...row.value, [key]: event.target.value };
+                      change(
+                        rows.map((r, i) =>
+                          i === index
+                            ? {
+                                value,
+                                applied: Object.keys(employeeErrors(value)).length
+                                  ? r.applied
+                                  : value,
+                              }
+                            : r,
+                        ),
+                      );
+                    }}
+                  />
+                  {errors[key] && (
+                    <p className="profile-field-error" id={id + '-error'}>
+                      {errors[key]}
+                    </p>
+                  )}
+                </div>
+              );
+            })}
+            <Button
+              type="button"
+              variant="outline"
+              onClick={() => change(rows.filter((_, i) => i !== index))}
+            >
+              Slet medarbejder
+            </Button>
+          </fieldset>
+        );
+      })}
+      <Button
+        type="button"
+        variant="outline"
+        onClick={() =>
+          setRows([
+            ...rows,
+            { value: { navn: '', initialer: '', mail: '', telefon: '' }, applied: null },
+          ])
+        }
+      >
+        Tilføj medarbejder
+      </Button>
+    </>
   );
 }

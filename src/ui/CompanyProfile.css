@@ -76,3 +76,13 @@
     position: static;
   }
 }
+.profile-employee {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 16px;
+  margin-bottom: 20px;
+  min-width: 0;
+}
+.profile-employee legend {
+  font-weight: 600;
+}

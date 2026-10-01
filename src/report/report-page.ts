@@ -13,6 +13,7 @@ import {
   type ReportMetadata,
 } from './report-data.ts';
 import type { ReportFigureChoices } from './report-figures.ts';
+import { employeeErrors, type Employee } from './company-profile.ts';
 
 export const REPORT_TITLE = 'Rapport';
 /** Originalens undertekst; Word-eksporten udgår (B-026), så teksten er ændret efter B-043. */
@@ -29,10 +30,39 @@ export const PROJECT_FIELDS = [
   ['omfang', 'Omfang'],
   ['sagsbehandler', 'Sagsbehandler'],
   ['sagsbehandler_mail', 'Sagsbehandler-mail'],
-  ['kontrol', 'Kontrol'],
+  ['kontrol', 'Kontrollant'],
   ['beskrivelse', 'Beskrivelse'],
   ['udfoeres_for', 'Udføres for'],
+  ['sagsbehandler_initialer', 'Sagsbehandler-initialer'],
+  ['sagsbehandler_telefon', 'Sagsbehandler-telefon'],
+  ['kontrol_initialer', 'Kontrollant-initialer'],
+  ['kontrol_mail', 'Kontrollant-mail'],
+  ['kontrol_telefon', 'Kontrollant-telefon'],
 ] as const;
+export const PERSON_FIELDS = {
+  sagsbehandler: [
+    'sagsbehandler',
+    'sagsbehandler_initialer',
+    'sagsbehandler_mail',
+    'sagsbehandler_telefon',
+  ],
+  kontrollant: ['kontrol', 'kontrol_initialer', 'kontrol_mail', 'kontrol_telefon'],
+} as const;
+export function selectReportEmployee(role: keyof typeof PERSON_FIELDS, employee: Employee) {
+  if (Object.keys(employeeErrors(employee)).length) return {};
+  return Object.fromEntries(
+    PERSON_FIELDS[role].map((key, i) => [
+      `rap_${key}`,
+      [employee.navn, employee.initialer, employee.mail, employee.telefon][i],
+    ]),
+  );
+}
+export function resetProjectFields() {
+  return {
+    ...Object.fromEntries(PROJECT_FIELDS.map(([key]) => [`rap_${key}`, ''])),
+    rap_kontrollant_i_bunden: false,
+  };
+}
 export type ReportValues = Readonly<Record<string, unknown>>;
 export interface ReportWidget {
   kind: 'text_input' | 'text_area' | 'date_input' | 'checkbox' | 'button';
@@ -43,6 +73,7 @@ export interface ReportWidget {
   help: string | null;
 }
 export type ReportNode =
+  | { kind: 'employee_select'; key: keyof typeof PERSON_FIELDS; label: string }
   | { kind: 'caption'; text: string }
   | { kind: 'info'; text: string }
   | { kind: 'success'; text: string }
@@ -104,6 +135,7 @@ export function reportPage(
   const metadata: ReportMetadata = {
     ...Object.fromEntries(PROJECT_FIELDS.map(([key]) => [key, string(`rap_${key}`)])),
     dato: date,
+    kontrollant_i_bunden: bool('rap_kontrollant_i_bunden', false),
   };
   const texts = Object.fromEntries(
     SECTION_KEYS.map((key) => [key, string(`rap_tekst_${key}`, STANDARD_TEKSTER[key])]),
@@ -169,6 +201,14 @@ export function reportPage(
         ),
       ),
       widget('date_input', 'rap_dato', 'Dato', date),
+      { kind: 'employee_select', key: 'sagsbehandler', label: 'Vælg fra kartotek …' },
+      { kind: 'employee_select', key: 'kontrollant', label: 'Vælg fra kartotek …' },
+      widget(
+        'checkbox',
+        'rap_kontrollant_i_bunden',
+        'Kontrollant i bunden af rapporten',
+        metadata.kontrollant_i_bunden,
+      ),
       { kind: 'divider' },
     ],
   });

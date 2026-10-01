@@ -6,6 +6,7 @@ import type { DimensioningInput, Material, Settings } from '../src/engine/dimens
 import type { BasisTable } from '../src/engine/types.ts';
 import { cv_til_eu } from '../src/engine/data.ts';
 import { parseReportText } from '../src/report/text-format.ts';
+import { reportCases } from '../tools/report-cases.ts';
 import {
   reportData,
   SECTION_KEYS,
@@ -24,6 +25,47 @@ interface Snapshot {
   dimensioning: unknown;
   report_text: { basis: [string, string][]; results: [string, string][] } | null;
 }
+
+test('B-048: initialer øverst med navnefallback, underskrift med/uden kontrollant og uden tomme linjer', () => {
+  const c = reportCases()[0];
+  const metadata = {
+    ...c.metadata,
+    sagsbehandler_initialer: ' AJ ',
+    sagsbehandler_telefon: ' 12345678 ',
+    kontrol_initialer: 'BN',
+    kontrol_mail: 'bo@example.invalid',
+    kontrol_telefon: '87654321',
+  };
+  const data = reportData(c.result, metadata);
+  assert.deepEqual(data.context, reportData(c.result, c.metadata).context);
+  assert.deepEqual(data.medarbejdere, {
+    udfoert_af: 'AJ',
+    kontrol: 'BN',
+    sagsbehandler: [c.metadata.sagsbehandler, c.metadata.sagsbehandler_mail, '12345678'],
+    kontrollant: null,
+  });
+  const both = reportData(c.result, { ...metadata, kontrollant_i_bunden: true });
+  assert.deepEqual(both.medarbejdere.kontrollant, [
+    c.metadata.kontrol,
+    '87654321',
+    'bo@example.invalid',
+  ]);
+  const fallback = reportData(c.result, {
+    ...metadata,
+    sagsbehandler_initialer: ' ',
+    kontrol_initialer: '',
+    sagsbehandler_mail: '',
+    kontrol_telefon: '',
+    kontrollant_i_bunden: true,
+  });
+  assert.equal(fallback.medarbejdere.udfoert_af, c.metadata.sagsbehandler);
+  assert.equal(fallback.medarbejdere.kontrol, c.metadata.kontrol);
+  assert.deepEqual(fallback.medarbejdere.sagsbehandler, [c.metadata.sagsbehandler, '12345678']);
+  assert.deepEqual(fallback.medarbejdere.kontrollant, [c.metadata.kontrol, 'bo@example.invalid']);
+  const empty = reportData(c.result, { kontrollant_i_bunden: true });
+  assert.deepEqual(empty.medarbejdere.sagsbehandler, []);
+  assert.deepEqual(empty.medarbejdere.kontrollant, []);
+});
 const ui = JSON.parse(
   readFileSync(new URL('../reference/ui-flows.json', import.meta.url), 'utf8'),
 ) as {
