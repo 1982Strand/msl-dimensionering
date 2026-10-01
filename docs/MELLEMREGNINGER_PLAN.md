@@ -82,6 +82,8 @@ FIG-001–004 i `reference/figures.json` er udgangspunkt for M5. Nye cases tilf�
 
 ## M4 — valgt net og referencenoter
 
+**Status 01.10.2026:** visningsmodel og React-komponent til overskrift, 1/2-lagsgitter og intervalnote er implementeret i `net-details.ts`/`NetDetails.tsx`. Optimalberegningens note genbruges fra `construction.ts`; tillæg og reduktioner fra `afrunding.ts`. Alle 14 sidereferencecases sammenligner overskriftselement, fuld HTML/markdown-krop inklusive title-attributter og intervalnote/fravær præcist, uden tolerance eller normalisering. 2.838 Node-tests, typekontrol, formatering/formateringskontrol og build består. Browsertesten for punkt-/intervalprodukt, hover og sidefejl er skrevet og forsøgt med `PW_PORT=5192`; sandkassen afviser browserstart med `browserType.launch: spawn EPERM`. De 14 cases indeholder ikke minimums-/lagtillæg; disse visningsgrene følger originalkoden, men mangler særskilt optaget referencekontrol. Browserkontrol og visuel godkendelse udestår hos den styrende udvikler/bruger.
+
 **Original:** `_render_valgt_net_detaljer` (3657), `_optimal_*` (3493–3616), `_lagtillaeg_tekst` (3616), `_eksakt_*` (3280–3310), `_korrektion_interval_note` (3229).
 
 **Tilstande:** begge tilstande/grundlag/enheder; faste og intervalprodukter; optimal/konservativ placering, gyldige/ugyldige løsninger og yderområde.

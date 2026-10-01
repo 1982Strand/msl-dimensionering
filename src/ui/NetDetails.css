@@ -1,0 +1,114 @@
+.net-details {
+  margin-top: 20px;
+  min-width: 0;
+}
+.net-details .bg-kort-hoved {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 4px 16px;
+  margin-bottom: 20px;
+}
+.net-details .bg-kort-titel {
+  margin: 0;
+}
+.net-details .bg-kort-note,
+.bg-produkt-interval-note {
+  font-size: 12px;
+  color: var(--color-muted-foreground);
+}
+.bg-produkt-interval-note {
+  margin: 8px 0 16px;
+}
+.net-details .rt-detaljer-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+.net-details .rt-detaljer-lag {
+  min-width: 0;
+}
+.net-details .rt-detaljer-lag-titel {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  margin-bottom: 12px;
+  color: var(--primary);
+}
+.net-details .rt-detaljer-raekke {
+  display: grid;
+  grid-template-columns: 12px minmax(0, 1fr) auto;
+  gap: 8px;
+  align-items: baseline;
+  padding: 7px 0;
+  border-bottom: 1px solid var(--color-border);
+  font-size: 12px;
+  line-height: 1.5;
+}
+.net-details .rt-detaljer-vaerdi,
+.net-details .rt-detaljer-resultat-tal,
+.net-details .rt-detaljer-optimal-tal {
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.net-details .rt-detaljer-hjaelp,
+.net-details .rt-detaljer-optimal {
+  cursor: help;
+}
+.net-details [tabindex]:focus-visible {
+  outline: 2px solid var(--color-ring);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+.net-details .rt-detaljer-resultat {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 4px 12px;
+  margin-top: 14px;
+  font-size: 12px;
+}
+.net-details .rt-detaljer-resultat-tal {
+  font-size: 19px;
+  font-weight: 600;
+  color: var(--primary);
+}
+.net-details .rt-detaljer-samlet {
+  font-size: 12px;
+  margin-top: 4px;
+}
+.net-details .rt-detaljer-optimal {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  border-top: 1px dotted var(--primary);
+  padding-top: 12px;
+  margin-top: 16px;
+  font-size: 12px;
+  color: var(--primary);
+}
+.net-details .rt-detaljer-optimal-tal {
+  font-weight: 600;
+}
+.net-details .rt-detaljer-optimal-note,
+.net-details .rt-detaljer-tom {
+  font-size: 11px;
+  line-height: 1.6;
+  color: var(--color-muted-foreground);
+  margin-top: 8px;
+}
+.net-details-tooltip {
+  max-width: min(440px, calc(100vw - 32px));
+  white-space: pre-line;
+  line-height: 1.6;
+  text-wrap: wrap;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+}
+@media (max-width: 760px) {
+  .net-details .rt-detaljer-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
