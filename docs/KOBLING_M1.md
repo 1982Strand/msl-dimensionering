@@ -124,10 +124,9 @@ tekster er gengivet uændret.
 inline-kilde, højrestillet resultat/note, indrykning, formelbokse, klassekort,
 chips, figurkort med prik-/ringsignatur og figurtekst, lagkolonner,
 skillelinjer og fodnote. Mål, afstande, skriftstørrelser, vægte og bruddet
-ved 1100 px bevares. IBM Plex Mono 400/500/600 indlæses lokalt; øvrig tekst
-følger appens skrift. Temaets tekst-, grå-, kant- og primærfarver bruges,
+ved 1100 px bevares. Temaets tekst-, grå-, kant- og primærfarver bruges,
 hvor de har en tilsvarende rolle; øvrige originalfarver bevares.
-Farver som de originale designdiagrammer: 1 lag `#2a78d6`, 2 lag lilla `#7b1fa2`, indtastet opbygning rød `#b42318`. Tekst følger appens skrift; kun regnestykker bruger fastbreddeskrift som `.formula`.
+Skrift og farver følger B-040. Farver som de originale designdiagrammer: 1 lag `#2a78d6`, 2 lag lilla `#7b1fa2`, indtastet opbygning rød `#b42318`. Tekst følger appens skrift; kun regnestykker bruger fastbreddeskrift som `.formula`.
 Figurens dublerede SVG-signatur skjules på skærmen til fordel for originalens
 signatur under figuren; hover og SVG-rendererens standard til eksport bevares.
 Tekster, tal, beregninger og referenceforventninger er uændrede.
