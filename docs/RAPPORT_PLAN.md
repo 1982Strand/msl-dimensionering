@@ -331,6 +331,135 @@ Forelæg PDF'er for Standard og Brugerdefineret, belastnings- og trafikklasse, m
 
 Kontrol omfatter indhold, figurdata, fonte, logo, indrykninger, punktopstillinger, alle sideskift, sidehoved/-fod, sidetal, snitvalg, filnavn og spærring efter ændringer. Firmaprofilens yderværdier må ikke producere overlappende indhold uden en tydelig fejl. Endelig PDF-layoutgodkendelse registreres med brugerens ordlyd; B-026's krav om perfekt opsætning er først opfyldt ved denne konkrete gennemgang.
 
+**R6-forberedelse — hjælperstatus 01.10.2026.**
+`node tools/build-r6-pdfs.ts` danner 31 PDF'er i `.local/output/r6/`. R3 og R6
+deler rå cases, B-046/B-048/B-049-varianter og lokal compiler-/fontindlæsning.
+Ingen browser, netværk, nye pakker eller nye referenceforventninger anvendes.
+OUT-2's rå input læses fra `reference/dimensioning-page-cases.json`: trafikklasse
+T1, Eᵤ = 10 MPa, TX160 og `under_inden/under_uden = vejdim`. Motoren genbruges
+uændret; supplerende projekt- og persondata er syntetiske.
+
+| PDF i `.local/output/r6/`                 | Hvad der afprøves                                                     |
+| ----------------------------------------- | --------------------------------------------------------------------- |
+| `01-standard-bk4-mm.pdf`                  | Standard, belastningsklasse 4, mm; ugyldigt 2-lagssnit udelades       |
+| `02-standard-to-geonetlag.pdf`            | Standard med gyldig 2-lagskombination                                 |
+| `03-intervalprodukt-nx850.pdf`            | Intervalprodukt Tensar InterAx NX850, 1/2 lag og intervalbånd         |
+| `04-standard-trafikklasse-t4.pdf`         | Standard, trafikklasse T4 og VejDim-grundlag                          |
+| `05-brugerdefineret-tre-materialelag.pdf` | Brugerdefineret, tre materialelag, mm                                 |
+| `06-brugerdefineret-manuel-phi.pdf`       | Brugerdefineret med manuelt angivet friktionsvinkel                   |
+| `07-brugerdefineret-cm.pdf`               | Brugerdefineret med cm i tabeller og figurer                          |
+| `08-tomme-afsnit.pdf`                     | Alle syv tekster bevidst tomme; overskrifter bevares                  |
+| `09-fravalgt-grundlag.pdf`                | Alle grundlagslinjer fravalgt; tabel og overskrift udelades           |
+| `10-lange-afsnit.pdf`                     | Lang forudsætningstekst med mange afsnit og sideskift                 |
+| `11-specialtegn.pdf`                      | Bogstavelige Typst-specialtegn og flerlinjet beskrivelse              |
+| `12-formateret-tekst.pdf`                 | B-046: fed, kursiv, punkter, underpunkter og hængende indrykning      |
+| `13-fravalgte-afsnit.pdf`                 | B-046: afsnit og deres overskrifter fravalgt                          |
+| `14-personer-uden-bundkolonne.pdf`        | Sagsbehandler i bunden; kvalitetssikring kun som initialer øverst     |
+| `15-personer-med-bundkolonne.pdf`         | Sagsbehandler og kvalitetssikring i to bundkolonner; telefon før mail |
+| `16-rettede-og-fravalgte-linjer.pdf`      | B-049: redigeret tekst/værdi og fravalgt resultatlinje                |
+| `17-fravalgt-resultattabel.pdf`           | Alle resultatlinjer fravalgt; overskrift/indledning bevares           |
+| `18-yderomraade-vejdim-out2.pdf`          | Trafikklasse T1 uden for diagrammet; VejDim under inden/uden          |
+| `19-lange-projekt-og-tabeltekster.pdf`    | Lange projekt-/materialenavne, flerlinjet beskrivelse og tabelværdi   |
+| `20-logo-15mm.pdf`                        | Logo 15 mm                                                            |
+| `21-logo-90mm.pdf`                        | Logo 90 mm                                                            |
+| `22-logo-kun-foerste-side.pdf`            | Logo og slogan kun på første side                                     |
+| `23-margener-minimum.pdf`                 | Alle margener ved minimum: top/bund/venstre/højre                     |
+| `24-margener-maksimum.pdf`                | Alle margener ved maksimum: top/bund/venstre/højre                    |
+| `25-skrift-9pt.pdf`                       | Brødtekst 9 pt                                                        |
+| `26-skrift-13pt.pdf`                      | Brødtekst 13 pt                                                       |
+| `27-liberation-sans.pdf`                  | Liberation Sans som brødtekst                                         |
+| `28-side-1-af-3.pdf`                      | Sidetal »Side 1 af 3« på standardsagens tre sider                     |
+| `29-farvede-overskrifter.pdf`             | Overskrifter i firmafarven                                            |
+| `30-lang-sidefod.pdf`                     | Lang kontaktlinje med ombrydning og reserveret plads                  |
+| `31-anden-firmafarve.pdf`                 | Anden firmafarve i sidefod og overskrifter                            |
+
+**Kontrol og genkørsel.** Hver PDF har `.expected.json` med alle dynamiske
+strenge/tabelværdier, synlig formateret tekst, profil, figurkald og forbudt indhold;
+`.content-check.json` og `.layout-check.json` dokumenterer resultaterne.
+`manifest.json` samler dækning, sidetal, SHA-256 og kontrolstatus. Skriptet afviser
+compilerdiagnoser, manglende/forbudt tekst og fejlet layout-delkontrol. De første ti
+PDF'er skal være byteidentiske med R3. Deres kontrolsummer er desuden sammenlignet
+med R3 fra **før** opgaven: alle ti er uændrede.
+
+Tekstudtræk bruger systemets `pdftotext -raw -enc UTF-8` (programmet kan vælges
+med `PDFTOTEXT`). Indholdsorden bevarer flerlinjede tabelværdier; Xpdfs `-layout`
+kan indskyde næste rækkes etiket fra nabokolonnen. Kun whitespace/linjeombrydning
+normaliseres, også efter en **eksisterende** bindestreg. Ingen værdier, tegnsætning
+eller Unicode ændres. Ved sideskift udelades kun sidebaggrundens præcist verificerede
+prefix i en separat brødtekststrøm; slogan, kontaktlinje og sidetal kontrolleres selv
+på hver side. Forbudt indhold kontrolleres i begge strømme. SVG-tekst er konturer
+og kontrolleres særskilt via figurkald og sidebilleder.
+
+**Layout uden browser — delkontrol.** Typst 0.14.2 / typst.ts 0.7.0 bruger
+`runWithWorld → compile → query` og `measure` i separate kontroldokumenter, uden
+at ændre de leverede PDF'er. Målinger kontrollerer logo/slogan/titel, fri plads til
+sidefod/sidetal og figurbredde. Faktiske billedankre eksporteres også, og logovalget
+kontrolleres pr. side. Query afrunder til 0,01 pt; det er alene layoutgeometri,
+**ikke** en beregningstolerance. Et forespurgt billedanker kan ligge før centrering
+og er derfor ikke en fuld billedboks. Alle færdige tekstlinjers bokse og figurernes
+interne clipping kan ikke kontrolleres pålideligt med disse Node-API'er. En separat
+SVG-renderer er ikke installeret. `layoutStatus: partial` bevares derfor; styrende
+agent overtager **alle tekst-/figurbokse og alle sider med PyMuPDF og billedkontrol**.
+Originalens sidehovedankre og farvede sidefod til sidekanten er undtaget fra
+brødtekstmarginerne.
+
+**Fund og rettelser i `layout.typ`.**
+
+- 90 mm logo overlappede slogan og titel. Slogan placeres mindst 0,5 mm under
+  logoets bund, og tekstområdet mindst 2 mm under sloganet.
+- Topmargin 15 mm gav titel-/sidehovedoverlap; bundmargin 20 mm gav overlap med
+  sidetal. Margenerne fungerer nu som minimummer, når sidehoved/-fod kræver mere.
+- Designdiagrammet var 160 mm bredt i et 130 mm tekstområde ved 40 mm sidemargener.
+  Figurer begrænses nu til den tilgængelige bredde.
+- Lang kontaktlinje kunne vokse ud af den faste 44 pt sidefod. Den ombrydes inden
+  for tekstområdets bredde; flade, sidetal og bundreserve følger den målte højde.
+  Billedkontrol afslørede desuden overlap mellem sidefodens linjer: flerlinjet
+  kontakttekst bruger nu ascender–descender. Standardsidefod/-placering er uændret.
+- Tabulatorindrykning (B-052) gav »expected integer, float, or decimal, found length«.
+  Begge funktioner omregner til tal før `calc.rem` og tilbage til pt bagefter.
+
+Windows' PDF-renderer dannede lokale PNG'er i `preview/` (99 sider); procesafslutningen
+fejlede med `0xC0000005`. Stikprøver af logo, minimumsmargener, figurer og sidefod er
+set, og sidefodens rettelse er genrenderet. Nogle PNG'er udelader sidebaggrund,
+selv om PDF-tekst og compilerens billedankre findes; denne observation skal
+**afklares i en uafhængig renderer** ved den styrende agents PyMuPDF-kontrol.
+Windows-renderingen er ikke dokumentation for fuld, fejlfri visuel kontrol.
+
+**Kendte forskelle fra Word-PDF'erne — liste til forelæggelsen.**
+`.local/baseline-pdf` findes ikke her; Word-forskellene bygger på R3-status og den
+styrende R3-gennemgang ovenfor, ikke en ny lokal Word-sammenligning.
+
+- Calibri → Carlito og Helvetica/Arial → Liberation Sans. Typsts tekstformning og
+  flydende layout ændrer linje-/sidefordeling; R3 målte `empty-text` til tre sider
+  mod Word-originalens to. R6 har fortsat tre.
+- Opbygningen følger den fælles SVG (B-025). Word-baselinens skærmbilleder har en tom
+  2-lagssøjle; originale rapportkald udelader det ugyldige snit, som R3/R6 derfor også
+  gør. Originalens målestok bevares op til pladsgrænsen; fonte/clipping kræver billedkontrol.
+- Designdiagrammet er selvstændig SVG med farver, intervalbånd, prikkede optimale
+  kurver og decimalkomma (B-034/B-035/B-040). Rapporttitel/margener er R3's
+  transporttilpasning; kurverne er uændrede. M1-figurer medtages ikke.
+- B-046/B-047/B-052: rigtige punkter, hængende indrykning, underpunkter med »◦«,
+  fed/kursiv, tabulatorindrykning og fravalg af hele afsnit. Bevidst tomme,
+  medtagne afsnit bevarer fortsat overskrifterne.
+- B-048/B-049/B-052: initialer, »Kvalitetssikring:«, telefon i cifrepar før mail,
+  valgfri ekstra bundkolonne samt redigerede/fravalgte tabellinjer.
+- Profilvariationerne kan flytte sideskift yderligere: logo og små margener kræver
+  reserveret plads, store sidemargener reducerer figurer, og lang sidefod bliver
+  højere. Margenfelterne er minimummer her. Standardprofilens ti PDF'er er byteuændrede.
+
+**Kontroller.** `npm run typecheck`, alle **2.994 Node-tests**, `npm run format`,
+`npm run format:check` og `npm run build` består (på Windows via `npm.cmd`).
+Begge PDF-byggescripts består: R3 danner 17 PDF'er, R6 danner 31 PDF'er/99 sider
+med bestået indholdskontrol og layout-delkontrol. Særskilt streng TypeScript-kontrol
+af byggescripts og delte værktøjer består også. Build har den eksisterende
+advarsel om store chunks. Ingen pakker er installeret; intet er committet eller
+merget, og beskyttede filer er uændrede.
+
+**Udestår hos styrende agent:** PyMuPDF-/billedkontrol inklusive den observerede
+Windows-rendererafvigelse, direkte Word-baselinesammenligning og konkret forelæggelse
+med forskelslisten. Download-/spærringsforløb i browseren er ikke genkørt af disse
+scripts. Endelig PDF-godkendelse efter B-026 er fortsat en særskilt beslutning.
+
 ## Konkrete cases pr. del
 
 RC-ALL betyder alle ti eksisterende cases i `reference/report-contexts.json`, med deres egne rå input og tilvalg. Nye referencecases optages fra isoleret a330cfd før den berørte implementation og må ikke overskrive forventninger. FIG-input henviser til mellemregningsplanens fire fastlagte sager.
