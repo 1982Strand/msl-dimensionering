@@ -55,6 +55,8 @@ Bygget WASM i `dist/assets/typst_ts_web_compiler_bg-D2mWRS72.wasm`: **28.325.178
 
 Typekontrol, 2.885 Node-tests, formattering/formatteringskontrol og build består. `PW_PORT=5195 npx playwright test tests/browser/report-compile.spec.ts` er forsøgt, men Chromium-start afvises med **`spawn EPERM`**; computer-use har ingen browsere. Browserfilen dækker lokal/lazy indlæsning, indlejrede fonte, PDF-header/størrelse, ingen eksterne HTTP-kald, syntaksfejl uden download, rettelse og nyt WASM-forsøg. **Browser-/cachetider og netværkskontrol skal stadig verificeres uden sandkassebegrænsningen.**
 
+Browserkontrol ved den styrende agent 01.10.2026 (Chromium via Playwright mod lokal produktionsbygning): `tests/browser/report-compile.spec.ts` består. Første kompilering inklusive indlæsning af WASM og skrifter 479 ms, anden 5 ms. Ingen netværkskald uden for appens oprindelse, og dimensioneringssiden henter hverken WASM eller rapportskrifter. Målingerne er fra en lokal server og er ikke et løfte for den komplette rapport eller en fjern server.
+
 Compiler-worker er vurderet og udskudt til **R4**, hvor formularens reaktion kan måles. 0.7.0's installerede API'er tilbyder ingen indbygget compiler-worker; en egen worker kræver beskedprotokol, fejltransport og livscyklus. Køen kan senere bruge en worker som sin compiler uden Typst-afhængighed.
 
 Integrér compilerens lokale WASM-indlæsning, `disableDefaultFontAssets`, lokale `preloadFonts`, `mapShadow`/`addSource` og PDF-kompilering efter demoens mønster. Fejl skal vises forståeligt; diagnosernes nulbaserede linjer omregnes til viste linjenumre. Sammenfaldende liveændringer samles, og kun den seneste revision kan blive gældende PDF. Midlertidige PDF-URL'er frigives.
