@@ -796,10 +796,64 @@
   margin-bottom: 24px;
   flex-wrap: wrap;
 }
+/* Afsnit 1: to valgkolonner og klasseboksen i den bredde, teksten kræver, uden ombrydning.
+   Beskeden ved trafikklasse har fast plads under valgene, så kortet ikke flytter sig.
+   Container-forespørgsler undgås: Chrome tegnede ikke kortets indhold efter ændringer. */
 .dim-input-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(200px, 0.75fr);
-  gap: 32px;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) max-content;
+  gap: 20px 32px;
+}
+.dim-input-grid > [data-m9-slot='keyFigures'] {
+  grid-column: 3;
+  grid-row: 1 / span 2;
+  align-self: start;
+}
+.m9-page .dim-input-grid [data-m9-slot='keyFigures'] .bg-noegletal td {
+  white-space: nowrap;
+}
+/* Ved trafikklasse får klasseboksen plads til linjen »Ækvivalent Eₒ-kurve …«, også når den
+   mangler (afvist beregning), så højden ikke skifter. */
+.m9-page .dim-input-grid:has(.dim-basis-message) [data-m9-slot='keyFigures'] .bg-noegletal {
+  min-height: 200px;
+}
+.dim-basis-message {
+  grid-column: 1 / 3;
+  grid-row: 2;
+  min-height: 150px;
+}
+.dim-basis-message .notice {
+  margin: 0;
+}
+/* Under ca. 1420 px (med udfoldet sidebjælke) er der ikke plads til klasseboksen ved siden af. */
+@media (max-width: 1420px) {
+  .dim-input-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .dim-basis-message {
+    grid-column: 1 / -1;
+    grid-row: auto;
+    order: 1;
+    min-height: 110px;
+  }
+  .dim-input-grid > [data-m9-slot='keyFigures'] {
+    grid-column: 1 / -1;
+    grid-row: auto;
+    order: 2;
+    justify-self: start;
+    max-width: 100%;
+  }
+}
+@media (max-width: 600px) {
+  .dim-input-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .dim-basis-message {
+    min-height: 0;
+  }
+  .m9-page .dim-input-grid [data-m9-slot='keyFigures'] .bg-noegletal td {
+    white-space: normal;
+  }
 }
 .dim-input-grid > div {
   min-width: 0;
@@ -1272,15 +1326,6 @@
     grid-template-columns: repeat(3, 1fr);
   }
 }
-@media (max-width: 900px) {
-  .dim-input-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-  .dim-keyfigures,
-  .dim-input-grid > [data-m9-slot='keyFigures'] {
-    grid-column: 1/-1;
-  }
-}
 @media (max-width: 760px) {
   .topbar {
     padding: 0 12px;
@@ -1320,7 +1365,6 @@
   }
 }
 @media (max-width: 600px) {
-  .dim-input-grid,
   .dim-manual-fields,
   .dim-results,
   .guidance-grid {

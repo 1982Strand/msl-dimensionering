@@ -232,7 +232,7 @@ export function Dimensioning() {
             Nulstil dimensionering
           </Button>
         </div>
-        <section className="section-card settings-card">
+        <section className="section-card settings-card dim-step1">
           {content('step1')}
           <div className="dim-input-grid">
             <div className="m9-collapsed-labels">
@@ -315,13 +315,19 @@ export function Dimensioning() {
                 </InfoPopup>
               )}
               {basis.type === 'trafikklasse' && <TrafficCorrelationPopup input={input} />}
-              {page.messageKind && (
-                <Notice kind={page.messageKind === 'warning' ? 'warning' : 'info'}>
-                  {content('basisMessage')}
-                </Notice>
-              )}
             </div>
             {content('keyFigures')}
+            {/* Fast plads til beskeden ved trafikklasse, så kortet ikke flytter sig, når den
+                kommer, går eller skifter tekst. */}
+            {basis.type === 'trafikklasse' && (
+              <div className="dim-basis-message">
+                {page.messageKind && (
+                  <Notice kind={page.messageKind === 'warning' ? 'warning' : 'info'}>
+                    {content('basisMessage')}
+                  </Notice>
+                )}
+              </div>
+            )}
           </div>
         </section>
         {(standard || basis.eo !== null) && (

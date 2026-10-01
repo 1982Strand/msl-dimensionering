@@ -5,19 +5,24 @@
   overflow-x: auto;
   margin-bottom: 16px;
 }
+.info-popup.traffic-correlation-dialog {
+  width: min(1180px, calc(100vw - 32px));
+}
 .traffic-correlation-popup table {
-  width: max-content;
-  min-width: 100%;
+  width: 100%;
   border-collapse: collapse;
   font-size: var(--fs-small);
   font-variant-numeric: tabular-nums;
 }
 .traffic-correlation-popup th,
 .traffic-correlation-popup td {
-  padding: 8px 12px;
+  padding: 8px 10px;
   border: 1px solid var(--border);
-  white-space: nowrap;
   text-align: right;
+}
+.traffic-correlation-popup th,
+.traffic-correlation-nowrap {
+  white-space: nowrap;
 }
 .traffic-correlation-popup th {
   background: var(--background);

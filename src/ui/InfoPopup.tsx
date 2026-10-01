@@ -8,12 +8,15 @@ export function InfoPopup({
   title,
   children,
   wide = false,
+  className,
   icon,
 }: {
   label: string;
   title: string;
   children: ReactNode;
   wide?: boolean;
+  /** Ekstra klasse på popuppen, fx en bredere udgave til korrelationstabellen. */
+  className?: string;
   /** Ikon foran linket, så det ses, at det kan klikkes (B-058). */
   icon?: ReactNode;
 }) {
@@ -28,7 +31,9 @@ export function InfoPopup({
       <Dialog.Portal>
         <Dialog.Overlay className="info-popup-overlay" />
         <Dialog.Content
-          className={`info-popup ${wide ? 'info-popup-wide' : ''}`}
+          className={['info-popup', wide ? 'info-popup-wide' : '', className ?? '']
+            .filter(Boolean)
+            .join(' ')}
           aria-describedby={undefined}
         >
           <div className="info-popup-heading">

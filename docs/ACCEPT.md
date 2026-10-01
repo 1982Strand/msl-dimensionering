@@ -155,12 +155,12 @@ Kørt 01.10.2026 på integrationsgrenen med Node `v26.4.0`:
 | `npm test` | **3.012 enhedstests/Node-tests**, alle bestået, 0 fejl, 0 oversprunget. |
 | `npm run format:check` | Bestået for de konfigurerede kode-/CSS-filer; Markdown indgår ikke i Prettier-scriptet. |
 | `npm run build` | Bestået. |
-| Playwright (Chromium, Desktop Chrome) | **75 browserforløb**, alle bestået. |
+| Playwright (Chromium, Desktop Chrome) | **76 browserforløb**, alle bestået. |
 | `node tools/build-r6-pdfs.ts` | Alle 31 PDF'er byte-identiske med det godkendte R6-sæt. |
 
 På Windows blev kommandoerne kørt med `npm.cmd`, da PowerShell blokerer `npm.ps1`. Node-testene omfatter både løkker over referencecases og særskilte adfærdstests; et testtal alene dokumenterer ikke fuld UI-/PDF-dækning.
 
-Der findes **75 browserforløb i 20 filer**, kørt af Claude og alle bestået. Numrene i hver celle følger testenes rækkefølge i filen og beskriver hvert selvstændigt `test(...)`. Den nuværende Playwright-konfiguration bruger Desktop Chrome og 1440 × 1050 px; konkrete tests skifter bl.a. til 390 × 844 og 600 × 900 px. Chrome er aftalt som browser (B-060); andre browsere testes ikke nu.
+Der findes **76 browserforløb i 21 filer**, kørt af Claude og alle bestået. Numrene i hver celle følger testenes rækkefølge i filen og beskriver hvert selvstændigt `test(...)`. Den nuværende Playwright-konfiguration bruger Desktop Chrome og 1440 × 1050 px; konkrete tests skifter bl.a. til 390 × 844 og 600 × 900 px. Chrome er aftalt som browser (B-060); andre browsere testes ikke nu.
 
 | Fil i `tests/browser/` | Antal | Forløb og kontroller |
 | --- | --- | --- |
@@ -181,6 +181,7 @@ Der findes **75 browserforløb i 20 filer**, kørt af Claude og alle bestået. N
 | `product-picker.spec.ts` | 2 | 1) B-054-vælger: 20 produkter/serier/mærker, søgning/filter, tastatur/fokus, nummer 3, uændret valgt produkt/resultat og genåbning. 2) Trafikmærker mod Alle produkter, anbefalingsfarver/filter, filter nulstillet ved genåbning, 390 px uden vandret rulning og brugerdefineret valg. |
 | `report.spec.ts` | 8 | 1) B-049 redigerede/fravalgte resultatlinjer i faktisk PDF, telefon, revisionsspærring, genåbning og automatisk nulstilling/besked ved ændret beregning. 2) B-046 tekstværktøjer/markering, afsnitsfravalg/revision, lagring/nulstilling og diagramvalg ved diagrammet. 3) Fire faste kort/felter/figurer ved 1440 og 390 px. 4) Projektfelter, tomme tekster/navne, dato, lagring og tre nulstillinger. 5) Hele beregning→rapport→PDF-download, lokale WASM/skrifter, fonte i PDF, seneste revision og ingen snit-spærring. 6) Afvist beregning giver original info og Gå til Dimensionering. 7) Faktisk WASM-fejl og vellykket nyt forsøg. 8) Faktisk skabelonfejl med dansk fil/linje/kolonne-diagnose og vellykket rettelse. |
 | `result-checks.spec.ts` | 2 | 1) M3 status, lukkede/åbne afsnit, FIG-003 anbefaling og udførelseskrav. 2) Afvist OUT-1 har hverken status eller informationsafsnit. |
+| `step1-layout.spec.ts` | 1 | B-063: afsnit 1 bevarer højden, når trafikklassebeskeden kommer og går; klasseboksen uden ombrydning; korrelationstabellen uden vandret rulning ved 1440 px. |
 | `settings.spec.ts` | 3 | 1) Opsummeringer/Gælder følger aktive valg og klassisk Standard. 2) Originale standarder, aktivering/afhængigheder, lagring og genåbning. 3) Minimumsnulstilling, tolerancegrænse og effekt i korrelation/afvigelsestabel efter navigation, mobil. |
 | `tables.spec.ts` | 6 | 1) Diagramredigering i faktisk Plotly, diagramvalg/genåbning, tværgående historik og afgrænset nulstilling. 2) Tilføj/dublet/slet/gendan diagramrække/celle. 3) Tomt felt kontra nul efter genåbning og afvist negativt tal. 4) VejDim-redigering mod original matrix, faktisk CSV-download med redigerede værdier, genåbning/nulstilling. 5) Diagramredigering ændrer VejDim-matrix/regneeksempel og kan fortrydes. 6) Alle seks scans/rådiagrammer, desktop og mobil med indeholdt rulning. |
 | `traffic-popover.spec.ts` | 1 | M8 kun ved trafikgrundlag; T4/Eu 10-tabel, aktive rækker/celle, temamarkering, randkursiv, præcis note og Escape-fokus. |
@@ -210,7 +211,7 @@ R6 er genbygget 01.10.2026 efter temaet og oprydningen; alle 31 PDF'er er byte-i
 
 Handlingerne følger fase 5 i [MIGRATIONSPLAN.md](MIGRATIONSPLAN.md). Enkelte delgodkendelser, herunder B-055/B-059, er ikke en beslutning om offentliggørelse.
 
-1. **Browsere og enheder:** Afklaret i B-060: Chrome. Alle 75 browserforløb kører i Chromium (Desktop Chrome) og består.
+1. **Browsere og enheder:** Afklaret i B-060: Chrome. Alle 76 browserforløb kører i Chromium (Desktop Chrome) og består.
 2. **Skærmstørrelser:** Afklaret i B-062: 1440, 600 og 390 px er tilstrækkeligt til intern brug.
 3. **Tilgængelighed:** Automatisk axe-kontrol (WCAG 2.1 A/AA) indgår og består. Afklaret i B-062: tilstrækkeligt til intern brug. En manuel gennemgang med skærmlæser, zoom og touch tages før offentliggørelse.
 4. **Lagring og nulstilling:** Dækket af enheds- og browserforløb (første start med B-008-standarder, genåbning, afgrænsede nulstillinger, dato-undtagelsen, localStorage-/IndexedDB-fejl, flere faner, profilens eksport/import). Ingen handling udestår ud over brugerens accept.
