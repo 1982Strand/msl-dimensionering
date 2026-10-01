@@ -64,6 +64,8 @@ export function reportDocument(
     'layout.typ': assets.layout,
     'data.json': JSON.stringify({
       ...data,
+      // B-048: separat personlag; originalens kontekst erstattes ikke.
+      medarbejdere: data.medarbejdere,
       context,
       sections,
       visualisering: figures.visualisering

@@ -118,7 +118,7 @@
   parbreak()
   v(29.3pt, weak: false)
   for (label, value) in (("Beskrivelse:", data.beskrivelse), ("Omfang:", data.omfang),
-    ("Udføres for:", data.udfoeres_for), ("Udført af:", data.sagsbehandler), ("Kontrol:", data.kontrol)) {
+    ("Udføres for:", data.udfoeres_for), ("Udført af:", report.medarbejdere.udfoert_af), ("Kontrol:", report.medarbejdere.kontrol)) {
     grid(columns: (felt-bredde, 1fr), strong(label), tekst(value))
     blank()
   }
@@ -157,12 +157,19 @@
       blank()
     }
   }
+  // B-048: underskriftens linjer kommer fra et separat JSON-personlag.
   blank(n: 2)
   block(breakable: false)[
     #strong(profil.by + " d.") #data.dato
     #parbreak()
     #blank()
-    #tekst(data.sagsbehandler)
-    #tekst(data.sagsbehandler_mail)
+    #if report.medarbejdere.kontrollant == none {
+      for linje in report.medarbejdere.sagsbehandler { tekst(linje) }
+    } else {
+      parbreak()
+      grid(columns: (1fr, 1fr), gutter: 8mm, align: top,
+        { for linje in report.medarbejdere.sagsbehandler { tekst(linje) } },
+        { for linje in report.medarbejdere.kontrollant { tekst(linje) } })
+    }
   ]
 }

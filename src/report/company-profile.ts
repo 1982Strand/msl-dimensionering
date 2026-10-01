@@ -1,7 +1,31 @@
-import { DEFAULT_COMPANY_PROFILE, type CompanyProfile } from './profile-defaults.ts';
+import { DEFAULT_COMPANY_PROFILE, type CompanyProfile, type Employee } from './profile-defaults.ts';
+export type { Employee } from './profile-defaults.ts';
 export type { CompanyProfile } from './profile-defaults.ts';
 
 export const MAX_LOGO_BYTES = 2_000_000;
+/** B-048: tom mail er tilladt; en oplyst mail skal ligne en mail. */
+export function employeeErrors(value: Employee): Partial<Record<keyof Employee, string>> {
+  const errors: Partial<Record<keyof Employee, string>> = {};
+  if (!value.navn.trim()) errors.navn = 'Navn er påkrævet.';
+  if ([...value.initialer].length > 6) errors.initialer = 'Initialer må højst være 6 tegn.';
+  if (value.mail && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.mail))
+    errors.mail = 'Angiv en gyldig mailadresse.';
+  return errors;
+}
+export function validateEmployees(value: unknown): string | null {
+  if (!Array.isArray(value)) return 'Medarbejdere skal være en liste.';
+  for (const person of value) {
+    if (
+      !object(person) ||
+      Object.keys(person).length !== 4 ||
+      !['navn', 'initialer', 'mail', 'telefon'].every((k) => typeof person[k] === 'string')
+    )
+      return 'En medarbejder skal have Navn, Initialer, Mail og Telefon som tekst.';
+    const error = Object.values(employeeErrors(person as unknown as Employee))[0];
+    if (error) return error;
+  }
+  return null;
+}
 export const PROFILE_LIMITS: Readonly<Record<string, readonly [number, number]>> = {
   logo_bredde_mm: [15, 90],
   'skrift.stoerrelse_pt': [9, 13],
@@ -25,6 +49,7 @@ export function profileValue(profile: CompanyProfile, path: string): unknown {
   return path.split('.').reduce<unknown>((o, k) => (o as Record<string, unknown>)[k], profile);
 }
 const editable = new Set([
+  'medarbejdere',
   ...Object.keys(PROFILE_LIMITS),
   'logo_paa_alle_sider',
   'slogan',
@@ -40,6 +65,7 @@ const editable = new Set([
 ]);
 export function validateProfileField(path: string, value: unknown): string | null {
   if (!editable.has(path)) return 'Feltet kan ikke ændres i firmaprofilen.';
+  if (path === 'medarbejdere') return validateEmployees(value);
   const range = PROFILE_LIMITS[path];
   if (range)
     return typeof value === 'number' &&
@@ -90,7 +116,11 @@ export function mergeCompanyProfile(saved: unknown, full = false): CompanyProfil
   if (!object(saved)) fail('Forventede et JSON-objekt.');
   const next = structuredClone(DEFAULT_COMPANY_PROFILE);
   function merge(base: Record<string, unknown>, patch: Record<string, unknown>, prefix = '') {
-    keys(patch, Object.keys(base), full);
+    // B-048: profiler eksporteret før kartoteket kan stadig importeres som version 1.
+    keys(patch, Object.keys(base), false);
+    if (full)
+      for (const k of Object.keys(base))
+        if (k !== 'medarbejdere' && !Object.hasOwn(patch, k)) fail(`Feltet »${k}« mangler.`);
     for (const [k, value] of Object.entries(patch)) {
       const path = prefix + k;
       if (path === 'afsluttende_afsnit') {

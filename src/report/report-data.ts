@@ -122,13 +122,32 @@ export interface ReportMetadata {
   sagsbehandler_mail?: string | null;
   kontrol?: string | null;
   dato?: string;
+  /** B-048: ekstra lag; originalens context bevarer sine felter og værdier. */
+  sagsbehandler_initialer?: string | null;
+  sagsbehandler_telefon?: string | null;
+  kontrol_initialer?: string | null;
+  kontrol_mail?: string | null;
+  kontrol_telefon?: string | null;
+  kontrollant_i_bunden?: boolean;
 }
 export type EditedTexts = Partial<Record<SectionKey, string | null>>;
 export interface ReportRow {
   label: string;
   vaerdi: string;
 }
-export type ReportContext = Required<{ [K in keyof ReportMetadata]: string }> &
+export type ReportContext = Required<{
+  [
+    K in Exclude<
+      keyof ReportMetadata,
+      | 'sagsbehandler_initialer'
+      | 'sagsbehandler_telefon'
+      | 'kontrol_initialer'
+      | 'kontrol_mail'
+      | 'kontrol_telefon'
+      | 'kontrollant_i_bunden'
+    >
+  ]: string;
+}> &
   Record<`tekst_${SectionKey}`, string> & {
     dim_grundlag: ReportRow[];
     dim_resultat: ReportRow[];
@@ -138,6 +157,13 @@ export interface ReportBasis {
   rows: ReportRow[];
 }
 export interface ReportData {
+  /** B-048: viste initialer med fallback og underskriftens ikke-tomme linjer. */
+  medarbejdere: {
+    udfoert_af: string;
+    kontrol: string;
+    sagsbehandler: string[];
+    kontrollant: string[] | null;
+  };
   context: ReportContext;
   sections: Record<SectionKey, string>;
   /** Kun medtagne tekster. Rå kontekststrenge bevares til referencekontrol. */
@@ -352,6 +378,22 @@ export function reportData(
   };
   return {
     context,
+    medarbejdere: {
+      udfoert_af: strip(metadata.sagsbehandler_initialer || '') || context.sagsbehandler,
+      kontrol: strip(metadata.kontrol_initialer || '') || context.kontrol,
+      sagsbehandler: [
+        context.sagsbehandler,
+        context.sagsbehandler_mail,
+        strip(metadata.sagsbehandler_telefon || ''),
+      ].filter(Boolean),
+      kontrollant: metadata.kontrollant_i_bunden
+        ? [
+            context.kontrol,
+            strip(metadata.kontrol_telefon || ''),
+            strip(metadata.kontrol_mail || ''),
+          ].filter(Boolean)
+        : null,
+    },
     sections: { ...SECTION_TITLER },
     formattedTexts: Object.fromEntries(
       SECTION_KEYS.filter((key) => valg.medtag_afsnit?.[key] !== false).map((key) => [

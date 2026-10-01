@@ -1,7 +1,15 @@
 import type { SectionKey } from './report-data.ts';
 
 export type ReportFont = 'Carlito' | 'Liberation Sans';
+/** B-048: kartoteket er profildata, ikke rapportens underskrift. */
+export interface Employee {
+  navn: string;
+  initialer: string;
+  mail: string;
+  telefon: string;
+}
 export interface CompanyProfile {
+  medarbejdere: Employee[];
   logo: string;
   logo_bredde_mm: number;
   logo_paa_alle_sider: boolean;
@@ -40,6 +48,7 @@ export interface CompanyProfile {
  * dokumenteret i spikes/report-typescript/layout.typ og Word-baseline.
  */
 export const DEFAULT_COMPANY_PROFILE: CompanyProfile = {
+  medarbejdere: [], // B-048: ingen personer i standardprofilen.
   logo: 'assets/logo.jpeg', // word/header2.xml: rId1 → media/image1.jpeg; public/report/logo/OPRINDELSE.md.
   logo_bredde_mm: 1534537 / 36000, // header2.xml, wp:extent/@cx (EMU).
   logo_paa_alle_sider: true, // document.xml, sectPr: default header2; ingen titlePg/alternate header.

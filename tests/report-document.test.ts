@@ -19,6 +19,36 @@ const assets: ReportAssets = {
   ),
 };
 const cases = reportCases();
+test('B-048 dokument: personlag med initialer/fallback og begge underskriftskolonner transporteres kun som JSON', () => {
+  const c = cases[0];
+  const special = '#panic("B048") $ [ ]';
+  for (const checked of [false, true]) {
+    const data = reportData(c.result, {
+      ...c.metadata,
+      sagsbehandler_initialer: 'AJ',
+      sagsbehandler_telefon: special,
+      kontrol_initialer: '',
+      kontrol_mail: '',
+      kontrol_telefon: '87654321',
+      kontrollant_i_bunden: checked,
+    });
+    const req = reportDocument(data, reportFigures(c.result, c.settings, c.table), assets);
+    const d = JSON.parse(req.files['data.json'] as string);
+    assert.deepEqual(d.context, c.data.context);
+    assert.deepEqual(d.medarbejdere, data.medarbejdere);
+    assert.equal(d.medarbejdere.udfoert_af, 'AJ');
+    assert.equal(d.medarbejdere.kontrol, c.metadata.kontrol);
+    assert.deepEqual(d.medarbejdere.sagsbehandler, [
+      c.metadata.sagsbehandler,
+      c.metadata.sagsbehandler_mail,
+      special,
+    ]);
+    assert.deepEqual(d.medarbejdere.kontrollant, checked ? [c.metadata.kontrol, '87654321'] : null);
+    assert.equal(req.main, assets.main);
+    assert.equal(req.files['layout.typ'], assets.layout);
+    assert.ok(!assets.layout.includes(special));
+  }
+});
 for (const c of cases)
   test(`R3 dokument ${c.name}: data transporteres uændret til JSON`, () => {
     const figures = reportFigures(c.result, c.settings, c.table);

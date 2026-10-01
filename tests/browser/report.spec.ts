@@ -177,7 +177,7 @@ test('felter, afsnit, automatisk lagring, dato og de tre nulstillinger', async (
     ['Udføres for', 'Test'],
     ['Sagsbehandler', 'Ingeniør'],
     ['Sagsbehandler-mail', 'test@example.invalid'],
-    ['Kontrol', 'Kontrolperson'],
+    ['Kontrollant', 'Kontrolperson'], // B-048: gemt rap_kontrol er bevaret.
   ])
     await page.getByLabel(label, { exact: true }).fill(value);
   await page.getByLabel('Dato', { exact: true }).fill('2001-02-03');
@@ -201,7 +201,7 @@ test('felter, afsnit, automatisk lagring, dato og de tre nulstillinger', async (
     ['Udføres for', 'Test'],
     ['Sagsbehandler', 'Ingeniør'],
     ['Sagsbehandler-mail', 'test@example.invalid'],
-    ['Kontrol', 'Kontrolperson'],
+    ['Kontrollant', 'Kontrolperson'], // B-048.
   ])
     await expect(page.getByLabel(label, { exact: true })).toHaveValue(value);
   await expect(page.getByLabel('Dato', { exact: true })).toHaveValue(today);

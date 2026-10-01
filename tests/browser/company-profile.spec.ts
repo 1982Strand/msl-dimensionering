@@ -19,7 +19,8 @@ function observe(page: Page, baseURL: string) {
   return { errors, external };
 }
 async function ready(page: Page, old?: string | null) {
-  await expect(page.getByTestId('profile-save-state')).toHaveAttribute('data-state', 'saved');
+  if (await page.getByTestId('profile-save-state').count())
+    await expect(page.getByTestId('profile-save-state')).toHaveAttribute('data-state', 'saved');
   // En ny revision kan starte lige efter »ready«; vent til tilstand og download står stabilt samtidig.
   await expect(async () => {
     await expect(page.getByTestId('compile-state')).toHaveAttribute('data-state', 'ready');
@@ -44,6 +45,141 @@ async function stored(page: Page) {
     PROFILE_STORAGE_KEY,
   );
 }
+
+test('B-048: kartotek, valg af begge personer, manuel rettelse, revisionsspærring og profilrundtur', async ({
+  page,
+  baseURL,
+}, info) => {
+  test.setTimeout(180_000);
+  const seen = observe(page, baseURL!);
+  await page.goto('/#rapport');
+  await expect(
+    page.getByText('Kartoteket er tomt. Tilføj personer under Firmaprofil → Medarbejdere.'),
+  ).toHaveCount(2);
+  await page.getByRole('tab', { name: 'Firmaprofil', exact: true }).click();
+  let old = await ready(page);
+  const people = [
+    { navn: 'Anna Jensen', initialer: 'AJ', mail: 'anna@example.invalid', telefon: '12345678' },
+    { navn: 'Bo Nielsen', initialer: 'BN', mail: 'bo@example.invalid', telefon: '87654321' },
+  ];
+  for (const [index, person] of people.entries()) {
+    await page.getByRole('button', { name: 'Tilføj medarbejder', exact: true }).click();
+    const row = page.getByRole('group', { name: `Medarbejder ${index + 1}`, exact: true });
+    await expect(row.getByLabel('Navn', { exact: true })).toHaveAttribute('aria-invalid', 'true');
+    for (const [label, value] of [
+      ['Navn', person.navn],
+      ['Initialer', person.initialer],
+      ['Mail', person.mail],
+      ['Telefon', person.telefon],
+    ])
+      await row.getByLabel(label, { exact: true }).fill(value);
+    old = await ready(page, old);
+  }
+  expect((await stored(page)).medarbejdere).toEqual(people);
+  const first = page.getByRole('group', { name: 'Medarbejder 1', exact: true });
+  await first.getByLabel('Mail', { exact: true }).fill('ugyldig');
+  await expect(first.getByLabel('Mail', { exact: true })).toHaveAttribute('aria-invalid', 'true');
+  expect((await stored(page)).medarbejdere).toEqual(people);
+  await first.getByLabel('Mail', { exact: true }).fill(people[0].mail);
+  await ready(page);
+  const json = await exported(page);
+  expect(JSON.parse(json).profile.medarbejdere).toEqual(people);
+  await page.getByRole('tab', { name: 'Rapport', exact: true }).click();
+  for (const [role, person] of [
+    ['Sagsbehandler', people[0]],
+    ['Kontrollant', people[1]],
+  ] as const) {
+    const group = page.getByRole('group', { name: role, exact: true });
+    await group
+      .getByLabel('Vælg fra kartotek …', { exact: true })
+      .selectOption({ label: `${person.initialer} – ${person.navn}` });
+    await expect(group.locator('input')).toHaveCount(4);
+    expect(
+      await group
+        .locator('input')
+        .evaluateAll((inputs) => inputs.map((input) => (input as HTMLInputElement).value)),
+    ).toEqual([person.navn, person.initialer, person.mail, person.telefon]);
+  }
+  await page.getByLabel('Sagsbehandler-telefon', { exact: true }).fill('11223344');
+  await ready(page);
+  const revision = await page.getByTestId('compile-state').getAttribute('data-revision');
+  await page.evaluate(() => {
+    const state = { disabled: false, stale: false };
+    (window as unknown as { __b048: typeof state }).__b048 = state;
+    new MutationObserver(() => {
+      if (
+        [...document.querySelectorAll('button')].some(
+          (b) => b.textContent?.trim() === 'Hent PDF' && b.disabled,
+        )
+      )
+        state.disabled = true;
+      if (document.body.textContent?.includes('Forhåndsvisningen er forældet.')) state.stale = true;
+    }).observe(document.body, {
+      subtree: true,
+      childList: true,
+      attributes: true,
+      characterData: true,
+    });
+  });
+  await page.getByLabel('Kontrollant i bunden af rapporten', { exact: true }).check();
+  await expect
+    .poll(() =>
+      page.evaluate(() => (window as unknown as { __b048: Record<string, boolean> }).__b048),
+    )
+    .toEqual({ disabled: true, stale: true });
+  old = await ready(page, old);
+  expect(await page.getByTestId('compile-state').getAttribute('data-revision')).not.toBe(revision);
+  await page.reload();
+  await expect(page.getByLabel('Sagsbehandler', { exact: true })).toHaveValue(people[0].navn);
+  await expect(page.getByLabel('Sagsbehandler-initialer', { exact: true })).toHaveValue('AJ');
+  await expect(page.getByLabel('Sagsbehandler-mail', { exact: true })).toHaveValue(people[0].mail);
+  await expect(page.getByLabel('Sagsbehandler-telefon', { exact: true })).toHaveValue('11223344');
+  for (const [label, value] of [
+    ['Kontrollant', people[1].navn],
+    ['Kontrollant-initialer', 'BN'],
+    ['Kontrollant-mail', people[1].mail],
+    ['Kontrollant-telefon', people[1].telefon],
+  ])
+    await expect(page.getByLabel(label, { exact: true })).toHaveValue(value);
+  await expect(page.getByLabel('Kontrollant i bunden af rapporten', { exact: true })).toBeChecked();
+  await page.getByRole('tab', { name: 'Firmaprofil', exact: true }).click();
+  await ready(page);
+  page.once('dialog', (d) => void d.accept());
+  await page.getByRole('button', { name: 'Nulstil firmaprofil til standard', exact: true }).click();
+  await ready(page);
+  expect((await stored(page)).medarbejdere).toEqual([]);
+  await expect(page.getByRole('group', { name: 'Medarbejder 1', exact: true })).toHaveCount(0);
+  await page
+    .getByLabel('Profilfil', { exact: true })
+    .setInputFiles({ name: 'b048.json', mimeType: 'application/json', buffer: Buffer.from(json) });
+  await ready(page);
+  expect((await stored(page)).medarbejdere).toEqual(people);
+  await page
+    .getByRole('group', { name: 'Medarbejder 2', exact: true })
+    .getByRole('button', { name: 'Slet medarbejder' })
+    .click();
+  await ready(page);
+  expect((await stored(page)).medarbejdere).toEqual([people[0]]);
+  await page.screenshot({ path: info.outputPath('b048-kartotek.png'), fullPage: true });
+  await page.getByRole('tab', { name: 'Rapport', exact: true }).click();
+  await page.getByRole('button', { name: 'Nulstil felter', exact: true }).click();
+  for (const id of [
+    'rap_sagsbehandler',
+    'rap_sagsbehandler_initialer',
+    'rap_sagsbehandler_mail',
+    'rap_sagsbehandler_telefon',
+    'rap_kontrol',
+    'rap_kontrol_initialer',
+    'rap_kontrol_mail',
+    'rap_kontrol_telefon',
+  ])
+    await expect(page.locator('#' + id)).toHaveValue('');
+  await expect(
+    page.getByLabel('Kontrollant i bunden af rapporten', { exact: true }),
+  ).not.toBeChecked();
+  expect(seen.errors).toEqual([]);
+  expect(seen.external).toEqual([]);
+});
 
 test('R5 live revision, logo, feltfejl, genåbning, eksport/import og nulstilling', async ({
   page,

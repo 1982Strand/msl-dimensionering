@@ -23,7 +23,9 @@ import {
   reportFilename,
   localReportDate,
   resetReportChoices,
-  PROJECT_FIELDS,
+  PERSON_FIELDS,
+  selectReportEmployee,
+  resetProjectFields,
   type ReportNode,
   type ReportStep,
 } from '../report/report-page';
@@ -275,7 +277,7 @@ export function Report({
       startLive();
       setAttempt((n) => n + 1);
     } else if (key === 'reset-fields') {
-      ctx.remember(Object.fromEntries(PROJECT_FIELDS.map(([name]) => [`rap_${name}`, ''])));
+      ctx.remember(resetProjectFields());
       setDate(localReportDate());
     } else if (key.startsWith('reset-')) {
       const section = key.slice(6) as SectionKey;
@@ -285,6 +287,35 @@ export function Report({
   function renderNode(node: ReportNode, i: number) {
     const key = 'key' in node ? node.key : i;
     if (node.kind === 'divider') return <hr key={key} />;
+    if (node.kind === 'employee_select') {
+      const employees = company.state.profile.medarbejdere;
+      return employees.length ? (
+        <div key={key} className="setting-field report-field">
+          <label htmlFor={'employee-' + node.key}>{node.label}</label>
+          <select
+            id={'employee-' + node.key}
+            value=""
+            disabled={!company.ready || company.saving}
+            onChange={(event) => {
+              if (event.target.value === '') return;
+              const person = employees[Number(event.target.value)];
+              if (person) ctx.remember(selectReportEmployee(node.key, person));
+            }}
+          >
+            <option value="">Vælg fra kartotek …</option>
+            {employees.map((person, index) => (
+              <option key={index} value={index}>
+                {person.initialer ? `${person.initialer} – ${person.navn}` : person.navn}
+              </option>
+            ))}
+          </select>
+        </div>
+      ) : (
+        <p key={key} className="report-caption">
+          Kartoteket er tomt. Tilføj personer under Firmaprofil → Medarbejdere.
+        </p>
+      );
+    }
     if (node.kind === 'caption' || node.kind === 'info' || node.kind === 'success')
       return (
         <div key={key} className={node.kind === 'info' ? 'info-banner' : `report-${node.kind}`}>
@@ -455,7 +486,10 @@ export function Report({
         (node) =>
           node.kind === 'text_input' || node.kind === 'text_area' || node.kind === 'date_input',
       );
-      const leftKeys = PROJECT_FIELDS.slice(0, 5).map(([name]) => 'rap_' + name);
+      const personKeys = Object.values(PERSON_FIELDS)
+        .flat()
+        .map((name) => 'rap_' + name);
+      const leftKeys = ['rap_projekt', 'rap_omfang'];
       return (
         <>
           <div className="report-fields-toolbar">
@@ -471,10 +505,29 @@ export function Report({
             </div>
             <div>
               {fields
-                .filter((node) => 'key' in node && !leftKeys.includes(node.key))
+                .filter(
+                  (node) =>
+                    'key' in node && !leftKeys.includes(node.key) && !personKeys.includes(node.key),
+                )
                 .map(renderNode)}
             </div>
           </div>
+          <div className="report-project-columns">
+            {(['sagsbehandler', 'kontrollant'] as const).map((role) => (
+              <fieldset key={role} className="report-person">
+                <legend>{role === 'sagsbehandler' ? 'Sagsbehandler' : 'Kontrollant'}</legend>
+                {nodes
+                  .filter((node) => node.kind === 'employee_select' && node.key === role)
+                  .map(renderNode)}
+                {PERSON_FIELDS[role].map((name) =>
+                  fields
+                    .filter((node) => 'key' in node && node.key === 'rap_' + name)
+                    .map(renderNode),
+                )}
+              </fieldset>
+            ))}
+          </div>
+          {nodes.filter((node) => node.kind === 'checkbox').map(renderNode)}
           {nodes.filter((node) => node.kind === 'divider').map(renderNode)}
         </>
       );

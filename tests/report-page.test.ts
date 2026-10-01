@@ -12,6 +12,8 @@ import {
   REPORT_INTRO,
   REPORT_INTRO_ORIGINAL,
   REPORT_FORMAT_HELP,
+  selectReportEmployee,
+  resetProjectFields,
   type ReportNode,
 } from '../src/report/report-page.ts';
 import { STANDARD_TEKSTER, SECTION_KEYS, SECTION_TITLER } from '../src/report/report-data.ts';
@@ -100,7 +102,9 @@ function modelEvents(model: ReturnType<typeof reportPage>): Event[] {
     if (n.kind === 'expander') {
       events.push({ type: 'expander', label: n.title, expanded: false });
       n.children.forEach(node);
-    } else if (n.kind === 'text_toolbar') events.push({ type: 'text_toolbar', key: n.key });
+    } else if (n.kind === 'employee_select')
+      events.push({ type: 'employee_select', key: n.key, label: n.label });
+    else if (n.kind === 'text_toolbar') events.push({ type: 'text_toolbar', key: n.key });
     else if (n.kind === 'figure') {
       events.push({
         type: 'html',
@@ -143,6 +147,7 @@ for (const c of reference.cases)
     assert.ok(String(header.text).includes(`<p>${REPORT_INTRO_ORIGINAL}</p>`));
     header.text = String(header.text).replace(REPORT_INTRO_ORIGINAL, REPORT_INTRO);
     applyB046ApprovedChanges(original);
+    applyB048ApprovedChanges(original);
     // Kun appens globale topbjælke udelades. Widgets: ingen Streamlit-nøgler.
     assert.deepEqual(modelEvents(model), original.slice(start));
     if (model.available) {
@@ -157,6 +162,78 @@ for (const c of reference.cases)
         );
     }
   });
+
+/** Kun de eksplicit godkendte B-048-felter/valglister og navnet Kontrol → Kontrollant. */
+function applyB048ApprovedChanges(events: Event[]) {
+  const control = events.find((e) => e.type === 'text_input' && e.label === 'Kontrol');
+  if (!control) return;
+  control.label = 'Kontrollant';
+  const date = events.findIndex((e) => e.type === 'date_input');
+  assert.ok(date >= 0);
+  events.splice(
+    date,
+    0,
+    ...[
+      'Sagsbehandler-initialer',
+      'Sagsbehandler-telefon',
+      'Kontrollant-initialer',
+      'Kontrollant-mail',
+      'Kontrollant-telefon',
+    ].map((label) => ({
+      type: 'text_input',
+      label,
+      value: '',
+      disabled: false,
+      help: null,
+    })),
+  );
+  events.splice(
+    date + 6,
+    0,
+    { type: 'employee_select', key: 'sagsbehandler', label: 'Vælg fra kartotek …' },
+    { type: 'employee_select', key: 'kontrollant', label: 'Vælg fra kartotek …' },
+    {
+      type: 'checkbox',
+      label: 'Kontrollant i bunden af rapporten',
+      value: false,
+      disabled: false,
+      help: null,
+    },
+  );
+}
+
+test('B-048: kartotekvalg udfylder fire felter, manuel rettelse bevares, nulstilling undtager dato', () => {
+  const employee = {
+    navn: 'Anna Jensen',
+    initialer: 'AJ',
+    mail: 'anna@example.invalid',
+    telefon: '12345678',
+  };
+  const values = {
+    ...selectReportEmployee('sagsbehandler', employee),
+    ...selectReportEmployee('kontrollant', employee),
+    rap_kontrollant_i_bunden: true,
+    rap_sagsbehandler_telefon: '87654321',
+  };
+  const model = reportPage(calculation(reference.cases[0]), values, '2026-09-29');
+  assert.equal(model.metadata.sagsbehandler, employee.navn);
+  assert.equal(model.metadata.kontrol, employee.navn);
+  assert.equal(model.metadata.sagsbehandler_initialer, 'AJ');
+  assert.equal(model.metadata.kontrol_mail, employee.mail);
+  assert.equal(model.metadata.kontrol_telefon, employee.telefon);
+  assert.equal(model.metadata.sagsbehandler_telefon, '87654321');
+  assert.equal(model.metadata.kontrollant_i_bunden, true);
+  assert.deepEqual(selectReportEmployee('kontrollant', { ...employee, navn: '' }), {});
+  const cleared = reportPage(
+    calculation(reference.cases[0]),
+    { ...values, ...resetProjectFields() },
+    '2026-09-29',
+  );
+  assert.equal(cleared.metadata.dato, '2026-09-29');
+  assert.equal(cleared.metadata.kontrollant_i_bunden, false);
+  for (const [key, value] of Object.entries(cleared.metadata))
+    if (key !== 'dato' && key !== 'kontrollant_i_bunden') assert.equal(value, '');
+});
 
 test('R4: originalens filnavn, fallback, skråstreger, trim og 60 Unicode-tegn', () => {
   assert.equal(

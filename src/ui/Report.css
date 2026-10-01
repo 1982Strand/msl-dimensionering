@@ -161,3 +161,14 @@
     white-space: normal;
   }
 }
+/* B-048: personoplysninger følger kortets eksisterende to kolonner. */
+.report-person {
+  min-width: 0;
+  border: 0;
+  padding: 0;
+  margin: 24px 0 0;
+}
+.report-person legend {
+  font-weight: 600;
+  margin-bottom: 14px;
+}
