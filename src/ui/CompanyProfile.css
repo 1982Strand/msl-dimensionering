@@ -111,3 +111,15 @@
     width: 100%;
   }
 }
+
+/* Ophæver de globale tabelregler fra materialesiden (min-width, fast layout, kolonnebredder). */
+.profile-employee-sheet table {
+  min-width: 0;
+  table-layout: auto;
+}
+.profile-employee-sheet th,
+.profile-employee-sheet td {
+  width: auto;
+  padding: 10px 12px;
+  white-space: nowrap;
+}
