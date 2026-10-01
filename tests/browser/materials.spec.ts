@@ -7,7 +7,7 @@ const phiLabel = `φᵢ (°) · ${first.navn}`;
 test('defaults, direct autosave, marker, filter and reload use actual localStorage', async ({
   page,
 }) => {
-  await page.goto('/');
+  await page.goto('/#materialer');
   await expect(page.getByRole('heading', { name: 'Materialer', exact: true })).toBeVisible();
   await expect(page.getByLabel(phiLabel, { exact: true })).toHaveValue(String(first.phi));
   await page.getByLabel(phiLabel, { exact: true }).fill('39');
@@ -26,7 +26,7 @@ test('defaults, direct autosave, marker, filter and reload use actual localStora
   await expect(page.getByRole('button', { name: 'Fortryd', exact: true })).toBeDisabled();
 });
 test('undo, redo, cell restore and global reset are persisted', async ({ page }) => {
-  await page.goto('/');
+  await page.goto('/#materialer');
   const phi = page.getByLabel(phiLabel, { exact: true });
   await phi.fill('39');
   await phi.press('Tab');
@@ -43,7 +43,7 @@ test('undo, redo, cell restore and global reset are persisted', async ({ page })
   await expect(phi).toHaveValue('37');
 });
 test('duplicates and input boundaries preserve last valid saved material', async ({ page }) => {
-  await page.goto('/');
+  await page.goto('/#materialer');
   const phi = page.getByLabel(phiLabel, { exact: true });
   await phi.fill('39');
   await phi.press('Tab');
@@ -61,7 +61,7 @@ test('duplicates and input boundaries preserve last valid saved material', async
   expect(await page.evaluate((key) => localStorage.getItem(key), SESSION_STORAGE_KEY)).toBe(before);
 });
 test('new material, removal, restore missing standard row and undo', async ({ page }) => {
-  await page.goto('/');
+  await page.goto('/#materialer');
   await page.getByRole('button', { name: 'Tilføj materiale', exact: true }).first().click();
   await page.getByLabel('Materiale · Nyt Bærelag', { exact: true }).fill('Testmateriale');
   await page.getByLabel('Materiale · Nyt Bærelag', { exact: true }).press('Tab');
@@ -78,7 +78,7 @@ test('new material, removal, restore missing standard row and undo', async ({ pa
   await expect(page.getByLabel(phiLabel, { exact: true })).toHaveCount(0);
 });
 test('empty optional field is retained after reopening', async ({ page }) => {
-  await page.goto('/');
+  await page.goto('/#materialer');
   const label = `Krav til geonet — maskestørrelse (mm) · ${first.navn}`;
   await page.getByLabel(label, { exact: true }).fill('');
   await page.getByLabel(label, { exact: true }).press('Tab');
@@ -88,7 +88,7 @@ test('empty optional field is retained after reopening', async ({ page }) => {
 test('zero in an optional material field is displayed as the legacy normalised empty value', async ({
   page,
 }) => {
-  await page.goto('/');
+  await page.goto('/#materialer');
   const field = page.getByLabel(`Maks. korn (mm) · ${first.navn}`, { exact: true });
   await field.fill('0');
   await field.press('Tab');
@@ -101,7 +101,7 @@ test('zero in an optional material field is displayed as the legacy normalised e
 });
 test('corrupt storage is reported and never overwritten', async ({ page }) => {
   await page.addInitScript((key) => localStorage.setItem(key, 'broken'), SESSION_STORAGE_KEY);
-  await page.goto('/');
+  await page.goto('/#materialer');
   await expect(page.getByRole('alert')).toContainText('ikke overskrevet');
   expect(await page.evaluate((key) => localStorage.getItem(key), SESSION_STORAGE_KEY)).toBe(
     'broken',
@@ -114,7 +114,7 @@ test('storage failure leaves active edit visible and never says saved', async ({
       throw new DOMException('Full', 'QuotaExceededError');
     };
   });
-  await page.goto('/');
+  await page.goto('/#materialer');
   const phi = page.getByLabel(phiLabel, { exact: true });
   await phi.fill('39');
   await phi.press('Tab');
@@ -123,9 +123,9 @@ test('storage failure leaves active edit visible and never says saved', async ({
   await expect(page.getByRole('alert')).toContainText('Ændringerne er stadig i denne åbne fane');
 });
 test('another tab cannot be overwritten without reloading', async ({ page, context }) => {
-  await page.goto('/');
+  await page.goto('/#materialer');
   const second = await context.newPage();
-  await second.goto('/');
+  await second.goto('/#materialer');
   await page.getByLabel(phiLabel, { exact: true }).fill('39');
   await page.getByLabel(phiLabel, { exact: true }).press('Tab');
   await expect(second.getByRole('alert')).toContainText('anden fane');
@@ -140,7 +140,7 @@ test('material edits preserve saved form values and other sections', async ({ pa
     key: SESSION_STORAGE_KEY,
     text: JSON.stringify({ schema: 1, session }),
   });
-  await page.goto('/');
+  await page.goto('/#materialer');
   await page.getByLabel(phiLabel, { exact: true }).fill('39');
   await page.getByLabel(phiLabel, { exact: true }).press('Tab');
   const saved = await page.evaluate(
@@ -155,7 +155,7 @@ test('desktop preview renders without page errors and mobile has contained table
 }) => {
   const errors: string[] = [];
   page.on('pageerror', (error) => errors.push(error.message));
-  await page.goto('/');
+  await page.goto('/#materialer');
   await expect(page.getByRole('heading', { name: 'Materialer', exact: true })).toBeVisible();
   await page.screenshot({ path: 'output/materialer-desktop.png', fullPage: true });
   await page.setViewportSize({ width: 390, height: 844 });

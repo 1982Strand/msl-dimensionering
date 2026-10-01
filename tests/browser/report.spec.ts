@@ -81,7 +81,7 @@ test('felter, afsnit, automatisk lagring, dato og de tre nulstillinger', async (
   ])
     await page.getByLabel(label, { exact: true }).fill(value);
   await page.getByLabel('Dato', { exact: true }).fill('2001-02-03');
-  await page.getByRole('link', { name: 'Hjælp', exact: true }).click();
+  await page.getByRole('link', { name: 'Hjælp og dokumentation', exact: true }).click();
   await page.getByRole('link', { name: 'Rapport', exact: true }).click();
   await expect(page.getByLabel('Dato', { exact: true })).toHaveValue('2001-02-03');
   await page.getByRole('button', { name: 'Krav til komprimering', exact: true }).click();
