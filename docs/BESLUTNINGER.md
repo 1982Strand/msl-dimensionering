@@ -125,3 +125,4 @@ Beslutning B-025 følger brugerens besked i denne chat. B-026–028 registreres 
   2. **Medtag i rapporten:** hvert af de syv tekstafsnit får et afkrydsningsfelt. Fravalgt afsnit udelades med overskrift og tekst; valget huskes efter B-030. En bevidst tom, medtaget tekst bevarer fortsat sin overskrift (B-029).
   3. **Designdiagrammets valg** (»Personligt designdiagram«, prik for indtastet opbygning og endepunkter for 1/2 lag) flyttes fra valgrækken i »3 Gennemsyn« ned til designdiagrammets forhåndsvisning. Funktion og standarder er uændrede.
   Ændringerne af PDF'ens udseende forelægges før R6.
+- **B-047:** Den forelagte gennemførelse af B-046 er godkendt (tekstformatering med værktøjslinje, »Medtag i rapporten« og designdiagrammets valg i diagramkortet; underpunkter vises med »◦« i PDF'en). Brugeren: »Godkendt.«
