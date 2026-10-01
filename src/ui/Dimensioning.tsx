@@ -24,6 +24,7 @@ import { pythonFixed, pythonRound } from '../engine/python-numbers';
 import { er_oprundet } from '../engine/afrunding';
 import type { CalculationResult } from '../engine/types';
 import { InfoPopup } from './InfoPopup';
+import { TrafficCorrelationPopup } from './TrafficCorrelationPopup';
 import { ConstructionFigure } from './ConstructionFigure';
 import { PersonalDiagram } from './PersonalDiagram';
 import { PhiSummary } from './PhiSummary';
@@ -297,11 +298,7 @@ export function Dimensioning() {
                   />
                 </InfoPopup>
               )}
-              {basis.type === 'trafikklasse' && (
-                <a className="dim-link" href="#vejdim">
-                  Se korrelationstabel
-                </a>
-              )}
+              {basis.type === 'trafikklasse' && <TrafficCorrelationPopup input={input} />}
             </div>
             <dl className="dim-keyfigures">
               <dt>Eᵤ</dt>

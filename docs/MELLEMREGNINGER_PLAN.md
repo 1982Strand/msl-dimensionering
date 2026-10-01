@@ -104,6 +104,10 @@ FIG-001–004 i `reference/figures.json` er udgangspunkt for M5. Nye cases tilf�
 
 **Leverance og kontrol:** vis korrelationen lokalt på dimensioneringssiden med originalens indhold og valg; den nuværende henvisning til VejDim er ikke fuld migrering. Sammenlign tabeller, markeringer, hjælpetekst, tal og visningsbetingelser. Genbrug `CorrelationExample`/fælles data, hvor de matcher. Afhænger af M1's kontrollerede trafikdata.
 
+**M8-status (01.10.2026):** lokal popup implementeret med motorbaseret visningsmodel, eksisterende korrelationspivot og `InfoPopup`. Hele popup-undertræet (tekst, noter, kolonner, indeks, rækker, kolonnekonfiguration og lukket starttilstand) sammenlignes præcist i TR-1, TR-1-SG, TR-2 og OUT-1/2; de øvrige ni tilfælde kontrollerer fravær ved belastningsklasse. Produktvalg ændrer ikke korrelationen. Referencens dataframe-reduktion gemmer ikke pandas Styler: række-/cellemarkering og dæmpning af * / † gengives fra originalkoden og kontrolleres særskilt; de er derfor udækket af den optagne reference. Browsertest: `tests/browser/traffic-popover.spec.ts`, port 5193. Visuel godkendelse afventer fortsat.
+
+**Kontroller:** typecheck, alle 2.840 tests, format, format:check og build bestået. Playwright forsøgt med `PW_PORT=5193`; sandkassen afviser Chromium-opstart med `browserType.launch: spawn EPERM`, så browserkontrol og screenshot udestår.
+
 ## M9 — resterende hjælp, status og fremhævelser
 
 **Original:** de aktive Standard/Brugerdefineret-forløb (`app.py:6057`, `app.py:6521`, `app.py:6852`) og deres UI-hjælpere. `DIMENSIONERINGSUDKAST.md` er restancelisten; konkrete kald/synlighedsregler registreres i isoleret original før portering.
