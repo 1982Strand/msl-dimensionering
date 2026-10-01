@@ -1,5 +1,7 @@
 # Detaljeret funktionsmatrix — første gennemgang
 
+Bemærkning 01.10.2026: Rapportforsøget `spikes/report-typescript/` og kommandoen `npm run test:reports` er fjernet ved oprydningen (B-059). Omtaler nedenfor bevares som historik; forsøget findes i Git-historikken.
+
 Reference: `a330cfd`, indbyggede standardværdier. Alle kildehenvisninger er relative til den gamle app. »Kørt« betyder observeret i originalen, ikke migreret eller godkendt i ny app. Den komplette statiske liste med signaturer og widgetudtryk ligger i `reference/inventory.json`.
 
 ## Dimensionering og tilstand

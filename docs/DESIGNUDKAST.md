@@ -1,5 +1,7 @@
 # Designudkast med shadcn-komponenter
 
+Bemærkning 01.10.2026: Udkastsiden og den tilhørende sidebarvisning er fjernet ved oprydningen efter godkendelsen (B-059). Dokumentet bevares som historik.
+
 Direkte adgang: `/#designudkast`. Siden er skjult fra navigationen og er alene et udkast til godkendelse. Eksisterende sider og beregninger er uændrede.
 
 | Forslag | Foreslået anvendelse | Valg til godkendelse |

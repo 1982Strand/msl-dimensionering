@@ -1,5 +1,7 @@
 # Arkitekturvalg efter første kortlægning
 
+Bemærkning 01.10.2026: Rapportforsøget `spikes/report-typescript/` og kommandoen `npm run test:reports` er fjernet ved oprydningen (B-059). Omtaler nedenfor bevares som historik; forsøget findes i Git-historikken.
+
 Status: React + TypeScript + Vite + shadcn/ui samt TypeScript-beregningsmotor er valgt (B-002/B-014). Typst videreføres med bevarede rapportdata (B-012/B-013). Hosting, adgang, datalagring og Word-eksportens fremtid er endnu ikke besluttet.
 
 **Rapportretning efter afprøvning:** Brugeren overvejer PDF som primært format. [Typst-afprøvningen](TYPST_AFPROEVNING.md) gør TypeScript + Typst til en relevant kandidat uden Word/LibreOffice i PDF-vejen. Hvis Word fortsat er primært, er TypeScript-DOCX med LibreOffice en alternativ kandidat, jf. [rapportevalueringen](RAPPORT_EVALUERING.md). Fjernelse af Word er ikke godkendt. Beregningsmotorens TypeScript-omskrivning er særskilt godkendt i B-014.

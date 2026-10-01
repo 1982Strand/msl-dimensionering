@@ -45,7 +45,8 @@ export interface CompanyProfile {
 
 /** Kun originalskabelonen ved a330cfd og Word-PDF-målinger; ingen demostandarder.
  * 1 twip = 25,4/1440 mm; 1 pt = 25,4/72 mm. Målte pt-værdier er
- * dokumenteret i spikes/report-typescript/layout.typ og Word-baseline.
+ * dokumenteret i Word-baseline og oprindeligt afprøvet i forsøget
+ * spikes/report-typescript (fjernet ved oprydningen, B-059; se Git-historikken).
  */
 export const DEFAULT_COMPANY_PROFILE: CompanyProfile = {
   medarbejdere: [], // B-048: ingen personer i standardprofilen.

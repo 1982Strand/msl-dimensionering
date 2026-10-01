@@ -1,5 +1,7 @@
 # Redigering af rapportens basisskabelon
 
+Bemærkning 01.10.2026: Rapportforsøget `spikes/report-typescript/` og kommandoen `npm run test:reports` er fjernet ved oprydningen (B-059). Omtaler nedenfor bevares som historik; forsøget findes i Git-historikken.
+
 29. september 2026. Implementeret i den isolerede prototype; endnu ingen administrationsside i appen.
 
 Opdatering 30.09.2026: B-026–028 vælger PDF alene, lokal download og redigerbar firmaprofil. Den aktuelle appintegration beskrives i [RAPPORT_PLAN.md](RAPPORT_PLAN.md), som forelægges før kodning. Nedenstående beskriver den tidligere prototype, ikke en færdig rapportside eller endeligt godkendt PDF-layout.
