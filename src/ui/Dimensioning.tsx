@@ -39,14 +39,10 @@ import { PhiSummary } from './PhiSummary';
 import { CouplingExplanation } from './CouplingExplanation';
 import { ResultChecks, ResultStatus } from './ResultChecks';
 import { productOverview, overviewColumns, type OverviewSort } from '../engine/product-overview';
+import { productPicker } from '../engine/product-picker';
+import { ProductPicker } from './ProductPicker';
 
 const dk = (n: number, digits = 1) => pythonFixed(n, digits).replace('.', ',');
-function productLabel(name: string) {
-  return (
-    schema.fields.find((f) => f.key === 'std_geonet')?.options?.find((o) => o.value === name)
-      ?.label ?? name
-  );
-}
 
 export function Dimensioning() {
   const ctx = useEditor();
@@ -419,12 +415,26 @@ export function Dimensioning() {
             {content('resultHeading')}
             {content('netHeading')}
             <div className="m9-product-choice">
-              {field({
-                key: `${prefix}_geonet`,
-                label: 'Produkt',
-                kind: 'select',
-                options: options.map((value) => ({ value, label: productLabel(value) })),
-              })}
+              <ProductPicker
+                key={`${prefix}_${ctx.refresh}`}
+                id={`${prefix}_geonet`}
+                value={result.geonet_navn}
+                groups={productPicker(options, {
+                  selectedClass: result.valgt_klasse,
+                  selectedTraffic: basis.t_klasse,
+                  trafficEu: basis.type === 'trafikklasse' ? input.eu : null,
+                  runs: input.koersler,
+                  table: input.t_basis_table,
+                  rules: input.indstillinger?.yderomraade,
+                })}
+                classLabel={
+                  basis.type === 'trafikklasse'
+                    ? `trafikklasse ${basis.t_klasse}`
+                    : `belastningsklasse ${basis.valgt_klasse}`
+                }
+                help={schema.fields.find((f) => f.key === `${prefix}_geonet`)?.help}
+                onChange={(name) => change(`${prefix}_geonet`, name)}
+              />
             </div>
             <NetIntervalNote result={result} />
             <PageResultCards model={page} />

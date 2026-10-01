@@ -1,3 +1,4 @@
+import { chooseProduct } from './helpers/choose-product.ts';
 import { test, expect } from '@playwright/test';
 
 test('M4: punktprodukt, intervalprodukt og hover-hjælp uden sidefejl', async ({ page }) => {
@@ -20,10 +21,7 @@ test('M4: punktprodukt, intervalprodukt og hover-hjælp uden sidefejl', async ({
   await page.locator('#std_eu_slider').focus();
   await page.locator('#std_eu_slider').press('Home');
   for (let i = 1; i < 5; i++) await page.locator('#std_eu_slider').press('ArrowRight');
-  const product = page.locator('#std_geonet');
-  await product.selectOption({
-    label: await product.locator('option').filter({ hasText: 'Tensar InterAx NX850' }).innerText(),
-  });
+  await chooseProduct(page, 'std', 'Tensar InterAx NX850');
   await expect(
     details.getByRole('heading', { name: 'Detaljer · Tensar InterAx NX850' }),
   ).toBeVisible();

@@ -389,8 +389,9 @@ export function dimensioningPage(
     add(
       'resultHeading',
       d(
-        'bg-resultat-hoved-a',
-        d('bg-resultat-titel', 'Resultat'),
+        'bg-trin-hoved',
+        d('bg-trin-nr', '3'),
+        d('bg-trin-titel', 'Resultat'),
         d(
           'bg-resultat-note',
           `Bærelagstykkelse over underbund med Eᵤ = ${mpa(input.eu)}, ${basis}`,

@@ -1,3 +1,4 @@
+import { chooseProduct } from './helpers/choose-product.ts';
 import { test, expect, type Page } from '@playwright/test';
 
 async function setEu(page: Page, prefix: string, value: number) {
@@ -5,12 +6,6 @@ async function setEu(page: Page, prefix: string, value: number) {
   await slider.focus();
   await slider.press('Home');
   for (let n = 1; n < value; n++) await slider.press('ArrowRight');
-}
-async function nx850(page: Page, prefix: string) {
-  const select = page.locator(`#${prefix}_geonet`);
-  await select.selectOption({
-    label: await select.locator('option').filter({ hasText: 'Tensar InterAx NX850' }).innerText(),
-  });
 }
 
 test('M9: Standard/belastningsklasse, Brugerdefineret/trafikklasse og afvist driftspunkt', async ({
@@ -20,7 +15,7 @@ test('M9: Standard/belastningsklasse, Brugerdefineret/trafikklasse og afvist dri
   page.on('pageerror', (e) => errors.push(e.message));
   await page.goto('/#dimensionering');
   await setEu(page, 'std', 5);
-  await nx850(page, 'std'); // FIG-002
+  await chooseProduct(page, 'std', 'Tensar InterAx NX850'); // FIG-002
   await expect(page.locator('[data-m9-slot="step1"]')).toHaveText(
     '1 Underbund og dimensioneringsgrundlagEᵤ 5 MPa · Klasse 4 · Eₒ 80 MPa',
   );
@@ -86,7 +81,7 @@ test('M9: Standard/belastningsklasse, Brugerdefineret/trafikklasse og afvist dri
   await page.getByRole('radio', { name: 'Brugerdefineret', exact: true }).check();
   await setEu(page, 'bd', 7);
   await page.getByRole('radio', { name: 'Trafikklasse', exact: true }).check();
-  await nx850(page, 'bd');
+  await chooseProduct(page, 'bd', 'Tensar InterAx NX850');
   await page.getByRole('link', { name: 'Indstillinger', exact: true }).click();
   await page.getByRole('radio', { name: 'cm', exact: true }).check();
   await page.getByRole('link', { name: 'Dimensionering', exact: true }).click(); // TR-2

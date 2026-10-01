@@ -1,12 +1,10 @@
+import { chooseProduct } from './helpers/choose-product.ts';
 import { test, expect, type Page } from '@playwright/test';
 import { readFileSync } from 'node:fs';
 import { laengde } from '../../src/engine/enhed.ts';
 import { pythonFixed } from '../../src/engine/python-numbers.ts';
 const original = JSON.parse(
   readFileSync(new URL('../../reference/ui-flows.json', import.meta.url), 'utf8'),
-);
-const ui = JSON.parse(
-  readFileSync(new URL('../../src/engine/dimensioning-ui.json', import.meta.url), 'utf8'),
 );
 const snapshot = (id: string) =>
   original.snapshots.find((s: { id: string }) => s.id === id).dimensioning;
@@ -55,10 +53,7 @@ test('Standard default, product interval, approved retained selection and traffi
   await page.goto('/#dimensionering');
   await results(page, 'UI-001');
   await range(page, 'std_eu_slider', 5);
-  const label = ui.fields
-    .find((f: { key: string }) => f.key === 'std_geonet')
-    .options.find((o: { value: string }) => o.value === 'Tensar InterAx NX850').label;
-  await page.locator('#std_geonet').selectOption({ label });
+  await chooseProduct(page, 'std', 'Tensar InterAx NX850');
   await results(page, 'UI-003');
   await page.getByRole('link', { name: 'Materialer', exact: true }).click();
   await page.getByRole('link', { name: 'Dimensionering', exact: true }).click();
