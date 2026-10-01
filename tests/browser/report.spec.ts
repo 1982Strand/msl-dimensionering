@@ -67,7 +67,7 @@ test('B-046: tekstværktøjer, afsnitsfravalg/revision og diagramvalg i diagramk
   await diagram
     .getByLabel("Vis 'Indtastet opbygning'-prik i designdiagram", { exact: true })
     .uncheck();
-  await diagram.getByLabel('Personligt designdiagram', { exact: true }).uncheck();
+  await diagram.getByRole('checkbox', { name: 'Personligt designdiagram', exact: true }).uncheck();
   await expect(diagram).toBeVisible();
   await expect(diagram.locator('svg')).toHaveCount(0);
   await expect(diagram.getByLabel('Vis endepunkter for 1/2 lag i designdiagram')).toBeDisabled();
@@ -104,9 +104,11 @@ test('B-046: tekstværktøjer, afsnitsfravalg/revision og diagramvalg i diagramk
   await page.getByRole('button', { name: 'Udførelse', exact: true }).click();
   await expect(field).toHaveValue('• **Valgt** tekst\n• Anden linje');
   await expect(section.getByLabel('Medtag i rapporten', { exact: true })).not.toBeChecked();
-  await expect(diagram.getByLabel('Personligt designdiagram', { exact: true })).not.toBeChecked();
-  await diagram.getByLabel('Personligt designdiagram', { exact: true }).check();
-  await expect(diagram.locator('svg')).toHaveCount(1);
+  await expect(
+    diagram.getByRole('checkbox', { name: 'Personligt designdiagram', exact: true }),
+  ).not.toBeChecked();
+  await diagram.getByRole('checkbox', { name: 'Personligt designdiagram', exact: true }).check();
+  await expect(diagram.getByRole('img', { name: 'Personligt designdiagram' })).toBeVisible();
   await expect(
     diagram.getByLabel("Vis 'Indtastet opbygning'-prik i designdiagram", { exact: true }),
   ).not.toBeChecked();
