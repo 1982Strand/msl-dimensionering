@@ -430,6 +430,7 @@ a:focus-visible {
   outline-offset: 3px;
 }
 .topbar {
+  flex-shrink: 0;
   height: 82px;
   background: #173d39;
   color: white;
@@ -440,6 +441,7 @@ a:focus-visible {
   gap: 24px;
 }
 .brand {
+  margin-right: auto;
   display: flex;
   align-items: center;
   gap: 15px;
@@ -745,27 +747,48 @@ th:nth-child(6) {
     flex-direction: column;
   }
 }
-.page-nav {
+.app-shell {
+  flex-direction: column;
+}
+.app-body {
   display: flex;
-  gap: 26px;
-  padding: 0 44px;
-  background: white;
-  border-bottom: 1px solid #dce3dd;
-  overflow: auto;
+  flex: 1;
+  min-width: 0;
 }
-.page-nav a {
-  display: block;
+.app-content {
+  flex: 1;
+  min-width: 0;
+}
+.app-sidebar {
+  top: 82px;
+  height: calc(100svh - 82px);
+}
+.app-sidebar-footer {
+  border-top: 1px solid var(--sidebar-border);
+  padding: 16px;
+  gap: 4px;
+  font-size: 12px;
   white-space: nowrap;
-  padding: 17px 0;
-  font-size: 13px;
-  color: #687b70;
-  text-decoration: none;
-  border-bottom: 2px solid transparent;
+  color: #63766b;
 }
-.page-nav a[aria-current] {
-  color: #25584a;
-  border-color: #25584a;
-  font-weight: 600;
+.topbar .menu-toggle {
+  background: transparent;
+  color: white;
+  border-color: #56756a;
+}
+.topbar .menu-toggle:hover {
+  background: #284c45;
+}
+@media (max-width: 760px) {
+  .topbar {
+    gap: 12px;
+  }
+  .brand {
+    gap: 10px;
+  }
+  .brand span {
+    padding-left: 10px;
+  }
 }
 .diagram-selector {
   display: grid;
@@ -1065,10 +1088,6 @@ th:nth-child(6) {
   .guidance-grid {
     grid-template-columns: minmax(0, 1fr);
     gap: 0;
-  }
-  .page-nav {
-    padding: 0 16px;
-    gap: 20px;
   }
   .diagram-selector {
     grid-template-columns: repeat(2, 1fr);

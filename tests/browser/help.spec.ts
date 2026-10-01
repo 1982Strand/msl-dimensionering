@@ -37,7 +37,7 @@ test('Hjælp: kapitler, formler, figurer, gå-til og gemte åbne kapitler', asyn
     .first()
     .click();
   await expect(page).toHaveURL(/#vejdim$/);
-  await page.getByRole('link', { name: 'Hjælp', exact: true }).click();
+  await page.getByRole('link', { name: 'Hjælp og dokumentation', exact: true }).click();
   await expect(first).toHaveAttribute('aria-expanded', 'true');
   await expect(page.getByRole('button', { name: /^Luk kapitel 2:/ })).toHaveAttribute(
     'aria-expanded',

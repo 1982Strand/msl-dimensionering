@@ -81,7 +81,7 @@ test('felter, afsnit, automatisk lagring, dato og de tre nulstillinger', async (
   ])
     await page.getByLabel(label, { exact: true }).fill(value);
   await page.getByLabel('Dato', { exact: true }).fill('2001-02-03');
-  await page.getByRole('link', { name: 'Hjælp', exact: true }).click();
+  await page.getByRole('link', { name: 'Hjælp og dokumentation', exact: true }).click();
   await page.getByRole('link', { name: 'Rapport', exact: true }).click();
   await expect(page.getByLabel('Dato', { exact: true })).toHaveValue('2001-02-03');
   await page.getByRole('button', { name: 'Krav til komprimering', exact: true }).click();
@@ -183,7 +183,9 @@ test('rapportkæden, lokal compiler/skrifter, PDF-download og revisionens spærr
   // Med varm compiler er den nye revision klar på få millisekunder; mellemtilstanden
   // (spærret download og forældet forhåndsvisning) registreres derfor, mens den står i DOM.
   await page.evaluate(() => {
-    const seen = ((window as unknown as { __revision: Record<string, boolean> }).__revision = {
+    const seen: Record<string, boolean> = ((
+      window as unknown as { __revision: Record<string, boolean> }
+    ).__revision = {
       disabled: false,
       stale: false,
     });
