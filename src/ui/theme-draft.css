@@ -1,0 +1,707 @@
+/* Temaudkast (B-042). Forslagets regler er afgrænset til .tema-udkast, så de rigtige sider er uændrede. */
+.tema-udkast {
+  --tema-daempet: #637068;
+  --tema-kant: #dce3dd;
+  --tema-flade: #f1f5f1;
+  --tema-fremhaevet: #edf3ef;
+}
+.tema-udkast .page-heading {
+  margin-bottom: 28px;
+}
+.tema-sektion {
+  margin-bottom: 44px;
+}
+.tema-sektion-hoved h2 {
+  font-size: 19px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.tema-sektion-hoved ul {
+  list-style: disc;
+  padding-left: 20px;
+  margin: 0 0 14px;
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--tema-daempet);
+  max-width: 900px;
+}
+.tema-ramme {
+  margin-top: 6px;
+  padding: 24px;
+  border: 1px dashed #c9d4cb;
+  border-radius: 12px;
+  background: var(--background);
+}
+.tema-nu {
+  background: #fbfcfa;
+}
+.tema-shot {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+}
+.tema-note {
+  font-size: 12px;
+  color: var(--tema-daempet);
+  line-height: 1.6;
+  margin-top: 12px;
+}
+
+/* Forslaget: fælles skala */
+.tema-forslag {
+  font-size: 14px;
+  color: var(--foreground);
+}
+.tema-t-side {
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin: 0;
+}
+.tema-t-afsnit {
+  font-size: 16px;
+  font-weight: 600;
+}
+.tema-t-broed {
+  font-size: 14px;
+}
+.tema-t-tabel {
+  font-size: 13px;
+}
+.tema-t-meta {
+  font-size: 12px;
+  color: var(--tema-daempet);
+}
+.tema-t-over,
+.tema-over {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--tema-daempet);
+}
+.tema-underoverskrift {
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0 0 12px;
+}
+.tema-meta {
+  font-size: 12px;
+  color: var(--tema-daempet);
+  font-weight: 400;
+}
+.tema-hjaelp {
+  font-size: 13px;
+  color: var(--tema-daempet);
+  line-height: 1.6;
+  margin: 0;
+}
+.tema-to-kolonner {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 32px;
+}
+.tema-farver {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px 20px;
+}
+.tema-farver li,
+.tema-nu-graa li {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  font-size: 13px;
+  line-height: 1.45;
+}
+.tema-farver small {
+  color: var(--tema-daempet);
+  font-size: 12px;
+}
+.tema-farver code,
+.tema-nu-graa code {
+  font-size: 11px;
+  color: var(--tema-daempet);
+}
+.tema-swatch {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  border-radius: 6px;
+  border: 1px solid rgb(0 0 0 / 10%);
+}
+.tema-nu-graa {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+.tema-nu-graa li {
+  align-items: center;
+}
+.tema-nu-stoerrelser {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 12px;
+}
+.tema-skala div {
+  display: grid;
+  grid-template-columns: 170px minmax(0, 1fr);
+  gap: 16px;
+  align-items: baseline;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--tema-kant);
+}
+.tema-skala dt {
+  font-size: 12px;
+  color: var(--tema-daempet);
+}
+
+/* Topbjælke og sidehoved */
+.tema-app-ramme {
+  border: 1px solid var(--tema-kant);
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--background);
+}
+.tema-topbar {
+  height: 56px;
+  background: #173d39;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 0 20px;
+}
+.tema-topbar .tema-topbar-menu {
+  color: white;
+}
+.tema-topbar .tema-topbar-menu:hover {
+  background: #284c45;
+  color: white;
+}
+.tema-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.tema-brand strong {
+  font-size: 18px;
+  letter-spacing: 0.06em;
+}
+.tema-brand span {
+  border-left: 1px solid #607c70;
+  padding-left: 12px;
+  color: #dfebe4;
+  font-size: 14px;
+}
+.tema-app-indhold {
+  padding: 24px 32px 28px;
+}
+.tema-brodkrumme {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--tema-daempet);
+  margin-bottom: 12px;
+}
+.tema-sidehoved {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px;
+}
+.tema-intro {
+  max-width: 680px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--tema-daempet);
+  margin: 8px 0 0;
+}
+.tema-gemt {
+  color: #426d54;
+  font-weight: 500;
+  background: white;
+}
+.tema-tilstand {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-top: 24px;
+  flex-wrap: wrap;
+}
+.tema-etiket-raekke {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+.tema-etiket {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* Segmenteret valg */
+.tema-segment {
+  justify-self: start;
+  display: inline-flex;
+  padding: 3px;
+  gap: 2px;
+  border-radius: 8px;
+  background: var(--tema-flade);
+  border: 1px solid var(--tema-kant);
+}
+.tema-udkast .tema-segment-punkt {
+  min-width: 36px;
+  height: 30px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--tema-daempet);
+}
+.tema-segment-punkt:hover {
+  color: var(--foreground);
+}
+.tema-segment-punkt[data-state='checked'] {
+  background: white;
+  color: var(--primary);
+  font-weight: 600;
+  box-shadow:
+    0 1px 2px rgb(16 36 29 / 12%),
+    0 0 0 1px var(--tema-kant);
+}
+.tema-segment-punkt:focus-visible {
+  outline: 2px solid var(--color-ring);
+  outline-offset: 1px;
+}
+
+/* Kort */
+.tema-kort {
+  gap: 20px;
+  padding: 22px 0 24px;
+  border-radius: 12px;
+  box-shadow: 0 1px 2px rgb(16 36 29 / 5%);
+}
+.tema-kort-fremhaevet {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 1px var(--primary);
+}
+.tema-kort-hoved {
+  align-items: center;
+}
+.tema-kort-titel {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  line-height: 1.3;
+}
+.tema-kort-titel h3 {
+  min-width: 0;
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0;
+}
+.tema-kort-hoved [data-slot='card-action'] {
+  align-self: center;
+}
+.tema-nummer {
+  display: inline-grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 6px;
+  background: var(--primary);
+  color: white;
+  font-size: 13px;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+.tema-dim-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(200px, 0.75fr);
+  gap: 32px;
+}
+.tema-felt-stak {
+  display: grid;
+  gap: 18px;
+  align-content: start;
+}
+.tema-felt-stak > * {
+  min-width: 0;
+}
+.tema-radios {
+  gap: 10px;
+}
+.tema-valg {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+.tema-valg [data-slot='label'] {
+  font-weight: 400;
+  line-height: 1.45;
+}
+.tema-valg-afkryds {
+  align-items: flex-start;
+}
+.tema-valg-afkryds [data-slot='checkbox'] {
+  margin-top: 2px;
+}
+.tema-slider-hoved {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.tema-slider-hoved [data-slot='label'] {
+  font-size: 13px;
+  font-weight: 600;
+}
+.tema-vaerdi {
+  min-width: 44px;
+  text-align: center;
+  padding: 2px 8px;
+  border-radius: 6px;
+  border: 1px solid var(--tema-kant);
+  background: white;
+  font-size: 13px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+.tema-slider .tema-hjaelp {
+  margin-top: 10px;
+  font-size: 12px;
+}
+.tema-link {
+  justify-self: start;
+  padding-left: 0;
+  height: auto;
+}
+.tema-noegletal {
+  align-self: start;
+  padding: 18px;
+  border-radius: 10px;
+  background: var(--tema-flade);
+  border: 1px solid var(--tema-kant);
+}
+.tema-noegletal strong {
+  font-size: 15px;
+}
+.tema-noegletal p {
+  font-size: 12px;
+  color: var(--tema-daempet);
+  margin: 4px 0 14px;
+  line-height: 1.5;
+}
+.tema-noegletal dl {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 6px 14px;
+  font-size: 13px;
+}
+.tema-noegletal dt {
+  color: var(--tema-daempet);
+}
+.tema-noegletal dd {
+  font-weight: 600;
+}
+
+/* Resultat */
+.tema-resultat-hoved {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.tema-produkt {
+  max-width: 820px;
+  margin: 4px 0 20px;
+}
+.tema-fliser {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+.tema-flise {
+  padding: 18px 20px;
+  border: 1px solid var(--tema-kant);
+  border-radius: 10px;
+  background: white;
+}
+.tema-flise-valgt {
+  background: var(--tema-fremhaevet);
+  border-color: #b8cfc1;
+}
+.tema-flise-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.tema-tal {
+  font-size: 30px;
+  font-weight: 700;
+  color: var(--primary);
+  margin: 10px 0 6px;
+  font-variant-numeric: tabular-nums;
+}
+.tema-flise p {
+  font-size: 13px;
+  color: var(--tema-daempet);
+}
+.tema-flise p strong {
+  color: var(--primary);
+}
+.tema-anbefaling {
+  margin-top: 12px;
+  padding-left: 6px;
+}
+
+/* Indstillinger */
+.tema-prosa {
+  max-width: 900px;
+  display: grid;
+  gap: 10px;
+  line-height: 1.65;
+  color: #3d4a43;
+}
+.tema-gaelder {
+  margin: 16px 0 20px;
+  color: var(--tema-daempet);
+  font-weight: 500;
+  background: white;
+}
+.tema-felter {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px 40px;
+}
+.tema-select {
+  width: 100%;
+  max-width: 360px;
+}
+.tema-alert {
+  margin-top: 20px;
+}
+.tema-alert-info {
+  background: var(--tema-fremhaevet);
+  border-color: #d3e1d8;
+  color: #284c45;
+}
+.tema-alert-info [data-slot='alert-description'] {
+  color: #284c45;
+}
+.tema-alert-advarsel {
+  background: #fff6df;
+  border-color: #ebdfbb;
+  color: #826320;
+}
+.tema-alert-advarsel [data-slot='alert-title'] {
+  white-space: normal;
+  line-clamp: none;
+  -webkit-line-clamp: unset;
+  display: block;
+}
+.tema-alert-advarsel [data-slot='alert-description'] {
+  color: #6f5418;
+}
+.tema-alert-fejl {
+  background: #fff1ef;
+  border-color: #edc9c1;
+  color: #962d22;
+}
+.tema-alert-fejl [data-slot='alert-description'] {
+  color: #962d22;
+}
+.tema-beskeder {
+  display: grid;
+  gap: 14px;
+  max-width: 900px;
+}
+.tema-beskeder .tema-alert {
+  margin-top: 0;
+}
+
+/* Tabel og værktøjslinje */
+.tema-vaerktoej {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.tema-vaerktoej-gruppe {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.tema-vaerktoej-gruppe .tema-valg {
+  margin-left: 10px;
+}
+.tema-tabelkort {
+  padding-bottom: 0;
+  gap: 16px;
+  overflow: hidden;
+}
+.tema-tabel-wrap {
+  overflow-x: auto;
+}
+.tema-udkast table.tema-tabel {
+  min-width: 760px;
+  width: 100%;
+  table-layout: auto;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.tema-udkast .tema-tabel th {
+  width: auto;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--tema-daempet);
+  background: #f8faf7;
+  border-block: 1px solid var(--tema-kant);
+  padding: 9px 12px;
+  text-align: left;
+  vertical-align: bottom;
+}
+.tema-udkast .tema-tabel td {
+  padding: 4px 6px;
+  border-bottom: 1px solid #edf0eb;
+  vertical-align: middle;
+}
+.tema-udkast .tema-tabel tr:hover td {
+  background: #fafcf9;
+}
+.tema-udkast .tema-tabel td:first-child {
+  padding-left: 18px;
+  min-width: 200px;
+}
+.tema-udkast .tema-tabel th:first-child {
+  padding-left: 24px;
+}
+.tema-udkast .tema-tabel td:nth-child(5) {
+  min-width: 240px;
+}
+.tema-udkast .tema-tabel .tema-tal-kol {
+  text-align: right;
+}
+.tema-celle {
+  width: 100%;
+  height: 32px;
+  padding: 0 6px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  background: transparent;
+  font: inherit;
+  font-variant-numeric: tabular-nums;
+  text-align: inherit;
+}
+.tema-celle:hover {
+  border-color: var(--color-input);
+  background: white;
+}
+.tema-celle:focus-visible {
+  outline: none;
+  border-color: var(--color-ring);
+  background: white;
+  box-shadow: 0 0 0 3px rgb(84 129 118 / 25%);
+}
+.tema-handling {
+  width: 48px;
+  text-align: right;
+  color: var(--tema-daempet);
+}
+
+/* Rapport */
+.tema-grundlag {
+  padding: 12px 16px;
+  border-radius: 10px;
+  border: 1px solid #d3e1d8;
+  background: var(--tema-fremhaevet);
+  color: #284c45;
+  line-height: 1.6;
+}
+.tema-faner {
+  margin-bottom: 10px;
+}
+.tema-sag-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+.tema-generer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+@media (max-width: 900px) {
+  .tema-dim-grid,
+  .tema-to-kolonner {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+@media (max-width: 640px) {
+  .tema-kort-hoved {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .tema-kort-hoved [data-slot='card-action'] {
+    grid-column: 1;
+    grid-row: auto;
+    justify-self: start;
+  }
+  .tema-ramme {
+    padding: 12px;
+  }
+  .tema-felter,
+  .tema-fliser,
+  .tema-farver {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .tema-app-indhold {
+    padding: 18px 16px;
+  }
+  .tema-sidehoved {
+    flex-direction: column;
+  }
+  .tema-skala div {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 4px;
+  }
+}
+
+/* Den globale regel »button, input { font: inherit }« ligger uden for Tailwinds lag og
+   tvinger i dag shadcn-knapper op i 16 px. I forslaget gælder komponentens egen størrelse. */
+.tema-udkast [data-slot='button'],
+.tema-udkast [data-slot='input'] {
+  font-size: revert-layer;
+  line-height: revert-layer;
+}
+.tema-udkast [data-slot='tabs-list'] {
+  height: 38px;
+  padding: 3px;
+  background: #e8eee9;
+  border: 1px solid var(--tema-kant);
+}
+.tema-udkast [data-slot='tabs-trigger'] {
+  padding: 0 14px;
+  color: var(--tema-daempet);
+  font-size: 13px;
+}
+.tema-udkast [data-slot='tabs-trigger'][data-state='active'] {
+  color: var(--primary);
+  font-weight: 600;
+  background: white;
+  box-shadow: 0 1px 2px rgb(16 36 29 / 12%);
+}

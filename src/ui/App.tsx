@@ -33,6 +33,7 @@ import { DataTables } from './DataTables';
 import { Settings } from './Settings';
 import { Dimensioning } from './Dimensioning';
 import { DesignDraft, SidebarPreview } from './DesignDraft';
+import { ThemeDraft } from './ThemeDraft';
 import { Help } from './Help';
 import { Report } from './Report';
 
@@ -61,6 +62,7 @@ function currentPage() {
   const hash = location.hash.slice(1);
   return navigationGroups.some((group) => group.items.some(([key]) => key === hash)) ||
     hash === 'designudkast' ||
+    hash === 'temaudkast' ||
     hash === 'designudkast-sidebar'
     ? hash
     : 'dimensionering';
@@ -181,6 +183,8 @@ export function App() {
               <Help />
             ) : page === 'designudkast' ? (
               <DesignDraft />
+            ) : page === 'temaudkast' ? (
+              <ThemeDraft />
             ) : page === 'dimensionering' ? (
               <Dimensioning />
             ) : page === 'indstillinger' ? (
