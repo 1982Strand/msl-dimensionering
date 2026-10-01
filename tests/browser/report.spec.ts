@@ -1,5 +1,6 @@
 import { expect, test, type Page } from '@playwright/test';
 import { readFile } from 'node:fs/promises';
+import { execFileSync } from 'node:child_process';
 
 function observe(page: Page, baseURL: string) {
   const external: string[] = [],
@@ -25,6 +26,114 @@ async function ready(page: Page) {
     });
   }).toPass({ timeout: 90_000 });
 }
+
+test('B-049: resultatlinjer i PDF, revisionsspærring, genåbning, automatisk nulstilling og telefon', async ({
+  page,
+  baseURL,
+}) => {
+  test.setTimeout(180_000);
+  const seen = observe(page, baseURL!);
+  await page.goto('/#rapport');
+  await page.getByLabel('Projekt', { exact: true }).fill('B049 prøvesag');
+  await page.getByLabel('Sagsbehandler-telefon', { exact: true }).fill('+4542400918');
+  await page.getByLabel('Sagsbehandler-telefon', { exact: true }).blur();
+  await expect(page.getByLabel('Sagsbehandler-telefon', { exact: true })).toHaveValue(
+    '+45 42 40 09 18',
+  );
+  await expect(
+    page
+      .getByRole('group', { name: 'Kvalitetssikring', exact: true })
+      .getByLabel('Kvalitetssikring i bunden af rapporten', { exact: true }),
+  ).toBeVisible();
+  await page.getByRole('button', { name: 'Dimensioneringsresultat', exact: true }).click();
+  const row = page.locator('[data-line=resultat_1lag]');
+  const hidden = page.locator('[data-line=resultat_2lag]');
+  const original = await row
+    .getByLabel('Tekst: Stabiliseret tykkelse — 1 lag', { exact: true })
+    .inputValue();
+  await page.getByRole('button', { name: 'Generér rapport', exact: true }).click();
+  await ready(page);
+  const old = await page.getByTitle('PDF-forhåndsvisning', { exact: true }).getAttribute('src');
+  const revision = await page.getByTestId('compile-state').getAttribute('data-revision');
+  await page.evaluate(() => {
+    const state = { disabled: false, stale: false };
+    (window as unknown as { __b049: typeof state }).__b049 = state;
+    new MutationObserver(() => {
+      if (
+        [...document.querySelectorAll('button')].some(
+          (b) => b.textContent?.trim() === 'Hent PDF' && b.disabled,
+        )
+      )
+        state.disabled = true;
+      if (document.body.textContent?.includes('Forhåndsvisningen er forældet.')) state.stale = true;
+    }).observe(document.body, {
+      subtree: true,
+      childList: true,
+      attributes: true,
+      characterData: true,
+    });
+  });
+  await row
+    .getByLabel('Tekst: Stabiliseret tykkelse — 1 lag', { exact: true })
+    .fill('Tilpasset MSL-opbygning');
+  await row
+    .getByLabel('Værdi: Stabiliseret tykkelse — 1 lag', { exact: true })
+    .fill('450 mm (prøvesag)');
+  await hidden.getByLabel('Vis i rapporten', { exact: true }).uncheck();
+  await expect
+    .poll(() =>
+      page.evaluate(() => (window as unknown as { __b049: Record<string, boolean> }).__b049),
+    )
+    .toEqual({ disabled: true, stale: true });
+  await ready(page);
+  expect(await page.getByTestId('compile-state').getAttribute('data-revision')).not.toBe(revision);
+  await expect(page.getByTitle('PDF-forhåndsvisning', { exact: true })).not.toHaveAttribute(
+    'src',
+    old!,
+  );
+  const downloading = page.waitForEvent('download', {
+    predicate: (d) => d.suggestedFilename().startsWith('Dimensionering - B049 prøvesag - '),
+  });
+  await page.getByRole('link', { name: 'Hent PDF', exact: true }).click();
+  const path = (await (await downloading).path())!;
+  const text = execFileSync('pdftotext', ['-enc', 'UTF-8', path, '-'], { encoding: 'utf8' });
+  expect(text).toContain('Tilpasset MSL-opbygning');
+  expect(text).toContain('450 mm (prøvesag)');
+  expect(text).not.toContain('Stabiliseret tykkelse — 2 lag');
+  expect(text).toContain('Kvalitetssikring:');
+  expect(text).toContain('+45 42 40 09 18');
+  await page.reload();
+  await page.getByRole('button', { name: 'Dimensioneringsresultat', exact: true }).click();
+  await expect(row.getByLabel('Tekst: Stabiliseret tykkelse — 1 lag', { exact: true })).toHaveValue(
+    'Tilpasset MSL-opbygning',
+  );
+  await expect(row.getByLabel('Værdi: Stabiliseret tykkelse — 1 lag', { exact: true })).toHaveValue(
+    '450 mm (prøvesag)',
+  );
+  await expect(hidden.getByLabel('Vis i rapporten', { exact: true })).not.toBeChecked();
+  await page.getByRole('link', { name: 'Dimensionering', exact: true }).click();
+  await page.locator('#std_eu_slider').focus();
+  await page.locator('#std_eu_slider').press('Home');
+  for (let n = 1; n < 5; n++) await page.locator('#std_eu_slider').press('ArrowRight');
+  await page.getByRole('link', { name: 'Rapport', exact: true }).click();
+  await expect(
+    page.getByText(
+      `Rettelsen af linjen ›${original}‹ er nulstillet, fordi beregningen er ændret.`,
+      { exact: true },
+    ),
+  ).toBeVisible();
+  await page.getByRole('button', { name: 'Dimensioneringsresultat', exact: true }).click();
+  await expect(row.getByLabel(`Tekst: ${original}`, { exact: true })).toHaveValue(original);
+  await expect(row.getByLabel(`Værdi: ${original}`, { exact: true })).not.toHaveValue(
+    '450 mm (prøvesag)',
+  );
+  await expect(hidden.getByLabel('Vis i rapporten', { exact: true })).not.toBeChecked();
+  await page.reload();
+  await page.getByRole('button', { name: 'Dimensioneringsresultat', exact: true }).click();
+  await expect(row.getByLabel(`Tekst: ${original}`, { exact: true })).toHaveValue(original);
+  expect(seen.errors).toEqual([]);
+  expect(seen.external).toEqual([]);
+});
 
 test('B-046: tekstværktøjer, afsnitsfravalg/revision og diagramvalg i diagramkortet', async ({
   page,
@@ -125,7 +234,7 @@ test('B-046: tekstværktøjer, afsnitsfravalg/revision og diagramvalg i diagramk
 test('faste rapportkort og synlige formularer ved 1440 og 390 px', async ({ page }, info) => {
   await page.goto('/#rapport');
   await expect(page.locator('.report-form > .section-card.settings-card')).toHaveCount(4);
-  await expect(page.locator('.report-step-2 .dim-expander-card')).toHaveCount(8);
+  await expect(page.locator('.report-step-2 .dim-expander-card')).toHaveCount(9);
   for (const name of ['Sagsoplysninger', 'Indhold', 'Gennemsyn', 'Generér']) {
     await expect(page.getByRole('heading', { name: new RegExp(name) }).first()).toBeVisible();
     await expect(page.getByRole('button', { name: new RegExp(`^\\d ${name}`) })).toHaveCount(0);
@@ -177,7 +286,7 @@ test('felter, afsnit, automatisk lagring, dato og de tre nulstillinger', async (
     ['Udføres for', 'Test'],
     ['Sagsbehandler', 'Ingeniør'],
     ['Sagsbehandler-mail', 'test@example.invalid'],
-    ['Kontrollant', 'Kontrolperson'], // B-048: gemt rap_kontrol er bevaret.
+    ['Kvalitetssikring', 'Kontrolperson'], // B-048: gemt rap_kontrol er bevaret.
   ])
     await page.getByLabel(label, { exact: true }).fill(value);
   await page.getByLabel('Dato', { exact: true }).fill('2001-02-03');
@@ -191,7 +300,7 @@ test('felter, afsnit, automatisk lagring, dato og de tre nulstillinger', async (
   await page.getByLabel('Ustabiliseret opbygning', { exact: true }).uncheck();
   await page.getByRole('button', { name: 'Grundlag for beregning', exact: true }).click();
   await page.getByLabel('Øverste lag', { exact: true }).fill('Prøvemateriale');
-  await page.getByLabel('Underbundens E-modul (Eᵤ)', { exact: true }).uncheck();
+  await page.locator('#rap_grundlag_eu').uncheck();
   await page.getByLabel('Vis endepunkter for 1/2 lag i designdiagram', { exact: true }).uncheck();
   await page.reload();
   for (const [label, value] of [
@@ -201,7 +310,7 @@ test('felter, afsnit, automatisk lagring, dato og de tre nulstillinger', async (
     ['Udføres for', 'Test'],
     ['Sagsbehandler', 'Ingeniør'],
     ['Sagsbehandler-mail', 'test@example.invalid'],
-    ['Kontrollant', 'Kontrolperson'], // B-048.
+    ['Kvalitetssikring', 'Kontrolperson'], // B-048.
   ])
     await expect(page.getByLabel(label, { exact: true })).toHaveValue(value);
   await expect(page.getByLabel('Dato', { exact: true })).toHaveValue(today);
@@ -211,7 +320,7 @@ test('felter, afsnit, automatisk lagring, dato og de tre nulstillinger', async (
   ).not.toBeChecked();
   await page.getByRole('button', { name: 'Grundlag for beregning', exact: true }).click();
   await expect(page.getByLabel('Øverste lag', { exact: true })).toHaveValue('Prøvemateriale');
-  await expect(page.getByLabel('Underbundens E-modul (Eᵤ)', { exact: true })).not.toBeChecked();
+  await expect(page.locator('#rap_grundlag_eu')).not.toBeChecked();
   await page.getByRole('button', { name: 'Krav til komprimering', exact: true }).click();
   await expect(editor).toHaveValue('');
   await page
@@ -234,7 +343,7 @@ test('felter, afsnit, automatisk lagring, dato og de tre nulstillinger', async (
   await expect(page.getByLabel('Dato', { exact: true })).toHaveValue('2001-02-03');
   await page.getByRole('button', { name: 'Grundlag for beregning', exact: true }).click();
   await expect(page.getByLabel('Øverste lag', { exact: true })).toHaveValue('Stabilgrus SG II');
-  await expect(page.getByLabel('Underbundens E-modul (Eᵤ)', { exact: true })).toBeChecked();
+  await expect(page.locator('#rap_grundlag_eu')).toBeChecked();
   await page.getByRole('button', { name: 'Nulstil felter', exact: true }).click();
   await expect(page.getByLabel('Projekt', { exact: true })).toHaveValue('');
   await expect(page.getByLabel('Dato', { exact: true })).toHaveValue(today);

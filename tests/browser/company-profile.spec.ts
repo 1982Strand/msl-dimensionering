@@ -62,8 +62,8 @@ test('B-048: kartotek, valg af begge personer, manuel rettelse, revisionsspærri
   await page.getByRole('tab', { name: 'Firmaprofil', exact: true }).click();
   let old = await ready(page);
   const people = [
-    { navn: 'Anna Jensen', initialer: 'AJ', mail: 'anna@example.invalid', telefon: '12345678' },
-    { navn: 'Bo Nielsen', initialer: 'BN', mail: 'bo@example.invalid', telefon: '87654321' },
+    { navn: 'Anna Jensen', initialer: 'AJ', mail: 'anna@example.invalid', telefon: '12 34 56 78' },
+    { navn: 'Bo Nielsen', initialer: 'BN', mail: 'bo@example.invalid', telefon: '87 65 43 21' },
   ];
   for (const [index, person] of people.entries()) {
     await page.getByRole('button', { name: 'Tilføj medarbejder', exact: true }).click();
@@ -75,7 +75,11 @@ test('B-048: kartotek, valg af begge personer, manuel rettelse, revisionsspærri
       ['Mail', person.mail],
       ['Telefon', person.telefon],
     ])
-      await row.getByLabel(label, { exact: true }).fill(value);
+      await row
+        .getByLabel(label, { exact: true })
+        .fill(label === 'Telefon' ? value.replaceAll(' ', '') : value);
+    await row.getByLabel('Telefon', { exact: true }).blur();
+    await expect(row.getByLabel('Telefon', { exact: true })).toHaveValue(person.telefon);
     old = await ready(page, old);
   }
   expect((await stored(page)).medarbejdere).toEqual(people);
@@ -90,20 +94,21 @@ test('B-048: kartotek, valg af begge personer, manuel rettelse, revisionsspærri
   await page.getByRole('tab', { name: 'Rapport', exact: true }).click();
   for (const [role, person] of [
     ['Sagsbehandler', people[0]],
-    ['Kontrollant', people[1]],
+    ['Kvalitetssikring', people[1]],
   ] as const) {
     const group = page.getByRole('group', { name: role, exact: true });
     await group
       .getByLabel('Vælg fra kartotek …', { exact: true })
       .selectOption({ label: `${person.initialer} – ${person.navn}` });
-    await expect(group.locator('input')).toHaveCount(4);
+    await expect(group.locator('input[type=text]')).toHaveCount(4);
     expect(
       await group
-        .locator('input')
+        .locator('input[type=text]')
         .evaluateAll((inputs) => inputs.map((input) => (input as HTMLInputElement).value)),
     ).toEqual([person.navn, person.initialer, person.mail, person.telefon]);
   }
   await page.getByLabel('Sagsbehandler-telefon', { exact: true }).fill('11223344');
+  await page.getByLabel('Sagsbehandler-telefon', { exact: true }).blur();
   await ready(page);
   const revision = await page.getByTestId('compile-state').getAttribute('data-revision');
   await page.evaluate(() => {
@@ -124,7 +129,7 @@ test('B-048: kartotek, valg af begge personer, manuel rettelse, revisionsspærri
       characterData: true,
     });
   });
-  await page.getByLabel('Kontrollant i bunden af rapporten', { exact: true }).check();
+  await page.getByLabel('Kvalitetssikring i bunden af rapporten', { exact: true }).check();
   await expect
     .poll(() =>
       page.evaluate(() => (window as unknown as { __b048: Record<string, boolean> }).__b048),
@@ -136,15 +141,19 @@ test('B-048: kartotek, valg af begge personer, manuel rettelse, revisionsspærri
   await expect(page.getByLabel('Sagsbehandler', { exact: true })).toHaveValue(people[0].navn);
   await expect(page.getByLabel('Sagsbehandler-initialer', { exact: true })).toHaveValue('AJ');
   await expect(page.getByLabel('Sagsbehandler-mail', { exact: true })).toHaveValue(people[0].mail);
-  await expect(page.getByLabel('Sagsbehandler-telefon', { exact: true })).toHaveValue('11223344');
+  await expect(page.getByLabel('Sagsbehandler-telefon', { exact: true })).toHaveValue(
+    '11 22 33 44',
+  );
   for (const [label, value] of [
-    ['Kontrollant', people[1].navn],
-    ['Kontrollant-initialer', 'BN'],
-    ['Kontrollant-mail', people[1].mail],
-    ['Kontrollant-telefon', people[1].telefon],
+    ['Kvalitetssikring', people[1].navn],
+    ['Kvalitetssikring-initialer', 'BN'],
+    ['Kvalitetssikring-mail', people[1].mail],
+    ['Kvalitetssikring-telefon', people[1].telefon],
   ])
     await expect(page.getByLabel(label, { exact: true })).toHaveValue(value);
-  await expect(page.getByLabel('Kontrollant i bunden af rapporten', { exact: true })).toBeChecked();
+  await expect(
+    page.getByLabel('Kvalitetssikring i bunden af rapporten', { exact: true }),
+  ).toBeChecked();
   await page.getByRole('tab', { name: 'Firmaprofil', exact: true }).click();
   await ready(page);
   page.once('dialog', (d) => void d.accept());
@@ -178,7 +187,7 @@ test('B-048: kartotek, valg af begge personer, manuel rettelse, revisionsspærri
   ])
     await expect(page.locator('#' + id)).toHaveValue('');
   await expect(
-    page.getByLabel('Kontrollant i bunden af rapporten', { exact: true }),
+    page.getByLabel('Kvalitetssikring i bunden af rapporten', { exact: true }),
   ).not.toBeChecked();
   expect(seen.errors).toEqual([]);
   expect(seen.external).toEqual([]);

@@ -5,7 +5,7 @@ import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import { TypstSnippet } from '@myriaddreamin/typst.ts/contrib/snippet';
 import init from '@myriaddreamin/typst-ts-web-compiler';
 import { reportCases } from './report-cases.ts';
-import { reportData } from '../src/report/report-data.ts';
+import { reportData, grundlag_linjer, resultat_linjer } from '../src/report/report-data.ts';
 import { reportFigures } from '../src/report/report-figures.ts';
 import { reportDocument, type ReportAssets } from '../src/report/report-document.ts';
 import { DEFAULT_COMPANY_PROFILE, REPORT_FONT_FILES } from '../src/report/profile-defaults.ts';
@@ -88,6 +88,39 @@ for (const control of [false, true]) {
   c.data = reportData(c.result, c.metadata, c.valg, c.tekster);
   cases.push(c);
 }
+const edited = structuredClone(cases[0]);
+edited.name = 'b049-rettede-linjer';
+const basisLine = grundlag_linjer(edited.result, edited.valg).find(([key]) => key === 'eu')!;
+const resultLine = resultat_linjer(edited.result, edited.valg).find(([key]) => key === '1lag')!;
+edited.valg.linje_rettelser = {
+  basis_eu: {
+    beregnet_tekst: basisLine[1],
+    beregnet_vaerdi: basisLine[2],
+    tekst: 'Eftervist E-modul',
+    vaerdi: '22 MPa (prøvesag)',
+  },
+  resultat_1lag: {
+    beregnet_tekst: resultLine[1],
+    beregnet_vaerdi: resultLine[2],
+    tekst: 'Tilpasset MSL-opbygning',
+    vaerdi: '450 mm (prøvesag)',
+  },
+};
+edited.valg.resultat_linjer = { '2lag': false };
+edited.data = reportData(edited.result, edited.metadata, edited.valg, edited.tekster);
+cases.push(edited);
+const hiddenResults = structuredClone(cases[0]);
+hiddenResults.name = 'b049-skjult-resultattabel';
+hiddenResults.valg.resultat_linjer = Object.fromEntries(
+  resultat_linjer(hiddenResults.result, hiddenResults.valg).map(([key]) => [key, false]),
+);
+hiddenResults.data = reportData(
+  hiddenResults.result,
+  hiddenResults.metadata,
+  hiddenResults.valg,
+  hiddenResults.tekster,
+);
+cases.push(hiddenResults);
 await mkdir(new URL('.local/output/r3/', root), { recursive: true });
 for (const c of cases) {
   const figures = reportFigures(c.result, c.settings, c.table);
@@ -149,6 +182,9 @@ for (const c of cases) {
         .filter((a) => a.noegle.slice(6) in c.data.formattedTexts)
         .map((a) => a.titel),
       'Dimensioneringsgrundlag:',
+      'Kvalitetssikring:',
+      'Dimensioneringsresultat:',
+      'Baseret på ovennævnte indgangsparametre kan vi foreslå følgende MSL opbygning:',
       ...('oplyste_forudsaetninger' in c.data.formattedTexts ? ['Forudsætninger:'] : []),
       ...('generelle_forudsaetninger' in c.data.formattedTexts
         ? ['Generelle dimensioneringsforudsætninger for MSL opbygning:']
@@ -158,7 +194,12 @@ for (const c of cases) {
     context: c.data.context,
     medarbejdere: c.data.medarbejdere,
     formattedTexts: c.data.formattedTexts,
-    forbiddenStrings: c.name === 'b046-omitted-sections' ? ['Forudsætninger:', 'Udførelse:'] : [],
+    forbiddenStrings:
+      c.name === 'b046-omitted-sections'
+        ? ['Forudsætninger:', 'Udførelse:']
+        : c.name === 'b049-rettede-linjer'
+          ? ['Stabiliseret tykkelse — 2 lag']
+          : [],
     grundlag: c.data.grundlag,
     sections: c.data.sections,
     profile: DEFAULT_COMPANY_PROFILE,

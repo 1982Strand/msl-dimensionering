@@ -118,7 +118,7 @@
   parbreak()
   v(29.3pt, weak: false)
   for (label, value) in (("Beskrivelse:", data.beskrivelse), ("Omfang:", data.omfang),
-    ("Udføres for:", data.udfoeres_for), ("Udført af:", report.medarbejdere.udfoert_af), ("Kontrol:", report.medarbejdere.kontrol)) {
+    ("Udføres for:", data.udfoeres_for), ("Udført af:", report.medarbejdere.udfoert_af), ("Kvalitetssikring:", report.medarbejdere.kontrol)) {
     grid(columns: (felt-bredde, 1fr), strong(label), tekst(value))
     blank()
   }
@@ -145,7 +145,7 @@
   overskrift[Dimensioneringsresultat:]
   tekst("Baseret på ovennævnte indgangsparametre kan vi foreslå følgende MSL opbygning:")
   blank()
-  tabel(data.dim_resultat)
+  if data.dim_resultat.len() > 0 { tabel(data.dim_resultat) }
   blank()
   figur(report.visualisering)
   figur(report.designdiagram)

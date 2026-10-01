@@ -16,7 +16,13 @@ import {
   resetProjectFields,
   type ReportNode,
 } from '../src/report/report-page.ts';
-import { STANDARD_TEKSTER, SECTION_KEYS, SECTION_TITLER } from '../src/report/report-data.ts';
+import {
+  grundlag_linjer,
+  resultat_linjer,
+  STANDARD_TEKSTER,
+  SECTION_KEYS,
+  SECTION_TITLER,
+} from '../src/report/report-data.ts';
 import {
   elements,
   findBlock,
@@ -102,7 +108,15 @@ function modelEvents(model: ReturnType<typeof reportPage>): Event[] {
     if (n.kind === 'expander') {
       events.push({ type: 'expander', label: n.title, expanded: false });
       n.children.forEach(node);
-    } else if (n.kind === 'employee_select')
+    } else if (n.kind === 'table_line')
+      events.push({
+        type: 'table_line',
+        key: n.key,
+        label: n.label,
+        value: n.value,
+        shown: n.shown,
+      });
+    else if (n.kind === 'employee_select')
       events.push({ type: 'employee_select', key: n.key, label: n.label });
     else if (n.kind === 'text_toolbar') events.push({ type: 'text_toolbar', key: n.key });
     else if (n.kind === 'figure') {
@@ -148,6 +162,7 @@ for (const c of reference.cases)
     header.text = String(header.text).replace(REPORT_INTRO_ORIGINAL, REPORT_INTRO);
     applyB046ApprovedChanges(original);
     applyB048ApprovedChanges(original);
+    applyB049ApprovedChanges(original, c);
     // Kun appens globale topbjælke udelades. Widgets: ingen Streamlit-nøgler.
     assert.deepEqual(modelEvents(model), original.slice(start));
     if (model.available) {
@@ -351,4 +366,84 @@ test('R4: ugyldigt gemt snit følger den aktuelle betingelse, gyldigt fravalg og
     checkbox.help,
     '2 lag geonet anvendes kun ved opbygninger ≥ 50 cm (beregnet 1-lag tykkelse) — derfor ikke relevant her.',
   );
+});
+
+/** B-049: kun omdøbning og de eksplicit udskiftede/tilføjede tabelredigeringsrækker.
+ * Beregnede værdier kontrolleres særskilt mod de frosne rapporttabeller i report-data.test.ts.
+ */
+function applyB049ApprovedChanges(events: Event[], c: (typeof reference.cases)[number]) {
+  const dim = calculation(c);
+  if (!dim?.geonet) return;
+  for (const event of events)
+    if (typeof event.label === 'string' && event.label.startsWith('Kontrollant'))
+      event.label = event.label.replace('Kontrollant', 'Kvalitetssikring');
+  const basis = grundlag_linjer(dim, { enhed: c.input.enhed });
+  for (const [key, label, value] of basis) {
+    const index = events.findIndex((e) => e.type === 'checkbox' && e.label === label);
+    assert.ok(index >= 0, label);
+    assert.equal(events[index].value, true);
+    assert.equal(events[index].disabled, false);
+    events[index] = { type: 'table_line', key: `basis_${key}`, label, value, shown: true };
+  }
+  const insert = events.findIndex(
+    (e) => e.type === 'expander' && e.label === 'Krav til komprimering',
+  );
+  assert.ok(insert >= 0);
+  const entered = dim.materialer.some((m) => !!m.tykkelse_mm);
+  events.splice(
+    insert,
+    0,
+    { type: 'expander', label: 'Dimensioneringsresultat', expanded: false },
+    {
+      type: 'caption',
+      text: 'Linjerne kan tilpasses og fravælges i rapporten; beregningen berøres ikke.',
+    },
+    ...resultat_linjer(dim, { enhed: c.input.enhed }).map(([key, label, value]) => ({
+      type: 'table_line',
+      key: `resultat_${key}`,
+      label,
+      value,
+      shown: key === 'indtastet' ? entered : true,
+    })),
+  );
+}
+
+test('B-049: rettelser huskes, nulstilles ved ændrede værdier og indgår i fælles nulstilling', () => {
+  const dim = calculation(reference.cases[0])!;
+  const original = resultat_linjer(dim).find(([key]) => key === '1lag')!;
+  const edit = {
+    beregnet_tekst: original[1],
+    beregnet_vaerdi: original[2],
+    tekst: 'Tilpasset linje',
+    vaerdi: '',
+  };
+  const values = {
+    rap_linje_resultat_1lag: edit,
+    rap_resultat_2lag: false,
+    rap_grundlag_eu: false,
+    rap_projekt: 'Bevares',
+  };
+  const model = reportPage(dim, values);
+  assert.deepEqual(model.choices.linje_rettelser?.resultat_1lag, edit);
+  assert.equal(model.choices.resultat_linjer?.['2lag'], false);
+  assert.deepEqual(model.resetLines, []);
+  const changed = structuredClone(dim);
+  assert.ok('t_armeret_mm' in changed.res_1);
+  changed.res_1.t_armeret_mm = Number(changed.res_1.t_armeret_mm) + 10;
+  const next = reportPage(changed, values);
+  assert.deepEqual(next.resetLines, [{ key: 'resultat_1lag', label: original[1] }]);
+  assert.equal(next.choices.linje_rettelser?.resultat_1lag, undefined);
+  const reset = { ...values, ...resetReportChoices(values) };
+  assert.equal(reset.rap_projekt, 'Bevares');
+  const restored = reportPage(dim, reset);
+  assert.deepEqual(restored.choices.linje_rettelser, {});
+  assert.equal(restored.choices.resultat_linjer?.['2lag'], true);
+  assert.equal(restored.choices.grundlag_linjer?.eu, true);
+  const order = model.steps[1].children.filter((n) => n.kind === 'expander').map((n) => n.key);
+  assert.deepEqual(order.slice(0, 4), [
+    'oplyste_forudsaetninger',
+    'basis',
+    'generelle_forudsaetninger',
+    'results',
+  ]);
 });

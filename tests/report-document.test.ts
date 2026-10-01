@@ -40,10 +40,14 @@ test('B-048 dokument: personlag med initialer/fallback og begge underskriftskolo
     assert.equal(d.medarbejdere.kontrol, c.metadata.kontrol);
     assert.deepEqual(d.medarbejdere.sagsbehandler, [
       c.metadata.sagsbehandler,
-      c.metadata.sagsbehandler_mail,
       special,
+      c.metadata.sagsbehandler_mail,
     ]);
-    assert.deepEqual(d.medarbejdere.kontrollant, checked ? [c.metadata.kontrol, '87654321'] : null);
+    // B-049: telefon vises før mail og grupperes; øvrige data er uændrede.
+    assert.deepEqual(
+      d.medarbejdere.kontrollant,
+      checked ? [c.metadata.kontrol, '87 65 43 21'] : null,
+    );
     assert.equal(req.main, assets.main);
     assert.equal(req.files['layout.typ'], assets.layout);
     assert.ok(!assets.layout.includes(special));
