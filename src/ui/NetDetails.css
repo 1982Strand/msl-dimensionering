@@ -100,13 +100,6 @@
   color: var(--muted-foreground);
   margin-top: 8px;
 }
-.net-details-tooltip {
-  max-width: min(440px, calc(100vw - 32px));
-  white-space: pre-line;
-  line-height: 1.6;
-  text-wrap: wrap;
-  font-family: 'Segoe UI', system-ui, sans-serif;
-}
 @media (max-width: 760px) {
   .net-details .rt-detaljer-grid {
     grid-template-columns: minmax(0, 1fr);

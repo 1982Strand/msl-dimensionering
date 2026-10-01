@@ -20,7 +20,7 @@ import {
 } from '../engine/geonet-database';
 import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
-import { TooltipProvider, Tooltip, TooltipTrigger, TooltipContent } from '../components/ui/tooltip';
+import { Hint } from './Hint';
 import {
   Table,
   TableHeader,
@@ -84,86 +84,78 @@ export function GeonetDatabase() {
         <p aria-live="polite" className="section-meta geonet-count">
           {data.length} af {rows.length} produkter
         </p>
-        <TooltipProvider>
-          <Table
-            aria-label="Geonetprodukter"
-            style={{ tableLayout: 'auto', borderCollapse: 'separate' }}
-            className="geonet-table table-auto border-separate border-spacing-0 [&_th]:w-auto [&_th]:border-b [&_td]:border-b"
-          >
-            <TableHeader>
-              {table.getHeaderGroups().map((group) => (
-                <TableRow key={group.id}>
-                  {group.headers.map((header, index) => (
-                    <TableHead
-                      key={header.id}
-                      scope="col"
-                      style={{ width: 'auto' }}
-                      className={index === 0 ? 'sticky left-0 z-20' : undefined}
-                      aria-sort={
-                        header.column.getIsSorted() === 'asc'
-                          ? 'ascending'
-                          : header.column.getIsSorted() === 'desc'
-                            ? 'descending'
-                            : 'none'
-                      }
-                    >
-                      <Tooltip>
-                        <TooltipTrigger asChild>
-                          <Button
-                            variant="ghost"
-                            size="sm"
-                            className="geonet-sort h-auto py-2 text-left"
-                            aria-label={`Sortér efter ${geonetDatabaseColumns[index].label.replaceAll('\n', ' ')}`}
-                            onClick={header.column.getToggleSortingHandler()}
-                          >
-                            <span className="whitespace-pre">
-                              {geonetDatabaseColumns[index].label}
-                            </span>
-                            <span aria-hidden="true">
-                              {header.column.getIsSorted() === 'asc'
-                                ? '↑'
-                                : header.column.getIsSorted() === 'desc'
-                                  ? '↓'
-                                  : '↕'}
-                            </span>
-                          </Button>
-                        </TooltipTrigger>
-                        <TooltipContent className="max-w-80">
-                          {geonetDatabaseColumns[index].help}
-                        </TooltipContent>
-                      </Tooltip>
-                    </TableHead>
-                  ))}
-                </TableRow>
-              ))}
-            </TableHeader>
-            <TableBody>
-              {table.getRowModel().rows.map((row) => (
-                <TableRow key={row.id}>
-                  {row.getVisibleCells().map((cell, index) => (
-                    <TableCell
-                      key={cell.id}
-                      className={
-                        index === 0
-                          ? 'sticky left-0 z-10 font-medium'
-                          : index === 24
-                            ? 'geonet-note-cell whitespace-normal'
-                            : ''
-                      }
-                    >
-                      {String(cell.getValue())}
-                    </TableCell>
-                  ))}
-                </TableRow>
-              ))}
-              {data.length === 0 && (
-                <TableRow>
-                  <TableCell colSpan={columns.length}>Ingen produkter matcher søgningen.</TableCell>
-                </TableRow>
-              )}
-            </TableBody>
-          </Table>
-        </TooltipProvider>
+        <Table
+          aria-label="Geonetprodukter"
+          style={{ tableLayout: 'auto', borderCollapse: 'separate' }}
+          className="geonet-table table-auto border-separate border-spacing-0 [&_th]:w-auto [&_th]:border-b [&_td]:border-b"
+        >
+          <TableHeader>
+            {table.getHeaderGroups().map((group) => (
+              <TableRow key={group.id}>
+                {group.headers.map((header, index) => (
+                  <TableHead
+                    key={header.id}
+                    scope="col"
+                    style={{ width: 'auto' }}
+                    className={index === 0 ? 'sticky left-0 z-20' : undefined}
+                    aria-sort={
+                      header.column.getIsSorted() === 'asc'
+                        ? 'ascending'
+                        : header.column.getIsSorted() === 'desc'
+                          ? 'descending'
+                          : 'none'
+                    }
+                  >
+                    {/* B-065: kolonnens forklaring som Hover Card; et klik sorterer. */}
+                    <Hint content={geonetDatabaseColumns[index].help} toggle={false}>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="geonet-sort h-auto py-2 text-left"
+                        aria-label={`Sortér efter ${geonetDatabaseColumns[index].label.replaceAll('\n', ' ')}`}
+                        onClick={header.column.getToggleSortingHandler()}
+                      >
+                        <span className="whitespace-pre">{geonetDatabaseColumns[index].label}</span>
+                        <span aria-hidden="true">
+                          {header.column.getIsSorted() === 'asc'
+                            ? '↑'
+                            : header.column.getIsSorted() === 'desc'
+                              ? '↓'
+                              : '↕'}
+                        </span>
+                      </Button>
+                    </Hint>
+                  </TableHead>
+                ))}
+              </TableRow>
+            ))}
+          </TableHeader>
+          <TableBody>
+            {table.getRowModel().rows.map((row) => (
+              <TableRow key={row.id}>
+                {row.getVisibleCells().map((cell, index) => (
+                  <TableCell
+                    key={cell.id}
+                    className={
+                      index === 0
+                        ? 'sticky left-0 z-10 font-medium'
+                        : index === 24
+                          ? 'geonet-note-cell whitespace-normal'
+                          : ''
+                    }
+                  >
+                    {String(cell.getValue())}
+                  </TableCell>
+                ))}
+              </TableRow>
+            ))}
+            {data.length === 0 && (
+              <TableRow>
+                <TableCell colSpan={columns.length}>Ingen produkter matcher søgningen.</TableCell>
+              </TableRow>
+            )}
+          </TableBody>
+        </Table>
       </section>
       <section aria-labelledby="geonet-notes-heading" className="geonet-notes">
         <div className="geonet-notes-heading">

@@ -6,6 +6,7 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Label } from '@/components/ui/label';
 import { useEditor } from './EditorContext';
 import { SaveState } from './EditorFeedback';
+import { HintText, IconTip } from './Hint';
 import { Notice } from './Notice';
 import { PageFooter, PageHeader } from './page';
 import { Cell } from './Cell';
@@ -158,8 +159,8 @@ export function DataTables({ mode }: { mode: 'diagrammer' | 'vejdim' }) {
           <thead>
             <tr>
               {columns.map((c) => (
-                <th key={c.field} title={c.help} className={c.numeric ? 'num' : undefined}>
-                  {c.label}
+                <th key={c.field} className={c.numeric ? 'num' : undefined}>
+                  {c.help ? <HintText content={c.help}>{c.label}</HintText> : c.label}
                 </th>
               ))}
               <th>
@@ -213,26 +214,28 @@ export function DataTables({ mode }: { mode: 'diagrammer' | 'vejdim' }) {
                     <div className="row-actions">
                       {row.kind === 'added' && <Badge variant="secondary">Ny</Badge>}
                       {row.kind === 'changed' && (
-                        <Button
-                          variant="ghost"
-                          size="icon"
-                          title="Gendan række"
-                          aria-label={`Gendan række · ${key}`}
-                          onClick={() => restore(row)}
-                        >
-                          <RotateCcw />
-                        </Button>
+                        <IconTip label="Gendan række">
+                          <Button
+                            variant="ghost"
+                            size="icon"
+                            aria-label={`Gendan række · ${key}`}
+                            onClick={() => restore(row)}
+                          >
+                            <RotateCcw />
+                          </Button>
+                        </IconTip>
                       )}
                       {isDiagram && (
-                        <Button
-                          variant="ghost"
-                          size="icon"
-                          title="Slet række"
-                          aria-label={`Slet · ${key}`}
-                          onClick={() => editRows(activeRows().filter((_, i) => i !== row.index))}
-                        >
-                          <Trash2 />
-                        </Button>
+                        <IconTip label="Slet række">
+                          <Button
+                            variant="ghost"
+                            size="icon"
+                            aria-label={`Slet · ${key}`}
+                            onClick={() => editRows(activeRows().filter((_, i) => i !== row.index))}
+                          >
+                            <Trash2 />
+                          </Button>
+                        </IconTip>
                       )}
                     </div>
                   </td>

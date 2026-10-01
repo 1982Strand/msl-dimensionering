@@ -1,7 +1,8 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useEditor } from './EditorContext';
 import { EditorFeedback, SaveState } from './EditorFeedback';
-import { HintCard, SettingField, type SettingDefinition, type SettingValue } from './SettingField';
+import { SettingField, type SettingDefinition, type SettingValue } from './SettingField';
+import { Hint, HintCard } from './Hint';
 import { Button } from '@/components/ui/button';
 import { Slider } from '@/components/ui/slider';
 import { LineChart, RotateCcw, Table as TableIcon } from 'lucide-react';
@@ -526,24 +527,16 @@ export function Dimensioning() {
                     >
                       <thead>
                         <tr>
-                          {overviewColumns.map((c) => (
-                            <th
-                              key={c.key}
-                              aria-sort={
-                                sort?.column === c.key
-                                  ? sort.direction === 'asc'
-                                    ? 'ascending'
-                                    : 'descending'
-                                  : 'none'
-                              }
-                            >
+                          {overviewColumns.map((c) => {
+                            // B-065: forklaringen ved trafikklasse som Hover Card; et klik sorterer.
+                            const explanation =
+                              c.key === 'klasse' && basis.type === 'trafikklasse'
+                                ? `Viser anbefalede trafikklasser ved Eᵤ = ${dk(input.eu, 0)} MPa. Oversættelsen gælder kun dette Eᵤ — samme trafikklasse rammer forskellige belastningsklasser ved en anden underbund.`
+                                : null;
+                            const button = (
                               <button
                                 type="button"
-                                title={
-                                  c.key === 'klasse' && basis.type === 'trafikklasse'
-                                    ? `Viser anbefalede trafikklasser ved Eᵤ = ${dk(input.eu, 0)} MPa. Oversættelsen gælder kun dette Eᵤ — samme trafikklasse rammer forskellige belastningsklasser ved en anden underbund.`
-                                    : undefined
-                                }
+                                className={explanation ? 'hint-text' : undefined}
                                 aria-label={`Sorter efter ${c.key === 'sparet1' ? 'sparet med 1 lag' : c.key === 'sparet2' ? 'sparet med 2 lag' : c.label}`}
                                 onClick={() =>
                                   ctx.remember({
@@ -566,8 +559,28 @@ export function Dimensioning() {
                                     : ' ▼'
                                   : ''}
                               </button>
-                            </th>
-                          ))}
+                            );
+                            return (
+                              <th
+                                key={c.key}
+                                aria-sort={
+                                  sort?.column === c.key
+                                    ? sort.direction === 'asc'
+                                      ? 'ascending'
+                                      : 'descending'
+                                    : 'none'
+                                }
+                              >
+                                {explanation ? (
+                                  <Hint content={explanation} toggle={false}>
+                                    {button}
+                                  </Hint>
+                                ) : (
+                                  button
+                                )}
+                              </th>
+                            );
+                          })}
                         </tr>
                       </thead>
                       <tbody>

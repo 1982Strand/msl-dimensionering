@@ -411,6 +411,17 @@
   width: 15px;
   height: 15px;
 }
+/* Tekst med forklaring i Hover Card (B-065): stiplet understregning som tegn på forklaring. */
+.hint-text {
+  border-bottom: 1px dotted currentColor;
+  cursor: help;
+}
+button.hint-text {
+  cursor: pointer;
+}
+.help-hint-content.hint-content-explain {
+  width: min(440px, 90vw);
+}
 /* Advarsel og info som ikon med Hover Card (B-064): orange advarsel, grøn info. */
 .help-hint.hint-warning,
 .help-hint.hint-info {

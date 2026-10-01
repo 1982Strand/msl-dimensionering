@@ -174,3 +174,15 @@ Beslutning B-025 følger brugerens besked i denne chat. B-026–028 registreres 
   1. Ved trafikklasse står en advarselstrekant (orange) eller et info-ikon (grønt) ved siden af T1–T6, når der er en besked. Beskedens tekst er uændret og vises i et Hover Card i samme farve. Kortet åbner ved mus, tastaturfokus eller tryk, med samme logik som hjælpeikonerne (B-053). Teksten står også skjult til skærmlæsere og er knyttet til ikonet. Kortets hoved viser fortsat »afvist (…)«.
   2. Klasseboksen har fast størrelse: 410 px bred i begge grundlag og 200 px høj ved trafikklasse, så den ikke skifter størrelse mellem klasserne.
   3. Afsnit 1 har dermed samme højde i alle klasser og ved alle Eᵤ, og afstanden til bunden svarer til sidemarginen. Ved 1440 px er højden 308 px mod 414 px med B-063's faste beskedfelt.
+- **B-065:** Ens tooltips i hele appen. Brugeren spurgte, om tooltippen ved »Ækvivalent Eₒ-kurve« kunne passe, når den ikke ligner dem i Indstillinger, og svarede derefter på forslaget: »ja, gennemfør det i hele appen«. Gennemført:
+  1. Alle forklaringer vises som samme Hover Card som i Indstillinger (B-053). Det gælder:
+     - »Ækvivalent Eₒ-kurve …« og mærket »TYNDEST«;
+     - statuslinjen under resultatet og linjerne under »Detaljer«;
+     - Klasse-overskriften i »Alle produkter«;
+     - kolonneforklaringerne i Materialer, Designdiagrammer, Trafikklasse-korrelation og Geonet-database;
+     - nøglebegreberne i Hjælp og eventuelle forklaringer på rapportens knapper.
+
+     Teksterne er uændrede. Tekst med forklaring har stiplet understregning og kan nås med tastaturet. Kolonneforklaringerne i tabellerne står nu på overskriften i stedet for på hver celle.
+  2. Korte navne på knapper med kun et ikon, fx »Slet materiale«, »Gendan række« og »Gendan standardværdi«, er små ens tooltips (shadcn Tooltip) i stedet for browserens egne.
+
+  Forklaringerne har rollen `tooltip` til skærmlæsere. Figurernes SVG-titler, fx opbygningssnittene, er en del af de godkendte figurer (også i PDF'en) og er ikke ændret.

@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Input } from '@/components/ui/input';
 import { RotateCcw } from 'lucide-react';
 import type { TableColumn } from '../engine/table-presentation';
+import { IconTip } from './Hint';
 const display = (v: unknown) => (v == null || v === '' ? '—' : String(v));
 export function Cell({
   column,
@@ -62,7 +63,6 @@ export function Cell({
         ref={input}
         className="cell-input"
         aria-label={label}
-        title={column.help}
         aria-invalid={invalid}
         type={column.numeric ? 'number' : 'text'}
         min={column.min}
@@ -93,14 +93,11 @@ export function Cell({
       {changed && restore && (
         <div className="standard-value">
           <span>Standard: {display(standard)}</span>
-          <button
-            className="cell-reset"
-            aria-label={`Gendan ${label}`}
-            title="Gendan standardværdi"
-            onClick={restore}
-          >
-            <RotateCcw size={12} />
-          </button>
+          <IconTip label="Gendan standardværdi">
+            <button className="cell-reset" aria-label={`Gendan ${label}`} onClick={restore}>
+              <RotateCcw size={12} />
+            </button>
+          </IconTip>
         </div>
       )}
     </td>

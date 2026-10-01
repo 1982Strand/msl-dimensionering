@@ -28,6 +28,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '../components/ui/select';
+import { Hint } from './Hint';
 import { Notice } from './Notice';
 import { PageHeader } from './page';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '../components/ui/tabs';
@@ -534,13 +535,12 @@ export function Report({
         </section>
       ) : null;
     }
-    if (node.kind === 'button')
-      return (
+    if (node.kind === 'button') {
+      const button = (
         <Button
           key={key}
           type="button"
           variant={node.key === 'generate' ? 'default' : 'outline'}
-          title={node.help ?? undefined}
           disabled={node.disabled || (node.key === 'generate' && !canGenerate)}
           onClick={() => action(node.key)}
         >
@@ -552,6 +552,15 @@ export function Report({
           {node.label}
         </Button>
       );
+      // B-065: en eventuel forklaring vises som Hover Card; et klik udfører handlingen.
+      return node.help ? (
+        <Hint key={key} content={node.help} toggle={false}>
+          {button}
+        </Hint>
+      ) : (
+        button
+      );
+    }
     const change = (value: string | boolean) =>
       node.key === 'rap_dato' ? setDate(String(value)) : ctx.remember({ [node.key]: value });
     return (

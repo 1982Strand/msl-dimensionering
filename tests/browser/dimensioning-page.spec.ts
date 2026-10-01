@@ -40,10 +40,13 @@ test('M9: Standard/belastningsklasse, Brugerdefineret/trafikklasse og afvist dri
   ]);
   await expect(page.locator('.m9-thinnest h3')).toHaveText('2 lag geonet');
   await expect(page.locator('.m9-badge')).toHaveText('TYNDEST');
-  await expect(page.locator('.m9-badge')).toHaveAttribute(
-    'title',
+  // B-065: originalens title-forklaring vises som Hover Card.
+  await page.locator('.m9-badge').hover();
+  await expect(page.getByRole('tooltip')).toHaveText(
     'Dette er det tyndeste gyldige alternativ blandt de viste opbygninger.',
   );
+  await page.mouse.move(0, 0);
+  await expect(page.getByRole('tooltip')).toHaveCount(0);
   await expect(page.locator('.m9-result-delta')).toHaveText([
     '−450 mm 38 % tyndere',
     '−550 mm 46 % tyndere',
@@ -111,10 +114,12 @@ test('M9: Standard/belastningsklasse, Brugerdefineret/trafikklasse og afvist dri
   await expect(page.locator('[data-m9-slot="constructionHeading"] .bg-kort-note')).toHaveText(
     'Snit i samme lodrette skala · stiplet linje = indtastet 70 cm',
   );
-  await expect(page.locator('.bg-noegletal span[title]')).toHaveAttribute(
-    'title',
+  await page.locator('.bg-noegletal .hint-text').hover();
+  await expect(page.getByRole('tooltip')).toHaveText(
     'Den designdiagram-kurve, opslaget sker i: den kurve, hvis lagtykkelse uden geonet svarer til VejDims krav. Et opslagspunkt, ikke et forventet E-modul for opbygningen.',
   );
+  await page.mouse.move(0, 0);
+  await expect(page.getByRole('tooltip')).toHaveCount(0);
   await page.screenshot({ path: info.outputPath('m9-custom-traffic.png'), fullPage: true });
   await page.setViewportSize({ width: 390, height: 844 });
   expect(

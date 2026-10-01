@@ -7,6 +7,7 @@ import { Badge } from '@/components/ui/badge';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Label } from '@/components/ui/label';
 import { SaveState } from './EditorFeedback';
+import { HintText, IconTip } from './Hint';
 import { Notice } from './Notice';
 import { PageFooter, PageHeader } from './page';
 import { review_table, type ReviewedRow } from '../engine/edit-review';
@@ -253,7 +254,7 @@ export function Materials() {
                     <tr>
                       {columns.map((c) => (
                         <th key={c.field} scope="col" className={c.numeric ? 'num' : undefined}>
-                          {c.label}
+                          {c.help ? <HintText content={c.help}>{c.label}</HintText> : c.label}
                         </th>
                       ))}
                       <th scope="col">
@@ -285,25 +286,27 @@ export function Materials() {
                           <div className="row-actions">
                             {row.kind === 'added' && <Badge variant="secondary">Ny</Badge>}
                             {row.kind === 'changed' && (
+                              <IconTip label="Gendan rækkens standardværdier">
+                                <Button
+                                  variant="ghost"
+                                  size="icon"
+                                  aria-label={`Gendan række · ${row.key}`}
+                                  onClick={() => restore(row)}
+                                >
+                                  <RotateCcw size={15} />
+                                </Button>
+                              </IconTip>
+                            )}
+                            <IconTip label="Slet materiale">
                               <Button
                                 variant="ghost"
                                 size="icon"
-                                aria-label={`Gendan række · ${row.key}`}
-                                title="Gendan rækkens standardværdier"
-                                onClick={() => restore(row)}
+                                aria-label={`Slet · ${row.key}`}
+                                onClick={() => remove(row.index!)}
                               >
-                                <RotateCcw size={15} />
+                                <Trash2 size={15} />
                               </Button>
-                            )}
-                            <Button
-                              variant="ghost"
-                              size="icon"
-                              aria-label={`Slet · ${row.key}`}
-                              title="Slet materiale"
-                              onClick={() => remove(row.index!)}
-                            >
-                              <Trash2 size={15} />
-                            </Button>
+                            </IconTip>
                           </div>
                         </td>
                       </tr>

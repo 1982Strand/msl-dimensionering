@@ -9,6 +9,7 @@ import {
 import { resultChecks, type CheckNode, type CheckElement } from '../engine/result-checks';
 import type { DimensioningInput, dimensioner } from '../engine/dimensionering';
 import type { ProductRow } from '../engine/products';
+import { Hint } from './Hint';
 import { Notice } from './Notice';
 import './result-checks.css';
 
@@ -24,10 +25,22 @@ function Content({ nodes }: { nodes: CheckNode[] }) {
     const Tag = node.tag;
     // Original's inline styles are kept in the model for exact reference testing.
     // Theme and app font are applied by this component's stylesheet.
-    return (
-      <Tag key={i} className={node.className} title={node.title} aria-label={node.ariaLabel}>
+    const element = (
+      <Tag
+        className={node.className}
+        aria-label={node.ariaLabel}
+        tabIndex={node.title ? 0 : undefined}
+      >
         <Content nodes={node.children} />
       </Tag>
+    );
+    // B-065: forklaringen vises som Hover Card i stedet for browserens egen tooltip.
+    return node.title ? (
+      <Hint key={i} content={node.title}>
+        {element}
+      </Hint>
+    ) : (
+      <Fragment key={i}>{element}</Fragment>
     );
   });
 }

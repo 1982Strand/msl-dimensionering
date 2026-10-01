@@ -56,10 +56,6 @@
 .m9-page [data-m9-slot] .bg-noegletal td:last-child {
   font-weight: 600;
 }
-.m9-page [data-m9-slot] .bg-noegletal span[title] {
-  cursor: help;
-  border-bottom: 1px dotted var(--muted-foreground);
-}
 .m9-page [data-m9-slot='assumptions'] {
   max-width: 78ch;
   line-height: 1.7;

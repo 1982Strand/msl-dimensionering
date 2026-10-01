@@ -1,5 +1,5 @@
 import { Fragment } from 'react';
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '../components/ui/tooltip';
+import { Hint } from './Hint';
 import { netDetails, netIntervalNote, type NetDetailsNode } from '../engine/net-details';
 import type { DimensioningInput, dimensioner } from '../engine/dimensionering';
 import type { ProductRow } from '../engine/products';
@@ -15,16 +15,11 @@ function Content({ node }: { node: NetDetailsNode }) {
   ));
   if (node.title)
     return (
-      <Tooltip>
-        <TooltipTrigger asChild>
-          <Tag className={node.className} tabIndex={0}>
-            {children}
-          </Tag>
-        </TooltipTrigger>
-        <TooltipContent className="net-details-tooltip" sideOffset={6}>
-          {node.title}
-        </TooltipContent>
-      </Tooltip>
+      <Hint content={node.title}>
+        <Tag className={node.className} tabIndex={0}>
+          {children}
+        </Tag>
+      </Hint>
     );
   return <Tag className={node.className}>{children}</Tag>;
 }
@@ -51,9 +46,7 @@ export function NetDetails({
       aria-label={`Detaljer · ${result!.geonet_navn}`}
     >
       <Content node={model.heading} />
-      <TooltipProvider>
-        <Content node={model.grid} />
-      </TooltipProvider>
+      <Content node={model.grid} />
     </section>
   );
 }

@@ -1,4 +1,5 @@
 import { Fragment } from 'react';
+import { Hint } from './Hint';
 import {
   thinnestTitle,
   type DimensioningPage,
@@ -28,8 +29,12 @@ function Nodes({ nodes }: { nodes: PageDisplayNode[] }) {
               ['Vælg geonet', 'Designdiagram'].includes(node.children[0]))
           ? 'h2'
           : node.tag;
-    return (
-      <Tag key={i} className={node.className} title={node.attributes?.title}>
+    const title = node.attributes?.title;
+    const element = (
+      <Tag
+        className={title ? [node.className, 'hint-text'].filter(Boolean).join(' ') : node.className}
+        tabIndex={title ? 0 : undefined}
+      >
         {Tag === 'table' ? (
           <tbody>
             <Nodes nodes={node.children} />
@@ -38,6 +43,14 @@ function Nodes({ nodes }: { nodes: PageDisplayNode[] }) {
           <Nodes nodes={node.children} />
         )}
       </Tag>
+    );
+    // B-065: originalens title-forklaring vises som Hover Card.
+    return title ? (
+      <Hint key={i} content={title}>
+        {element}
+      </Hint>
+    ) : (
+      <Fragment key={i}>{element}</Fragment>
     );
   });
 }
@@ -70,9 +83,11 @@ export function PageResultCards({ model }: { model: DimensioningPage }) {
           <div className="m9-result-label">
             <h3>{card.label}</h3>
             {card.highlighted && (
-              <span className="m9-badge" title={thinnestTitle}>
-                TYNDEST
-              </span>
+              <Hint content={thinnestTitle}>
+                <span className="m9-badge" tabIndex={0}>
+                  TYNDEST
+                </span>
+              </Hint>
             )}
           </div>
           <div className="m9-result-value">

@@ -7,7 +7,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '../components/ui/accordion';
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '../components/ui/tooltip';
+import { Hint } from './Hint';
 import { Button } from '../components/ui/button';
 import { useEditor } from './EditorContext';
 import {
@@ -107,22 +107,15 @@ export function Help() {
               ))}
             </ol>
             <h3>{HJAELP_BEGREBER_TITEL}</h3>
-            <TooltipProvider>
-              <div className="help-concepts">
-                {HJAELP_NOEGLEBEGREBER.map(([name, explanation]) => (
-                  <Tooltip key={name}>
-                    <TooltipTrigger asChild>
-                      <button type="button" className="help-concept">
-                        {name}
-                      </button>
-                    </TooltipTrigger>
-                    <TooltipContent className="max-w-sm" sideOffset={6}>
-                      {explanation}
-                    </TooltipContent>
-                  </Tooltip>
-                ))}
-              </div>
-            </TooltipProvider>
+            <div className="help-concepts">
+              {HJAELP_NOEGLEBEGREBER.map(([name, explanation]) => (
+                <Hint key={name} content={explanation}>
+                  <button type="button" className="help-concept">
+                    {name}
+                  </button>
+                </Hint>
+              ))}
+            </div>
           </div>
         </div>
       </section>

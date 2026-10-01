@@ -17,10 +17,13 @@ test('M3: status, closed expanders, FIG-003 recommendation and execution require
 
   const status = page.locator('.bg-resultat-status');
   await expect(status).toHaveText('⚠ 1 kontrolpunktⓘ 1 anbefaling');
-  await expect(status.locator('[aria-label="Kontrolpunkter"]')).toHaveAttribute(
-    'title',
+  // B-065: originalens title-forklaring vises som Hover Card.
+  await status.locator('[aria-label="Kontrolpunkter"]').hover();
+  await expect(page.getByRole('tooltip')).toHaveText(
     "Der er 1 kontrolpunkt. Fold 'Kontrolpunkter og anbefalinger' ud længere nede på siden for at se detaljerne.",
   );
+  await page.mouse.move(0, 0);
+  await expect(page.getByRole('tooltip')).toHaveCount(0);
   // The slot is immediately after the cards and before the product list.
   expect(
     await page
