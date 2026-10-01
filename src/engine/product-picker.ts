@@ -60,9 +60,10 @@ export function productPicker(
     const badges: ProductPickerItem['badges'] = [
       { text: classText, tone: recommended ? 'green' : 'yellow' },
     ];
-    // Bevar originalens fortegn, herunder forskellen på '-' og '−'.
-    const correction = label.match(/Net-korrektion: ([+−-]?\d+ %)/)?.[1];
-    const optimal = label.match(/opt\. ([+−-]?\d+ %)/)?.[1];
+    // B-057: originalens etiketter blander '-' og '−'; mærkerne viser altid rigtigt minustegn.
+    const minus = (text: string | undefined) => text?.replace('-', '−');
+    const correction = minus(label.match(/Net-korrektion: ([+−-]?\d+ %)/)?.[1]);
+    const optimal = minus(label.match(/opt\. ([+−-]?\d+ %)/)?.[1]);
     if (correction) badges.push({ text: `Net-korrektion ${correction}`, tone: 'neutral' });
     if (optimal) badges.push({ text: `Optimal korrektion ${optimal}`, tone: 'neutral' });
     if (label.includes('· Referencenet')) badges.push({ text: 'Referencenet', tone: 'neutral' });

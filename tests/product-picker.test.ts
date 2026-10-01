@@ -44,8 +44,9 @@ test('B-054: klasser, net-korrektion, Optimal korrektion og Referencenet mod all
   for (const [i, item] of items.entries()) {
     const label = original.optionLabels![i];
     const classes = label.match(/\(Klasse ([\d,-]+)/)![1];
-    const correction = label.match(/Net-korrektion: ([+−-]?\d+ %)/)![1];
-    const optimal = label.match(/opt\. ([+−-]?\d+ %)/)?.[1];
+    // B-057: samme tal som originalen, men altid med rigtigt minustegn.
+    const correction = label.match(/Net-korrektion: ([+−-]?\d+ %)/)![1].replace('-', '−');
+    const optimal = label.match(/opt\. ([+−-]?\d+ %)/)?.[1].replace('-', '−');
     const recommended = GEONET_DB.find((p) => p.navn === item.name)!.klasser!.includes(4);
     assert.equal(item.recommended, recommended, item.name);
     assert.deepEqual(
@@ -62,7 +63,8 @@ test('B-054: klasser, net-korrektion, Optimal korrektion og Referencenet mod all
       item.name,
     );
   }
-  assert.equal(items.find((p) => p.name === 'Tensar HX165')!.badges[1].text, 'Net-korrektion -5 %');
+  assert.equal(items.find((p) => p.name === 'Tensar HX165')!.badges[1].text, 'Net-korrektion −5 %');
+  assert.ok(items.every((p) => p.badges.every((b) => !/-\d/.test(b.text))));
   assert.deepEqual(
     items
       .find((p) => p.name === 'Tensar InterAx NX850')!
