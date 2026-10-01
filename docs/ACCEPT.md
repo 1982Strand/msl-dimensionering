@@ -128,7 +128,7 @@ Rene procesbeslutninger og bevaringskrav, som ikke i sig selv godkender en ændr
 - **B-021, B-022, B-033:** målrettede tests/tokenforbrug, model-/hjælpeagentvalg og Claude/Codex-roller. Procesdelen i B-059 viderefører B-033.
 - **P-001/P-002:** foreløbige praktiske opstartsvalg, herunder privat repository; ikke B-beslutninger om offentliggørelse.
 
-A-004 er afklaret for nu ved B-060. A-006 og A-008/R-004 er åbne afklaringer, ikke godkendte afvigelser.
+A-004 er afklaret for nu ved B-060. A-006 og A-008/R-004 er udskudt ved B-062 og er ikke godkendte afvigelser.
 
 ## 3. Fund i originalen
 
@@ -205,17 +205,16 @@ R6 er genbygget 01.10.2026 efter temaet og oprydningen; alle 31 PDF'er er byte-i
 Handlingerne følger fase 5 i [MIGRATIONSPLAN.md](MIGRATIONSPLAN.md). Enkelte delgodkendelser, herunder B-055/B-059, er ikke en beslutning om offentliggørelse.
 
 1. **Browsere og enheder:** Afklaret i B-060: Chrome. Alle 54 browserforløb kører i Chromium (Desktop Chrome) og består.
-2. **Skærmstørrelser:** Testene dækker 1440, 600 og 390 px, herunder ingen vandret siderulning og mobilskuffe. Spørgsmål: er det tilstrækkeligt for intern brug, eller skal andre størrelser (fx bærbar 1366 px eller tablet) kontrolleres?
-3. **Tilgængelighed:** Automatisk axe-kontrol (WCAG 2.1 A/AA) indgår og består. Spørgsmål: skal der også laves en manuel gennemgang med skærmlæser, zoom og touch før intern brug, eller først før offentliggørelse?
+2. **Skærmstørrelser:** Afklaret i B-062: 1440, 600 og 390 px er tilstrækkeligt til intern brug.
+3. **Tilgængelighed:** Automatisk axe-kontrol (WCAG 2.1 A/AA) indgår og består. Afklaret i B-062: tilstrækkeligt til intern brug. En manuel gennemgang med skærmlæser, zoom og touch tages før offentliggørelse.
 4. **Lagring og nulstilling:** Dækket af enheds- og browserforløb (første start med B-008-standarder, genåbning, afgrænsede nulstillinger, dato-undtagelsen, localStorage-/IndexedDB-fejl, flere faner, profilens eksport/import). Ingen handling udestår ud over brugerens accept.
 5. **Versionsmærkning og tilbagerulning:** Versionsnummeret v0.6 bevares (B-060). Tilbagerulning sker via Git-historikken på `main`.
 6. **Adgang og hosting:** Intern brug nu (B-060). Offentliggørelse på hjemmesiden og hvad der da skal fjernes, ændres, låses eller ligge bag login afklares senere.
 7. **Merge til main:** Aftalt og udført (B-061). Alt ligger på `main`; integrationsgrenen og de øvrige grene er slettet.
-8. **Resterende delafklaringer, spørgsmål til brugeren:**
-   - B-040: den røde farve for indtastet opbygning i designdiagrammet (M5) blev forelagt, men ikke særskilt bekræftet. Den har siden indgået i den godkendte dimensioneringsside (B-042) og R6-sættet (B-055).
-   - FUND-002: manuel armering findes i motoren, men kan ikke vælges i produktvælgeren, som i originalen.
-   - FUND-003: minimumstykkelserne 200/200/200/250/275/300 mm er i originalens kildekode kommenteret som foreløbige.
-   - A-006/FUND-005: automatisk udfyldning af rapportens oplyste forudsætninger.
-   - A-008/R-004: tastaturbetjening, søgning og indsætning fra Excel i redigerbare tabeller.
+8. **Resterende delafklaringer:** Afklaret i B-062.
+   - Den røde kurve for indtastet opbygning (M5) er bekræftet.
+   - Manuel armering bevares som i originalen (FUND-002).
+   - Minimumstykkelserne bevares (FUND-003).
+   - Automatisk udfyldning (A-006/FUND-005) og tabelforbedringerne (A-008/R-004) indgår ikke nu.
 9. **Testhuller:** Matrixen angiver delkrav uden særskilt automatisk kontrol, bl.a. F-02.1/F-02.2 (slidergrænser), F-02.6/F-02.7 (inputgrænser), F-04.3, F-06.4, F-06.6, F-11.2, F-11.3 og B-053's Hover Card. Ændringer af originalens virkemåde kræver særskilt godkendelse.
 10. **Oprydning og PDF-beviser:** Udført. Udkast og rapportforsøg er fjernet (B-059), og R6-sættet er fastlåst med kontrolsummer (B-055).
