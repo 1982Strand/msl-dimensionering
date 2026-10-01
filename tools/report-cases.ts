@@ -11,6 +11,8 @@ import type { BasisTable } from '../src/engine/types.ts';
 import { cv_til_eu } from '../src/engine/data.ts';
 import {
   reportData,
+  grundlag_linjer,
+  resultat_linjer,
   SECTION_KEYS,
   type ReportContext,
   type ReportChoices,
@@ -128,4 +130,92 @@ export function reportCases() {
       table: ui.defaults.aktiv_t_basis_table,
     };
   });
+}
+
+export type ReportCase = ReturnType<typeof reportCases>[number];
+
+/** Originaltilfælde samt de allerede forelagte B-046/B-048/B-049-varianter. */
+export function reportReviewCases(): ReportCase[] {
+  const cases = reportCases();
+  const special = structuredClone(cases[0]);
+  special.name = 'special-characters';
+  special.metadata.projekt = '# $ * _ @ < > [ ] \\ #panic("MUST NOT RUN")';
+  special.metadata.beskrivelse = 'Flerlinjet beskrivelse\n# $ * _ @ < > [ ] \\';
+  special.tekster.udfoerelse =
+    'Bogstavelig tekst: # $ * _ @ < > [ ] \\\n#panic("MUST NOT RUN")\n\n   • Indrykket punkt\n           o Underpunkt';
+  special.data = reportData(special.result, special.metadata, special.valg, special.tekster);
+  cases.push(special);
+  const formatted = structuredClone(cases[0]);
+  formatted.name = 'b046-formatted-text';
+  formatted.tekster.udfoerelse =
+    'Et afsnit med **fed tekst** og *kursiv tekst*.\n\n' +
+    '• Første punkt\n  - Underpunkt med **fed** tekst\n    o Underpunkt med *kursiv* tekst\n' +
+    '- ' +
+    'En lang punktlinje skal fortsætte under teksten med hængende indrykning. '.repeat(8) +
+    '\n\n  Almindelig indrykning\n# $ [ ] \\ @ < > #panic("MUST NOT RUN")\n**Uafsluttet';
+  formatted.data = reportData(
+    formatted.result,
+    formatted.metadata,
+    formatted.valg,
+    formatted.tekster,
+  );
+  cases.push(formatted);
+  const omitted = structuredClone(cases[0]);
+  omitted.name = 'b046-omitted-sections';
+  omitted.valg.medtag_afsnit = { oplyste_forudsaetninger: false, udfoerelse: false };
+  omitted.data = reportData(omitted.result, omitted.metadata, omitted.valg, omitted.tekster);
+  cases.push(omitted);
+  // B-048: ekstra lag oven på originaltilfældene; forventningerne ændres ikke.
+  for (const control of [false, true]) {
+    const c = structuredClone(cases[0]);
+    c.name = control ? 'b048-med-kontrollant' : 'b048-uden-kontrollant';
+    Object.assign(c.metadata, {
+      sagsbehandler: 'Anna Jensen',
+      sagsbehandler_initialer: 'AJ',
+      sagsbehandler_mail: 'anna@example.invalid',
+      sagsbehandler_telefon: '12345678',
+      kontrol: 'Bo Nielsen',
+      kontrol_initialer: 'BN',
+      kontrol_telefon: '87654321',
+      kontrol_mail: 'bo@example.invalid',
+      kontrollant_i_bunden: control,
+    });
+    c.data = reportData(c.result, c.metadata, c.valg, c.tekster);
+    cases.push(c);
+  }
+  const edited = structuredClone(cases[0]);
+  edited.name = 'b049-rettede-linjer';
+  const basisLine = grundlag_linjer(edited.result, edited.valg).find(([key]) => key === 'eu')!;
+  const resultLine = resultat_linjer(edited.result, edited.valg).find(([key]) => key === '1lag')!;
+  edited.valg.linje_rettelser = {
+    basis_eu: {
+      beregnet_tekst: basisLine[1],
+      beregnet_vaerdi: basisLine[2],
+      tekst: 'Eftervist E-modul',
+      vaerdi: '22 MPa (prøvesag)',
+    },
+    resultat_1lag: {
+      beregnet_tekst: resultLine[1],
+      beregnet_vaerdi: resultLine[2],
+      tekst: 'Tilpasset MSL-opbygning',
+      vaerdi: '450 mm (prøvesag)',
+    },
+  };
+  edited.valg.resultat_linjer = { '2lag': false };
+  edited.data = reportData(edited.result, edited.metadata, edited.valg, edited.tekster);
+  cases.push(edited);
+  const hiddenResults = structuredClone(cases[0]);
+  hiddenResults.name = 'b049-skjult-resultattabel';
+  hiddenResults.valg.resultat_linjer = Object.fromEntries(
+    resultat_linjer(hiddenResults.result, hiddenResults.valg).map(([key]) => [key, false]),
+  );
+  hiddenResults.data = reportData(
+    hiddenResults.result,
+    hiddenResults.metadata,
+    hiddenResults.valg,
+    hiddenResults.tekster,
+  );
+  cases.push(hiddenResults);
+
+  return cases;
 }
