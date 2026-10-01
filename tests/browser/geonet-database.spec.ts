@@ -46,6 +46,8 @@ test('Geonet-database åbner fra navigationen, søger, sorterer og viser hjælpe
   expect(await table.locator('tbody tr td:first-child').allTextContents()).toEqual(
     [...names].reverse(),
   );
+  // Et klik lukker Radix-tooltippen; musen føres væk og tilbage som ved brug.
+  await page.mouse.move(0, 0);
   await productButton.hover();
   await expect(page.getByRole('tooltip')).toHaveText(geonetDatabaseColumns[0].help);
 

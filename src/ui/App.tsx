@@ -7,6 +7,7 @@ import { DataTables } from './DataTables';
 import { Settings } from './Settings';
 import { Dimensioning } from './Dimensioning';
 import { DesignDraft, SidebarPreview } from './DesignDraft';
+import { Help } from './Help';
 export function App() {
   const [page, setPage] = useState(() => location.hash.slice(1) || 'materialer');
   useEffect(() => {
@@ -32,6 +33,7 @@ export function App() {
           ['geonet-database', 'Geonet-database'],
           ['diagrammer', 'Designdiagrammer'],
           ['vejdim', 'Trafikklasse-korrelation'],
+          ['hjaelp', 'Hjælp'],
           ['indstillinger', 'Indstillinger'],
         ].map(([key, label]) => (
           <a key={key} href={`#${key}`} aria-current={page === key ? 'page' : undefined}>
@@ -42,6 +44,8 @@ export function App() {
       <EditorProvider>
         {page === 'geonet-database' ? (
           <GeonetDatabase />
+        ) : page === 'hjaelp' ? (
+          <Help />
         ) : page === 'designudkast' ? (
           <DesignDraft />
         ) : page === 'dimensionering' ? (

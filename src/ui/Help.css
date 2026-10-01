@@ -1,0 +1,246 @@
+.help-page {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  color: var(--foreground);
+}
+.help-page h1 {
+  font-size: 1.7rem;
+  font-weight: 650;
+  margin-bottom: 0.5rem;
+}
+.help-page .page-heading {
+  margin-bottom: 1.5rem;
+}
+.help-page .page-heading p,
+.help-card-header p {
+  color: var(--color-muted-foreground);
+}
+.help-intro,
+.help-chapter {
+  background: white;
+  border: 1px solid var(--color-border);
+  border-radius: 0.6rem;
+}
+.help-card-header {
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--color-border);
+}
+.help-card-header h2 {
+  font-size: 1.15rem;
+  font-weight: 650;
+}
+.help-intro-grid {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  gap: 2rem;
+  padding: 1.5rem;
+}
+.help-page h3 {
+  font-size: 1rem;
+  font-weight: 650;
+  margin-bottom: 0.75rem;
+}
+.help-markdown {
+  line-height: 1.65;
+  overflow-x: auto;
+}
+.help-markdown p {
+  margin: 0 0 1rem;
+}
+.help-markdown ul,
+.help-markdown ol {
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+.help-markdown ul {
+  list-style: disc;
+}
+.help-markdown ol {
+  list-style: decimal;
+}
+.help-markdown li {
+  margin-bottom: 0.3rem;
+}
+.help-markdown a {
+  text-decoration: underline;
+}
+.help-markdown table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+.help-markdown th,
+.help-markdown td {
+  border-bottom: 1px solid var(--color-border);
+  padding: 0.5rem 0.6rem;
+}
+.help-markdown th {
+  background: var(--color-muted);
+}
+.help-steps {
+  padding: 1rem;
+  background: var(--color-muted);
+  border-radius: 0.4rem;
+}
+.help-steps ol {
+  list-style: decimal;
+  padding-left: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+.help-steps li {
+  padding: 0.45rem 0;
+}
+.help-concepts {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+.help-concept {
+  border: 1px solid var(--color-border);
+  border-radius: 0.3rem;
+  background: white;
+  padding: 0.4rem 0.8rem;
+  cursor: help;
+}
+.help-concept:focus-visible {
+  outline: 2px solid var(--color-ring);
+  outline-offset: 2px;
+}
+.help-chapters {
+  margin-top: 1.5rem;
+  display: grid;
+  gap: 0.8rem;
+}
+.help-chapter-trigger {
+  padding: 1.2rem 1.5rem;
+  align-items: center;
+  font-size: 1rem;
+}
+.help-chapter-trigger:hover {
+  text-decoration: none;
+  background: var(--color-muted);
+}
+.help-chapter-number {
+  font-size: 1.5rem;
+  color: var(--primary);
+  width: 2rem;
+  flex-shrink: 0;
+}
+.help-chapter-summary {
+  flex: 1;
+  display: grid;
+  gap: 0.4rem;
+}
+.help-chapter-title {
+  font-size: 1.1rem;
+  font-weight: 650;
+}
+.help-chapter-resume,
+.help-chapter-count {
+  font-size: 0.85rem;
+  color: var(--color-muted-foreground);
+  font-weight: 400;
+}
+.help-chapter-count {
+  white-space: nowrap;
+}
+.help-chapter-content {
+  padding: 0 1.5rem 1.5rem;
+}
+.help-section {
+  display: grid;
+  grid-template-columns: 1.75fr 1fr;
+  gap: 2rem;
+  padding-top: 1.5rem;
+  margin-top: 1rem;
+  border-top: 1px solid var(--color-border);
+}
+.help-section-number {
+  margin-right: 0.7rem;
+  color: var(--primary);
+}
+.help-aside {
+  min-width: 0;
+}
+.help-aside figure {
+  margin: 0 0 1.5rem;
+}
+.help-figure-number {
+  font-size: 0.8rem;
+  font-weight: 650;
+  margin-bottom: 0.5rem;
+  color: var(--primary);
+}
+.help-aside figcaption {
+  font-size: 0.8rem;
+  color: var(--color-muted-foreground);
+  margin-top: 0.5rem;
+  line-height: 1.5;
+}
+.help-formula {
+  background: var(--color-muted);
+  border: 1px solid var(--color-border);
+  border-radius: 0.4rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  overflow-x: auto;
+}
+.help-expression {
+  font-family: Georgia, serif;
+  white-space: pre;
+}
+.help-where {
+  margin-top: 0.8rem;
+  font-size: 0.8rem;
+  line-height: 1.6;
+}
+.help-goto {
+  margin: 0.25rem 0 1rem;
+}
+.help-sources {
+  display: grid;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+.help-sources a {
+  display: grid;
+  padding: 0.7rem;
+  border: 1px solid var(--color-border);
+  border-radius: 0.3rem;
+}
+.help-sources a:hover span {
+  text-decoration: underline;
+}
+.help-sources small {
+  color: var(--color-muted-foreground);
+  margin-top: 0.3rem;
+}
+@media (max-width: 760px) {
+  .help-page {
+    padding: 1rem;
+  }
+  .help-intro-grid,
+  .help-section {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1rem;
+  }
+  .help-chapter-trigger {
+    padding: 1rem;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+  }
+  .help-chapter-summary {
+    min-width: 65%;
+  }
+  .help-chapter-count {
+    margin-left: 2.7rem;
+  }
+  .help-chapter-content {
+    padding: 0 1rem 1rem;
+  }
+}
+
+.help-section > div {
+  min-width: 0;
+}

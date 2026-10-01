@@ -31,6 +31,10 @@ Browserforløbet `tests/browser/geonet-database.spec.ts` dækker navigation, 20 
 
 **Kontrol:** parserens output matcher referencen for alle otte kapitler; ét browserforløb for navigation mellem kapitler og »gå til«.
 
+**Status 01.10.2026 (merget fra `codex/s2-hjaelp`):** TypeScript-parser, `#hjaelp`, navigationspunkt, Accordion og Tooltip er implementeret til gennemgang. Åbne kapitler gemmes som `session.values.hjaelp_aabne` i appens eksisterende localStorage-dokument; også et bevidst tomt udvalg bevares. Sidens egne styles ligger i `src/ui/Help.css`. Formler står i brødteksten og figurtabeller i højre kolonne som originalen (1,75 : 1); på smal skærm står figurerne under teksten. Gå-til-knappen til `rapport` er midlertidigt skjult, indtil rapportsiden findes (B-036); knappen til Geonet-database er aktiv efter merge af S1.
+
+Fire målrettede Node-tests sammenligner alle otte kapitlers fulde parseroutput og kildedokumenterne præcist samt hele tekst-/knapstrømmen fra `default` og `all_open` uden DOM: sidehoved, intro, trin, begreber/forklaringer, kapitelhoveder, afsnit, markdown, formel-HTML, figurnumre/-tekster og kildelinks. De skjulte knapper kontrolleres særskilt. Typekontrol, alle 2.808 Node-tests, formatering og build består. Playwright-forløbet er skrevet og forsøgt på port 5184, men sandkassen afviser Chromium-start med `browserType.launch: spawn EPERM`; browser- og visuel kontrol udestår. Det konkrete sidelayout afventer fortsat gennemgang og brugerens visuelle accept; ingen commit eller merge er foretaget.
+
 ## Rækkefølge og afhængigheder
 
 S1 og S2 er uafhængige af mellemregninger og rapport og kan laves sideløbende af hjælperen. Den samlede navigation (MIGRATIONSPLAN punkt 6) samler til sidst alle otte sider.
