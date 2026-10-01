@@ -451,7 +451,7 @@ export function Dimensioning() {
                 />
               </div>
             </div>
-            <Accordion type="single" collapsible className="m9-products">
+            <Accordion type="single" collapsible className="m9-products dim-expander-card">
               <AccordionItem value="products">
                 <AccordionTrigger>{page.productExpander?.label}</AccordionTrigger>
                 <AccordionContent>

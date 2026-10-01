@@ -76,17 +76,19 @@ export function ResultChecks(props: Props) {
   const model = resultChecks(props.input, props.result, props.unit, props.products);
   if (!model.expanders.length) return null;
   return (
-    <Accordion type="multiple" className="section-card result-checks">
+    <div className="result-checks">
       {model.expanders.map((expander, i) => (
-        <AccordionItem key={i} value={String(i)}>
-          <AccordionTrigger>{expander.label}</AccordionTrigger>
-          <AccordionContent className="result-check-content">
-            {expander.children.map((element, j) => (
-              <Element key={j} element={element} />
-            ))}
-          </AccordionContent>
-        </AccordionItem>
+        <Accordion key={i} type="single" collapsible className="dim-expander-card">
+          <AccordionItem value={String(i)}>
+            <AccordionTrigger>{expander.label}</AccordionTrigger>
+            <AccordionContent className="result-check-content">
+              {expander.children.map((element, j) => (
+                <Element key={j} element={element} />
+              ))}
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
       ))}
-    </Accordion>
+    </div>
   );
 }
