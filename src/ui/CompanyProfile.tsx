@@ -1,9 +1,27 @@
-import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
+import { useEffect, useMemo, useRef, useState, type ReactNode, type Ref } from 'react';
 import { Button } from '../components/ui/button';
 import { formatPhone } from '../report/phone-format';
 import { Input } from '../components/ui/input';
 import { Textarea } from '../components/ui/textarea';
 import { Alert, AlertDescription } from '../components/ui/alert';
+import { Popover, PopoverContent, PopoverTrigger } from '../components/ui/popover';
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from '../components/ui/sheet';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '../components/ui/table';
 import {
   changeProfileField,
   defaultProfileState,
@@ -436,6 +454,7 @@ export function CompanyProfile({
               <Employees
                 key={reset}
                 profile={profile.medarbejdere}
+                disabled={busy || saving}
                 onChange={(medarbejdere) =>
                   update((prev) => ({ ...prev, profile: { ...prev.profile, medarbejdere } }))
                 }
@@ -514,111 +533,311 @@ export function CompanyProfile({
   );
 }
 
-/** B-048: ugyldige kladder markeres; kun gyldige værdier erstatter profildata. */
+const employeeFields = [
+  ['navn', 'Navn'],
+  ['initialer', 'Initialer'],
+  ['mail', 'Mail'],
+  ['telefon', 'Telefon'],
+] as const;
+function emptyEmployee(): Employee {
+  return { navn: '', initialer: '', mail: '', telefon: '' };
+}
+
+function EmployeeField({
+  field,
+  label,
+  id,
+  value,
+  error,
+  onChange,
+  inputRef,
+  compact = false,
+  onSave,
+}: {
+  field: keyof Employee;
+  label: string;
+  id: string;
+  value: string;
+  error?: string;
+  onChange: (value: string) => void;
+  inputRef?: Ref<HTMLInputElement>;
+  compact?: boolean;
+  onSave?: () => void;
+}) {
+  return (
+    <div className="setting-field profile-field">
+      <label htmlFor={id} className={compact ? 'sr-only' : undefined}>
+        {label}
+      </label>
+      <Input
+        ref={inputRef}
+        id={id}
+        value={value}
+        aria-invalid={!!error}
+        aria-describedby={error ? id + '-error' : undefined}
+        onChange={(event) => onChange(event.target.value)}
+        onBlur={(event) => {
+          if (field === 'telefon') onChange(formatPhone(event.target.value));
+        }}
+        onKeyDown={(event) => {
+          if (event.key === 'Enter' && onSave) {
+            event.preventDefault();
+            onSave();
+          }
+        }}
+      />
+      {error && (
+        <p className="profile-field-error" id={id + '-error'}>
+          {error}
+        </p>
+      )}
+    </div>
+  );
+}
+
+function EmployeeRow({
+  person,
+  index,
+  disabled,
+  locked,
+  active,
+  onEditing,
+  onSave,
+  onDelete,
+}: {
+  person: Employee;
+  index: number;
+  disabled: boolean;
+  locked: boolean;
+  active: boolean;
+  onEditing: (editing: boolean) => void;
+  onSave: (person: Employee) => void;
+  onDelete: () => void;
+}) {
+  const [draft, setDraft] = useState<Employee | null>(null);
+  const [errors, setErrors] = useState<Partial<Record<keyof Employee, string>>>({});
+  function save() {
+    if (!draft || !active || disabled) return;
+    const next = { ...draft, telefon: formatPhone(draft.telefon) };
+    const invalid = employeeErrors(next);
+    setErrors(invalid);
+    if (Object.keys(invalid).length) return;
+    onSave(next);
+    setDraft(null);
+    setErrors({});
+    onEditing(false);
+  }
+  return (
+    <TableRow>
+      {(['initialer', 'navn', 'mail', 'telefon'] as const).map((key) => (
+        <TableCell key={key}>
+          {draft && active ? (
+            <fieldset disabled={disabled}>
+              <EmployeeField
+                field={key}
+                label={employeeFields.find(([field]) => field === key)![1]}
+                id={`employee-edit-${index}-${key}`}
+                value={draft[key]}
+                error={errors[key]}
+                compact
+                onSave={save}
+                onChange={(value) => {
+                  const next = { ...draft, [key]: value };
+                  setDraft(next);
+                  if (Object.keys(errors).length) setErrors(employeeErrors(next));
+                }}
+              />
+            </fieldset>
+          ) : key === 'telefon' ? (
+            formatPhone(person[key])
+          ) : (
+            person[key]
+          )}
+        </TableCell>
+      ))}
+      <TableCell>
+        <div className="profile-employee-row-actions">
+          {draft && active ? (
+            <>
+              <Button type="button" disabled={disabled} onClick={save}>
+                Gem
+              </Button>
+              <Button
+                type="button"
+                variant="outline"
+                onClick={() => {
+                  setDraft(null);
+                  setErrors({});
+                  onEditing(false);
+                }}
+              >
+                Fortryd
+              </Button>
+            </>
+          ) : (
+            <>
+              <Button
+                type="button"
+                variant="outline"
+                disabled={disabled || locked}
+                onClick={() => {
+                  setDraft({ ...person, telefon: formatPhone(person.telefon) });
+                  onEditing(true);
+                }}
+              >
+                Ret
+              </Button>
+              <Button
+                type="button"
+                variant="outline"
+                disabled={disabled || locked}
+                onClick={() => {
+                  if (window.confirm(`Slet medarbejderen ${person.navn}?`)) onDelete();
+                }}
+              >
+                Slet
+              </Button>
+            </>
+          )}
+        </div>
+      </TableCell>
+    </TableRow>
+  );
+}
+
+/** B-050/B-051: tilføjelse i Popover; kartotek og redigering i Sheet. */
 function Employees({
   profile,
+  disabled,
   onChange,
 }: {
   profile: Employee[];
+  disabled: boolean;
   onChange: (people: Employee[]) => void;
 }) {
-  const [rows, setRows] = useState(() =>
-    profile.map((value) => ({
-      value: { ...value, telefon: formatPhone(value.telefon) },
-      applied: value as Employee | null,
-    })),
-  );
-  function change(next: typeof rows) {
-    setRows(next);
-    onChange(next.flatMap((row) => (row.applied ? [row.applied] : [])));
+  const [adding, setAdding] = useState(false);
+  const [editing, setEditing] = useState<number | null>(null);
+  const [person, setPerson] = useState<Employee>(emptyEmployee);
+  const [errors, setErrors] = useState<Partial<Record<keyof Employee, string>>>({});
+  const nameInput = useRef<HTMLInputElement>(null);
+  function add() {
+    const next = { ...person, telefon: formatPhone(person.telefon) };
+    const invalid = employeeErrors(next);
+    setErrors(invalid);
+    if (disabled || Object.keys(invalid).length) return;
+    onChange([...profile, next]);
+    setPerson(emptyEmployee());
+    setErrors({});
+    setAdding(false);
   }
   return (
     <>
       <p className="report-caption">
-        Personerne kan vælges som sagsbehandler og kvalitetssikring under Sagsoplysninger. Gyldige
-        oplysninger gemmes automatisk.
+        Personerne kan vælges som sagsbehandler og kvalitetssikring under Sagsoplysninger.
+        Oplysninger gemmes i denne browser.
       </p>
-      {rows.map((row, index) => {
-        const errors = employeeErrors(row.value);
-        return (
-          <fieldset
-            key={index}
-            className="profile-employee"
-            aria-label={`Medarbejder ${index + 1}`}
+      <div className="profile-actions">
+        <Popover open={adding} onOpenChange={setAdding}>
+          <PopoverTrigger asChild>
+            <Button type="button" variant="outline" disabled={disabled}>
+              Tilføj medarbejder
+            </Button>
+          </PopoverTrigger>
+          <PopoverContent
+            align="start"
+            className="profile-employee-popover"
+            aria-label="Tilføj medarbejder"
+            onOpenAutoFocus={(event) => {
+              event.preventDefault();
+              nameInput.current?.focus();
+            }}
           >
-            <legend>Medarbejder {index + 1}</legend>
-            {(['navn', 'initialer', 'mail', 'telefon'] as const).map((key, fieldIndex) => {
-              const id = `employee-${index}-${key}`;
-              return (
-                <div className="setting-field profile-field" key={key}>
-                  <label htmlFor={id}>{['Navn', 'Initialer', 'Mail', 'Telefon'][fieldIndex]}</label>
-                  <Input
-                    id={id}
-                    value={row.value[key]}
-                    aria-invalid={!!errors[key]}
-                    aria-describedby={errors[key] ? id + '-error' : undefined}
-                    onBlur={(event) => {
-                      if (key !== 'telefon') return;
-                      const value = { ...row.value, telefon: formatPhone(event.target.value) };
-                      change(
-                        rows.map((r, i) =>
-                          i === index
-                            ? {
-                                value,
-                                applied: Object.keys(employeeErrors(value)).length
-                                  ? r.applied
-                                  : value,
-                              }
-                            : r,
-                        ),
-                      );
-                    }}
-                    onChange={(event) => {
-                      const value = { ...row.value, [key]: event.target.value };
-                      change(
-                        rows.map((r, i) =>
-                          i === index
-                            ? {
-                                value,
-                                applied: Object.keys(employeeErrors(value)).length
-                                  ? r.applied
-                                  : value,
-                              }
-                            : r,
-                        ),
-                      );
+            <form
+              noValidate
+              onSubmit={(event) => {
+                event.preventDefault();
+                add();
+              }}
+            >
+              <fieldset disabled={disabled}>
+                {employeeFields.map(([key, label]) => (
+                  <EmployeeField
+                    key={key}
+                    field={key}
+                    label={label}
+                    id={'employee-add-' + key}
+                    value={person[key]}
+                    error={errors[key]}
+                    inputRef={key === 'navn' ? nameInput : undefined}
+                    onChange={(value) => {
+                      const next = { ...person, [key]: value };
+                      setPerson(next);
+                      if (Object.keys(errors).length) setErrors(employeeErrors(next));
                     }}
                   />
-                  {errors[key] && (
-                    <p className="profile-field-error" id={id + '-error'}>
-                      {errors[key]}
-                    </p>
-                  )}
-                </div>
-              );
-            })}
-            <Button
-              type="button"
-              variant="outline"
-              onClick={() => change(rows.filter((_, i) => i !== index))}
-            >
-              Slet medarbejder
+                ))}
+                <Button type="submit">Tilføj</Button>
+              </fieldset>
+            </form>
+          </PopoverContent>
+        </Popover>
+        <Sheet
+          onOpenChange={(open) => {
+            if (!open) setEditing(null);
+          }}
+        >
+          <SheetTrigger asChild>
+            <Button type="button" variant="outline" disabled={disabled}>
+              Åbn kartotek ({profile.length})
             </Button>
-          </fieldset>
-        );
-      })}
-      <Button
-        type="button"
-        variant="outline"
-        onClick={() =>
-          setRows([
-            ...rows,
-            { value: { navn: '', initialer: '', mail: '', telefon: '' }, applied: null },
-          ])
-        }
-      >
-        Tilføj medarbejder
-      </Button>
+          </SheetTrigger>
+          <SheetContent className="profile-employee-sheet" showCloseButton={false}>
+            <SheetHeader>
+              <SheetTitle>Medarbejderkartotek</SheetTitle>
+              <SheetDescription>Ret eller slet personer i kartoteket.</SheetDescription>
+              <SheetClose asChild>
+                <Button type="button" variant="outline" className="self-start">
+                  Luk kartotek
+                </Button>
+              </SheetClose>
+            </SheetHeader>
+            <div className="profile-employee-catalogue">
+              {profile.length === 0 ? (
+                <p>Kartoteket er tomt.</p>
+              ) : (
+                <Table aria-label="Medarbejdere">
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead scope="col">Initialer</TableHead>
+                      <TableHead scope="col">Navn</TableHead>
+                      <TableHead scope="col">Mail</TableHead>
+                      <TableHead scope="col">Telefon</TableHead>
+                      <TableHead scope="col">
+                        <span className="sr-only">Handlinger</span>
+                      </TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {profile.map((value, index) => (
+                      <EmployeeRow
+                        key={index}
+                        person={value}
+                        index={index}
+                        disabled={disabled}
+                        locked={editing !== null}
+                        active={editing === index}
+                        onEditing={(active) => setEditing(active ? index : null)}
+                        onSave={(next) => onChange(profile.map((p, i) => (i === index ? next : p)))}
+                        onDelete={() => onChange(profile.filter((_, i) => i !== index))}
+                      />
+                    ))}
+                  </TableBody>
+                </Table>
+              )}
+            </div>
+          </SheetContent>
+        </Sheet>
+      </div>
     </>
   );
 }

@@ -49,7 +49,7 @@ async function stored(page: Page) {
   );
 }
 
-test('B-048: kartotek, valg af begge personer, manuel rettelse, revisionsspærring og profilrundtur', async ({
+test('B-048/B-050/B-051: Popover, kartotek, rapportkopier og profilrundtur', async ({
   page,
   baseURL,
 }, info) => {
@@ -61,34 +61,74 @@ test('B-048: kartotek, valg af begge personer, manuel rettelse, revisionsspærri
   ).toHaveCount(2);
   await page.getByRole('tab', { name: 'Firmaprofil', exact: true }).click();
   let old = await ready(page);
+  const employeeCard = page.locator('section[aria-labelledby="profile-card-8"]');
+  const cardHeight = (await employeeCard.boundingBox())!.height;
   const people = [
     { navn: 'Anna Jensen', initialer: 'AJ', mail: 'anna@example.invalid', telefon: '12 34 56 78' },
     { navn: 'Bo Nielsen', initialer: 'BN', mail: 'bo@example.invalid', telefon: '87 65 43 21' },
   ];
+  const addForm = page.getByRole('dialog', { name: 'Tilføj medarbejder', exact: true });
   for (const [index, person] of people.entries()) {
     await page.getByRole('button', { name: 'Tilføj medarbejder', exact: true }).click();
-    const row = page.getByRole('group', { name: `Medarbejder ${index + 1}`, exact: true });
-    await expect(row.getByLabel('Navn', { exact: true })).toHaveAttribute('aria-invalid', 'true');
+    await expect(addForm.getByLabel('Navn', { exact: true })).toBeFocused();
+    for (const label of ['Navn', 'Initialer', 'Mail', 'Telefon'])
+      await expect(addForm.getByLabel(label, { exact: true })).toHaveValue('');
+    if (index === 0) {
+      await addForm.getByRole('button', { name: 'Tilføj', exact: true }).click();
+      await expect(addForm.getByLabel('Navn', { exact: true })).toHaveAttribute(
+        'aria-invalid',
+        'true',
+      );
+      await expect(addForm.getByText('Navn er påkrævet.', { exact: true })).toBeVisible();
+    }
     for (const [label, value] of [
       ['Navn', person.navn],
       ['Initialer', person.initialer],
       ['Mail', person.mail],
       ['Telefon', person.telefon],
     ])
-      await row
+      await addForm
         .getByLabel(label, { exact: true })
         .fill(label === 'Telefon' ? value.replaceAll(' ', '') : value);
-    await row.getByLabel('Telefon', { exact: true }).blur();
-    await expect(row.getByLabel('Telefon', { exact: true })).toHaveValue(person.telefon);
+    await addForm.getByLabel('Telefon', { exact: true }).blur();
+    await expect(addForm.getByLabel('Telefon', { exact: true })).toHaveValue(person.telefon);
+    if (index === 0) {
+      await addForm.getByLabel('Mail', { exact: true }).fill('ugyldig');
+      await addForm.getByLabel('Initialer', { exact: true }).fill('1234567');
+      await addForm.getByRole('button', { name: 'Tilføj', exact: true }).click();
+      for (const label of ['Mail', 'Initialer'])
+        await expect(addForm.getByLabel(label, { exact: true })).toHaveAttribute(
+          'aria-invalid',
+          'true',
+        );
+      await expect(
+        addForm.getByText('Angiv en gyldig mailadresse.', { exact: true }),
+      ).toBeVisible();
+      expect((await stored(page)).medarbejdere).toEqual([]);
+      await addForm.getByLabel('Mail', { exact: true }).fill(person.mail);
+      await addForm.getByLabel('Initialer', { exact: true }).fill(person.initialer);
+      await addForm.getByRole('button', { name: 'Tilføj', exact: true }).click();
+    } else {
+      await addForm.getByLabel('Telefon', { exact: true }).press('Enter');
+    }
+    await expect(addForm).not.toBeVisible();
     old = await ready(page, old);
   }
   expect((await stored(page)).medarbejdere).toEqual(people);
-  const first = page.getByRole('group', { name: 'Medarbejder 1', exact: true });
-  await first.getByLabel('Mail', { exact: true }).fill('ugyldig');
-  await expect(first.getByLabel('Mail', { exact: true })).toHaveAttribute('aria-invalid', 'true');
-  expect((await stored(page)).medarbejdere).toEqual(people);
-  await first.getByLabel('Mail', { exact: true }).fill(people[0].mail);
-  await ready(page);
+  expect((await employeeCard.boundingBox())!.height).toBe(cardHeight);
+  await page.getByRole('button', { name: 'Tilføj medarbejder', exact: true }).click();
+  for (const label of ['Navn', 'Initialer', 'Mail', 'Telefon'])
+    await expect(addForm.getByLabel(label, { exact: true })).toHaveValue('');
+  await addForm.getByLabel('Navn', { exact: true }).press('Escape');
+  await expect(addForm).not.toBeVisible();
+  const catalogue = page.getByRole('dialog', { name: 'Medarbejderkartotek', exact: true });
+  await page.getByRole('button', { name: 'Åbn kartotek (2)', exact: true }).click();
+  for (const person of people) {
+    const row = catalogue.getByRole('row').filter({ hasText: person.navn });
+    for (const value of Object.values(person))
+      await expect(row.getByRole('cell', { name: value, exact: true })).toBeVisible();
+  }
+  await catalogue.getByRole('button', { name: 'Luk kartotek', exact: true }).click();
   const json = await exported(page);
   expect(JSON.parse(json).profile.medarbejdere).toEqual(people);
   await page.getByRole('tab', { name: 'Rapport', exact: true }).click();
@@ -156,23 +196,79 @@ test('B-048: kartotek, valg af begge personer, manuel rettelse, revisionsspærri
   ).toBeChecked();
   await page.getByRole('tab', { name: 'Firmaprofil', exact: true }).click();
   await ready(page);
+  await page.getByRole('button', { name: 'Åbn kartotek (2)', exact: true }).click();
+  const first = catalogue.getByRole('row').nth(1);
+  await first.getByRole('button', { name: 'Ret', exact: true }).click();
+  await first.getByLabel('Navn', { exact: true }).fill('Anna ændret');
+  await first.getByRole('button', { name: 'Fortryd', exact: true }).click();
+  await expect(first.getByRole('cell', { name: people[0].navn, exact: true })).toBeVisible();
+  await first.getByRole('button', { name: 'Ret', exact: true }).click();
+  await first.getByLabel('Mail', { exact: true }).fill('ugyldig');
+  await first.getByRole('button', { name: 'Gem', exact: true }).click();
+  await expect(first.getByLabel('Mail', { exact: true })).toHaveAttribute('aria-invalid', 'true');
+  expect((await stored(page)).medarbejdere).toEqual(people);
+  await first.getByLabel('Mail', { exact: true }).fill('anna.ny@example.invalid');
+  await first.getByLabel('Telefon', { exact: true }).fill('42400918');
+  await first.getByRole('button', { name: 'Gem', exact: true }).click();
+  await catalogue.getByRole('button', { name: 'Luk kartotek', exact: true }).click();
+  await ready(page);
+  await page.getByRole('button', { name: 'Åbn kartotek (2)', exact: true }).click();
+  const changed = { ...people[0], mail: 'anna.ny@example.invalid', telefon: '42 40 09 18' };
+  await expect(first.getByRole('cell', { name: changed.telefon, exact: true })).toBeVisible();
+  const second = catalogue.getByRole('row').filter({ hasText: people[1].navn });
+  page.once('dialog', (d) => void d.dismiss());
+  await second.getByRole('button', { name: 'Slet', exact: true }).click();
+  expect((await stored(page)).medarbejdere).toEqual([changed, people[1]]);
+  page.once('dialog', (d) => {
+    expect(d.message()).toContain(people[1].navn);
+    void d.accept();
+  });
+  await second.getByRole('button', { name: 'Slet', exact: true }).click();
+  await catalogue.getByRole('button', { name: 'Luk kartotek', exact: true }).click();
+  await ready(page);
+  expect((await stored(page)).medarbejdere).toEqual([changed]);
+  await page.reload();
+  await ready(page);
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.getByRole('button', { name: 'Åbn kartotek (1)', exact: true }).click();
+  await expect(catalogue.getByRole('cell', { name: changed.mail, exact: true })).toBeVisible();
+  const panel = await catalogue.boundingBox();
+  expect(panel!.width).toBe(390);
+  expect(
+    await catalogue
+      .locator('[data-slot=table-container]')
+      .evaluate((el) => el.scrollWidth > el.clientWidth),
+  ).toBe(true);
+  await catalogue.getByRole('button', { name: 'Luk kartotek', exact: true }).click();
+  await page.setViewportSize({ width: 1440, height: 1050 });
+  await page.getByRole('tab', { name: 'Rapport', exact: true }).click();
+  for (const [label, value] of [
+    ['Sagsbehandler-mail', people[0].mail],
+    ['Sagsbehandler-telefon', '11 22 33 44'],
+    ['Kvalitetssikring', people[1].navn],
+    ['Kvalitetssikring-initialer', people[1].initialer],
+    ['Kvalitetssikring-mail', people[1].mail],
+    ['Kvalitetssikring-telefon', people[1].telefon],
+  ])
+    await expect(page.getByLabel(label, { exact: true })).toHaveValue(value);
+  await page.getByRole('tab', { name: 'Firmaprofil', exact: true }).click();
+  await ready(page);
   page.once('dialog', (d) => void d.accept());
   await page.getByRole('button', { name: 'Nulstil firmaprofil til standard', exact: true }).click();
   await ready(page);
   expect((await stored(page)).medarbejdere).toEqual([]);
-  await expect(page.getByRole('group', { name: 'Medarbejder 1', exact: true })).toHaveCount(0);
+  await page.getByRole('button', { name: 'Åbn kartotek (0)', exact: true }).click();
+  await expect(catalogue.getByText('Kartoteket er tomt.', { exact: true })).toBeVisible();
+  await catalogue.getByRole('button', { name: 'Luk kartotek', exact: true }).click();
   await page
     .getByLabel('Profilfil', { exact: true })
     .setInputFiles({ name: 'b048.json', mimeType: 'application/json', buffer: Buffer.from(json) });
   await ready(page);
   expect((await stored(page)).medarbejdere).toEqual(people);
-  await page
-    .getByRole('group', { name: 'Medarbejder 2', exact: true })
-    .getByRole('button', { name: 'Slet medarbejder' })
-    .click();
-  await ready(page);
-  expect((await stored(page)).medarbejdere).toEqual([people[0]]);
-  await page.screenshot({ path: info.outputPath('b048-kartotek.png'), fullPage: true });
+  expect(JSON.parse(await exported(page))).toEqual(JSON.parse(json));
+  await page.getByRole('button', { name: 'Åbn kartotek (2)', exact: true }).click();
+  await page.screenshot({ path: info.outputPath('b050-kartotek.png'), fullPage: true });
+  await catalogue.getByRole('button', { name: 'Luk kartotek', exact: true }).click();
   await page.getByRole('tab', { name: 'Rapport', exact: true }).click();
   await page.getByRole('button', { name: 'Nulstil felter', exact: true }).click();
   for (const id of [
