@@ -29,6 +29,7 @@ import {
   AccordionContent,
 } from '../components/ui/accordion';
 import './dimensioning-page.css';
+import './expander-card.css';
 import { InfoPopup } from './InfoPopup';
 import { TrafficCorrelationPopup } from './TrafficCorrelationPopup';
 import { ConstructionFigure } from './ConstructionFigure';

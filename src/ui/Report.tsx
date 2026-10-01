@@ -3,6 +3,8 @@ import ReactMarkdown from 'react-markdown';
 import { useEditor } from './EditorContext';
 import { EditorFeedback, SaveState } from './EditorFeedback';
 import { Button } from '../components/ui/button';
+import { Input } from '../components/ui/input';
+import { Textarea } from '../components/ui/textarea';
 import {
   Accordion,
   AccordionItem,
@@ -18,6 +20,7 @@ import {
   resetReportChoices,
   PROJECT_FIELDS,
   type ReportNode,
+  type ReportStep,
 } from '../report/report-page';
 import { reportData, STANDARD_TEKSTER, type SectionKey } from '../report/report-data';
 import { reportFigures } from '../report/report-figures';
@@ -32,6 +35,7 @@ import {
 } from '../report/compile-queue';
 import { loadPdfCompiler } from '../report/compiler';
 import './dimensioning-page.css';
+import './expander-card.css';
 import './Report.css';
 
 const states = {
@@ -196,13 +200,13 @@ export function Report({
     if (node.kind === 'divider') return <hr key={key} />;
     if (node.kind === 'caption' || node.kind === 'info' || node.kind === 'success')
       return (
-        <div key={key} className={`report-${node.kind}`}>
+        <div key={key} className={node.kind === 'info' ? 'info-banner' : `report-${node.kind}`}>
           <ReactMarkdown>{node.text}</ReactMarkdown>
         </div>
       );
     if (node.kind === 'expander')
       return (
-        <Accordion key={key} type="multiple">
+        <Accordion key={key} type="multiple" className="dim-expander-card">
           <AccordionItem value={node.key}>
             <AccordionTrigger>{node.title}</AccordionTrigger>
             <AccordionContent>
@@ -214,9 +218,13 @@ export function Report({
     if (node.kind === 'figure') {
       const figure = figures?.[node.key];
       return figure ? (
-        <section key={key} className="report-figure">
-          <h3>{node.title}</h3>
-          <p className="report-caption">{node.note}</p>
+        <section key={key} className="section-card settings-card m9-figure report-figure">
+          <div data-m9-slot={node.key}>
+            <div className="bg-kort-hoved">
+              <h2 className="bg-kort-titel">{node.title}</h2>
+              <p className="bg-kort-note">{node.note}</p>
+            </div>
+          </div>
           <div dangerouslySetInnerHTML={{ __html: figure.svg }} />
         </section>
       ) : null;
@@ -238,7 +246,10 @@ export function Report({
       node.key === 'rap_dato' ? setDate(String(value)) : ctx.remember({ [node.key]: value });
     return (
       <div key={key} className={`setting-field report-field report-${node.kind}`}>
-        <label htmlFor={node.key}>
+        <label
+          htmlFor={node.key}
+          className={node.kind === 'checkbox' ? 'setting-checkbox' : undefined}
+        >
           {node.kind === 'checkbox' && (
             <input
               id={node.key}
@@ -249,10 +260,10 @@ export function Report({
               onChange={(e) => change(e.target.checked)}
             />
           )}
-          {node.label}
+          <span>{node.label}</span>
         </label>
         {node.kind === 'text_area' ? (
-          <textarea
+          <Textarea
             id={node.key}
             rows={node.key.startsWith('rap_tekst_') ? 9 : 3}
             value={String(node.value)}
@@ -262,7 +273,7 @@ export function Report({
           />
         ) : (
           node.kind !== 'checkbox' && (
-            <input
+            <Input
               id={node.key}
               type={node.kind === 'date_input' ? 'date' : 'text'}
               value={String(node.value)}
@@ -274,6 +285,132 @@ export function Report({
         )}
         {node.help && <p id={`${node.key}-help`}>{node.help}</p>}
       </div>
+    );
+  }
+
+  function renderStep(step: ReportStep) {
+    const nodes = step.children;
+    if (step.number === 1) {
+      const fields = nodes.filter(
+        (node) =>
+          node.kind === 'text_input' || node.kind === 'text_area' || node.kind === 'date_input',
+      );
+      const leftKeys = PROJECT_FIELDS.slice(0, 5).map(([name]) => 'rap_' + name);
+      return (
+        <>
+          <div className="report-fields-toolbar">
+            {nodes
+              .filter((node) => node.kind === 'caption' || node.kind === 'button')
+              .map(renderNode)}
+          </div>
+          <div className="report-project-columns">
+            <div>
+              {fields
+                .filter((node) => 'key' in node && leftKeys.includes(node.key))
+                .map(renderNode)}
+            </div>
+            <div>
+              {fields
+                .filter((node) => 'key' in node && !leftKeys.includes(node.key))
+                .map(renderNode)}
+            </div>
+          </div>
+          {nodes.filter((node) => node.kind === 'divider').map(renderNode)}
+        </>
+      );
+    }
+    if (step.number === 3) {
+      const cuts = ['rap_vis_indtastet', 'rap_vis_uarm', 'rap_vis_1lag', 'rap_vis_2lag'];
+      return (
+        <>
+          <div className="report-cut-choices">
+            {nodes
+              .filter((node) => node.kind === 'checkbox' && cuts.includes(node.key))
+              .map(renderNode)}
+          </div>
+          <div className="report-diagram-choices">
+            <div>
+              {nodes
+                .filter((node) => 'key' in node && node.key === 'rap_vis_designdiagram')
+                .map(renderNode)}
+            </div>
+            <div>
+              {nodes
+                .filter((node) => node.kind === 'checkbox' && node.key.startsWith('rap_dd_'))
+                .map(renderNode)}
+            </div>
+          </div>
+          {nodes.filter((node) => node.kind !== 'checkbox').map(renderNode)}
+        </>
+      );
+    }
+    if (step.number === 4) {
+      return (
+        <>
+          <div className="report-generate-toolbar">
+            {nodes.filter((node) => node.kind === 'button').map(renderNode)}
+            {current ? (
+              <Button asChild>
+                <a href={preview!.url} download={reportFilename(model.metadata)}>
+                  Hent PDF
+                </a>
+              </Button>
+            ) : (
+              <Button disabled>Hent PDF</Button>
+            )}
+            <div className="report-compile-status">
+              <p role="status" data-testid="compile-state" data-state={state.status}>
+                {current
+                  ? 'Rapporten er genereret.'
+                  : states[state.status === 'ready' ? 'compiling' : state.status]}
+              </p>
+              {elapsed !== null && (
+                <p className="report-caption">
+                  Kompileringstid: <output data-testid="compile-time">{elapsed}</output> ms
+                  (inklusive eventuel indlæsning)
+                </p>
+              )}
+            </div>
+          </div>
+          {nodes
+            .filter((node) => node.kind !== 'button')
+            .map((node, i) => (
+              <div key={i} className="info-banner">
+                {renderNode(node, i)}
+              </div>
+            ))}
+          {state.status === 'error' && (
+            <div role="alert" className="warning-banner">
+              <p>{state.message}</p>
+              <pre>{state.details}</pre>
+            </div>
+          )}
+          {preview && (
+            <div className="report-pdf">
+              {!current && (
+                <p role="status" className="warning-banner report-stale">
+                  Forhåndsvisningen er forældet. Hent PDF er spærret, indtil rapporten for de
+                  aktuelle oplysninger er klar.
+                </p>
+              )}
+              <iframe title="PDF-forhåndsvisning" src={preview.url} />
+            </div>
+          )}
+        </>
+      );
+    }
+    return (
+      <>
+        {nodes.map(renderNode)}
+        <Button
+          className="report-reset-content"
+          variant="outline"
+          type="button"
+          onClick={() => ctx.remember(resetReportChoices(ctx.session.values))}
+        >
+          Nulstil tekster og valg til standard
+        </Button>
+      </>
     );
   }
 
@@ -294,80 +431,26 @@ export function Report({
           <a href="#dimensionering">{model.emptyAction!.label}</a>
         </Button>
       ) : (
-        <>
-          <fieldset disabled={ctx.externalChange} className="report-form">
-            <Accordion type="multiple" defaultValue={['1', '2', '3', '4']}>
-              {model.steps.map((step) => (
-                <AccordionItem key={step.number} value={String(step.number)}>
-                  <AccordionTrigger>
-                    <span data-m9-slot="report">
-                      <span className="bg-trin-hoved">
-                        <span className="bg-trin-nr">{step.number}</span>
-                        <span className="bg-trin-titel">{step.title}</span>
-                        <span className="bg-trin-opsum">{step.summary}</span>
-                      </span>
-                    </span>
-                  </AccordionTrigger>
-                  <AccordionContent>
-                    <div className={`report-step report-step-${step.number}`}>
-                      {step.children.map(renderNode)}
-                      {step.number === 2 && (
-                        <Button
-                          variant="outline"
-                          type="button"
-                          onClick={() => ctx.remember(resetReportChoices(ctx.session.values))}
-                        >
-                          Nulstil tekster og valg til standard
-                        </Button>
-                      )}
-                      {step.number === 4 && (
-                        <>
-                          <p role="status" data-testid="compile-state" data-state={state.status}>
-                            {current
-                              ? 'Rapporten er genereret.'
-                              : states[state.status === 'ready' ? 'compiling' : state.status]}
-                          </p>
-                          {elapsed !== null && (
-                            <p className="report-caption">
-                              Kompileringstid: <output data-testid="compile-time">{elapsed}</output>{' '}
-                              ms (inklusive eventuel indlæsning)
-                            </p>
-                          )}
-                          {current ? (
-                            <Button asChild>
-                              <a href={preview!.url} download={reportFilename(model.metadata)}>
-                                Hent PDF
-                              </a>
-                            </Button>
-                          ) : (
-                            <Button disabled>Hent PDF</Button>
-                          )}
-                          {state.status === 'error' && (
-                            <div role="alert" className="message error">
-                              <p>{state.message}</p>
-                              <pre>{state.details}</pre>
-                            </div>
-                          )}
-                          {preview && (
-                            <div className="report-pdf">
-                              {!current && (
-                                <p role="status" className="report-stale">
-                                  Forhåndsvisningen er forældet. Hent PDF er spærret, indtil
-                                  rapporten for de aktuelle oplysninger er klar.
-                                </p>
-                              )}
-                              <iframe title="PDF-forhåndsvisning" src={preview.url} />
-                            </div>
-                          )}
-                        </>
-                      )}
-                    </div>
-                  </AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
-          </fieldset>
-        </>
+        <fieldset disabled={ctx.externalChange} className="report-form">
+          {model.steps.map((step) => (
+            <section
+              key={step.number}
+              className="section-card settings-card"
+              aria-labelledby={'report-step-' + step.number}
+            >
+              <div data-m9-slot="report">
+                <div className="bg-trin-hoved">
+                  <h2 id={'report-step-' + step.number}>
+                    <span className="bg-trin-nr">{step.number}</span>
+                    <span className="bg-trin-titel">{step.title}</span>
+                  </h2>
+                  <span className="bg-trin-opsum">{step.summary}</span>
+                </div>
+              </div>
+              <div className={'report-step report-step-' + step.number}>{renderStep(step)}</div>
+            </section>
+          ))}
+        </fieldset>
       )}
     </main>
   );
