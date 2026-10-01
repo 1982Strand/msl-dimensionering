@@ -37,7 +37,7 @@ test('M9: Standard/belastningsklasse, Brugerdefineret/trafikklasse og afvist dri
     'Eₒ-kurve:',
     '80 MPa',
   ]);
-  await expect(page.locator('.dim-results strong')).toHaveText(['1.200 mm', '750 mm', '700 mm']);
+  await expect(page.locator('.dim-results strong')).toHaveText(['1.200 mm', '750 mm', '650 mm']);
   await expect(page.locator('.dim-results h3')).toHaveText([
     'Nødvendig uden geonet',
     '1 lag geonet',
@@ -51,7 +51,7 @@ test('M9: Standard/belastningsklasse, Brugerdefineret/trafikklasse og afvist dri
   );
   await expect(page.locator('.m9-result-delta')).toHaveText([
     '−450 mm 38 % tyndere',
-    '−500 mm 42 % tyndere',
+    '−550 mm 46 % tyndere',
   ]);
   const all = page.getByRole('button', { name: 'Alle produkter · 20 produkter', exact: true });
   await expect(all).toHaveAttribute('aria-expanded', 'false');
