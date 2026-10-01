@@ -8,7 +8,7 @@ async function setEu(page: Page, value: number) {
   await expect(slider).toHaveAttribute('aria-valuenow', String(value));
 }
 
-test('B-063: afsnit 1 står stille ved trafikklassebesked, klasseboks uden ombrydning, korrelationstabel uden vandret rulning', async ({
+test('B-063/B-064: afsnit 1 står stille, beskeden som ikon med Hover Card, klasseboks i fast størrelse, korrelationstabel uden vandret rulning', async ({
   page,
 }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
@@ -29,6 +29,28 @@ test('B-063: afsnit 1 står stille ved trafikklassebesked, klasseboks uden ombry
     heights.add(Math.round((await card.boundingBox())!.height));
   }
   expect([...heights]).toHaveLength(1);
+  // B-064: beskeden vises som ikon ved klassevalget; teksten i Hover Card'et er den samme.
+  await setEu(page, 29);
+  const icon = page.getByRole('button', {
+    name: 'Advarsel om dimensioneringsgrundlaget',
+    exact: true,
+  });
+  await expect(icon).toHaveAttribute('aria-describedby', 'dim-basis-message');
+  await icon.hover();
+  const hover = page.locator('.hint-content-warning');
+  await expect(hover).toBeVisible();
+  await expect(hover).toHaveText((await message.textContent())!);
+  await page.mouse.move(0, 0);
+  await expect(hover).toHaveCount(0);
+  // Klasseboksen har samme størrelse i alle trafikklasser.
+  const sizes = new Set<string>();
+  for (const t of ['T1', 'T2', 'T3', 'T4', 'T5', 'T6']) {
+    await page.getByRole('radio', { name: t, exact: true }).check();
+    const b = (await page.locator('[data-m9-slot="keyFigures"] .bg-noegletal').boundingBox())!;
+    sizes.add(`${Math.round(b.width)}x${Math.round(b.height)}`);
+  }
+  expect([...sizes]).toHaveLength(1);
+  await page.getByRole('radio', { name: 'T4', exact: true }).check();
   // Klasseboksens etiketter og værdier står på én linje.
   const cellHeights = await page
     .locator('[data-m9-slot="keyFigures"] .bg-noegletal td')

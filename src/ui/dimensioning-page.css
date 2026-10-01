@@ -130,6 +130,7 @@
 /* Originalens skjulte etiketter er fortsat tilgængelige for skærmlæsere. */
 .m9-collapsed-labels > .setting-field > .setting-label-row,
 .m9-collapsed-labels > .setting-field > fieldset > legend,
+.m9-collapsed-labels > .dim-class-row > .setting-field > fieldset > legend,
 .m9-layer-row .setting-field > .setting-label-row,
 .m9-materials-title > .setting-field > .setting-label-row,
 .m9-product-choice > .setting-field > label {

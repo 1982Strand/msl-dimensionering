@@ -42,11 +42,20 @@ function Nodes({ nodes }: { nodes: PageDisplayNode[] }) {
   });
 }
 
-export function PageContent({ model, slot }: { model: DimensioningPage; slot: string }) {
+export function PageContent({
+  model,
+  slot,
+  bare = false,
+}: {
+  model: DimensioningPage;
+  slot: string;
+  /** Uden data-m9-slot, fx en synlig kopi i et Hover Card af et skjult element. */
+  bare?: boolean;
+}) {
   const element = model.elements.find((e) => e.slot === slot);
   if (!element) return null;
   return (
-    <div data-m9-slot={slot}>
+    <div data-m9-slot={bare ? undefined : slot}>
       <Nodes nodes={element.content} />
     </div>
   );

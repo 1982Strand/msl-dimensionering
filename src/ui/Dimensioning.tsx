@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useEditor } from './EditorContext';
 import { EditorFeedback, SaveState } from './EditorFeedback';
-import { SettingField, type SettingDefinition, type SettingValue } from './SettingField';
+import { HintCard, SettingField, type SettingDefinition, type SettingValue } from './SettingField';
 import { Button } from '@/components/ui/button';
 import { Slider } from '@/components/ui/slider';
 import { LineChart, RotateCcw, Table as TableIcon } from 'lucide-react';
@@ -234,7 +234,7 @@ export function Dimensioning() {
         </div>
         <section className="section-card settings-card dim-step1">
           {content('step1')}
-          <div className="dim-input-grid">
+          <div className={`dim-input-grid ${basis.type === 'trafikklasse' ? 'dim-traffic' : ''}`}>
             <div className="m9-collapsed-labels">
               {content('subgradeLabel')}
               {choice(`${prefix}_eu_mode`, 'Input-form', ['Eᵤ — E-modul', 'Cv — vingestyrke'])}
@@ -293,13 +293,30 @@ export function Dimensioning() {
                 'Belastningsklasse',
                 'Trafikklasse',
               ])}
-              {basis.type === 'trafikklasse'
-                ? choice(
-                    `${prefix}_valgt_tklasse`,
-                    'Trafikklasse',
-                    Object.keys(defaults.TRAFIKKLASSER),
-                  )
-                : choice(`${prefix}_valgt_klasse`, 'Belastningsklasse', [1, 2, 3, 4, 5, 6])}
+              <div className="dim-class-row">
+                {basis.type === 'trafikklasse'
+                  ? choice(
+                      `${prefix}_valgt_tklasse`,
+                      'Trafikklasse',
+                      Object.keys(defaults.TRAFIKKLASSER),
+                    )
+                  : choice(`${prefix}_valgt_klasse`, 'Belastningsklasse', [1, 2, 3, 4, 5, 6])}
+                {/* B-064: beskeden om dimensioneringsgrundlaget som ikon med Hover Card, så
+                    afsnit 1 ikke ændrer højde. Teksten står også skjult til skærmlæsere. */}
+                {page.messageKind && (
+                  <HintCard
+                    kind={page.messageKind}
+                    label={
+                      page.messageKind === 'warning'
+                        ? 'Advarsel om dimensioneringsgrundlaget'
+                        : 'Information om dimensioneringsgrundlaget'
+                    }
+                    describedBy="dim-basis-message"
+                  >
+                    <PageContent model={page} slot="basisMessage" bare />
+                  </HintCard>
+                )}
+              </div>
               {basis.type === 'belastningsklasse' && (
                 <InfoPopup
                   label="Se designdiagram"
@@ -317,18 +334,12 @@ export function Dimensioning() {
               {basis.type === 'trafikklasse' && <TrafficCorrelationPopup input={input} />}
             </div>
             {content('keyFigures')}
-            {/* Fast plads til beskeden ved trafikklasse, så kortet ikke flytter sig, når den
-                kommer, går eller skifter tekst. */}
-            {basis.type === 'trafikklasse' && (
-              <div className="dim-basis-message">
-                {page.messageKind && (
-                  <Notice kind={page.messageKind === 'warning' ? 'warning' : 'info'}>
-                    {content('basisMessage')}
-                  </Notice>
-                )}
-              </div>
-            )}
           </div>
+          {page.messageKind && (
+            <div id="dim-basis-message" className="sr-only">
+              {content('basisMessage')}
+            </div>
+          )}
         </section>
         {(standard || basis.eo !== null) && (
           <section className="section-card settings-card">

@@ -411,6 +411,55 @@
   width: 15px;
   height: 15px;
 }
+/* Advarsel og info som ikon med Hover Card (B-064): orange advarsel, grøn info. */
+.help-hint.hint-warning,
+.help-hint.hint-info {
+  width: 30px;
+  height: 30px;
+  border: 1px solid;
+  cursor: pointer;
+}
+.help-hint.hint-warning {
+  background: var(--warning);
+  border-color: var(--warning-border);
+  color: var(--warning-foreground);
+}
+.help-hint.hint-info {
+  background: var(--accent);
+  border-color: var(--accent-border);
+  color: var(--primary);
+}
+.help-hint.hint-warning:hover,
+.help-hint.hint-warning:focus-visible {
+  color: var(--warning-foreground);
+  border-color: var(--warning-foreground);
+}
+.help-hint.hint-info:hover,
+.help-hint.hint-info:focus-visible {
+  border-color: var(--primary);
+}
+.help-hint.hint-warning svg,
+.help-hint.hint-info svg {
+  width: 16px;
+  height: 16px;
+}
+.help-hint-content.hint-content-warning,
+.help-hint-content.hint-content-info {
+  width: min(480px, 90vw);
+  white-space: normal;
+  font-size: var(--fs-small);
+  line-height: 1.6;
+}
+.help-hint-content.hint-content-warning {
+  background: var(--warning);
+  border-color: var(--warning-border);
+  color: var(--warning-foreground);
+}
+.help-hint-content.hint-content-info {
+  background: var(--accent);
+  border-color: var(--accent-border);
+  color: var(--foreground);
+}
 .help-hint-content {
   width: min(380px, 90vw);
   max-height: min(60vh, 420px);
@@ -796,60 +845,50 @@
   margin-bottom: 24px;
   flex-wrap: wrap;
 }
-/* Afsnit 1: to valgkolonner og klasseboksen i den bredde, teksten kræver, uden ombrydning.
-   Beskeden ved trafikklasse har fast plads under valgene, så kortet ikke flytter sig.
+/* Afsnit 1 (B-063, B-064): to valgkolonner og en klasseboks i fast bredde, som rummer den
+   bredeste klasse uden ombrydning. Ved trafikklasse har boksen også fast højde, og beskeden om
+   grundlaget vises som ikon med Hover Card ved klassevalget, så afsnittet ikke ændrer højde.
    Container-forespørgsler undgås: Chrome tegnede ikke kortets indhold efter ændringer. */
 .dim-input-grid {
+  --keyfigures-width: 410px;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) max-content;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) var(--keyfigures-width);
   gap: 20px 32px;
 }
 .dim-input-grid > [data-m9-slot='keyFigures'] {
-  grid-column: 3;
-  grid-row: 1 / span 2;
   align-self: start;
 }
 .m9-page .dim-input-grid [data-m9-slot='keyFigures'] .bg-noegletal td {
   white-space: nowrap;
 }
-/* Ved trafikklasse får klasseboksen plads til linjen »Ækvivalent Eₒ-kurve …«, også når den
-   mangler (afvist beregning), så højden ikke skifter. */
-.m9-page .dim-input-grid:has(.dim-basis-message) [data-m9-slot='keyFigures'] .bg-noegletal {
+/* Plads til linjen »Ækvivalent Eₒ-kurve …«, også når den mangler (afvist beregning). */
+.m9-page .dim-traffic [data-m9-slot='keyFigures'] .bg-noegletal {
   min-height: 200px;
 }
-.dim-basis-message {
-  grid-column: 1 / 3;
-  grid-row: 2;
-  min-height: 150px;
+.dim-class-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 38px;
 }
-.dim-basis-message .notice {
+.dim-input-grid .dim-class-row .setting-field {
   margin: 0;
 }
-/* Under ca. 1420 px (med udfoldet sidebjælke) er der ikke plads til klasseboksen ved siden af. */
+/* Under ca. 1420 px (med udfoldet sidebjælke) er der ikke plads til klasseboksen ved siden af;
+   den står under valgene i sin faste bredde. */
 @media (max-width: 1420px) {
   .dim-input-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-  .dim-basis-message {
-    grid-column: 1 / -1;
-    grid-row: auto;
-    order: 1;
-    min-height: 110px;
-  }
   .dim-input-grid > [data-m9-slot='keyFigures'] {
     grid-column: 1 / -1;
-    grid-row: auto;
-    order: 2;
-    justify-self: start;
+    width: var(--keyfigures-width);
     max-width: 100%;
   }
 }
 @media (max-width: 600px) {
   .dim-input-grid {
     grid-template-columns: minmax(0, 1fr);
-  }
-  .dim-basis-message {
-    min-height: 0;
   }
   .m9-page .dim-input-grid [data-m9-slot='keyFigures'] .bg-noegletal td {
     white-space: normal;

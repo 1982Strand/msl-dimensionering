@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState } from 'react';
-import { CircleHelp } from 'lucide-react';
+import { useEffect, useRef, useState, type ReactNode } from 'react';
+import { CircleHelp, Info, TriangleAlert } from 'lucide-react';
 import { RadioGroup as RadioGroupPrimitive } from 'radix-ui';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Input } from '@/components/ui/input';
@@ -14,11 +14,23 @@ import {
 } from '@/components/ui/select';
 import { HoverCard, HoverCardContent, HoverCardTrigger } from '@/components/ui/hover-card';
 
-/** Forklaring som spørgsmålstegn med Hover Card ved etiketten (B-053), som originalens hjælpeikon.
- * Åbner ved mus og tastaturfokus; et tryk åbner og lukker på berøringsskærme.
+const hintIcons = { help: CircleHelp, warning: TriangleAlert, info: Info } as const;
+
+/** Ikon med Hover Card: spørgsmålstegn til forklaringer (B-053) og advarsel/info til beskeder
+ * (B-064). Åbner ved mus og tastaturfokus; et tryk åbner og lukker på berøringsskærme.
  * Åbningen styres her: Radix' egne forsinkede åbninger rydder ikke op ved Escape eller klik og
  * kunne genåbne et netop lukket kort. Radix bruges kun til at lukke (Escape, udenfor, mus væk). */
-export function HelpHint({ label, help }: { label: string; help: string }) {
+export function HintCard({
+  label,
+  kind = 'help',
+  describedBy,
+  children,
+}: {
+  label: string;
+  kind?: keyof typeof hintIcons;
+  describedBy?: string;
+  children: ReactNode;
+}) {
   const [open, setOpen] = useState(false);
   const timer = useRef<number | undefined>(undefined);
   // Et klik eller tryk giver også fokus; kun tastaturfokus åbner, så klikket alene skifter.
@@ -34,6 +46,7 @@ export function HelpHint({ label, help }: { label: string; help: string }) {
     window.clearTimeout(timer.current);
     timer.current = window.setTimeout(() => setOpen(next), delay);
   };
+  const Icon = hintIcons[kind];
   return (
     <HoverCard
       open={open}
@@ -45,8 +58,9 @@ export function HelpHint({ label, help }: { label: string; help: string }) {
         <button
           ref={trigger}
           type="button"
-          className="help-hint"
-          aria-label={`Forklaring: ${label}`}
+          className={`help-hint hint-${kind}`}
+          aria-label={label}
+          aria-describedby={describedBy}
           onPointerEnter={(e) => hover(e, true, 150)}
           onPointerLeave={(e) => hover(e, false, 100)}
           onPointerDown={() => {
@@ -65,12 +79,12 @@ export function HelpHint({ label, help }: { label: string; help: string }) {
             set(false);
           }}
         >
-          <CircleHelp aria-hidden="true" />
+          <Icon aria-hidden="true" />
         </button>
       </HoverCardTrigger>
       <HoverCardContent
-        className="help-hint-content"
-        side="top"
+        className={`help-hint-content hint-content-${kind}`}
+        side={kind === 'help' ? 'top' : 'bottom'}
         align="start"
         // Et tryk på ikonet er ikke »udenfor«; ellers lukker kortet og åbnes igen af klikket.
         onPointerDownOutside={(e) => {
@@ -82,10 +96,15 @@ export function HelpHint({ label, help }: { label: string; help: string }) {
         }}
         onPointerLeave={(e) => hover(e, false, 100)}
       >
-        {help}
+        {children}
       </HoverCardContent>
     </HoverCard>
   );
+}
+
+/** Forklaring som spørgsmålstegn ved feltets etiket (B-053), som originalens hjælpeikon. */
+export function HelpHint({ label, help }: { label: string; help: string }) {
+  return <HintCard label={`Forklaring: ${label}`}>{help}</HintCard>;
 }
 
 export type SettingValue = string | number | boolean;
