@@ -65,7 +65,7 @@ Fejl i indlæsning, font, skabelon eller kompilering må ikke efterlade en downl
 
 ## R3 — fælles figurer og Typst-layout
 
-Opbygninger eksporterer vektor fra `construction-svg.ts`. **Rapportens egne originale kaldeargumenter** til opbygningsfiguren optages separat fra skærmkald: snitvalg, størrelse, signatur og alle øvrige visningsargumenter. Skærmreferencer er ikke tilstrækkelige. Det personlige designdiagram kommer fra **M5**, med samme Plotly-specifikation som skærmen og SVG-eksport via plotly.js. Originalens snit/kurver/markører og valgbetingelser bevares. Afprøv den faktiske Plotly-SVG i browserens Typst-compiler; kontrollér fonte, akser, etiketter, intervalbånd og clipping. M1's avancerede mellemregningsfigurer tilføjes ikke rapporten.
+Opbygninger eksporterer vektor fra `construction-svg.ts`. **Rapportens egne originale kaldeargumenter** til opbygningsfiguren optages separat fra skærmkald: snitvalg, størrelse, signatur og alle øvrige visningsargumenter. Skærmreferencer er ikke tilstrækkelige. Det personlige designdiagram kommer fra **M5** som samme selvstændige SVG fra `personal-diagram-svg.ts` på skærm og i rapport, med Carlito i PDF (B-034 afløser Plotly-eksporten). Originalens snit/kurver/markører og valgbetingelser bevares; decimalkomma følger B-035. Afprøv den faktiske SVG i browserens Typst-compiler; kontrollér fonte, akser, etiketter, intervalbånd og clipping. M1's avancerede mellemregningsfigurer tilføjes ikke rapporten.
 
 Referenceoptagelse er nu udført: `reference/report-figure-cases.json` har syv faktiske report-preview-forløb med effektive standardargumenter og eksportmål. Diagrammets rapporttitel, egne margener og 900 × 550-størrelse skal tilkobles under R3; M5's kompatibilitetsprøve er ikke en færdig rapportfigur. `RFIG-custom-input-only` er optagelsens scenarienavn, men dens faktisk observerede snitliste omfatter også uarmeret og 1 lag efter originalens genoprettede widgetstandarder. Ingen forventninger omskrives; en særskilt ren input-snitcase tilføjes før R3-implementation.
 
@@ -74,6 +74,80 @@ Demoens layout kopieres til den nye apps repo med dokumenteret oprindelse. Demoe
 Kontrollér lange projektnavne, flerlinjet beskrivelse, lange materialer, tabelværdier, mm/cm, intervaller og yderområde. Overskrifter hænger sammen med følgende indhold, tabeller og billeder forbliver inden for margener, og sidehoved/sidefod har plads på alle sider. Fontvalg og nyt layout kan ændre linje- og sidefordeling i forhold til Word; dette forelægges som layoutændring, mens indholdet bevares.
 
 PDF-indholdskontrollen følger princippet i `check_pdfs.py`: alle dynamiske tekster og tabelværdier skal kunne findes i PDF'en. Normalisering til PDF-tekstkontrol dokumenteres og må kun håndtere renderingsformat, ikke skjule manglende indhold. Figurdata kontrolleres separat uden tolerance. Sidebilleder gennemgås for overlap, clipping, afsnitsafstand, punktopstillinger og sideskift.
+
+**R3-status — 01.10.2026:** Demoens
+`skabelon/layout.typ` og `skabelon/rapport.typ` er kopieret med
+oprindelseskommentar og tilpasset originalens rækkefølge, fed/kursiv, rammefri
+tabeller, bogstavelige punkter, linjeskift og indrykninger. Tomme afsluttende
+tekster beholder deres overskrift; `grundlag: null` udelader overskrift og tabel.
+Brugerfelter og firmaprofil sendes alene som JSON via `mapShadow`; Typst-kilden
+ændres ikke af formularindhold.
+
+`src/report/profile-defaults.ts` dokumenterer hvert standardfelt med XML-element
+eller Word-PDF-måling: margener 1701/1560/1134/1134 twips (top/bund/venstre/højre),
+sidehoved/-fod 709/981 twips, logo 1534537 EMU bredt, målt placering, grøn
+`#247322`, hvid kontaktlinje, Calibri → Carlito og Helvetica/Arial →
+Liberation Sans. Titel, slogan, kontaktlinje, underskriftsby og de fem
+afsluttende overskrifter/rækkefølge kommer fra originalskabelonen.
+Header-/footer-afstandene er Word-ankermål; logo, slogan og sidetal har separate
+målte positioner i profil/layout.
+
+`reportFigures()` danner rapportens egne kald uden genberegning. Hele kaldets
+argumenter og eksportlayout matcher præcist alle otte frosne figurforløb
+(syv + ren input-snitcase), inklusive lagfordeling, geonetplacering, optimalnote,
+status, mm/cm, mål/påskrift/signatur, diagramprikker, titel, margener og størrelse.
+Python-tupler transporteres som JSON-arrays; rasterparametre `dpi`/`scale`
+beholdes som kontroldata, men har ingen rasteriseringseffekt på SVG.
+Ingen referenceforventninger eller fælles SVG-renderere er ændret.
+
+`reportDocument(data, figures, assets, profile)` samler `PdfRequest`.
+`loadReportAssets(baseUrl)` kan hente de versionerede aktiver ved rapportåbning;
+R4 kan levere egne logobytes og profil. Compilerens eksisterende fontpreload
+er fortsat nødvendig, selv om fontfiler også findes i requestens filgrundlag.
+`node tools/build-report-pdfs.ts` genskaber de ti rapporttilfælde fra rå
+UI-widgets/R1-opskriften og danner desuden `special-characters`. Alle PDF'er og
+`.expected.json` ligger i `.local/output/r3/`. Feltet `strings` er listen til
+PDF-tekstkontrol; SVG-tekst bliver konturer i PDF'en og kontrolleres særskilt
+via figurdata og billeder. Normalisering må kun håndtere whitespace/ombrydning,
+aldrig værdier, tegnsætning eller Unicode.
+
+Kendte layoutforskelle og resterende kontrol:
+
+- Carlito/Liberation Sans erstatter de originale skrifter; Typst former og
+  ombryder tekst anderledes end Word. Linje- og sidefordeling er endnu ikke
+  målt for R3 og kræver den styrende agents PDF-tekstkontrol og billedgennemgang.
+- Layoutet anvender flydende tekst med sammenhængende overskrift/indhold,
+  ikke hardkodede sideskift. Lange tekster og fontsubstitution kan flytte
+  resultater, figurer og afslutning mellem sider.
+- B-034/B-035 (samt den eksisterende B-040-farve i renderer) ændrer diagrammets
+  udseende i forhold til Word-PDF'en: selvstændig SVG, nye farver, bånd,
+  prikkede optimale kurver og decimalkomma. M1-figurer medtages ikke.
+- Designdiagrammet bruger uændret fælles renderer med Carlito og en ydre
+  SVG, der tilføjer rapporttitel og tilpasser til 900 × 550 samt margener
+  70/20/70/60. Opbygningen bruger uændret fælles renderer, hvis naturlige
+  proportioner indpasses på 1000 × 386 (340 uden signatur). Dette er
+  transporttilpasning; tekstplacering og figurers interne udseende skal
+  gennemgås visuelt.
+- `construction-svg.ts` har fast Arial/Helvetica/sans-serif og ingen
+  eksportindstilling for font/størrelse. PDF-fontvalget i denne SVG skal
+  verificeres visuelt; en eksplicit fontindstilling kræver senere udvidelse
+  af den fælles renderer, som ikke er tilladt i R3-opgaven.
+- Baselinebilledet for Standard viser en tom 2-lagssøjle. De nyere optagne
+  faktiske rapportkald udelader det ugyldige 2-lagssnit; R3 følger præcist
+  de otte figurreferencer. Denne forskel skal vurderes ved samlet referencekontrol.
+- Lokal Python/PyMuPDF-rendering kunne ikke startes i hjælperens sandkasse
+  (den gamle venv kunne ikke starte sin basis-Python). Den aftalte
+  tekstkontrol og sidebilleder udføres af den styrende agent efter R3.
+  Ingen endelig PDF-layoutgodkendelse er registreret.
+
+**Styrende gennemgang af R3 (01.10.2026).** To rettelser før merge:
+
+- **Linjeafstand.** Første udgave satte linjen fra versalhøjde til grundlinje med 0 pt afstand mellem afsnit og tabelrækker, så linjer overlappede. Linjeboksen er nu skriftens ascender–descender (`top-edge: "ascender"`, `bottom-edge: "descender"`), som giver Words enkelte linjeafstand (Carlito 11 pt = 13,4 pt), og al afstand følger det gitter.
+- **Opbygningsfigurens målestok.** Den fælles opbygnings-SVG (B-025) blev presset ind i originalens Plotly-felt 1000 × 386, hvilket klippede signaturforklaringen og gav ca. 4 pt tekst. Figuren sættes nu i originalens målestok, 0,16 mm/px (originalen: 1000 px = `Cm(16)`), højst 16 cm, centreret. Teksten får dermed originalens størrelse uanset antal snit. Originalens eksportmål kontrolleres fortsat i `tests/report-figures.test.ts`.
+
+PDF-kontrol med PyMuPDF (princippet fra `check_pdfs.py`) af de ti rapporttilfælde og et tilfælde med Typst-specialtegn: alle dynamiske strenge og tabelværdier findes i PDF'en; slogan, kontaktlinje og sidetal `[n]` står på hver side; kun Carlito og Liberation Sans er indlejret; `#panic(...)` i brugertekst vises bogstaveligt. Tomme afsluttende tekster beholder deres overskrifter. Sidebilleder er gennemgået for overlap, clipping, afstande og sideskift.
+
+Kendte forskelle fra Word-PDF'erne (til R6): skriftsubstitution (Calibri → Carlito, Helvetica → Liberation Sans) og figurernes udseende (B-025, B-034) ændrer linje- og sidefordeling; fx bliver `empty-text` 3 sider mod originalens 2. Word-baselinens opbygningsbilleder er skærmbilleder (jf. `report-contexts.json` scope) og viser en tom 2-lagssøjle, som originalens egne rapportkald udelader; rapporten følger rapportkaldene.
 
 ## R4 — rapportsiden og alle eksisterende valg
 
