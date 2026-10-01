@@ -20,10 +20,13 @@ function observe(page: Page, baseURL: string) {
 }
 async function ready(page: Page, old?: string | null) {
   await expect(page.getByTestId('profile-save-state')).toHaveAttribute('data-state', 'saved');
-  await expect(page.getByTestId('compile-state')).toHaveAttribute('data-state', 'ready', {
-    timeout: 90_000,
-  });
-  await expect(page.getByRole('link', { name: 'Hent PDF', exact: true })).toBeVisible();
+  // En ny revision kan starte lige efter »ready«; vent til tilstand og download står stabilt samtidig.
+  await expect(async () => {
+    await expect(page.getByTestId('compile-state')).toHaveAttribute('data-state', 'ready');
+    await expect(page.getByRole('link', { name: 'Hent PDF', exact: true })).toBeVisible({
+      timeout: 1_000,
+    });
+  }).toPass({ timeout: 90_000 });
   const frame = page.getByTitle('PDF-forhåndsvisning', { exact: true });
   if (old) await expect(frame).not.toHaveAttribute('src', old);
   return frame.getAttribute('src');

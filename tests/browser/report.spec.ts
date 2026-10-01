@@ -16,11 +16,14 @@ function observe(page: Page, baseURL: string) {
   });
   return { external, errors, local };
 }
+// En ny revision kan starte lige efter »ready«; vent til tilstand og download står stabilt samtidig.
 async function ready(page: Page) {
-  await expect(page.getByTestId('compile-state')).toHaveAttribute('data-state', 'ready', {
-    timeout: 90_000,
-  });
-  await expect(page.getByRole('link', { name: 'Hent PDF', exact: true })).toBeVisible();
+  await expect(async () => {
+    await expect(page.getByTestId('compile-state')).toHaveAttribute('data-state', 'ready');
+    await expect(page.getByRole('link', { name: 'Hent PDF', exact: true })).toBeVisible({
+      timeout: 1_000,
+    });
+  }).toPass({ timeout: 90_000 });
 }
 test('faste rapportkort og synlige formularer ved 1440 og 390 px', async ({ page }, info) => {
   await page.goto('/#rapport');
