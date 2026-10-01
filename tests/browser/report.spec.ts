@@ -22,6 +22,101 @@ async function ready(page: Page) {
   });
   await expect(page.getByRole('link', { name: 'Hent PDF', exact: true })).toBeVisible();
 }
+
+test('B-046: tekstværktøjer, afsnitsfravalg/revision og diagramvalg i diagramkortet', async ({
+  page,
+  baseURL,
+}) => {
+  test.setTimeout(120_000);
+  const seen = observe(page, baseURL!);
+  await page.goto('/#rapport');
+  await page.getByRole('button', { name: 'Udførelse', exact: true }).click();
+  const section = page.locator('.report-step-2 .dim-expander-card').filter({
+    has: page.locator('#rap_tekst_udfoerelse'),
+  });
+  const field = section.locator('textarea');
+  await field.fill('Valgt tekst\nAnden linje');
+  await field.evaluate((el: HTMLTextAreaElement) => {
+    el.focus();
+    el.setSelectionRange(0, 5);
+  });
+  await section.getByRole('button', { name: 'Fed', exact: true }).click();
+  await expect(field).toHaveValue('**Valgt** tekst\nAnden linje');
+  await expect(field).toBeFocused();
+  await expect
+    .poll(() => field.evaluate((el: HTMLTextAreaElement) => [el.selectionStart, el.selectionEnd]))
+    .toEqual([2, 7]);
+  await field.evaluate((el: HTMLTextAreaElement) => {
+    el.setSelectionRange(0, el.value.length);
+  });
+  await section.getByRole('button', { name: 'Punkt', exact: true }).click();
+  await expect(field).toHaveValue('• **Valgt** tekst\n• Anden linje');
+  await expect(field).toBeFocused();
+  await expect
+    .poll(() => field.evaluate((el: HTMLTextAreaElement) => [el.selectionStart, el.selectionEnd]))
+    .toEqual([2, 31]);
+
+  const diagram = page
+    .locator('.report-figure')
+    .filter({ has: page.getByRole('heading', { name: 'Designdiagram', exact: true }) });
+  await expect(diagram.locator('input[type=checkbox]')).toHaveCount(3);
+  await expect(page.locator('.report-cut-choices input[type=checkbox]')).toHaveCount(4);
+  await diagram
+    .getByLabel("Vis 'Indtastet opbygning'-prik i designdiagram", { exact: true })
+    .uncheck();
+  await diagram.getByLabel('Personligt designdiagram', { exact: true }).uncheck();
+  await expect(diagram).toBeVisible();
+  await expect(diagram.locator('svg')).toHaveCount(0);
+  await expect(diagram.getByLabel('Vis endepunkter for 1/2 lag i designdiagram')).toBeDisabled();
+
+  await page.getByRole('button', { name: 'Generér rapport', exact: true }).click();
+  await ready(page);
+  // Den varme compiler kan afslutte før en assertion; gem mellemtilstanden i DOM-observatøren.
+  await page.evaluate(() => {
+    const state = { disabled: false, stale: false };
+    (window as unknown as { __b046: typeof state }).__b046 = state;
+    new MutationObserver(() => {
+      if (
+        [...document.querySelectorAll('button')].some(
+          (b) => b.textContent?.trim() === 'Hent PDF' && b.disabled,
+        )
+      )
+        state.disabled = true;
+      if (document.body.textContent?.includes('Forhåndsvisningen er forældet.')) state.stale = true;
+    }).observe(document.body, {
+      subtree: true,
+      childList: true,
+      attributes: true,
+      characterData: true,
+    });
+  });
+  await section.getByLabel('Medtag i rapporten', { exact: true }).uncheck();
+  await expect
+    .poll(() =>
+      page.evaluate(() => (window as unknown as { __b046: Record<string, boolean> }).__b046),
+    )
+    .toEqual({ disabled: true, stale: true });
+  await ready(page);
+  await page.reload();
+  await page.getByRole('button', { name: 'Udførelse', exact: true }).click();
+  await expect(field).toHaveValue('• **Valgt** tekst\n• Anden linje');
+  await expect(section.getByLabel('Medtag i rapporten', { exact: true })).not.toBeChecked();
+  await expect(diagram.getByLabel('Personligt designdiagram', { exact: true })).not.toBeChecked();
+  await diagram.getByLabel('Personligt designdiagram', { exact: true }).check();
+  await expect(diagram.locator('svg')).toHaveCount(1);
+  await expect(
+    diagram.getByLabel("Vis 'Indtastet opbygning'-prik i designdiagram", { exact: true }),
+  ).not.toBeChecked();
+  await page
+    .getByRole('button', { name: 'Nulstil tekster og valg til standard', exact: true })
+    .click();
+  await expect(section.getByLabel('Medtag i rapporten', { exact: true })).toBeChecked();
+  await expect(
+    diagram.getByLabel("Vis 'Indtastet opbygning'-prik i designdiagram", { exact: true }),
+  ).toBeChecked();
+  expect(seen.external).toEqual([]);
+  expect(seen.errors).toEqual([]);
+});
 test('faste rapportkort og synlige formularer ved 1440 og 390 px', async ({ page }, info) => {
   await page.goto('/#rapport');
   await expect(page.locator('.report-form > .section-card.settings-card')).toHaveCount(4);

@@ -204,6 +204,10 @@ Et fingeraftryk omfatter beregningsinput/resultater, aktive indstillinger, rappo
 
 **Visuel accept:** forelæg en faktisk rapportside med felter, tekstafsnit, figurvalg og downloadforløb før den betragtes som designgodkendt.
 
+**B-046-hjælperstatus — 01.10.2026:** De syv rapporttekster har Fed/Kursiv/Punkt-værktøjer og et husket »Medtag i rapporten«-valg, som indgår i fælles nulstilling og PDF-revisionens fingeraftryk. Rå kontekststrenge er uændrede; `text-format.ts` danner et separat JSON-lag med afsnit, linjer/punkter, indrykning, underpunkter (inklusive standardens `o`) og tekststykker. Typst tegner rigtige punkter med hængende indrykning samt fed/kursiv uden at fortolke brugertekst som kildekode. Fravalgte afsnit mangler i dokumentdata og layout; medtagne tomme tekster bevarer overskriften. Fravalg af oplyste forudsætninger bevarer dimensioneringsgrundlag og grundlagstabel. De tre diagramvalg ligger i diagramkortet, som også vises ved fravalg; oprindelige betingelser og standarder er bevaret.
+
+Typekontrol, alle **2.972 Node-tests**, formattering/formatteringskontrol og build består. Rapportsidens referencetest navngiver udelukkende B-043/B-046-afvigelserne. `node tools/build-report-pdfs.ts` danner 13 PDF'er uden diagnoser, inklusive `b046-formatted-text` og `b046-omitted-sections`, i `.local/output/r3/` med tekstforventninger og formateringsdata. PDF-tekstkontrol og sidebilledgennemgang udføres fortsat af den styrende agent før R6. Browserpakken på **port 5201** er forsøgt; alle syv forløb afvises før testhandlingerne med `browserType.launch: spawn EPERM`. Browserkontrol af værktøjer, markering/fokus, fravalg/revisionsspærring, genåbning og diagramkort skal derfor gentages uden sandkassebegrænsningen. Semble CLI er anvendt (cachelagring afvist); Serena-start er forsøgt, men logfilen under brugerens `.serena` er skrivebeskyttet i sandkassen. Ingen pakker er installeret eller referenceforventninger ændret.
+
 ## R5 — firmaprofil og lagring
 
 **R5-hjælperstatus — 01.10.2026:** Implementeret i worktree `r5-firmaprofil`:

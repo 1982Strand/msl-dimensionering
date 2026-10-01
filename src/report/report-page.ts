@@ -22,6 +22,8 @@ export const REPORT_INTRO =
   'Dokumentation af beregningen til projektmateriale. Rapporten samler forudsætninger, resultat og udførelseskrav i ét PDF-dokument. Standardteksterne kan redigeres pr. rapport.';
 export const REPORT_NO_CALCULATION =
   'Der skal først foretages en dimensionering med et valgt geonet, før rapporten kan genereres.\n\nDimensioneringen udføres under **Dimensionering**, i Standard eller Brugerdefineret. Rapporten bygger på den seneste dimensionering.';
+export const REPORT_FORMAT_HELP =
+  'Formatering: `**fed**`, `*kursiv*` og • eller - efterfulgt af mellemrum for punkter. Indryk punkter for underpunkter. Tomme linjer starter et nyt afsnit.';
 export const PROJECT_FIELDS = [
   ['projekt', 'Projekt'],
   ['omfang', 'Omfang'],
@@ -45,8 +47,15 @@ export type ReportNode =
   | { kind: 'info'; text: string }
   | { kind: 'success'; text: string }
   | ReportWidget
+  | { kind: 'text_toolbar'; key: string }
   | { kind: 'expander'; key: string; title: string; children: ReportNode[] }
-  | { kind: 'figure'; key: 'visualisering' | 'designdiagram'; title: string; note: string }
+  | {
+      kind: 'figure';
+      key: 'visualisering' | 'designdiagram';
+      title: string;
+      note: string;
+      children?: ReportNode[];
+    }
   | { kind: 'divider' };
 export interface ReportStep {
   number: number;
@@ -100,6 +109,9 @@ export function reportPage(
     SECTION_KEYS.map((key) => [key, string(`rap_tekst_${key}`, STANDARD_TEKSTER[key])]),
   );
   const choices: ReportChoices = {
+    medtag_afsnit: Object.fromEntries(
+      SECTION_KEYS.map((key) => [key, bool(`rap_medtag_${key}`, true)]),
+    ),
     enhed: unit,
     standard_materialer: STANDARD_MATERIALER_RAPPORT.map((name, i) =>
       string(`rap_std_materiale_${i}`, name),
@@ -202,7 +214,10 @@ export function reportPage(
       title: SECTION_TITLER[key],
       children: [
         widget('button', `reset-${key}`, 'Nulstil'),
+        widget('checkbox', `rap_medtag_${key}`, 'Medtag i rapporten', choices.medtag_afsnit![key]!),
+        { kind: 'text_toolbar', key: `rap_tekst_${key}` },
         widget('text_area', `rap_tekst_${key}`, 'Tekst', texts[key]),
+        caption(REPORT_FORMAT_HELP),
       ],
     });
     if (key === 'oplyste_forudsaetninger')
@@ -255,6 +270,8 @@ export function reportPage(
         ? null
         : `2 lag geonet anvendes kun ved opbygninger ≥ ${laengde(500, unit)} (beregnet 1-lag tykkelse) — derfor ikke relevant her.`,
     ),
+  ];
+  const diagramChoices: ReportNode[] = [
     check(
       'rap_vis_designdiagram',
       'Personligt designdiagram',
@@ -264,7 +281,7 @@ export function reportPage(
         : 'Vælg et specifikt geonet under Dimensionering for at få kurverne med produktets net-korrektion.',
     ),
   ];
-  preview.push(
+  diagramChoices.push(
     check(
       'rap_dd_vis_din_prik',
       "Vis 'Indtastet opbygning'-prik i designdiagram",
@@ -293,13 +310,13 @@ export function reportPage(
       title: 'Opbygning',
       note: 'Snit i samme lodrette skala · forhåndsvisning fra dimensioneringen',
     });
-  if (figureChoices.rap_vis_designdiagram)
-    preview.push({
-      kind: 'figure',
-      key: 'designdiagram',
-      title: 'Designdiagram',
-      note: `Eₒ = ${mpa(dim.eo!)} · ${basis} · φᵥ = ${degrees(dim.phi)} · ${dim.geonet_navn || 'referencenet'}`,
-    });
+  preview.push({
+    kind: 'figure',
+    key: 'designdiagram',
+    title: 'Designdiagram',
+    note: `Eₒ = ${mpa(dim.eo!)} · ${basis} · φᵥ = ${degrees(dim.phi)} · ${dim.geonet_navn || 'referencenet'}`,
+    children: diagramChoices,
+  });
   preview.push({ kind: 'divider' });
   steps.push({ number: 3, title: 'Gennemsyn', summary: 'Sådan bliver siderne', children: preview });
   const ready = preview.some((n) => n.kind === 'figure' && n.key === 'visualisering');
@@ -319,7 +336,7 @@ export function reportPage(
 export function resetReportChoices(values: ReportValues): Record<string, null> {
   return Object.fromEntries(
     Object.keys(values)
-      .filter((key) => /^rap_(tekst_|grundlag_|std_materiale_|vis_|dd_vis_)/.test(key))
+      .filter((key) => /^rap_(tekst_|medtag_|grundlag_|std_materiale_|vis_|dd_vis_)/.test(key))
       .map((key) => [key, null]),
   );
 }

@@ -44,8 +44,21 @@
   line-height: 1.65;
   color: var(--color-muted-foreground);
 }
-.report-editor > button {
+.report-section-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
   margin: 4px 0 16px;
+}
+.report-section-actions .report-field {
+  margin: 0;
+}
+.report-text-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: 8px;
 }
 .report-editor .report-field:last-child {
   margin-bottom: 0;
@@ -62,6 +75,12 @@
   gap: 28px;
   align-items: center;
   margin-bottom: 24px;
+}
+.report-diagram-choices {
+  margin: 16px 0;
+}
+.report-diagram-choices .report-field:first-child {
+  grid-row: span 2;
 }
 .report-fields-toolbar .report-caption,
 .report-fields-toolbar .report-caption p {

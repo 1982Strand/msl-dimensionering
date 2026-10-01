@@ -60,6 +60,43 @@
       parbreak()
     }
   }
+  // B-046: modellen kommer fra TypeScript som JSON, aldrig som Typst-opmærkning.
+  let tekststykker(pieces) = {
+    for piece in pieces {
+      text(weight: if piece.bold { "bold" } else { "regular" },
+        style: if piece.italic { "italic" } else { "normal" }, piece.text)
+    }
+  }
+  let indrykning(indent) = {
+    let offset = 0pt
+    for ch in indent {
+      if ch == "\t" { offset += 36pt - calc.rem(offset, 36pt) }
+      else { offset += 2.49pt * skrift.stoerrelse_pt / 11 }
+    }
+    offset
+  }
+  let formateret(model) = {
+    for (i, afsnit) in model.paragraphs.enumerate() {
+      if i > 0 { v(line, weak: false) }
+      let tidligere = none
+      for linje in afsnit.lines {
+        if linje.kind == "bullet" {
+          if tidligere == "line" { parbreak() }
+          // Et rigtigt list-element giver hængende indrykning også ved ombrydning.
+          list(indent: calc.max(indrykning(linje.indent), linje.depth * 12pt),
+            body-indent: 12pt, spacing: 0pt, tight: true,
+            marker: if linje.depth > 0 { [◦] } else { [•] },
+            list.item(tekststykker(linje.pieces)))
+        } else {
+          if tidligere == "line" { linebreak() }
+          if linje.indent != "" { h(indrykning(linje.indent)) }
+          tekststykker(linje.pieces)
+        }
+        tidligere = linje.kind
+      }
+      parbreak()
+    }
+  }
   let blank(n: 1) = { for _ in range(n) { block(height: line, breakable: false)[] } }
   let overskrift(t) = block(sticky: true,
     text(weight: "bold", fill: if profil.overskrifter_i_farve { farve } else { black }, t))
@@ -88,19 +125,23 @@
   v(15.9pt, weak: false)
   overskrift[Dimensioneringsgrundlag:]
   blank()
-  underoverskrift[Forudsætninger:]
-  blank()
-  tekst(data.tekst_oplyste_forudsaetninger)
-  blank()
+  if "oplyste_forudsaetninger" in report.formattedTexts {
+    underoverskrift[Forudsætninger:]
+    blank()
+    formateret(report.formattedTexts.oplyste_forudsaetninger)
+    blank()
+  }
   if report.grundlag != none {
     underoverskrift(report.grundlag.overskrift + ":")
     blank()
     tabel(report.grundlag.rows)
   } else { blank() }
   blank()
-  overskrift[Generelle dimensioneringsforudsætninger for MSL opbygning:]
-  tekst(data.tekst_generelle_forudsaetninger)
-  blank()
+  if "generelle_forudsaetninger" in report.formattedTexts {
+    overskrift[Generelle dimensioneringsforudsætninger for MSL opbygning:]
+    formateret(report.formattedTexts.generelle_forudsaetninger)
+    blank()
+  }
   overskrift[Dimensioneringsresultat:]
   tekst("Baseret på ovennævnte indgangsparametre kan vi foreslå følgende MSL opbygning:")
   blank()
@@ -109,9 +150,12 @@
   figur(report.visualisering)
   figur(report.designdiagram)
   for afsnit in profil.afsluttende_afsnit {
-    overskrift(afsnit.titel)
-    tekst(data.at(afsnit.noegle))
-    blank()
+    let key = afsnit.noegle.slice(6)
+    if key in report.formattedTexts {
+      overskrift(afsnit.titel)
+      formateret(report.formattedTexts.at(key))
+      blank()
+    }
   }
   blank(n: 2)
   block(breakable: false)[

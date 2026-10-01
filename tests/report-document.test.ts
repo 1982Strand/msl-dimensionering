@@ -6,6 +6,7 @@ import { reportData, SECTION_KEYS } from '../src/report/report-data.ts';
 import { reportFigures } from '../src/report/report-figures.ts';
 import { reportDocument, type ReportAssets } from '../src/report/report-document.ts';
 import { DEFAULT_COMPANY_PROFILE, REPORT_FONT_FILES } from '../src/report/profile-defaults.ts';
+import { parseReportText } from '../src/report/text-format.ts';
 const assets: ReportAssets = {
   main: readFileSync(new URL('../src/report/typst/rapport.typ', import.meta.url), 'utf8'),
   layout: readFileSync(new URL('../src/report/typst/layout.typ', import.meta.url), 'utf8'),
@@ -28,6 +29,7 @@ for (const c of cases)
     assert.deepEqual(d.context, c.data.context);
     assert.deepEqual(d.sections, c.data.sections);
     assert.deepEqual(d.grundlag, c.data.grundlag);
+    assert.deepEqual(d.formattedTexts, c.data.formattedTexts);
     assert.deepEqual(JSON.parse(req.files['profil.json'] as string), DEFAULT_COMPANY_PROFILE);
     assert.equal(d.visualisering.image, 'figures/construction.svg');
     assert.ok(req.files[d.visualisering.image]);
@@ -75,4 +77,44 @@ test('R3 dokument: fravalgte figurer medtages hverken som fil eller JSON-sti', (
   assert.equal(data.visualisering, null);
   assert.equal(data.designdiagram, null);
   assert.ok(!Object.keys(request.files).some((p) => p.startsWith('figures/')));
+});
+
+test('B-046 dokument: fravalgte afsnit mangler i dokumentdata; medtaget tom tekst beholder overskrift', () => {
+  const c = cases[0];
+  const data = reportData(
+    c.result,
+    c.metadata,
+    {
+      ...c.valg,
+      medtag_afsnit: { oplyste_forudsaetninger: false, udfoerelse: false },
+    },
+    { kontrolplan: '' },
+  );
+  const req = reportDocument(data, reportFigures(c.result, c.settings, c.table), assets);
+  const document = JSON.parse(req.files['data.json'] as string);
+  for (const key of ['oplyste_forudsaetninger', 'udfoerelse']) {
+    assert.ok(!(key in document.sections));
+    assert.ok(!(key in document.formattedTexts));
+    assert.ok(!(`tekst_${key}` in document.context));
+  }
+  assert.equal(document.sections.kontrolplan, 'Kontrolplan');
+  assert.deepEqual(document.formattedTexts.kontrolplan, { paragraphs: [] });
+  assert.deepEqual(document.grundlag, c.data.grundlag);
+  assert.equal(
+    data.context.tekst_oplyste_forudsaetninger,
+    c.data.context.tekst_oplyste_forudsaetninger,
+  );
+});
+
+test('B-046 dokument: formatering og Typst-specialtegn ligger alene i JSON-data', () => {
+  const c = cases[0];
+  const text = '• **Fed** og *kursiv* # $ [ ] \\ @ < >\n  o #panic("aldrig")';
+  const data = reportData(c.result, c.metadata, c.valg, { udfoerelse: text });
+  const req = reportDocument(data, reportFigures(c.result, c.settings, c.table), assets);
+  const document = JSON.parse(req.files['data.json'] as string);
+  assert.equal(document.context.tekst_udfoerelse, text);
+  assert.deepEqual(document.formattedTexts.udfoerelse, parseReportText(text));
+  assert.equal(req.main, assets.main);
+  assert.equal(req.files['layout.typ'], assets.layout);
+  assert.ok(!assets.layout.includes('#panic("aldrig")'));
 });
