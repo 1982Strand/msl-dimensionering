@@ -26,6 +26,7 @@ import type { CalculationResult } from '../engine/types';
 import { InfoPopup } from './InfoPopup';
 import { ConstructionFigure } from './ConstructionFigure';
 import { PersonalDiagram } from './PersonalDiagram';
+import { NetDetails, NetIntervalNote } from './NetDetails';
 import { PhiSummary } from './PhiSummary';
 import { CouplingExplanation } from './CouplingExplanation';
 import { productOverview, overviewColumns, type OverviewSort } from '../engine/product-overview';
@@ -496,12 +497,7 @@ export function Dimensioning() {
               kind: 'select',
               options: options.map((value) => ({ value, label: productLabel(value) })),
             })}
-            {result.geonet?.korrektion_interval && (
-              <p className="settings-note">
-                Produktet har et korrektionsinterval. De viste tykkelser er konservative; den
-                optimale tykkelse markeres med en grøn prikket linje i opbygningsfiguren.
-              </p>
-            )}
+            <NetIntervalNote result={result} />
             <div className="dim-results" aria-label="Beregnet bærelagstykkelse">
               <div>
                 <h3>Uden geonet</h3>
@@ -615,6 +611,7 @@ export function Dimensioning() {
             netplacering={ctx.session.data.indstillinger.lagfordeling.netplacering}
           />
         )}
+        {result && <NetDetails input={input} result={result} products={products} />}
         {result && (
           <PersonalDiagram
             result={result}
