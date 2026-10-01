@@ -223,6 +223,7 @@ export function formelLinjer(formel: Formel) {
 }
 export const HJAELP_ROUTES: Readonly<Record<string, string>> = {
   dimensionering: '#dimensionering',
+  rapport: '#rapport',
   materialer: '#materialer',
   geonet_database: '#geonet-database',
   designdiagrammer: '#diagrammer',

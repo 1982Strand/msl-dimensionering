@@ -151,6 +151,42 @@ Kendte forskelle fra Word-PDF'erne (til R6): skriftsubstitution (Calibri → Car
 
 ## R4 — rapportsiden og alle eksisterende valg
 
+**R4-status — 01.10.2026:** `report-page.ts` og `Report.tsx` tilføjer `#rapport`
+med fire nummererede Accordion-afsnit, syv projektfelter, dato, syv tekster,
+grundlags-/materiale-/figurvalg, SVG-gennemsyn og PDF-generering via R1–R3.
+Projektfelter, tekster og valg gemmes i `EditorContext`, også tomme værdier.
+De tre nulstillinger har særskilt omfang. Dato og det startede liveforløb
+bevares kun i den åbne appsession; genindlæsning starter med lokal dags dato.
+Efter første generering kompileres ændringer automatisk med 180 ms samling
+af tastetryk. Fingeraftrykket omfatter rå rapportfelter/valg, motorinput/resultat,
+aktive indstillinger, SVG, standardfirmaprofil og begge Typst-kilder. Download
+kræver den aktuelle revision; en bevaret gammel PDF vises som forældet. Begge
+slags objekt-URL frigives ved erstatning/lukning. Firmaprofilen er R3's standard.
+
+`tests/report-page.test.ts` sammenligner hele indholdsstrømmen i alle fem
+frosne rapportcases præcist: sidehoved, undertekst, grøn grundlagslinje,
+afsnitsoverskrifter/opsummeringer, expandere, captions, widgets, hjælpetekster,
+værdier, deaktivering og rækkefølge. Kun den globale topbjælke og Streamlit-nøgler
+udelades; datowidgettens Python-repræsentation transporteres til ISO.
+Figurernes tilstedeværelse og overskrifter kontrolleres her; deres indhold
+kontrolleres fortsat af R3. Filnavnsreglen og nulstilling/ugyldige valg dækkes.
+Typekontrol, 2.950 Node-tests, format/formatkontrol og build består.
+
+Den midlertidige compiler-side/test er afløst af `tests/browser/report.spec.ts`
+med lagring, dato, nulstillinger, fuld PDF-kæde, skrifter, download/revision,
+afvisning, netværk/sidefejl og faktiske WASM-/skabelonfejl. Playwright på port
+5196 er forsøgt, men Chromium-start afvises med **`spawn EPERM`**. Browserforløb,
+netværkskontrol, kompileringstider og formularens respons skal derfor kontrolleres
+af den styrende agent; compiler-worker er ikke indført uden disse målinger.
+Siden og PDF'en har fortsat særskilt visuel accept.
+
+Fund: referencens intro omtaler stadig Word, selv om B-026 vælger PDF; teksten
+er bevaret for præcis referenceparitet og kræver afklaring ved gennemgang.
+Grundlagshjælpen bruger originalens mm også ved cm. Hjælps faktiske otte kapitler
+indeholder ingen rapport-genvej; den ønskede »Gå til Rapport« er derfor tilføjet
+under kapitlerne i `Help.tsx` sammen med ruten, uden at ændre kapitelindholdet.
+Ingen R1–R3-moduler, dimensioneringskomponenter eller referencefiler er ændret.
+
 Reference: `app.py` / `render_rapport` (8782), `_rapport_grundlag_valg` (8711), gemte felter (617–656), filnavn (9350–9354) og rapportfingeraftryk (9360).
 
 - **Projektoplysninger:** Projekt, Beskrivelse, Omfang, Udføres for, Sagsbehandler, Sagsbehandler-mail, Kontrol og Dato. De syv felter Projekt–Kontrol huskes, inklusive bevidst tomme værdier (`app.py:617–631`). Datoen huskes ikke mellem sessioner og starter på lokal dags dato. Nulstil felter bevares.

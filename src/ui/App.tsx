@@ -8,16 +8,19 @@ import { Settings } from './Settings';
 import { Dimensioning } from './Dimensioning';
 import { DesignDraft, SidebarPreview } from './DesignDraft';
 import { Help } from './Help';
-import { ReportCompileCheck } from './ReportCompileCheck';
+import { Report } from './Report';
 export function App() {
   const [page, setPage] = useState(() => location.hash.slice(1) || 'materialer');
+  // Rapportdato og liveforløb bevares ved navigation i den åbne session,
+  // men skrives aldrig til browserlageret.
+  const [reportDate, setReportDate] = useState<string | null>(null);
+  const [reportLive, setReportLive] = useState(false);
   useEffect(() => {
     const update = () => setPage(location.hash.slice(1) || 'materialer');
     window.addEventListener('hashchange', update);
     return () => window.removeEventListener('hashchange', update);
   }, []);
   if (page === 'designudkast-sidebar') return <SidebarPreview />;
-  if (page === 'rapport-kompilering') return <ReportCompileCheck />;
   return (
     <>
       <header className="topbar">
@@ -31,6 +34,7 @@ export function App() {
       <nav className="page-nav" aria-label="Navigation">
         {[
           ['dimensionering', 'Dimensionering'],
+          ['rapport', 'Rapport'],
           ['materialer', 'Materialer'],
           ['geonet-database', 'Geonet-database'],
           ['diagrammer', 'Designdiagrammer'],
@@ -44,7 +48,14 @@ export function App() {
         ))}
       </nav>
       <EditorProvider>
-        {page === 'geonet-database' ? (
+        {page === 'rapport' ? (
+          <Report
+            date={reportDate}
+            setDate={setReportDate}
+            live={reportLive}
+            startLive={() => setReportLive(true)}
+          />
+        ) : page === 'geonet-database' ? (
           <GeonetDatabase />
         ) : page === 'hjaelp' ? (
           <Help />
