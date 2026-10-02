@@ -14,7 +14,7 @@ import { eoSteps } from '../src/engine/table-explanation.ts';
 import { koersler_fra_raekker } from '../src/engine/editing.ts';
 import { standard_data_state } from '../src/engine/auto-edit.ts';
 import { correlationExampleLines } from '../src/ui/correlation-example-lines.ts';
-import { factorPhiNodes, weightedPhiNodes } from '../src/ui/formula/phi-lines.ts';
+import { factorPhiNodes, ROUNDING_NOTE, weightedPhiNodes } from '../src/ui/formula/phi-lines.ts';
 import {
   expression,
   formulaHtmlNodes,
@@ -148,7 +148,7 @@ function verifyInput(input: DimensioningInput, id: string) {
     assert.equal(weighted.lines.length, 1, `${id}: vægtet på én linje`);
     assert.equal(
       normalize(layoutText(weighted)),
-      normalize(summary.code!.replace(' (afrunding til nærmeste hele grad)', '')),
+      normalize(summary.code!.replace(ROUNDING_NOTE, '')),
       `${id}: vægtet tekst`,
     );
     const factor = verify(factorPhiNodes(nodes), `${id}: M6-faktor, to linjer`);

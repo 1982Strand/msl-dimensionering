@@ -32,6 +32,7 @@ test('M6 preserves active formulas, manual value, rounding, reload and small-scr
     await expect(formulae.nth(0).locator('.formula-equation')).toHaveCount(1);
     await expect(formulae.nth(1).locator('.formula-equation')).toHaveCount(2);
     await expect(summary).not.toContainText('afrunding til nærmeste hele grad');
+    await expect(summary).not.toContainText('nedrunding til hel grad');
     // Lighedstegnene i faktorens to linjer står lige under hinanden.
     const equals = await formulae
       .nth(1)
