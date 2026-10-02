@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { readFileSync } from 'node:fs';
 import { formulaHtmlNodes, formulaLayout, layoutText } from '../../src/ui/formula/layout.ts';
+import { factorPhiNodes, weightedPhiNodes } from '../../src/ui/formula/phi-lines.ts';
 const reference = JSON.parse(
   readFileSync(new URL('../../reference/phi-summary.json', import.meta.url), 'utf8'),
 );
@@ -19,14 +20,25 @@ test('M6 preserves active formulas, manual value, rounding, reload and small-scr
   const verify = async (id: string) => {
     const formulae = summary.locator('.kob-formel');
     await expect(formulae).toHaveCount(2);
+    // B-072: vægtet friktionsvinkel på én linje uden noten om nærmeste hele grad; faktoren på to.
     await expect(formulae.nth(0)).toHaveAttribute(
       'data-formula-text',
-      layoutText(formulaLayout([expected(id).code])),
+      layoutText(formulaLayout(weightedPhiNodes(expected(id).code))),
     );
     await expect(formulae.nth(1)).toHaveAttribute(
       'data-formula-text',
-      layoutText(formulaLayout(formulaHtmlNodes(expected(id).factor_html))),
+      layoutText(formulaLayout(factorPhiNodes(formulaHtmlNodes(expected(id).factor_html)))),
     );
+    await expect(formulae.nth(0).locator('.formula-equation')).toHaveCount(1);
+    await expect(formulae.nth(1).locator('.formula-equation')).toHaveCount(2);
+    await expect(summary).not.toContainText('afrunding til nærmeste hele grad');
+    // Lighedstegnene i faktorens to linjer står lige under hinanden.
+    const equals = await formulae
+      .nth(1)
+      .locator('.formula-rhs math > mo:first-child')
+      .evaluateAll((els) => els.map((el) => el.getBoundingClientRect().left));
+    expect(equals).toHaveLength(2);
+    expect(Math.abs(equals[0] - equals[1])).toBeLessThan(0.5);
     await expect(formulae.locator('[data-formula-fallback]')).toHaveCount(0);
     expect(await formulae.nth(0).locator('math mfrac').count()).toBeGreaterThan(0);
     expect(await formulae.nth(1).locator('math msub').count()).toBeGreaterThan(0);

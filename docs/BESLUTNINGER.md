@@ -219,3 +219,9 @@ Beslutning B-025 følger brugerens besked i denne chat. B-026–028 registreres 
   Cambria Math følger med Windows. Ved senere offentliggørelse (B-060) skal en matematikskrift følge med appen.
 
 - **B-071:** Brugeren laver selv den visuelle kontrol direkte i appen. Brugeren: »bare lad mig lave den visuelle test, så du ikke skal lave screenshots og alt muligt. Det gør jeg også fremover« og »du behøver heller ikke lave en preview, jeg tester det bare direkte og så retter vi hvis det er«. Claude tager ikke skærmbilleder til gennemsyn og starter ikke en preview. Når koden er gennemgået og de automatiske tests (enheds- og browsertests) består, lægges ændringen på main; brugeren tester i appen, og rettelser tages bagefter. Det ændrer AGENTS.md's krav om udkast før endelig implementering for visuelle ændringer, som brugeren selv har beskrevet.
+- **B-072:** φᵥ-boksene under Opbygning samles på færre linjer med lighedstegnene under hinanden. Brugeren: »Her kunne regnestykket godt stå på 1 linje, i hvert fald for vægtet friktionsvinkel. For korrektionsfaktoren er der 3 linjer, det tænker jeg godt kan laves til 2. Sørg for at lighedstegnene står lige over hinanden på de to linjer når det rettes« og »der behøver ikke at stå '(afrunding til nærmeste hele grad)'«. Gennemført:
+  1. Vægtet friktionsvinkel står på én linje, fx φᵥ = Σ(tᵢ × φᵢ)/Σ(tᵢ) = 26800/700 = 38,29° ≈ 38°. Noten »(afrunding til nærmeste hele grad)« vises ikke. Ved nedrunding bevares noten »(nedrunding til hel grad)«, fordi »≈« alene ikke viser, at der er rundet ned.
+  2. Korrektionsfaktoren står på to linjer: k<sub>φ</sub> = −0,02 × (φᵥ − 37°) = −0,02 × (38,00 − 37) og derunder = −0,0200 = −2,00 %.
+  3. I alle formelbokse står lighedstegnene i på hinanden følgende ligninger under hinanden, som i LaTeX' `align`. Det gælder også »Sådan er resultatet beregnet« og regneeksemplet.
+
+  Motorens tekst er uændret; kun visningen samler linjerne. Rapportens PDF er uændret.

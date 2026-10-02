@@ -233,6 +233,20 @@ export function expression(s: Inline): MathItem[] | null {
 }
 export const textInline = glyphs;
 
+/** B-072: venstre side og resten fra første relation på øverste niveau, så »=« står under hinanden. */
+export function splitRelation(items: MathItem[]): [MathItem[], MathItem[]] {
+  let depth = 0;
+  for (let i = 0; i < items.length; i++) {
+    const t = items[i];
+    if (t.kind !== 'operator') continue;
+    if (t.text === '(') depth++;
+    else if (t.text === ')') depth--;
+    else if (depth === 0 && (t.text === '=' || t.text === '≈'))
+      return [trimItems(items.slice(0, i)), items.slice(i)];
+  }
+  return [items, []];
+}
+
 function mathCell(content: Inline): Cell | null {
   const items = expression(content);
   return items ? { kind: 'math', items } : null;

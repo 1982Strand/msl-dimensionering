@@ -64,3 +64,7 @@ De syv tekstskabeloner er `traffic-description`, `load-description`, `applicatio
 Udkastets trin 2/4/5/6 kontrolleres med et syntetisk input i testen; når `.local/kob-steps.json` findes, sammenlignes det også. Dermed kan testen køre uden de lokale udkastfiler. Strukturtests kontrollerer brøker, indeks, gitter, sumtabel og fed slutværdi; fallback testes med ukendt tekst, markup og ændrede inline-stile.
 
 `kobling.spec.ts` og `phi-summary.spec.ts` kontrollerer modeltekst, faktiske MathML-tal, brøker/indeks/fed og rulning ved 1440/600/390 px. `accessibility.spec.ts` bevarer axe med udfoldet M1 og kræver matematik uden ukendt fallback. **Claude kører browser-/axe-kontrollen og tager skærmbilleder; Chromium er ikke tilgængelig i hjælperens miljø.** Endelig visuel sammenligning med forslag B og B-070-registrering udestår derfor hos Claude.
+
+## B-072: justering og φᵥ-boksene
+
+På hinanden følgende ligninger deler et gitter med kolonnerne etiket, venstre side og »= …«, så lighedstegnene (og »≈«) står under hinanden som i LaTeX' `align`; en fortsættelseslinje har tom venstre side. `src/ui/formula/phi-lines.ts` sætter φᵥ-boksene op: den vægtede friktionsvinkel på én linje, hvor noten »(afrunding til nærmeste hele grad)« udelades (en nedrundingsnote bevares som dæmpet note), og korrektionsfaktoren på to linjer. Motorens tekst er uændret; testen sammenligner med den.

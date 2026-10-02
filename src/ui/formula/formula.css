@@ -45,21 +45,26 @@
 .formula-text {
   white-space: pre-wrap;
 }
+/* B-072: etiket | venstre side | »= …«. Rækkerne deler kolonner, så lighedstegnene står
+   under hinanden som i LaTeX' align; fortsættelseslinjer har tom venstre side. */
+.formula-equations {
+  display: grid;
+  grid-template-columns: max-content max-content minmax(max-content, 1fr);
+  align-items: center;
+}
 .formula-equation {
   display: grid;
-  grid-template-columns: 160px minmax(max-content, 1fr);
+  grid-template-columns: subgrid;
+  grid-column: 1 / -1;
   align-items: center;
-  column-gap: 18px;
   padding: 4px 0;
 }
-.formula-equation:has(.formula-label:empty) {
-  grid-template-columns: 0 minmax(max-content, 1fr);
-  column-gap: 0;
+.formula-label:not(:empty) {
+  min-width: 160px;
+  padding-right: 18px;
 }
-/* Continuation equations keep the label column when a block has labels. */
-.formula-content:has(.formula-label:not(:empty)) .formula-equation {
-  grid-template-columns: 160px minmax(max-content, 1fr);
-  column-gap: 18px;
+.formula-lhs {
+  text-align: right;
 }
 .formula-note {
   margin-left: 10px;

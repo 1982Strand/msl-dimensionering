@@ -14,12 +14,14 @@ import { eoSteps } from '../src/engine/table-explanation.ts';
 import { koersler_fra_raekker } from '../src/engine/editing.ts';
 import { standard_data_state } from '../src/engine/auto-edit.ts';
 import { correlationExampleLines } from '../src/ui/correlation-example-lines.ts';
+import { factorPhiNodes, weightedPhiNodes } from '../src/ui/formula/phi-lines.ts';
 import {
   expression,
   formulaHtmlNodes,
   formulaLayout,
   layoutText,
   mathText,
+  splitRelation,
   textInline,
   type FormulaLayout,
   type Glyph,
@@ -140,6 +142,28 @@ function verifyInput(input: DimensioningInput, id: string) {
       `${id}: HTML-dekoder`,
     );
     verify(nodes, `${id}: M6-faktor`);
+    // B-072: vægtet friktionsvinkel på én linje uden noten om nærmeste hele grad; faktoren på to
+    // linjer. Indholdet er ellers motorens, og »=« starter fortsættelseslinjen.
+    const weighted = verify(weightedPhiNodes(summary.code!), `${id}: M6-vægtet, én linje`);
+    assert.equal(weighted.lines.length, 1, `${id}: vægtet på én linje`);
+    assert.equal(
+      normalize(layoutText(weighted)),
+      normalize(summary.code!.replace(' (afrunding til nærmeste hele grad)', '')),
+      `${id}: vægtet tekst`,
+    );
+    const factor = verify(factorPhiNodes(nodes), `${id}: M6-faktor, to linjer`);
+    assert.deepEqual(
+      factor.lines.map((line) => line.kind),
+      ['equation', 'equation'],
+      `${id}: faktor på to linjer`,
+    );
+    assert.equal(normalize(layoutText(factor)), normalize(nodes.map(couplingText).join('')));
+    const [first, second] = factor.lines.map((line) =>
+      line.kind === 'equation' ? splitRelation(line.items) : [[], []],
+    );
+    assert.equal(mathText(first[0]), 'kφ', `${id}: venstre side`);
+    assert.equal(second[0].length, 0, `${id}: fortsættelse uden venstre side`);
+    assert.ok(mathText(second[1]).startsWith('='), `${id}: fortsættelse starter med =`);
   }
   return { result, explanation, all };
 }

@@ -3,6 +3,7 @@ import type { DimensioningInput } from '../engine/dimensionering';
 import { Notice } from './Notice';
 import { FormulaBlock } from './formula/FormulaBlock';
 import { formulaHtmlNodes } from './formula/layout';
+import { factorPhiNodes, weightedPhiNodes } from './formula/phi-lines';
 
 export function PhiSummary({ input }: { input: DimensioningInput }) {
   const summary = phiSummary(input);
@@ -12,11 +13,11 @@ export function PhiSummary({ input }: { input: DimensioningInput }) {
       <h3>φᵥ-korrektion</h3>
       <div className="phi-summary-block">
         <h4>Vægtet friktionsvinkel</h4>
-        <FormulaBlock nodes={[summary.code!]} />
+        <FormulaBlock nodes={weightedPhiNodes(summary.code!)} />
       </div>
       <div className="phi-summary-block">
         <h4>φᵥ-korrektionsfaktor</h4>
-        <FormulaBlock nodes={formulaHtmlNodes(summary.factor_html!)} />
+        <FormulaBlock nodes={factorPhiNodes(formulaHtmlNodes(summary.factor_html!))} />
       </div>
       <Notice>Korrektionen anvendes på basistykkelsen.</Notice>
     </aside>

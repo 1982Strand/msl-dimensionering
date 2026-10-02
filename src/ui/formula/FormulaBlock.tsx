@@ -5,6 +5,8 @@ import {
   formulaLayout,
   layoutText,
   mathText,
+  splitRelation,
+  type FormulaLine,
   type Inline,
   type MathItem,
 } from './layout';
@@ -122,12 +124,22 @@ function AnnotatedText({ content }: { content: Inline }) {
   return nodes;
 }
 
+type EquationLine = Extract<FormulaLine, { kind: 'equation' }>;
+
 export function FormulaBlock({ nodes }: { nodes: CouplingNode[] }) {
   const layout = formulaLayout(nodes);
+  // B-072: på hinanden følgende ligninger deler gitter, så lighedstegnene står under hinanden.
+  const groups: (FormulaLine | { kind: 'equations'; rows: EquationLine[] })[] = [];
+  for (const line of layout.lines) {
+    const last = groups.at(-1);
+    if (line.kind !== 'equation') groups.push(line);
+    else if (last?.kind === 'equations') last.rows.push(line);
+    else groups.push({ kind: 'equations', rows: [line] });
+  }
   return (
     <div className="kob-formel formula-block" tabIndex={0} data-formula-text={layoutText(layout)}>
       <div className="formula-content">
-        {layout.lines.map((line, i) => {
+        {groups.map((line, i) => {
           switch (line.kind) {
             case 'blank':
               return <div key={i} className="formula-blank" />;
@@ -145,23 +157,35 @@ export function FormulaBlock({ nodes }: { nodes: CouplingNode[] }) {
                   )}
                 </div>
               );
-            case 'equation':
+            case 'equations':
               return (
-                <div key={i} className="formula-equation">
-                  <span className="formula-label">
-                    <InlineText content={line.label} />
-                  </span>
-                  <span className="formula-expression">
-                    <MathExpression items={line.items} display />
-                    {line.note.length > 0 && (
-                      <span className="formula-weak formula-note">
-                        {' '}
-                        <AnnotatedText content={line.note} />
-                      </span>
-                    )}
-                  </span>
+                <div key={i} className="formula-equations">
+                  {line.rows.map((row, r) => {
+                    const [lhs, rhs] = splitRelation(row.items);
+                    return (
+                      <div key={r} className="formula-equation">
+                        <span className="formula-label">
+                          <InlineText content={row.label} />
+                        </span>
+                        <span className="formula-lhs">
+                          {lhs.length > 0 && <MathExpression items={lhs} display />}
+                        </span>
+                        <span className="formula-rhs">
+                          {rhs.length > 0 && <MathExpression items={rhs} display />}
+                          {row.note.length > 0 && (
+                            <span className="formula-weak formula-note">
+                              {' '}
+                              <AnnotatedText content={row.note} />
+                            </span>
+                          )}
+                        </span>
+                      </div>
+                    );
+                  })}
                 </div>
               );
+            case 'equation':
+              return null;
             case 'grid':
               return (
                 <div
