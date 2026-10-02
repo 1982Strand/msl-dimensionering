@@ -1,5 +1,6 @@
 import { Fragment, type ReactNode } from 'react';
 import ReactMarkdown from 'react-markdown';
+import { Info, TriangleAlert } from 'lucide-react';
 import {
   Accordion,
   AccordionItem,
@@ -20,6 +21,7 @@ type Props = {
   products?: { one: ProductRow[]; two: ProductRow[] };
 };
 type StatusHints = Record<'warning' | 'info', ReactNode>;
+const statusIcons = { warning: TriangleAlert, info: Info } as const;
 
 function isWarningMessage(element: Extract<CheckElement, { type: 'html' }>) {
   const outer = element.nodes[0];
@@ -44,19 +46,28 @@ function Content({
       : classes?.includes('bg-resultat-status-info')
         ? 'info'
         : undefined;
+    const status = statusKind && statusHints;
+    // B-067: originalens tegn ⚠/ⓘ vises som de farvede ikoner fra beskederne (Alert).
+    const StatusIcon = status ? statusIcons[statusKind] : undefined;
+    const children = StatusIcon
+      ? node.children.map((child, j) =>
+          j === 0 && typeof child === 'string' ? child.replace(/^[⚠ⓘ]\s*/, '') : child,
+        )
+      : node.children;
     // Original's inline styles are kept in the model for exact reference testing.
     // Theme and app font are applied by this component's stylesheet.
     const element = (
       <Tag
         className={node.className}
         aria-label={node.ariaLabel}
-        tabIndex={(statusHints && statusKind) || (hints && node.title) ? 0 : undefined}
+        tabIndex={status || (hints && node.title) ? 0 : undefined}
       >
-        <Content nodes={node.children} hints={hints} statusHints={statusHints} />
+        {StatusIcon && <StatusIcon aria-hidden="true" className="bg-resultat-status-icon" />}
+        <Content nodes={children} hints={hints} statusHints={statusHints} />
       </Tag>
     );
     // B-066: statusposten viser selve beskederne; modellens henvisning er ikke længere relevant.
-    if (statusKind && statusHints)
+    if (status)
       return (
         <Hint key={i} kind={statusKind} side="bottom" content={statusHints[statusKind]}>
           {element}

@@ -194,3 +194,5 @@ Beslutning B-025 følger brugerens besked i denne chat. B-026–028 registreres 
   3. Udfoldningen »Kontrolpunkter og anbefalinger« er fjernet; »Udførelseskrav« er uændret. Er der hverken kontrolpunkter eller anbefalinger, vises der som før ingen statuslinje. Udfoldningens billedtekst »Ingen kontrolpunkter for den valgte Eᵤ og belastning.« forsvinder med den.
 
   Motoren og referenceforventningerne er uændrede; kun visningen er ændret. Forelægges brugeren.
+
+- **B-067:** Statuslinjens tegn vises som farvede ikoner. Brugeren om statuslinjen efter B-066: »selve ikonerne må godt være de farvede ikoner fra shadcn, altså fx fra 'Alert' bare med farver«. Gennemført: tegnet ⚠ ved kontrolpunkter er afløst af beskedernes trekantikon (lucide `TriangleAlert`) i advarselsfarven, og tegnet ⓘ ved anbefalinger af info-ikonet (lucide `Info`) i den grønne temafarve. Det er de samme ikoner som i beskederne (shadcn Alert) og ved klassevalget (B-064). Tal og ord, fx »1 kontrolpunkt«, er uændrede, og ikonerne er skjult for skærmlæsere, som fortsat læser »Kontrolpunkter« og »Anbefalinger«. Motoren er uændret. Forelægges brugeren.

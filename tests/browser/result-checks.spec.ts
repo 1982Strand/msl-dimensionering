@@ -7,7 +7,8 @@ test('M3/B-066: coloured status Hover Cards, FIG-003 recommendation and executio
   const errors: string[] = [];
   page.on('pageerror', (error) => errors.push(error.message));
   await page.goto('/#dimensionering');
-  await expect(page.locator('.bg-resultat-status')).toHaveText('ⓘ 1 anbefaling');
+  // B-067: originalens tegn ⚠/ⓘ står som farvede ikoner; teksten er ellers modellens.
+  await expect(page.locator('.bg-resultat-status')).toHaveText('1 anbefaling');
   await expect(page.locator('.bg-resultat-status')).toBeVisible();
   await page.getByRole('radio', { name: 'Brugerdefineret', exact: true }).check();
   await page.locator('#bd_eu_slider').focus();
@@ -16,9 +17,15 @@ test('M3/B-066: coloured status Hover Cards, FIG-003 recommendation and executio
   await chooseProduct(page, 'bd', 'Tensar InterAx NX850');
 
   const status = page.locator('.bg-resultat-status');
-  await expect(status).toHaveText('⚠ 1 kontrolpunktⓘ 1 anbefaling');
+  await expect(status).toHaveText('1 kontrolpunkt1 anbefaling');
   const warningTrigger = status.locator('[aria-label="Kontrolpunkter"]');
   const infoTrigger = status.locator('[aria-label="Anbefalinger"]');
+  const warningIcon = warningTrigger.locator('svg.lucide-triangle-alert');
+  const infoIcon = infoTrigger.locator('svg.lucide-info');
+  await expect(warningIcon).toHaveAttribute('aria-hidden', 'true');
+  await expect(warningIcon).toHaveCSS('color', 'rgb(130, 99, 32)');
+  await expect(infoIcon).toHaveAttribute('aria-hidden', 'true');
+  await expect(infoIcon).toHaveCSS('color', 'rgb(37, 88, 74)');
   const warningCard = page.locator('.hint-content-warning');
   const infoCard = page.locator('.hint-content-info');
   const warningText =
@@ -79,7 +86,7 @@ test('M3/B-066: coloured status Hover Cards, FIG-003 recommendation and executio
   await page.getByRole('link', { name: 'Indstillinger', exact: true }).click();
   await page.getByRole('radio', { name: 'Ved nettets mindste dæklag', exact: true }).check();
   await page.getByRole('link', { name: 'Dimensionering', exact: true }).click();
-  await expect(status).toHaveText('⚠ 1 kontrolpunktⓘ 2 anbefalinger');
+  await expect(status).toHaveText('1 kontrolpunkt2 anbefalinger');
   await infoTrigger.hover();
   await expect(infoCard.locator('.result-status-hint > div')).toHaveText([
     'Tensar InterAx NX850: Afstanden mellem geonetlagene er 450 mm. Anbefalingen for bedst effekt er højst 400 mm for Tensar ved 2 lag geonet.',
