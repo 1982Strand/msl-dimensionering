@@ -17,15 +17,12 @@ test('diagram edits update actual chart, persist selected diagram, and share und
   page,
 }) => {
   await page.goto('/#diagrammer');
-  await expect(page.locator('.raw-chart .main-svg').first()).toBeVisible();
+  const curve = page.locator('.raw-chart svg [data-curve][data-name="1 lag geonet"]');
+  await expect(curve).toBeVisible();
+  const originalPath = (await curve.getAttribute('d'))!;
   await setCell(page, '1 lag tykkelse (cm) · Diagram 1 · Eᵤ 1', '87.3');
-  await expect
-    .poll(() =>
-      page
-        .locator('.raw-chart')
-        .evaluate((el) => (el as unknown as { data: { x: number[] }[] }).data?.[1]?.x[0]),
-    )
-    .toBe(87.3);
+  await expect(curve).not.toHaveAttribute('d', originalPath);
+  const editedPath = (await curve.getAttribute('d'))!;
   await expect(page.getByText('Standard: 86.7', { exact: true })).toBeVisible();
   await page.getByRole('link', { name: 'Materialer', exact: true }).click();
   await page.getByRole('button', { name: 'Fortryd', exact: true }).click();
@@ -33,7 +30,9 @@ test('diagram edits update actual chart, persist selected diagram, and share und
   await expect(
     page.getByLabel('1 lag tykkelse (cm) · Diagram 1 · Eᵤ 1', { exact: true }),
   ).toHaveValue('86.7');
+  await expect(curve).toHaveAttribute('d', originalPath);
   await page.getByRole('button', { name: 'Gentag', exact: true }).click();
+  await expect(curve).toHaveAttribute('d', editedPath);
   await page.getByRole('button', { name: 'Vælg diagram 2', exact: true }).click();
   await page.reload();
   await expect(page.getByRole('button', { name: 'Vælg diagram 2', exact: true })).toHaveAttribute(
@@ -43,6 +42,80 @@ test('diagram edits update actual chart, persist selected diagram, and share und
   expect((await saved(page)).data.designdiagrammer[0].rows[0].t_1_lag_cm).toBe(87.3);
   await page.getByRole('button', { name: 'Nulstil dette diagram', exact: true }).click();
   expect((await saved(page)).data.designdiagrammer[0].rows[0].t_1_lag_cm).toBe(87.3);
+  await page.getByRole('button', { name: 'Vælg diagram 1', exact: true }).click();
+  await expect(curve).toHaveAttribute('d', editedPath);
+  await page.getByRole('button', { name: 'Nulstil dette diagram', exact: true }).click();
+  await expect(curve).toHaveAttribute('d', originalPath);
+  await expect(
+    page.getByLabel('1 lag tykkelse (cm) · Diagram 1 · Eᵤ 1', { exact: true }),
+  ).toHaveValue('86.7');
+});
+
+test('raw SVG highlights table points with decimal comma, arrow keys and Escape', async ({
+  page,
+}) => {
+  await page.goto('/#diagrammer');
+  const chart = page.getByRole('img', { name: 'Optegnet af tabellens værdier', exact: true });
+  const canvas = page.getByRole('group', { name: /^Optegnet af tabellens værdier\./ });
+  const tip = canvas.getByRole('status');
+  const point = chart.locator('[data-curve-marker="0"][data-index="0"]');
+  // Diagram 1's første ustabiliserede punkt står i tabellen ved Eᵤ 3.
+  const cell = page.getByLabel('Ustabiliseret tykkelse (cm) · Diagram 1 · Eᵤ 3', {
+    exact: true,
+  });
+  const thickness = Number(await cell.inputValue())
+    .toFixed(1)
+    .replace('.', ',');
+  await point.hover({ force: true });
+  await expect(tip).toContainText(`${thickness} cm`);
+  await expect(tip).toContainText('Ustabiliseret');
+  await expect(tip).toContainText('Eᵤ 3 MN/m²');
+  await expect(tip).not.toContainText('3,0 MN/m²');
+  await expect(canvas.locator('.personal-diagram-overlay path')).toHaveAttribute(
+    'stroke-width',
+    '3.5',
+  );
+  const ring = canvas.locator('.personal-diagram-overlay circle[r="8"]');
+  await expect(ring).toBeVisible();
+  expect(Number(await ring.getAttribute('cx'))).toBeCloseTo(
+    Number(await point.getAttribute('cx')),
+    2,
+  );
+  expect(Number(await ring.getAttribute('cy'))).toBeCloseTo(
+    Number(await point.getAttribute('cy')),
+    2,
+  );
+  await expect(chart.locator('[data-legend]')).toContainText('Ustabiliseret');
+  await expect(chart.locator('[data-legend]')).toContainText('1 lag geonet');
+  expect(await chart.locator('[tabindex]').count()).toBe(0);
+  await canvas.focus();
+  await canvas.press('ArrowUp');
+  const nextThickness = Number(
+    await page
+      .getByLabel('Ustabiliseret tykkelse (cm) · Diagram 1 · Eᵤ 4', { exact: true })
+      .inputValue(),
+  )
+    .toFixed(1)
+    .replace('.', ',');
+  await expect(tip).toContainText(`${nextThickness} cm`);
+  await expect(tip).toContainText('Eᵤ 4 MN/m²');
+  await canvas.press('ArrowDown');
+  await expect(tip).toContainText(`${thickness} cm`);
+  await expect(tip).toContainText('Eᵤ 3 MN/m²');
+  await canvas.press('ArrowRight');
+  await expect(tip).toContainText('1 lag geonet');
+  await canvas.press('ArrowLeft');
+  await expect(tip).toContainText('Ustabiliseret');
+  await canvas.press('Escape');
+  await expect(tip).toHaveCount(0);
+  await expect(canvas.locator('.personal-diagram-overlay')).toHaveCount(0);
+  await setCell(page, 'Ustabiliseret tykkelse (cm) · Diagram 1 · Eᵤ 3', '111.2');
+  await point.hover({ force: true });
+  await expect(tip).toContainText('111,2 cm');
+  await expect(tip).toContainText('Eᵤ 3 MN/m²');
+  await page.getByRole('button', { name: 'Fortryd', exact: true }).click();
+  await point.hover({ force: true });
+  await expect(tip).toContainText(`${thickness} cm`);
 });
 
 test('diagram rows support add, duplicate rejection, delete, cell and row restore', async ({
@@ -147,7 +220,7 @@ test('all six scans and charts render; desktop and mobile tables stay inside the
   await page.goto('/#diagrammer');
   for (let n = 1; n <= 6; n++) {
     await page.getByRole('button', { name: `Vælg diagram ${n}`, exact: true }).click();
-    await expect(page.locator('.raw-chart .main-svg').first()).toBeVisible();
+    await expect(page.locator('.raw-chart svg [data-curve]').first()).toBeVisible();
     await expect
       .poll(() =>
         page
@@ -164,7 +237,7 @@ test('all six scans and charts render; desktop and mobile tables stay inside the
     await page.goto(`/#${hash}`);
     await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
     if (hash === 'diagrammer')
-      await expect(page.locator('.raw-chart .main-svg').first()).toBeVisible();
+      await expect(page.locator('.raw-chart svg [data-curve]').first()).toBeVisible();
     expect(
       await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth),
     ).toBeTruthy();

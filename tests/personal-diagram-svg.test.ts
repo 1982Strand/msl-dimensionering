@@ -1,6 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
+import { createHash } from 'node:crypto';
 import {
   byg_designdiagram,
   type PersonalDiagramInput,
@@ -122,6 +123,30 @@ for (const c of cases) {
 }
 
 const base = captured.cases[0].expected!;
+
+// Beregnet fra den uændrede renderer på codex/raadiagram-svg FØR SVG-udkastet.
+// Faste forventninger: rendererens output sammenlignes aldrig kun med sig selv.
+const originalHashes: Record<string, string> = {
+  'FIG-001-standard-default': '8794161b1aa61234c786c4bc1ecba335434df39ab3c8e1f5d19d786f1c5283fe',
+  'FIG-002-standard-interval': 'ceeb79cae148e9ad7d633b98cb86059e5f32f6edbc277d4a138b6d8d1b5eb45d',
+  'FIG-003-custom-interval': '6f4b9c557167dd2d5dbc63d99e7e6a49dcd8b56e8d2a9029df7299d809c480bd',
+  'FIG-004-custom-cm': '6f4b9c557167dd2d5dbc63d99e7e6a49dcd8b56e8d2a9029df7299d809c480bd',
+  'M5-custom-hidden-points': '1e22501a4aabe436b8572b467d6e8bac6ae788154b9d622b0b0ee2a65219a598',
+  'M5-custom-manual-phi40': '4e0de461491eb8e174e9f1b0b7faa2420df3644dbd6c5ef190fa1e8c727748fd',
+  'M5-custom-traffic-t4-eu7': '634f05096bcdd9c53cd2669fa0cf157fc2538b07c1c6b948bbe75d88b05b90b7',
+  'M5-standard-traffic-t4-eu10': 'f5dc3c672005dd342c0cb1c7636d2f6d52f2aa26f36e0faf1a9e21186d976b75',
+  'M5-scaled-boundary': '1acffd14bd4519b6de53e4fa251c5ec9ff16eb529a40bfe343bf77a1cd26cb6a',
+  'M5-per-curve-phi': '747a67ce36eefe2be16c04712a19718ecbcf94a5bbb35b225aa75553da314258',
+};
+for (const [id, hash] of Object.entries(originalHashes)) {
+  test(`M5 SVG: byte-identisk standardoutput i ${id}`, () => {
+    const spec = captured.cases.find((c) => c.id === id)!.expected!;
+    const svg = renderPersonalDiagramSvg(diagramModel(spec));
+    assert.equal(createHash('sha256').update(svg).digest('hex'), hash);
+    assert.match(svg, /role="img" aria-label="Personligt designdiagram"/);
+    assert.doesNotMatch(svg, /data-curve-marker=/);
+  });
+}
 test('M5 SVG: ukendte navne, aksetekst og skrift escapes og får neutral farve', () => {
   const spec = structuredClone(base),
     special = '<&"';

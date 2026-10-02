@@ -154,13 +154,20 @@ export interface DiagramSvgOptions {
   fontFamily?: string;
   /** Unikt præfiks til SVG-id'er, når flere diagrammer vises på samme side. */
   idPrefix?: string;
+  /** Rådiagrammets billedtekst; M5 beholder sin godkendte standard. */
+  ariaLabel?: string;
+  /** Vis tabellens datapunkter som små prikker på kurverne. */
+  markers?: boolean;
 }
 export function svgScales(m: PersonalDiagramModel, size: DiagramSize = SVG_SIZE) {
   if (!finite(size.width) || !finite(size.height) || size.width <= 76 || size.height <= 64)
     throw new Error('Designdiagrammets SVG-mål er ugyldige.');
   const pl = { x0: 58, x1: size.width - 18, y0: 18, y1: size.height - 46 };
-  const sx = (x: number) => pl.x0 + ((x - m.x[0]) / (m.x[1] - m.x[0])) * (pl.x1 - pl.x0);
-  const sy = (y: number) => pl.y1 - ((y - m.y[0]) / (m.y[1] - m.y[0])) * (pl.y1 - pl.y0);
+  // En råtabel kan indeholde udelukkende nuller. Bevar dens interval og undgå 0/0.
+  const xSpan = m.x[1] - m.x[0] || 1;
+  const ySpan = m.y[1] - m.y[0] || 1;
+  const sx = (x: number) => pl.x0 + ((x - m.x[0]) / xSpan) * (pl.x1 - pl.x0);
+  const sy = (y: number) => pl.y1 - ((y - m.y[0]) / ySpan) * (pl.y1 - pl.y0);
   const iy = (py: number) => m.y[0] + ((pl.y1 - py) / (pl.y1 - pl.y0)) * (m.y[1] - m.y[0]);
   return { pl, sx, sy, iy };
 }
@@ -185,7 +192,7 @@ export function renderPersonalDiagramSvg(
     pts.map(([x, y], i) => `${i ? 'L' : 'M'}${tal(sx(x))} ${tal(sy(y))}`).join('');
   const ud: string[] = [];
   ud.push(
-    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${maal.b} ${maal.h}" width="${maal.b}" height="${maal.h}" font-family="${esc(tema.skrift)}" role="img" aria-label="Personligt designdiagram">`,
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${maal.b} ${maal.h}" width="${maal.b}" height="${maal.h}" font-family="${esc(tema.skrift)}" role="img" aria-label="${esc(options.ariaLabel ?? 'Personligt designdiagram')}">`,
   );
   ud.push(`<rect width="${maal.b}" height="${maal.h}" fill="${tema.flade}"/>`);
   ud.push(
@@ -232,6 +239,12 @@ export function renderPersonalDiagramSvg(
     ud.push(
       `<path data-curve="${i}" data-name="${esc(l.navn)}" d="${sti(l.pts)}" fill="none" stroke="${f[l.rolle]}" ${streg} stroke-linecap="round" stroke-linejoin="round"/>`,
     );
+    if (options.markers)
+      l.pts.forEach(([x, y], j) =>
+        ud.push(
+          `<circle data-curve-marker="${i}" data-index="${j}" cx="${tal(sx(x))}" cy="${tal(sy(y))}" r="2.5" fill="${f[l.rolle]}"/>`,
+        ),
+      );
   }
   for (const s of m.lodret) {
     ud.push(
