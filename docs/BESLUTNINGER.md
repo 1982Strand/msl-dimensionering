@@ -196,3 +196,17 @@ Beslutning B-025 følger brugerens besked i denne chat. B-026–028 registreres 
   Motoren og referenceforventningerne er uændrede; kun visningen er ændret. Forelægges brugeren.
 
 - **B-067:** Statuslinjens tegn vises som farvede ikoner. Brugeren om statuslinjen efter B-066: »selve ikonerne må godt være de farvede ikoner fra shadcn, altså fx fra 'Alert' bare med farver«. Gennemført: tegnet ⚠ ved kontrolpunkter er afløst af beskedernes trekantikon (lucide `TriangleAlert`) i advarselsfarven, og tegnet ⓘ ved anbefalinger af info-ikonet (lucide `Info`) i den grønne temafarve. Det er de samme ikoner som i beskederne (shadcn Alert) og ved klassevalget (B-064). Tal og ord, fx »1 kontrolpunkt«, er uændrede, og ikonerne er skjult for skærmlæsere, som fortsat læser »Kontrolpunkter« og »Anbefalinger«. Motoren er uændret. Forelægges brugeren.
+- **B-068:** »Detaljer« og »Designdiagram« står i hver sin boks på Dimensionering. Brugeren: »På dimensioneringssiden, må du gerne dele 'Detaljer' og 'Designdiagram' op i hver deres boks, ligesom 'Opbygning' har sin egen boks. Og 'Detaljer' må gerne være en sammenklappelig boks, ligesom fx 'Udførelseskrav' er det nede i bunden«. Det forelagte udkast blev godkendt: »godkendt, lad detaljer starte lukket og lad den biive imellem opbygning og designdiagram«. Gennemført:
+  1. »Detaljer · {net} · Mellemregninger for det valgte net« er en sammenklappelig boks som »Udførelseskrav«. Den starter lukket og forbliver åben ved skift af net.
+  2. »Designdiagram« har sin egen boks som »Opbygning«.
+  3. Rækkefølgen er uændret: Opbygning, Detaljer, Designdiagram og derefter de øvrige sammenklappelige bokse. Tekster og beregninger er uændrede.
+- **B-069:** Rådiagrammet under Designdiagrammer tegnes i appens SVG-stil, og Plotly er fjernet. Brugeren: »den måde designdiagrammet virker på når man kærer musen over grafen under 'designdiagrammer' matcher ikke helt resten af appen« og »husk at diagrammet på diagram-siden stadig skal opdatere automatisk hvis man redigerer i diagramtabellerne«. Det forelagte udkast og fjernelsen af Plotly blev godkendt: »godkendt … og fjern plotly«. Gennemført:
+  1. »Optegnet af tabellens værdier« bruger samme SVG og samme hover-/tastaturlag som designdiagrammet på Dimensionering (B-034):
+     - kurven fremhæves, og det nærmeste punkt får en ring;
+     - et hvidt kort viser fx »63,3 cm Ustabiliseret / Eᵤ 9 MN/m²«;
+     - signaturforklaringen står i en boks;
+     - piletasterne kan bruges.
+  2. Tabellens punkter står som små prikker som originalens markører. Kortet har originalens præcision (tykkelse med 1 decimal, Eᵤ uden decimaler) med decimalkomma; B-035 gælder dermed også rådiagrammet.
+  3. Data er uændrede (`rawDiagram`). Diagrammet opdateres straks ved redigering af tabellen og ved Fortryd/Gentag/nulstilling.
+  4. M5-designdiagrammets SVG er byte-identisk og låst med SHA-256; rapportens R6-PDF'er er uændrede.
+  5. Pakkerne `plotly.js-basic-dist-min` og `@types/plotly.js` er fjernet, da appen ikke længere bruger Plotly.
