@@ -45,6 +45,7 @@ start "" /b powershell -NoProfile -Command "for ($i = 0; $i -lt 120; $i++) { try
 echo.
 echo MSL Dimensionering kører på %URL%
 echo Luk dette vindue for at stoppe serveren.
+echo En ny version hentes med knappen "Genstart app" nederst i appens sidemenu.
 echo.
 call npm run preview
 exit /b 0

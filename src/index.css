@@ -176,6 +176,22 @@
   white-space: nowrap;
   color: var(--muted-foreground);
 }
+/* B-073: »Genstart app«, kun når appen kører fra den lokale startfil. */
+.app-restart {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  margin-top: 10px;
+}
+.app-restart-new {
+  color: var(--primary);
+  font-weight: 600;
+}
+.app-restart-error {
+  color: var(--destructive);
+  white-space: normal;
+}
 
 /* Sidehoved og sidefod */
 .breadcrumb {

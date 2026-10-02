@@ -24,6 +24,7 @@ import { Dimensioning } from './Dimensioning';
 import { Help } from './Help';
 import { Report } from './Report';
 import { navigationGroups } from './page';
+import { RestartApp } from './RestartApp';
 
 function currentPage() {
   const hash = location.hash.slice(1);
@@ -97,6 +98,7 @@ function Navigation({ page }: { page: string }) {
       <SidebarFooter className="app-sidebar-footer group-data-[collapsible=icon]:hidden">
         <span>BG Byggros A/S</span>
         <span>Beregningsværktøj v0.6</span>
+        <RestartApp />
       </SidebarFooter>
     </Sidebar>
   );

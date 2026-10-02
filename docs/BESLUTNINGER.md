@@ -225,3 +225,11 @@ Beslutning B-025 følger brugerens besked i denne chat. B-026–028 registreres 
   3. I alle formelbokse står lighedstegnene i på hinanden følgende ligninger under hinanden, som i LaTeX' `align`. Det gælder også »Sådan er resultatet beregnet« og regneeksemplet.
 
   Motorens tekst er uændret; kun visningen samler linjerne. Rapportens PDF er uændret.
+
+- **B-073:** Knappen »Genstart app« nederst i sidemenuen. Brugeren spurgte: »Kan man egentlig lave en lille knap i appen, fx nede ved footeren i sidemenuen, hvor man kan genstarte appen (altså genstarte serveren) - eller kræver det at man åbner et nyt browservindue hver gang?« og svarede på forslaget: »ja, lav det sådan. Knappen skal bare hedde 'Genstart app'. Byg den bare, så tester jeg den.« Gennemført:
+  1. Knappen vises kun, når appen kører fra den lokale startfil (`vite preview`). Et tryk får serveren til at installere nye pakker, hvis låsefilen er ændret, og bygge appen igen fra den aktuelle kode. Derefter genindlæses siden i samme fane. Serveren behøver ikke genstartes, fordi preview slår filerne op ved hver forespørgsel.
+  2. Står der en ny version på main, som endnu ikke er bygget, vises »Ny version klar« under knappen. Statussen hentes ved start og når vinduet får fokus.
+  3. Kun appens egen side kan starte en bygning (POST med samme oprindelse). En statisk udgivelse, fx den senere hjemmeside (B-060), har ingen endepunkter, og knappen vises ikke.
+  4. Fejler bygningen, vises »Genstart mislykkedes. Se serverens vindue.«; output står i serverens vindue.
+
+  Første gang skal serveren genstartes med startfilen, så den indlæser den nye opsætning.
