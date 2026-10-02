@@ -8,6 +8,7 @@
 - Den nye app skal starte med den gamle apps indbyggede standardværdier, jf. B-008. Lokale brugerdefinerede JSON-filer må ikke blive nye standarder.
 - Ingen ændring i gammel virkemåde må indføres uden brugerens udtrykkelige godkendelse, heller ikke en tilsyneladende forbedring eller fejlrettelse.
 - Design og visualiseringer af opbygninger kræver brugerens godkendelse. Vis konkrete udkast med realistiske data før endelig implementering.
+- Visuel kontrol foretager brugeren selv direkte i appen (B-071). Claude tager ikke skærmbilleder til gennemsyn og starter ikke en preview. Når koden er gennemgået og de automatiske tests består, lægges ændringen på main, og eventuelle rettelser tages bagefter.
 - Stil afklarende spørgsmål, når et valg påvirker faglighed, funktionalitet, arbejdsgang eller visuel fremstilling. Fortsæt samtidig uafhængigt arbejde, når det er muligt.
 - Registrer godkendelser i `docs/BESLUTNINGER.md` med dato, omfang og brugerens svar. Et forslag eller manglende svar er ikke en godkendelse.
 
