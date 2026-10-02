@@ -6,9 +6,15 @@ test('M4: punktprodukt, intervalprodukt og hover-hjælp uden sidefejl', async ({
   page.on('pageerror', (e) => errors.push(e.message));
   await page.goto('/#dimensionering');
   const details = page.locator('.net-details');
-  await expect(
-    details.getByRole('heading', { name: 'Detaljer · Tensar TriAx TX160' }),
-  ).toBeVisible();
+  // B-068: Detaljer er en sammenklappelig boks, lukket fra start som Udførelseskrav.
+  const toggle = details.getByRole('button', { name: /^Detaljer · / });
+  await expect(toggle).toHaveText(
+    'Detaljer · Tensar TriAx TX160 · Mellemregninger for det valgte net',
+  );
+  await expect(toggle).toHaveAttribute('aria-expanded', 'false');
+  await expect(details.locator('.rt-detaljer-lag')).toHaveCount(0);
+  await toggle.click();
+  await expect(toggle).toHaveAttribute('aria-expanded', 'true');
   await expect(details.locator('.rt-detaljer-lag')).toHaveCount(2);
   await expect(details.locator('.rt-detaljer-lag').first()).toContainText(
     'Net-korrektion, indeks 100',
@@ -22,9 +28,11 @@ test('M4: punktprodukt, intervalprodukt og hover-hjælp uden sidefejl', async ({
   await page.locator('#std_eu_slider').press('Home');
   for (let i = 1; i < 5; i++) await page.locator('#std_eu_slider').press('ArrowRight');
   await chooseProduct(page, 'std', 'Tensar InterAx NX850');
-  await expect(
-    details.getByRole('heading', { name: 'Detaljer · Tensar InterAx NX850' }),
-  ).toBeVisible();
+  // Boksen forbliver åben ved skift af net, og overskriften følger det valgte net.
+  await expect(toggle).toHaveText(
+    'Detaljer · Tensar InterAx NX850 · Mellemregninger for det valgte net',
+  );
+  await expect(toggle).toHaveAttribute('aria-expanded', 'true');
   await expect(details.locator('.rt-detaljer-optimal')).toHaveCount(2);
   await expect(details.locator('.rt-detaljer-optimal-tal').first()).toHaveText('600 mm');
   await expect(details.locator('.rt-detaljer-resultat-tal').first()).toHaveText('750 mm');

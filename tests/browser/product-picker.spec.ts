@@ -68,7 +68,10 @@ test('B-054: søgbar produktvælger, tastatur, filter, resultat og nummer 3', as
   await expect(trigger).toContainText('Net-korrektion −15 %');
   await expect(trigger).toContainText('Optimal korrektion −30 %');
   await expect(
-    page.getByRole('heading', { name: 'Detaljer · Tensar InterAx NX850', exact: true }),
+    page.getByRole('button', {
+      name: 'Detaljer · Tensar InterAx NX850 · Mellemregninger for det valgte net',
+      exact: true,
+    }),
   ).toBeVisible();
   await expect(page.locator('.dim-results strong')).toHaveText(['900 mm', '550 mm']);
   await trigger.click();
@@ -142,6 +145,9 @@ test('B-054: trafikklassemærker følger Alle produkter, lokal filtrering og 390
   await page.getByRole('radio', { name: 'Brugerdefineret', exact: true }).check();
   await chooseProduct(page, 'bd', 'Tensar InterAx NX850');
   await expect(
-    page.getByRole('heading', { name: 'Detaljer · Tensar InterAx NX850', exact: true }),
+    page.getByRole('button', {
+      name: 'Detaljer · Tensar InterAx NX850 · Mellemregninger for det valgte net',
+      exact: true,
+    }),
   ).toBeVisible();
 });

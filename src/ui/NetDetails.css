@@ -1,19 +1,16 @@
 .net-details {
-  margin-top: 20px;
   min-width: 0;
 }
-.net-details .bg-kort-hoved {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 4px 16px;
-  margin-bottom: 20px;
+/* Udfoldningens overskrift som »Sådan er resultatet beregnet«: titel med dæmpet note. */
+.net-details .net-details-trigger {
+  font-weight: 400;
 }
-.net-details .bg-kort-titel {
-  margin: 0;
+.net-details-trigger strong {
+  font-weight: 600;
 }
-.net-details .bg-kort-note,
+.net-details-subtitle {
+  color: var(--muted-foreground);
+}
 .bg-produkt-interval-note {
   font-size: var(--fs-meta);
   color: var(--muted-foreground);

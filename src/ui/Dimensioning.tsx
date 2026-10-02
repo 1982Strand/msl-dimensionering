@@ -502,19 +502,17 @@ export function Dimensioning() {
                 netplacering={ctx.session.data.indstillinger.lagfordeling.netplacering}
               />
             </div>
-            <div className="section-card settings-card m9-details-card">
-              <NetDetails input={input} result={result} products={products} />
-              <div className="m9-figure">
-                {content('diagramHeading')}
-                <PersonalDiagram
-                  result={result}
-                  products={products}
-                  table={input.t_basis_table}
-                  showInput={ctx.session.values.bd_dd_vis_din_prik !== false}
-                  showEndpoints={ctx.session.values.bd_dd_vis_lag_prikker !== false}
-                  onChange={(key, value) => ctx.remember({ [key]: value })}
-                />
-              </div>
+            <NetDetails input={input} result={result} products={products} />
+            <div className="section-card settings-card m9-figure">
+              {content('diagramHeading')}
+              <PersonalDiagram
+                result={result}
+                products={products}
+                table={input.t_basis_table}
+                showInput={ctx.session.values.bd_dd_vis_din_prik !== false}
+                showEndpoints={ctx.session.values.bd_dd_vis_lag_prikker !== false}
+                onChange={(key, value) => ctx.remember({ [key]: value })}
+              />
             </div>
             <Accordion type="single" collapsible className="m9-products dim-expander-card">
               <AccordionItem value="products">

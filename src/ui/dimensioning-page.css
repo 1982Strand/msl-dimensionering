@@ -243,15 +243,10 @@
 .m9-figure {
   margin-top: 24px;
 }
-.m9-details-card > .net-details {
-  border: 0;
-  padding: 0;
-  margin: 0;
-  box-shadow: none;
-}
 .m9-page .m9-result-block > .section-card {
   margin: 24px 0;
 }
+.m9-page .net-details,
 .m9-page .m9-products {
   margin-top: 24px;
 }
