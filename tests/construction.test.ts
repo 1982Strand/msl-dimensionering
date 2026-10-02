@@ -64,3 +64,23 @@ test('shared SVG preserves scale, omits invalid construction, respects display s
   assert.ok(!hidden.includes('data-kind="legend"'));
   assert.ok(hidden.includes('data-kind="geonet"'));
 });
+test('B-074: skærmens bredere blokke holder materialenavnet på én linje; rapportens mål er uændrede', () => {
+  const names = new Set<string>();
+  for (const c of fixtures.cases) {
+    const data = constructionCase(c);
+    const report = constructionSvg(data, 'x');
+    const screen = constructionSvg(data, 'x', { blokbredde: 148, navnebredde: 20 });
+    // Rapportens standard: blok 124 og målestreg 88 fra midten (R6 låst med SHA-256).
+    assert.ok(!report.includes('width="148"'), c.id);
+    for (const column of data.kolonner)
+      for (const [name] of column.lag) {
+        if (!name.includes('Stabilgrus SGII 0-32')) continue;
+        names.add(name);
+        // Hele navnet står i én tspan på skærmen, men brydes i rapporten.
+        assert.ok(screen.includes(`>${name} </tspan>`), `${c.id}: skærm`);
+        assert.ok(!report.includes(`>${name} </tspan>`), `${c.id}: rapport`);
+      }
+    if (data.kolonner.some((col) => col.total_mm)) assert.ok(screen.includes('width="148"'), c.id);
+  }
+  assert.ok(names.size > 0, 'ingen case med Stabilgrus SGII 0-32');
+});

@@ -358,6 +358,18 @@ export function formulaLayout(nodes: CouplingNode[]): FormulaLayout {
     previous = line.kind === 'text' ? line.template : '';
     const last = lines.at(-1);
     if (line.kind === 'sum' && last?.kind === 'sum') last.rows.push(...line.rows);
+    // B-074: den vægtede friktionsvinkel står på én linje; fortsættelsen »= …« sættes efter.
+    else if (
+      line.kind === 'equation' &&
+      !line.label.length &&
+      !line.note.length &&
+      line.items[0]?.kind === 'operator' &&
+      line.items[0].text === '=' &&
+      last?.kind === 'equation' &&
+      !last.note.length &&
+      text(last.label) === 'Vægtet friktionsvinkel:'
+    )
+      last.items.push({ kind: 'space', text: ' ' }, ...line.items);
     else if (
       line.kind === 'grid' &&
       last?.kind === 'grid' &&

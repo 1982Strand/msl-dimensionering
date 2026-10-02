@@ -16,6 +16,11 @@ import { standard_data_state } from '../src/engine/auto-edit.ts';
 import { correlationExampleLines } from '../src/ui/correlation-example-lines.ts';
 import { factorPhiNodes, ROUNDING_NOTE, weightedPhiNodes } from '../src/ui/formula/phi-lines.ts';
 import {
+  couplingFormulaNodes,
+  REDUCTION_NOTE,
+  REDUCTION_NOTE_SHORT,
+} from '../src/ui/formula/coupling-lines.ts';
+import {
   expression,
   formulaHtmlNodes,
   formulaLayout,
@@ -125,9 +130,35 @@ function verifyInput(input: DimensioningInput, id: string) {
   const result = dimensioner(input);
   const explanation = koblingExplanation(input, result);
   const all = explanation.steps.flatMap((step) =>
-    blocks(step.body).map((block, i) =>
-      verify(block.children, `${id}, trin ${step.number}, blok ${i}`),
-    ),
+    blocks(step.body).map((block, i) => {
+      // B-074: den viste blok har kortere reduktionsnote; ellers samme indhold som motoren.
+      const shown = couplingFormulaNodes(block.children);
+      const source = block.children.map(couplingText).join('');
+      const layout = verify(shown, `${id}, trin ${step.number}, blok ${i}, vist`);
+      assert.equal(
+        normalize(layoutText(layout)),
+        normalize(source.replace(`(${REDUCTION_NOTE})`, `(${REDUCTION_NOTE_SHORT})`)),
+      );
+      if (source.includes('Vægtet friktionsvinkel:')) {
+        const first = layout.lines.find(
+          (line) =>
+            line.kind === 'equation' &&
+            line.label.map((c) => c.text).join('') === 'Vægtet friktionsvinkel:',
+        );
+        assert.ok(first && first.kind === 'equation', `${id}: vægtet linje`);
+        // Hele regnestykket på én linje: ingen fortsættelseslinje lige efter.
+        const next = layout.lines[layout.lines.indexOf(first) + 1];
+        assert.ok(
+          !(
+            next?.kind === 'equation' &&
+            !next.label.length &&
+            mathText(next.items).startsWith('=')
+          ),
+          `${id}: vægtet friktionsvinkel på én linje`,
+        );
+      }
+      return verify(block.children, `${id}, trin ${step.number}, blok ${i}`);
+    }),
   );
   const summary = phiSummary(input);
   if (summary.visible) {
@@ -351,9 +382,10 @@ test('B-070: godkendt T2/Eᵤ 11-udkast, trin 2/4/5/6 har brøker, indeks, gitte
     [4, 4, 4],
   );
   assert.equal(recursiveItems(itemsOf(step(4))).filter((t) => t.kind === 'index').length, 5);
+  // B-074: den vægtede friktionsvinkel står på én linje; derefter korrektionsfaktoren.
   assert.deepEqual(
     step(5).lines.map((l) => l.kind),
-    ['equation', 'equation', 'equation'],
+    ['equation', 'equation'],
   );
   assert.equal(recursiveItems(itemsOf(step(5))).filter((t) => t.kind === 'fraction').length, 3);
   assert.ok(

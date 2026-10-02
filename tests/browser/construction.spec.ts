@@ -49,7 +49,14 @@ test('construction figures preserve original sections, shared scale, placement s
     'data-elevation-mm',
     '450',
   );
-  await expect(figure).toContainText('Afstanden mellem geonetlagene er 450 mm');
+  // B-074: beskeden står kun i statuslinjens grønne kort, ikke som boks under figuren.
+  await expect(figure).not.toContainText('Afstanden mellem geonetlagene er 450 mm');
+  await expect(figure.locator('[data-slot="alert"]')).toHaveCount(0);
+  await page.locator('.bg-resultat-status [aria-label="Anbefalinger"]').hover();
+  await expect(page.locator('.hint-content-info')).toContainText(
+    'Afstanden mellem geonetlagene er 450 mm',
+  );
+  await page.mouse.move(0, 0);
   await page.getByRole('link', { name: 'Indstillinger', exact: true }).click();
   await page
     .getByRole('radio', { name: 'Ved laggrænsen mellem det øverste og det næste lag', exact: true })

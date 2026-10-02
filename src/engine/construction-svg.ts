@@ -28,7 +28,16 @@ function wrap(text: string, limit: number): string[] {
     return lines;
   });
 }
-export function constructionSvg(data: Construction, id = 'construction'): string {
+/** Skærmens mål (B-074). Uden valg bruges rapportens godkendte mål (R6): blok 124, navne 16 tegn. */
+export interface ConstructionSvgOptions {
+  blokbredde?: number;
+  navnebredde?: number;
+}
+export function constructionSvg(
+  data: Construction,
+  id = 'construction',
+  options: ConstructionSvgOptions = {},
+): string {
   const prefix = id.replace(/[^a-zA-Z0-9_-]/g, '');
   const maximum = Math.max(
     data.reference_mm || 0,
@@ -71,10 +80,10 @@ export function constructionSvg(data: Construction, id = 'construction'): string
     `<g data-kind="${kind}" tabindex="0" aria-label="${escape(label)}"><title>${escape(label)}</title>${bodySvg}</g>`;
   data.kolonner.forEach((column, i) => {
     const materialLabels: string[] = [];
+    const rectWidth = options.blokbredde ?? 124;
     const left = i * columnWidth,
       center = left + (data.geonet_paaskrift ? 182 : 125),
-      x = center - 62,
-      rectWidth = 124;
+      x = center - rectWidth / 2;
     const titles = wrap(column.titel, 31);
     parts.push(`<g data-column="${i}" data-total-mm="${column.total_mm ?? ''}">`);
     parts.push(text(center, 24, titles, 13, palette.ink, 'middle', 600));
@@ -96,7 +105,7 @@ export function constructionSvg(data: Construction, id = 'construction'): string
       for (const [name, mm, type] of [...column.lag].reverse()) {
         const y = base - (bottom + mm) * scale,
           h = mm * scale;
-        const full = wrap(name, 16),
+        const full = wrap(name, options.navnebredde ?? 16),
           short = [name.split(/\s+/)[0]];
         let label: string[] = [];
         for (const candidate of [full, short, []]) {
@@ -119,7 +128,7 @@ export function constructionSvg(data: Construction, id = 'construction'): string
         bottom += mm;
       }
       const yTop = base - column.total_mm * scale,
-        measureX = center + 88;
+        measureX = center + Math.max(88, rectWidth / 2 + 20);
       if (data.vis_maal_streg)
         parts.push(
           `<g data-kind="dimension-line">${line(measureX, yTop, measureX, base, palette.muted)}${line(measureX - 5, yTop, measureX + 5, yTop, palette.muted)}${line(measureX - 5, base, measureX + 5, base, palette.muted)}</g>`,

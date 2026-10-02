@@ -10,12 +10,13 @@ import { koblingExplanation, type CouplingNode } from '../engine/kobling-explana
 import type { DimensioningInput, dimensioner } from '../engine/dimensionering';
 import { CouplingFigure } from './CouplingFigure';
 import { FormulaBlock } from './formula/FormulaBlock';
+import { couplingFormulaNodes } from './formula/coupling-lines';
 
 function Content({ nodes }: { nodes: CouplingNode[] }) {
   return nodes.map((n, i) => {
     if (typeof n === 'string') return <Fragment key={i}>{n}</Fragment>;
     if (n.className?.split(' ').includes('kob-formel')) {
-      return <FormulaBlock key={i} nodes={n.children} />;
+      return <FormulaBlock key={i} nodes={couplingFormulaNodes(n.children)} />;
     }
     const Tag = n.tag;
     return (

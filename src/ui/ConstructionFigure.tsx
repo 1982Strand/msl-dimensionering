@@ -1,13 +1,8 @@
 import { useId, useMemo } from 'react';
-import {
-  constructionData,
-  constructionWarnings,
-  type DimensioningResult,
-} from '../engine/construction';
+import { constructionData, type DimensioningResult } from '../engine/construction';
 import { constructionSvg } from '../engine/construction-svg';
 import type { ProductRow } from '../engine/products';
 import { laengde } from '../engine/enhed';
-import { Notice } from './Notice';
 
 export function ConstructionFigure({
   result,
@@ -25,8 +20,12 @@ export function ConstructionFigure({
     () => constructionData(result, products, display, netplacering),
     [result, products, display, netplacering],
   );
-  const svg = useMemo(() => constructionSvg(data, id), [data, id]);
-  const warnings = constructionWarnings(data, result, netplacering);
+  // B-074: på skærmen er blokkene bredere, så materialenavne som »Stabilgrus SGII 0-32« står på
+  // én linje. Rapportens tegning (R6) bruger standardmålene.
+  const svg = useMemo(
+    () => constructionSvg(data, id, { blokbredde: 148, navnebredde: 20 }),
+    [data, id],
+  );
   return (
     <section className="section-card construction-card" aria-labelledby={`${id}-heading`}>
       <div className="construction-heading">
@@ -53,11 +52,7 @@ export function ConstructionFigure({
           dangerouslySetInnerHTML={{ __html: svg }}
         />
       </div>
-      {warnings.map((w) => (
-        <Notice kind={w.recommendation ? 'info' : 'warning'} key={`${w.lag}-${w.message}`}>
-          {w.lag} lag geonet: {w.message}
-        </Notice>
-      ))}
+      {/* B-074: placeringsbeskederne står i statuslinjens kort over resultatet (B-066). */}
     </section>
   );
 }

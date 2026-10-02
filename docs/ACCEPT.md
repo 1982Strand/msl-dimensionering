@@ -152,7 +152,7 @@ Kørt 01.10.2026 på integrationsgrenen med Node `v26.4.0`:
 | Kontrol                               | Resultat                                                                                |
 | ------------------------------------- | --------------------------------------------------------------------------------------- |
 | `npm run typecheck`                   | Bestået: begge TypeScript-konfigurationer.                                              |
-| `npm test`                            | **3.041 enhedstests/Node-tests**, alle bestået, 0 fejl, 0 oversprunget.                 |
+| `npm test`                            | **3.042 enhedstests/Node-tests**, alle bestået, 0 fejl, 0 oversprunget.                 |
 | `npm run format:check`                | Bestået for de konfigurerede kode-/CSS-filer; Markdown indgår ikke i Prettier-scriptet. |
 | `npm run build`                       | Bestået.                                                                                |
 | Playwright (Chromium, Desktop Chrome) | **82 browserforløb**, alle bestået.                                                     |
@@ -253,3 +253,5 @@ Handlingerne følger fase 5 i [MIGRATIONSPLAN.md](MIGRATIONSPLAN.md). Enkelte de
 10. **Oprydning og PDF-beviser:** Udført. Udkast og rapportforsøg er fjernet (B-059), og R6-sættet er fastlåst med kontrolsummer (B-055).
 
 **Genstart app 02.10.2026 — B-073:** Knappen i sidemenuens bund får den lokale preview-server til at bygge appen igen og genindlæser siden. `tests/app-genstart.test.ts` kontrollerer oprindelseskontrol og versionsstatus. Den rigtige bygning gennem endepunktet er afprøvet manuelt (pakker og build, stempel = HEAD). Efter B-073: `npm test` **3.041 bestået, 0 fejl**, og Playwright **82 browserforløb bestået**.
+
+**Rettelser 02.10.2026 — B-074:** Vægtet friktionsvinkel på én linje i »Sådan er resultatet beregnet«, kortere note ved »samlet reduktion«, ingen beskedbokse under opbygningsfiguren (de står i statuslinjens kort; kontrolleret for 30.600 input, hvor alle 8.656 figurbeskeder også står i kortene) og bredere materialeblokke på skærmen. Rapportens tegning er byte-identisk, og alle 31 R6-PDF'er er uændrede. `npm test` **3.042 bestået, 0 fejl**, og Playwright **82 browserforløb bestået**.

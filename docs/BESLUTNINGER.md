@@ -233,3 +233,11 @@ Beslutning B-025 følger brugerens besked i denne chat. B-026–028 registreres 
   4. Fejler bygningen, vises »Genstart mislykkedes. Se serverens vindue.«; output står i serverens vindue.
 
   Første gang skal serveren genstartes med startfilen, så den indlæser den nye opsætning.
+
+- **B-074:** Fire rettelser på Dimensionering. Brugeren: »i punkt 3 under 'sådan er resultatet beregnet', er der fint plads til at hele regnestykket kan stå på 1 linje for den vægtede friktionsvinkel. i punkt 4, må du lige forkorte teksten i parantesen for linjen med 'samlet reduktion', så man ikke skal scrolle til siden for at se hele indholdet. […] der ligger den samme grønne anbefalingsboks nede under opbygningssøjlerne […] den nederste boks kan undværes, da den fortæller det samme som hover card ikonet øverst. til sidst: når der i 'opbygning' er vist materialet 'stabilgrus SG II 0-32' bliver teksten ombrudt. Kan du lave skrifttypen en smule mindre, eller figurerne en smule bredere, så teksten ikke ombrydes for materialerne?« Gennemført:
+  1. Den vægtede friktionsvinkel står på én linje, fx φᵥ = Σ(tᵢ × φᵢ)/Σtᵢ = (300 × 40,0 + 400 × 37,0)/700 = 26.800/700 = 38,29°.
+  2. Noten ved »samlet reduktion« er afkortet fra »(basisreduktion + net-korrektion + φᵥ-korrektion)« til »(sum af leddene ovenfor)«. Den passer, uanset hvor mange led der vises.
+  3. Beskedboksene under opbygningsfiguren er fjernet, både de grønne anbefalinger og de orange kontrolpunkter. De står i statuslinjens kort (B-066). Det er kontrolleret for 30.600 kombinationer af input, at alle beskeder fra figuren også står i kortene.
+  4. Materialeblokkene i opbygningsfiguren er bredere på skærmen (148 i stedet for 124), og navne på op til 20 tegn står på én linje, fx »Stabilgrus SGII 0-32«. Skriftstørrelsen er uændret.
+
+  Motorernes tekst er uændret; kun visningen ændres. Rapportens opbygningstegning bruger fortsat de godkendte mål og er byte-identisk, og alle 31 R6-PDF'er er uændrede.
