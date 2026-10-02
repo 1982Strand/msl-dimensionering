@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { readFileSync } from 'node:fs';
+import { formulaHtmlNodes, formulaLayout, layoutText } from '../../src/ui/formula/layout.ts';
 const reference = JSON.parse(
   readFileSync(new URL('../../reference/phi-summary.json', import.meta.url), 'utf8'),
 );
@@ -16,10 +17,30 @@ test('M6 preserves active formulas, manual value, rounding, reload and small-scr
   await page.getByRole('radio', { name: 'Brugerdefineret', exact: true }).check();
   await expect(summary).toBeVisible();
   const verify = async (id: string) => {
-    expect(await summary.locator('pre').textContent()).toBe(expected(id).code);
-    expect(await summary.locator('.kob-formel').evaluate((e) => e.outerHTML)).toBe(
-      expected(id).factor_html,
+    const formulae = summary.locator('.kob-formel');
+    await expect(formulae).toHaveCount(2);
+    await expect(formulae.nth(0)).toHaveAttribute(
+      'data-formula-text',
+      layoutText(formulaLayout([expected(id).code])),
     );
+    await expect(formulae.nth(1)).toHaveAttribute(
+      'data-formula-text',
+      layoutText(formulaLayout(formulaHtmlNodes(expected(id).factor_html))),
+    );
+    await expect(formulae.locator('[data-formula-fallback]')).toHaveCount(0);
+    expect(await formulae.nth(0).locator('math mfrac').count()).toBeGreaterThan(0);
+    expect(await formulae.nth(1).locator('math msub').count()).toBeGreaterThan(0);
+    // Check actual displayed tokens too: the reconstructed-text attribute alone is insufficient.
+    const last = formulae.nth(1).locator('.formula-equation').last();
+    const expectedResult = expected(id).factor_html.match(
+      /= ([+−][\d,]+) = ([+−][\d,]+) %<\/div>$/,
+    );
+    expect(await last.locator('mn').allTextContents()).toEqual([
+      expectedResult[1],
+      expectedResult[2],
+    ]);
+    await expect(last.locator('mtext')).toHaveText('%');
+    for (let i = 0; i < 2; i++) await expect(formulae.nth(i)).toHaveAttribute('tabindex', '0');
   };
   await verify('FIG-003-custom-interval');
   await page.getByRole('checkbox', { name: 'Overskriv φᵥ manuelt' }).check();

@@ -103,33 +103,7 @@
   gap: 10px;
   min-width: 0;
 }
-/* Linjerne er sat op med mellemrum, så tallene står lodret på linje;
-   white-space:pre bevarer opstillingen, og boksen ruller vandret på
-   smalle skærme frem for at bryde et regnestykke midt over. */
-.coupling-explanation .kob-formel {
-  font:
-    400 11px/1.75 'IBM Plex Mono',
-    monospace;
-  color: var(--bg-ink-70);
-  background: var(--background);
-  border: 1px solid var(--bg-line-soft);
-  border-radius: 4px;
-  padding: 10px 12px;
-  font-variant-numeric: tabular-nums;
-  white-space: pre;
-  overflow-x: auto;
-}
-.coupling-explanation .kob-formel b {
-  font-weight: 600;
-  color: var(--bg-ink);
-}
-.coupling-explanation .kob-slutlinje {
-  display: block;
-  border-top: 1px solid var(--bg-line);
-  margin-top: 4px;
-  padding-top: 4px;
-  color: var(--bg-ink);
-}
+/* B-070: formelbokse og slutlinjer styles i formula/formula.css. */
 /* Mellemregningen bag et led står nedtonet efter talkolonnen, så linjens
    eget tal fortsat læses først. */
 .coupling-explanation .kob-svag {

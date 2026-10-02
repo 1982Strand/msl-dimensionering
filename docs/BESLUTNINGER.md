@@ -210,3 +210,12 @@ Beslutning B-025 følger brugerens besked i denne chat. B-026–028 registreres 
   3. Data er uændrede (`rawDiagram`). Diagrammet opdateres straks ved redigering af tabellen og ved Fortryd/Gentag/nulstilling.
   4. M5-designdiagrammets SVG er byte-identisk og låst med SHA-256; rapportens R6-PDF'er er uændrede.
   5. Pakkerne `plotly.js-basic-dist-min` og `@types/plotly.js` er fjernet, da appen ikke længere bruger Plotly.
+- **B-070:** Beregningerne sættes som matematik, som i LaTeX. Brugeren bad om et forslag til en pænere skrifttype i beregningerne: »Kan du ikke lave et forslag med ændret skrifttype, som passer bedre til resten af appen, og et hvor der bruges 'pæne' formler, fx ligesom latex?« To udkast med brugerens egen beregning blev forelagt, og brugeren valgte: »gå med forslag B«. Om regneeksemplet: »ja, samme opsætning til regneeksemplet«. Gennemført:
+  1. Formlerne i »Sådan er resultatet beregnet«, φᵥ-boksene under Opbygning og regneeksemplet under Trafikklasse-korrelation vises som MathML i Cambria Math: brøkstreger, kursive variable og rigtige indeks, fx t<sub>lav</sub> og k<sub>φ</sub>. Resultater står fremhævet i temaets grønne farve.
+  2. Opslagstabeller, summer og forklarende tekst står i appens skrift med tal under hinanden; maskinskriften (Courier New i stedet for den manglende IBM Plex Mono) er fjernet.
+  3. Indholdet er uændret: motorerne og referencerne er urørte. En test sammenligner hver formelblok med motorens tekst for alle referencecases og 15.840 genererede kombinationer, og regneeksemplet for T1–T6 × Eᵤ 3–40. Ukendte linjer vises som tekst.
+  4. Rapportens PDF er uændret.
+
+  Cambria Math følger med Windows. Ved senere offentliggørelse (B-060) skal en matematikskrift følge med appen.
+
+- **B-071:** Brugeren laver selv den visuelle kontrol direkte i appen. Brugeren: »bare lad mig lave den visuelle test, så du ikke skal lave screenshots og alt muligt. Det gør jeg også fremover« og »du behøver heller ikke lave en preview, jeg tester det bare direkte og så retter vi hvis det er«. Claude tager ikke skærmbilleder til gennemsyn og starter ikke en preview. Når koden er gennemgået og de automatiske tests (enheds- og browsertests) består, lægges ændringen på main; brugeren tester i appen, og rettelser tages bagefter. Det ændrer AGENTS.md's krav om udkast før endelig implementering for visuelle ændringer, som brugeren selv har beskrevet.

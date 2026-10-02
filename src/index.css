@@ -1243,11 +1243,9 @@ button.hint-text {
   color: var(--muted-foreground);
   margin-bottom: 5px;
 }
-.formula {
-  font-family: ui-monospace, 'Cascadia Mono', Consolas, monospace;
-  line-height: 1.8;
-  font-size: var(--fs-meta);
-  overflow-wrap: anywhere;
+/* B-070: regneeksemplets formler i den fælles formelvisning; hvide bokse på den grå flade. */
+.correlation-example .formula-block {
+  background: var(--card);
 }
 .guidance-grid {
   display: grid;
@@ -1343,15 +1341,6 @@ button.hint-text {
 .phi-summary-block h4 {
   font-size: var(--fs-small);
   margin: 0 0 10px;
-}
-.phi-summary pre,
-.phi-summary .kob-formel {
-  font-family: ui-monospace, 'Cascadia Mono', Consolas, monospace;
-  font-size: var(--fs-meta);
-  line-height: 1.7;
-  white-space: pre;
-  overflow-x: auto;
-  margin: 0;
 }
 
 @media (max-width: 1000px) {

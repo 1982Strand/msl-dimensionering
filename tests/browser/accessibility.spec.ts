@@ -72,6 +72,8 @@ test('ingen axe-fund i Brugerdefineret, trafikklasse, popup, produktvælger og f
   await checkStatusHints(page);
   await page.getByRole('radio', { name: 'Trafikklasse', exact: true }).check();
   await expandAll(page);
+  expect(await page.locator('.coupling-explanation math').count()).toBeGreaterThan(0);
+  await expect(page.locator('.coupling-explanation [data-formula-fallback]')).toHaveCount(0);
   expect(await violations(page), 'brugerdefineret').toEqual([]);
   await page.getByRole('button', { name: 'Se korrelationstabel', exact: true }).click();
   await expect(page.getByRole('dialog')).toBeVisible();

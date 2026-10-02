@@ -9,15 +9,17 @@ import {
 import { koblingExplanation, type CouplingNode } from '../engine/kobling-explanation';
 import type { DimensioningInput, dimensioner } from '../engine/dimensionering';
 import { CouplingFigure } from './CouplingFigure';
+import { FormulaBlock } from './formula/FormulaBlock';
 
 function Content({ nodes }: { nodes: CouplingNode[] }) {
   return nodes.map((n, i) => {
     if (typeof n === 'string') return <Fragment key={i}>{n}</Fragment>;
+    if (n.className?.split(' ').includes('kob-formel')) {
+      return <FormulaBlock key={i} nodes={n.children} />;
+    }
     const Tag = n.tag;
-    // Regnestykker ruller vandret på smalle skærme og skal kunne nås med tastaturet.
-    const scrolls = n.className?.split(' ').includes('kob-formel');
     return (
-      <Tag key={i} className={n.className} tabIndex={scrolls ? 0 : undefined}>
+      <Tag key={i} className={n.className}>
         {Tag === 'br' ? undefined : <Content nodes={n.children} />}
       </Tag>
     );

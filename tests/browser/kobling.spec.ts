@@ -95,3 +95,49 @@ test('M1: initially closed, four load steps, six traffic steps, rejection and no
   await expect(section).toHaveCount(0);
   expect(errors).toEqual([]);
 });
+
+test('B-070: udkastets trin 2/3/5 har MathML-brøker, indeks og fremhævede resultater; gitre ruller på mobil', async ({
+  page,
+}) => {
+  await page.goto('/#dimensionering');
+  await page.getByRole('radio', { name: 'Brugerdefineret', exact: true }).check();
+  await page.getByRole('radio', { name: 'Trafikklasse', exact: true }).check();
+  await page.getByRole('radio', { name: 'T2', exact: true }).check();
+  const eu = page.locator('#bd_eu_slider');
+  await eu.focus();
+  await eu.press('Home');
+  for (let value = 1; value < 11; value++) await eu.press('ArrowRight');
+  const section = page.locator('.coupling-explanation');
+  await section.getByRole('button', { name: /Sådan er resultatet beregnet/ }).click();
+  for (const n of [2, 3, 5]) {
+    const step = section.getByRole('region', { name: new RegExp(`^Trin ${n}:`) });
+    // Sections with aria-label have the implicit region role.
+    expect(await step.locator('math mfrac').count()).toBeGreaterThan(0);
+    expect(await step.locator('math .res-m').count()).toBeGreaterThan(0);
+    const result = step.locator('math .res-m').first();
+    expect(
+      await result.evaluate((e) => Number(getComputedStyle(e).fontWeight)),
+    ).toBeGreaterThanOrEqual(600);
+  }
+  await expect(section.locator('[data-formula-fallback]')).toHaveCount(0);
+  expect(await section.locator('math msub').count()).toBeGreaterThan(0);
+  const step4 = section.getByRole('region', { name: /^Trin 4:/ });
+  await expect(step4.locator('.formula-grid')).toHaveCount(1);
+  await expect(step4.locator('.formula-grid > span')).toHaveCount(12);
+  const step6 = section.getByRole('region', { name: /^Trin 6:/ });
+  expect(await step6.locator('.formula-sum-row').count()).toBeGreaterThan(0);
+  await expect(step6.locator('.kob-slutlinje b').first()).toContainText('mm');
+  const first = section.locator('.kob-formel').first();
+  await expect(first).toHaveAttribute('tabindex', '0');
+  for (const width of [1440, 600, 390]) {
+    await page.setViewportSize({ width, height: 900 });
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(
+      true,
+    );
+    await first.focus();
+    await expect(first).toBeFocused();
+    for (const block of await section.locator('.kob-formel').all()) {
+      expect(await block.evaluate((e) => getComputedStyle(e).overflowX)).toBe('auto');
+    }
+  }
+});
