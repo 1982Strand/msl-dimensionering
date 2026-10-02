@@ -1,56 +1,54 @@
-import { useEffect, useRef, useState } from 'react';
-import type { Data, Layout } from 'plotly.js';
+import { useId, useMemo } from 'react';
 import { rawDiagram } from '../engine/table-presentation';
+import { rawDiagramModel } from '../engine/raw-diagram-svg';
+import { dk, renderPersonalDiagramSvg } from '../engine/personal-diagram-svg';
 import type { DesignDiagram } from '../engine/editing';
+import { DiagramCanvas, type DiagramTooltipFormat } from './DiagramCanvas';
 import { Notice } from './Notice';
+
+// Kolonnen er ca. 400 px bred; tegningen vises derfor næsten i fuld størrelse med originalens højde.
+const SIZE = { width: 420, height: 290 } as const;
+const TITLE = 'Optegnet af tabellens værdier';
+const tooltipFormat: DiagramTooltipFormat = {
+  xText: (x) => `${dk(x, 1)} cm`,
+  euText: (y) => `Eᵤ ${dk(y)} MN/m²`,
+};
+
+/** Udkast: fælles SVG- og hoverstil; aktive tabelændringer slår straks igennem. */
 export function RawChart({ diagram }: { diagram: DesignDiagram }) {
-  const ref = useRef<HTMLDivElement>(null),
-    [failed, setFailed] = useState(false);
-  const empty = !diagram.rows.some((r) =>
-    [r.t_uarmeret_cm, r.t_1_lag_cm, r.t_2_lag_cm].some((v) => v != null),
-  );
-  useEffect(() => {
-    const node = ref.current;
-    if (!node || empty) return;
-    let closed = false;
-    let cleanup = () => {};
-    import('plotly.js-basic-dist-min')
-      .then(async ({ default: Plotly }) => {
-        if (closed) return;
-        const spec = rawDiagram(diagram)!;
-        await Plotly.react(node, spec.data as Data[], spec.layout as Partial<Layout>, {
-          displayModeBar: false,
-          responsive: true,
-        });
-        if (closed) {
-          Plotly.purge(node);
-          return;
-        }
-        const observer = new ResizeObserver(() => {
-          void Promise.resolve(Plotly.Plots.resize(node)).catch(() => {});
-        });
-        observer.observe(node);
-        cleanup = () => {
-          observer.disconnect();
-          Plotly.purge(node);
-        };
-      })
-      .catch(() => {
-        if (!closed) setFailed(true);
-      });
-    return () => {
-      closed = true;
-      cleanup();
+  const id = useId();
+  const uid = `raw-diagram-${id.replace(/[^A-Za-z0-9_-]/g, '')}`;
+  const chart = useMemo(() => {
+    const spec = rawDiagram(diagram);
+    if (!spec) return null;
+    const model = rawDiagramModel(spec);
+    return {
+      model,
+      svg: renderPersonalDiagramSvg(model, {
+        ...SIZE,
+        markers: true,
+        idPrefix: uid,
+        ariaLabel: TITLE,
+      }),
     };
-  }, [diagram, empty]);
-  if (empty)
-    return (
-      <Notice kind="warning" className="message warning">
-        Diagrammet kan ikke optegnes, da tabellen ikke indeholder aflæste værdier.
-      </Notice>
-    );
-  if (failed) return <p role="alert">Diagrammet kunne ikke vises. Tabelværdierne er bevaret.</p>;
+  }, [diagram, uid]);
   return (
-    <div ref={ref} className="raw-chart" role="img" aria-label="Optegnet af tabellens værdier" />
+    <div className="raw-chart">
+      {chart ? (
+        <DiagramCanvas
+          m={chart.model}
+          svg={chart.svg}
+          uid={uid}
+          size={SIZE}
+          tooltipFormat={tooltipFormat}
+          ariaLabel={`${TITLE}. Brug piletasterne for at aflæse punkter på kurverne.`}
+          flipAt={0.45}
+        />
+      ) : (
+        <Notice kind="warning" className="message warning">
+          Diagrammet kan ikke optegnes, da tabellen ikke indeholder aflæste værdier.
+        </Notice>
+      )}
+    </div>
   );
 }
