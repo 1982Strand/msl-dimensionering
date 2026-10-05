@@ -58,3 +58,30 @@ test('B-076: firmaprofilen er låst for medarbejdere og åben for admin; kartote
   await expect(slogan).toHaveValue('Eget slogan');
   expect(errors).toEqual([]);
 });
+
+// B-077: Cloudflare Access oplyser mailadressen; admin-adresserne står i /adgang.json.
+async function openWithCloudflare(page: Page, email: string, admins: string[] | null) {
+  await page.unrouteAll();
+  await page.route('**/cdn-cgi/access/get-identity', (route) =>
+    route.fulfill({ json: { email, idp: { type: 'onetimepin' } } }),
+  );
+  if (admins) await page.route('**/adgang.json', (route) => route.fulfill({ json: { admins } }));
+  await page.goto('about:blank');
+  await page.goto('/#rapport');
+  await page.getByRole('tab', { name: 'Firmaprofil' }).click();
+  await expect(page.getByTestId('profile-save-state')).toHaveAttribute('data-state', 'saved');
+}
+
+test('B-077: Cloudflare – admin efter mailadresse (uden forskel på store og små bogstaver), ellers låst', async ({
+  page,
+}) => {
+  const slogan = page.getByLabel('Slogan under logoet', { exact: true });
+  await openWithCloudflare(page, 'Chef@Example.com', ['chef@example.com']);
+  await expect(slogan).toBeEnabled();
+  await openWithCloudflare(page, 'kollega@example.com', ['chef@example.com']);
+  await expect(slogan).toBeDisabled();
+  await expect(page.getByRole('button', { name: 'Eksportér profil' })).toHaveCount(0);
+  // Uden admin-liste er profilen låst for alle i den delte udgave.
+  await openWithCloudflare(page, 'chef@example.com', null);
+  await expect(slogan).toBeDisabled();
+});

@@ -1,0 +1,5 @@
+# B-077: sikkerhedsoverskrifter i Cloudflare Pages (svarer til globalHeaders i staticwebapp.config.json).
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: same-origin

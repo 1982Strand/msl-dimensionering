@@ -1,36 +1,60 @@
-/** B-076: adgang i den delte udgave i Azure Static Web Apps (B-075). Azure oplyser den indloggede
- * brugers roller på `/.auth/me`; lokalt findes adressen ikke, og alt er åbent som hidtil.
+/** B-076/B-077: adgang i de delte udgaver. Azure Static Web Apps (B-075) oplyser brugerens roller
+ * på `/.auth/me`; Cloudflare Access (B-077) oplyser mailadressen på
+ * `/cdn-cgi/access/get-identity`, og admin-adresserne står i `/adgang.json` (lægges ud med appen).
+ * Lokalt findes ingen af adresserne, og alt er åbent som hidtil.
  * Låsen hindrer ændringer ved et uheld; den er ikke en sikkerhedsgrænse, da alt kører i browseren. */
 import { useEffect, useState } from 'react';
 
 export interface Access {
-  /** Den delte udgave (Azure); lokalt `false`. */
+  /** En delt udgave (Azure eller Cloudflare); lokalt `false`. */
   shared: boolean;
-  /** Rollen »admin« må redigere firmaprofilen. */
+  /** Admin må redigere firmaprofilen. */
   admin: boolean;
 }
 
-// Azure-bygningen sættes med VITE_UDGAVE=delt og er låst, indtil rollerne er hentet.
+// De delte udgaver bygges med VITE_UDGAVE=delt og er låst, indtil adgangen er hentet.
 const sharedBuild = import.meta.env.VITE_UDGAVE === 'delt';
 let pending: Promise<Access | null> | null = null;
 
-function loadAccess() {
-  pending ??= fetch('/.auth/me', { cache: 'no-store' })
-    .then((r) => (r.ok ? r.json() : null))
-    .then((me: { clientPrincipal?: { userRoles?: string[] } | null } | null) =>
-      me && typeof me === 'object' && 'clientPrincipal' in me
-        ? { shared: true, admin: (me.clientPrincipal?.userRoles ?? []).includes('admin') }
-        : null,
-    )
-    .catch(() => null);
-  return pending;
+/** JSON fra samme oprindelse, eller `null` (fx 404 eller appens forside i stedet for JSON). */
+async function json(path: string): Promise<unknown> {
+  try {
+    const r = await fetch(path, { cache: 'no-store' });
+    return r.ok ? await r.json() : null;
+  } catch {
+    return null;
+  }
+}
+const record = (v: unknown): Record<string, unknown> | null =>
+  v && typeof v === 'object' ? (v as Record<string, unknown>) : null;
+
+export async function readAccess(): Promise<Access | null> {
+  // Azure: { clientPrincipal: { userRoles: [...] } | null }.
+  const azure = record(await json('/.auth/me'));
+  if (azure && 'clientPrincipal' in azure) {
+    const roles = record(azure.clientPrincipal)?.userRoles;
+    return { shared: true, admin: Array.isArray(roles) && roles.includes('admin') };
+  }
+  // Cloudflare Access: { email: "..." } for den indloggede bruger.
+  const cloudflare = record(await json('/cdn-cgi/access/get-identity'));
+  if (cloudflare && typeof cloudflare.email === 'string') {
+    const admins = record(await json('/adgang.json'))?.admins;
+    const email = cloudflare.email.trim().toLowerCase();
+    return {
+      shared: true,
+      admin:
+        Array.isArray(admins) &&
+        admins.some((a) => typeof a === 'string' && a.trim().toLowerCase() === email),
+    };
+  }
+  return null;
 }
 
 export function useAccess(): Access {
   const [access, setAccess] = useState<Access>({ shared: sharedBuild, admin: false });
   useEffect(() => {
     let closed = false;
-    void loadAccess().then((loaded) => {
+    void (pending ??= readAccess()).then((loaded) => {
       if (!closed && loaded) setAccess(loaded);
     });
     return () => {

@@ -256,3 +256,11 @@ Beslutning B-025 følger brugerens besked i denne chat. B-026–028 registreres 
   4. Lokalt (startfilen) er alt åbent som hidtil; Azure-bygningen starter låst, indtil rollerne er hentet.
 
   Låsen hindrer ændringer ved et uheld. Den er ikke en sikkerhedsgrænse, da appen kører i browseren. Datagrundlag, indstillinger og øvrige sider er åbne for alle, og ændringer gemmes kun i den enkeltes browser.
+
+- **B-077:** En delt udgave i Cloudflare Pages ved siden af Azure. Azure-udgaven virker, men login med Microsoft-konto kræver godkendelse fra firmaets administrator, som brugeren har anmodet om. Brugeren: »jeg vil gerne prøve cloudflare så, men skal have mulighed for at anvende azure også, da jeg har anmodet om tilladelse fra administrator. Det er ikke sikkert jeg får den godtnok, derfor vil jeg gerne prøve cloudflare«. Gennemført i projektet:
+  1. GitHub-kontrollen udruller til både Azure og Cloudflare fra main, når alle tests består; hver udrulning springer over, hvis dens nøgle mangler.
+  2. Cloudflare Access står foran hele appen med login via engangskode på mail, fx for alle @byggros.com-adresser. Der bruges ikke Microsoft-login.
+  3. Admin (B-076) bestemmes i Cloudflare af mailadressen ud fra GitHub-variablen `ADMIN_EMAILS`; i Azure fortsat af rollen `admin`.
+  4. Den lokale udgave er uændret.
+
+  Opsætningen i Cloudflare foretages efter `docs/CLOUDFLARE.md`. Ligesom Azure er det en intern deling med login, ikke den offentlige udgivelse (B-060).
