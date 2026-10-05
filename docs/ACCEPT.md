@@ -152,7 +152,7 @@ Kørt 01.10.2026 på integrationsgrenen med Node `v26.4.0`:
 | Kontrol                               | Resultat                                                                                |
 | ------------------------------------- | --------------------------------------------------------------------------------------- |
 | `npm run typecheck`                   | Bestået: begge TypeScript-konfigurationer.                                              |
-| `npm test`                            | **3.048 enhedstests/Node-tests**, alle bestået, 0 fejl, 0 oversprunget.                 |
+| `npm test`                            | **3.050 enhedstests/Node-tests**, alle bestået, 0 fejl, 0 oversprunget.                 |
 | `npm run format:check`                | Bestået for de konfigurerede kode-/CSS-filer; Markdown indgår ikke i Prettier-scriptet. |
 | `npm run build`                       | Bestået.                                                                                |
 | Playwright (Chromium, Desktop Chrome) | **84 browserforløb**, alle bestået.                                                     |
@@ -260,3 +260,5 @@ Handlingerne følger fase 5 i [MIGRATIONSPLAN.md](MIGRATIONSPLAN.md). Enkelte de
 **Delt udgave 05.10.2026 — B-075/B-076:** `tests/azure-config.test.ts` kontrollerer adgangsreglerne for Azure, `tests/locked-profile.test.ts` den låste profil. `npm test` **3.045 bestået, 0 fejl**, og Playwright **83 browserforløb bestået**.
 
 **PDF-motor 05.10.2026 — B-078:** `tests/pdf-motor.test.ts` kontrollerer, at byggetrinnet erstatter motoren med en byte-identisk gzip-fil og afviser filer over 25 MiB, og at udpakningen afviser HTTP-fejl, login-sider og beskadiget gzip. `npm test` **3.048 bestået, 0 fejl**, Playwright **84 browserforløb bestået**, og alle 31 R6-PDF'er er identiske med både pakkens motor og den pakkede fil fra `dist`.
+
+**Cloudflare Workers 06.10.2026 — B-079:** `tests/cloudflare-config.test.ts` kontrollerer, at `wrangler.jsonc` kun udruller `dist` som statiske filer uden forhåndsvisningsadresser, og at GitHub-kontrollen udruller den delte bygning med en fast wrangler-version. `npm test` **3.050 bestået, 0 fejl**.

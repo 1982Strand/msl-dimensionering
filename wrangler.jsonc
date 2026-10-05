@@ -1,0 +1,10 @@
+// B-077/B-079: den delte udgave i Cloudflare Workers (statiske filer, ingen serverkode) bag
+// Cloudflare Access. Udrulles kun af GitHub-kontrollen (.github/workflows/engine.yml) med
+// VITE_UDGAVE=delt. Filen skal findes, ellers ændrer wrangler selv projektet (autoconfig).
+{
+  "name": "msl-dimensionering",
+  "compatibility_date": "2026-10-01",
+  "assets": { "directory": "./dist" },
+  "workers_dev": true,
+  "preview_urls": false
+}

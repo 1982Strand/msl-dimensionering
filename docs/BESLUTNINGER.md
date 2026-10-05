@@ -271,3 +271,10 @@ Beslutning B-025 følger brugerens besked i denne chat. B-026–028 registreres 
   3. Optimering af selve motoren med `wasm-opt` (Binaryen 132) blev undersøgt: bedste variant (`-Oz`) gav 26,23 MiB, altså stadig over grænsen. Den er derfor ikke taget i brug.
 
   Målinger og indholdet af motorens indlejrede data står i `docs/PDF_MOTOR.md`.
+
+- **B-079:** Cloudflare-udgaven (B-077) udrulles som en Worker med kun statiske filer i stedet for et Pages-projekt. Cloudflare har lagt Pages ind under Workers, og `wrangler pages`-kommandoerne går nu via Workers og ændrer selv projektets filer (»autoconfig«), hvis der ikke er en fast opsætning. Brugeren: »godt. videre med cloudflare opsætningen«. Gennemført:
+  1. `wrangler.jsonc` er den faste opsætning: Worker'en `msl-dimensionering` med filerne fra `dist`, uden serverkode og uden forhåndsvisningsadresser.
+  2. GitHub-kontrollen udruller med `wrangler deploy` i en fast version (4.147.0).
+  3. Adressen er https://msl-dimensionering.msl-dimensionering.workers.dev. Access slås til for hele Worker'en med login via engangskode på mail. Indtil da viser adressen kun en pladsholder.
+
+  Opsætningen står i `docs/CLOUDFLARE.md`. Fortsat en intern deling med login, ikke den offentlige udgivelse (B-060).
