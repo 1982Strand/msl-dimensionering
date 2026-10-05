@@ -1,5 +1,6 @@
 import type { TypstCompiler } from '@myriaddreamin/typst.ts/compiler';
 import { ReportCompileError, retryableInitialization, type PdfRequest } from './compile-queue.ts';
+import { unpackPdfMotor } from './pdf-motor.ts';
 
 const fontFiles = [
   'Carlito-Regular',
@@ -15,6 +16,7 @@ const fontFiles = [
 const initialize = retryableInitialization(async (): Promise<TypstCompiler> => {
   // Begge moduler og WASM-URL'en hentes først, når rapporten skal bruges.
   let modules;
+  let wasm: Uint8Array<ArrayBuffer>;
   try {
     modules = await Promise.all([
       import('@myriaddreamin/typst.ts/contrib/snippet'),
@@ -23,7 +25,10 @@ const initialize = retryableInitialization(async (): Promise<TypstCompiler> => {
     ]);
     // LazyWasmModule i 0.7.0 gemmer også afviste promises. Initialisér wrapperen
     // først, så en netværks-/WASM-fejl kan forsøges igen før dens once-cache.
-    await modules[1].default({ module_or_path: new URL(modules[2].default, location.href) });
+    // Vite-dev bruger pakkens WASM; npm run build erstatter den med en gzip-fil.
+    const path = modules[2].default + (import.meta.env.DEV ? '' : '.gz');
+    wasm = await unpackPdfMotor(await fetch(new URL(path, location.href)));
+    await modules[1].default({ module_or_path: wasm });
   } catch (error) {
     throw new ReportCompileError(
       'loading',
@@ -35,7 +40,7 @@ const initialize = retryableInitialization(async (): Promise<TypstCompiler> => {
   }
   const { TypstSnippet } = modules[0];
   const snippet = new TypstSnippet();
-  snippet.setCompilerInitOptions({ getModule: () => new URL(modules[2].default, location.href) });
+  snippet.setCompilerInitOptions({ getModule: () => wasm });
   let fonts: Uint8Array[];
   try {
     fonts = await Promise.all(

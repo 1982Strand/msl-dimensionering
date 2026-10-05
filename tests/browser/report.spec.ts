@@ -362,7 +362,7 @@ test('rapportkæden, lokal compiler/skrifter, PDF-download og revisionens spærr
   await page.goto('/#dimensionering');
   await expect(page.getByRole('heading', { name: 'Dimensionering', exact: true })).toBeVisible();
   expect(
-    seen.local.some((path) => path.endsWith('.wasm') || path.startsWith('/report/fonts/')),
+    seen.local.some((path) => /\.wasm(?:\.gz)?$/.test(path) || path.startsWith('/report/fonts/')),
   ).toBe(false);
   await page.getByRole('link', { name: 'Rapport', exact: true }).click();
   await page.getByLabel('Projekt', { exact: true }).fill('MSL test');
@@ -388,7 +388,7 @@ test('rapportkæden, lokal compiler/skrifter, PDF-download og revisionens spærr
     new Set(seen.local.filter((path) => path.startsWith('/report/fonts/') && path.endsWith('.ttf')))
       .size,
   ).toBe(8);
-  expect(seen.local.some((path) => path.endsWith('.wasm'))).toBe(true);
+  expect(seen.local.some((path) => /\.wasm(?:\.gz)?$/.test(path))).toBe(true);
   await page.getByRole('link', { name: 'Dimensionering', exact: true }).click();
   await page.getByRole('link', { name: 'Rapport', exact: true }).click();
   await ready(page); // Liveforløbet fortsætter ved navigation uden ny Generér-handling.
@@ -468,7 +468,7 @@ test('dansk compilerfejl og nyt forsøg efter faktisk WASM-fejl', async ({ page,
   test.setTimeout(120_000);
   const seen = observe(page, baseURL!);
   let attempts = 0;
-  await page.route('**/*.wasm', async (route) => {
+  await page.route('**/*.wasm{,.gz}', async (route) => {
     attempts += 1;
     if (attempts === 1) await route.abort('failed');
     else await route.continue();

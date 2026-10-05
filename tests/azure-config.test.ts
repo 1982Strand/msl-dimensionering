@@ -29,6 +29,8 @@ test('B-075: ikke-logget-ind sendes til Microsoft-login; uden rolle vises »Inge
   // Appen bruger #-adresser; der må ikke være en navigationFallback, der gør ukendte stier til appen.
   assert.equal(config.navigationFallback, undefined);
   assert.equal(config.mimeTypes['.wasm'], 'application/wasm');
+  // B-078: PDF-motoren leveres som gzip-fil, der pakkes ud i browseren.
+  assert.equal(config.mimeTypes['.gz'], 'application/gzip');
 });
 
 test('B-075: kun felter, som Azures skema tillader (ellers afvises udrulningen)', () => {

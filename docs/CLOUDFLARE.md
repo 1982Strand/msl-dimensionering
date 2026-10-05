@@ -8,6 +8,7 @@ Ved siden af Azure (`docs/AZURE.md`) kan appen deles via Cloudflare Pages bag Cl
 - Cloudflare Access står foran hele appen, også de midlertidige adresser for hver udrulning (`*.msl-dimensionering.pages.dev`).
 - Admin (B-076) bestemmes af mailadressen: GitHub-variablen `ADMIN_EMAILS` (adresser adskilt af komma) lægges ud som `adgang.json` bag login. Andre brugere ser firmaprofilen låst; medarbejderkartoteket kan altid redigeres.
 - `public/_headers` sætter de samme sikkerhedsoverskrifter som i Azure.
+- Cloudflare tillader højst 25 MiB pr. fil. PDF-motoren leveres derfor gzip-pakket (10,34 MiB) og pakkes ud i browseren (B-078, `docs/PDF_MOTOR.md`). `npm run build` fejler, hvis en fil i `dist` er over grænsen.
 
 ## Opsætning (én gang)
 

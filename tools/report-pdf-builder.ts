@@ -2,6 +2,7 @@
 import { readFile } from 'node:fs/promises';
 import { TypstSnippet } from '@myriaddreamin/typst.ts/contrib/snippet';
 import init from '@myriaddreamin/typst-ts-web-compiler';
+import { unpackPdfMotor } from '../src/report/pdf-motor.ts';
 import { type ReportAssets } from '../src/report/report-document.ts';
 import type { PdfRequest } from '../src/report/compile-queue.ts';
 import type { ReportFigures } from '../src/report/report-figures.ts';
@@ -13,11 +14,16 @@ import {
 import type { ReportCase } from './report-cases.ts';
 export const root = new URL('../', import.meta.url);
 export async function createReportBuilder() {
-  const wasm = new Uint8Array(
-    await readFile(
-      new URL(
-        'node_modules/@myriaddreamin/typst-ts-web-compiler/pkg/typst_ts_web_compiler_bg.wasm',
-        root,
+  // R6 kan kontrolleres mod en optimeret kopi eller dist/*.wasm.gz uden at
+  // overskrive pakkens motor. Uden variablen bevares den hidtidige kilde.
+  const wasm = await unpackPdfMotor(
+    new Response(
+      await readFile(
+        process.env.PDF_MOTOR_WASM ??
+          new URL(
+            'node_modules/@myriaddreamin/typst-ts-web-compiler/pkg/typst_ts_web_compiler_bg.wasm',
+            root,
+          ),
       ),
     ),
   );

@@ -264,3 +264,10 @@ Beslutning B-025 følger brugerens besked i denne chat. B-026–028 registreres 
   4. Den lokale udgave er uændret.
 
   Opsætningen i Cloudflare foretages efter `docs/CLOUDFLARE.md`. Ligesom Azure er det en intern deling med login, ikke den offentlige udgivelse (B-060).
+
+- **B-078:** PDF-motoren leveres gzip-pakket, så ingen fil i appen er over 25 MiB (Cloudflares grænse pr. fil). Brugeren: »Kan du ikke lige prøve at undersøge, om ikke pdf motoren kan komme under 25MB? Undersøg det sammen med codex, det kan være i sammen kan forbedre og optimere den.« Gennemført:
+  1. `npm run build` pakker typst-motoren (27,01 MiB) med gzip til 10,34 MiB og fjerner originalen fra `dist`. Byggetrinnet kontrollerer, at den udpakkede motor er byte-identisk med pakkens, og at ingen fil i `dist` overskrider 25 MiB.
+  2. Browseren henter den pakkede fil og pakker den ud med `DecompressionStream` (gzip), før rapporten laves første gang. Motoren, PDF'erne og fejlbeskederne er uændrede, og alle 31 R6-PDF'er er identiske både med pakkens motor og med den pakkede fil fra `dist`.
+  3. Optimering af selve motoren med `wasm-opt` (Binaryen 132) blev undersøgt: bedste variant (`-Oz`) gav 26,23 MiB, altså stadig over grænsen. Den er derfor ikke taget i brug.
+
+  Målinger og indholdet af motorens indlejrede data står i `docs/PDF_MOTOR.md`.

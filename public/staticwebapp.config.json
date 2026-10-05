@@ -11,7 +11,7 @@
     },
     "403": { "rewrite": "/ingen-adgang.html" }
   },
-  "mimeTypes": { ".wasm": "application/wasm" },
+  "mimeTypes": { ".wasm": "application/wasm", ".gz": "application/gzip" },
   "globalHeaders": {
     "X-Content-Type-Options": "nosniff",
     "X-Frame-Options": "DENY",
