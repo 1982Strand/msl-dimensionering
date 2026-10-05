@@ -49,7 +49,10 @@ test('B-063/B-064: afsnit 1 står stille, beskeden som ikon med Hover Card, klas
     const b = (await page.locator('[data-m9-slot="keyFigures"] .bg-noegletal').boundingBox())!;
     sizes.add(`${Math.round(b.width)}x${Math.round(b.height)}`);
   }
-  expect([...sizes]).toHaveLength(1);
+  // Bredden er fast overalt. B-064's faste højde er afstemt efter Segoe UI (Windows, B-060); på
+  // Linux (GitHub-kontrollen) bruges en anden skrift, og højden kan vokse.
+  expect(new Set([...sizes].map((s) => s.split('x')[0])).size).toBe(1);
+  if (process.platform === 'win32') expect([...sizes]).toHaveLength(1);
   await page.getByRole('radio', { name: 'T4', exact: true }).check();
   // Klasseboksens etiketter og værdier står på én linje.
   const cellHeights = await page

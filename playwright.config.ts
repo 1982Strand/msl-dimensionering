@@ -8,7 +8,9 @@ const url = `http://127.0.0.1:${port}`;
 export default defineConfig({
   testDir: './tests/browser',
   fullyParallel: true,
-  retries: 0,
+  // GitHub-kontrollen (CI) prøver én gang til ved enkeltstående netværksfejl på runneren, fx
+  // ERR_NO_BUFFER_SPACE; forløb, der kun består ved gentagelse, rapporteres som »flaky«.
+  retries: process.env.CI ? 1 : 0,
   use: {
     baseURL: url,
     ...devices['Desktop Chrome'],
