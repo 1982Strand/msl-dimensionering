@@ -46,6 +46,11 @@ Låsen hindrer ændringer ved et uheld. Den er ikke en sikkerhedsgrænse, da app
 
 6. **Adressen** står under _Oversigt_ → _URL_, fx `https://<navn>.azurestaticapps.net`.
 
+## Kendte fejl
+
+- **»No matching Static Web App was found or the api key was invalid«:** Den første app (oprettet 05.10.2026 i West Europe) afviste enhver nøgle, også en nøgle hentet direkte fra Azure, mens nyoprettede apps i samme konto virkede. Løsningen var at slette appen og oprette den igen med samme navn og plan. Ses fejlen igen, med en nøgle kopieret med kopiér-ikonet, gøres det samme.
+- **Ugyldig `staticwebapp.config.json`:** Azures skema tillader kun bestemte felter (fx ikke `$comment`); ellers afvises udrulningen. `tests/azure-config.test.ts` kontrollerer felterne.
+
 ## Fjern adgang
 
 _Rollestyring_ → vælg personen → fjern rollen (`medarbejder` eller `admin`). Hele den delte udgave kan lukkes ved at slette Static Web App-ressourcen; den lokale udgave påvirkes ikke.

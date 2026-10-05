@@ -30,3 +30,19 @@ test('B-075: ikke-logget-ind sendes til Microsoft-login; uden rolle vises »Inge
   assert.equal(config.navigationFallback, undefined);
   assert.equal(config.mimeTypes['.wasm'], 'application/wasm');
 });
+
+test('B-075: kun felter, som Azures skema tillader (ellers afvises udrulningen)', () => {
+  const allowed = new Set([
+    'routes',
+    'navigationFallback',
+    'responseOverrides',
+    'globalHeaders',
+    'mimeTypes',
+    'auth',
+    'networking',
+    'forwardingGateway',
+    'platform',
+    'trailingSlash',
+  ]);
+  for (const key of Object.keys(config)) assert.ok(allowed.has(key), `ikke tilladt: ${key}`);
+});

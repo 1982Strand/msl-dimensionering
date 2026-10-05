@@ -1,5 +1,4 @@
 {
-  "$comment": "B-075: Azure Static Web Apps. Hele appen kræver login med Microsoft-konto og en invitation med rollen »medarbejder« eller »admin« (B-076: admin kan også ændre firmaprofilen). Lokalt (startfilen) læses filen ikke.",
   "routes": [
     { "route": "/.auth/login/github", "statusCode": 404 },
     { "route": "/ingen-adgang.html", "allowedRoles": ["anonymous"] },
