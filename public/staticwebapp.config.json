@@ -1,0 +1,21 @@
+{
+  "$comment": "B-075: Azure Static Web Apps. Hele appen kræver login med Microsoft-konto og en invitation med rollen »medarbejder«. Lokalt (startfilen) læses filen ikke.",
+  "routes": [
+    { "route": "/.auth/login/github", "statusCode": 404 },
+    { "route": "/ingen-adgang.html", "allowedRoles": ["anonymous"] },
+    { "route": "/*", "allowedRoles": ["medarbejder"] }
+  ],
+  "responseOverrides": {
+    "401": {
+      "redirect": "/.auth/login/aad?post_login_redirect_uri=.referrer",
+      "statusCode": 302
+    },
+    "403": { "rewrite": "/ingen-adgang.html" }
+  },
+  "mimeTypes": { ".wasm": "application/wasm" },
+  "globalHeaders": {
+    "X-Content-Type-Options": "nosniff",
+    "X-Frame-Options": "DENY",
+    "Referrer-Policy": "same-origin"
+  }
+}

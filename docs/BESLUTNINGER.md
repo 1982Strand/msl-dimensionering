@@ -241,3 +241,10 @@ Beslutning B-025 følger brugerens besked i denne chat. B-026–028 registreres 
   4. Materialeblokkene i opbygningsfiguren er bredere på skærmen (148 i stedet for 124), og navne på op til 20 tegn står på én linje, fx »Stabilgrus SGII 0-32«. Skriftstørrelsen er uændret.
 
   Motorernes tekst er uændret; kun visningen ændres. Rapportens opbygningstegning bruger fortsat de godkendte mål og er byte-identisk, og alle 31 R6-PDF'er er uændrede.
+
+- **B-075:** En delt udgave med login i Azure Static Web Apps. Brugeren spurgte: »Er det muligt for andre at tilgå appen? Altså lidt ligesom streamlit udgaven, hvor de får et link og så kan de tilgå den?«, valgte løsning 2 (webtjeneste med login): »har lige oprettet en gratis azure konto. lad os kigge på løsning 2«, og bekræftede efter afklaring af, at den lokale udgave bevares: »Ja, gør det.« Gennemført i projektet:
+  1. `public/staticwebapp.config.json` kræver login med Microsoft-konto og rollen `medarbejder` for hele appen; rollen gives med en invitation i Azure. Ikke-logget-ind sendes til login; en konto uden invitation ser `ingen-adgang.html`. GitHub-login er spærret.
+  2. GitHub-kontrollen udruller til Azure fra main, når alle tests består, og kan startes manuelt. Uden udrulningsnøgle springes udrulningen over.
+  3. Den lokale udgave (startfilen, »Genstart app«) er uændret. Gemte data er adskilt pr. udgave og browser.
+
+  Opsætningen i Azure og invitationerne foretages af brugeren efter `docs/AZURE.md`. Det er en intern deling med login, ikke den offentlige udgivelse på hjemmesiden (B-060). Hvad der skal være synligt eller redigerbart i den delte udgave, fx firmaprofilen, afklares særskilt.

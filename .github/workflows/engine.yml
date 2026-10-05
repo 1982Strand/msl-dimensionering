@@ -4,6 +4,8 @@ on:
   pull_request:
   push:
     branches: [main]
+  # B-075: start en kørsel (og dermed udrulningen) manuelt, fx efter at nøglen er sat.
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -32,3 +34,37 @@ jobs:
         if: runner.os == 'Linux'
         run: sudo apt-get install -y --no-install-recommends poppler-utils
       - run: npm run test:browser
+
+  # B-075: den delte udgave i Azure Static Web Apps. Kun fra main og kun når alle tests består.
+  # Indtil udrulningsnøglen er sat som hemmelighed i GitHub, springes udrulningen over.
+  azure:
+    name: Udrul til Azure
+    needs: reference
+    if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
+    runs-on: ubuntu-latest
+    env:
+      AZURE_TOKEN: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        if: env.AZURE_TOKEN != ''
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        if: env.AZURE_TOKEN != ''
+        with:
+          node-version: 24.19.0
+          cache: npm
+      - run: npm ci
+        if: env.AZURE_TOKEN != ''
+      - run: npm run build
+        if: env.AZURE_TOKEN != ''
+      - name: Udrul den byggede app
+        if: env.AZURE_TOKEN != ''
+        uses: Azure/static-web-apps-deploy@1a947af9992250f3bc2e68ad0754c0b0c11566c9 # v1
+        with:
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
+          action: upload
+          app_location: dist
+          skip_app_build: true
+          skip_api_build: true
+      - name: Ingen udrulningsnøgle
+        if: env.AZURE_TOKEN == ''
+        run: echo "AZURE_STATIC_WEB_APPS_API_TOKEN er ikke sat; udrulningen til Azure springes over."
