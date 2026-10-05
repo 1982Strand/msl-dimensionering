@@ -37,6 +37,7 @@ import {
   defaultProfileState,
   exportCompanyProfile,
   importCompanyProfile,
+  lockedProfileState,
   logoDataUrl,
   MAX_LOGO_BYTES,
   PROFILE_LIMITS,
@@ -50,7 +51,8 @@ import {
 import { CompanyProfileStorage, IndexedDbLogoStorage } from '../report/profile-storage';
 import './CompanyProfile.css';
 
-export function useCompanyProfile() {
+/** `locked` (B-076): rapporten og formularen ser standardprofilen med brugerens eget kartotek. */
+export function useCompanyProfile(locked = false) {
   const [state, setState] = useState(defaultProfileState);
   const [ready, setReady] = useState(false);
   const [saving, setSaving] = useState(false);
@@ -113,7 +115,8 @@ export function useCompanyProfile() {
       }
     });
   }
-  return { state, ready, saving, error, reset, update };
+  const shown = useMemo(() => (locked ? lockedProfileState(state) : state), [locked, state]);
+  return { state: shown, ready, saving, error, reset, update };
 }
 
 async function checkImage(logo: ProfileLogo) {
@@ -131,10 +134,13 @@ export function CompanyProfile({
   controller,
   preview,
   standardLogo,
+  locked = false,
 }: {
   controller: ReturnType<typeof useCompanyProfile>;
   preview: ReactNode;
   standardLogo: () => Promise<ProfileLogo>;
+  /** B-076: profilen kan ses, men kun kartoteket kan redigeres. */
+  locked?: boolean;
 }) {
   const { state, ready, saving, error, reset, update } = controller;
   const [drafts, setDrafts] = useState<Record<string, string>>({});
@@ -280,7 +286,9 @@ export function CompanyProfile({
     <div className="company-profile-grid">
       <div>
         <p className="report-caption">
-          Profilen gælder alle rapporter. Gyldige ændringer gemmes automatisk i denne browser.
+          {locked
+            ? 'Firmaprofilen kan kun ændres af en administrator; rapporterne bruger standardprofilen. Medarbejderkartoteket kan redigeres og gemmes i denne browser.'
+            : 'Profilen gælder alle rapporter. Gyldige ændringer gemmes automatisk i denne browser.'}
         </p>
         <p
           role="status"
@@ -302,174 +310,183 @@ export function CompanyProfile({
           </Notice>
         )}
         <fieldset className="report-form" disabled={!ready || busy}>
-          {card(
-            1,
-            'Logo',
-            <>
-              <img className="profile-logo" alt="Aktuelt firmalogo" src={logoSource} />
-              <div className="profile-actions">
-                <Button type="button" variant="outline" onClick={() => logoInput.current?.click()}>
-                  <ImageUp aria-hidden="true" />
-                  Vælg logo …
-                </Button>
-                <Button
-                  type="button"
-                  variant="outline"
-                  onClick={() => update((prev) => ({ ...prev, logo: null }))}
-                >
-                  <RotateCcw aria-hidden="true" />
-                  Brug standardlogo
-                </Button>
-              </div>
-              <input
-                ref={logoInput}
-                type="file"
-                hidden
-                aria-label="Logofil"
-                accept="image/png,image/jpeg,image/svg+xml"
-                onChange={(e) => {
-                  const file = e.target.files?.[0];
-                  e.target.value = '';
-                  if (file)
-                    void task(async () => {
-                      if (file.size > MAX_LOGO_BYTES)
-                        throw new Error('Logoet må højst fylde 2 MB.');
-                      const logo = {
-                        mime: file.type as ProfileLogo['mime'],
-                        bytes: new Uint8Array(await file.arrayBuffer()),
-                      };
-                      await checkImage(logo);
-                      update((prev) => ({ ...prev, logo }));
-                    });
-                }}
-              />
-              <p className="report-caption">PNG, JPEG eller SVG, højst 2 MB.</p>
-              {field('logo_bredde_mm', 'Logobredde (mm)')}
-              {checkbox('logo_paa_alle_sider', 'Logo på alle sider')}
-            </>,
-          )}
-          {card(
-            2,
-            'Identitet',
-            <>
-              {field('slogan', 'Slogan under logoet')}
-              {field('sidefod', 'Kontaktlinje i sidefoden', 'textarea')}
-              {(['farve', 'sidefod_tekstfarve'] as const).map((path) => (
-                <div className="profile-color" key={path}>
-                  {field(path, path === 'farve' ? 'Firmafarve' : 'Tekstfarve i sidefod')}
-                  <input
-                    type="color"
-                    aria-label={path === 'farve' ? 'Vælg firmafarve' : 'Vælg tekstfarve i sidefod'}
-                    value={profile[path]}
-                    onChange={(e) => {
-                      const value = e.target.value;
-                      setDrafts((prev) => ({ ...prev, [path]: value }));
-                      setErrors((prev) => ({ ...prev, [path]: '' }));
-                      update((prev) => ({
-                        ...prev,
-                        profile: changeProfileField(prev.profile, path, value).profile,
-                      }));
-                    }}
-                  />
+          {/* B-076: kortene 1–7 låses i den delte udgave; kartoteket (8) forbliver redigerbart. */}
+          <fieldset className="profile-lockable" disabled={locked}>
+            {card(
+              1,
+              'Logo',
+              <>
+                <img className="profile-logo" alt="Aktuelt firmalogo" src={logoSource} />
+                <div className="profile-actions">
+                  <Button
+                    type="button"
+                    variant="outline"
+                    onClick={() => logoInput.current?.click()}
+                  >
+                    <ImageUp aria-hidden="true" />
+                    Vælg logo …
+                  </Button>
+                  <Button
+                    type="button"
+                    variant="outline"
+                    onClick={() => update((prev) => ({ ...prev, logo: null }))}
+                  >
+                    <RotateCcw aria-hidden="true" />
+                    Brug standardlogo
+                  </Button>
                 </div>
-              ))}
-              {checkbox('overskrifter_i_farve', 'Overskrifter i firmafarve')}
-            </>,
-          )}
-          {card(
-            3,
-            'Skrift',
-            <>
-              {field('skrift.broedtekst', 'Brødtekst', fonts)}
-              {field('skrift.sidehoved', 'Sidehoved og sidefod', fonts)}
-              {field('skrift.stoerrelse_pt', 'Skriftstørrelse, brødtekst (pt)')}
-            </>,
-          )}
-          {card(
-            4,
-            'Margener',
-            <div className="profile-margins">
-              {(['top', 'bund', 'venstre', 'hoejre'] as const).map((key, i) =>
-                field(
-                  'margener_mm.' + key,
-                  ['Top (mm)', 'Bund (mm)', 'Venstre (mm)', 'Højre (mm)'][i],
-                ),
-              )}
-            </div>,
-          )}
-          {card(
-            5,
-            'Sidetal',
-            field('sidetal', 'Sidetal', [
-              ['klammer', '[1]'],
-              ['side-af', 'Side 1 af 3'],
-            ]),
-          )}
-          {card(
-            6,
-            'Faste tekster',
-            <>
-              {field('titel', 'Rapporttitel')}
-              {field('by', 'By i underskriften')}
-            </>,
-          )}
-          {card(
-            7,
-            'Afslutning',
-            <>
-              <p className="report-caption">
-                Alle fem afsnit indgår altid. Teksterne redigeres under Rapport.
-              </p>
-              {profile.afsluttende_afsnit.map((section, i, all) => (
-                <div className="profile-section-row" key={section.noegle}>
-                  <div className="setting-field">
-                    <label htmlFor={'profile-' + section.noegle}>Overskrift {i + 1}</label>
-                    <Input
-                      id={'profile-' + section.noegle}
-                      value={drafts[section.noegle] ?? section.titel}
+                <input
+                  ref={logoInput}
+                  type="file"
+                  hidden
+                  aria-label="Logofil"
+                  accept="image/png,image/jpeg,image/svg+xml"
+                  onChange={(e) => {
+                    const file = e.target.files?.[0];
+                    e.target.value = '';
+                    if (file)
+                      void task(async () => {
+                        if (file.size > MAX_LOGO_BYTES)
+                          throw new Error('Logoet må højst fylde 2 MB.');
+                        const logo = {
+                          mime: file.type as ProfileLogo['mime'],
+                          bytes: new Uint8Array(await file.arrayBuffer()),
+                        };
+                        await checkImage(logo);
+                        update((prev) => ({ ...prev, logo }));
+                      });
+                  }}
+                />
+                <p className="report-caption">PNG, JPEG eller SVG, højst 2 MB.</p>
+                {field('logo_bredde_mm', 'Logobredde (mm)')}
+                {checkbox('logo_paa_alle_sider', 'Logo på alle sider')}
+              </>,
+            )}
+            {card(
+              2,
+              'Identitet',
+              <>
+                {field('slogan', 'Slogan under logoet')}
+                {field('sidefod', 'Kontaktlinje i sidefoden', 'textarea')}
+                {(['farve', 'sidefod_tekstfarve'] as const).map((path) => (
+                  <div className="profile-color" key={path}>
+                    {field(path, path === 'farve' ? 'Firmafarve' : 'Tekstfarve i sidefod')}
+                    <input
+                      type="color"
+                      aria-label={
+                        path === 'farve' ? 'Vælg firmafarve' : 'Vælg tekstfarve i sidefod'
+                      }
+                      value={profile[path]}
                       onChange={(e) => {
-                        const title = e.target.value;
-                        setDrafts((prev) => ({ ...prev, [section.noegle]: title }));
+                        const value = e.target.value;
+                        setDrafts((prev) => ({ ...prev, [path]: value }));
+                        setErrors((prev) => ({ ...prev, [path]: '' }));
                         update((prev) => ({
                           ...prev,
-                          profile: {
-                            ...prev.profile,
-                            afsluttende_afsnit: prev.profile.afsluttende_afsnit.map((s) =>
-                              s.noegle === section.noegle ? { ...s, titel: title } : s,
-                            ),
-                          },
+                          profile: changeProfileField(prev.profile, path, value).profile,
                         }));
                       }}
                     />
                   </div>
-                  {[-1, 1].map((direction) => (
-                    <Button
-                      type="button"
-                      key={direction}
-                      variant="outline"
-                      aria-label={`Flyt afsnit ${i + 1} ${direction < 0 ? 'op' : 'ned'}`}
-                      disabled={saving || i + direction < 0 || i + direction >= all.length}
-                      onClick={() =>
-                        update((prev) => {
-                          const sections = [...prev.profile.afsluttende_afsnit];
-                          [sections[i], sections[i + direction]] = [
-                            sections[i + direction],
-                            sections[i],
-                          ];
-                          return {
+                ))}
+                {checkbox('overskrifter_i_farve', 'Overskrifter i firmafarve')}
+              </>,
+            )}
+            {card(
+              3,
+              'Skrift',
+              <>
+                {field('skrift.broedtekst', 'Brødtekst', fonts)}
+                {field('skrift.sidehoved', 'Sidehoved og sidefod', fonts)}
+                {field('skrift.stoerrelse_pt', 'Skriftstørrelse, brødtekst (pt)')}
+              </>,
+            )}
+            {card(
+              4,
+              'Margener',
+              <div className="profile-margins">
+                {(['top', 'bund', 'venstre', 'hoejre'] as const).map((key, i) =>
+                  field(
+                    'margener_mm.' + key,
+                    ['Top (mm)', 'Bund (mm)', 'Venstre (mm)', 'Højre (mm)'][i],
+                  ),
+                )}
+              </div>,
+            )}
+            {card(
+              5,
+              'Sidetal',
+              field('sidetal', 'Sidetal', [
+                ['klammer', '[1]'],
+                ['side-af', 'Side 1 af 3'],
+              ]),
+            )}
+            {card(
+              6,
+              'Faste tekster',
+              <>
+                {field('titel', 'Rapporttitel')}
+                {field('by', 'By i underskriften')}
+              </>,
+            )}
+            {card(
+              7,
+              'Afslutning',
+              <>
+                <p className="report-caption">
+                  Alle fem afsnit indgår altid. Teksterne redigeres under Rapport.
+                </p>
+                {profile.afsluttende_afsnit.map((section, i, all) => (
+                  <div className="profile-section-row" key={section.noegle}>
+                    <div className="setting-field">
+                      <label htmlFor={'profile-' + section.noegle}>Overskrift {i + 1}</label>
+                      <Input
+                        id={'profile-' + section.noegle}
+                        value={drafts[section.noegle] ?? section.titel}
+                        onChange={(e) => {
+                          const title = e.target.value;
+                          setDrafts((prev) => ({ ...prev, [section.noegle]: title }));
+                          update((prev) => ({
                             ...prev,
-                            profile: { ...prev.profile, afsluttende_afsnit: sections },
-                          };
-                        })
-                      }
-                    >
-                      {direction < 0 ? '↑' : '↓'}
-                    </Button>
-                  ))}
-                </div>
-              ))}
-            </>,
-          )}
+                            profile: {
+                              ...prev.profile,
+                              afsluttende_afsnit: prev.profile.afsluttende_afsnit.map((s) =>
+                                s.noegle === section.noegle ? { ...s, titel: title } : s,
+                              ),
+                            },
+                          }));
+                        }}
+                      />
+                    </div>
+                    {[-1, 1].map((direction) => (
+                      <Button
+                        type="button"
+                        key={direction}
+                        variant="outline"
+                        aria-label={`Flyt afsnit ${i + 1} ${direction < 0 ? 'op' : 'ned'}`}
+                        disabled={saving || i + direction < 0 || i + direction >= all.length}
+                        onClick={() =>
+                          update((prev) => {
+                            const sections = [...prev.profile.afsluttende_afsnit];
+                            [sections[i], sections[i + direction]] = [
+                              sections[i + direction],
+                              sections[i],
+                            ];
+                            return {
+                              ...prev,
+                              profile: { ...prev.profile, afsluttende_afsnit: sections },
+                            };
+                          })
+                        }
+                      >
+                        {direction < 0 ? '↑' : '↓'}
+                      </Button>
+                    ))}
+                  </div>
+                ))}
+              </>,
+            )}
+          </fieldset>
           {card(
             8,
             'Medarbejdere',
@@ -484,72 +501,77 @@ export function CompanyProfile({
               />
             ),
           )}
-          <div className="profile-actions">
-            <Button
-              type="button"
-              variant="outline"
-              disabled={saving}
-              onClick={() => {
-                if (
-                  window.confirm(
-                    'Nulstil firmaprofilen til standard? Eget logo og ændrede værdier fjernes.',
+          {!locked && (
+            <div className="profile-actions">
+              <Button
+                type="button"
+                variant="outline"
+                disabled={saving}
+                onClick={() => {
+                  if (
+                    window.confirm(
+                      'Nulstil firmaprofilen til standard? Eget logo og ændrede værdier fjernes.',
+                    )
                   )
-                )
-                  update(defaultProfileState, true);
-              }}
-            >
-              <RotateCcw aria-hidden="true" />
-              Nulstil firmaprofil til standard
-            </Button>
-            <Button
-              type="button"
-              variant="outline"
-              disabled={saving}
-              onClick={() =>
-                void task(async () => {
-                  const json = exportCompanyProfile(
-                    state,
-                    state.logo ? undefined : await standardLogo(),
-                  );
-                  const url = URL.createObjectURL(new Blob([json], { type: 'application/json' }));
-                  const a = document.createElement('a');
-                  a.href = url;
-                  a.download = 'firmaprofil.json';
-                  a.click();
-                  window.setTimeout(() => URL.revokeObjectURL(url), 1000);
-                })
-              }
-            >
-              <Download aria-hidden="true" />
-              Eksportér profil
-            </Button>
-            <Button
-              type="button"
-              variant="outline"
-              disabled={saving}
-              onClick={() => importInput.current?.click()}
-            >
-              <Upload aria-hidden="true" />
-              Importér profil …
-            </Button>
-            <input
-              ref={importInput}
-              type="file"
-              hidden
-              aria-label="Profilfil"
-              accept="application/json,.json"
-              onChange={(e) => {
-                const file = e.target.files?.[0];
-                e.target.value = '';
-                if (file)
+                    update(defaultProfileState, true);
+                }}
+              >
+                <RotateCcw aria-hidden="true" />
+                Nulstil firmaprofil til standard
+              </Button>
+              <Button
+                type="button"
+                variant="outline"
+                disabled={saving}
+                onClick={() =>
                   void task(async () => {
-                    const imported = importCompanyProfile(await file.text(), await standardLogo());
-                    if (imported.logo) await checkImage(imported.logo);
-                    update(() => imported, true);
-                  });
-              }}
-            />
-          </div>
+                    const json = exportCompanyProfile(
+                      state,
+                      state.logo ? undefined : await standardLogo(),
+                    );
+                    const url = URL.createObjectURL(new Blob([json], { type: 'application/json' }));
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = 'firmaprofil.json';
+                    a.click();
+                    window.setTimeout(() => URL.revokeObjectURL(url), 1000);
+                  })
+                }
+              >
+                <Download aria-hidden="true" />
+                Eksportér profil
+              </Button>
+              <Button
+                type="button"
+                variant="outline"
+                disabled={saving}
+                onClick={() => importInput.current?.click()}
+              >
+                <Upload aria-hidden="true" />
+                Importér profil …
+              </Button>
+              <input
+                ref={importInput}
+                type="file"
+                hidden
+                aria-label="Profilfil"
+                accept="application/json,.json"
+                onChange={(e) => {
+                  const file = e.target.files?.[0];
+                  e.target.value = '';
+                  if (file)
+                    void task(async () => {
+                      const imported = importCompanyProfile(
+                        await file.text(),
+                        await standardLogo(),
+                      );
+                      if (imported.logo) await checkImage(imported.logo);
+                      update(() => imported, true);
+                    });
+                }}
+              />
+            </div>
+          )}
         </fieldset>
       </div>
       <aside className="profile-preview" aria-label="Aktuel rapport">

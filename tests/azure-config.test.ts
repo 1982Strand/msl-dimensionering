@@ -7,11 +7,11 @@ const config = JSON.parse(
   readFileSync(new URL('../public/staticwebapp.config.json', import.meta.url), 'utf8'),
 );
 
-test('B-075: hele appen kræver rollen »medarbejder«; kun siden om manglende adgang er åben', () => {
+test('B-075/B-076: hele appen kræver rollen »medarbejder« eller »admin«; kun »Ingen adgang« er åben', () => {
   const routes: { route: string; allowedRoles?: string[]; statusCode?: number }[] = config.routes;
   const all = routes.findIndex((r) => r.route === '/*');
   assert.ok(all >= 0, 'mangler /*');
-  assert.deepEqual(routes[all].allowedRoles, ['medarbejder']);
+  assert.deepEqual(routes[all].allowedRoles, ['medarbejder', 'admin']);
   // Reglerne læses i rækkefølge; kun undtagelser må stå før /*.
   const before = routes.slice(0, all);
   assert.deepEqual(

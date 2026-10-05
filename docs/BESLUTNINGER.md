@@ -248,3 +248,11 @@ Beslutning B-025 følger brugerens besked i denne chat. B-026–028 registreres 
   3. Den lokale udgave (startfilen, »Genstart app«) er uændret. Gemte data er adskilt pr. udgave og browser.
 
   Opsætningen i Azure og invitationerne foretages af brugeren efter `docs/AZURE.md`. Det er en intern deling med login, ikke den offentlige udgivelse på hjemmesiden (B-060). Hvad der skal være synligt eller redigerbart i den delte udgave, fx firmaprofilen, afklares særskilt.
+
+- **B-076:** Firmaprofilen er låst for almindelige brugere i den delte udgave. Brugeren: »Vi skal også lige kigge på, om det hele skal være synligt og/eller tilgængeligt for alle (fx redigering af firmaprofilen til rapporten)«. Svar på de forelagte valg: styring »Admin-rolle« og låst del »Firmaprofil« (ikke datagrundlag, indstillinger eller medarbejderkartotek). Gennemført:
+  1. I Azure har brugere rollen `medarbejder` eller `admin`. Appen læser rollerne på `/.auth/me`.
+  2. For `medarbejder` kan firmaprofilen ses, men ikke ændres: logo, identitet, skrift, margener, sidetal, faste tekster og afslutning er låst, og import, eksport og nulstilling vises ikke. Rapporterne bruger standardprofilen. Medarbejderkartoteket kan redigeres som før.
+  3. `admin` kan ændre alt som lokalt. Den gemte profil i browseren røres ikke af låsen.
+  4. Lokalt (startfilen) er alt åbent som hidtil; Azure-bygningen starter låst, indtil rollerne er hentet.
+
+  Låsen hindrer ændringer ved et uheld. Den er ikke en sikkerhedsgrænse, da appen kører i browseren. Datagrundlag, indstillinger og øvrige sider er åbne for alle, og ændringer gemmes kun i den enkeltes browser.

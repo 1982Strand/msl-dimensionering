@@ -1,6 +1,13 @@
 # Delt udgave i Azure Static Web Apps (B-075)
 
-Appen kan deles med kolleger via en fast adresse i Azure. Hele appen kræver login med en Microsoft-konto og en invitation med rollen `medarbejder`. Den lokale udgave (startfilen) er uændret og påvirkes ikke.
+Appen kan deles med kolleger via en fast adresse i Azure. Hele appen kræver login med en Microsoft-konto og en invitation med rollen `medarbejder` eller `admin`. Den lokale udgave (startfilen) er uændret og påvirkes ikke.
+
+## Roller (B-076)
+
+- `medarbejder`: fuld brug af appen. Firmaprofilen kan ses, men ikke ændres; rapporterne bruger standardprofilen. Medarbejderkartoteket kan redigeres.
+- `admin`: som `medarbejder`, og firmaprofilen kan ændres.
+
+Låsen hindrer ændringer ved et uheld. Den er ikke en sikkerhedsgrænse, da appen kører i browseren. Hver brugers ændringer gemmes kun i brugerens egen browser.
 
 ## Sådan virker det
 
@@ -32,7 +39,7 @@ Appen kan deles med kolleger via en fast adresse i Azure. Hele appen kræver log
    - Godkendelsesudbyder: Microsoft Entra ID.
    - Inviteret: personens e-mail.
    - Domæne: appens adresse.
-   - Roller: `medarbejder`.
+   - Roller: `medarbejder`, eller `admin` for dem, der skal kunne ændre firmaprofilen.
    - Udløb: højst 168 timer.
 
    _Generér_ giver et link, som sendes til personen. Personen åbner linket, logger ind med sin Microsoft-konto og har derefter adgang. Den gratis plan tillader et begrænset antal inviterede brugere (omkring 25).
@@ -41,4 +48,13 @@ Appen kan deles med kolleger via en fast adresse i Azure. Hele appen kræver log
 
 ## Fjern adgang
 
-_Rollestyring_ → vælg personen → fjern rollen `medarbejder`. Hele den delte udgave kan lukkes ved at slette Static Web App-ressourcen; den lokale udgave påvirkes ikke.
+_Rollestyring_ → vælg personen → fjern rollen (`medarbejder` eller `admin`). Hele den delte udgave kan lukkes ved at slette Static Web App-ressourcen; den lokale udgave påvirkes ikke.
+
+## Tilbage til kun lokal brug
+
+Azure-delene kan slås fra uden at ændre resten af appen:
+
+1. Slet Static Web App-ressourcen i Azure.
+2. Slet hemmeligheden `AZURE_STATIC_WEB_APPS_API_TOKEN` i GitHub; derefter springes udrulningen over.
+
+Den lokale udgave virker uændret. Den byggede app (`dist`) kan lægges på en anden webtjeneste; `staticwebapp.config.json` bruges kun af Azure, og låsen af firmaprofilen virker kun, hvor `/.auth/me` oplyser roller. Login og adgang hos en anden tjeneste aftales særskilt.

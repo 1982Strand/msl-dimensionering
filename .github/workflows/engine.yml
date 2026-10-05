@@ -54,8 +54,11 @@ jobs:
           cache: npm
       - run: npm ci
         if: env.AZURE_TOKEN != ''
+      # B-076: den delte udgave starter med låst firmaprofil, indtil rollerne er hentet.
       - run: npm run build
         if: env.AZURE_TOKEN != ''
+        env:
+          VITE_UDGAVE: delt
       - name: Udrul den byggede app
         if: env.AZURE_TOKEN != ''
         uses: Azure/static-web-apps-deploy@1a947af9992250f3bc2e68ad0754c0b0c11566c9 # v1

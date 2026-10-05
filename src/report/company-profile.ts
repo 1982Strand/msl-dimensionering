@@ -45,6 +45,15 @@ export interface ProfileState {
 export function defaultProfileState(): ProfileState {
   return { profile: structuredClone(DEFAULT_COMPANY_PROFILE), logo: null };
 }
+/** B-076: låst firmaprofil i den delte udgave: standardprofil og -logo med brugerens eget
+ * medarbejderkartotek. Den gemte profil i browseren røres ikke. */
+export function lockedProfileState(stored: ProfileState): ProfileState {
+  const standard = defaultProfileState();
+  return {
+    profile: { ...standard.profile, medarbejdere: structuredClone(stored.profile.medarbejdere) },
+    logo: null,
+  };
+}
 export function profileValue(profile: CompanyProfile, path: string): unknown {
   return path.split('.').reduce<unknown>((o, k) => (o as Record<string, unknown>)[k], profile);
 }

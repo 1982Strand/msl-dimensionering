@@ -33,6 +33,7 @@ import { Notice } from './Notice';
 import { PageHeader } from './page';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '../components/ui/tabs';
 import { CompanyProfile, useCompanyProfile } from './CompanyProfile';
+import { canEditProfile, useAccess } from './access';
 import {
   Accordion,
   AccordionItem,
@@ -88,7 +89,9 @@ export function Report({
   startLive: () => void;
 }) {
   const ctx = useEditor();
-  const company = useCompanyProfile();
+  // B-076: i den delte udgave kan kun administratorer ændre firmaprofilen.
+  const profileLocked = !canEditProfile(useAccess());
+  const company = useCompanyProfile(profileLocked);
   const [tab, setTab] = useState(() => {
     try {
       return sessionStorage.getItem('msl.report-tab') === 'profile' ? 'profile' : 'report';
@@ -774,6 +777,7 @@ export function Report({
         <TabsContent value="profile">
           <CompanyProfile
             controller={company}
+            locked={profileLocked}
             standardLogo={async () => {
               const loaded = await (assets.current ??= loadReportAssets(
                 import.meta.env.BASE_URL,
