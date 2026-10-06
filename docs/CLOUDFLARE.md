@@ -15,7 +15,7 @@ Adresse: **https://msl-dimensionering.msl-dimensionering.workers.dev**
 
 ## Opsætning (én gang)
 
-Appen kommer først op, når Access er slået til. Indtil da viser adressen kun en pladsholder med teksten »Opsætning i gang«.
+Status 06.10.2026: alle trin er gennemført. Zero Trust-teamet hedder `byggros` (login på `byggros.cloudflareaccess.com`), Access dækker hele Worker'en, og `ADMIN_EMAILS` er `dst@byggros.com`. Ved en ny opsætning skal Access slås til, før appen udrulles; indtil da viser adressen kun en pladsholder.
 
 1. **Konto.** Gratis konto på dash.cloudflare.com (oprettet 05.10.2026).
 2. **Worker.** Claude har oprettet Worker'en `msl-dimensionering` med pladsholderen (06.10.2026). Kontoens id er gemt som GitHub-hemmeligheden `CLOUDFLARE_ACCOUNT_ID`.
