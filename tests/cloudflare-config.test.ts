@@ -28,3 +28,16 @@ test('B-079: GitHub-kontrollen udruller med fast wrangler-version og den delte b
   assert.match(job, /VITE_UDGAVE: delt/);
   assert.match(job, /CLOUDFLARE_API_TOKEN: \$\{\{ secrets\.CLOUDFLARE_API_TOKEN \}\}/);
 });
+
+test('B-080: den åbne udgave lægger ingen mailadresser ud og beder søgemaskiner om ikke at vise den', () => {
+  // Uden login ville en admin-liste være offentlig; Cloudflare-udgaven har ingen admin.
+  for (const path of ['.github/workflows/engine.yml', 'src/ui/access.ts'])
+    assert.doesNotMatch(read(path), /adgang\.json|ADMIN_EMAILS|get-identity/, path);
+  assert.match(
+    read('public/_headers'),
+    /^\/\*(?:\r?\n {2}.+)*\r?\n {2}X-Robots-Tag: noindex, nofollow/m,
+  );
+  assert.match(read('index.html'), /<meta name="robots" content="noindex, nofollow" \/>/);
+  const azure = JSON.parse(read('public/staticwebapp.config.json'));
+  assert.equal(azure.globalHeaders['X-Robots-Tag'], 'noindex, nofollow');
+});

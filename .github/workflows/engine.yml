@@ -71,7 +71,7 @@ jobs:
         if: env.AZURE_TOKEN == ''
         run: echo "AZURE_STATIC_WEB_APPS_API_TOKEN er ikke sat; udrulningen til Azure springes over."
 
-  # B-077: den delte udgave i Cloudflare (Workers) bag Cloudflare Access (login med kode på mail).
+  # B-077/B-080: den delte udgave i Cloudflare (Workers), åben uden login; firmaprofilen er skjult.
   # Kører ved siden af Azure; springes over, indtil API-nøglen er sat i GitHub.
   cloudflare:
     name: Udrul til Cloudflare
@@ -94,15 +94,6 @@ jobs:
         if: env.CF_TOKEN != ''
         env:
           VITE_UDGAVE: delt
-      # Admin-adresserne (B-076) fra GitHub-variablen ADMIN_EMAILS, adskilt af komma.
-      - name: Admin-adresser
-        if: env.CF_TOKEN != ''
-        env:
-          ADMIN_EMAILS: ${{ vars.ADMIN_EMAILS }}
-        run: >-
-          node -e "const a = (process.env.ADMIN_EMAILS || '').split(/[,;\s]+/).map((s) => s.trim().toLowerCase()).filter(Boolean);
-          require('node:fs').writeFileSync('dist/adgang.json', JSON.stringify({ admins: a }));
-          console.log('admin-adresser:', a.length);"
       # B-079: Pages er nu en del af Workers. wrangler.jsonc er fast opsætning (statiske filer
       # fra dist); fast wrangler-version, så en ny version ikke ændrer udrulningen ubemærket.
       - name: Udrul den byggede app

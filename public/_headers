@@ -1,5 +1,7 @@
 # B-077/B-079: sikkerhedsoverskrifter i Cloudflare Workers (svarer til globalHeaders i staticwebapp.config.json).
+# B-080: appen er åben uden login; søgemaskiner må ikke vise den.
 /*
   X-Content-Type-Options: nosniff
   X-Frame-Options: DENY
   Referrer-Policy: same-origin
+  X-Robots-Tag: noindex, nofollow

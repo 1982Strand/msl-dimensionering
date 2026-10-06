@@ -129,8 +129,3 @@
   color: var(--muted-foreground);
   background: var(--background);
 }
-
-/* B-076: gruppen af låsbare kort påvirker ikke layoutet; den bærer kun 'disabled'. */
-.profile-lockable {
-  display: contents;
-}

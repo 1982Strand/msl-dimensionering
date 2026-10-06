@@ -278,3 +278,9 @@ Beslutning B-025 følger brugerens besked i denne chat. B-026–028 registreres 
   3. Adressen er https://msl-dimensionering.msl-dimensionering.workers.dev. Access slås til for hele Worker'en med login via engangskode på mail. Indtil da viser adressen kun en pladsholder.
 
   Opsætningen står i `docs/CLOUDFLARE.md`. Fortsat en intern deling med login, ikke den offentlige udgivelse (B-060).
+
+- **B-080:** Cloudflare-udgaven er åben uden login, og firmaprofilen er skjult for kolleger. Brugeren: »kan man ikke gøre det lettere at komme ind på msl appen? Det er lidt omstændigt at skulle logge ind med email, for så at skulle bruge en kode fra sin email, det var lettere hvis der bare var direkte adgang. Og så var det kun mig der kunne åbne og redigere firmaprofilen, evt bare lokalt hvis det var når der skulle redigeres.« Svar på de forelagte valg: adgang »Helt åben, intet login« (forelagt med, at beregningsmetode, produktdata og standardprofil dermed reelt bliver offentlige, og at linket kan deles videre), firmaprofil »Skjult, kun Medarbejdere«, rapporter »Standardprofilen (som nu)«. Dette er brugerens særskilte aftale om åben adgang til Cloudflare-udgaven (jf. B-060); udgivelse på firmaets hjemmeside er fortsat en særskilt beslutning. Gennemført:
+  1. Cloudflare Access slås fra for Worker'en. Søgemaskiner bedes om ikke at vise siden (`noindex`).
+  2. I den delte udgave vises kun medarbejderkartoteket under fanen »Medarbejdere«; logo, identitet, skrift, margener, sidetal, faste tekster og profilhandlinger er skjult. Rapporterne bruger standardprofilen. Gælder Cloudflare og rollen `medarbejder` i Azure; `admin` i Azure og den lokale udgave ser hele profilen som hidtil.
+  3. Admin efter mailadresse (B-077) er fjernet: `adgang.json` ville have vist admin-adressen offentligt. Firmaprofilen redigeres lokalt.
+  4. Azure-udgaven beholder login med roller (B-075).

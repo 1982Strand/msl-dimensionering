@@ -9,6 +9,7 @@ import {
   Italic,
   List,
   RotateCcw,
+  Users,
 } from 'lucide-react';
 import { Tooltip, TooltipTrigger, TooltipContent } from '../components/ui/tooltip';
 import { formatTextSelection, type TextFormatAction } from '../report/text-format';
@@ -89,7 +90,7 @@ export function Report({
   startLive: () => void;
 }) {
   const ctx = useEditor();
-  // B-076: i den delte udgave kan kun administratorer ændre firmaprofilen.
+  // B-076/B-080: i den delte udgave ser kun administratorer firmaprofilen; andre ser kartoteket.
   const profileLocked = !canEditProfile(useAccess());
   const company = useCompanyProfile(profileLocked);
   const [tab, setTab] = useState(() => {
@@ -419,7 +420,9 @@ export function Report({
         </div>
       ) : (
         <p key={key} className="report-caption">
-          Kartoteket er tomt. Tilføj personer under Firmaprofil → Medarbejdere.
+          {profileLocked
+            ? 'Kartoteket er tomt. Tilføj personer under Medarbejdere.'
+            : 'Kartoteket er tomt. Tilføj personer under Firmaprofil → Medarbejdere.'}
         </p>
       );
     }
@@ -730,14 +733,15 @@ export function Report({
           }
         }}
       >
-        <TabsList aria-label="Rapport og firmaprofil">
+        <TabsList aria-label={profileLocked ? 'Rapport og medarbejdere' : 'Rapport og firmaprofil'}>
           <TabsTrigger value="report">
             <FileText aria-hidden="true" />
             Rapport
           </TabsTrigger>
+          {/* B-080: i den delte udgave ses kun medarbejderkartoteket. */}
           <TabsTrigger value="profile">
-            <Building2 aria-hidden="true" />
-            Firmaprofil
+            {profileLocked ? <Users aria-hidden="true" /> : <Building2 aria-hidden="true" />}
+            {profileLocked ? 'Medarbejdere' : 'Firmaprofil'}
           </TabsTrigger>
         </TabsList>
         <TabsContent value="report">

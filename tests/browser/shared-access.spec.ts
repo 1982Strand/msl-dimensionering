@@ -1,6 +1,6 @@
 import { test, expect, type Page } from '@playwright/test';
 
-// B-076: i den delte udgave (Azure) oplyser /.auth/me brugerens roller. Lokalt findes adressen
+// B-076/B-080: i den delte udgave (Azure) oplyser /.auth/me brugerens roller. Lokalt findes adressen
 // ikke, og alt er åbent. Her efterlignes Azures svar.
 const me = (roles: string[]) => ({
   clientPrincipal: {
@@ -16,11 +16,12 @@ async function openProfile(page: Page, roles: string[] | null) {
   // Ny indlæsning, så rollerne hentes igen (samme #-adresse genindlæser ikke siden).
   await page.goto('about:blank');
   await page.goto('/#rapport');
-  await page.getByRole('tab', { name: 'Firmaprofil' }).click();
+  // Fanen hedder »Medarbejdere«, når profilen er skjult (B-080).
+  await page.getByRole('tab', { name: /^(Firmaprofil|Medarbejdere)$/ }).click();
   await expect(page.getByTestId('profile-save-state')).toHaveAttribute('data-state', 'saved');
 }
 
-test('B-076: firmaprofilen er låst for medarbejdere og åben for admin; kartoteket er altid åbent', async ({
+test('B-076/B-080: firmaprofilen er skjult for medarbejdere og åben for admin; kartoteket er altid åbent', async ({
   page,
 }) => {
   const errors: string[] = [];
@@ -29,20 +30,31 @@ test('B-076: firmaprofilen er låst for medarbejdere og åben for admin; kartote
 
   // Admin ændrer sloganet; det gemmes i browseren.
   await openProfile(page, ['admin']);
+  await expect(page.getByRole('tab', { name: 'Firmaprofil', exact: true })).toBeVisible();
   await expect(slogan).toBeEnabled();
-  const standard = await slogan.inputValue();
   await slogan.fill('Eget slogan');
   await slogan.press('Tab');
   await expect(page.getByTestId('profile-save-state')).toHaveAttribute('data-state', 'saved');
 
-  // Medarbejder: standardprofilen vises låst; import/eksport/nulstilling findes ikke.
+  // Medarbejder: kun kartoteket vises; logo, identitet, tekster og profilhandlinger findes ikke.
   await openProfile(page, ['medarbejder']);
-  await expect(slogan).toBeDisabled();
-  await expect(slogan).toHaveValue(standard);
-  await expect(page.getByRole('button', { name: 'Vælg logo …' })).toBeDisabled();
-  for (const name of ['Nulstil firmaprofil til standard', 'Eksportér profil', 'Importér profil …'])
+  await expect(page.getByRole('tab', { name: 'Medarbejdere', exact: true })).toBeVisible();
+  await expect(page.getByRole('tab', { name: 'Firmaprofil', exact: true })).toHaveCount(0);
+  await expect(page.getByTestId('profile-save-state')).toHaveText('Kartotek gemt i denne browser');
+  await expect(slogan).toHaveCount(0);
+  await expect(page.getByRole('img', { name: 'Aktuelt firmalogo' })).toHaveCount(0);
+  for (const name of [
+    'Vælg logo …',
+    'Nulstil firmaprofil til standard',
+    'Eksportér profil',
+    'Importér profil …',
+  ])
     await expect(page.getByRole('button', { name })).toHaveCount(0);
-  await expect(page.getByText('Firmaprofilen kan kun ændres af en administrator')).toBeVisible();
+  // Kun ét kort (kartoteket, nummer 1) i stedet for otte.
+  const cards = page.locator('.company-profile-grid h2');
+  await expect(cards).toHaveCount(1);
+  await expect(cards).toHaveText(/^1\s*Medarbejdere$/);
+  await expect(page.getByText('Rapporterne bruger firmaets standardprofil.')).toBeVisible();
   // Kartoteket kan stadig redigeres.
   const add = page.getByRole('button', { name: /Tilføj medarbejder|Tilføj person/ });
   await expect(add.first()).toBeEnabled();
@@ -57,31 +69,4 @@ test('B-076: firmaprofilen er låst for medarbejdere og åben for admin; kartote
   await expect(slogan).toBeEnabled();
   await expect(slogan).toHaveValue('Eget slogan');
   expect(errors).toEqual([]);
-});
-
-// B-077: Cloudflare Access oplyser mailadressen; admin-adresserne står i /adgang.json.
-async function openWithCloudflare(page: Page, email: string, admins: string[] | null) {
-  await page.unrouteAll();
-  await page.route('**/cdn-cgi/access/get-identity', (route) =>
-    route.fulfill({ json: { email, idp: { type: 'onetimepin' } } }),
-  );
-  if (admins) await page.route('**/adgang.json', (route) => route.fulfill({ json: { admins } }));
-  await page.goto('about:blank');
-  await page.goto('/#rapport');
-  await page.getByRole('tab', { name: 'Firmaprofil' }).click();
-  await expect(page.getByTestId('profile-save-state')).toHaveAttribute('data-state', 'saved');
-}
-
-test('B-077: Cloudflare – admin efter mailadresse (uden forskel på store og små bogstaver), ellers låst', async ({
-  page,
-}) => {
-  const slogan = page.getByLabel('Slogan under logoet', { exact: true });
-  await openWithCloudflare(page, 'Chef@Example.com', ['chef@example.com']);
-  await expect(slogan).toBeEnabled();
-  await openWithCloudflare(page, 'kollega@example.com', ['chef@example.com']);
-  await expect(slogan).toBeDisabled();
-  await expect(page.getByRole('button', { name: 'Eksportér profil' })).toHaveCount(0);
-  // Uden admin-liste er profilen låst for alle i den delte udgave.
-  await openWithCloudflare(page, 'chef@example.com', null);
-  await expect(slogan).toBeDisabled();
 });

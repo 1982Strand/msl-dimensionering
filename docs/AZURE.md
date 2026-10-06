@@ -2,9 +2,9 @@
 
 Appen kan deles med kolleger via en fast adresse i Azure. Hele appen kræver login med en Microsoft-konto og en invitation med rollen `medarbejder` eller `admin`. Den lokale udgave (startfilen) er uændret og påvirkes ikke.
 
-## Roller (B-076)
+## Roller (B-076, B-080)
 
-- `medarbejder`: fuld brug af appen. Firmaprofilen kan ses, men ikke ændres; rapporterne bruger standardprofilen. Medarbejderkartoteket kan redigeres.
+- `medarbejder`: fuld brug af appen. Firmaprofilen er skjult; fanen hedder »Medarbejdere« og viser kun medarbejderkartoteket, som kan redigeres. Rapporterne bruger standardprofilen.
 - `admin`: som `medarbejder`, og firmaprofilen kan ændres.
 
 Låsen hindrer ændringer ved et uheld. Den er ikke en sikkerhedsgrænse, da appen kører i browseren. Hver brugers ændringer gemmes kun i brugerens egen browser.

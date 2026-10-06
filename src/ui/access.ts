@@ -1,7 +1,6 @@
-/** B-076/B-077: adgang i de delte udgaver. Azure Static Web Apps (B-075) oplyser brugerens roller
- * på `/.auth/me`; Cloudflare Access (B-077) oplyser mailadressen på
- * `/cdn-cgi/access/get-identity`, og admin-adresserne står i `/adgang.json` (lægges ud med appen).
- * Lokalt findes ingen af adresserne, og alt er åbent som hidtil.
+/** B-076/B-080: adgang i de delte udgaver. Azure Static Web Apps (B-075) oplyser brugerens roller
+ * på `/.auth/me`. Cloudflare-udgaven er åben uden login (B-080) og har ingen admin: firmaprofilen
+ * redigeres kun lokalt eller af `admin` i Azure. Lokalt findes adressen ikke, og alt er åbent.
  * Låsen hindrer ændringer ved et uheld; den er ikke en sikkerhedsgrænse, da alt kører i browseren. */
 import { useEffect, useState } from 'react';
 
@@ -34,18 +33,6 @@ export async function readAccess(): Promise<Access | null> {
   if (azure && 'clientPrincipal' in azure) {
     const roles = record(azure.clientPrincipal)?.userRoles;
     return { shared: true, admin: Array.isArray(roles) && roles.includes('admin') };
-  }
-  // Cloudflare Access: { email: "..." } for den indloggede bruger.
-  const cloudflare = record(await json('/cdn-cgi/access/get-identity'));
-  if (cloudflare && typeof cloudflare.email === 'string') {
-    const admins = record(await json('/adgang.json'))?.admins;
-    const email = cloudflare.email.trim().toLowerCase();
-    return {
-      shared: true,
-      admin:
-        Array.isArray(admins) &&
-        admins.some((a) => typeof a === 'string' && a.trim().toLowerCase() === email),
-    };
   }
   return null;
 }

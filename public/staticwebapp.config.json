@@ -15,6 +15,7 @@
   "globalHeaders": {
     "X-Content-Type-Options": "nosniff",
     "X-Frame-Options": "DENY",
-    "Referrer-Policy": "same-origin"
+    "Referrer-Policy": "same-origin",
+    "X-Robots-Tag": "noindex, nofollow"
   }
 }
