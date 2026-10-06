@@ -71,3 +71,30 @@ test('B-063/B-064: afsnit 1 står stille, beskeden som ikon med Hover Card, klas
   expect(scrollWidth).toBeLessThanOrEqual(clientWidth);
   await expect(page.getByRole('cell', { name: 'under (−43,8 %)', exact: true })).toBeVisible();
 });
+
+test('B-081: Eᵤ og Cv vises stort over slideren med yderværdier under den', async ({ page }) => {
+  await page.goto('/#dimensionering');
+  const field = (id: string) => page.locator('.dim-slider').filter({ has: page.locator(`#${id}`) });
+  const eu = field('std_eu_slider');
+  const readout = eu.locator('output[for="std_eu_slider"]');
+  await expect(eu.locator('.dim-slider-caption')).toHaveText('Underbundens E-modul');
+  await expect(readout).toHaveText('Eᵤ = 10 MPa');
+  await expect(eu.locator('.dim-slider-ends span')).toHaveText(['1', '45 MPa']);
+  await expect(page.getByRole('slider', { name: 'Underbundens E-modul', exact: true })).toHaveId(
+    'std_eu_slider',
+  );
+  await setEu(page, 29);
+  await expect(readout).toHaveText('Eᵤ = 29 MPa');
+  expect(
+    await readout.evaluate((e) => parseFloat(getComputedStyle(e).fontSize)),
+  ).toBeGreaterThanOrEqual(24);
+
+  await page.getByRole('radio', { name: 'Cv — vingestyrke', exact: true }).check();
+  const cv = field('std_cv_slider');
+  await expect(cv.locator('.dim-slider-caption')).toHaveText('Underbundens vingestyrke');
+  await expect(cv.locator('output[for="std_cv_slider"]')).toHaveText('Cv = 60 kN/m²');
+  await expect(cv.locator('.dim-slider-ends span')).toHaveText(['0', '180 kN/m²']);
+  await page.locator('#std_cv_slider').focus();
+  await page.locator('#std_cv_slider').press('ArrowRight');
+  await expect(cv.locator('output[for="std_cv_slider"]')).toHaveText('Cv = 65 kN/m²');
+});

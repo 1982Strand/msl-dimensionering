@@ -927,26 +927,34 @@ button.hint-text {
 .dim-input-grid .setting-field + .setting-field {
   margin-top: 20px;
 }
-.dim-slider-head {
+/* B-081: værdien vises stort over slideren og yderværdierne under den. */
+.dim-slider-caption {
+  display: block;
+  font-size: var(--fs-meta);
+  color: var(--muted-foreground);
+}
+.dim-slider-readout {
+  display: block;
+  margin: 2px 0 10px;
+  font-size: 26px;
+  font-weight: 600;
+  line-height: 1.25;
+  font-variant-numeric: tabular-nums;
+}
+.dim-slider-number {
+  color: var(--primary);
+}
+.dim-slider-unit {
+  font-size: var(--fs-section);
+  font-weight: 400;
+  color: var(--muted-foreground);
+}
+.dim-slider-ends {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 12px;
-}
-.dim-slider-label {
-  font-size: var(--fs-small);
-  font-weight: 600;
-}
-.dim-slider-value {
-  min-width: 44px;
-  text-align: center;
-  padding: 2px 8px;
-  border-radius: 6px;
-  border: 1px solid var(--border);
-  background: var(--card);
-  font-size: var(--fs-small);
-  font-weight: 600;
+  margin-top: 6px;
+  font-size: var(--fs-meta);
+  color: var(--muted-foreground);
   font-variant-numeric: tabular-nums;
 }
 .dim-slider p {

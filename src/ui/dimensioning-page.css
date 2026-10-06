@@ -140,9 +140,6 @@
   white-space: nowrap;
   border: 0;
 }
-.m9-collapsed-labels > .setting-field.dim-slider > .dim-slider-head {
-  position: static;
-}
 .m9-collapsed-labels > .setting-field + .setting-field {
   margin-top: 18px;
 }

@@ -180,17 +180,19 @@ export function Dimensioning() {
     max: number,
     step: number,
     help: string,
+    // B-081: værdien vises stort over slideren og yderværdierne under den.
+    symbol: string,
+    unit: string,
   ) {
     return (
       <div className="setting-field dim-slider">
-        <div className="dim-slider-head">
-          <span id={`${key}-label`} className="dim-slider-label">
-            {label}
-          </span>
-          <output htmlFor={key} className="dim-slider-value">
-            {String(values[key])}
-          </output>
-        </div>
+        <span id={`${key}-label`} className="dim-slider-caption">
+          {label}
+        </span>
+        <output htmlFor={key} className="dim-slider-readout">
+          {symbol} = <span className="dim-slider-number">{String(values[key])}</span>{' '}
+          <span className="dim-slider-unit">{unit}</span>
+        </output>
         <Slider
           min={min}
           max={max}
@@ -199,6 +201,12 @@ export function Dimensioning() {
           onValueChange={([next]) => change(key, next)}
           thumbProps={{ id: key, 'aria-labelledby': `${key}-label` }}
         />
+        <div className="dim-slider-ends" aria-hidden="true">
+          <span>{min}</span>
+          <span>
+            {max} {unit}
+          </span>
+        </div>
         <p>{help}</p>
       </div>
     );
@@ -243,11 +251,13 @@ export function Dimensioning() {
                 <>
                   {slider(
                     `${prefix}_cv_slider`,
-                    'Cv (kN/m²)',
+                    'Underbundens vingestyrke',
                     0,
                     180,
                     5,
                     'Ukorrigeret vingerstyrke fra feltmåling/markjournal.',
+                    'Cv',
+                    'kN/m²',
                   )}
                   <Notice>
                     Cv = {String(values[`${prefix}_cv_slider`])} kN/m² → Eᵤ = {input.eu} MPa
@@ -280,11 +290,13 @@ export function Dimensioning() {
               ) : (
                 slider(
                   `${prefix}_eu_slider`,
-                  'Eᵤ (MPa)',
+                  'Underbundens E-modul',
                   defaults.EU_MIN,
                   defaults.EU_MAX,
                   1,
                   'Angiv E-modul for underbunden. Oftest målt ved belastningsforsøg i marken, eller skønnet.',
+                  'Eᵤ',
+                  'MPa',
                 )
               )}
             </div>

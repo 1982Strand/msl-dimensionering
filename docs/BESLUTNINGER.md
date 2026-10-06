@@ -284,3 +284,9 @@ Beslutning B-025 følger brugerens besked i denne chat. B-026–028 registreres 
   2. I den delte udgave vises kun medarbejderkartoteket under fanen »Medarbejdere«; logo, identitet, skrift, margener, sidetal, faste tekster og profilhandlinger er skjult. Rapporterne bruger standardprofilen. Gælder Cloudflare og rollen `medarbejder` i Azure; `admin` i Azure og den lokale udgave ser hele profilen som hidtil.
   3. Admin efter mailadresse (B-077) er fjernet: `adgang.json` ville have vist admin-adressen offentligt. Firmaprofilen redigeres lokalt.
   4. Azure-udgaven beholder login med roller (B-075).
+
+- **B-081:** Eᵤ og Cv vises stort over sliderne i trin 1 (06.10.2026). Brugeren: »det er mindre indlysende, hvilken værdi der er valgt for Eu med slideren. Kan man ikke lave en lidt større 'Eu = xx MPa', i stedet for den lille boks med tallet i som vi har nu?« Fire udkast blev forelagt; brugeren valgte »mulighed B« og svarede om Cv: »og ja, følg samme ide med slideren til Cv«. Gennemført:
+  1. Over hver slider står en lille, grå overskrift (»Underbundens E-modul« hhv. »Underbundens vingestyrke«) og derunder værdien med stor skrift: »Eᵤ = 10 MPa« hhv. »Cv = 60 kN/m²«, med tallet i appens grønne farve. Den lille værdiboks og etiketterne »Eᵤ (MPa)« og »Cv (kN/m²)« er udgået.
+  2. Under slideren står yderværdierne: »1« og »45 MPa« for Eᵤ, »0« og »180 kN/m²« for Cv.
+
+  Kun visningen er ændret. Sliderens område, trin, standardværdier, beregninger og rapporten er uændrede, og det samme gælder beskeden »Cv = … kN/m² → Eᵤ = … MPa« under Cv-slideren.
