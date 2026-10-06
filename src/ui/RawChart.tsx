@@ -11,7 +11,7 @@ const SIZE = { width: 420, height: 290 } as const;
 const TITLE = 'Optegnet af tabellens værdier';
 const tooltipFormat: DiagramTooltipFormat = {
   xText: (x) => `${dk(x, 1)} cm`,
-  euText: (y) => `Eᵤ ${dk(y)} MN/m²`,
+  euText: (y) => `Eᵤ ${dk(y)} MPa`,
 };
 
 /** Udkast: fælles SVG- og hoverstil; aktive tabelændringer slår straks igennem. */
@@ -21,7 +21,8 @@ export function RawChart({ diagram }: { diagram: DesignDiagram }) {
   const chart = useMemo(() => {
     const spec = rawDiagram(diagram);
     if (!spec) return null;
-    const model = rawDiagramModel(spec);
+    // B-083: enheden vises som MPa (= MN/m²); originalens diagramopsætning er uændret.
+    const model = { ...rawDiagramModel(spec), yTitel: 'Bundmodul Eᵤ [MPa]' };
     return {
       model,
       svg: renderPersonalDiagramSvg(model, {

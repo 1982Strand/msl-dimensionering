@@ -69,8 +69,8 @@ test('raw SVG highlights table points with decimal comma, arrow keys and Escape'
   await point.hover({ force: true });
   await expect(tip).toContainText(`${thickness} cm`);
   await expect(tip).toContainText('Ustabiliseret');
-  await expect(tip).toContainText('Eᵤ 3 MN/m²');
-  await expect(tip).not.toContainText('3,0 MN/m²');
+  await expect(tip).toContainText('Eᵤ 3 MPa');
+  await expect(tip).not.toContainText('3,0 MPa');
   await expect(canvas.locator('.personal-diagram-overlay path')).toHaveAttribute(
     'stroke-width',
     '3.5',
@@ -98,10 +98,10 @@ test('raw SVG highlights table points with decimal comma, arrow keys and Escape'
     .toFixed(1)
     .replace('.', ',');
   await expect(tip).toContainText(`${nextThickness} cm`);
-  await expect(tip).toContainText('Eᵤ 4 MN/m²');
+  await expect(tip).toContainText('Eᵤ 4 MPa');
   await canvas.press('ArrowDown');
   await expect(tip).toContainText(`${thickness} cm`);
-  await expect(tip).toContainText('Eᵤ 3 MN/m²');
+  await expect(tip).toContainText('Eᵤ 3 MPa');
   await canvas.press('ArrowRight');
   await expect(tip).toContainText('1 lag geonet');
   await canvas.press('ArrowLeft');
@@ -112,7 +112,7 @@ test('raw SVG highlights table points with decimal comma, arrow keys and Escape'
   await setCell(page, 'Ustabiliseret tykkelse (cm) · Diagram 1 · Eᵤ 3', '111.2');
   await point.hover({ force: true });
   await expect(tip).toContainText('111,2 cm');
-  await expect(tip).toContainText('Eᵤ 3 MN/m²');
+  await expect(tip).toContainText('Eᵤ 3 MPa');
   await page.getByRole('button', { name: 'Fortryd', exact: true }).click();
   await point.hover({ force: true });
   await expect(tip).toContainText(`${thickness} cm`);
@@ -244,4 +244,18 @@ test('all six scans and charts render; desktop and mobile tables stay inside the
     await page.screenshot({ path: info.outputPath(`${hash}-mobile.png`), fullPage: true });
   }
   expect(errors).toEqual([]);
+});
+
+test('B-083: siden Designdiagrammer viser Eₒ og Eᵤ i MPa', async ({ page }) => {
+  await page.goto('/#diagrammer');
+  const main = page.locator('main');
+  await expect(main.getByRole('heading', { level: 2 }).first()).toHaveText(
+    /^Diagram \d — Eₒ = \d+ MPa, belastningsklasse \d$/,
+  );
+  await expect(main.getByRole('button', { name: 'Vælg diagram 4', exact: true })).toContainText(
+    '80 MPa',
+  );
+  await expect(main.locator('.raw-chart svg')).toContainText('Bundmodul Eᵤ [MPa]');
+  await expect(main.locator('.table-caption')).toContainText(/Ustabiliseret Eᵤ = \d+–\d+ MPa/);
+  await expect(main).not.toContainText('MN/m²');
 });

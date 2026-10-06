@@ -31,3 +31,8 @@ reference.presentation.forEach((c, i) => {
 reference.coverage.forEach((c, i) =>
   test(`original diagram coverage ${i}`, () => assert.equal(diagramCoverage(c.input), c.expected)),
 );
+// B-083: siden Designdiagrammer viser MPa (= MN/m²); kun enheden afviger fra originalens tekst.
+reference.coverage.forEach((c, i) =>
+  test(`diagram coverage in MPa ${i}`, () =>
+    assert.equal(diagramCoverage(c.input, 'MPa'), c.expected.replaceAll('MN/m²', 'MPa'))),
+);

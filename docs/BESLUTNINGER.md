@@ -297,3 +297,10 @@ Beslutning B-025 følger brugerens besked i denne chat. B-026–028 registreres 
   3. Scanningerne vises fortsat på siden Designdiagrammer under »Original scanning fra designmanualen«.
 
   Fejlen (scanningen blev ikke vist, heller ikke på siden Designdiagrammer) skyldtes ikke appen. Browsertestene brugte som standard port 5174, som er den lokale apps port. Blev appen startet, mens testene kørte, åbnede startfilen testenes server (»Serveren kører allerede«). Den lukkede, når testene var færdige, og derefter kunne appen i browseren ikke hente billeder. Testene bruger nu port 5184.
+
+- **B-083:** Popuppen »Se designdiagram« viser Eₒ i overskriften, og siden Designdiagrammer skriver enheden MPa i stedet for MN/m² (06.10.2026). Brugeren: »du må gerne tilføje 'Eo = xx MPa' efter belastningsklassen, når man klikker for at se designdiagrammet.« og »er MPa og MN/m² det samme? Hvis ja, så bare fortsæt og skriv MPa som enhed, ret det også på designdiagrammer siden«. 1 MPa = 1 N/mm² = 1 MN/m², så tallene er uændrede. Gennemført:
+  1. Popuppens overskrift er fx »Designdiagram · belastningsklasse 3 · Eₒ = 60 MPa«.
+  2. På siden Designdiagrammer og i popuppen står MPa ved diagramkortene (»80 MPa«), i overskriften (»Diagram 4 — Eₒ = 80 MPa, belastningsklasse 4«), på diagrammets lodrette akse (»Bundmodul Eᵤ [MPa]«), i aflæsningen ved mus og piletaster (»Eᵤ 3 MPa«) og i tabelnoten (»Ustabiliseret Eᵤ = 3–45 MPa«).
+  3. Kun enheden i visningen er ændret. Originalens diagramopsætning og tekster sammenlignes fortsat uændret med referencen; enhedsskiftet sker i visningen og er testet særskilt.
+
+  Andre steder står der fortsat MN/m², fordi ændringen kun gælder siden Designdiagrammer: det personlige designdiagram under resultatet, rapportens figurtekst, hjælpesidens symbolforklaring og eksemplet på siden Trafikklasse-korrelation.

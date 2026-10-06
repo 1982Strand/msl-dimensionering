@@ -338,7 +338,7 @@ export function Dimensioning() {
               {basis.type === 'belastningsklasse' && (
                 <InfoPopup
                   label="Se designdiagram"
-                  title={`Designdiagram · belastningsklasse ${basis.valgt_klasse}`}
+                  title={`Designdiagram · belastningsklasse ${basis.valgt_klasse}${diagram ? ` · Eₒ = ${diagram.eo} MPa` : ''}`}
                   icon={<LineChart aria-hidden="true" />}
                 >
                   {/* B-082: diagrammet optegnet af tabellens værdier, som på siden Designdiagrammer. */}

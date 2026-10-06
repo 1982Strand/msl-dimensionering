@@ -384,7 +384,7 @@ export function DataTables({ mode }: { mode: 'diagrammer' | 'vejdim' }) {
                 >
                   <span>DIAGRAM {d.diagram_nr}</span>
                   <strong>
-                    {d.eo} <small>MN/m²</small>
+                    {d.eo} <small>MPa</small>
                   </strong>
                   <span>Belastningsklasse {d.klasse}</span>
                 </button>
@@ -393,7 +393,7 @@ export function DataTables({ mode }: { mode: 'diagrammer' | 'vejdim' }) {
             <section className="section-card">
               <div className="section-heading">
                 <h2>
-                  Diagram {nr} — Eₒ = {diagram.eo} MN/m², belastningsklasse {diagram.klasse}
+                  Diagram {nr} — Eₒ = {diagram.eo} MPa, belastningsklasse {diagram.klasse}
                 </h2>
                 <Button
                   variant="ghost"
@@ -428,7 +428,7 @@ export function DataTables({ mode }: { mode: 'diagrammer' | 'vejdim' }) {
                   <p className="table-caption">
                     Værdier med <strong>fed</strong> skrift er aflæst direkte i designdiagrammet; de
                     øvrige er bestemt ved lineær interpolation mellem de aflæste punkter. Tomme
-                    felter angiver manglende diagramværdi. {diagramCoverage(diagram)}.
+                    felter angiver manglende diagramværdi. {diagramCoverage(diagram, 'MPa')}.
                   </p>
                 </div>
               </div>

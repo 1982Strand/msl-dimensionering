@@ -133,7 +133,7 @@ test('class choices are horizontal, reference popups keep layout stable and prod
   const heightBefore = (await section.boundingBox())!.height;
   await page.getByRole('button', { name: 'Se designdiagram', exact: true }).click();
   const diagram = page.getByRole('dialog', {
-    name: 'Designdiagram · belastningsklasse 4',
+    name: 'Designdiagram · belastningsklasse 4 · Eₒ = 80 MPa',
     exact: true,
   });
   await expect(diagram).toBeVisible();
@@ -141,6 +141,7 @@ test('class choices are horizontal, reference popups keep layout stable and prod
   const chart = diagram.getByRole('img', { name: 'Optegnet af tabellens værdier', exact: true });
   await expect(chart).toBeVisible();
   await expect(chart.locator('[data-curve]')).toHaveCount(3);
+  await expect(chart).toContainText('Bundmodul Eᵤ [MPa]');
   await expect(diagram.locator('img')).toHaveCount(0);
   const body = diagram.locator('.info-popup-body');
   expect(await body.evaluate((e) => e.scrollWidth <= e.clientWidth)).toBeTruthy();
