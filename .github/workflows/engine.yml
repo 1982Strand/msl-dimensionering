@@ -10,14 +10,19 @@ on:
 permissions:
   contents: read
 
+# B-085: en ny kørsel på samme pull request afbryder den forrige, så kun den seneste version testes.
+# Kørsler på main og udrulningerne afbrydes ikke midt i.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
 jobs:
   reference:
-    name: TypeScript-reference (${{ matrix.os }})
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [ubuntu-latest, windows-latest]
-    runs-on: ${{ matrix.os }}
+    # B-085: kun Linux. Windows-kørslen stod for ca. 78 % af Actions-minutterne (Windows tæller dobbelt)
+    # og afprøvede samme kode i samme browsermotor (Chromium). Formlernes skrift afhænger af brugerens
+    # maskine og blev ikke kontrolleret visuelt her.
+    name: TypeScript-reference
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
       - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
@@ -29,9 +34,8 @@ jobs:
       - run: npm run format:check
       - run: npm test
       - run: npx playwright install --with-deps chromium
-      # Rapporttesten (B-049) læser PDF-teksten med pdftotext; Windows-billedet har det i forvejen.
+      # Rapporttesten (B-049) læser PDF-teksten med pdftotext.
       - name: Installer pdftotext
-        if: runner.os == 'Linux'
         run: sudo apt-get install -y --no-install-recommends poppler-utils
       - run: npm run test:browser
 
