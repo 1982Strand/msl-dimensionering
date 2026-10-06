@@ -1,14 +1,17 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
+import { mpa } from './enhed-mpa.ts';
 import { byg_designdiagram, personalDiagramInput } from '../src/engine/personal-diagram.ts';
 import { dimensioner, type DimensioningInput } from '../src/engine/dimensionering.ts';
 import { beregn_alle_produkter } from '../src/engine/products.ts';
-const captured = JSON.parse(
-  readFileSync(new URL('../reference/personal-diagram-cases.json', import.meta.url), 'utf8'),
+const captured = mpa(
+  JSON.parse(
+    readFileSync(new URL('../reference/personal-diagram-cases.json', import.meta.url), 'utf8'),
+  ),
 );
-const original = JSON.parse(
-  readFileSync(new URL('../reference/figures.json', import.meta.url), 'utf8'),
+const original = mpa(
+  JSON.parse(readFileSync(new URL('../reference/figures.json', import.meta.url), 'utf8')),
 );
 
 test('M5: complete Plotly specifications match eleven original cases without tolerance', () => {

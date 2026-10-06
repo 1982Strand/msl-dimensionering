@@ -28,7 +28,7 @@ export interface DiagramTooltipFormat {
 }
 const defaultTooltip: DiagramTooltipFormat = {
   xText: (x) => `${dk(x)} cm`,
-  euText: (y) => `Eᵤ ${dk(y, 1)} MN/m²`,
+  euText: (y) => `Eᵤ ${dk(y, 1)} MPa`,
 };
 export function DiagramCanvas({
   m,

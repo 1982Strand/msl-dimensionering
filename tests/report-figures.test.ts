@@ -1,6 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
+import { mpa } from './enhed-mpa.ts';
 import {
   reportFigures,
   FIGUR_MAKS_MM,
@@ -23,7 +24,7 @@ interface Case {
 }
 const cases = ['report-figure-cases.json', 'report-figure-extra-cases.json'].flatMap(
   (name) =>
-    JSON.parse(readFileSync(new URL(`../reference/${name}`, import.meta.url), 'utf8'))
+    mpa(JSON.parse(readFileSync(new URL(`../reference/${name}`, import.meta.url), 'utf8')))
       .cases as Case[],
 );
 const table = JSON.parse(

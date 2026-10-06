@@ -39,14 +39,13 @@ export function readPoint(nr: number, eu: number, field: string) {
   const points = (config.read_points as Record<string, (number | string)[][]>)[nr] ?? [];
   return points.some(([x, f]) => x === eu && f === field);
 }
-// B-083: siden Designdiagrammer viser MPa; originalens tekst (MN/m²) er standard.
-export function diagramCoverage(diagram: DesignDiagram, unit = 'MN/m²') {
+export function diagramCoverage(diagram: DesignDiagram) {
   return diagramFields
     .map((field, i) => {
       const points = diagram.rows.filter((r) => r[field] != null).map((r) => r.eu);
       const name = ['Ustabiliseret', '1 lag geonet', '2 lag geonet'][i];
       return points.length
-        ? `${name} Eᵤ = ${pythonFixed(Math.min(...points), 0)}–${pythonFixed(Math.max(...points), 0)} ${unit}`
+        ? `${name} Eᵤ = ${pythonFixed(Math.min(...points), 0)}–${pythonFixed(Math.max(...points), 0)} MPa`
         : `${name} forekommer ikke`;
     })
     .join(' · ');

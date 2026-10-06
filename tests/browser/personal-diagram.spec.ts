@@ -14,7 +14,7 @@ test('M5 preserves hover, marker choices across reload, rapid updates and visibl
   await chart.locator('[data-point]').first().hover({ force: true });
   await expect(tip).toContainText('1 lag geonet');
   await expect(tip).toContainText('62 cm');
-  await expect(tip).toContainText('Eᵤ 10,0 MN/m²');
+  await expect(tip).toContainText('Eᵤ 10,0 MPa');
   await canvas.focus();
   await canvas.press('Escape');
   await expect(tip).toHaveCount(0);

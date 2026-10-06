@@ -304,3 +304,8 @@ Beslutning B-025 følger brugerens besked i denne chat. B-026–028 registreres 
   3. Kun enheden i visningen er ændret. Originalens diagramopsætning og tekster sammenlignes fortsat uændret med referencen; enhedsskiftet sker i visningen og er testet særskilt.
 
   Andre steder står der fortsat MN/m², fordi ændringen kun gælder siden Designdiagrammer: det personlige designdiagram under resultatet, rapportens figurtekst, hjælpesidens symbolforklaring og eksemplet på siden Trafikklasse-korrelation.
+
+- **B-084:** Enheden MPa bruges gennemgående i appen i stedet for MN/m² (06.10.2026). Udvider B-083, som kun gjaldt siden Designdiagrammer. Brugeren: »ja, gør det gennemgående i appen«. 1 MPa = 1 MN/m², så alle tal er uændrede. Gennemført:
+  1. MPa står nu også i det personlige designdiagram under resultatet (aksen »Bundmodul Eᵤ [MPa]« og aflæsningen), i rapportens figurtekst (»Eₒ = 80 MPa · …«, også i PDF'en), i hjælpesidens symbolforklaring for Eᵤ og Eₒ og i eksemplet på siden Trafikklasse-korrelation.
+  2. Enheden er ændret ved kilden: i diagramopsætningen (`table-ui-defaults.json`), i det personlige diagram, i rapportens figurtekst og i hjælpeteksterne. B-083's særskilte enhedsskift i visningen er derfor fjernet igen.
+  3. Referencerne fra den gamle app er uændrede. I testene omskrives kun MN/m² til MPa i referencernes tekster, før der sammenlignes (`tests/enhed-mpa.ts`). Alle andre tegn, tal og strukturer sammenlignes fortsat præcist. En browsertest kontrollerer, at MN/m² ikke står på siderne Dimensionering, Designdiagrammer, Trafikklasse-korrelation og Hjælp.

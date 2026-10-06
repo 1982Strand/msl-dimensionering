@@ -428,7 +428,7 @@ export function DataTables({ mode }: { mode: 'diagrammer' | 'vejdim' }) {
                   <p className="table-caption">
                     Værdier med <strong>fed</strong> skrift er aflæst direkte i designdiagrammet; de
                     øvrige er bestemt ved lineær interpolation mellem de aflæste punkter. Tomme
-                    felter angiver manglende diagramværdi. {diagramCoverage(diagram, 'MPa')}.
+                    felter angiver manglende diagramværdi. {diagramCoverage(diagram)}.
                   </p>
                 </div>
               </div>

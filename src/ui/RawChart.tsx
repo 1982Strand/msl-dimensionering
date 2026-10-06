@@ -21,8 +21,7 @@ export function RawChart({ diagram }: { diagram: DesignDiagram }) {
   const chart = useMemo(() => {
     const spec = rawDiagram(diagram);
     if (!spec) return null;
-    // B-083: enheden vises som MPa (= MN/m²); originalens diagramopsætning er uændret.
-    const model = { ...rawDiagramModel(spec), yTitel: 'Bundmodul Eᵤ [MPa]' };
+    const model = rawDiagramModel(spec);
     return {
       model,
       svg: renderPersonalDiagramSvg(model, {

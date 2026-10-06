@@ -30,7 +30,7 @@ test('Hjælp: kapitler, formler, figurer, gå-til og gemte åbne kapitler', asyn
   await page.mouse.move(0, 0);
   await page.getByRole('button', { name: 'Eᵤ', exact: true }).hover();
   await expect(page.getByRole('tooltip')).toHaveText(
-    'Underbundens E-modul [MN/m²]. Angives i dimensioneringen.',
+    'Underbundens E-modul [MPa]. Angives i dimensioneringen.',
   );
   await page
     .getByRole('link', { name: 'Gå til Trafikklasse-korrelation', exact: true })

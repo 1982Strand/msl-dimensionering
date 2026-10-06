@@ -1,6 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
+import { mpa } from './enhed-mpa.ts';
 import {
   rawDiagram,
   diagramCoverage,
@@ -9,8 +10,8 @@ import {
   asphaltRows,
 } from '../src/engine/table-presentation.ts';
 import type { DesignDiagram, RunRow } from '../src/engine/editing.ts';
-const reference = JSON.parse(
-  readFileSync(new URL('../reference/table-ui-cases.json', import.meta.url), 'utf8'),
+const reference = mpa(
+  JSON.parse(readFileSync(new URL('../reference/table-ui-cases.json', import.meta.url), 'utf8')),
 ) as {
   charts: { input: DesignDiagram; expected: unknown }[];
   csv: { input: RunRow[]; expected: string }[];
@@ -30,9 +31,4 @@ reference.presentation.forEach((c, i) => {
 });
 reference.coverage.forEach((c, i) =>
   test(`original diagram coverage ${i}`, () => assert.equal(diagramCoverage(c.input), c.expected)),
-);
-// B-083: siden Designdiagrammer viser MPa (= MN/m²); kun enheden afviger fra originalens tekst.
-reference.coverage.forEach((c, i) =>
-  test(`diagram coverage in MPa ${i}`, () =>
-    assert.equal(diagramCoverage(c.input, 'MPa'), c.expected.replaceAll('MN/m²', 'MPa'))),
 );

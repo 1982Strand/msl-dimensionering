@@ -323,7 +323,7 @@ export function reportFigures(
       diagramCall.grundlag_label ||
       (dim.valgt_klasse !== null ? `Klasse ${dim.valgt_klasse}` : `Eₒ = ${pythonFixed(dim.eo, 0)}`);
     const title = {
-      text: `Eₒ = ${pythonFixed(dim.eo, 0)} MN/m² · ${label} · φᵥ = ${pythonFixed(dim.phi, 1).replace('.', ',')}° · ${dim.geonet.navn || 'referencenet'}`,
+      text: `Eₒ = ${pythonFixed(dim.eo, 0)} MPa · ${label} · φᵥ = ${pythonFixed(dim.phi, 1).replace('.', ',')}° · ${dim.geonet.navn || 'referencenet'}`,
       x: 0,
       xanchor: 'left',
       y: 0.98,

@@ -1,5 +1,5 @@
 /** Exact port of core.diagram.byg_designdiagram (a330cfd), including hover.
- * Axes intentionally remain cm / MN/m² irrespective of the construction unit.
+ * Axes intentionally remain cm / MPa irrespective of the construction unit (MPa = MN/m², B-084).
  */
 import { slaa_op_interp } from './calculator.ts';
 import { T_BASIS_TABLE, K_PHI, PHI_BASIS } from './data.ts';
@@ -28,7 +28,7 @@ export interface PersonalDiagramSpec {
   data: Record<string, unknown>[];
   layout: Record<string, unknown>;
 }
-const hover = '%{x:.0f} cm · Eᵤ %{y:.1f} MN/m²<extra>%{fullData.name}</extra>';
+const hover = '%{x:.0f} cm · Eᵤ %{y:.1f} MPa<extra>%{fullData.name}</extra>';
 const colors = ['#15211A', '#1F4E9C', '#7B1FA2'];
 
 export function byg_designdiagram(input: PersonalDiagramInput): PersonalDiagramSpec {
@@ -219,7 +219,7 @@ export function byg_designdiagram(input: PersonalDiagramInput): PersonalDiagramS
       },
       yaxis: {
         ...axis,
-        title: { text: 'Bundmodul Eᵤ [MN/m²]' },
+        title: { text: 'Bundmodul Eᵤ [MPa]' },
         range: [0, Math.max(Math.max(...euValues) * 1.05, eu * 1.2, 50)],
       },
     },

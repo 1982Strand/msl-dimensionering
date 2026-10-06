@@ -568,7 +568,7 @@
         "size": 10
       },
       "title": {
-        "text": "Bundmodul Eᵤ [MN/m²]"
+        "text": "Bundmodul Eᵤ [MPa]"
       },
       "gridcolor": "#EDEFED",
       "zeroline": false,
@@ -583,7 +583,7 @@
   },
   "traces": [
     {
-      "hovertemplate": "%{x:.1f} cm · Eᵤ %{y:.0f} MN/m²<extra>%{fullData.name}</extra>",
+      "hovertemplate": "%{x:.1f} cm · Eᵤ %{y:.0f} MPa<extra>%{fullData.name}</extra>",
       "line": {
         "color": "#15211A",
         "width": 2
@@ -597,7 +597,7 @@
       "type": "scatter"
     },
     {
-      "hovertemplate": "%{x:.1f} cm · Eᵤ %{y:.0f} MN/m²<extra>%{fullData.name}</extra>",
+      "hovertemplate": "%{x:.1f} cm · Eᵤ %{y:.0f} MPa<extra>%{fullData.name}</extra>",
       "line": {
         "color": "#1F4E9C",
         "width": 2
@@ -611,7 +611,7 @@
       "type": "scatter"
     },
     {
-      "hovertemplate": "%{x:.1f} cm · Eᵤ %{y:.0f} MN/m²<extra>%{fullData.name}</extra>",
+      "hovertemplate": "%{x:.1f} cm · Eᵤ %{y:.0f} MPa<extra>%{fullData.name}</extra>",
       "line": {
         "color": "#7B1FA2",
         "width": 2

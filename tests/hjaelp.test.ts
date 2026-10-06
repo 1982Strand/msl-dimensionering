@@ -1,6 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync, readdirSync } from 'node:fs';
+import { mpa } from './enhed-mpa.ts';
 import {
   laes_kapitler,
   helpViewModel,
@@ -21,8 +22,8 @@ import {
   HJAELP_NOEGLEBEGREBER,
 } from '../src/engine/hjaelp.ts';
 
-const reference = JSON.parse(
-  readFileSync(new URL('../reference/pages-cases.json', import.meta.url), 'utf8'),
+const reference = mpa(
+  JSON.parse(readFileSync(new URL('../reference/pages-cases.json', import.meta.url), 'utf8')),
 ).hjaelp;
 const directory = new URL('../src/content/hjaelp/', import.meta.url);
 const chapters = laes_kapitler(

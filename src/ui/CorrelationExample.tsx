@@ -18,7 +18,7 @@ export function CorrelationExample({ rows, table }: { rows: RunRow[]; table: Bas
     <aside className="correlation-example" aria-label="Regneeksempel">
       <h3>Eksempel på udregning af ækvivalent Eₒ-værdi i tabellen</h3>
       <p className="section-meta">
-        Eksempel · {traffic} ved Eᵤ = {eu} MN/m²
+        Eksempel · {traffic} ved Eᵤ = {eu} MPa
       </p>
       <ol>
         <li>

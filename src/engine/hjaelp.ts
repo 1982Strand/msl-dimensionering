@@ -138,10 +138,10 @@ export const HJAELP_TRIN = [
   'Korrektioner og kontroller gennemføres',
 ];
 export const HJAELP_NOEGLEBEGREBER = [
-  ['Eᵤ', 'Underbundens E-modul [MN/m²]. Angives i dimensioneringen.'],
+  ['Eᵤ', 'Underbundens E-modul [MPa]. Angives i dimensioneringen.'],
   [
     'Eₒ',
-    'Designdiagrammets overflademodul [MN/m²]. Ved dimensionering efter belastningsklasse er værdien diagrammets egen, forudsatte størrelse.',
+    'Designdiagrammets overflademodul [MPa]. Ved dimensionering efter belastningsklasse er værdien diagrammets egen, forudsatte størrelse.',
   ],
   [
     'Eₒ,ækv',
