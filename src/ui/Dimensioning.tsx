@@ -36,6 +36,7 @@ import {
 import './dimensioning-page.css';
 import './expander-card.css';
 import { InfoPopup } from './InfoPopup';
+import { RawChart } from './RawChart';
 import { TrafficCorrelationPopup } from './TrafficCorrelationPopup';
 import { ConstructionFigure } from './ConstructionFigure';
 import { PersonalDiagram } from './PersonalDiagram';
@@ -58,6 +59,10 @@ export function Dimensioning() {
   );
   const basis = useMemo(() => beregn_grundlag(input), [input]);
   const result = useMemo(() => dimensioner(input), [input]);
+  const diagram =
+    basis.type === 'belastningsklasse'
+      ? ctx.session.data.designdiagrammer.find((d) => d.klasse === basis.valgt_klasse)
+      : undefined;
   const standard = input.tilstand === 'Standard',
     prefix = standard ? 'std' : 'bd';
   const unit = ctx.session.data.indstillinger.opbygning.enhed;
@@ -335,13 +340,9 @@ export function Dimensioning() {
                   label="Se designdiagram"
                   title={`Designdiagram · belastningsklasse ${basis.valgt_klasse}`}
                   icon={<LineChart aria-hidden="true" />}
-                  wide
                 >
-                  <img
-                    className="dim-scan"
-                    src={`/diagrambilleder/${ctx.session.data.designdiagrammer.find((d) => d.klasse === basis.valgt_klasse)?.image_name}`}
-                    alt={`Designdiagram for belastningsklasse ${basis.valgt_klasse}`}
-                  />
+                  {/* B-082: diagrammet optegnet af tabellens værdier, som på siden Designdiagrammer. */}
+                  {diagram && <RawChart diagram={diagram} />}
                 </InfoPopup>
               )}
               {basis.type === 'trafikklasse' && <TrafficCorrelationPopup input={input} />}

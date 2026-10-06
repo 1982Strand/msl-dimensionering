@@ -2,7 +2,9 @@ import { defineConfig, devices } from '@playwright/test';
 
 // Egen port pr. worktree (PW_PORT) forhindrer, at parallelle arbejdsmapper tester hinandens app.
 // En kørende server genbruges kun med PW_REUSE=1, så en gammel forhåndsvisning ikke testes ved en fejl.
-const port = Number(process.env.PW_PORT ?? 5174);
+// Standardporten er ikke den lokale apps 5174: startfilen ville ellers åbne testenes server, der
+// lukker, når testene er færdige, hvorefter appen i browseren ikke kan hente billeder og filer.
+const port = Number(process.env.PW_PORT ?? 5184);
 const url = `http://127.0.0.1:${port}`;
 
 export default defineConfig({

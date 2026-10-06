@@ -980,11 +980,6 @@ button.hint-text {
 .dim-keyfigures dd:last-child {
   margin-bottom: 0;
 }
-.dim-scan {
-  width: 100%;
-  max-height: 600px;
-  object-fit: contain;
-}
 .dim-link {
   display: inline-block;
   margin-top: 14px;
@@ -1082,10 +1077,6 @@ button.hint-text {
 .info-popup-body {
   min-height: 0;
   overflow: auto;
-}
-.info-popup .dim-scan {
-  max-height: calc(100dvh - 160px);
-  display: block;
 }
 
 /* Alle produkter */

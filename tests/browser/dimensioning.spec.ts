@@ -137,12 +137,13 @@ test('class choices are horizontal, reference popups keep layout stable and prod
     exact: true,
   });
   await expect(diagram).toBeVisible();
-  await expect(diagram.getByRole('img')).toBeVisible();
-  expect(
-    await diagram
-      .getByRole('img')
-      .evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth > 0),
-  ).toBeTruthy();
+  // B-082: diagrammet optegnet af tabellens værdier (siden Designdiagrammer), ikke scanningen.
+  const chart = diagram.getByRole('img', { name: 'Optegnet af tabellens værdier', exact: true });
+  await expect(chart).toBeVisible();
+  await expect(chart.locator('[data-curve]')).toHaveCount(3);
+  await expect(diagram.locator('img')).toHaveCount(0);
+  const body = diagram.locator('.info-popup-body');
+  expect(await body.evaluate((e) => e.scrollWidth <= e.clientWidth)).toBeTruthy();
   expect((await section.boundingBox())!.height).toBeCloseTo(heightBefore, 0);
   await page.screenshot({ path: info.outputPath('diagram-popup.png') });
   await page.keyboard.press('Escape');

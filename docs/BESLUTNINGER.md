@@ -290,3 +290,10 @@ Beslutning B-025 følger brugerens besked i denne chat. B-026–028 registreres 
   2. Under slideren står yderværdierne: »1« og »45 MPa« for Eᵤ, »0« og »180 kN/m²« for Cv.
 
   Kun visningen er ændret. Sliderens område, trin, standardværdier, beregninger og rapporten er uændrede, og det samme gælder beskeden »Cv = … kN/m² → Eᵤ = … MPa« under Cv-slideren.
+
+- **B-082:** »Se designdiagram« ved belastningsklasse viser det diagram, appen selv optegner af tabellens værdier, i stedet for originalens scanning (06.10.2026). Brugeren: »når jeg klikker 'se designdiagram', er der en fejl i visningen. Men, jeg vil egentlig også gerne ændre visningen lidt. Før viste den nemlig de gamle originale designdiagrammer. Jeg vil gerne vise det nye designdiagram vi selv laver, inde fra 'designdiagrammer' siden«. Gennemført:
+  1. Popuppen viser diagrammet »Optegnet af tabellens værdier« fra siden Designdiagrammer for den valgte belastningsklasse, med samme kurver, punkter og aflæsning ved mus og piletaster. Ændringer i diagramtabellen slår igennem som på siden.
+  2. Popuppen har normal bredde, så diagrammet vises i samme størrelse som på siden Designdiagrammer.
+  3. Scanningerne vises fortsat på siden Designdiagrammer under »Original scanning fra designmanualen«.
+
+  Fejlen (scanningen blev ikke vist, heller ikke på siden Designdiagrammer) skyldtes ikke appen. Browsertestene brugte som standard port 5174, som er den lokale apps port. Blev appen startet, mens testene kørte, åbnede startfilen testenes server (»Serveren kører allerede«). Den lukkede, når testene var færdige, og derefter kunne appen i browseren ikke hente billeder. Testene bruger nu port 5184.
