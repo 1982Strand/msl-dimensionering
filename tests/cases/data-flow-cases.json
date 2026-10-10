@@ -1,0 +1,6041 @@
+{
+  "cases": [
+    {
+      "id": "dataflow-0001",
+      "function": "korrelation_fra_koersler",
+      "args": [
+        {},
+        null,
+        null
+      ],
+      "expected": {
+        "value": {}
+      }
+    },
+    {
+      "id": "dataflow-0002",
+      "function": "korrelation_opslag",
+      "args": [
+        {},
+        null,
+        null
+      ],
+      "expected": {
+        "value": {}
+      }
+    },
+    {
+      "id": "dataflow-0003",
+      "function": "korrelation_fra_koersler",
+      "args": [
+        {},
+        null,
+        {
+          "under_uden": "vejdim",
+          "over_uden": "vejdim"
+        }
+      ],
+      "expected": {
+        "value": {}
+      }
+    },
+    {
+      "id": "dataflow-0004",
+      "function": "korrelation_opslag",
+      "args": [
+        {},
+        null,
+        {
+          "under_uden": "vejdim",
+          "over_uden": "vejdim"
+        }
+      ],
+      "expected": {
+        "value": {}
+      }
+    },
+    {
+      "id": "dataflow-0005",
+      "function": "korrelation_fra_koersler",
+      "args": [
+        {},
+        null,
+        {
+          "tolerance_over_pct": 0,
+          "tolerance_under_pct": 0
+        }
+      ],
+      "expected": {
+        "value": {}
+      }
+    },
+    {
+      "id": "dataflow-0006",
+      "function": "korrelation_opslag",
+      "args": [
+        {},
+        null,
+        {
+          "tolerance_over_pct": 0,
+          "tolerance_under_pct": 0
+        }
+      ],
+      "expected": {
+        "value": {}
+      }
+    },
+    {
+      "id": "dataflow-0007",
+      "function": "trafik_eu_interval",
+      "args": [
+        "T1",
+        {}
+      ],
+      "expected": {
+        "value": null
+      }
+    },
+    {
+      "id": "dataflow-0008",
+      "function": "trafik_eu_interval",
+      "args": [
+        "T4",
+        {}
+      ],
+      "expected": {
+        "value": null
+      }
+    },
+    {
+      "id": "dataflow-0009",
+      "function": "trafik_eu_interval",
+      "args": [
+        "ukendt",
+        {}
+      ],
+      "expected": {
+        "value": null
+      }
+    },
+    {
+      "id": "dataflow-0010",
+      "function": "korrelation_fra_koersler",
+      "args": [
+        {
+          "T1": {
+            "3": {
+              "sg": 170.0,
+              "bl": 448.0
+            },
+            "4": {
+              "sg": 120.0,
+              "bl": 470.0
+            },
+            "5": {
+              "sg": 110.0,
+              "bl": 450.0
+            },
+            "10": {
+              "sg": 100.0,
+              "bl": 356.0
+            },
+            "15": {
+              "sg": 100.0,
+              "bl": 292.0
+            },
+            "20": {
+              "sg": 100.0,
+              "bl": 243.0
+            },
+            "30": {
+              "sg": 100.0,
+              "bl": 200.0
+            },
+            "40": {
+              "sg": 100.0,
+              "bl": 200.0
+            }
+          },
+          "T2": {
+            "3": {
+              "sg": 180.0,
+              "bl": 866.0
+            },
+            "4": {
+              "sg": 180.0,
+              "bl": 797.0
+            },
+            "5": {
+              "sg": 170.0,
+              "bl": 757.0
+            },
+            "10": {
+              "sg": 170.0,
+              "bl": 590.0
+            },
+            "15": {
+              "sg": 160.0,
+              "bl": 508.0
+            },
+            "20": {
+              "sg": 160.0,
+              "bl": 439.0
+            },
+            "30": {
+              "sg": 160.0,
+              "bl": 337.0
+            },
+            "40": {
+              "sg": 160.0,
+              "bl": 264.0
+            }
+          },
+          "T3": {
+            "3": {
+              "sg": 200.0,
+              "bl": 957.0
+            },
+            "4": {
+              "sg": 200.0,
+              "bl": 879.0
+            },
+            "5": {
+              "sg": 200.0,
+              "bl": 818.0
+            },
+            "10": {
+              "sg": 190.0,
+              "bl": 649.0
+            },
+            "15": {
+              "sg": 190.0,
+              "bl": 539.0
+            },
+            "20": {
+              "sg": 190.0,
+              "bl": 460.0
+            },
+            "30": {
+              "sg": 200.0,
+              "bl": 334.0
+            },
+            "40": {
+              "sg": 200.0,
+              "bl": 255.0
+            }
+          },
+          "T4": {
+            "3": {
+              "sg": 240.0,
+              "bl": 1107.0
+            },
+            "4": {
+              "sg": 240.0,
+              "bl": 1014.0
+            },
+            "5": {
+              "sg": 240.0,
+              "bl": 944.0
+            },
+            "10": {
+              "sg": 230.0,
+              "bl": 739.0
+            },
+            "15": {
+              "sg": 220.0,
+              "bl": 629.0
+            },
+            "20": {
+              "sg": 220.0,
+              "bl": 537.0
+            },
+            "30": {
+              "sg": 230.0,
+              "bl": 392.0
+            },
+            "40": {
+              "sg": 230.0,
+              "bl": 301.0
+            }
+          },
+          "T5": {
+            "3": {
+              "sg": 270.0,
+              "bl": 1224.0
+            },
+            "4": {
+              "sg": 270.0,
+              "bl": 1119.0
+            },
+            "5": {
+              "sg": 270.0,
+              "bl": 1042.0
+            },
+            "10": {
+              "sg": 260.0,
+              "bl": 818.0
+            },
+            "15": {
+              "sg": 250.0,
+              "bl": 689.0
+            },
+            "20": {
+              "sg": 250.0,
+              "bl": 590.0
+            },
+            "30": {
+              "sg": 240.0,
+              "bl": 459.0
+            },
+            "40": {
+              "sg": 240.0,
+              "bl": 360.0
+            }
+          },
+          "T6": {
+            "3": {
+              "sg": 290.0,
+              "bl": 1290.0
+            },
+            "4": {
+              "sg": 280.0,
+              "bl": 1199.0
+            },
+            "5": {
+              "sg": 280.0,
+              "bl": 1117.0
+            },
+            "10": {
+              "sg": 270.0,
+              "bl": 876.0
+            },
+            "15": {
+              "sg": 270.0,
+              "bl": 723.0
+            },
+            "20": {
+              "sg": 260.0,
+              "bl": 629.0
+            },
+            "30": {
+              "sg": 260.0,
+              "bl": 478.0
+            },
+            "40": {
+              "sg": 260.0,
+              "bl": 370.0
+            }
+          }
+        },
+        null,
+        null
+      ],
+      "expected": {
+        "value": {
+          "T1": {
+            "3": "under",
+            "4": "under",
+            "5": "under",
+            "10": "under",
+            "15": 30.789473684210527,
+            "20": 42.3134328358209,
+            "30": 62.8,
+            "40": 97.6
+          },
+          "T2": {
+            "3": 30.0,
+            "4": 30.0,
+            "5": 34.05,
+            "10": 54.0,
+            "15": 73.6,
+            "20": 92.8,
+            "30": 123.3,
+            "40": 140.4
+          },
+          "T3": {
+            "3": 38.55,
+            "4": 46.8,
+            "5": 47.7,
+            "10": 67.8,
+            "15": 91.6,
+            "20": 113.19999999999999,
+            "30": 134.4,
+            "40": 149.7
+          },
+          "T4": {
+            "3": 69.4,
+            "4": 77.4,
+            "5": 76.8,
+            "10": 107.6,
+            "15": 134.7,
+            "20": 147.0,
+            "30": "over",
+            "40": "over"
+          },
+          "T5": {
+            "3": 117.6,
+            "4": 126.6,
+            "5": 123.6,
+            "10": 143.4,
+            "15": 150.0,
+            "20": "over",
+            "30": "over",
+            "40": "over"
+          },
+          "T6": {
+            "3": 144.0,
+            "4": 150.0,
+            "5": 149.1,
+            "10": 150.0,
+            "15": "over",
+            "20": "over",
+            "30": "over",
+            "40": "over"
+          }
+        }
+      }
+    },
+    {
+      "id": "dataflow-0011",
+      "function": "korrelation_opslag",
+      "args": [
+        {
+          "T1": {
+            "3": {
+              "sg": 170.0,
+              "bl": 448.0
+            },
+            "4": {
+              "sg": 120.0,
+              "bl": 470.0
+            },
+            "5": {
+              "sg": 110.0,
+              "bl": 450.0
+            },
+            "10": {
+              "sg": 100.0,
+              "bl": 356.0
+            },
+            "15": {
+              "sg": 100.0,
+              "bl": 292.0
+            },
+            "20": {
+              "sg": 100.0,
+              "bl": 243.0
+            },
+            "30": {
+              "sg": 100.0,
+              "bl": 200.0
+            },
+            "40": {
+              "sg": 100.0,
+              "bl": 200.0
+            }
+          },
+          "T2": {
+            "3": {
+              "sg": 180.0,
+              "bl": 866.0
+            },
+            "4": {
+              "sg": 180.0,
+              "bl": 797.0
+            },
+            "5": {
+              "sg": 170.0,
+              "bl": 757.0
+            },
+            "10": {
+              "sg": 170.0,
+              "bl": 590.0
+            },
+            "15": {
+              "sg": 160.0,
+              "bl": 508.0
+            },
+            "20": {
+              "sg": 160.0,
+              "bl": 439.0
+            },
+            "30": {
+              "sg": 160.0,
+              "bl": 337.0
+            },
+            "40": {
+              "sg": 160.0,
+              "bl": 264.0
+            }
+          },
+          "T3": {
+            "3": {
+              "sg": 200.0,
+              "bl": 957.0
+            },
+            "4": {
+              "sg": 200.0,
+              "bl": 879.0
+            },
+            "5": {
+              "sg": 200.0,
+              "bl": 818.0
+            },
+            "10": {
+              "sg": 190.0,
+              "bl": 649.0
+            },
+            "15": {
+              "sg": 190.0,
+              "bl": 539.0
+            },
+            "20": {
+              "sg": 190.0,
+              "bl": 460.0
+            },
+            "30": {
+              "sg": 200.0,
+              "bl": 334.0
+            },
+            "40": {
+              "sg": 200.0,
+              "bl": 255.0
+            }
+          },
+          "T4": {
+            "3": {
+              "sg": 240.0,
+              "bl": 1107.0
+            },
+            "4": {
+              "sg": 240.0,
+              "bl": 1014.0
+            },
+            "5": {
+              "sg": 240.0,
+              "bl": 944.0
+            },
+            "10": {
+              "sg": 230.0,
+              "bl": 739.0
+            },
+            "15": {
+              "sg": 220.0,
+              "bl": 629.0
+            },
+            "20": {
+              "sg": 220.0,
+              "bl": 537.0
+            },
+            "30": {
+              "sg": 230.0,
+              "bl": 392.0
+            },
+            "40": {
+              "sg": 230.0,
+              "bl": 301.0
+            }
+          },
+          "T5": {
+            "3": {
+              "sg": 270.0,
+              "bl": 1224.0
+            },
+            "4": {
+              "sg": 270.0,
+              "bl": 1119.0
+            },
+            "5": {
+              "sg": 270.0,
+              "bl": 1042.0
+            },
+            "10": {
+              "sg": 260.0,
+              "bl": 818.0
+            },
+            "15": {
+              "sg": 250.0,
+              "bl": 689.0
+            },
+            "20": {
+              "sg": 250.0,
+              "bl": 590.0
+            },
+            "30": {
+              "sg": 240.0,
+              "bl": 459.0
+            },
+            "40": {
+              "sg": 240.0,
+              "bl": 360.0
+            }
+          },
+          "T6": {
+            "3": {
+              "sg": 290.0,
+              "bl": 1290.0
+            },
+            "4": {
+              "sg": 280.0,
+              "bl": 1199.0
+            },
+            "5": {
+              "sg": 280.0,
+              "bl": 1117.0
+            },
+            "10": {
+              "sg": 270.0,
+              "bl": 876.0
+            },
+            "15": {
+              "sg": 270.0,
+              "bl": 723.0
+            },
+            "20": {
+              "sg": 260.0,
+              "bl": 629.0
+            },
+            "30": {
+              "sg": 260.0,
+              "bl": 478.0
+            },
+            "40": {
+              "sg": 260.0,
+              "bl": 370.0
+            }
+          }
+        },
+        null,
+        null
+      ],
+      "expected": {
+        "value": {
+          "T1": {
+            "3": {
+              "eo": null,
+              "zone": "under",
+              "skala": 1.0,
+              "afvigelse_pct": 43.81818181818182,
+              "tolerance_pct": 5.0,
+              "inden_tolerance": false,
+              "handling": "afvis",
+              "t_vejdim_mm": 618.0,
+              "t_rand_mm": 1100.0,
+              "eo_rand": 30.0
+            },
+            "4": {
+              "eo": null,
+              "zone": "under",
+              "skala": 1.0,
+              "afvigelse_pct": 41.0,
+              "tolerance_pct": 5.0,
+              "inden_tolerance": false,
+              "handling": "afvis",
+              "t_vejdim_mm": 590.0,
+              "t_rand_mm": 1000.0,
+              "eo_rand": 30.0
+            },
+            "5": {
+              "eo": null,
+              "zone": "under",
+              "skala": 1.0,
+              "afvigelse_pct": 37.77777777777778,
+              "tolerance_pct": 5.0,
+              "inden_tolerance": false,
+              "handling": "afvis",
+              "t_vejdim_mm": 560.0,
+              "t_rand_mm": 900.0,
+              "eo_rand": 30.0
+            },
+            "10": {
+              "eo": null,
+              "zone": "under",
+              "skala": 1.0,
+              "afvigelse_pct": 21.379310344827584,
+              "tolerance_pct": 5.0,
+              "inden_tolerance": false,
+              "handling": "afvis",
+              "t_vejdim_mm": 456.0,
+              "t_rand_mm": 580.0,
+              "eo_rand": 30.0
+            },
+            "15": {
+              "eo": 30.789473684210527,
+              "zone": "ok",
+              "skala": 1.0,
+              "afvigelse_pct": null,
+              "tolerance_pct": null,
+              "inden_tolerance": null,
+              "handling": null,
+              "t_vejdim_mm": 392.0,
+              "t_rand_mm": null,
+              "eo_rand": null
+            },
+            "20": {
+              "eo": 42.3134328358209,
+              "zone": "ok",
+              "skala": 1.0,
+              "afvigelse_pct": null,
+              "tolerance_pct": null,
+              "inden_tolerance": null,
+              "handling": null,
+              "t_vejdim_mm": 343.0,
+              "t_rand_mm": null,
+              "eo_rand": null
+            },
+            "30": {
+              "eo": 62.8,
+              "zone": "ok",
+              "skala": 1.0,
+              "afvigelse_pct": null,
+              "tolerance_pct": null,
+              "inden_tolerance": null,
+              "handling": null,
+              "t_vejdim_mm": 300.0,
+              "t_rand_mm": null,
+              "eo_rand": null
+            },
+            "40": {
+              "eo": 97.6,
+              "zone": "ok",
+              "skala": 1.0,
+              "afvigelse_pct": null,
+              "tolerance_pct": null,
+              "inden_tolerance": null,
+              "handling": null,
+              "t_vejdim_mm": 300.0,
+              "t_rand_mm": null,
+              "eo_rand": null
+            }
+          },
+          "T2": {
+            "3": {
+              "eo": 30.0,
+              "zone": "under",
+              "skala": 1.0,
+              "afvigelse_pct": 4.909090909090907,
+              "tolerance_pct": 5.0,
+              "inden_tolerance": true,
+              "handling": "laveste",
+              "t_vejdim_mm": 1046.0,
+              "t_rand_mm": 1100.0,
+              "eo_rand": 30.0
+            },
+            "4": {
+              "eo": 30.0,
+              "zone": "under",
+              "skala": 1.0,
+              "afvigelse_pct": 2.300000000000002,
+              "tolerance_pct": 5.0,
+              "inden_tolerance": true,
+              "handling": "laveste",
+              "t_vejdim_mm": 977.0,
+              "t_rand_mm": 1000.0,
+              "eo_rand": 30.0
+            },
+            "5": {
+              "eo": 34.05,
+              "zone": "ok",
+              "skala": 1.0,
+              "afvigelse_pct": null,
+              "tolerance_pct": null,
+              "inden_tolerance": null,
+              "handling": null,
+              "t_vejdim_mm": 927.0,
+              "t_rand_mm": null,
+              "eo_rand": null
+            },
+            "10": {
+              "eo": 54.0,
+              "zone": "ok",
+              "skala": 1.0,
+              "afvigelse_pct": null,
+              "tolerance_pct": null,
+              "inden_tolerance": null,
+              "handling": null,
+              "t_vejdim_mm": 760.0,
+              "t_rand_mm": null,
+              "eo_rand": null
+            },
+            "15": {
+              "eo": 73.6,
+              "zone": "ok",
+              "skala": 1.0,
+              "afvigelse_pct": null,
+              "tolerance_pct": null,
+              "inden_tolerance": null,
+              "handling": null,
+              "t_vejdim_mm": 668.0,
+              "t_rand_mm": null,
+              "eo_rand": null
+            },
+            "20": {
+              "eo": 92.8,
+              "zone": "ok",
+              "skala": 1.0,
+              "afvigelse_pct": null,
+              "tolerance_pct": null,
+              "inden_tolerance": null,
+              "handling": null,
+              "t_vejdim_mm": 599.0,
+              "t_rand_mm": null,
+              "eo_rand": null
+            },
+            "30": {
+              "eo": 123.3,
+              "zone": "ok",
+              "skala": 1.0,
+              "afvigelse_pct": null,
+              "tolerance_pct": null,
+              "inden_tolerance": null,
+              "handling": null,
+              "t_vejdim_mm": 497.0,
+              "t_rand_mm": null,
+              "eo_rand": null
+            },
+            "40": {
+              "eo": 140.4,
+              "zone": "ok",
+              "skala": 1.0,
+              "afvigelse_pct": null,
+              "tolerance_pct": null,
+              "inden_tolerance": null,
+              "handling": null,
+              "t_vejdim_mm": 424.0,
+              "t_rand_mm": null,
+              "eo_rand": null
+            }
+          },
+          "T3": {
+            "3": {
+              "eo": 38.55,
+              "zone": "ok",
+              "skala": 1.0,
+              "afvigelse_pct": null,
+              "tolerance_pct": null,
+              "inden_tolerance": null,
+              "handling": null,
+              "t_vejdim_mm": 1157.0,
+              "t_rand_mm": null,
+              "eo_rand": null
+            },
+            "4": {
+              "eo": 46.8,
+              "zone": "ok",
+              "skala": 1.0,
+              "afvigelse_pct": null,
+              "tolerance_pct": null,
+              "inden_tolerance": null,
+              "handling": null,
+              "t_vejdim_mm": 1079.0,
+              "t_rand_mm": null,
+              "eo_rand": null
+            },
+            "5": {
+              "eo": 47.7,
+              "zone": "ok",
+              "skala": 1.0,
+              "afvigelse_pct": null,
+              "tolerance_pct": null,
+              "inden_tolerance": null,
+              "handling": null,
+              "t_vejdim_mm": 1018.0,
+              "t_rand_mm": null,
+              "eo_rand": null
+            },
+            "10": {
+              "eo": 67.8,
+              "zone": "ok",
+              "skala": 1.0,
+              "afvigelse_pct": null,
+              "tolerance_pct": null,
+              "inden_tolerance": null,
+              "handling": null,
+              "t_vejdim_mm": 839.0,
+              "t_rand_mm": null,
+              "eo_rand": null
+            },
+            "15": {
+              "eo": 91.6,
+              "zone": "ok",
+              "skala": 1.0,
+              "afvigelse_pct": null,
+              "tolerance_pct": null,
+              "inden_tolerance": null,
+              "handling": null,
+              "t_vejdim_mm": 729.0,
+              "t_rand_mm": null,
+              "eo_rand": null
+            },
+            "20": {
+              "eo": 113.19999999999999,
+              "zone": "ok",
+              "skala": 1.0,
+              "afvigelse_pct": null,
+              "tolerance_pct": null,
+              "inden_tolerance": null,
+              "handling": null,
+              "t_vejdim_mm": 650.0,
+              "t_rand_mm": null,
+              "eo_rand": null
+            },
+            "30": {
+              "eo": 134.4,
+              "zone": "ok",
+              "skala": 1.0,
+              "afvigelse_pct": null,
+              "tolerance_pct": null,
+              "inden_tolerance": null,
+              "handling": null,
+              "t_vejdim_mm": 534.0,
+              "t_rand_mm": null,
+              "eo_rand": null
+            },
+            "40": {
+              "eo": 149.7,
+              "zone": "ok",
+              "skala": 1.0,
+              "afvigelse_pct": null,
+              "tolerance_pct": null,
+              "inden_tolerance": null,
+              "handling": null,
+              "t_vejdim_mm": 455.0,
+              "t_rand_mm": null,
+              "eo_rand": null
+            }
+          },
+          "T4": {
+            "3": {
+              "eo": 69.4,
+              "zone": "ok",
+              "skala": 1.0,
+              "afvigelse_pct": null,
+              "tolerance_pct": null,
+              "inden_tolerance": null,
+              "handling": null,
+              "t_vejdim_mm": 1347.0,
+              "t_rand_mm": null,
+              "eo_rand": null
+            },
+            "4": {
+              "eo": 77.4,
+              "zone": "ok",
+              "skala": 1.0,
+              "afvigelse_pct": null,
+              "tolerance_pct": null,
+              "inden_tolerance": null,
+              "handling": null,
+              "t_vejdim_mm": 1254.0,
+              "t_rand_mm": null,
+              "eo_rand": null
+            },
+            "5": {
+              "eo": 76.8,
+              "zone": "ok",
+              "skala": 1.0,
+              "afvigelse_pct": null,
+              "tolerance_pct": null,
+              "inden_tolerance": null,
+              "handling": null,
+              "t_vejdim_mm": 1184.0,
+              "t_rand_mm": null,
+              "eo_rand": null
+            },
+            "10": {
+              "eo": 107.6,
+              "zone": "ok",
+              "skala": 1.0,
+              "afvigelse_pct": null,
+              "tolerance_pct": null,
+              "inden_tolerance": null,
+              "handling": null,
+              "t_vejdim_mm": 969.0,
+              "t_rand_mm": null,
+              "eo_rand": null
+            },
+            "15": {
+              "eo": 134.7,
+              "zone": "ok",
+              "skala": 1.0,
+              "afvigelse_pct": null,
+              "tolerance_pct": null,
+              "inden_tolerance": null,
+              "handling": null,
+              "t_vejdim_mm": 849.0,
+              "t_rand_mm": null,
+              "eo_rand": null
+            },
+            "20": {
+              "eo": 147.0,
+              "zone": "ok",
+              "skala": 1.0,
+              "afvigelse_pct": null,
+              "tolerance_pct": null,
+              "inden_tolerance": null,
+              "handling": null,
+              "t_vejdim_mm": 757.0,
+              "t_rand_mm": null,
+              "eo_rand": null
+            },
+            "30": {
+              "eo": null,
+              "zone": "over",
+              "skala": 1.0,
+              "afvigelse_pct": 6.1433447098976135,
+              "tolerance_pct": 5.0,
+              "inden_tolerance": false,
+              "handling": "afvis",
+              "t_vejdim_mm": 622.0,
+              "t_rand_mm": 586.0,
+              "eo_rand": 150.0
+            },
+            "40": {
+              "eo": null,
+              "zone": "over",
+              "skala": 1.0,
+              "afvigelse_pct": 16.447368421052634,
+              "tolerance_pct": 5.0,
+              "inden_tolerance": false,
+              "handling": "afvis",
+              "t_vejdim_mm": 531.0,
+              "t_rand_mm": 456.0,
+              "eo_rand": 150.0
+            }
+          },
+          "T5": {
+            "3": {
+              "eo": 117.6,
+              "zone": "ok",
+              "skala": 1.0,
+              "afvigelse_pct": null,
+              "tolerance_pct": null,
+              "inden_tolerance": null,
+              "handling": null,
+              "t_vejdim_mm": 1494.0,
+              "t_rand_mm": null,
+              "eo_rand": null
+            },
+            "4": {
+              "eo": 126.6,
+              "zone": "ok",
+              "skala": 1.0,
+              "afvigelse_pct": null,
+              "tolerance_pct": null,
+              "inden_tolerance": null,
+              "handling": null,
+              "t_vejdim_mm": 1389.0,
+              "t_rand_mm": null,
+              "eo_rand": null
+            },
+            "5": {
+              "eo": 123.6,
+              "zone": "ok",
+              "skala": 1.0,
+              "afvigelse_pct": null,
+              "tolerance_pct": null,
+              "inden_tolerance": null,
+              "handling": null,
+              "t_vejdim_mm": 1312.0,
+              "t_rand_mm": null,
+              "eo_rand": null
+            },
+            "10": {
+              "eo": 143.4,
+              "zone": "ok",
+              "skala": 1.0,
+              "afvigelse_pct": null,
+              "tolerance_pct": null,
+              "inden_tolerance": null,
+              "handling": null,
+              "t_vejdim_mm": 1078.0,
+              "t_rand_mm": null,
+              "eo_rand": null
+            },
+            "15": {
+              "eo": 150.0,
+              "zone": "over",
+              "skala": 1.0433333333333332,
+              "afvigelse_pct": 4.333333333333322,
+              "tolerance_pct": 5.0,
+              "inden_tolerance": true,
+              "handling": "vejdim",
+              "t_vejdim_mm": 939.0,
+              "t_rand_mm": 900.0000000000001,
+              "eo_rand": 150.0
+            },
+            "20": {
+              "eo": null,
+              "zone": "over",
+              "skala": 1.0,
+              "afvigelse_pct": 9.51760104302477,
+              "tolerance_pct": 5.0,
+              "inden_tolerance": false,
+              "handling": "afvis",
+              "t_vejdim_mm": 840.0,
+              "t_rand_mm": 767.0,
+              "eo_rand": 150.0
+            },
+            "30": {
+              "eo": null,
+              "zone": "over",
+              "skala": 1.0,
+              "afvigelse_pct": 19.283276450511956,
+              "tolerance_pct": 5.0,
+              "inden_tolerance": false,
+              "handling": "afvis",
+              "t_vejdim_mm": 699.0,
+              "t_rand_mm": 586.0,
+              "eo_rand": 150.0
+            },
+            "40": {
+              "eo": null,
+              "zone": "over",
+              "skala": 1.0,
+              "afvigelse_pct": 31.578947368421062,
+              "tolerance_pct": 5.0,
+              "inden_tolerance": false,
+              "handling": "afvis",
+              "t_vejdim_mm": 600.0,
+              "t_rand_mm": 455.99999999999994,
+              "eo_rand": 150.0
+            }
+          },
+          "T6": {
+            "3": {
+              "eo": 144.0,
+              "zone": "ok",
+              "skala": 1.0,
+              "afvigelse_pct": null,
+              "tolerance_pct": null,
+              "inden_tolerance": null,
+              "handling": null,
+              "t_vejdim_mm": 1580.0,
+              "t_rand_mm": null,
+              "eo_rand": null
+            },
+            "4": {
+              "eo": 150.0,
+              "zone": "over",
+              "skala": 1.0081799591002045,
+              "afvigelse_pct": 0.8179959100204526,
+              "tolerance_pct": 5.0,
+              "inden_tolerance": true,
+              "handling": "vejdim",
+              "t_vejdim_mm": 1479.0,
+              "t_rand_mm": 1467.0,
+              "eo_rand": 150.0
+            },
+            "5": {
+              "eo": 149.1,
+              "zone": "ok",
+              "skala": 1.0,
+              "afvigelse_pct": null,
+              "tolerance_pct": null,
+              "inden_tolerance": null,
+              "handling": null,
+              "t_vejdim_mm": 1397.0,
+              "t_rand_mm": null,
+              "eo_rand": null
+            },
+            "10": {
+              "eo": 150.0,
+              "zone": "over",
+              "skala": 1.0418181818181818,
+              "afvigelse_pct": 4.181818181818175,
+              "tolerance_pct": 5.0,
+              "inden_tolerance": true,
+              "handling": "vejdim",
+              "t_vejdim_mm": 1146.0,
+              "t_rand_mm": 1100.0,
+              "eo_rand": 150.0
+            },
+            "15": {
+              "eo": null,
+              "zone": "over",
+              "skala": 1.0,
+              "afvigelse_pct": 10.333333333333329,
+              "tolerance_pct": 5.0,
+              "inden_tolerance": false,
+              "handling": "afvis",
+              "t_vejdim_mm": 993.0,
+              "t_rand_mm": 900.0,
+              "eo_rand": 150.0
+            },
+            "20": {
+              "eo": null,
+              "zone": "over",
+              "skala": 1.0,
+              "afvigelse_pct": 15.90612777053455,
+              "tolerance_pct": 5.0,
+              "inden_tolerance": false,
+              "handling": "afvis",
+              "t_vejdim_mm": 889.0,
+              "t_rand_mm": 767.0,
+              "eo_rand": 150.0
+            },
+            "30": {
+              "eo": null,
+              "zone": "over",
+              "skala": 1.0,
+              "afvigelse_pct": 25.938566552901033,
+              "tolerance_pct": 5.0,
+              "inden_tolerance": false,
+              "handling": "afvis",
+              "t_vejdim_mm": 738.0,
+              "t_rand_mm": 586.0,
+              "eo_rand": 150.0
+            },
+            "40": {
+              "eo": null,
+              "zone": "over",
+              "skala": 1.0,
+              "afvigelse_pct": 38.1578947368421,
+              "tolerance_pct": 5.0,
+              "inden_tolerance": false,
+              "handling": "afvis",
+              "t_vejdim_mm": 630.0,
+              "t_rand_mm": 456.0,
+              "eo_rand": 150.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "dataflow-0012",
+      "function": "korrelation_fra_koersler",
+      "args": [
+        {
+          "T1": {
+            "3": {
+              "sg": 170.0,
+              "bl": 448.0
+            },
+            "4": {
+              "sg": 120.0,
+              "bl": 470.0
+            },
+            "5": {
+              "sg": 110.0,
+              "bl": 450.0
+            },
+            "10": {
+              "sg": 100.0,
+              "bl": 356.0
+            },
+            "15": {
+              "sg": 100.0,
+              "bl": 292.0
+            },
+            "20": {
+              "sg": 100.0,
+              "bl": 243.0
+            },
+            "30": {
+              "sg": 100.0,
+              "bl": 200.0
+            },
+            "40": {
+              "sg": 100.0,
+              "bl": 200.0
+            }
+          },
+          "T2": {
+            "3": {
+              "sg": 180.0,
+              "bl": 866.0
+            },
+            "4": {
+              "sg": 180.0,
+              "bl": 797.0
+            },
+            "5": {
+              "sg": 170.0,
+              "bl": 757.0
+            },
+            "10": {
+              "sg": 170.0,
+              "bl": 590.0
+            },
+            "15": {
+              "sg": 160.0,
+              "bl": 508.0
+            },
+            "20": {
+              "sg": 160.0,
+              "bl": 439.0
+            },
+            "30": {
+              "sg": 160.0,
+              "bl": 337.0
+            },
+            "40": {
+              "sg": 160.0,
+              "bl": 264.0
+            }
+          },
+          "T3": {
+            "3": {
+              "sg": 200.0,
+              "bl": 957.0
+            },
+            "4": {
+              "sg": 200.0,
+              "bl": 879.0
+            },
+            "5": {
+              "sg": 200.0,
+              "bl": 818.0
+            },
+            "10": {
+              "sg": 190.0,
+              "bl": 649.0
+            },
+            "15": {
+              "sg": 190.0,
+              "bl": 539.0
+            },
+            "20": {
+              "sg": 190.0,
+              "bl": 460.0
+            },
+            "30": {
+              "sg": 200.0,
+              "bl": 334.0
+            },
+            "40": {
+              "sg": 200.0,
+              "bl": 255.0
+            }
+          },
+          "T4": {
+            "3": {
+              "sg": 240.0,
+              "bl": 1107.0
+            },
+            "4": {
+              "sg": 240.0,
+              "bl": 1014.0
+            },
+            "5": {
+              "sg": 240.0,
+              "bl": 944.0
+            },
+            "10": {
+              "sg": 230.0,
+              "bl": 739.0
+            },
+            "15": {
+              "sg": 220.0,
+              "bl": 629.0
+            },
+            "20": {
+              "sg": 220.0,
+              "bl": 537.0
+            },
+            "30": {
+              "sg": 230.0,
+              "bl": 392.0
+            },
+            "40": {
+              "sg": 230.0,
+              "bl": 301.0
+            }
+          },
+          "T5": {
+            "3": {
+              "sg": 270.0,
+              "bl": 1224.0
+            },
+            "4": {
+              "sg": 270.0,
+              "bl": 1119.0
+            },
+            "5": {
+              "sg": 270.0,
+              "bl": 1042.0
+            },
+            "10": {
+              "sg": 260.0,
+              "bl": 818.0
+            },
+            "15": {
+              "sg": 250.0,
+              "bl": 689.0
+            },
+            "20": {
+              "sg": 250.0,
+              "bl": 590.0
+            },
+            "30": {
+              "sg": 240.0,
+              "bl": 459.0
+            },
+            "40": {
+              "sg": 240.0,
+              "bl": 360.0
+            }
+          },
+          "T6": {
+            "3": {
+              "sg": 290.0,
+              "bl": 1290.0
+            },
+            "4": {
+              "sg": 280.0,
+              "bl": 1199.0
+            },
+            "5": {
+              "sg": 280.0,
+              "bl": 1117.0
+            },
+            "10": {
+              "sg": 270.0,
+              "bl": 876.0
+            },
+            "15": {
+              "sg": 270.0,
+              "bl": 723.0
+            },
+            "20": {
+              "sg": 260.0,
+              "bl": 629.0
+            },
+            "30": {
+              "sg": 260.0,
+              "bl": 478.0
+            },
+            "40": {
+              "sg": 260.0,
+              "bl": 370.0
+            }
+          }
+        },
+        null,
+        {
+          "under_uden": "vejdim",
+          "over_uden": "vejdim"
+        }
+      ],
+      "expected": {
+        "value": {
+          "T1": {
+            "3": 30.0,
+            "4": 30.0,
+            "5": 30.0,
+            "10": 30.0,
+            "15": 30.789473684210527,
+            "20": 42.3134328358209,
+            "30": 62.8,
+            "40": 97.6
+          },
+          "T2": {
+            "3": 30.0,
+            "4": 30.0,
+            "5": 34.05,
+            "10": 54.0,
+            "15": 73.6,
+            "20": 92.8,
+            "30": 123.3,
+            "40": 140.4
+          },
+          "T3": {
+            "3": 38.55,
+            "4": 46.8,
+            "5": 47.7,
+            "10": 67.8,
+            "15": 91.6,
+            "20": 113.19999999999999,
+            "30": 134.4,
+            "40": 149.7
+          },
+          "T4": {
+            "3": 69.4,
+            "4": 77.4,
+            "5": 76.8,
+            "10": 107.6,
+            "15": 134.7,
+            "20": 147.0,
+            "30": 150.0,
+            "40": 150.0
+          },
+          "T5": {
+            "3": 117.6,
+            "4": 126.6,
+            "5": 123.6,
+            "10": 143.4,
+            "15": 150.0,
+            "20": 150.0,
+            "30": 150.0,
+            "40": 150.0
+          },
+          "T6": {
+            "3": 144.0,
+            "4": 150.0,
+            "5": 149.1,
+            "10": 150.0,
+            "15": 150.0,
+            "20": 150.0,
+            "30": 150.0,
+            "40": 150.0
+          }
+        }
+      }
+    },
+    {
+      "id": "dataflow-0013",
+      "function": "korrelation_opslag",
+      "args": [
+        {
+          "T1": {
+            "3": {
+              "sg": 170.0,
+              "bl": 448.0
+            },
+            "4": {
+              "sg": 120.0,
+              "bl": 470.0
+            },
+            "5": {
+              "sg": 110.0,
+              "bl": 450.0
+            },
+            "10": {
+              "sg": 100.0,
+              "bl": 356.0
+            },
+            "15": {
+              "sg": 100.0,
+              "bl": 292.0
+            },
+            "20": {
+              "sg": 100.0,
+              "bl": 243.0
+            },
+            "30": {
+              "sg": 100.0,
+              "bl": 200.0
+            },
+            "40": {
+              "sg": 100.0,
+              "bl": 200.0
+            }
+          },
+          "T2": {
+            "3": {
+              "sg": 180.0,
+              "bl": 866.0
+            },
+            "4": {
+              "sg": 180.0,
+              "bl": 797.0
+            },
+            "5": {
+              "sg": 170.0,
+              "bl": 757.0
+            },
+            "10": {
+              "sg": 170.0,
+              "bl": 590.0
+            },
+            "15": {
+              "sg": 160.0,
+              "bl": 508.0
+            },
+            "20": {
+              "sg": 160.0,
+              "bl": 439.0
+            },
+            "30": {
+              "sg": 160.0,
+              "bl": 337.0
+            },
+            "40": {
+              "sg": 160.0,
+              "bl": 264.0
+            }
+          },
+          "T3": {
+            "3": {
+              "sg": 200.0,
+              "bl": 957.0
+            },
+            "4": {
+              "sg": 200.0,
+              "bl": 879.0
+            },
+            "5": {
+              "sg": 200.0,
+              "bl": 818.0
+            },
+            "10": {
+              "sg": 190.0,
+              "bl": 649.0
+            },
+            "15": {
+              "sg": 190.0,
+              "bl": 539.0
+            },
+            "20": {
+              "sg": 190.0,
+              "bl": 460.0
+            },
+            "30": {
+              "sg": 200.0,
+              "bl": 334.0
+            },
+            "40": {
+              "sg": 200.0,
+              "bl": 255.0
+            }
+          },
+          "T4": {
+            "3": {
+              "sg": 240.0,
+              "bl": 1107.0
+            },
+            "4": {
+              "sg": 240.0,
+              "bl": 1014.0
+            },
+            "5": {
+              "sg": 240.0,
+              "bl": 944.0
+            },
+            "10": {
+              "sg": 230.0,
+              "bl": 739.0
+            },
+            "15": {
+              "sg": 220.0,
+              "bl": 629.0
+            },
+            "20": {
+              "sg": 220.0,
+              "bl": 537.0
+            },
+            "30": {
+              "sg": 230.0,
+              "bl": 392.0
+            },
+            "40": {
+              "sg": 230.0,
+              "bl": 301.0
+            }
+          },
+          "T5": {
+            "3": {
+              "sg": 270.0,
+              "bl": 1224.0
+            },
+            "4": {
+              "sg": 270.0,
+              "bl": 1119.0
+            },
+            "5": {
+              "sg": 270.0,
+              "bl": 1042.0
+            },
+            "10": {
+              "sg": 260.0,
+              "bl": 818.0
+            },
+            "15": {
+              "sg": 250.0,
+              "bl": 689.0
+            },
+            "20": {
+              "sg": 250.0,
+              "bl": 590.0
+            },
+            "30": {
+              "sg": 240.0,
+              "bl": 459.0
+            },
+            "40": {
+              "sg": 240.0,
+              "bl": 360.0
+            }
+          },
+          "T6": {
+            "3": {
+              "sg": 290.0,
+              "bl": 1290.0
+            },
+            "4": {
+              "sg": 280.0,
+              "bl": 1199.0
+            },
+            "5": {
+              "sg": 280.0,
+              "bl": 1117.0
+            },
+            "10": {
+              "sg": 270.0,
+              "bl": 876.0
+            },
+            "15": {
+              "sg": 270.0,
+              "bl": 723.0
+            },
+            "20": {
+              "sg": 260.0,
+              "bl": 629.0
+            },
+            "30": {
+              "sg": 260.0,
+              "bl": 478.0
+            },
+            "40": {
+              "sg": 260.0,
+              "bl": 370.0
+            }
+          }
+        },
+        null,
+        {
+          "under_uden": "vejdim",
+          "over_uden": "vejdim"
+        }
+      ],
+      "expected": {
+        "value": {
+          "T1": {
+            "3": {
+              "eo": 30.0,
+              "zone": "under",
+              "skala": 0.5618181818181818,
+              "afvigelse_pct": 43.81818181818182,
+              "tolerance_pct": 5.0,
+              "inden_tolerance": false,
+              "handling": "vejdim",
+              "t_vejdim_mm": 618.0,
+              "t_rand_mm": 1100.0,
+              "eo_rand": 30.0
+            },
+            "4": {
+              "eo": 30.0,
+              "zone": "under",
+              "skala": 0.59,
+              "afvigelse_pct": 41.0,
+              "tolerance_pct": 5.0,
+              "inden_tolerance": false,
+              "handling": "vejdim",
+              "t_vejdim_mm": 590.0,
+              "t_rand_mm": 1000.0,
+              "eo_rand": 30.0
+            },
+            "5": {
+              "eo": 30.0,
+              "zone": "under",
+              "skala": 0.6222222222222222,
+              "afvigelse_pct": 37.77777777777778,
+              "tolerance_pct": 5.0,
+              "inden_tolerance": false,
+              "handling": "vejdim",
+              "t_vejdim_mm": 560.0,
+              "t_rand_mm": 900.0,
+              "eo_rand": 30.0
+            },
+            "10": {
+              "eo": 30.0,
+              "zone": "under",
+              "skala": 0.7862068965517242,
+              "afvigelse_pct": 21.379310344827584,
+              "tolerance_pct": 5.0,
+              "inden_tolerance": false,
+              "handling": "vejdim",
+              "t_vejdim_mm": 456.0,
+              "t_rand_mm": 580.0,
+              "eo_rand": 30.0
+            },
+            "15": {
+              "eo": 30.789473684210527,
+              "zone": "ok",
+              "skala": 1.0,
+              "afvigelse_pct": null,
+              "tolerance_pct": null,
+              "inden_tolerance": null,
+              "handling": null,
+              "t_vejdim_mm": 392.0,
+              "t_rand_mm": null,
+              "eo_rand": null
+            },
+            "20": {
+              "eo": 42.3134328358209,
+              "zone": "ok",
+              "skala": 1.0,
+              "afvigelse_pct": null,
+              "tolerance_pct": null,
+              "inden_tolerance": null,
+              "handling": null,
+              "t_vejdim_mm": 343.0,
+              "t_rand_mm": null,
+              "eo_rand": null
+            },
+            "30": {
+              "eo": 62.8,
+              "zone": "ok",
+              "skala": 1.0,
+              "afvigelse_pct": null,
+              "tolerance_pct": null,
+              "inden_tolerance": null,
+              "handling": null,
+              "t_vejdim_mm": 300.0,
+              "t_rand_mm": null,
+              "eo_rand": null
+            },
+            "40": {
+              "eo": 97.6,
+              "zone": "ok",
+              "skala": 1.0,
+              "afvigelse_pct": null,
+              "tolerance_pct": null,
+              "inden_tolerance": null,
+              "handling": null,
+              "t_vejdim_mm": 300.0,
+              "t_rand_mm": null,
+              "eo_rand": null
+            }
+          },
+          "T2": {
+            "3": {
+              "eo": 30.0,
+              "zone": "under",
+              "skala": 1.0,
+              "afvigelse_pct": 4.909090909090907,
+              "tolerance_pct": 5.0,
+              "inden_tolerance": true,
+              "handling": "laveste",
+              "t_vejdim_mm": 1046.0,
+              "t_rand_mm": 1100.0,
+              "eo_rand": 30.0
+            },
+            "4": {
+              "eo": 30.0,
+              "zone": "under",
+              "skala": 1.0,
+              "afvigelse_pct": 2.300000000000002,
+              "tolerance_pct": 5.0,
+              "inden_tolerance": true,
+              "handling": "laveste",
+              "t_vejdim_mm": 977.0,
+              "t_rand_mm": 1000.0,
+              "eo_rand": 30.0
+            },
+            "5": {
+              "eo": 34.05,
+              "zone": "ok",
+              "skala": 1.0,
+              "afvigelse_pct": null,
+              "tolerance_pct": null,
+              "inden_tolerance": null,
+              "handling": null,
+              "t_vejdim_mm": 927.0,
+              "t_rand_mm": null,
+              "eo_rand": null
+            },
+            "10": {
+              "eo": 54.0,
+              "zone": "ok",
+              "skala": 1.0,
+              "afvigelse_pct": null,
+              "tolerance_pct": null,
+              "inden_tolerance": null,
+              "handling": null,
+              "t_vejdim_mm": 760.0,
+              "t_rand_mm": null,
+              "eo_rand": null
+            },
+            "15": {
+              "eo": 73.6,
+              "zone": "ok",
+              "skala": 1.0,
+              "afvigelse_pct": null,
+              "tolerance_pct": null,
+              "inden_tolerance": null,
+              "handling": null,
+              "t_vejdim_mm": 668.0,
+              "t_rand_mm": null,
+              "eo_rand": null
+            },
+            "20": {
+              "eo": 92.8,
+              "zone": "ok",
+              "skala": 1.0,
+              "afvigelse_pct": null,
+              "tolerance_pct": null,
+              "inden_tolerance": null,
+              "handling": null,
+              "t_vejdim_mm": 599.0,
+              "t_rand_mm": null,
+              "eo_rand": null
+            },
+            "30": {
+              "eo": 123.3,
+              "zone": "ok",
+              "skala": 1.0,
+              "afvigelse_pct": null,
+              "tolerance_pct": null,
+              "inden_tolerance": null,
+              "handling": null,
+              "t_vejdim_mm": 497.0,
+              "t_rand_mm": null,
+              "eo_rand": null
+            },
+            "40": {
+              "eo": 140.4,
+              "zone": "ok",
+              "skala": 1.0,
+              "afvigelse_pct": null,
+              "tolerance_pct": null,
+              "inden_tolerance": null,
+              "handling": null,
+              "t_vejdim_mm": 424.0,
+              "t_rand_mm": null,
+              "eo_rand": null
+            }
+          },
+          "T3": {
+            "3": {
+              "eo": 38.55,
+              "zone": "ok",
+              "skala": 1.0,
+              "afvigelse_pct": null,
+              "tolerance_pct": null,
+              "inden_tolerance": null,
+              "handling": null,
+              "t_vejdim_mm": 1157.0,
+              "t_rand_mm": null,
+              "eo_rand": null
+            },
+            "4": {
+              "eo": 46.8,
+              "zone": "ok",
+              "skala": 1.0,
+              "afvigelse_pct": null,
+              "tolerance_pct": null,
+              "inden_tolerance": null,
+              "handling": null,
+              "t_vejdim_mm": 1079.0,
+              "t_rand_mm": null,
+              "eo_rand": null
+            },
+            "5": {
+              "eo": 47.7,
+              "zone": "ok",
+              "skala": 1.0,
+              "afvigelse_pct": null,
+              "tolerance_pct": null,
+              "inden_tolerance": null,
+              "handling": null,
+              "t_vejdim_mm": 1018.0,
+              "t_rand_mm": null,
+              "eo_rand": null
+            },
+            "10": {
+              "eo": 67.8,
+              "zone": "ok",
+              "skala": 1.0,
+              "afvigelse_pct": null,
+              "tolerance_pct": null,
+              "inden_tolerance": null,
+              "handling": null,
+              "t_vejdim_mm": 839.0,
+              "t_rand_mm": null,
+              "eo_rand": null
+            },
+            "15": {
+              "eo": 91.6,
+              "zone": "ok",
+              "skala": 1.0,
+              "afvigelse_pct": null,
+              "tolerance_pct": null,
+              "inden_tolerance": null,
+              "handling": null,
+              "t_vejdim_mm": 729.0,
+              "t_rand_mm": null,
+              "eo_rand": null
+            },
+            "20": {
+              "eo": 113.19999999999999,
+              "zone": "ok",
+              "skala": 1.0,
+              "afvigelse_pct": null,
+              "tolerance_pct": null,
+              "inden_tolerance": null,
+              "handling": null,
+              "t_vejdim_mm": 650.0,
+              "t_rand_mm": null,
+              "eo_rand": null
+            },
+            "30": {
+              "eo": 134.4,
+              "zone": "ok",
+              "skala": 1.0,
+              "afvigelse_pct": null,
+              "tolerance_pct": null,
+              "inden_tolerance": null,
+              "handling": null,
+              "t_vejdim_mm": 534.0,
+              "t_rand_mm": null,
+              "eo_rand": null
+            },
+            "40": {
+              "eo": 149.7,
+              "zone": "ok",
+              "skala": 1.0,
+              "afvigelse_pct": null,
+              "tolerance_pct": null,
+              "inden_tolerance": null,
+              "handling": null,
+              "t_vejdim_mm": 455.0,
+              "t_rand_mm": null,
+              "eo_rand": null
+            }
+          },
+          "T4": {
+            "3": {
+              "eo": 69.4,
+              "zone": "ok",
+              "skala": 1.0,
+              "afvigelse_pct": null,
+              "tolerance_pct": null,
+              "inden_tolerance": null,
+              "handling": null,
+              "t_vejdim_mm": 1347.0,
+              "t_rand_mm": null,
+              "eo_rand": null
+            },
+            "4": {
+              "eo": 77.4,
+              "zone": "ok",
+              "skala": 1.0,
+              "afvigelse_pct": null,
+              "tolerance_pct": null,
+              "inden_tolerance": null,
+              "handling": null,
+              "t_vejdim_mm": 1254.0,
+              "t_rand_mm": null,
+              "eo_rand": null
+            },
+            "5": {
+              "eo": 76.8,
+              "zone": "ok",
+              "skala": 1.0,
+              "afvigelse_pct": null,
+              "tolerance_pct": null,
+              "inden_tolerance": null,
+              "handling": null,
+              "t_vejdim_mm": 1184.0,
+              "t_rand_mm": null,
+              "eo_rand": null
+            },
+            "10": {
+              "eo": 107.6,
+              "zone": "ok",
+              "skala": 1.0,
+              "afvigelse_pct": null,
+              "tolerance_pct": null,
+              "inden_tolerance": null,
+              "handling": null,
+              "t_vejdim_mm": 969.0,
+              "t_rand_mm": null,
+              "eo_rand": null
+            },
+            "15": {
+              "eo": 134.7,
+              "zone": "ok",
+              "skala": 1.0,
+              "afvigelse_pct": null,
+              "tolerance_pct": null,
+              "inden_tolerance": null,
+              "handling": null,
+              "t_vejdim_mm": 849.0,
+              "t_rand_mm": null,
+              "eo_rand": null
+            },
+            "20": {
+              "eo": 147.0,
+              "zone": "ok",
+              "skala": 1.0,
+              "afvigelse_pct": null,
+              "tolerance_pct": null,
+              "inden_tolerance": null,
+              "handling": null,
+              "t_vejdim_mm": 757.0,
+              "t_rand_mm": null,
+              "eo_rand": null
+            },
+            "30": {
+              "eo": 150.0,
+              "zone": "over",
+              "skala": 1.0614334470989761,
+              "afvigelse_pct": 6.1433447098976135,
+              "tolerance_pct": 5.0,
+              "inden_tolerance": false,
+              "handling": "vejdim",
+              "t_vejdim_mm": 622.0,
+              "t_rand_mm": 586.0,
+              "eo_rand": 150.0
+            },
+            "40": {
+              "eo": 150.0,
+              "zone": "over",
+              "skala": 1.1644736842105263,
+              "afvigelse_pct": 16.447368421052634,
+              "tolerance_pct": 5.0,
+              "inden_tolerance": false,
+              "handling": "vejdim",
+              "t_vejdim_mm": 531.0,
+              "t_rand_mm": 456.0,
+              "eo_rand": 150.0
+            }
+          },
+          "T5": {
+            "3": {
+              "eo": 117.6,
+              "zone": "ok",
+              "skala": 1.0,
+              "afvigelse_pct": null,
+              "tolerance_pct": null,
+              "inden_tolerance": null,
+              "handling": null,
+              "t_vejdim_mm": 1494.0,
+              "t_rand_mm": null,
+              "eo_rand": null
+            },
+            "4": {
+              "eo": 126.6,
+              "zone": "ok",
+              "skala": 1.0,
+              "afvigelse_pct": null,
+              "tolerance_pct": null,
+              "inden_tolerance": null,
+              "handling": null,
+              "t_vejdim_mm": 1389.0,
+              "t_rand_mm": null,
+              "eo_rand": null
+            },
+            "5": {
+              "eo": 123.6,
+              "zone": "ok",
+              "skala": 1.0,
+              "afvigelse_pct": null,
+              "tolerance_pct": null,
+              "inden_tolerance": null,
+              "handling": null,
+              "t_vejdim_mm": 1312.0,
+              "t_rand_mm": null,
+              "eo_rand": null
+            },
+            "10": {
+              "eo": 143.4,
+              "zone": "ok",
+              "skala": 1.0,
+              "afvigelse_pct": null,
+              "tolerance_pct": null,
+              "inden_tolerance": null,
+              "handling": null,
+              "t_vejdim_mm": 1078.0,
+              "t_rand_mm": null,
+              "eo_rand": null
+            },
+            "15": {
+              "eo": 150.0,
+              "zone": "over",
+              "skala": 1.0433333333333332,
+              "afvigelse_pct": 4.333333333333322,
+              "tolerance_pct": 5.0,
+              "inden_tolerance": true,
+              "handling": "vejdim",
+              "t_vejdim_mm": 939.0,
+              "t_rand_mm": 900.0000000000001,
+              "eo_rand": 150.0
+            },
+            "20": {
+              "eo": 150.0,
+              "zone": "over",
+              "skala": 1.0951760104302477,
+              "afvigelse_pct": 9.51760104302477,
+              "tolerance_pct": 5.0,
+              "inden_tolerance": false,
+              "handling": "vejdim",
+              "t_vejdim_mm": 840.0,
+              "t_rand_mm": 767.0,
+              "eo_rand": 150.0
+            },
+            "30": {
+              "eo": 150.0,
+              "zone": "over",
+              "skala": 1.1928327645051195,
+              "afvigelse_pct": 19.283276450511956,
+              "tolerance_pct": 5.0,
+              "inden_tolerance": false,
+              "handling": "vejdim",
+              "t_vejdim_mm": 699.0,
+              "t_rand_mm": 586.0,
+              "eo_rand": 150.0
+            },
+            "40": {
+              "eo": 150.0,
+              "zone": "over",
+              "skala": 1.3157894736842106,
+              "afvigelse_pct": 31.578947368421062,
+              "tolerance_pct": 5.0,
+              "inden_tolerance": false,
+              "handling": "vejdim",
+              "t_vejdim_mm": 600.0,
+              "t_rand_mm": 455.99999999999994,
+              "eo_rand": 150.0
+            }
+          },
+          "T6": {
+            "3": {
+              "eo": 144.0,
+              "zone": "ok",
+              "skala": 1.0,
+              "afvigelse_pct": null,
+              "tolerance_pct": null,
+              "inden_tolerance": null,
+              "handling": null,
+              "t_vejdim_mm": 1580.0,
+              "t_rand_mm": null,
+              "eo_rand": null
+            },
+            "4": {
+              "eo": 150.0,
+              "zone": "over",
+              "skala": 1.0081799591002045,
+              "afvigelse_pct": 0.8179959100204526,
+              "tolerance_pct": 5.0,
+              "inden_tolerance": true,
+              "handling": "vejdim",
+              "t_vejdim_mm": 1479.0,
+              "t_rand_mm": 1467.0,
+              "eo_rand": 150.0
+            },
+            "5": {
+              "eo": 149.1,
+              "zone": "ok",
+              "skala": 1.0,
+              "afvigelse_pct": null,
+              "tolerance_pct": null,
+              "inden_tolerance": null,
+              "handling": null,
+              "t_vejdim_mm": 1397.0,
+              "t_rand_mm": null,
+              "eo_rand": null
+            },
+            "10": {
+              "eo": 150.0,
+              "zone": "over",
+              "skala": 1.0418181818181818,
+              "afvigelse_pct": 4.181818181818175,
+              "tolerance_pct": 5.0,
+              "inden_tolerance": true,
+              "handling": "vejdim",
+              "t_vejdim_mm": 1146.0,
+              "t_rand_mm": 1100.0,
+              "eo_rand": 150.0
+            },
+            "15": {
+              "eo": 150.0,
+              "zone": "over",
+              "skala": 1.1033333333333333,
+              "afvigelse_pct": 10.333333333333329,
+              "tolerance_pct": 5.0,
+              "inden_tolerance": false,
+              "handling": "vejdim",
+              "t_vejdim_mm": 993.0,
+              "t_rand_mm": 900.0,
+              "eo_rand": 150.0
+            },
+            "20": {
+              "eo": 150.0,
+              "zone": "over",
+              "skala": 1.1590612777053455,
+              "afvigelse_pct": 15.90612777053455,
+              "tolerance_pct": 5.0,
+              "inden_tolerance": false,
+              "handling": "vejdim",
+              "t_vejdim_mm": 889.0,
+              "t_rand_mm": 767.0,
+              "eo_rand": 150.0
+            },
+            "30": {
+              "eo": 150.0,
+              "zone": "over",
+              "skala": 1.2593856655290103,
+              "afvigelse_pct": 25.938566552901033,
+              "tolerance_pct": 5.0,
+              "inden_tolerance": false,
+              "handling": "vejdim",
+              "t_vejdim_mm": 738.0,
+              "t_rand_mm": 586.0,
+              "eo_rand": 150.0
+            },
+            "40": {
+              "eo": 150.0,
+              "zone": "over",
+              "skala": 1.381578947368421,
+              "afvigelse_pct": 38.1578947368421,
+              "tolerance_pct": 5.0,
+              "inden_tolerance": false,
+              "handling": "vejdim",
+              "t_vejdim_mm": 630.0,
+              "t_rand_mm": 456.0,
+              "eo_rand": 150.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "dataflow-0014",
+      "function": "korrelation_fra_koersler",
+      "args": [
+        {
+          "T1": {
+            "3": {
+              "sg": 170.0,
+              "bl": 448.0
+            },
+            "4": {
+              "sg": 120.0,
+              "bl": 470.0
+            },
+            "5": {
+              "sg": 110.0,
+              "bl": 450.0
+            },
+            "10": {
+              "sg": 100.0,
+              "bl": 356.0
+            },
+            "15": {
+              "sg": 100.0,
+              "bl": 292.0
+            },
+            "20": {
+              "sg": 100.0,
+              "bl": 243.0
+            },
+            "30": {
+              "sg": 100.0,
+              "bl": 200.0
+            },
+            "40": {
+              "sg": 100.0,
+              "bl": 200.0
+            }
+          },
+          "T2": {
+            "3": {
+              "sg": 180.0,
+              "bl": 866.0
+            },
+            "4": {
+              "sg": 180.0,
+              "bl": 797.0
+            },
+            "5": {
+              "sg": 170.0,
+              "bl": 757.0
+            },
+            "10": {
+              "sg": 170.0,
+              "bl": 590.0
+            },
+            "15": {
+              "sg": 160.0,
+              "bl": 508.0
+            },
+            "20": {
+              "sg": 160.0,
+              "bl": 439.0
+            },
+            "30": {
+              "sg": 160.0,
+              "bl": 337.0
+            },
+            "40": {
+              "sg": 160.0,
+              "bl": 264.0
+            }
+          },
+          "T3": {
+            "3": {
+              "sg": 200.0,
+              "bl": 957.0
+            },
+            "4": {
+              "sg": 200.0,
+              "bl": 879.0
+            },
+            "5": {
+              "sg": 200.0,
+              "bl": 818.0
+            },
+            "10": {
+              "sg": 190.0,
+              "bl": 649.0
+            },
+            "15": {
+              "sg": 190.0,
+              "bl": 539.0
+            },
+            "20": {
+              "sg": 190.0,
+              "bl": 460.0
+            },
+            "30": {
+              "sg": 200.0,
+              "bl": 334.0
+            },
+            "40": {
+              "sg": 200.0,
+              "bl": 255.0
+            }
+          },
+          "T4": {
+            "3": {
+              "sg": 240.0,
+              "bl": 1107.0
+            },
+            "4": {
+              "sg": 240.0,
+              "bl": 1014.0
+            },
+            "5": {
+              "sg": 240.0,
+              "bl": 944.0
+            },
+            "10": {
+              "sg": 230.0,
+              "bl": 739.0
+            },
+            "15": {
+              "sg": 220.0,
+              "bl": 629.0
+            },
+            "20": {
+              "sg": 220.0,
+              "bl": 537.0
+            },
+            "30": {
+              "sg": 230.0,
+              "bl": 392.0
+            },
+            "40": {
+              "sg": 230.0,
+              "bl": 301.0
+            }
+          },
+          "T5": {
+            "3": {
+              "sg": 270.0,
+              "bl": 1224.0
+            },
+            "4": {
+              "sg": 270.0,
+              "bl": 1119.0
+            },
+            "5": {
+              "sg": 270.0,
+              "bl": 1042.0
+            },
+            "10": {
+              "sg": 260.0,
+              "bl": 818.0
+            },
+            "15": {
+              "sg": 250.0,
+              "bl": 689.0
+            },
+            "20": {
+              "sg": 250.0,
+              "bl": 590.0
+            },
+            "30": {
+              "sg": 240.0,
+              "bl": 459.0
+            },
+            "40": {
+              "sg": 240.0,
+              "bl": 360.0
+            }
+          },
+          "T6": {
+            "3": {
+              "sg": 290.0,
+              "bl": 1290.0
+            },
+            "4": {
+              "sg": 280.0,
+              "bl": 1199.0
+            },
+            "5": {
+              "sg": 280.0,
+              "bl": 1117.0
+            },
+            "10": {
+              "sg": 270.0,
+              "bl": 876.0
+            },
+            "15": {
+              "sg": 270.0,
+              "bl": 723.0
+            },
+            "20": {
+              "sg": 260.0,
+              "bl": 629.0
+            },
+            "30": {
+              "sg": 260.0,
+              "bl": 478.0
+            },
+            "40": {
+              "sg": 260.0,
+              "bl": 370.0
+            }
+          }
+        },
+        null,
+        {
+          "tolerance_over_pct": 0,
+          "tolerance_under_pct": 0
+        }
+      ],
+      "expected": {
+        "value": {
+          "T1": {
+            "3": "under",
+            "4": "under",
+            "5": "under",
+            "10": "under",
+            "15": 30.789473684210527,
+            "20": 42.3134328358209,
+            "30": 62.8,
+            "40": 97.6
+          },
+          "T2": {
+            "3": "under",
+            "4": "under",
+            "5": 34.05,
+            "10": 54.0,
+            "15": 73.6,
+            "20": 92.8,
+            "30": 123.3,
+            "40": 140.4
+          },
+          "T3": {
+            "3": 38.55,
+            "4": 46.8,
+            "5": 47.7,
+            "10": 67.8,
+            "15": 91.6,
+            "20": 113.19999999999999,
+            "30": 134.4,
+            "40": 149.7
+          },
+          "T4": {
+            "3": 69.4,
+            "4": 77.4,
+            "5": 76.8,
+            "10": 107.6,
+            "15": 134.7,
+            "20": 147.0,
+            "30": "over",
+            "40": "over"
+          },
+          "T5": {
+            "3": 117.6,
+            "4": 126.6,
+            "5": 123.6,
+            "10": 143.4,
+            "15": "over",
+            "20": "over",
+            "30": "over",
+            "40": "over"
+          },
+          "T6": {
+            "3": 144.0,
+            "4": "over",
+            "5": 149.1,
+            "10": "over",
+            "15": "over",
+            "20": "over",
+            "30": "over",
+            "40": "over"
+          }
+        }
+      }
+    },
+    {
+      "id": "dataflow-0015",
+      "function": "korrelation_opslag",
+      "args": [
+        {
+          "T1": {
+            "3": {
+              "sg": 170.0,
+              "bl": 448.0
+            },
+            "4": {
+              "sg": 120.0,
+              "bl": 470.0
+            },
+            "5": {
+              "sg": 110.0,
+              "bl": 450.0
+            },
+            "10": {
+              "sg": 100.0,
+              "bl": 356.0
+            },
+            "15": {
+              "sg": 100.0,
+              "bl": 292.0
+            },
+            "20": {
+              "sg": 100.0,
+              "bl": 243.0
+            },
+            "30": {
+              "sg": 100.0,
+              "bl": 200.0
+            },
+            "40": {
+              "sg": 100.0,
+              "bl": 200.0
+            }
+          },
+          "T2": {
+            "3": {
+              "sg": 180.0,
+              "bl": 866.0
+            },
+            "4": {
+              "sg": 180.0,
+              "bl": 797.0
+            },
+            "5": {
+              "sg": 170.0,
+              "bl": 757.0
+            },
+            "10": {
+              "sg": 170.0,
+              "bl": 590.0
+            },
+            "15": {
+              "sg": 160.0,
+              "bl": 508.0
+            },
+            "20": {
+              "sg": 160.0,
+              "bl": 439.0
+            },
+            "30": {
+              "sg": 160.0,
+              "bl": 337.0
+            },
+            "40": {
+              "sg": 160.0,
+              "bl": 264.0
+            }
+          },
+          "T3": {
+            "3": {
+              "sg": 200.0,
+              "bl": 957.0
+            },
+            "4": {
+              "sg": 200.0,
+              "bl": 879.0
+            },
+            "5": {
+              "sg": 200.0,
+              "bl": 818.0
+            },
+            "10": {
+              "sg": 190.0,
+              "bl": 649.0
+            },
+            "15": {
+              "sg": 190.0,
+              "bl": 539.0
+            },
+            "20": {
+              "sg": 190.0,
+              "bl": 460.0
+            },
+            "30": {
+              "sg": 200.0,
+              "bl": 334.0
+            },
+            "40": {
+              "sg": 200.0,
+              "bl": 255.0
+            }
+          },
+          "T4": {
+            "3": {
+              "sg": 240.0,
+              "bl": 1107.0
+            },
+            "4": {
+              "sg": 240.0,
+              "bl": 1014.0
+            },
+            "5": {
+              "sg": 240.0,
+              "bl": 944.0
+            },
+            "10": {
+              "sg": 230.0,
+              "bl": 739.0
+            },
+            "15": {
+              "sg": 220.0,
+              "bl": 629.0
+            },
+            "20": {
+              "sg": 220.0,
+              "bl": 537.0
+            },
+            "30": {
+              "sg": 230.0,
+              "bl": 392.0
+            },
+            "40": {
+              "sg": 230.0,
+              "bl": 301.0
+            }
+          },
+          "T5": {
+            "3": {
+              "sg": 270.0,
+              "bl": 1224.0
+            },
+            "4": {
+              "sg": 270.0,
+              "bl": 1119.0
+            },
+            "5": {
+              "sg": 270.0,
+              "bl": 1042.0
+            },
+            "10": {
+              "sg": 260.0,
+              "bl": 818.0
+            },
+            "15": {
+              "sg": 250.0,
+              "bl": 689.0
+            },
+            "20": {
+              "sg": 250.0,
+              "bl": 590.0
+            },
+            "30": {
+              "sg": 240.0,
+              "bl": 459.0
+            },
+            "40": {
+              "sg": 240.0,
+              "bl": 360.0
+            }
+          },
+          "T6": {
+            "3": {
+              "sg": 290.0,
+              "bl": 1290.0
+            },
+            "4": {
+              "sg": 280.0,
+              "bl": 1199.0
+            },
+            "5": {
+              "sg": 280.0,
+              "bl": 1117.0
+            },
+            "10": {
+              "sg": 270.0,
+              "bl": 876.0
+            },
+            "15": {
+              "sg": 270.0,
+              "bl": 723.0
+            },
+            "20": {
+              "sg": 260.0,
+              "bl": 629.0
+            },
+            "30": {
+              "sg": 260.0,
+              "bl": 478.0
+            },
+            "40": {
+              "sg": 260.0,
+              "bl": 370.0
+            }
+          }
+        },
+        null,
+        {
+          "tolerance_over_pct": 0,
+          "tolerance_under_pct": 0
+        }
+      ],
+      "expected": {
+        "value": {
+          "T1": {
+            "3": {
+              "eo": null,
+              "zone": "under",
+              "skala": 1.0,
+              "afvigelse_pct": 43.81818181818182,
+              "tolerance_pct": 0.0,
+              "inden_tolerance": false,
+              "handling": "afvis",
+              "t_vejdim_mm": 618.0,
+              "t_rand_mm": 1100.0,
+              "eo_rand": 30.0
+            },
+            "4": {
+              "eo": null,
+              "zone": "under",
+              "skala": 1.0,
+              "afvigelse_pct": 41.0,
+              "tolerance_pct": 0.0,
+              "inden_tolerance": false,
+              "handling": "afvis",
+              "t_vejdim_mm": 590.0,
+              "t_rand_mm": 1000.0,
+              "eo_rand": 30.0
+            },
+            "5": {
+              "eo": null,
+              "zone": "under",
+              "skala": 1.0,
+              "afvigelse_pct": 37.77777777777778,
+              "tolerance_pct": 0.0,
+              "inden_tolerance": false,
+              "handling": "afvis",
+              "t_vejdim_mm": 560.0,
+              "t_rand_mm": 900.0,
+              "eo_rand": 30.0
+            },
+            "10": {
+              "eo": null,
+              "zone": "under",
+              "skala": 1.0,
+              "afvigelse_pct": 21.379310344827584,
+              "tolerance_pct": 0.0,
+              "inden_tolerance": false,
+              "handling": "afvis",
+              "t_vejdim_mm": 456.0,
+              "t_rand_mm": 580.0,
+              "eo_rand": 30.0
+            },
+            "15": {
+              "eo": 30.789473684210527,
+              "zone": "ok",
+              "skala": 1.0,
+              "afvigelse_pct": null,
+              "tolerance_pct": null,
+              "inden_tolerance": null,
+              "handling": null,
+              "t_vejdim_mm": 392.0,
+              "t_rand_mm": null,
+              "eo_rand": null
+            },
+            "20": {
+              "eo": 42.3134328358209,
+              "zone": "ok",
+              "skala": 1.0,
+              "afvigelse_pct": null,
+              "tolerance_pct": null,
+              "inden_tolerance": null,
+              "handling": null,
+              "t_vejdim_mm": 343.0,
+              "t_rand_mm": null,
+              "eo_rand": null
+            },
+            "30": {
+              "eo": 62.8,
+              "zone": "ok",
+              "skala": 1.0,
+              "afvigelse_pct": null,
+              "tolerance_pct": null,
+              "inden_tolerance": null,
+              "handling": null,
+              "t_vejdim_mm": 300.0,
+              "t_rand_mm": null,
+              "eo_rand": null
+            },
+            "40": {
+              "eo": 97.6,
+              "zone": "ok",
+              "skala": 1.0,
+              "afvigelse_pct": null,
+              "tolerance_pct": null,
+              "inden_tolerance": null,
+              "handling": null,
+              "t_vejdim_mm": 300.0,
+              "t_rand_mm": null,
+              "eo_rand": null
+            }
+          },
+          "T2": {
+            "3": {
+              "eo": null,
+              "zone": "under",
+              "skala": 1.0,
+              "afvigelse_pct": 4.909090909090907,
+              "tolerance_pct": 0.0,
+              "inden_tolerance": false,
+              "handling": "afvis",
+              "t_vejdim_mm": 1046.0,
+              "t_rand_mm": 1100.0,
+              "eo_rand": 30.0
+            },
+            "4": {
+              "eo": null,
+              "zone": "under",
+              "skala": 1.0,
+              "afvigelse_pct": 2.300000000000002,
+              "tolerance_pct": 0.0,
+              "inden_tolerance": false,
+              "handling": "afvis",
+              "t_vejdim_mm": 977.0,
+              "t_rand_mm": 1000.0,
+              "eo_rand": 30.0
+            },
+            "5": {
+              "eo": 34.05,
+              "zone": "ok",
+              "skala": 1.0,
+              "afvigelse_pct": null,
+              "tolerance_pct": null,
+              "inden_tolerance": null,
+              "handling": null,
+              "t_vejdim_mm": 927.0,
+              "t_rand_mm": null,
+              "eo_rand": null
+            },
+            "10": {
+              "eo": 54.0,
+              "zone": "ok",
+              "skala": 1.0,
+              "afvigelse_pct": null,
+              "tolerance_pct": null,
+              "inden_tolerance": null,
+              "handling": null,
+              "t_vejdim_mm": 760.0,
+              "t_rand_mm": null,
+              "eo_rand": null
+            },
+            "15": {
+              "eo": 73.6,
+              "zone": "ok",
+              "skala": 1.0,
+              "afvigelse_pct": null,
+              "tolerance_pct": null,
+              "inden_tolerance": null,
+              "handling": null,
+              "t_vejdim_mm": 668.0,
+              "t_rand_mm": null,
+              "eo_rand": null
+            },
+            "20": {
+              "eo": 92.8,
+              "zone": "ok",
+              "skala": 1.0,
+              "afvigelse_pct": null,
+              "tolerance_pct": null,
+              "inden_tolerance": null,
+              "handling": null,
+              "t_vejdim_mm": 599.0,
+              "t_rand_mm": null,
+              "eo_rand": null
+            },
+            "30": {
+              "eo": 123.3,
+              "zone": "ok",
+              "skala": 1.0,
+              "afvigelse_pct": null,
+              "tolerance_pct": null,
+              "inden_tolerance": null,
+              "handling": null,
+              "t_vejdim_mm": 497.0,
+              "t_rand_mm": null,
+              "eo_rand": null
+            },
+            "40": {
+              "eo": 140.4,
+              "zone": "ok",
+              "skala": 1.0,
+              "afvigelse_pct": null,
+              "tolerance_pct": null,
+              "inden_tolerance": null,
+              "handling": null,
+              "t_vejdim_mm": 424.0,
+              "t_rand_mm": null,
+              "eo_rand": null
+            }
+          },
+          "T3": {
+            "3": {
+              "eo": 38.55,
+              "zone": "ok",
+              "skala": 1.0,
+              "afvigelse_pct": null,
+              "tolerance_pct": null,
+              "inden_tolerance": null,
+              "handling": null,
+              "t_vejdim_mm": 1157.0,
+              "t_rand_mm": null,
+              "eo_rand": null
+            },
+            "4": {
+              "eo": 46.8,
+              "zone": "ok",
+              "skala": 1.0,
+              "afvigelse_pct": null,
+              "tolerance_pct": null,
+              "inden_tolerance": null,
+              "handling": null,
+              "t_vejdim_mm": 1079.0,
+              "t_rand_mm": null,
+              "eo_rand": null
+            },
+            "5": {
+              "eo": 47.7,
+              "zone": "ok",
+              "skala": 1.0,
+              "afvigelse_pct": null,
+              "tolerance_pct": null,
+              "inden_tolerance": null,
+              "handling": null,
+              "t_vejdim_mm": 1018.0,
+              "t_rand_mm": null,
+              "eo_rand": null
+            },
+            "10": {
+              "eo": 67.8,
+              "zone": "ok",
+              "skala": 1.0,
+              "afvigelse_pct": null,
+              "tolerance_pct": null,
+              "inden_tolerance": null,
+              "handling": null,
+              "t_vejdim_mm": 839.0,
+              "t_rand_mm": null,
+              "eo_rand": null
+            },
+            "15": {
+              "eo": 91.6,
+              "zone": "ok",
+              "skala": 1.0,
+              "afvigelse_pct": null,
+              "tolerance_pct": null,
+              "inden_tolerance": null,
+              "handling": null,
+              "t_vejdim_mm": 729.0,
+              "t_rand_mm": null,
+              "eo_rand": null
+            },
+            "20": {
+              "eo": 113.19999999999999,
+              "zone": "ok",
+              "skala": 1.0,
+              "afvigelse_pct": null,
+              "tolerance_pct": null,
+              "inden_tolerance": null,
+              "handling": null,
+              "t_vejdim_mm": 650.0,
+              "t_rand_mm": null,
+              "eo_rand": null
+            },
+            "30": {
+              "eo": 134.4,
+              "zone": "ok",
+              "skala": 1.0,
+              "afvigelse_pct": null,
+              "tolerance_pct": null,
+              "inden_tolerance": null,
+              "handling": null,
+              "t_vejdim_mm": 534.0,
+              "t_rand_mm": null,
+              "eo_rand": null
+            },
+            "40": {
+              "eo": 149.7,
+              "zone": "ok",
+              "skala": 1.0,
+              "afvigelse_pct": null,
+              "tolerance_pct": null,
+              "inden_tolerance": null,
+              "handling": null,
+              "t_vejdim_mm": 455.0,
+              "t_rand_mm": null,
+              "eo_rand": null
+            }
+          },
+          "T4": {
+            "3": {
+              "eo": 69.4,
+              "zone": "ok",
+              "skala": 1.0,
+              "afvigelse_pct": null,
+              "tolerance_pct": null,
+              "inden_tolerance": null,
+              "handling": null,
+              "t_vejdim_mm": 1347.0,
+              "t_rand_mm": null,
+              "eo_rand": null
+            },
+            "4": {
+              "eo": 77.4,
+              "zone": "ok",
+              "skala": 1.0,
+              "afvigelse_pct": null,
+              "tolerance_pct": null,
+              "inden_tolerance": null,
+              "handling": null,
+              "t_vejdim_mm": 1254.0,
+              "t_rand_mm": null,
+              "eo_rand": null
+            },
+            "5": {
+              "eo": 76.8,
+              "zone": "ok",
+              "skala": 1.0,
+              "afvigelse_pct": null,
+              "tolerance_pct": null,
+              "inden_tolerance": null,
+              "handling": null,
+              "t_vejdim_mm": 1184.0,
+              "t_rand_mm": null,
+              "eo_rand": null
+            },
+            "10": {
+              "eo": 107.6,
+              "zone": "ok",
+              "skala": 1.0,
+              "afvigelse_pct": null,
+              "tolerance_pct": null,
+              "inden_tolerance": null,
+              "handling": null,
+              "t_vejdim_mm": 969.0,
+              "t_rand_mm": null,
+              "eo_rand": null
+            },
+            "15": {
+              "eo": 134.7,
+              "zone": "ok",
+              "skala": 1.0,
+              "afvigelse_pct": null,
+              "tolerance_pct": null,
+              "inden_tolerance": null,
+              "handling": null,
+              "t_vejdim_mm": 849.0,
+              "t_rand_mm": null,
+              "eo_rand": null
+            },
+            "20": {
+              "eo": 147.0,
+              "zone": "ok",
+              "skala": 1.0,
+              "afvigelse_pct": null,
+              "tolerance_pct": null,
+              "inden_tolerance": null,
+              "handling": null,
+              "t_vejdim_mm": 757.0,
+              "t_rand_mm": null,
+              "eo_rand": null
+            },
+            "30": {
+              "eo": null,
+              "zone": "over",
+              "skala": 1.0,
+              "afvigelse_pct": 6.1433447098976135,
+              "tolerance_pct": 0.0,
+              "inden_tolerance": false,
+              "handling": "afvis",
+              "t_vejdim_mm": 622.0,
+              "t_rand_mm": 586.0,
+              "eo_rand": 150.0
+            },
+            "40": {
+              "eo": null,
+              "zone": "over",
+              "skala": 1.0,
+              "afvigelse_pct": 16.447368421052634,
+              "tolerance_pct": 0.0,
+              "inden_tolerance": false,
+              "handling": "afvis",
+              "t_vejdim_mm": 531.0,
+              "t_rand_mm": 456.0,
+              "eo_rand": 150.0
+            }
+          },
+          "T5": {
+            "3": {
+              "eo": 117.6,
+              "zone": "ok",
+              "skala": 1.0,
+              "afvigelse_pct": null,
+              "tolerance_pct": null,
+              "inden_tolerance": null,
+              "handling": null,
+              "t_vejdim_mm": 1494.0,
+              "t_rand_mm": null,
+              "eo_rand": null
+            },
+            "4": {
+              "eo": 126.6,
+              "zone": "ok",
+              "skala": 1.0,
+              "afvigelse_pct": null,
+              "tolerance_pct": null,
+              "inden_tolerance": null,
+              "handling": null,
+              "t_vejdim_mm": 1389.0,
+              "t_rand_mm": null,
+              "eo_rand": null
+            },
+            "5": {
+              "eo": 123.6,
+              "zone": "ok",
+              "skala": 1.0,
+              "afvigelse_pct": null,
+              "tolerance_pct": null,
+              "inden_tolerance": null,
+              "handling": null,
+              "t_vejdim_mm": 1312.0,
+              "t_rand_mm": null,
+              "eo_rand": null
+            },
+            "10": {
+              "eo": 143.4,
+              "zone": "ok",
+              "skala": 1.0,
+              "afvigelse_pct": null,
+              "tolerance_pct": null,
+              "inden_tolerance": null,
+              "handling": null,
+              "t_vejdim_mm": 1078.0,
+              "t_rand_mm": null,
+              "eo_rand": null
+            },
+            "15": {
+              "eo": null,
+              "zone": "over",
+              "skala": 1.0,
+              "afvigelse_pct": 4.333333333333322,
+              "tolerance_pct": 0.0,
+              "inden_tolerance": false,
+              "handling": "afvis",
+              "t_vejdim_mm": 939.0,
+              "t_rand_mm": 900.0000000000001,
+              "eo_rand": 150.0
+            },
+            "20": {
+              "eo": null,
+              "zone": "over",
+              "skala": 1.0,
+              "afvigelse_pct": 9.51760104302477,
+              "tolerance_pct": 0.0,
+              "inden_tolerance": false,
+              "handling": "afvis",
+              "t_vejdim_mm": 840.0,
+              "t_rand_mm": 767.0,
+              "eo_rand": 150.0
+            },
+            "30": {
+              "eo": null,
+              "zone": "over",
+              "skala": 1.0,
+              "afvigelse_pct": 19.283276450511956,
+              "tolerance_pct": 0.0,
+              "inden_tolerance": false,
+              "handling": "afvis",
+              "t_vejdim_mm": 699.0,
+              "t_rand_mm": 586.0,
+              "eo_rand": 150.0
+            },
+            "40": {
+              "eo": null,
+              "zone": "over",
+              "skala": 1.0,
+              "afvigelse_pct": 31.578947368421062,
+              "tolerance_pct": 0.0,
+              "inden_tolerance": false,
+              "handling": "afvis",
+              "t_vejdim_mm": 600.0,
+              "t_rand_mm": 455.99999999999994,
+              "eo_rand": 150.0
+            }
+          },
+          "T6": {
+            "3": {
+              "eo": 144.0,
+              "zone": "ok",
+              "skala": 1.0,
+              "afvigelse_pct": null,
+              "tolerance_pct": null,
+              "inden_tolerance": null,
+              "handling": null,
+              "t_vejdim_mm": 1580.0,
+              "t_rand_mm": null,
+              "eo_rand": null
+            },
+            "4": {
+              "eo": null,
+              "zone": "over",
+              "skala": 1.0,
+              "afvigelse_pct": 0.8179959100204526,
+              "tolerance_pct": 0.0,
+              "inden_tolerance": false,
+              "handling": "afvis",
+              "t_vejdim_mm": 1479.0,
+              "t_rand_mm": 1467.0,
+              "eo_rand": 150.0
+            },
+            "5": {
+              "eo": 149.1,
+              "zone": "ok",
+              "skala": 1.0,
+              "afvigelse_pct": null,
+              "tolerance_pct": null,
+              "inden_tolerance": null,
+              "handling": null,
+              "t_vejdim_mm": 1397.0,
+              "t_rand_mm": null,
+              "eo_rand": null
+            },
+            "10": {
+              "eo": null,
+              "zone": "over",
+              "skala": 1.0,
+              "afvigelse_pct": 4.181818181818175,
+              "tolerance_pct": 0.0,
+              "inden_tolerance": false,
+              "handling": "afvis",
+              "t_vejdim_mm": 1146.0,
+              "t_rand_mm": 1100.0,
+              "eo_rand": 150.0
+            },
+            "15": {
+              "eo": null,
+              "zone": "over",
+              "skala": 1.0,
+              "afvigelse_pct": 10.333333333333329,
+              "tolerance_pct": 0.0,
+              "inden_tolerance": false,
+              "handling": "afvis",
+              "t_vejdim_mm": 993.0,
+              "t_rand_mm": 900.0,
+              "eo_rand": 150.0
+            },
+            "20": {
+              "eo": null,
+              "zone": "over",
+              "skala": 1.0,
+              "afvigelse_pct": 15.90612777053455,
+              "tolerance_pct": 0.0,
+              "inden_tolerance": false,
+              "handling": "afvis",
+              "t_vejdim_mm": 889.0,
+              "t_rand_mm": 767.0,
+              "eo_rand": 150.0
+            },
+            "30": {
+              "eo": null,
+              "zone": "over",
+              "skala": 1.0,
+              "afvigelse_pct": 25.938566552901033,
+              "tolerance_pct": 0.0,
+              "inden_tolerance": false,
+              "handling": "afvis",
+              "t_vejdim_mm": 738.0,
+              "t_rand_mm": 586.0,
+              "eo_rand": 150.0
+            },
+            "40": {
+              "eo": null,
+              "zone": "over",
+              "skala": 1.0,
+              "afvigelse_pct": 38.1578947368421,
+              "tolerance_pct": 0.0,
+              "inden_tolerance": false,
+              "handling": "afvis",
+              "t_vejdim_mm": 630.0,
+              "t_rand_mm": 456.0,
+              "eo_rand": 150.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "dataflow-0016",
+      "function": "trafik_eu_interval",
+      "args": [
+        "T1",
+        {
+          "T1": {
+            "3": {
+              "sg": 170.0,
+              "bl": 448.0
+            },
+            "4": {
+              "sg": 120.0,
+              "bl": 470.0
+            },
+            "5": {
+              "sg": 110.0,
+              "bl": 450.0
+            },
+            "10": {
+              "sg": 100.0,
+              "bl": 356.0
+            },
+            "15": {
+              "sg": 100.0,
+              "bl": 292.0
+            },
+            "20": {
+              "sg": 100.0,
+              "bl": 243.0
+            },
+            "30": {
+              "sg": 100.0,
+              "bl": 200.0
+            },
+            "40": {
+              "sg": 100.0,
+              "bl": 200.0
+            }
+          },
+          "T2": {
+            "3": {
+              "sg": 180.0,
+              "bl": 866.0
+            },
+            "4": {
+              "sg": 180.0,
+              "bl": 797.0
+            },
+            "5": {
+              "sg": 170.0,
+              "bl": 757.0
+            },
+            "10": {
+              "sg": 170.0,
+              "bl": 590.0
+            },
+            "15": {
+              "sg": 160.0,
+              "bl": 508.0
+            },
+            "20": {
+              "sg": 160.0,
+              "bl": 439.0
+            },
+            "30": {
+              "sg": 160.0,
+              "bl": 337.0
+            },
+            "40": {
+              "sg": 160.0,
+              "bl": 264.0
+            }
+          },
+          "T3": {
+            "3": {
+              "sg": 200.0,
+              "bl": 957.0
+            },
+            "4": {
+              "sg": 200.0,
+              "bl": 879.0
+            },
+            "5": {
+              "sg": 200.0,
+              "bl": 818.0
+            },
+            "10": {
+              "sg": 190.0,
+              "bl": 649.0
+            },
+            "15": {
+              "sg": 190.0,
+              "bl": 539.0
+            },
+            "20": {
+              "sg": 190.0,
+              "bl": 460.0
+            },
+            "30": {
+              "sg": 200.0,
+              "bl": 334.0
+            },
+            "40": {
+              "sg": 200.0,
+              "bl": 255.0
+            }
+          },
+          "T4": {
+            "3": {
+              "sg": 240.0,
+              "bl": 1107.0
+            },
+            "4": {
+              "sg": 240.0,
+              "bl": 1014.0
+            },
+            "5": {
+              "sg": 240.0,
+              "bl": 944.0
+            },
+            "10": {
+              "sg": 230.0,
+              "bl": 739.0
+            },
+            "15": {
+              "sg": 220.0,
+              "bl": 629.0
+            },
+            "20": {
+              "sg": 220.0,
+              "bl": 537.0
+            },
+            "30": {
+              "sg": 230.0,
+              "bl": 392.0
+            },
+            "40": {
+              "sg": 230.0,
+              "bl": 301.0
+            }
+          },
+          "T5": {
+            "3": {
+              "sg": 270.0,
+              "bl": 1224.0
+            },
+            "4": {
+              "sg": 270.0,
+              "bl": 1119.0
+            },
+            "5": {
+              "sg": 270.0,
+              "bl": 1042.0
+            },
+            "10": {
+              "sg": 260.0,
+              "bl": 818.0
+            },
+            "15": {
+              "sg": 250.0,
+              "bl": 689.0
+            },
+            "20": {
+              "sg": 250.0,
+              "bl": 590.0
+            },
+            "30": {
+              "sg": 240.0,
+              "bl": 459.0
+            },
+            "40": {
+              "sg": 240.0,
+              "bl": 360.0
+            }
+          },
+          "T6": {
+            "3": {
+              "sg": 290.0,
+              "bl": 1290.0
+            },
+            "4": {
+              "sg": 280.0,
+              "bl": 1199.0
+            },
+            "5": {
+              "sg": 280.0,
+              "bl": 1117.0
+            },
+            "10": {
+              "sg": 270.0,
+              "bl": 876.0
+            },
+            "15": {
+              "sg": 270.0,
+              "bl": 723.0
+            },
+            "20": {
+              "sg": 260.0,
+              "bl": 629.0
+            },
+            "30": {
+              "sg": 260.0,
+              "bl": 478.0
+            },
+            "40": {
+              "sg": 260.0,
+              "bl": 370.0
+            }
+          }
+        }
+      ],
+      "expected": {
+        "value": [
+          3,
+          40
+        ]
+      }
+    },
+    {
+      "id": "dataflow-0017",
+      "function": "trafik_eu_interval",
+      "args": [
+        "T4",
+        {
+          "T1": {
+            "3": {
+              "sg": 170.0,
+              "bl": 448.0
+            },
+            "4": {
+              "sg": 120.0,
+              "bl": 470.0
+            },
+            "5": {
+              "sg": 110.0,
+              "bl": 450.0
+            },
+            "10": {
+              "sg": 100.0,
+              "bl": 356.0
+            },
+            "15": {
+              "sg": 100.0,
+              "bl": 292.0
+            },
+            "20": {
+              "sg": 100.0,
+              "bl": 243.0
+            },
+            "30": {
+              "sg": 100.0,
+              "bl": 200.0
+            },
+            "40": {
+              "sg": 100.0,
+              "bl": 200.0
+            }
+          },
+          "T2": {
+            "3": {
+              "sg": 180.0,
+              "bl": 866.0
+            },
+            "4": {
+              "sg": 180.0,
+              "bl": 797.0
+            },
+            "5": {
+              "sg": 170.0,
+              "bl": 757.0
+            },
+            "10": {
+              "sg": 170.0,
+              "bl": 590.0
+            },
+            "15": {
+              "sg": 160.0,
+              "bl": 508.0
+            },
+            "20": {
+              "sg": 160.0,
+              "bl": 439.0
+            },
+            "30": {
+              "sg": 160.0,
+              "bl": 337.0
+            },
+            "40": {
+              "sg": 160.0,
+              "bl": 264.0
+            }
+          },
+          "T3": {
+            "3": {
+              "sg": 200.0,
+              "bl": 957.0
+            },
+            "4": {
+              "sg": 200.0,
+              "bl": 879.0
+            },
+            "5": {
+              "sg": 200.0,
+              "bl": 818.0
+            },
+            "10": {
+              "sg": 190.0,
+              "bl": 649.0
+            },
+            "15": {
+              "sg": 190.0,
+              "bl": 539.0
+            },
+            "20": {
+              "sg": 190.0,
+              "bl": 460.0
+            },
+            "30": {
+              "sg": 200.0,
+              "bl": 334.0
+            },
+            "40": {
+              "sg": 200.0,
+              "bl": 255.0
+            }
+          },
+          "T4": {
+            "3": {
+              "sg": 240.0,
+              "bl": 1107.0
+            },
+            "4": {
+              "sg": 240.0,
+              "bl": 1014.0
+            },
+            "5": {
+              "sg": 240.0,
+              "bl": 944.0
+            },
+            "10": {
+              "sg": 230.0,
+              "bl": 739.0
+            },
+            "15": {
+              "sg": 220.0,
+              "bl": 629.0
+            },
+            "20": {
+              "sg": 220.0,
+              "bl": 537.0
+            },
+            "30": {
+              "sg": 230.0,
+              "bl": 392.0
+            },
+            "40": {
+              "sg": 230.0,
+              "bl": 301.0
+            }
+          },
+          "T5": {
+            "3": {
+              "sg": 270.0,
+              "bl": 1224.0
+            },
+            "4": {
+              "sg": 270.0,
+              "bl": 1119.0
+            },
+            "5": {
+              "sg": 270.0,
+              "bl": 1042.0
+            },
+            "10": {
+              "sg": 260.0,
+              "bl": 818.0
+            },
+            "15": {
+              "sg": 250.0,
+              "bl": 689.0
+            },
+            "20": {
+              "sg": 250.0,
+              "bl": 590.0
+            },
+            "30": {
+              "sg": 240.0,
+              "bl": 459.0
+            },
+            "40": {
+              "sg": 240.0,
+              "bl": 360.0
+            }
+          },
+          "T6": {
+            "3": {
+              "sg": 290.0,
+              "bl": 1290.0
+            },
+            "4": {
+              "sg": 280.0,
+              "bl": 1199.0
+            },
+            "5": {
+              "sg": 280.0,
+              "bl": 1117.0
+            },
+            "10": {
+              "sg": 270.0,
+              "bl": 876.0
+            },
+            "15": {
+              "sg": 270.0,
+              "bl": 723.0
+            },
+            "20": {
+              "sg": 260.0,
+              "bl": 629.0
+            },
+            "30": {
+              "sg": 260.0,
+              "bl": 478.0
+            },
+            "40": {
+              "sg": 260.0,
+              "bl": 370.0
+            }
+          }
+        }
+      ],
+      "expected": {
+        "value": [
+          3,
+          40
+        ]
+      }
+    },
+    {
+      "id": "dataflow-0018",
+      "function": "trafik_eu_interval",
+      "args": [
+        "ukendt",
+        {
+          "T1": {
+            "3": {
+              "sg": 170.0,
+              "bl": 448.0
+            },
+            "4": {
+              "sg": 120.0,
+              "bl": 470.0
+            },
+            "5": {
+              "sg": 110.0,
+              "bl": 450.0
+            },
+            "10": {
+              "sg": 100.0,
+              "bl": 356.0
+            },
+            "15": {
+              "sg": 100.0,
+              "bl": 292.0
+            },
+            "20": {
+              "sg": 100.0,
+              "bl": 243.0
+            },
+            "30": {
+              "sg": 100.0,
+              "bl": 200.0
+            },
+            "40": {
+              "sg": 100.0,
+              "bl": 200.0
+            }
+          },
+          "T2": {
+            "3": {
+              "sg": 180.0,
+              "bl": 866.0
+            },
+            "4": {
+              "sg": 180.0,
+              "bl": 797.0
+            },
+            "5": {
+              "sg": 170.0,
+              "bl": 757.0
+            },
+            "10": {
+              "sg": 170.0,
+              "bl": 590.0
+            },
+            "15": {
+              "sg": 160.0,
+              "bl": 508.0
+            },
+            "20": {
+              "sg": 160.0,
+              "bl": 439.0
+            },
+            "30": {
+              "sg": 160.0,
+              "bl": 337.0
+            },
+            "40": {
+              "sg": 160.0,
+              "bl": 264.0
+            }
+          },
+          "T3": {
+            "3": {
+              "sg": 200.0,
+              "bl": 957.0
+            },
+            "4": {
+              "sg": 200.0,
+              "bl": 879.0
+            },
+            "5": {
+              "sg": 200.0,
+              "bl": 818.0
+            },
+            "10": {
+              "sg": 190.0,
+              "bl": 649.0
+            },
+            "15": {
+              "sg": 190.0,
+              "bl": 539.0
+            },
+            "20": {
+              "sg": 190.0,
+              "bl": 460.0
+            },
+            "30": {
+              "sg": 200.0,
+              "bl": 334.0
+            },
+            "40": {
+              "sg": 200.0,
+              "bl": 255.0
+            }
+          },
+          "T4": {
+            "3": {
+              "sg": 240.0,
+              "bl": 1107.0
+            },
+            "4": {
+              "sg": 240.0,
+              "bl": 1014.0
+            },
+            "5": {
+              "sg": 240.0,
+              "bl": 944.0
+            },
+            "10": {
+              "sg": 230.0,
+              "bl": 739.0
+            },
+            "15": {
+              "sg": 220.0,
+              "bl": 629.0
+            },
+            "20": {
+              "sg": 220.0,
+              "bl": 537.0
+            },
+            "30": {
+              "sg": 230.0,
+              "bl": 392.0
+            },
+            "40": {
+              "sg": 230.0,
+              "bl": 301.0
+            }
+          },
+          "T5": {
+            "3": {
+              "sg": 270.0,
+              "bl": 1224.0
+            },
+            "4": {
+              "sg": 270.0,
+              "bl": 1119.0
+            },
+            "5": {
+              "sg": 270.0,
+              "bl": 1042.0
+            },
+            "10": {
+              "sg": 260.0,
+              "bl": 818.0
+            },
+            "15": {
+              "sg": 250.0,
+              "bl": 689.0
+            },
+            "20": {
+              "sg": 250.0,
+              "bl": 590.0
+            },
+            "30": {
+              "sg": 240.0,
+              "bl": 459.0
+            },
+            "40": {
+              "sg": 240.0,
+              "bl": 360.0
+            }
+          },
+          "T6": {
+            "3": {
+              "sg": 290.0,
+              "bl": 1290.0
+            },
+            "4": {
+              "sg": 280.0,
+              "bl": 1199.0
+            },
+            "5": {
+              "sg": 280.0,
+              "bl": 1117.0
+            },
+            "10": {
+              "sg": 270.0,
+              "bl": 876.0
+            },
+            "15": {
+              "sg": 270.0,
+              "bl": 723.0
+            },
+            "20": {
+              "sg": 260.0,
+              "bl": 629.0
+            },
+            "30": {
+              "sg": 260.0,
+              "bl": 478.0
+            },
+            "40": {
+              "sg": 260.0,
+              "bl": 370.0
+            }
+          }
+        }
+      ],
+      "expected": {
+        "value": null
+      }
+    },
+    {
+      "id": "dataflow-0019",
+      "function": "korrelation_fra_koersler",
+      "args": [
+        {
+          "T4": {
+            "5": 800,
+            "10": {
+              "sg": 300,
+              "bl": 400
+            },
+            "15": 0,
+            "20": 3000
+          }
+        },
+        null,
+        null
+      ],
+      "expected": {
+        "value": {
+          "T4": {
+            "5": "under",
+            "10": 45.0,
+            "15": "mangler",
+            "20": "over"
+          }
+        }
+      }
+    },
+    {
+      "id": "dataflow-0020",
+      "function": "korrelation_opslag",
+      "args": [
+        {
+          "T4": {
+            "5": 800,
+            "10": {
+              "sg": 300,
+              "bl": 400
+            },
+            "15": 0,
+            "20": 3000
+          }
+        },
+        null,
+        null
+      ],
+      "expected": {
+        "value": {
+          "T4": {
+            "5": {
+              "eo": null,
+              "zone": "under",
+              "skala": 1.0,
+              "afvigelse_pct": 11.111111111111116,
+              "tolerance_pct": 5.0,
+              "inden_tolerance": false,
+              "handling": "afvis",
+              "t_vejdim_mm": 800.0,
+              "t_rand_mm": 900.0,
+              "eo_rand": 30.0
+            },
+            "10": {
+              "eo": 45.0,
+              "zone": "ok",
+              "skala": 1.0,
+              "afvigelse_pct": null,
+              "tolerance_pct": null,
+              "inden_tolerance": null,
+              "handling": null,
+              "t_vejdim_mm": 700.0,
+              "t_rand_mm": null,
+              "eo_rand": null
+            },
+            "15": {
+              "eo": null,
+              "zone": "mangler"
+            },
+            "20": {
+              "eo": null,
+              "zone": "over",
+              "skala": 1.0,
+              "afvigelse_pct": 291.1342894393742,
+              "tolerance_pct": 5.0,
+              "inden_tolerance": false,
+              "handling": "afvis",
+              "t_vejdim_mm": 3000.0,
+              "t_rand_mm": 767.0,
+              "eo_rand": 150.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "dataflow-0021",
+      "function": "korrelation_fra_koersler",
+      "args": [
+        {
+          "T4": {
+            "5": 800,
+            "10": {
+              "sg": 300,
+              "bl": 400
+            },
+            "15": 0,
+            "20": 3000
+          }
+        },
+        null,
+        {
+          "under_uden": "vejdim",
+          "over_uden": "vejdim"
+        }
+      ],
+      "expected": {
+        "value": {
+          "T4": {
+            "5": 30.0,
+            "10": 45.0,
+            "15": "mangler",
+            "20": 150.0
+          }
+        }
+      }
+    },
+    {
+      "id": "dataflow-0022",
+      "function": "korrelation_opslag",
+      "args": [
+        {
+          "T4": {
+            "5": 800,
+            "10": {
+              "sg": 300,
+              "bl": 400
+            },
+            "15": 0,
+            "20": 3000
+          }
+        },
+        null,
+        {
+          "under_uden": "vejdim",
+          "over_uden": "vejdim"
+        }
+      ],
+      "expected": {
+        "value": {
+          "T4": {
+            "5": {
+              "eo": 30.0,
+              "zone": "under",
+              "skala": 0.8888888888888888,
+              "afvigelse_pct": 11.111111111111116,
+              "tolerance_pct": 5.0,
+              "inden_tolerance": false,
+              "handling": "vejdim",
+              "t_vejdim_mm": 800.0,
+              "t_rand_mm": 900.0,
+              "eo_rand": 30.0
+            },
+            "10": {
+              "eo": 45.0,
+              "zone": "ok",
+              "skala": 1.0,
+              "afvigelse_pct": null,
+              "tolerance_pct": null,
+              "inden_tolerance": null,
+              "handling": null,
+              "t_vejdim_mm": 700.0,
+              "t_rand_mm": null,
+              "eo_rand": null
+            },
+            "15": {
+              "eo": null,
+              "zone": "mangler"
+            },
+            "20": {
+              "eo": 150.0,
+              "zone": "over",
+              "skala": 3.911342894393742,
+              "afvigelse_pct": 291.1342894393742,
+              "tolerance_pct": 5.0,
+              "inden_tolerance": false,
+              "handling": "vejdim",
+              "t_vejdim_mm": 3000.0,
+              "t_rand_mm": 767.0,
+              "eo_rand": 150.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "dataflow-0023",
+      "function": "korrelation_fra_koersler",
+      "args": [
+        {
+          "T4": {
+            "5": 800,
+            "10": {
+              "sg": 300,
+              "bl": 400
+            },
+            "15": 0,
+            "20": 3000
+          }
+        },
+        null,
+        {
+          "tolerance_over_pct": 0,
+          "tolerance_under_pct": 0
+        }
+      ],
+      "expected": {
+        "value": {
+          "T4": {
+            "5": "under",
+            "10": 45.0,
+            "15": "mangler",
+            "20": "over"
+          }
+        }
+      }
+    },
+    {
+      "id": "dataflow-0024",
+      "function": "korrelation_opslag",
+      "args": [
+        {
+          "T4": {
+            "5": 800,
+            "10": {
+              "sg": 300,
+              "bl": 400
+            },
+            "15": 0,
+            "20": 3000
+          }
+        },
+        null,
+        {
+          "tolerance_over_pct": 0,
+          "tolerance_under_pct": 0
+        }
+      ],
+      "expected": {
+        "value": {
+          "T4": {
+            "5": {
+              "eo": null,
+              "zone": "under",
+              "skala": 1.0,
+              "afvigelse_pct": 11.111111111111116,
+              "tolerance_pct": 0.0,
+              "inden_tolerance": false,
+              "handling": "afvis",
+              "t_vejdim_mm": 800.0,
+              "t_rand_mm": 900.0,
+              "eo_rand": 30.0
+            },
+            "10": {
+              "eo": 45.0,
+              "zone": "ok",
+              "skala": 1.0,
+              "afvigelse_pct": null,
+              "tolerance_pct": null,
+              "inden_tolerance": null,
+              "handling": null,
+              "t_vejdim_mm": 700.0,
+              "t_rand_mm": null,
+              "eo_rand": null
+            },
+            "15": {
+              "eo": null,
+              "zone": "mangler"
+            },
+            "20": {
+              "eo": null,
+              "zone": "over",
+              "skala": 1.0,
+              "afvigelse_pct": 291.1342894393742,
+              "tolerance_pct": 0.0,
+              "inden_tolerance": false,
+              "handling": "afvis",
+              "t_vejdim_mm": 3000.0,
+              "t_rand_mm": 767.0,
+              "eo_rand": 150.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "dataflow-0025",
+      "function": "trafik_eu_interval",
+      "args": [
+        "T1",
+        {
+          "T4": {
+            "5": 800,
+            "10": {
+              "sg": 300,
+              "bl": 400
+            },
+            "15": 0,
+            "20": 3000
+          }
+        }
+      ],
+      "expected": {
+        "value": null
+      }
+    },
+    {
+      "id": "dataflow-0026",
+      "function": "trafik_eu_interval",
+      "args": [
+        "T4",
+        {
+          "T4": {
+            "5": 800,
+            "10": {
+              "sg": 300,
+              "bl": 400
+            },
+            "15": 0,
+            "20": 3000
+          }
+        }
+      ],
+      "expected": {
+        "value": [
+          5,
+          20
+        ]
+      }
+    },
+    {
+      "id": "dataflow-0027",
+      "function": "trafik_eu_interval",
+      "args": [
+        "ukendt",
+        {
+          "T4": {
+            "5": 800,
+            "10": {
+              "sg": 300,
+              "bl": 400
+            },
+            "15": 0,
+            "20": 3000
+          }
+        }
+      ],
+      "expected": {
+        "value": null
+      }
+    },
+    {
+      "id": "dataflow-0028",
+      "function": "format_trafikklasse",
+      "args": [
+        "T1"
+      ],
+      "expected": {
+        "value": "T1 — Meget let trafik"
+      }
+    },
+    {
+      "id": "dataflow-0029",
+      "function": "trafikklasse_noegletal",
+      "args": [
+        "T1"
+      ],
+      "expected": {
+        "value": [
+          [
+            "Tunge køretøjer pr. døgn, begge retninger",
+            "≤ 1"
+          ],
+          [
+            "NÆ10 pr. døgn pr. vognbane (øvre grænse)",
+            "0,5"
+          ],
+          [
+            "Dimensionsgivende trafikbelastning",
+            "75 NÆ10 pr. år pr. vognbane"
+          ],
+          [
+            "Svarende til 20 år",
+            "1.500 NÆ10"
+          ],
+          [
+            "Typisk anvendelse",
+            "Fortove, cykelstier, stisystemer og mindre boligveje uden bustrafik"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "dataflow-0030",
+      "function": "trafik_eo_aekv",
+      "args": [
+        "T1",
+        3
+      ],
+      "expected": {
+        "value": [
+          null,
+          "under",
+          1.0
+        ]
+      }
+    },
+    {
+      "id": "dataflow-0031",
+      "function": "trafik_eo_aekv",
+      "args": [
+        "T1",
+        10
+      ],
+      "expected": {
+        "value": [
+          null,
+          "under",
+          1.0
+        ]
+      }
+    },
+    {
+      "id": "dataflow-0032",
+      "function": "trafik_eo_aekv",
+      "args": [
+        "T1",
+        45
+      ],
+      "expected": {
+        "value": [
+          null,
+          "udenfor",
+          1.0
+        ]
+      }
+    },
+    {
+      "id": "dataflow-0033",
+      "function": "format_trafikklasse",
+      "args": [
+        "T2"
+      ],
+      "expected": {
+        "value": "T2 — Let trafik"
+      }
+    },
+    {
+      "id": "dataflow-0034",
+      "function": "trafikklasse_noegletal",
+      "args": [
+        "T2"
+      ],
+      "expected": {
+        "value": [
+          [
+            "Tunge køretøjer pr. døgn, begge retninger",
+            "≤ 65"
+          ],
+          [
+            "NÆ10 pr. døgn pr. vognbane (øvre grænse)",
+            "20"
+          ],
+          [
+            "Dimensionsgivende trafikbelastning",
+            "7.300 NÆ10 pr. år pr. vognbane"
+          ],
+          [
+            "Svarende til 20 år",
+            "146.000 NÆ10"
+          ],
+          [
+            "Typisk anvendelse",
+            "Lokale boligveje og samleveje med begrænset servicetrafik"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "dataflow-0035",
+      "function": "trafik_eo_aekv",
+      "args": [
+        "T2",
+        3
+      ],
+      "expected": {
+        "value": [
+          30.0,
+          "under",
+          1.0
+        ]
+      }
+    },
+    {
+      "id": "dataflow-0036",
+      "function": "trafik_eo_aekv",
+      "args": [
+        "T2",
+        10
+      ],
+      "expected": {
+        "value": [
+          54.0,
+          "ok",
+          1.0
+        ]
+      }
+    },
+    {
+      "id": "dataflow-0037",
+      "function": "trafik_eo_aekv",
+      "args": [
+        "T2",
+        45
+      ],
+      "expected": {
+        "value": [
+          null,
+          "udenfor",
+          1.0
+        ]
+      }
+    },
+    {
+      "id": "dataflow-0038",
+      "function": "format_trafikklasse",
+      "args": [
+        "T3"
+      ],
+      "expected": {
+        "value": "T3 — Let–middel trafik"
+      }
+    },
+    {
+      "id": "dataflow-0039",
+      "function": "trafikklasse_noegletal",
+      "args": [
+        "T3"
+      ],
+      "expected": {
+        "value": [
+          [
+            "Tunge køretøjer pr. døgn, begge retninger",
+            "65 til 120"
+          ],
+          [
+            "NÆ10 pr. døgn pr. vognbane (øvre grænse)",
+            "50"
+          ],
+          [
+            "Dimensionsgivende trafikbelastning",
+            "18.300 NÆ10 pr. år pr. vognbane"
+          ],
+          [
+            "Svarende til 20 år",
+            "366.000 NÆ10"
+          ],
+          [
+            "Typisk anvendelse",
+            "Lokale boligveje og samleveje med begrænset servicetrafik"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "dataflow-0040",
+      "function": "trafik_eo_aekv",
+      "args": [
+        "T3",
+        3
+      ],
+      "expected": {
+        "value": [
+          38.55,
+          "ok",
+          1.0
+        ]
+      }
+    },
+    {
+      "id": "dataflow-0041",
+      "function": "trafik_eo_aekv",
+      "args": [
+        "T3",
+        10
+      ],
+      "expected": {
+        "value": [
+          67.8,
+          "ok",
+          1.0
+        ]
+      }
+    },
+    {
+      "id": "dataflow-0042",
+      "function": "trafik_eo_aekv",
+      "args": [
+        "T3",
+        45
+      ],
+      "expected": {
+        "value": [
+          null,
+          "udenfor",
+          1.0
+        ]
+      }
+    },
+    {
+      "id": "dataflow-0043",
+      "function": "format_trafikklasse",
+      "args": [
+        "T4"
+      ],
+      "expected": {
+        "value": "T4 — Middel trafik"
+      }
+    },
+    {
+      "id": "dataflow-0044",
+      "function": "trafikklasse_noegletal",
+      "args": [
+        "T4"
+      ],
+      "expected": {
+        "value": [
+          [
+            "Tunge køretøjer pr. døgn, begge retninger",
+            "120 til 560"
+          ],
+          [
+            "NÆ10 pr. døgn pr. vognbane (øvre grænse)",
+            "200"
+          ],
+          [
+            "Dimensionsgivende trafikbelastning",
+            "73.000 NÆ10 pr. år pr. vognbane"
+          ],
+          [
+            "Svarende til 20 år",
+            "1.460.000 NÆ10"
+          ],
+          [
+            "Typisk anvendelse",
+            "Bybusruter, erhvervsveje og hovedfordelingsveje"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "dataflow-0045",
+      "function": "trafik_eo_aekv",
+      "args": [
+        "T4",
+        3
+      ],
+      "expected": {
+        "value": [
+          69.4,
+          "ok",
+          1.0
+        ]
+      }
+    },
+    {
+      "id": "dataflow-0046",
+      "function": "trafik_eo_aekv",
+      "args": [
+        "T4",
+        10
+      ],
+      "expected": {
+        "value": [
+          107.6,
+          "ok",
+          1.0
+        ]
+      }
+    },
+    {
+      "id": "dataflow-0047",
+      "function": "trafik_eo_aekv",
+      "args": [
+        "T4",
+        45
+      ],
+      "expected": {
+        "value": [
+          null,
+          "udenfor",
+          1.0
+        ]
+      }
+    },
+    {
+      "id": "dataflow-0048",
+      "function": "format_trafikklasse",
+      "args": [
+        "T5"
+      ],
+      "expected": {
+        "value": "T5 — Tung trafik"
+      }
+    },
+    {
+      "id": "dataflow-0049",
+      "function": "trafikklasse_noegletal",
+      "args": [
+        "T5"
+      ],
+      "expected": {
+        "value": [
+          [
+            "Tunge køretøjer pr. døgn, begge retninger",
+            "560 til 1.200"
+          ],
+          [
+            "NÆ10 pr. døgn pr. vognbane (øvre grænse)",
+            "500"
+          ],
+          [
+            "Dimensionsgivende trafikbelastning",
+            "180.000 NÆ10 pr. år pr. vognbane"
+          ],
+          [
+            "Svarende til 20 år",
+            "3.600.000 NÆ10"
+          ],
+          [
+            "Typisk anvendelse",
+            "Bybusruter, erhvervsveje og hovedfordelingsveje"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "dataflow-0050",
+      "function": "trafik_eo_aekv",
+      "args": [
+        "T5",
+        3
+      ],
+      "expected": {
+        "value": [
+          117.6,
+          "ok",
+          1.0
+        ]
+      }
+    },
+    {
+      "id": "dataflow-0051",
+      "function": "trafik_eo_aekv",
+      "args": [
+        "T5",
+        10
+      ],
+      "expected": {
+        "value": [
+          143.4,
+          "ok",
+          1.0
+        ]
+      }
+    },
+    {
+      "id": "dataflow-0052",
+      "function": "trafik_eo_aekv",
+      "args": [
+        "T5",
+        45
+      ],
+      "expected": {
+        "value": [
+          null,
+          "udenfor",
+          1.0
+        ]
+      }
+    },
+    {
+      "id": "dataflow-0053",
+      "function": "format_trafikklasse",
+      "args": [
+        "T6"
+      ],
+      "expected": {
+        "value": "T6 — Meget tung trafik"
+      }
+    },
+    {
+      "id": "dataflow-0054",
+      "function": "trafikklasse_noegletal",
+      "args": [
+        "T6"
+      ],
+      "expected": {
+        "value": [
+          [
+            "Tunge køretøjer pr. døgn, begge retninger",
+            "1.200 til 1.500"
+          ],
+          [
+            "NÆ10 pr. døgn pr. vognbane (øvre grænse)",
+            "800"
+          ],
+          [
+            "Dimensionsgivende trafikbelastning",
+            "300.000 NÆ10 pr. år pr. vognbane"
+          ],
+          [
+            "Svarende til 20 år",
+            "6.000.000 NÆ10"
+          ],
+          [
+            "Typisk anvendelse",
+            "Hovedveje, motortrafikveje og motorveje"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "dataflow-0055",
+      "function": "trafik_eo_aekv",
+      "args": [
+        "T6",
+        3
+      ],
+      "expected": {
+        "value": [
+          144.0,
+          "ok",
+          1.0
+        ]
+      }
+    },
+    {
+      "id": "dataflow-0056",
+      "function": "trafik_eo_aekv",
+      "args": [
+        "T6",
+        10
+      ],
+      "expected": {
+        "value": [
+          150.0,
+          "over",
+          1.0418181818181818
+        ]
+      }
+    },
+    {
+      "id": "dataflow-0057",
+      "function": "trafik_eo_aekv",
+      "args": [
+        "T6",
+        45
+      ],
+      "expected": {
+        "value": [
+          null,
+          "udenfor",
+          1.0
+        ]
+      }
+    },
+    {
+      "id": "dataflow-0058",
+      "function": "format_trafikklasse",
+      "args": [
+        "ukendt"
+      ],
+      "expected": {
+        "value": "ukendt"
+      }
+    },
+    {
+      "id": "dataflow-0059",
+      "function": "trafikklasse_noegletal",
+      "args": [
+        "ukendt"
+      ],
+      "expected": {
+        "value": []
+      }
+    },
+    {
+      "id": "dataflow-0060",
+      "function": "trafik_eo_aekv",
+      "args": [
+        "ukendt",
+        3
+      ],
+      "expected": {
+        "value": [
+          null,
+          "udenfor",
+          1.0
+        ]
+      }
+    },
+    {
+      "id": "dataflow-0061",
+      "function": "trafik_eo_aekv",
+      "args": [
+        "ukendt",
+        10
+      ],
+      "expected": {
+        "value": [
+          null,
+          "udenfor",
+          1.0
+        ]
+      }
+    },
+    {
+      "id": "dataflow-0062",
+      "function": "trafik_eo_aekv",
+      "args": [
+        "ukendt",
+        45
+      ],
+      "expected": {
+        "value": [
+          null,
+          "udenfor",
+          1.0
+        ]
+      }
+    },
+    {
+      "id": "dataflow-0063",
+      "function": "format_trafikklasse_interval",
+      "args": [
+        []
+      ],
+      "expected": {
+        "value": "—"
+      }
+    },
+    {
+      "id": "dataflow-0064",
+      "function": "format_trafikklasse_interval",
+      "args": [
+        [
+          "T3",
+          "T4",
+          "T5"
+        ]
+      ],
+      "expected": {
+        "value": "T3-T5"
+      }
+    },
+    {
+      "id": "dataflow-0065",
+      "function": "format_trafikklasse_interval",
+      "args": [
+        [
+          "T6",
+          "T2",
+          "T2",
+          "T4"
+        ]
+      ],
+      "expected": {
+        "value": "T2, T4, T6"
+      }
+    },
+    {
+      "id": "dataflow-0066",
+      "function": "format_trafikklasse_interval",
+      "args": [
+        [
+          "x",
+          "T1"
+        ]
+      ],
+      "expected": {
+        "value": "T1"
+      }
+    },
+    {
+      "id": "dataflow-0067",
+      "function": "format_trafikklasse_interval",
+      "args": [
+        [
+          "T0",
+          "T1"
+        ]
+      ],
+      "expected": {
+        "value": "T0-T1"
+      }
+    },
+    {
+      "id": "dataflow-0068",
+      "function": "format_trafikklasse_interval",
+      "args": [
+        [
+          "Tbad"
+        ]
+      ],
+      "expected": {
+        "error": "ValueError"
+      }
+    },
+    {
+      "id": "dataflow-0069",
+      "function": "trafikklasser_for_belastningsklasser",
+      "args": [
+        [],
+        3
+      ],
+      "expected": {
+        "value": []
+      }
+    },
+    {
+      "id": "dataflow-0070",
+      "function": "trafikklasser_for_belastningsklasser",
+      "args": [
+        [],
+        10
+      ],
+      "expected": {
+        "value": []
+      }
+    },
+    {
+      "id": "dataflow-0071",
+      "function": "trafikklasser_for_belastningsklasser",
+      "args": [
+        [],
+        30
+      ],
+      "expected": {
+        "value": []
+      }
+    },
+    {
+      "id": "dataflow-0072",
+      "function": "trafikklasser_for_belastningsklasser",
+      "args": [
+        [],
+        45
+      ],
+      "expected": {
+        "value": []
+      }
+    },
+    {
+      "id": "dataflow-0073",
+      "function": "trafikklasser_for_belastningsklasser",
+      "args": [
+        [
+          1,
+          2
+        ],
+        3
+      ],
+      "expected": {
+        "value": [
+          "T2",
+          "T3"
+        ]
+      }
+    },
+    {
+      "id": "dataflow-0074",
+      "function": "trafikklasser_for_belastningsklasser",
+      "args": [
+        [
+          1,
+          2
+        ],
+        10
+      ],
+      "expected": {
+        "value": []
+      }
+    },
+    {
+      "id": "dataflow-0075",
+      "function": "trafikklasser_for_belastningsklasser",
+      "args": [
+        [
+          1,
+          2
+        ],
+        30
+      ],
+      "expected": {
+        "value": []
+      }
+    },
+    {
+      "id": "dataflow-0076",
+      "function": "trafikklasser_for_belastningsklasser",
+      "args": [
+        [
+          1,
+          2
+        ],
+        45
+      ],
+      "expected": {
+        "value": []
+      }
+    },
+    {
+      "id": "dataflow-0077",
+      "function": "trafikklasser_for_belastningsklasser",
+      "args": [
+        [
+          3,
+          4,
+          5,
+          6
+        ],
+        3
+      ],
+      "expected": {
+        "value": [
+          "T4",
+          "T5",
+          "T6"
+        ]
+      }
+    },
+    {
+      "id": "dataflow-0078",
+      "function": "trafikklasser_for_belastningsklasser",
+      "args": [
+        [
+          3,
+          4,
+          5,
+          6
+        ],
+        10
+      ],
+      "expected": {
+        "value": [
+          "T2",
+          "T3",
+          "T4",
+          "T5",
+          "T6"
+        ]
+      }
+    },
+    {
+      "id": "dataflow-0079",
+      "function": "trafikklasser_for_belastningsklasser",
+      "args": [
+        [
+          3,
+          4,
+          5,
+          6
+        ],
+        30
+      ],
+      "expected": {
+        "value": [
+          "T1",
+          "T2",
+          "T3"
+        ]
+      }
+    },
+    {
+      "id": "dataflow-0080",
+      "function": "trafikklasser_for_belastningsklasser",
+      "args": [
+        [
+          3,
+          4,
+          5,
+          6
+        ],
+        45
+      ],
+      "expected": {
+        "value": []
+      }
+    },
+    {
+      "id": "dataflow-0081",
+      "function": "edited_flow",
+      "args": [
+        {
+          "diagrammer": [],
+          "indstillinger": {
+            "afrunding": {}
+          },
+          "koersler": [
+            {
+              "T": "T4",
+              "eu": 10,
+              "t_SG_mm": 300,
+              "t_BL_mm": 600
+            }
+          ]
+        }
+      ],
+      "expected": {
+        "value": {
+          "diagramfejl": [],
+          "resultat": {
+            "eu": 10,
+            "eo": 80,
+            "phi": 38.5,
+            "phi_uarmeret": 38.5,
+            "phi_eksakt": 38.5,
+            "phi_uarmeret_eksakt": 38.5,
+            "phi_afrunding": "ingen",
+            "lag_mode": "1_lag",
+            "net_korrektion": -0.15,
+            "eu_lower": 10,
+            "eu_upper": 10,
+            "t_low_arm_cm": 61.7,
+            "t_high_arm_cm": 61.7,
+            "t_low_uarm_cm": 90.0,
+            "t_high_uarm_cm": 90.0,
+            "t_basis_arm_cm": 61.7,
+            "t_basis_arm_mm": 617.0,
+            "t_basis_uarm_cm": 90.0,
+            "t_basis_uarm_mm": 900.0,
+            "phi_korrektion": -0.03,
+            "phi_korrektion_uarmeret": -0.03,
+            "samlet_faktor": 0.82,
+            "skala": 1.0,
+            "t_armeret_mm": 550.0,
+            "t_uarmeret_mm": 900.0,
+            "t_uarmeret_phi_kor_mm": 900.0,
+            "reduktion_mm": 350.0,
+            "reduktion_pct": 0.3889,
+            "uarmeret_mangler": false,
+            "uarmeret_fejl": null,
+            "fejl": null,
+            "t_armeret_eksakt_mm": 506.0,
+            "t_uarmeret_eksakt_mm": 900.0,
+            "t_uarmeret_phi_kor_eksakt_mm": 873.0,
+            "t_min_mm": null,
+            "reduktion_mm_eksakt": 367.0,
+            "reduktion_pct_eksakt": 0.4205,
+            "afrunding_trin_mm": 50
+          },
+          "trafik": {
+            "eo": 80.0,
+            "zone": "ok",
+            "skala": 1.0,
+            "afvigelse_pct": null,
+            "tolerance_pct": null,
+            "inden_tolerance": null,
+            "handling": null,
+            "t_vejdim_mm": 900.0,
+            "t_rand_mm": null,
+            "eo_rand": null
+          },
+          "korrelation": {
+            "T1": {
+              "3": "under",
+              "4": "under",
+              "5": "under",
+              "10": "under",
+              "15": 30.789473684210527,
+              "20": 42.3134328358209,
+              "30": 62.8,
+              "40": 97.6
+            },
+            "T2": {
+              "3": 30.0,
+              "4": 30.0,
+              "5": 34.05,
+              "10": 54.0,
+              "15": 73.6,
+              "20": 92.8,
+              "30": 123.3,
+              "40": 140.4
+            },
+            "T3": {
+              "3": 38.55,
+              "4": 46.8,
+              "5": 47.7,
+              "10": 67.8,
+              "15": 91.6,
+              "20": 113.19999999999999,
+              "30": 134.4,
+              "40": 149.7
+            },
+            "T4": {
+              "3": 69.4,
+              "4": 77.4,
+              "5": 76.8,
+              "10": 80.0,
+              "15": 134.7,
+              "20": 147.0,
+              "30": "over",
+              "40": "over"
+            },
+            "T5": {
+              "3": 117.6,
+              "4": 126.6,
+              "5": 123.6,
+              "10": 143.4,
+              "15": 150.0,
+              "20": "over",
+              "30": "over",
+              "40": "over"
+            },
+            "T6": {
+              "3": 144.0,
+              "4": 150.0,
+              "5": 149.1,
+              "10": 150.0,
+              "15": "over",
+              "20": "over",
+              "30": "over",
+              "40": "over"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "dataflow-0082",
+      "function": "edited_flow",
+      "args": [
+        {
+          "diagrammer": [],
+          "indstillinger": {
+            "afrunding": {
+              "trin_mm": 10,
+              "phi_afrunding": "ned"
+            }
+          },
+          "koersler": [
+            {
+              "T": "T4",
+              "eu": 10,
+              "t_SG_mm": 300,
+              "t_BL_mm": 600
+            }
+          ]
+        }
+      ],
+      "expected": {
+        "value": {
+          "diagramfejl": [],
+          "resultat": {
+            "eu": 10,
+            "eo": 80,
+            "phi": 38.0,
+            "phi_uarmeret": 38.0,
+            "phi_eksakt": 38.5,
+            "phi_uarmeret_eksakt": 38.5,
+            "phi_afrunding": "ned",
+            "lag_mode": "1_lag",
+            "net_korrektion": -0.15,
+            "eu_lower": 10,
+            "eu_upper": 10,
+            "t_low_arm_cm": 61.7,
+            "t_high_arm_cm": 61.7,
+            "t_low_uarm_cm": 90.0,
+            "t_high_uarm_cm": 90.0,
+            "t_basis_arm_cm": 61.7,
+            "t_basis_arm_mm": 617.0,
+            "t_basis_uarm_cm": 90.0,
+            "t_basis_uarm_mm": 900.0,
+            "phi_korrektion": -0.02,
+            "phi_korrektion_uarmeret": -0.02,
+            "samlet_faktor": 0.83,
+            "skala": 1.0,
+            "t_armeret_mm": 520.0,
+            "t_uarmeret_mm": 900.0,
+            "t_uarmeret_phi_kor_mm": 890.0,
+            "reduktion_mm": 370.0,
+            "reduktion_pct": 0.4157,
+            "uarmeret_mangler": false,
+            "uarmeret_fejl": null,
+            "fejl": null,
+            "t_armeret_eksakt_mm": 512.0,
+            "t_uarmeret_eksakt_mm": 900.0,
+            "t_uarmeret_phi_kor_eksakt_mm": 882.0,
+            "t_min_mm": null,
+            "reduktion_mm_eksakt": 370.0,
+            "reduktion_pct_eksakt": 0.4194,
+            "afrunding_trin_mm": 10
+          },
+          "trafik": {
+            "eo": 80.0,
+            "zone": "ok",
+            "skala": 1.0,
+            "afvigelse_pct": null,
+            "tolerance_pct": null,
+            "inden_tolerance": null,
+            "handling": null,
+            "t_vejdim_mm": 900.0,
+            "t_rand_mm": null,
+            "eo_rand": null
+          },
+          "korrelation": {
+            "T1": {
+              "3": "under",
+              "4": "under",
+              "5": "under",
+              "10": "under",
+              "15": 30.789473684210527,
+              "20": 42.3134328358209,
+              "30": 62.8,
+              "40": 97.6
+            },
+            "T2": {
+              "3": 30.0,
+              "4": 30.0,
+              "5": 34.05,
+              "10": 54.0,
+              "15": 73.6,
+              "20": 92.8,
+              "30": 123.3,
+              "40": 140.4
+            },
+            "T3": {
+              "3": 38.55,
+              "4": 46.8,
+              "5": 47.7,
+              "10": 67.8,
+              "15": 91.6,
+              "20": 113.19999999999999,
+              "30": 134.4,
+              "40": 149.7
+            },
+            "T4": {
+              "3": 69.4,
+              "4": 77.4,
+              "5": 76.8,
+              "10": 80.0,
+              "15": 134.7,
+              "20": 147.0,
+              "30": "over",
+              "40": "over"
+            },
+            "T5": {
+              "3": 117.6,
+              "4": 126.6,
+              "5": 123.6,
+              "10": 143.4,
+              "15": 150.0,
+              "20": "over",
+              "30": "over",
+              "40": "over"
+            },
+            "T6": {
+              "3": 144.0,
+              "4": 150.0,
+              "5": 149.1,
+              "10": 150.0,
+              "15": "over",
+              "20": "over",
+              "30": "over",
+              "40": "over"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "dataflow-0083",
+      "function": "edited_flow",
+      "args": [
+        {
+          "diagrammer": [
+            {
+              "diagram_nr": 4,
+              "rows": [
+                {
+                  "eu": 10,
+                  "t_uarmeret_cm": 95,
+                  "t_1_lag_cm": 65,
+                  "t_2_lag_cm": null
+                }
+              ]
+            }
+          ],
+          "indstillinger": {
+            "afrunding": {}
+          },
+          "koersler": [
+            {
+              "T": "T4",
+              "eu": 10,
+              "t_SG_mm": 300,
+              "t_BL_mm": 600
+            }
+          ]
+        }
+      ],
+      "expected": {
+        "value": {
+          "diagramfejl": [],
+          "resultat": {
+            "eu": 10,
+            "eo": 80,
+            "phi": 38.5,
+            "phi_uarmeret": 38.5,
+            "phi_eksakt": 38.5,
+            "phi_uarmeret_eksakt": 38.5,
+            "phi_afrunding": "ingen",
+            "lag_mode": "1_lag",
+            "net_korrektion": -0.15,
+            "eu_lower": 10,
+            "eu_upper": 10,
+            "t_low_arm_cm": 65.0,
+            "t_high_arm_cm": 65.0,
+            "t_low_uarm_cm": 95.0,
+            "t_high_uarm_cm": 95.0,
+            "t_basis_arm_cm": 65.0,
+            "t_basis_arm_mm": 650.0,
+            "t_basis_uarm_cm": 95.0,
+            "t_basis_uarm_mm": 950.0,
+            "phi_korrektion": -0.03,
+            "phi_korrektion_uarmeret": -0.03,
+            "samlet_faktor": 0.82,
+            "skala": 1.0,
+            "t_armeret_mm": 550.0,
+            "t_uarmeret_mm": 950.0,
+            "t_uarmeret_phi_kor_mm": 950.0,
+            "reduktion_mm": 400.0,
+            "reduktion_pct": 0.4211,
+            "uarmeret_mangler": false,
+            "uarmeret_fejl": null,
+            "fejl": null,
+            "t_armeret_eksakt_mm": 533.0,
+            "t_uarmeret_eksakt_mm": 950.0,
+            "t_uarmeret_phi_kor_eksakt_mm": 922.0,
+            "t_min_mm": null,
+            "reduktion_mm_eksakt": 388.0,
+            "reduktion_pct_eksakt": 0.4216,
+            "afrunding_trin_mm": 50
+          },
+          "trafik": {
+            "eo": 73.33333333333333,
+            "zone": "ok",
+            "skala": 1.0,
+            "afvigelse_pct": null,
+            "tolerance_pct": null,
+            "inden_tolerance": null,
+            "handling": null,
+            "t_vejdim_mm": 900.0,
+            "t_rand_mm": null,
+            "eo_rand": null
+          },
+          "korrelation": {
+            "T1": {
+              "3": "under",
+              "4": "under",
+              "5": "under",
+              "10": "under",
+              "15": 30.789473684210527,
+              "20": 42.3134328358209,
+              "30": 64.2,
+              "40": 103.19999999999999
+            },
+            "T2": {
+              "3": 30.0,
+              "4": 30.0,
+              "5": 34.05,
+              "10": 54.0,
+              "15": 80.4,
+              "20": 99.6,
+              "30": 123.3,
+              "40": 140.4
+            },
+            "T3": {
+              "3": 38.55,
+              "4": 46.8,
+              "5": 47.7,
+              "10": 65.2,
+              "15": 98.7,
+              "20": 114.9,
+              "30": 134.4,
+              "40": 149.7
+            },
+            "T4": {
+              "3": 74.1,
+              "4": 86.1,
+              "5": 85.2,
+              "10": 73.33333333333333,
+              "15": 134.7,
+              "20": 147.0,
+              "30": "over",
+              "40": "over"
+            },
+            "T5": {
+              "3": 118.19999999999999,
+              "4": 126.6,
+              "5": 123.6,
+              "10": 143.4,
+              "15": 150.0,
+              "20": "over",
+              "30": "over",
+              "40": "over"
+            },
+            "T6": {
+              "3": 144.0,
+              "4": 150.0,
+              "5": 149.1,
+              "10": 150.0,
+              "15": "over",
+              "20": "over",
+              "30": "over",
+              "40": "over"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "dataflow-0084",
+      "function": "edited_flow",
+      "args": [
+        {
+          "diagrammer": [
+            {
+              "diagram_nr": 4,
+              "rows": [
+                {
+                  "eu": 10,
+                  "t_uarmeret_cm": 95,
+                  "t_1_lag_cm": 65,
+                  "t_2_lag_cm": null
+                }
+              ]
+            }
+          ],
+          "indstillinger": {
+            "afrunding": {
+              "trin_mm": 10,
+              "phi_afrunding": "ned"
+            }
+          },
+          "koersler": [
+            {
+              "T": "T4",
+              "eu": 10,
+              "t_SG_mm": 300,
+              "t_BL_mm": 600
+            }
+          ]
+        }
+      ],
+      "expected": {
+        "value": {
+          "diagramfejl": [],
+          "resultat": {
+            "eu": 10,
+            "eo": 80,
+            "phi": 38.0,
+            "phi_uarmeret": 38.0,
+            "phi_eksakt": 38.5,
+            "phi_uarmeret_eksakt": 38.5,
+            "phi_afrunding": "ned",
+            "lag_mode": "1_lag",
+            "net_korrektion": -0.15,
+            "eu_lower": 10,
+            "eu_upper": 10,
+            "t_low_arm_cm": 65.0,
+            "t_high_arm_cm": 65.0,
+            "t_low_uarm_cm": 95.0,
+            "t_high_uarm_cm": 95.0,
+            "t_basis_arm_cm": 65.0,
+            "t_basis_arm_mm": 650.0,
+            "t_basis_uarm_cm": 95.0,
+            "t_basis_uarm_mm": 950.0,
+            "phi_korrektion": -0.02,
+            "phi_korrektion_uarmeret": -0.02,
+            "samlet_faktor": 0.83,
+            "skala": 1.0,
+            "t_armeret_mm": 540.0,
+            "t_uarmeret_mm": 950.0,
+            "t_uarmeret_phi_kor_mm": 940.0,
+            "reduktion_mm": 400.0,
+            "reduktion_pct": 0.4255,
+            "uarmeret_mangler": false,
+            "uarmeret_fejl": null,
+            "fejl": null,
+            "t_armeret_eksakt_mm": 540.0,
+            "t_uarmeret_eksakt_mm": 950.0,
+            "t_uarmeret_phi_kor_eksakt_mm": 931.0,
+            "t_min_mm": null,
+            "reduktion_mm_eksakt": 392.0,
+            "reduktion_pct_eksakt": 0.4205,
+            "afrunding_trin_mm": 10
+          },
+          "trafik": {
+            "eo": 73.33333333333333,
+            "zone": "ok",
+            "skala": 1.0,
+            "afvigelse_pct": null,
+            "tolerance_pct": null,
+            "inden_tolerance": null,
+            "handling": null,
+            "t_vejdim_mm": 900.0,
+            "t_rand_mm": null,
+            "eo_rand": null
+          },
+          "korrelation": {
+            "T1": {
+              "3": "under",
+              "4": "under",
+              "5": "under",
+              "10": "under",
+              "15": 30.789473684210527,
+              "20": 42.3134328358209,
+              "30": 64.2,
+              "40": 103.19999999999999
+            },
+            "T2": {
+              "3": 30.0,
+              "4": 30.0,
+              "5": 34.05,
+              "10": 54.0,
+              "15": 80.4,
+              "20": 99.6,
+              "30": 123.3,
+              "40": 140.4
+            },
+            "T3": {
+              "3": 38.55,
+              "4": 46.8,
+              "5": 47.7,
+              "10": 65.2,
+              "15": 98.7,
+              "20": 114.9,
+              "30": 134.4,
+              "40": 149.7
+            },
+            "T4": {
+              "3": 74.1,
+              "4": 86.1,
+              "5": 85.2,
+              "10": 73.33333333333333,
+              "15": 134.7,
+              "20": 147.0,
+              "30": "over",
+              "40": "over"
+            },
+            "T5": {
+              "3": 118.19999999999999,
+              "4": 126.6,
+              "5": 123.6,
+              "10": 143.4,
+              "15": 150.0,
+              "20": "over",
+              "30": "over",
+              "40": "over"
+            },
+            "T6": {
+              "3": 144.0,
+              "4": 150.0,
+              "5": 149.1,
+              "10": 150.0,
+              "15": "over",
+              "20": "over",
+              "30": "over",
+              "40": "over"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "dataflow-0085",
+      "function": "edited_flow",
+      "args": [
+        {
+          "diagrammer": [
+            {
+              "diagram_nr": 4,
+              "rows": []
+            }
+          ],
+          "indstillinger": {
+            "afrunding": {}
+          },
+          "koersler": [
+            {
+              "T": "T4",
+              "eu": 10,
+              "t_SG_mm": 300,
+              "t_BL_mm": 600
+            }
+          ]
+        }
+      ],
+      "expected": {
+        "value": {
+          "diagramfejl": [],
+          "resultat": {
+            "fejl": "Kombinationen Eᵤ=10 MPa / Eₒ=80 MPa / 1 lag geonet er uden for diagrammets gyldighedsområde (\"—\" i opslagstabellen). Et lavere Eᵤ eller færre lag vil normalt ligge inden for gyldighedsområdet."
+          },
+          "trafik": {
+            "eo": 90.0,
+            "zone": "ok",
+            "skala": 1.0,
+            "afvigelse_pct": null,
+            "tolerance_pct": null,
+            "inden_tolerance": null,
+            "handling": null,
+            "t_vejdim_mm": 900.0,
+            "t_rand_mm": null,
+            "eo_rand": null
+          },
+          "korrelation": {
+            "T1": {
+              "3": "under",
+              "4": "under",
+              "5": "under",
+              "10": "under",
+              "15": 30.789473684210527,
+              "20": 42.3134328358209,
+              "30": 64.2,
+              "40": 103.19999999999999
+            },
+            "T2": {
+              "3": 30.0,
+              "4": 30.0,
+              "5": 34.05,
+              "10": 54.0,
+              "15": 80.4,
+              "20": 99.6,
+              "30": 123.3,
+              "40": 140.4
+            },
+            "T3": {
+              "3": 38.55,
+              "4": 46.8,
+              "5": 47.7,
+              "10": 71.7,
+              "15": 98.7,
+              "20": 114.9,
+              "30": 134.4,
+              "40": 149.7
+            },
+            "T4": {
+              "3": 74.1,
+              "4": 86.1,
+              "5": 85.2,
+              "10": 90.0,
+              "15": 134.7,
+              "20": 147.0,
+              "30": "over",
+              "40": "over"
+            },
+            "T5": {
+              "3": 118.19999999999999,
+              "4": 126.6,
+              "5": 123.6,
+              "10": 143.4,
+              "15": 150.0,
+              "20": "over",
+              "30": "over",
+              "40": "over"
+            },
+            "T6": {
+              "3": 144.0,
+              "4": 150.0,
+              "5": 149.1,
+              "10": 150.0,
+              "15": "over",
+              "20": "over",
+              "30": "over",
+              "40": "over"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "dataflow-0086",
+      "function": "edited_flow",
+      "args": [
+        {
+          "diagrammer": [
+            {
+              "diagram_nr": 4,
+              "rows": []
+            }
+          ],
+          "indstillinger": {
+            "afrunding": {
+              "trin_mm": 10,
+              "phi_afrunding": "ned"
+            }
+          },
+          "koersler": [
+            {
+              "T": "T4",
+              "eu": 10,
+              "t_SG_mm": 300,
+              "t_BL_mm": 600
+            }
+          ]
+        }
+      ],
+      "expected": {
+        "value": {
+          "diagramfejl": [],
+          "resultat": {
+            "fejl": "Kombinationen Eᵤ=10 MPa / Eₒ=80 MPa / 1 lag geonet er uden for diagrammets gyldighedsområde (\"—\" i opslagstabellen). Et lavere Eᵤ eller færre lag vil normalt ligge inden for gyldighedsområdet."
+          },
+          "trafik": {
+            "eo": 90.0,
+            "zone": "ok",
+            "skala": 1.0,
+            "afvigelse_pct": null,
+            "tolerance_pct": null,
+            "inden_tolerance": null,
+            "handling": null,
+            "t_vejdim_mm": 900.0,
+            "t_rand_mm": null,
+            "eo_rand": null
+          },
+          "korrelation": {
+            "T1": {
+              "3": "under",
+              "4": "under",
+              "5": "under",
+              "10": "under",
+              "15": 30.789473684210527,
+              "20": 42.3134328358209,
+              "30": 64.2,
+              "40": 103.19999999999999
+            },
+            "T2": {
+              "3": 30.0,
+              "4": 30.0,
+              "5": 34.05,
+              "10": 54.0,
+              "15": 80.4,
+              "20": 99.6,
+              "30": 123.3,
+              "40": 140.4
+            },
+            "T3": {
+              "3": 38.55,
+              "4": 46.8,
+              "5": 47.7,
+              "10": 71.7,
+              "15": 98.7,
+              "20": 114.9,
+              "30": 134.4,
+              "40": 149.7
+            },
+            "T4": {
+              "3": 74.1,
+              "4": 86.1,
+              "5": 85.2,
+              "10": 90.0,
+              "15": 134.7,
+              "20": 147.0,
+              "30": "over",
+              "40": "over"
+            },
+            "T5": {
+              "3": 118.19999999999999,
+              "4": 126.6,
+              "5": 123.6,
+              "10": 143.4,
+              "15": 150.0,
+              "20": "over",
+              "30": "over",
+              "40": "over"
+            },
+            "T6": {
+              "3": 144.0,
+              "4": 150.0,
+              "5": 149.1,
+              "10": 150.0,
+              "15": "over",
+              "20": "over",
+              "30": "over",
+              "40": "over"
+            }
+          }
+        }
+      }
+    }
+  ]
+}

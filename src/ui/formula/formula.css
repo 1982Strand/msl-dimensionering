@@ -1,0 +1,109 @@
+/* B-070: fælles matematikpræsentation for M1 og M6. */
+.kob-formel.formula-block {
+  background: var(--background);
+  color: var(--foreground);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 18px;
+  font:
+    400 13px/1.75 'Segoe UI',
+    system-ui,
+    sans-serif;
+  font-variant-numeric: tabular-nums;
+  white-space: normal;
+  overflow-x: auto;
+  min-width: 0;
+}
+.formula-block:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+.formula-content {
+  width: max-content;
+  min-width: 100%;
+}
+.formula-block math {
+  font-family: 'Cambria Math', 'STIX Two Math', math;
+  font-size: 16px;
+  /* Cambria Math har normalt kun én vægt; appens font-synthesis:none må ikke fjerne resultatets fed. */
+  font-synthesis: weight;
+}
+.formula-block b,
+.formula-block .res-m {
+  color: var(--primary);
+  font-weight: 700;
+}
+.formula-label,
+.formula-text,
+.formula-weak {
+  color: var(--muted-foreground);
+}
+.formula-label,
+.formula-text {
+  font-size: 12px;
+}
+.formula-text {
+  white-space: pre-wrap;
+}
+/* B-072: etiket | venstre side | »= …«. Rækkerne deler kolonner, så lighedstegnene står
+   under hinanden som i LaTeX' align; fortsættelseslinjer har tom venstre side. */
+.formula-equations {
+  display: grid;
+  grid-template-columns: max-content max-content minmax(max-content, 1fr);
+  align-items: center;
+}
+.formula-equation {
+  display: grid;
+  grid-template-columns: subgrid;
+  grid-column: 1 / -1;
+  align-items: center;
+  padding: 4px 0;
+}
+.formula-label:not(:empty) {
+  min-width: 160px;
+  padding-right: 18px;
+}
+.formula-lhs {
+  text-align: right;
+}
+.formula-note {
+  margin-left: 10px;
+  font-size: 12px;
+}
+.formula-weak math {
+  font-size: 14px;
+}
+.formula-sum math {
+  font-size: 14px;
+}
+.formula-grid {
+  display: grid;
+  gap: 2px 18px;
+  align-items: center;
+}
+.formula-number {
+  text-align: right;
+}
+.formula-sum {
+  display: grid;
+  grid-template-columns: 14px minmax(max-content, 250px) max-content minmax(max-content, 1fr);
+  column-gap: 10px;
+}
+.formula-sum-row {
+  display: grid;
+  grid-template-columns: subgrid;
+  grid-column: 1 / -1;
+  align-items: baseline;
+}
+.formula-sum-row.kob-slutlinje {
+  border-top: 1px solid var(--border);
+  margin-top: 4px;
+  padding-top: 4px;
+  font-weight: 600;
+}
+.formula-sum-row.kob-slutlinje .formula-weak {
+  font-weight: 400;
+}
+.formula-blank {
+  height: 8px;
+}

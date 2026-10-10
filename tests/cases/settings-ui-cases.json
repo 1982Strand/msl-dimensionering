@@ -1,0 +1,340 @@
+{
+  "defaults": {
+    "afrunding": {
+      "trin_mm": 50,
+      "reduktion_eksakt": false,
+      "vis_eksakt": false,
+      "phi_afrunding": "ingen"
+    },
+    "opbygning": {
+      "geonet_paaskrift": true,
+      "maal_streg": true,
+      "maal_tal": true,
+      "signatur": true,
+      "enhed": "mm"
+    },
+    "lagfordeling": {
+      "fordeling": "minimum",
+      "samlet_minimum": true,
+      "minimum_mm": {
+        "1": 200.0,
+        "2": 200.0,
+        "3": 200.0,
+        "4": 250.0,
+        "5": 275.0,
+        "6": 300.0
+      },
+      "restlag": "vis",
+      "restlag_graense_mm": 100.0,
+      "vd_minimum_mm": {
+        "Bærelag": 100.0,
+        "Bundsikring": 200.0
+      },
+      "phi_regel": "laveste",
+      "kraev_bundsikring": false,
+      "netplacering": "laggraense",
+      "standard_klassisk": false,
+      "standard_opdeling": true,
+      "standard_under_minimum": "stabilgrus"
+    },
+    "yderomraade": {
+      "tolerance_over_pct": 5.0,
+      "tolerance_under_pct": 5.0,
+      "under_inden": "laveste",
+      "over_uden": "afvis",
+      "under_uden": "afvis"
+    }
+  },
+  "snapshots": [
+    {
+      "id": "settings-default",
+      "widgets": [
+        {
+          "key": "ind_afr_trin",
+          "kind": "select",
+          "label": "Oprundingstrin",
+          "value": 50,
+          "disabled": false,
+          "help": "Lagtykkelsen oprundes til nærmeste hele multiplum af trinnet. Ved 1 mm angives lagtykkelsen som beregnet.",
+          "optionLabels": [
+            "1 mm (ingen oprunding)",
+            "10 mm",
+            "50 mm",
+            "100 mm"
+          ]
+        },
+        {
+          "key": "ind_afr_reduktion",
+          "kind": "radio",
+          "label": "Reduktion i mm og %",
+          "value": "Af de oprundede lagtykkelser",
+          "disabled": false,
+          "help": "Reduktionen er forskellen mellem den ustabiliserede og den stabiliserede lagtykkelse. Opgøres den af de oprundede lagtykkelser, stemmer den med de viste tal; opgøres den af de beregnede, svarer den til designdiagrammets aflæsning.",
+          "optionLabels": [
+            "Af de oprundede lagtykkelser",
+            "Af de beregnede lagtykkelser"
+          ]
+        },
+        {
+          "key": "ind_afr_phi",
+          "kind": "radio",
+          "label": "Afrunding af friktionsvinklen φᵥ",
+          "value": "ingen",
+          "disabled": false,
+          "help": "Ingen afrunding (standard): φᵥ anvendes som beregnet.\n\nNedrunding til hel grad: 38,6° anvendes som 38°. En lavere φᵥ giver en tykkere opbygning, og afrundingen er dermed på den sikre side.\n\nAfrunding til nærmeste hele grad: 38,6° anvendes som 39° og 38,4° som 38°.\n\nAfrundingen gælder både den vægtede og en manuelt indtastet φᵥ samt φᵥ for hver opbygning, jf. afsnit 5. Standard regnes med referencematerialet, φᵥ = 37°, og berøres ikke.",
+          "optionLabels": [
+            "Ingen afrunding",
+            "Nedrunding til hel grad",
+            "Afrunding til nærmeste hele grad"
+          ]
+        },
+        {
+          "key": "ind_opb_enhed",
+          "kind": "radio",
+          "label": "Enhed for lagtykkelser",
+          "value": "mm",
+          "disabled": false,
+          "help": "mm (standard): 648 mm.\n\ncm: 64,8 cm. Der vises én decimal, så millimeteren bevares; en decimal, der er nul, udelades, fx 65 cm.",
+          "optionLabels": [
+            "mm",
+            "cm"
+          ]
+        },
+        {
+          "key": "ind_lf_fordeling",
+          "kind": "radio",
+          "label": "Fordeling af lagtykkelsen på materialelagene",
+          "value": "minimum",
+          "disabled": false,
+          "help": "Proportionalt\\*: lagforholdet er det indtastede i alle beregnede opbygninger.\n\nMindst minimumstykkelsen (standard): det øverste lag fordeles proportionalt, men gøres ikke tyndere end minimumstykkelsen for klassen. Resten fordeles proportionalt på de underliggende lag.\n\nFastholdt: det øverste lag har den indtastede tykkelse i alle beregnede opbygninger, dog mindst minimumstykkelsen. De underliggende lag optager både forøgelsen til den ustabiliserede tykkelse og geonettets reduktion. Er lagene angivet i procent, fastholdes det øverste lag på sin tykkelse i den ustabiliserede opbygning.\n\n\\* Appen regner som før disse indstillinger blev indført.",
+          "optionLabels": [
+            "Proportionalt — alle lag reduceres i samme forhold",
+            "Proportionalt, dog mindst minimumstykkelsen for det øverste lag",
+            "Det øverste lag fastholdes på den indtastede tykkelse"
+          ]
+        },
+        {
+          "key": "ind_lf_restlag",
+          "kind": "radio",
+          "label": "Underliggende lag",
+          "value": "vis",
+          "disabled": false,
+          "help": "Som fordelt (standard)\\*: lagene vises, som fordelingen giver dem, også når et lag er tyndt.\n\nLægges til laget ovenover: et underliggende lag, der er tyndere end grænsen, indgår i laget ovenover. Den samlede tykkelse er uændret.\n\nVD's mindste lagtykkelse: den samlede tykkelse øges i hele trin, til hvert underliggende lag mindst har den mindste lagtykkelse for sin lagtype. Tillægget står som eget led i mellemregningerne.\n\nI Standard gælder reglen, når opbygningen opdeles i stabilgrus og bundsikring, jf. afsnit 6.\n\n\\* Appen regner som før disse indstillinger blev indført.",
+          "optionLabels": [
+            "Lagene vises som fordelt",
+            "Et lag tyndere end grænsen lægges til laget ovenover",
+            "Lagene gøres mindst så tykke som VD's mindste lagtykkelse"
+          ]
+        },
+        {
+          "key": "ind_lf_phi_regel",
+          "kind": "radio",
+          "label": "Friktionsvinkel i opbygningerne",
+          "value": "laveste",
+          "disabled": false,
+          "help": "Den indtastede opbygning\\*: samme φᵥ i alle beregnede opbygninger. Reduktionen afspejler da alene geonettet.\n\nDen laveste (standard): hver opbygning regnes med den laveste af de to værdier. Ingen opbygning regnes dermed med en højere φᵥ, end dens egne lag giver.\n\nOpbygningens egne lag: hver opbygning regnes med φᵥ for sine egne lag, også når det giver en tyndere opbygning.\n\nVed de to sidste gentages beregningen, til φᵥ er stabil, og reduktionen omfatter også forskellen i materialer mellem den ustabiliserede og den stabiliserede opbygning.\n\n\\* Appen regner som før disse indstillinger blev indført.",
+          "optionLabels": [
+            "φᵥ for den indtastede opbygning i alle beregnede opbygninger",
+            "Den laveste af φᵥ for den indtastede opbygning og for opbygningens egne lag",
+            "φᵥ for opbygningens egne lag"
+          ]
+        },
+        {
+          "key": "ind_std_under_minimum",
+          "kind": "radio",
+          "label": "Opbygning tyndere end stabilgrusminimum",
+          "value": "stabilgrus",
+          "disabled": true,
+          "help": "Hele tykkelsen vises som stabilgrus (standard): opbygningen angives med den beregnede tykkelse uden bundsikring.\n\nTykkelsen øges til stabilgrusminimum: opbygningen øges, som om fluebenet for samlet minimum var sat.\n\nÉt samlet ubundet lag: opbygningen angives med den beregnede tykkelse uden opdeling.",
+          "optionLabels": [
+            "Hele tykkelsen vises som stabilgrus",
+            "Tykkelsen øges til stabilgrusminimum",
+            "Opbygningen vises som ét samlet ubundet lag"
+          ]
+        },
+        {
+          "key": "ind_lf_netplacering",
+          "kind": "radio",
+          "label": "Placering af det øverste geonet",
+          "value": "laggraense",
+          "disabled": false,
+          "help": "Ved laggrænsen (standard)\\*: nettet ligger ved materialeskiftet. Er det øverste lag tyndere end nettets mindste dæklag, gives en placeringsadvarsel.\n\nVed mindste dæklag: nettet ligger ved nettets mindste dæklag, uafhængigt af lagene.\n\nVed laggrænsen, dog mindst dæklaget: nettet ligger ved materialeskiftet, eller dybere, når nettets dæklag kræver det.\n\n\\* Appen regner som før disse indstillinger blev indført.",
+          "optionLabels": [
+            "Ved laggrænsen mellem det øverste og det næste lag",
+            "Ved nettets mindste dæklag",
+            "Ved laggrænsen, dog mindst nettets mindste dæklag"
+          ]
+        },
+        {
+          "key": "ind_yder_over_uden",
+          "kind": "radio",
+          "label": "Over, uden for tolerancen",
+          "value": "afvis",
+          "disabled": false,
+          "help": "Afvis (standard): beregningen gennemføres ikke, og opbygningen kræver en konkret vurdering.\n\nVejDims tykkelse: som inden for tolerancen, men med en advarsel om, at reduktionen er ekstrapoleret.",
+          "optionLabels": [
+            "Afvis",
+            "VejDims tykkelse, med advarsel"
+          ]
+        },
+        {
+          "key": "ind_yder_under_inden",
+          "kind": "radio",
+          "label": "Under, inden for tolerancen",
+          "value": "laveste",
+          "disabled": false,
+          "help": "Diagrammets laveste kurve (standard): der regnes med belastningsklasse 1's kurve, som er tykkere end VejDims krav. Konservativt; VejDim følges ikke nedad.\n\nVejDims tykkelse: den ustabiliserede tykkelse sættes ned til VejDims krav, og reduktionen aflæses på den laveste kurve.",
+          "optionLabels": [
+            "Diagrammets laveste kurve",
+            "VejDims tykkelse"
+          ]
+        },
+        {
+          "key": "ind_yder_under_uden",
+          "kind": "radio",
+          "label": "Under, uden for tolerancen",
+          "value": "afvis",
+          "disabled": false,
+          "help": "Afvis (standard): beregningen gennemføres ikke. Der kan i stedet dimensioneres efter belastningsklasse.\n\nDiagrammets laveste kurve: der regnes med belastningsklasse 1's kurve; resultatet er konservativt, og der vises en advarsel.\n\nVejDims tykkelse: VejDim følges nedad, og reduktionen er ekstrapoleret; der vises en advarsel.",
+          "optionLabels": [
+            "Afvis",
+            "Diagrammets laveste kurve, med advarsel",
+            "VejDims tykkelse, med advarsel"
+          ]
+        },
+        {
+          "key": "ind_afr_vis_eksakt",
+          "kind": "checkbox",
+          "label": "Anfør den beregnede lagtykkelse i parentes efter den oprundede",
+          "value": false,
+          "disabled": false,
+          "help": "Gælder resultatkortet, mellemregningerne, produkttabellen og rapportens resultattabel. Parentesen udelades, når oprundingen ikke ændrer værdien."
+        },
+        {
+          "key": "ind_opb_paaskrift",
+          "kind": "checkbox",
+          "label": "Skriv geonettets navn ud for geonetlinjerne",
+          "value": true,
+          "disabled": false,
+          "help": "Navnet står lige til venstre for søjlen ud for hver rød linje. For de tre referencenet skrives »Referencenet«."
+        },
+        {
+          "key": "ind_opb_maal_streg",
+          "kind": "checkbox",
+          "label": "Vis målsætningsstreg ved den samlede tykkelse",
+          "value": true,
+          "disabled": false,
+          "help": "Stregen går fra underbundens overkant til opbygningens top og angiver, hvilken højde målet gælder."
+        },
+        {
+          "key": "ind_opb_maal_tal",
+          "kind": "checkbox",
+          "label": "Vis den samlede tykkelse som mål",
+          "value": true,
+          "disabled": false,
+          "help": "Målet i mm ud for målsætningsstregen."
+        },
+        {
+          "key": "ind_opb_signatur",
+          "kind": "checkbox",
+          "label": "Vis signaturforklaring under figuren",
+          "value": true,
+          "disabled": false,
+          "help": "Forklaringen af materialelagenes flader og geonettets linje under figuren. Fravælges den, og er geonettets navn heller ikke skrevet ud for linjerne, fremgår navnet ikke af figuren."
+        },
+        {
+          "key": "ind_lf_samlet",
+          "kind": "checkbox",
+          "label": "Den samlede bærelagstykkelse sættes mindst til minimumstykkelsen",
+          "value": true,
+          "disabled": false,
+          "help": "Er den beregnede og oprundede lagtykkelse mindre end minimumstykkelsen for klassen, angives minimumstykkelsen, og reduktionen mindskes tilsvarende. Tillægget står som eget led i mellemregningerne. Er fluebenet fjernet, fastlægger afsnit 6, hvordan Standard-opdelingen behandler en opbygning under stabilgrusminimum.\n\nValgt som standard. Uden flueben opfører appen sig som tidligere."
+        },
+        {
+          "key": "ind_lf_kraev_bundsikring",
+          "kind": "checkbox",
+          "label": "Kræv altid et bundsikringslag",
+          "value": false,
+          "disabled": true,
+          "help": "Gælder valget »VD's mindste lagtykkelse«. Uden flueben (standard)\\* godtages en opbygning, hvor det øverste lag udgør hele tykkelsen, idet der da ikke er noget underliggende lag at vurdere. Med flueben øges opbygningen, til også de underliggende lag har deres mindste tykkelse.\n\nEksempel, belastningsklasse 4, 1 lag geonet, stabilgrus mindst 250 mm: Ved Eᵤ = 28 MPa er opbygningen med geonet 300 mm med 50 mm bundsikring. Den øges til 450 mm, og reduktionen bliver 0. Ved Eᵤ = 30 MPa er opbygningen med geonet 250 mm uden bundsikring. Uden flueben godtages den, mens den ustabiliserede opbygning øges til 450 mm, og reduktionen bliver 200 mm. Med flueben øges også opbygningen med geonet til 450 mm, og reduktionen er 0 i begge tilfælde.\n\n\\* Appen regner som før disse indstillinger blev indført."
+        },
+        {
+          "key": "ind_std_klassisk",
+          "kind": "checkbox",
+          "label": "Klassisk standardberegning",
+          "value": false,
+          "disabled": false,
+          "help": "Standard regnes direkte efter designdiagrammerne. Den samlede tykkelse oprundes alene til indbygningstrin. Der anvendes ingen minimumstykkelse, heller ikke når fluebenet i afsnit 3 er sat; opbygningen vises som ét samlet ubundet lag, og det øverste geonet ved 2 lag placeres ved nettets mindste dæklag. Brugerdefineret og reglerne for trafikklasser uden for diagrammet i afsnit 8 berøres ikke.\n\nSlået fra som standard."
+        },
+        {
+          "key": "ind_std_opdeling",
+          "kind": "checkbox",
+          "label": "Opdel opbygningen i stabilgrus og bundsikring",
+          "value": true,
+          "disabled": false,
+          "help": "Stabilgruset sættes til minimumstykkelsen for klassen i afsnit 3, oprundet til indbygningstrin, og bundsikringen udgør resten. Tynde bundsikringslag behandles efter afsnit 4. Opdelingen viser en typisk opbygning; beregningen er fortsat ført med referencematerialet φ = 37°. En materialespecifik beregning foretages i Brugerdefineret.\n\nSlået til som standard."
+        },
+        {
+          "key": "ind_lf_restlag_graense",
+          "kind": "number",
+          "label": "Grænse for sammenlægning [mm]",
+          "value": 100.0,
+          "disabled": true,
+          "help": "Et underliggende lag, der er tyndere end grænsen, lægges til laget ovenover.",
+          "min": 0.0,
+          "max": 1000.0,
+          "step": 10.0,
+          "format": "%.0f"
+        },
+        {
+          "key": "ind_lf_vd_baerelag",
+          "kind": "number",
+          "label": "Mindste tykkelse, bærelag [mm]",
+          "value": 100.0,
+          "disabled": true,
+          "help": "Gælder materialer med lagtypen Bærelag. VD, Figur 6.5: 100 mm for SG, KB, KBT, KAS, KBA og FS.",
+          "min": 0.0,
+          "max": 1000.0,
+          "step": 10.0,
+          "format": "%.0f"
+        },
+        {
+          "key": "ind_lf_vd_bundsikring",
+          "kind": "number",
+          "label": "Mindste tykkelse, bundsikringslag [mm]",
+          "value": 200.0,
+          "disabled": true,
+          "help": "Gælder materialer med lagtypen Bundsikring og bundsikringen i Standard-opdelingen. VD, Figur 6.5: 200 mm for bundsikringssand og -grus BL I og BL II.",
+          "min": 0.0,
+          "max": 1000.0,
+          "step": 10.0,
+          "format": "%.0f"
+        },
+        {
+          "key": "ind_yder_tol_over",
+          "kind": "number",
+          "label": "Tolerance, over [%]",
+          "value": 5.0,
+          "disabled": false,
+          "help": "Største afvigelse over diagrammets øverste kurve, der godtages med VejDims tykkelse. Standard 5 %.",
+          "min": 0.0,
+          "max": 50.0,
+          "step": 0.5,
+          "format": "%.1f"
+        },
+        {
+          "key": "ind_yder_tol_under",
+          "kind": "number",
+          "label": "Tolerance, under [%]",
+          "value": 5.0,
+          "disabled": false,
+          "help": "Største afvigelse under diagrammets laveste kurve, der godtages. Standard 5 %.",
+          "min": 0.0,
+          "max": 50.0,
+          "step": 0.5,
+          "format": "%.1f"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2317 @@
+{
+  "cases": [
+    {
+      "id": "review-001",
+      "input": {
+        "diagram_nr": 4,
+        "eo": 80,
+        "klasse": 4,
+        "image_name": "Diagram 4.png",
+        "rows": [
+          {
+            "eu": 1,
+            "t_uarmeret_cm": null,
+            "t_1_lag_cm": 120.0,
+            "t_2_lag_cm": 110.0
+          },
+          {
+            "eu": 2,
+            "t_uarmeret_cm": null,
+            "t_1_lag_cm": 110.0,
+            "t_2_lag_cm": 100.0
+          },
+          {
+            "eu": 3,
+            "t_uarmeret_cm": 140.0,
+            "t_1_lag_cm": 100.0,
+            "t_2_lag_cm": 90.0
+          },
+          {
+            "eu": 4,
+            "t_uarmeret_cm": 126.7,
+            "t_1_lag_cm": 90.0,
+            "t_2_lag_cm": 80.0
+          },
+          {
+            "eu": 5,
+            "t_uarmeret_cm": 120.0,
+            "t_1_lag_cm": 83.3,
+            "t_2_lag_cm": 75.0
+          },
+          {
+            "eu": 6,
+            "t_uarmeret_cm": 110.0,
+            "t_1_lag_cm": 77.5,
+            "t_2_lag_cm": 70.0
+          },
+          {
+            "eu": 7,
+            "t_uarmeret_cm": 105.0,
+            "t_1_lag_cm": 72.5,
+            "t_2_lag_cm": 65.0
+          },
+          {
+            "eu": 8,
+            "t_uarmeret_cm": 100.0,
+            "t_1_lag_cm": 68.3,
+            "t_2_lag_cm": 60.0
+          },
+          {
+            "eu": 9,
+            "t_uarmeret_cm": 95.0,
+            "t_1_lag_cm": 65.0,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 10,
+            "t_uarmeret_cm": 90.0,
+            "t_1_lag_cm": 61.7,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 11,
+            "t_uarmeret_cm": 85.0,
+            "t_1_lag_cm": 58.6,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 12,
+            "t_uarmeret_cm": 80.0,
+            "t_1_lag_cm": 55.7,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 13,
+            "t_uarmeret_cm": 76.7,
+            "t_1_lag_cm": 52.9,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 14,
+            "t_uarmeret_cm": 73.3,
+            "t_1_lag_cm": 50.0,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 15,
+            "t_uarmeret_cm": 70.0,
+            "t_1_lag_cm": 48.3,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 16,
+            "t_uarmeret_cm": 67.1,
+            "t_1_lag_cm": 46.7,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 17,
+            "t_uarmeret_cm": 64.3,
+            "t_1_lag_cm": 45.0,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 18,
+            "t_uarmeret_cm": 61.4,
+            "t_1_lag_cm": 43.3,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 19,
+            "t_uarmeret_cm": 58.9,
+            "t_1_lag_cm": 41.7,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 20,
+            "t_uarmeret_cm": 56.7,
+            "t_1_lag_cm": 40.0,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 21,
+            "t_uarmeret_cm": 54.4,
+            "t_1_lag_cm": 38.3,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 22,
+            "t_uarmeret_cm": 52.2,
+            "t_1_lag_cm": 36.7,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 23,
+            "t_uarmeret_cm": 50.0,
+            "t_1_lag_cm": 35.0,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 24,
+            "t_uarmeret_cm": 48.3,
+            "t_1_lag_cm": 33.3,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 25,
+            "t_uarmeret_cm": 46.7,
+            "t_1_lag_cm": 31.7,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 26,
+            "t_uarmeret_cm": 45.0,
+            "t_1_lag_cm": 30.0,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 27,
+            "t_uarmeret_cm": 43.3,
+            "t_1_lag_cm": 28.6,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 28,
+            "t_uarmeret_cm": 41.7,
+            "t_1_lag_cm": 27.1,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 29,
+            "t_uarmeret_cm": 40.0,
+            "t_1_lag_cm": 25.7,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 30,
+            "t_uarmeret_cm": 38.6,
+            "t_1_lag_cm": 24.3,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 31,
+            "t_uarmeret_cm": 37.1,
+            "t_1_lag_cm": 22.9,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 32,
+            "t_uarmeret_cm": 35.7,
+            "t_1_lag_cm": 21.4,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 33,
+            "t_uarmeret_cm": 34.3,
+            "t_1_lag_cm": 20.0,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 34,
+            "t_uarmeret_cm": 32.9,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 35,
+            "t_uarmeret_cm": 31.4,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 36,
+            "t_uarmeret_cm": 30.0,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 37,
+            "t_uarmeret_cm": 28.9,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 38,
+            "t_uarmeret_cm": 27.8,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 39,
+            "t_uarmeret_cm": 26.7,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 40,
+            "t_uarmeret_cm": 25.6,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 41,
+            "t_uarmeret_cm": 24.4,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 42,
+            "t_uarmeret_cm": 23.3,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 43,
+            "t_uarmeret_cm": 22.2,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 44,
+            "t_uarmeret_cm": 21.1,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 45,
+            "t_uarmeret_cm": 20.0,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          }
+        ]
+      },
+      "expected": {
+        "celler": [],
+        "nye": [],
+        "fjernede": 0
+      }
+    },
+    {
+      "id": "review-002",
+      "input": {
+        "diagram_nr": 4,
+        "eo": 80,
+        "klasse": 4,
+        "image_name": "Diagram 4.png",
+        "rows": [
+          {
+            "eu": 1,
+            "t_uarmeret_cm": null,
+            "t_1_lag_cm": 120.0,
+            "t_2_lag_cm": 110.0
+          },
+          {
+            "eu": 2,
+            "t_uarmeret_cm": null,
+            "t_1_lag_cm": 110.0,
+            "t_2_lag_cm": 100.0
+          },
+          {
+            "eu": 3,
+            "t_uarmeret_cm": 140.0,
+            "t_1_lag_cm": 100.0,
+            "t_2_lag_cm": 90.0
+          },
+          {
+            "eu": 4,
+            "t_uarmeret_cm": 126.7,
+            "t_1_lag_cm": 90.0,
+            "t_2_lag_cm": 80.0
+          },
+          {
+            "eu": 5,
+            "t_uarmeret_cm": 120.0,
+            "t_1_lag_cm": 83.3,
+            "t_2_lag_cm": 75.0
+          },
+          {
+            "eu": 6,
+            "t_uarmeret_cm": 110.0,
+            "t_1_lag_cm": 77.5,
+            "t_2_lag_cm": 70.0
+          },
+          {
+            "eu": 7,
+            "t_uarmeret_cm": 105.0,
+            "t_1_lag_cm": 72.5,
+            "t_2_lag_cm": 65.0
+          },
+          {
+            "eu": 8,
+            "t_uarmeret_cm": 100.0,
+            "t_1_lag_cm": 68.3,
+            "t_2_lag_cm": 60.0
+          },
+          {
+            "eu": 9,
+            "t_uarmeret_cm": 95.0,
+            "t_1_lag_cm": 65.0,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 10,
+            "t_uarmeret_cm": 90.0,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 11,
+            "t_uarmeret_cm": 85.0,
+            "t_1_lag_cm": 58.6,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 12,
+            "t_uarmeret_cm": 80.0,
+            "t_1_lag_cm": 55.7,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 13,
+            "t_uarmeret_cm": 76.7,
+            "t_1_lag_cm": 52.9,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 14,
+            "t_uarmeret_cm": 73.3,
+            "t_1_lag_cm": 50.0,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 15,
+            "t_uarmeret_cm": 70.0,
+            "t_1_lag_cm": 48.3,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 16,
+            "t_uarmeret_cm": 67.1,
+            "t_1_lag_cm": 46.7,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 17,
+            "t_uarmeret_cm": 64.3,
+            "t_1_lag_cm": 45.0,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 18,
+            "t_uarmeret_cm": 61.4,
+            "t_1_lag_cm": 43.3,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 19,
+            "t_uarmeret_cm": 58.9,
+            "t_1_lag_cm": 41.7,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 20,
+            "t_uarmeret_cm": 56.7,
+            "t_1_lag_cm": 40.0,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 21,
+            "t_uarmeret_cm": 54.4,
+            "t_1_lag_cm": 38.3,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 22,
+            "t_uarmeret_cm": 52.2,
+            "t_1_lag_cm": 36.7,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 23,
+            "t_uarmeret_cm": 50.0,
+            "t_1_lag_cm": 35.0,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 24,
+            "t_uarmeret_cm": 48.3,
+            "t_1_lag_cm": 33.3,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 25,
+            "t_uarmeret_cm": 46.7,
+            "t_1_lag_cm": 31.7,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 26,
+            "t_uarmeret_cm": 45.0,
+            "t_1_lag_cm": 30.0,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 27,
+            "t_uarmeret_cm": 43.3,
+            "t_1_lag_cm": 28.6,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 28,
+            "t_uarmeret_cm": 41.7,
+            "t_1_lag_cm": 27.1,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 29,
+            "t_uarmeret_cm": 40.0,
+            "t_1_lag_cm": 25.7,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 30,
+            "t_uarmeret_cm": 38.6,
+            "t_1_lag_cm": 24.3,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 31,
+            "t_uarmeret_cm": 37.1,
+            "t_1_lag_cm": 22.9,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 32,
+            "t_uarmeret_cm": 35.7,
+            "t_1_lag_cm": 21.4,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 33,
+            "t_uarmeret_cm": 34.3,
+            "t_1_lag_cm": 20.0,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 34,
+            "t_uarmeret_cm": 32.9,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 35,
+            "t_uarmeret_cm": 31.4,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 36,
+            "t_uarmeret_cm": 30.0,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 37,
+            "t_uarmeret_cm": 28.9,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 38,
+            "t_uarmeret_cm": 27.8,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 39,
+            "t_uarmeret_cm": 26.7,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 40,
+            "t_uarmeret_cm": 25.6,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 41,
+            "t_uarmeret_cm": 24.4,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 42,
+            "t_uarmeret_cm": 23.3,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 43,
+            "t_uarmeret_cm": 22.2,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 44,
+            "t_uarmeret_cm": 21.1,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 45,
+            "t_uarmeret_cm": 20.0,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          }
+        ]
+      },
+      "expected": {
+        "celler": [
+          [
+            10,
+            "t_1_lag_cm"
+          ]
+        ],
+        "nye": [],
+        "fjernede": 0
+      }
+    },
+    {
+      "id": "review-003",
+      "input": {
+        "diagram_nr": 4,
+        "eo": 80,
+        "klasse": 4,
+        "image_name": "Diagram 4.png",
+        "rows": [
+          {
+            "eu": 1,
+            "t_uarmeret_cm": null,
+            "t_1_lag_cm": 120.0,
+            "t_2_lag_cm": 110.0
+          },
+          {
+            "eu": 2,
+            "t_uarmeret_cm": null,
+            "t_1_lag_cm": 110.0,
+            "t_2_lag_cm": 100.0
+          },
+          {
+            "eu": 3,
+            "t_uarmeret_cm": 140.0,
+            "t_1_lag_cm": 100.0,
+            "t_2_lag_cm": 90.0
+          },
+          {
+            "eu": 4,
+            "t_uarmeret_cm": 126.7,
+            "t_1_lag_cm": 90.0,
+            "t_2_lag_cm": 80.0
+          },
+          {
+            "eu": 5,
+            "t_uarmeret_cm": 120.0,
+            "t_1_lag_cm": 83.3,
+            "t_2_lag_cm": 75.0
+          },
+          {
+            "eu": 6,
+            "t_uarmeret_cm": 110.0,
+            "t_1_lag_cm": 77.5,
+            "t_2_lag_cm": 70.0
+          },
+          {
+            "eu": 7,
+            "t_uarmeret_cm": 105.0,
+            "t_1_lag_cm": 72.5,
+            "t_2_lag_cm": 65.0
+          },
+          {
+            "eu": 8,
+            "t_uarmeret_cm": 100.0,
+            "t_1_lag_cm": 68.3,
+            "t_2_lag_cm": 60.0
+          },
+          {
+            "eu": 9,
+            "t_uarmeret_cm": 95.0,
+            "t_1_lag_cm": 65.0,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 10,
+            "t_uarmeret_cm": 90.0,
+            "t_1_lag_cm": 0,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 11,
+            "t_uarmeret_cm": 85.0,
+            "t_1_lag_cm": 58.6,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 12,
+            "t_uarmeret_cm": 80.0,
+            "t_1_lag_cm": 55.7,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 13,
+            "t_uarmeret_cm": 76.7,
+            "t_1_lag_cm": 52.9,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 14,
+            "t_uarmeret_cm": 73.3,
+            "t_1_lag_cm": 50.0,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 15,
+            "t_uarmeret_cm": 70.0,
+            "t_1_lag_cm": 48.3,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 16,
+            "t_uarmeret_cm": 67.1,
+            "t_1_lag_cm": 46.7,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 17,
+            "t_uarmeret_cm": 64.3,
+            "t_1_lag_cm": 45.0,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 18,
+            "t_uarmeret_cm": 61.4,
+            "t_1_lag_cm": 43.3,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 19,
+            "t_uarmeret_cm": 58.9,
+            "t_1_lag_cm": 41.7,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 20,
+            "t_uarmeret_cm": 56.7,
+            "t_1_lag_cm": 40.0,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 21,
+            "t_uarmeret_cm": 54.4,
+            "t_1_lag_cm": 38.3,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 22,
+            "t_uarmeret_cm": 52.2,
+            "t_1_lag_cm": 36.7,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 23,
+            "t_uarmeret_cm": 50.0,
+            "t_1_lag_cm": 35.0,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 24,
+            "t_uarmeret_cm": 48.3,
+            "t_1_lag_cm": 33.3,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 25,
+            "t_uarmeret_cm": 46.7,
+            "t_1_lag_cm": 31.7,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 26,
+            "t_uarmeret_cm": 45.0,
+            "t_1_lag_cm": 30.0,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 27,
+            "t_uarmeret_cm": 43.3,
+            "t_1_lag_cm": 28.6,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 28,
+            "t_uarmeret_cm": 41.7,
+            "t_1_lag_cm": 27.1,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 29,
+            "t_uarmeret_cm": 40.0,
+            "t_1_lag_cm": 25.7,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 30,
+            "t_uarmeret_cm": 38.6,
+            "t_1_lag_cm": 24.3,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 31,
+            "t_uarmeret_cm": 37.1,
+            "t_1_lag_cm": 22.9,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 32,
+            "t_uarmeret_cm": 35.7,
+            "t_1_lag_cm": 21.4,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 33,
+            "t_uarmeret_cm": 34.3,
+            "t_1_lag_cm": 20.0,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 34,
+            "t_uarmeret_cm": 32.9,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 35,
+            "t_uarmeret_cm": 31.4,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 36,
+            "t_uarmeret_cm": 30.0,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 37,
+            "t_uarmeret_cm": 28.9,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 38,
+            "t_uarmeret_cm": 27.8,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 39,
+            "t_uarmeret_cm": 26.7,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 40,
+            "t_uarmeret_cm": 25.6,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 41,
+            "t_uarmeret_cm": 24.4,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 42,
+            "t_uarmeret_cm": 23.3,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 43,
+            "t_uarmeret_cm": 22.2,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 44,
+            "t_uarmeret_cm": 21.1,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 45,
+            "t_uarmeret_cm": 20.0,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          }
+        ]
+      },
+      "expected": {
+        "celler": [
+          [
+            10,
+            "t_1_lag_cm"
+          ]
+        ],
+        "nye": [],
+        "fjernede": 0
+      }
+    },
+    {
+      "id": "review-004",
+      "input": {
+        "diagram_nr": 4,
+        "eo": 80,
+        "klasse": 4,
+        "image_name": "Diagram 4.png",
+        "rows": [
+          {
+            "eu": 1,
+            "t_uarmeret_cm": null,
+            "t_1_lag_cm": 120.0,
+            "t_2_lag_cm": 110.0
+          },
+          {
+            "eu": 2,
+            "t_uarmeret_cm": null,
+            "t_1_lag_cm": 110.0,
+            "t_2_lag_cm": 100.0
+          },
+          {
+            "eu": 3,
+            "t_uarmeret_cm": 140.0,
+            "t_1_lag_cm": 100.0,
+            "t_2_lag_cm": 90.0
+          },
+          {
+            "eu": 4,
+            "t_uarmeret_cm": 126.7,
+            "t_1_lag_cm": 90.0,
+            "t_2_lag_cm": 80.0
+          },
+          {
+            "eu": 5,
+            "t_uarmeret_cm": 120.0,
+            "t_1_lag_cm": 83.3,
+            "t_2_lag_cm": 75.0
+          },
+          {
+            "eu": 6,
+            "t_uarmeret_cm": 110.0,
+            "t_1_lag_cm": 77.5,
+            "t_2_lag_cm": 70.0
+          },
+          {
+            "eu": 7,
+            "t_uarmeret_cm": 105.0,
+            "t_1_lag_cm": 72.5,
+            "t_2_lag_cm": 65.0
+          },
+          {
+            "eu": 8,
+            "t_uarmeret_cm": 100.0,
+            "t_1_lag_cm": 68.3,
+            "t_2_lag_cm": 60.0
+          },
+          {
+            "eu": 9,
+            "t_uarmeret_cm": 95.0,
+            "t_1_lag_cm": 65.0,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 10,
+            "t_uarmeret_cm": 90.0,
+            "t_1_lag_cm": 80,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 11,
+            "t_uarmeret_cm": 85.0,
+            "t_1_lag_cm": 58.6,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 12,
+            "t_uarmeret_cm": 80.0,
+            "t_1_lag_cm": 55.7,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 13,
+            "t_uarmeret_cm": 76.7,
+            "t_1_lag_cm": 52.9,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 14,
+            "t_uarmeret_cm": 73.3,
+            "t_1_lag_cm": 50.0,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 15,
+            "t_uarmeret_cm": 70.0,
+            "t_1_lag_cm": 48.3,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 16,
+            "t_uarmeret_cm": 67.1,
+            "t_1_lag_cm": 46.7,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 17,
+            "t_uarmeret_cm": 64.3,
+            "t_1_lag_cm": 45.0,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 18,
+            "t_uarmeret_cm": 61.4,
+            "t_1_lag_cm": 43.3,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 19,
+            "t_uarmeret_cm": 58.9,
+            "t_1_lag_cm": 41.7,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 20,
+            "t_uarmeret_cm": 56.7,
+            "t_1_lag_cm": 40.0,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 21,
+            "t_uarmeret_cm": 54.4,
+            "t_1_lag_cm": 38.3,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 22,
+            "t_uarmeret_cm": 52.2,
+            "t_1_lag_cm": 36.7,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 23,
+            "t_uarmeret_cm": 50.0,
+            "t_1_lag_cm": 35.0,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 24,
+            "t_uarmeret_cm": 48.3,
+            "t_1_lag_cm": 33.3,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 25,
+            "t_uarmeret_cm": 46.7,
+            "t_1_lag_cm": 31.7,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 26,
+            "t_uarmeret_cm": 45.0,
+            "t_1_lag_cm": 30.0,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 27,
+            "t_uarmeret_cm": 43.3,
+            "t_1_lag_cm": 28.6,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 28,
+            "t_uarmeret_cm": 41.7,
+            "t_1_lag_cm": 27.1,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 29,
+            "t_uarmeret_cm": 40.0,
+            "t_1_lag_cm": 25.7,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 30,
+            "t_uarmeret_cm": 38.6,
+            "t_1_lag_cm": 24.3,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 31,
+            "t_uarmeret_cm": 37.1,
+            "t_1_lag_cm": 22.9,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 32,
+            "t_uarmeret_cm": 35.7,
+            "t_1_lag_cm": 21.4,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 33,
+            "t_uarmeret_cm": 34.3,
+            "t_1_lag_cm": 20.0,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 34,
+            "t_uarmeret_cm": 32.9,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 35,
+            "t_uarmeret_cm": 31.4,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 36,
+            "t_uarmeret_cm": 30.0,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 37,
+            "t_uarmeret_cm": 28.9,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 38,
+            "t_uarmeret_cm": 27.8,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 39,
+            "t_uarmeret_cm": 26.7,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 40,
+            "t_uarmeret_cm": 25.6,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 41,
+            "t_uarmeret_cm": 24.4,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 42,
+            "t_uarmeret_cm": 23.3,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 43,
+            "t_uarmeret_cm": 22.2,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 44,
+            "t_uarmeret_cm": 21.1,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 45,
+            "t_uarmeret_cm": 20.0,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          }
+        ]
+      },
+      "expected": {
+        "celler": [
+          [
+            10,
+            "t_1_lag_cm"
+          ]
+        ],
+        "nye": [],
+        "fjernede": 0
+      }
+    },
+    {
+      "id": "review-005",
+      "input": {
+        "diagram_nr": 4,
+        "eo": 80,
+        "klasse": 4,
+        "image_name": "Diagram 4.png",
+        "rows": [
+          {
+            "eu": 1,
+            "t_uarmeret_cm": null,
+            "t_1_lag_cm": 120.0,
+            "t_2_lag_cm": 110.0
+          },
+          {
+            "eu": 2,
+            "t_uarmeret_cm": null,
+            "t_1_lag_cm": 110.0,
+            "t_2_lag_cm": 100.0
+          },
+          {
+            "eu": 3,
+            "t_uarmeret_cm": 140.0,
+            "t_1_lag_cm": 100.0,
+            "t_2_lag_cm": 90.0
+          },
+          {
+            "eu": 4,
+            "t_uarmeret_cm": 126.7,
+            "t_1_lag_cm": 90.0,
+            "t_2_lag_cm": 80.0
+          },
+          {
+            "eu": 5,
+            "t_uarmeret_cm": 120.0,
+            "t_1_lag_cm": 83.3,
+            "t_2_lag_cm": 75.0
+          },
+          {
+            "eu": 6,
+            "t_uarmeret_cm": 110.0,
+            "t_1_lag_cm": 77.5,
+            "t_2_lag_cm": 70.0
+          },
+          {
+            "eu": 7,
+            "t_uarmeret_cm": 105.0,
+            "t_1_lag_cm": 72.5,
+            "t_2_lag_cm": 65.0
+          },
+          {
+            "eu": 8,
+            "t_uarmeret_cm": 100.0,
+            "t_1_lag_cm": 68.3,
+            "t_2_lag_cm": 60.0
+          },
+          {
+            "eu": 9,
+            "t_uarmeret_cm": 95.0,
+            "t_1_lag_cm": 65.0,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 10,
+            "t_uarmeret_cm": 90.0,
+            "t_1_lag_cm": 65.0000001,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 11,
+            "t_uarmeret_cm": 85.0,
+            "t_1_lag_cm": 58.6,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 12,
+            "t_uarmeret_cm": 80.0,
+            "t_1_lag_cm": 55.7,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 13,
+            "t_uarmeret_cm": 76.7,
+            "t_1_lag_cm": 52.9,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 14,
+            "t_uarmeret_cm": 73.3,
+            "t_1_lag_cm": 50.0,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 15,
+            "t_uarmeret_cm": 70.0,
+            "t_1_lag_cm": 48.3,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 16,
+            "t_uarmeret_cm": 67.1,
+            "t_1_lag_cm": 46.7,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 17,
+            "t_uarmeret_cm": 64.3,
+            "t_1_lag_cm": 45.0,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 18,
+            "t_uarmeret_cm": 61.4,
+            "t_1_lag_cm": 43.3,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 19,
+            "t_uarmeret_cm": 58.9,
+            "t_1_lag_cm": 41.7,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 20,
+            "t_uarmeret_cm": 56.7,
+            "t_1_lag_cm": 40.0,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 21,
+            "t_uarmeret_cm": 54.4,
+            "t_1_lag_cm": 38.3,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 22,
+            "t_uarmeret_cm": 52.2,
+            "t_1_lag_cm": 36.7,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 23,
+            "t_uarmeret_cm": 50.0,
+            "t_1_lag_cm": 35.0,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 24,
+            "t_uarmeret_cm": 48.3,
+            "t_1_lag_cm": 33.3,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 25,
+            "t_uarmeret_cm": 46.7,
+            "t_1_lag_cm": 31.7,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 26,
+            "t_uarmeret_cm": 45.0,
+            "t_1_lag_cm": 30.0,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 27,
+            "t_uarmeret_cm": 43.3,
+            "t_1_lag_cm": 28.6,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 28,
+            "t_uarmeret_cm": 41.7,
+            "t_1_lag_cm": 27.1,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 29,
+            "t_uarmeret_cm": 40.0,
+            "t_1_lag_cm": 25.7,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 30,
+            "t_uarmeret_cm": 38.6,
+            "t_1_lag_cm": 24.3,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 31,
+            "t_uarmeret_cm": 37.1,
+            "t_1_lag_cm": 22.9,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 32,
+            "t_uarmeret_cm": 35.7,
+            "t_1_lag_cm": 21.4,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 33,
+            "t_uarmeret_cm": 34.3,
+            "t_1_lag_cm": 20.0,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 34,
+            "t_uarmeret_cm": 32.9,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 35,
+            "t_uarmeret_cm": 31.4,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 36,
+            "t_uarmeret_cm": 30.0,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 37,
+            "t_uarmeret_cm": 28.9,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 38,
+            "t_uarmeret_cm": 27.8,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 39,
+            "t_uarmeret_cm": 26.7,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 40,
+            "t_uarmeret_cm": 25.6,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 41,
+            "t_uarmeret_cm": 24.4,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 42,
+            "t_uarmeret_cm": 23.3,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 43,
+            "t_uarmeret_cm": 22.2,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 44,
+            "t_uarmeret_cm": 21.1,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 45,
+            "t_uarmeret_cm": 20.0,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          }
+        ]
+      },
+      "expected": {
+        "celler": [
+          [
+            10,
+            "t_1_lag_cm"
+          ]
+        ],
+        "nye": [],
+        "fjernede": 0
+      }
+    },
+    {
+      "id": "review-006",
+      "input": {
+        "diagram_nr": 4,
+        "eo": 80,
+        "klasse": 4,
+        "image_name": "Diagram 4.png",
+        "rows": [
+          {
+            "eu": 1,
+            "t_uarmeret_cm": null,
+            "t_1_lag_cm": 120.0,
+            "t_2_lag_cm": 110.0
+          },
+          {
+            "eu": 2,
+            "t_uarmeret_cm": null,
+            "t_1_lag_cm": 110.0,
+            "t_2_lag_cm": 100.0
+          },
+          {
+            "eu": 3,
+            "t_uarmeret_cm": 140.0,
+            "t_1_lag_cm": 100.0,
+            "t_2_lag_cm": 90.0
+          },
+          {
+            "eu": 4,
+            "t_uarmeret_cm": 126.7,
+            "t_1_lag_cm": 90.0,
+            "t_2_lag_cm": 80.0
+          },
+          {
+            "eu": 5,
+            "t_uarmeret_cm": 120.0,
+            "t_1_lag_cm": 83.3,
+            "t_2_lag_cm": 75.0
+          },
+          {
+            "eu": 6,
+            "t_uarmeret_cm": 110.0,
+            "t_1_lag_cm": 77.5,
+            "t_2_lag_cm": 70.0
+          },
+          {
+            "eu": 7,
+            "t_uarmeret_cm": 105.0,
+            "t_1_lag_cm": 72.5,
+            "t_2_lag_cm": 65.0
+          },
+          {
+            "eu": 8,
+            "t_uarmeret_cm": 100.0,
+            "t_1_lag_cm": 68.3,
+            "t_2_lag_cm": 60.0
+          },
+          {
+            "eu": 9,
+            "t_uarmeret_cm": 95.0,
+            "t_1_lag_cm": 65.0,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 10,
+            "t_uarmeret_cm": 90.0,
+            "t_1_lag_cm": 65.000001,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 11,
+            "t_uarmeret_cm": 85.0,
+            "t_1_lag_cm": 58.6,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 12,
+            "t_uarmeret_cm": 80.0,
+            "t_1_lag_cm": 55.7,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 13,
+            "t_uarmeret_cm": 76.7,
+            "t_1_lag_cm": 52.9,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 14,
+            "t_uarmeret_cm": 73.3,
+            "t_1_lag_cm": 50.0,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 15,
+            "t_uarmeret_cm": 70.0,
+            "t_1_lag_cm": 48.3,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 16,
+            "t_uarmeret_cm": 67.1,
+            "t_1_lag_cm": 46.7,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 17,
+            "t_uarmeret_cm": 64.3,
+            "t_1_lag_cm": 45.0,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 18,
+            "t_uarmeret_cm": 61.4,
+            "t_1_lag_cm": 43.3,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 19,
+            "t_uarmeret_cm": 58.9,
+            "t_1_lag_cm": 41.7,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 20,
+            "t_uarmeret_cm": 56.7,
+            "t_1_lag_cm": 40.0,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 21,
+            "t_uarmeret_cm": 54.4,
+            "t_1_lag_cm": 38.3,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 22,
+            "t_uarmeret_cm": 52.2,
+            "t_1_lag_cm": 36.7,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 23,
+            "t_uarmeret_cm": 50.0,
+            "t_1_lag_cm": 35.0,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 24,
+            "t_uarmeret_cm": 48.3,
+            "t_1_lag_cm": 33.3,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 25,
+            "t_uarmeret_cm": 46.7,
+            "t_1_lag_cm": 31.7,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 26,
+            "t_uarmeret_cm": 45.0,
+            "t_1_lag_cm": 30.0,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 27,
+            "t_uarmeret_cm": 43.3,
+            "t_1_lag_cm": 28.6,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 28,
+            "t_uarmeret_cm": 41.7,
+            "t_1_lag_cm": 27.1,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 29,
+            "t_uarmeret_cm": 40.0,
+            "t_1_lag_cm": 25.7,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 30,
+            "t_uarmeret_cm": 38.6,
+            "t_1_lag_cm": 24.3,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 31,
+            "t_uarmeret_cm": 37.1,
+            "t_1_lag_cm": 22.9,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 32,
+            "t_uarmeret_cm": 35.7,
+            "t_1_lag_cm": 21.4,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 33,
+            "t_uarmeret_cm": 34.3,
+            "t_1_lag_cm": 20.0,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 34,
+            "t_uarmeret_cm": 32.9,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 35,
+            "t_uarmeret_cm": 31.4,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 36,
+            "t_uarmeret_cm": 30.0,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 37,
+            "t_uarmeret_cm": 28.9,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 38,
+            "t_uarmeret_cm": 27.8,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 39,
+            "t_uarmeret_cm": 26.7,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 40,
+            "t_uarmeret_cm": 25.6,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 41,
+            "t_uarmeret_cm": 24.4,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 42,
+            "t_uarmeret_cm": 23.3,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 43,
+            "t_uarmeret_cm": 22.2,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 44,
+            "t_uarmeret_cm": 21.1,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 45,
+            "t_uarmeret_cm": 20.0,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          }
+        ]
+      },
+      "expected": {
+        "celler": [
+          [
+            10,
+            "t_1_lag_cm"
+          ]
+        ],
+        "nye": [],
+        "fjernede": 0
+      }
+    },
+    {
+      "id": "review-007",
+      "input": {
+        "diagram_nr": 4,
+        "eo": 80,
+        "klasse": 4,
+        "image_name": "Diagram 4.png",
+        "rows": [
+          {
+            "eu": 1,
+            "t_uarmeret_cm": null,
+            "t_1_lag_cm": 120.0,
+            "t_2_lag_cm": 110.0
+          },
+          {
+            "eu": 2,
+            "t_uarmeret_cm": null,
+            "t_1_lag_cm": 110.0,
+            "t_2_lag_cm": 100.0
+          },
+          {
+            "eu": 3,
+            "t_uarmeret_cm": 140.0,
+            "t_1_lag_cm": 100.0,
+            "t_2_lag_cm": 90.0
+          },
+          {
+            "eu": 4,
+            "t_uarmeret_cm": 126.7,
+            "t_1_lag_cm": 90.0,
+            "t_2_lag_cm": 80.0
+          },
+          {
+            "eu": 5,
+            "t_uarmeret_cm": 120.0,
+            "t_1_lag_cm": 83.3,
+            "t_2_lag_cm": 75.0
+          },
+          {
+            "eu": 6,
+            "t_uarmeret_cm": 110.0,
+            "t_1_lag_cm": 77.5,
+            "t_2_lag_cm": 70.0
+          },
+          {
+            "eu": 7,
+            "t_uarmeret_cm": 105.0,
+            "t_1_lag_cm": 72.5,
+            "t_2_lag_cm": 65.0
+          },
+          {
+            "eu": 8,
+            "t_uarmeret_cm": 100.0,
+            "t_1_lag_cm": 68.3,
+            "t_2_lag_cm": 60.0
+          },
+          {
+            "eu": 9,
+            "t_uarmeret_cm": 95.0,
+            "t_1_lag_cm": 65.0,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 10,
+            "t_uarmeret_cm": 90.0,
+            "t_1_lag_cm": 61.7,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 11,
+            "t_uarmeret_cm": 85.0,
+            "t_1_lag_cm": 58.6,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 12,
+            "t_uarmeret_cm": 80.0,
+            "t_1_lag_cm": 55.7,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 13,
+            "t_uarmeret_cm": 76.7,
+            "t_1_lag_cm": 52.9,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 14,
+            "t_uarmeret_cm": 73.3,
+            "t_1_lag_cm": 50.0,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 15,
+            "t_uarmeret_cm": 70.0,
+            "t_1_lag_cm": 48.3,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 16,
+            "t_uarmeret_cm": 67.1,
+            "t_1_lag_cm": 46.7,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 17,
+            "t_uarmeret_cm": 64.3,
+            "t_1_lag_cm": 45.0,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 18,
+            "t_uarmeret_cm": 61.4,
+            "t_1_lag_cm": 43.3,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 19,
+            "t_uarmeret_cm": 58.9,
+            "t_1_lag_cm": 41.7,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 20,
+            "t_uarmeret_cm": 56.7,
+            "t_1_lag_cm": 40.0,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 21,
+            "t_uarmeret_cm": 54.4,
+            "t_1_lag_cm": 38.3,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 22,
+            "t_uarmeret_cm": 52.2,
+            "t_1_lag_cm": 36.7,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 23,
+            "t_uarmeret_cm": 50.0,
+            "t_1_lag_cm": 35.0,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 24,
+            "t_uarmeret_cm": 48.3,
+            "t_1_lag_cm": 33.3,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 25,
+            "t_uarmeret_cm": 46.7,
+            "t_1_lag_cm": 31.7,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 26,
+            "t_uarmeret_cm": 45.0,
+            "t_1_lag_cm": 30.0,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 27,
+            "t_uarmeret_cm": 43.3,
+            "t_1_lag_cm": 28.6,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 28,
+            "t_uarmeret_cm": 41.7,
+            "t_1_lag_cm": 27.1,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 29,
+            "t_uarmeret_cm": 40.0,
+            "t_1_lag_cm": 25.7,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 30,
+            "t_uarmeret_cm": 38.6,
+            "t_1_lag_cm": 24.3,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 31,
+            "t_uarmeret_cm": 37.1,
+            "t_1_lag_cm": 22.9,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 32,
+            "t_uarmeret_cm": 35.7,
+            "t_1_lag_cm": 21.4,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 33,
+            "t_uarmeret_cm": 34.3,
+            "t_1_lag_cm": 20.0,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 34,
+            "t_uarmeret_cm": 32.9,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 35,
+            "t_uarmeret_cm": 31.4,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 36,
+            "t_uarmeret_cm": 30.0,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 37,
+            "t_uarmeret_cm": 28.9,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 38,
+            "t_uarmeret_cm": 27.8,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 39,
+            "t_uarmeret_cm": 26.7,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 40,
+            "t_uarmeret_cm": 25.6,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 41,
+            "t_uarmeret_cm": 24.4,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 42,
+            "t_uarmeret_cm": 23.3,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 43,
+            "t_uarmeret_cm": 22.2,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 44,
+            "t_uarmeret_cm": 21.1,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          }
+        ]
+      },
+      "expected": {
+        "celler": [],
+        "nye": [],
+        "fjernede": 1
+      }
+    },
+    {
+      "id": "review-008",
+      "input": {
+        "diagram_nr": 4,
+        "eo": 80,
+        "klasse": 4,
+        "image_name": "Diagram 4.png",
+        "rows": [
+          {
+            "eu": 1,
+            "t_uarmeret_cm": null,
+            "t_1_lag_cm": 120.0,
+            "t_2_lag_cm": 110.0
+          },
+          {
+            "eu": 2,
+            "t_uarmeret_cm": null,
+            "t_1_lag_cm": 110.0,
+            "t_2_lag_cm": 100.0
+          },
+          {
+            "eu": 3,
+            "t_uarmeret_cm": 140.0,
+            "t_1_lag_cm": 100.0,
+            "t_2_lag_cm": 90.0
+          },
+          {
+            "eu": 4,
+            "t_uarmeret_cm": 126.7,
+            "t_1_lag_cm": 90.0,
+            "t_2_lag_cm": 80.0
+          },
+          {
+            "eu": 5,
+            "t_uarmeret_cm": 120.0,
+            "t_1_lag_cm": 83.3,
+            "t_2_lag_cm": 75.0
+          },
+          {
+            "eu": 6,
+            "t_uarmeret_cm": 110.0,
+            "t_1_lag_cm": 77.5,
+            "t_2_lag_cm": 70.0
+          },
+          {
+            "eu": 7,
+            "t_uarmeret_cm": 105.0,
+            "t_1_lag_cm": 72.5,
+            "t_2_lag_cm": 65.0
+          },
+          {
+            "eu": 8,
+            "t_uarmeret_cm": 100.0,
+            "t_1_lag_cm": 68.3,
+            "t_2_lag_cm": 60.0
+          },
+          {
+            "eu": 9,
+            "t_uarmeret_cm": 95.0,
+            "t_1_lag_cm": 65.0,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 10,
+            "t_uarmeret_cm": 90.0,
+            "t_1_lag_cm": 61.7,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 11,
+            "t_uarmeret_cm": 85.0,
+            "t_1_lag_cm": 58.6,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 12,
+            "t_uarmeret_cm": 80.0,
+            "t_1_lag_cm": 55.7,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 13,
+            "t_uarmeret_cm": 76.7,
+            "t_1_lag_cm": 52.9,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 14,
+            "t_uarmeret_cm": 73.3,
+            "t_1_lag_cm": 50.0,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 15,
+            "t_uarmeret_cm": 70.0,
+            "t_1_lag_cm": 48.3,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 16,
+            "t_uarmeret_cm": 67.1,
+            "t_1_lag_cm": 46.7,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 17,
+            "t_uarmeret_cm": 64.3,
+            "t_1_lag_cm": 45.0,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 18,
+            "t_uarmeret_cm": 61.4,
+            "t_1_lag_cm": 43.3,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 19,
+            "t_uarmeret_cm": 58.9,
+            "t_1_lag_cm": 41.7,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 20,
+            "t_uarmeret_cm": 56.7,
+            "t_1_lag_cm": 40.0,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 21,
+            "t_uarmeret_cm": 54.4,
+            "t_1_lag_cm": 38.3,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 22,
+            "t_uarmeret_cm": 52.2,
+            "t_1_lag_cm": 36.7,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 23,
+            "t_uarmeret_cm": 50.0,
+            "t_1_lag_cm": 35.0,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 24,
+            "t_uarmeret_cm": 48.3,
+            "t_1_lag_cm": 33.3,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 25,
+            "t_uarmeret_cm": 46.7,
+            "t_1_lag_cm": 31.7,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 26,
+            "t_uarmeret_cm": 45.0,
+            "t_1_lag_cm": 30.0,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 27,
+            "t_uarmeret_cm": 43.3,
+            "t_1_lag_cm": 28.6,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 28,
+            "t_uarmeret_cm": 41.7,
+            "t_1_lag_cm": 27.1,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 29,
+            "t_uarmeret_cm": 40.0,
+            "t_1_lag_cm": 25.7,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 30,
+            "t_uarmeret_cm": 38.6,
+            "t_1_lag_cm": 24.3,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 31,
+            "t_uarmeret_cm": 37.1,
+            "t_1_lag_cm": 22.9,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 32,
+            "t_uarmeret_cm": 35.7,
+            "t_1_lag_cm": 21.4,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 33,
+            "t_uarmeret_cm": 34.3,
+            "t_1_lag_cm": 20.0,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 34,
+            "t_uarmeret_cm": 32.9,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 35,
+            "t_uarmeret_cm": 31.4,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 36,
+            "t_uarmeret_cm": 30.0,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 37,
+            "t_uarmeret_cm": 28.9,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 38,
+            "t_uarmeret_cm": 27.8,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 39,
+            "t_uarmeret_cm": 26.7,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 40,
+            "t_uarmeret_cm": 25.6,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 41,
+            "t_uarmeret_cm": 24.4,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 42,
+            "t_uarmeret_cm": 23.3,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 43,
+            "t_uarmeret_cm": 22.2,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 44,
+            "t_uarmeret_cm": 21.1,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 45,
+            "t_uarmeret_cm": 20.0,
+            "t_1_lag_cm": null,
+            "t_2_lag_cm": null
+          },
+          {
+            "eu": 99,
+            "t_1_lag_cm": 10
+          }
+        ]
+      },
+      "expected": {
+        "celler": [],
+        "nye": [
+          99
+        ],
+        "fjernede": 0
+      }
+    }
+  ]
+}

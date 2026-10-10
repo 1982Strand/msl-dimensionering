@@ -1,0 +1,58 @@
+{
+  "steps": [
+    [
+      "Ubunden lagtykkelse",
+      "VejDim-kørslen fastlægger den lagtykkelse, trafikklassen kræver ved underbundens E-modul. Hvis der er valgt et Eᵤ mellem kørte E-værdier interpoleres værdien."
+    ],
+    [
+      "Ækvivalent Eₒ",
+      "Den Eₒ-kurve, hvis ustabiliserede lagtykkelse svarer til den fastlagte, bestemmes ved interpolation mellem de to nærmeste kurver fra de originale designdiagrammer."
+    ],
+    [
+      "Geonet-reduktion",
+      "Reduktionen følger af de samme to kurvers armerede lagtykkelser med samme interpolationsfaktor."
+    ],
+    [
+      "Korrektion",
+      "Lagtykkelsen korrigeres for friktionsvinkel og for det valgte geonets effektindeks i forhold til referencenettet."
+    ]
+  ],
+  "assumptions": [
+    [
+      "Belastningsmodel",
+      "Æ10 tvillingehjul, 60–80 km/t"
+    ],
+    [
+      "Afvanding",
+      "Nej"
+    ],
+    [
+      "Underbund",
+      "Frostsikker, E overskrevet til cellens Eᵤ"
+    ],
+    [
+      "Levetidsmål",
+      "20 år, alle lag"
+    ],
+    [
+      "Ubundne lag",
+      "SG II (E = 300) over BL II U≤3 (E = 100)"
+    ],
+    [
+      "Asfalt-E",
+      "Standard, ikke overskrevet"
+    ]
+  ],
+  "actions": {
+    "vejdim": "VejDims tykkelse",
+    "laveste": "diagrammets laveste kurve",
+    "afvis": "afvises"
+  },
+  "strict_rules": {
+    "tolerance_over_pct": 0.0,
+    "tolerance_under_pct": 0.0,
+    "under_inden": "laveste",
+    "over_uden": "afvis",
+    "under_uden": "afvis"
+  }
+}

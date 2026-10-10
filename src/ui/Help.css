@@ -1,0 +1,273 @@
+.help-page {
+  color: var(--foreground);
+}
+.help-page .page-heading {
+  margin-bottom: 24px;
+}
+.help-intro,
+.help-chapter {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: 0 1px 2px rgb(16 36 29 / 5%);
+}
+.help-card-header {
+  padding: 20px 24px 16px;
+  border-bottom: 1px solid var(--border);
+}
+.help-card-header h2 {
+  font-size: var(--fs-section);
+  font-weight: 600;
+}
+.help-card-header p {
+  color: var(--muted-foreground);
+  font-size: var(--fs-small);
+}
+.help-intro-grid {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  gap: 32px;
+  padding: 24px;
+}
+.help-page h3 {
+  font-size: var(--fs-body);
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+.help-markdown {
+  line-height: 1.65;
+}
+.help-table-scroll {
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.help-markdown p {
+  margin: 0 0 16px;
+}
+.help-markdown ul,
+.help-markdown ol {
+  padding-left: 24px;
+  margin-bottom: 16px;
+}
+.help-markdown ul {
+  list-style: disc;
+}
+.help-markdown ol {
+  list-style: decimal;
+}
+.help-markdown li {
+  margin-bottom: 4px;
+}
+.help-markdown a {
+  text-decoration: underline;
+}
+.help-markdown table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--fs-small);
+  font-variant-numeric: tabular-nums;
+}
+.help-markdown th,
+.help-markdown td {
+  border-bottom: 1px solid var(--border);
+  padding: 8px 10px;
+  text-align: left;
+}
+.help-markdown th {
+  background: var(--background);
+  color: var(--muted-foreground);
+  font-size: var(--fs-meta);
+  font-weight: 500;
+}
+.help-steps {
+  padding: 16px;
+  background: var(--accent);
+  border: 1px solid var(--accent-border);
+  border-radius: 10px;
+}
+.help-steps ol {
+  list-style: decimal;
+  padding-left: 24px;
+  margin-bottom: 24px;
+}
+.help-steps li {
+  padding: 6px 0;
+}
+.help-concepts {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.help-concept {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--card);
+  padding: 6px 12px;
+  font-size: var(--fs-small);
+  cursor: help;
+}
+.help-concept:hover {
+  border-color: var(--primary);
+}
+.help-chapters {
+  margin-top: 24px;
+  display: grid;
+  gap: 12px;
+}
+.help-chapter-trigger {
+  padding: 18px 24px;
+  align-items: center;
+  gap: 14px;
+  font-size: var(--fs-body);
+}
+.help-chapter-trigger:hover {
+  text-decoration: none;
+  background: var(--background);
+}
+/* Kapitelnummer som afsnitsnumrene på de øvrige sider (B-058). */
+.help-chapter-number {
+  display: inline-grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 6px;
+  background: var(--primary);
+  color: var(--card);
+  font-size: var(--fs-small);
+  font-weight: 600;
+  flex-shrink: 0;
+}
+.help-chapter-summary {
+  flex: 1;
+  display: grid;
+  gap: 4px;
+}
+.help-chapter-title {
+  font-size: var(--fs-section);
+  font-weight: 600;
+}
+.help-chapter-resume,
+.help-chapter-count {
+  font-size: var(--fs-small);
+  color: var(--muted-foreground);
+  font-weight: 400;
+}
+.help-chapter-count {
+  white-space: nowrap;
+}
+.help-chapter-content {
+  padding: 0 24px 24px;
+}
+.help-section {
+  display: grid;
+  grid-template-columns: 1.75fr 1fr;
+  gap: 32px;
+  padding-top: 24px;
+  margin-top: 16px;
+  border-top: 1px solid var(--border);
+}
+.help-section-number {
+  margin-right: 10px;
+  color: var(--primary);
+}
+.help-aside {
+  min-width: 0;
+}
+.help-aside figure {
+  margin: 0 0 24px;
+}
+.help-figure-number {
+  font-size: var(--fs-meta);
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--primary);
+}
+.help-aside figcaption {
+  font-size: var(--fs-meta);
+  color: var(--muted-foreground);
+  margin-top: 8px;
+  line-height: 1.5;
+}
+.help-formula {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--background);
+  padding: 14px 16px;
+  margin: 8px 0 16px;
+}
+/* Originalens formelramme; skriften er appens fastbreddeskrift som .formula (B-040). */
+.help-expression {
+  font:
+    500 var(--fs-small) / 2 ui-monospace,
+    'Cascadia Mono',
+    Consolas,
+    monospace;
+  color: var(--foreground);
+  overflow-x: auto;
+}
+.help-expression sub,
+.help-where sub {
+  font-size: 0.72em;
+}
+.help-where {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+  font:
+    400 var(--fs-overline) / 1.8 ui-monospace,
+    'Cascadia Mono',
+    Consolas,
+    monospace;
+  color: var(--muted-foreground);
+}
+.help-goto {
+  margin: 4px 0 16px;
+}
+.help-sources {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.help-sources a {
+  display: grid;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--card);
+}
+.help-sources a:hover {
+  border-color: var(--primary);
+}
+.help-sources a:hover span {
+  text-decoration: underline;
+}
+.help-sources small {
+  color: var(--muted-foreground);
+  font-size: var(--fs-meta);
+  margin-top: 4px;
+}
+@media (max-width: 760px) {
+  .help-intro-grid,
+  .help-section {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+  }
+  .help-chapter-trigger {
+    padding: 16px;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .help-chapter-summary {
+    min-width: 65%;
+  }
+  .help-chapter-count {
+    margin-left: 36px;
+  }
+  .help-chapter-content {
+    padding: 0 16px 16px;
+  }
+}
+
+.help-section > div {
+  min-width: 0;
+}

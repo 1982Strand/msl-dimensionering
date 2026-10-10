@@ -1,0 +1,628 @@
+{
+  "read_points": {
+    "1": [
+      [
+        2,
+        "t_1_lag_cm"
+      ],
+      [
+        3,
+        "t_1_lag_cm"
+      ],
+      [
+        3,
+        "t_uarmeret_cm"
+      ],
+      [
+        4,
+        "t_uarmeret_cm"
+      ],
+      [
+        5,
+        "t_1_lag_cm"
+      ],
+      [
+        5,
+        "t_uarmeret_cm"
+      ],
+      [
+        6,
+        "t_uarmeret_cm"
+      ],
+      [
+        8,
+        "t_uarmeret_cm"
+      ],
+      [
+        9,
+        "t_1_lag_cm"
+      ],
+      [
+        12,
+        "t_uarmeret_cm"
+      ],
+      [
+        15,
+        "t_1_lag_cm"
+      ],
+      [
+        18,
+        "t_uarmeret_cm"
+      ],
+      [
+        21,
+        "t_uarmeret_cm"
+      ],
+      [
+        25,
+        "t_uarmeret_cm"
+      ],
+      [
+        30,
+        "t_uarmeret_cm"
+      ]
+    ],
+    "2": [
+      [
+        1,
+        "t_1_lag_cm"
+      ],
+      [
+        1,
+        "t_2_lag_cm"
+      ],
+      [
+        2,
+        "t_1_lag_cm"
+      ],
+      [
+        2,
+        "t_2_lag_cm"
+      ],
+      [
+        3,
+        "t_1_lag_cm"
+      ],
+      [
+        3,
+        "t_2_lag_cm"
+      ],
+      [
+        3,
+        "t_uarmeret_cm"
+      ],
+      [
+        5,
+        "t_uarmeret_cm"
+      ],
+      [
+        6,
+        "t_1_lag_cm"
+      ],
+      [
+        6,
+        "t_uarmeret_cm"
+      ],
+      [
+        8,
+        "t_uarmeret_cm"
+      ],
+      [
+        9,
+        "t_1_lag_cm"
+      ],
+      [
+        10,
+        "t_uarmeret_cm"
+      ],
+      [
+        12,
+        "t_1_lag_cm"
+      ],
+      [
+        12,
+        "t_uarmeret_cm"
+      ],
+      [
+        15,
+        "t_uarmeret_cm"
+      ],
+      [
+        16,
+        "t_1_lag_cm"
+      ],
+      [
+        20,
+        "t_1_lag_cm"
+      ],
+      [
+        23,
+        "t_uarmeret_cm"
+      ],
+      [
+        29,
+        "t_uarmeret_cm"
+      ],
+      [
+        36,
+        "t_uarmeret_cm"
+      ],
+      [
+        45,
+        "t_uarmeret_cm"
+      ]
+    ],
+    "3": [
+      [
+        1,
+        "t_1_lag_cm"
+      ],
+      [
+        1,
+        "t_2_lag_cm"
+      ],
+      [
+        3,
+        "t_1_lag_cm"
+      ],
+      [
+        3,
+        "t_uarmeret_cm"
+      ],
+      [
+        5,
+        "t_uarmeret_cm"
+      ],
+      [
+        6,
+        "t_uarmeret_cm"
+      ],
+      [
+        8,
+        "t_uarmeret_cm"
+      ],
+      [
+        9,
+        "t_1_lag_cm"
+      ],
+      [
+        9,
+        "t_2_lag_cm"
+      ],
+      [
+        10,
+        "t_uarmeret_cm"
+      ],
+      [
+        12,
+        "t_1_lag_cm"
+      ],
+      [
+        12,
+        "t_uarmeret_cm"
+      ],
+      [
+        15,
+        "t_uarmeret_cm"
+      ],
+      [
+        16,
+        "t_1_lag_cm"
+      ],
+      [
+        20,
+        "t_1_lag_cm"
+      ],
+      [
+        23,
+        "t_uarmeret_cm"
+      ],
+      [
+        27,
+        "t_1_lag_cm"
+      ],
+      [
+        29,
+        "t_uarmeret_cm"
+      ],
+      [
+        36,
+        "t_uarmeret_cm"
+      ],
+      [
+        45,
+        "t_uarmeret_cm"
+      ]
+    ],
+    "4": [
+      [
+        1,
+        "t_1_lag_cm"
+      ],
+      [
+        1,
+        "t_2_lag_cm"
+      ],
+      [
+        2,
+        "t_1_lag_cm"
+      ],
+      [
+        2,
+        "t_2_lag_cm"
+      ],
+      [
+        3,
+        "t_1_lag_cm"
+      ],
+      [
+        3,
+        "t_2_lag_cm"
+      ],
+      [
+        3,
+        "t_uarmeret_cm"
+      ],
+      [
+        4,
+        "t_1_lag_cm"
+      ],
+      [
+        4,
+        "t_2_lag_cm"
+      ],
+      [
+        5,
+        "t_uarmeret_cm"
+      ],
+      [
+        6,
+        "t_2_lag_cm"
+      ],
+      [
+        6,
+        "t_uarmeret_cm"
+      ],
+      [
+        8,
+        "t_2_lag_cm"
+      ],
+      [
+        8,
+        "t_uarmeret_cm"
+      ],
+      [
+        10,
+        "t_uarmeret_cm"
+      ],
+      [
+        12,
+        "t_uarmeret_cm"
+      ],
+      [
+        14,
+        "t_1_lag_cm"
+      ],
+      [
+        15,
+        "t_uarmeret_cm"
+      ],
+      [
+        20,
+        "t_1_lag_cm"
+      ],
+      [
+        23,
+        "t_uarmeret_cm"
+      ],
+      [
+        26,
+        "t_1_lag_cm"
+      ],
+      [
+        29,
+        "t_uarmeret_cm"
+      ],
+      [
+        33,
+        "t_1_lag_cm"
+      ],
+      [
+        36,
+        "t_uarmeret_cm"
+      ],
+      [
+        45,
+        "t_uarmeret_cm"
+      ]
+    ],
+    "5": [
+      [
+        1,
+        "t_1_lag_cm"
+      ],
+      [
+        1,
+        "t_2_lag_cm"
+      ],
+      [
+        2,
+        "t_1_lag_cm"
+      ],
+      [
+        2,
+        "t_2_lag_cm"
+      ],
+      [
+        3,
+        "t_2_lag_cm"
+      ],
+      [
+        3,
+        "t_uarmeret_cm"
+      ],
+      [
+        5,
+        "t_uarmeret_cm"
+      ],
+      [
+        6,
+        "t_1_lag_cm"
+      ],
+      [
+        6,
+        "t_2_lag_cm"
+      ],
+      [
+        6,
+        "t_uarmeret_cm"
+      ],
+      [
+        8,
+        "t_1_lag_cm"
+      ],
+      [
+        8,
+        "t_2_lag_cm"
+      ],
+      [
+        8,
+        "t_uarmeret_cm"
+      ],
+      [
+        10,
+        "t_2_lag_cm"
+      ],
+      [
+        10,
+        "t_uarmeret_cm"
+      ],
+      [
+        12,
+        "t_uarmeret_cm"
+      ],
+      [
+        14,
+        "t_2_lag_cm"
+      ],
+      [
+        15,
+        "t_uarmeret_cm"
+      ],
+      [
+        19,
+        "t_1_lag_cm"
+      ],
+      [
+        23,
+        "t_uarmeret_cm"
+      ],
+      [
+        25,
+        "t_1_lag_cm"
+      ],
+      [
+        29,
+        "t_uarmeret_cm"
+      ],
+      [
+        33,
+        "t_1_lag_cm"
+      ],
+      [
+        36,
+        "t_uarmeret_cm"
+      ],
+      [
+        45,
+        "t_uarmeret_cm"
+      ]
+    ],
+    "6": [
+      [
+        1,
+        "t_1_lag_cm"
+      ],
+      [
+        3,
+        "t_2_lag_cm"
+      ],
+      [
+        3,
+        "t_uarmeret_cm"
+      ],
+      [
+        5,
+        "t_uarmeret_cm"
+      ],
+      [
+        6,
+        "t_1_lag_cm"
+      ],
+      [
+        6,
+        "t_uarmeret_cm"
+      ],
+      [
+        8,
+        "t_uarmeret_cm"
+      ],
+      [
+        9,
+        "t_2_lag_cm"
+      ],
+      [
+        10,
+        "t_uarmeret_cm"
+      ],
+      [
+        12,
+        "t_1_lag_cm"
+      ],
+      [
+        12,
+        "t_2_lag_cm"
+      ],
+      [
+        12,
+        "t_uarmeret_cm"
+      ],
+      [
+        15,
+        "t_uarmeret_cm"
+      ],
+      [
+        17,
+        "t_1_lag_cm"
+      ],
+      [
+        18,
+        "t_2_lag_cm"
+      ],
+      [
+        23,
+        "t_uarmeret_cm"
+      ],
+      [
+        24,
+        "t_1_lag_cm"
+      ],
+      [
+        29,
+        "t_uarmeret_cm"
+      ],
+      [
+        32,
+        "t_1_lag_cm"
+      ],
+      [
+        36,
+        "t_uarmeret_cm"
+      ],
+      [
+        45,
+        "t_uarmeret_cm"
+      ]
+    ]
+  },
+  "chart_layout": {
+    "margin": {
+      "l": 60,
+      "r": 20,
+      "t": 10,
+      "b": 55
+    },
+    "font": {
+      "family": "IBM Plex Sans, Segoe UI, system-ui, sans-serif",
+      "size": 11,
+      "color": "#15211A"
+    },
+    "legend": {
+      "font": {
+        "size": 10
+      },
+      "orientation": "v",
+      "yanchor": "top",
+      "y": 0.98,
+      "xanchor": "right",
+      "x": 0.99,
+      "bgcolor": "rgba(255,255,255,0.85)",
+      "bordercolor": "#DCE1DD",
+      "borderwidth": 1
+    },
+    "xaxis": {
+      "tickfont": {
+        "size": 10
+      },
+      "title": {
+        "text": "Bærelagstykkelse [cm]"
+      },
+      "gridcolor": "#EDEFED",
+      "zeroline": false,
+      "linecolor": "#DCE1DD",
+      "ticks": "outside",
+      "tickcolor": "#DCE1DD"
+    },
+    "yaxis": {
+      "tickfont": {
+        "size": 10
+      },
+      "title": {
+        "text": "Bundmodul Eᵤ [MPa]"
+      },
+      "gridcolor": "#EDEFED",
+      "zeroline": false,
+      "linecolor": "#DCE1DD",
+      "ticks": "outside",
+      "tickcolor": "#DCE1DD"
+    },
+    "height": 290,
+    "paper_bgcolor": "rgba(0,0,0,0)",
+    "plot_bgcolor": "rgba(0,0,0,0)",
+    "hovermode": "closest"
+  },
+  "traces": [
+    {
+      "hovertemplate": "%{x:.1f} cm · Eᵤ %{y:.0f} MPa<extra>%{fullData.name}</extra>",
+      "line": {
+        "color": "#15211A",
+        "width": 2
+      },
+      "marker": {
+        "color": "#15211A",
+        "size": 3.5
+      },
+      "mode": "lines+markers",
+      "name": "Ustabiliseret",
+      "type": "scatter"
+    },
+    {
+      "hovertemplate": "%{x:.1f} cm · Eᵤ %{y:.0f} MPa<extra>%{fullData.name}</extra>",
+      "line": {
+        "color": "#1F4E9C",
+        "width": 2
+      },
+      "marker": {
+        "color": "#1F4E9C",
+        "size": 3.5
+      },
+      "mode": "lines+markers",
+      "name": "1 lag geonet",
+      "type": "scatter"
+    },
+    {
+      "hovertemplate": "%{x:.1f} cm · Eᵤ %{y:.0f} MPa<extra>%{fullData.name}</extra>",
+      "line": {
+        "color": "#7B1FA2",
+        "width": 2
+      },
+      "marker": {
+        "color": "#7B1FA2",
+        "size": 3.5
+      },
+      "mode": "lines+markers",
+      "name": "2 lag geonet",
+      "type": "scatter"
+    }
+  ]
+}

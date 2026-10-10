@@ -1,0 +1,77 @@
+.geonet-products h2 {
+  margin-bottom: 4px;
+}
+.geonet-search {
+  margin: 20px 0 8px;
+  max-width: 384px;
+}
+.geonet-count {
+  margin-bottom: 12px;
+}
+.geonet-table {
+  font-size: var(--fs-small);
+}
+.geonet-table th {
+  background: var(--background);
+  vertical-align: bottom;
+}
+.geonet-table th [data-slot='button'] {
+  font-size: var(--fs-meta);
+  font-weight: 500;
+  color: var(--muted-foreground);
+  padding-inline: 6px;
+}
+.geonet-table th [data-slot='button']:hover {
+  color: var(--foreground);
+}
+.geonet-table td {
+  vertical-align: top;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background: var(--card);
+}
+.geonet-table th:first-child,
+.geonet-table td:first-child {
+  box-shadow: 2px 0 3px var(--border);
+}
+.geonet-table tbody tr:hover td {
+  background: var(--background);
+}
+/* Noterne er lange tekster; bredere kolonne giver færre linjer pr. række. */
+.geonet-note-cell {
+  min-width: 34rem;
+  max-width: 48rem;
+}
+.geonet-notes {
+  margin-top: 32px;
+}
+.geonet-notes-heading {
+  margin-bottom: 16px;
+}
+.geonet-note h3 {
+  font-size: var(--fs-body);
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.geonet-note .eyebrow {
+  margin-bottom: 6px;
+  color: var(--primary);
+}
+.geonet-note-text {
+  font-size: var(--fs-small);
+  line-height: 1.7;
+}
+.geonet-note-text p {
+  margin-bottom: 10px;
+}
+.geonet-note-text ul {
+  list-style: disc;
+  padding-left: 20px;
+}
+.geonet-note-text ol {
+  list-style: decimal;
+  padding-left: 20px;
+}
+.geonet-note-text a {
+  text-decoration: underline;
+}

@@ -1,0 +1,28 @@
+# Afhængigheder og genererede filer
+node_modules/
+dist/
+coverage/
+playwright-report/
+test-results/
+*.tsbuildinfo
+.venv/
+__pycache__/
+*.pyc
+
+# Hemmeligheder og lokal konfiguration
+.env
+.env.*
+!.env.example
+.DS_Store
+Thumbs.db
+
+# Lokale referencekopier og brugerdata
+.local/
+reference-private/
+output/
+*_brugerdefineret.json
+~$*
+.serena/cache/
+
+# Privat projekthukommelse
+.serena/memories/

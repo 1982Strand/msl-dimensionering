@@ -1,0 +1,131 @@
+.company-profile-grid {
+  display: grid;
+  grid-template-columns: minmax(320px, 440px) minmax(0, 1fr);
+  gap: 24px;
+  align-items: start;
+  margin-top: 20px;
+}
+.company-profile-grid > *,
+.profile-section-row > * {
+  min-width: 0;
+}
+.profile-card-content {
+  padding-top: 0;
+}
+.profile-save-state {
+  font-size: var(--fs-meta);
+  color: var(--primary);
+  font-weight: 500;
+  margin: 0 0 12px;
+}
+.profile-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 16px 0;
+}
+.profile-field {
+  margin-bottom: 18px;
+}
+.profile-checkbox {
+  margin: 14px 0;
+}
+.profile-logo {
+  display: block;
+  max-width: 240px;
+  max-height: 110px;
+  object-fit: contain;
+}
+.profile-color {
+  display: grid;
+  grid-template-columns: 1fr 44px;
+  gap: 12px;
+  align-items: center;
+}
+.profile-color input[type='color'] {
+  width: 44px;
+  height: 36px;
+}
+.profile-margins {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 16px;
+}
+.profile-section-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  gap: 8px;
+  align-items: end;
+  margin-bottom: 16px;
+}
+.profile-field [aria-invalid='true'] {
+  border-color: var(--destructive);
+}
+.profile-field-error {
+  color: var(--destructive);
+  font-size: var(--fs-meta);
+  margin: 6px 0 0;
+}
+.profile-preview {
+  position: sticky;
+  top: 20px;
+}
+.profile-preview .report-pdf iframe {
+  aspect-ratio: 1 / 1.414;
+  max-height: 850px;
+}
+@media (max-width: 900px) {
+  .company-profile-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .profile-preview {
+    position: static;
+  }
+}
+.profile-employee-popover {
+  width: min(340px, calc(100vw - 24px));
+  max-height: var(--radix-popover-content-available-height);
+  overflow-y: auto;
+}
+.profile-employee-sheet {
+  width: min(100%, 1000px);
+  max-width: 100%;
+}
+.profile-employee-catalogue {
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 0 16px 16px;
+}
+.profile-employee-catalogue table {
+  min-width: 760px;
+}
+.profile-employee-catalogue .profile-field {
+  min-width: 120px;
+  margin: 0;
+}
+.profile-employee-catalogue .profile-field-error {
+  white-space: normal;
+}
+.profile-employee-row-actions {
+  display: flex;
+  gap: 8px;
+}
+@media (max-width: 640px) {
+  .profile-employee-sheet {
+    width: 100%;
+  }
+}
+
+.profile-employee-sheet th,
+.profile-employee-sheet td {
+  padding: 10px 12px;
+  white-space: nowrap;
+}
+.profile-employee-sheet th {
+  font-size: var(--fs-meta);
+  font-weight: 500;
+  color: var(--muted-foreground);
+  background: var(--background);
+}
