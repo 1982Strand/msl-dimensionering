@@ -204,6 +204,7 @@
                       "value": 50,
                       "options": [
                         "1 mm (ingen oprunding)",
+                        "5 mm",
                         "10 mm",
                         "50 mm",
                         "100 mm"
@@ -1376,6 +1377,7 @@
                       "value": 50,
                       "options": [
                         "1 mm (ingen oprunding)",
+                        "5 mm",
                         "10 mm",
                         "50 mm",
                         "100 mm"
@@ -2548,6 +2550,7 @@
                       "value": 10,
                       "options": [
                         "1 mm (ingen oprunding)",
+                        "5 mm",
                         "10 mm",
                         "50 mm",
                         "100 mm"
@@ -3720,6 +3723,7 @@
                       "value": 50,
                       "options": [
                         "1 mm (ingen oprunding)",
+                        "5 mm",
                         "10 mm",
                         "50 mm",
                         "100 mm"

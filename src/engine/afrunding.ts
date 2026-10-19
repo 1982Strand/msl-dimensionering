@@ -2,7 +2,7 @@ import { isRecord, pythonNumber, pythonRound } from './python-numbers.ts';
 import type { CalculationResult, DistributedLayer, Layer, LayerSpec, Rounding } from './types.ts';
 import { byggelig_total, fordel_opbygning, oeverste_lag_mm } from './lagfordeling.ts';
 
-export const TRIN_VALG = [1, 10, 50, 100];
+export const TRIN_VALG = [1, 5, 10, 50, 100];
 export const PHI_AFRUNDING_VALG = ['ingen', 'ned', 'naermeste'];
 const TOLERANCE = 1e-6; // Existing Python algorithm tolerance, not a migration comparison tolerance.
 export function normaliser(indstilling: unknown): Rounding {

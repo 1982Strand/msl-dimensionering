@@ -58,6 +58,7 @@
           "help": "Lagtykkelsen oprundes til nærmeste hele multiplum af trinnet. Ved 1 mm angives lagtykkelsen som beregnet.",
           "optionLabels": [
             "1 mm (ingen oprunding)",
+            "5 mm",
             "10 mm",
             "50 mm",
             "100 mm"

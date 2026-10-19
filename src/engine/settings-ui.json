@@ -25,6 +25,10 @@
               "label": "1 mm (ingen oprunding)"
             },
             {
+              "value": 5,
+              "label": "5 mm"
+            },
+            {
               "value": 10,
               "label": "10 mm"
             },
