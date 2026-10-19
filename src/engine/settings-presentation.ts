@@ -123,6 +123,7 @@ export function settingsPage(value: unknown, outside: ReturnType<typeof outsideD
       proportional: 'proportional fordeling',
       minimum: 'øverste lag mindst minimumstykkelsen',
       fastholdt: 'øverste lag fastholdt',
+      minimum_geonet: 'øverste lag lig minimum ved geonet',
     }[lf.fordeling]!,
   ];
   if (lf.samlet_minimum) distribution.push('samlet tykkelse mindst minimum');

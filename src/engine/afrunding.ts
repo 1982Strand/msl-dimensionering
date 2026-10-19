@@ -1,6 +1,11 @@
 import { isRecord, pythonNumber, pythonRound } from './python-numbers.ts';
 import type { CalculationResult, DistributedLayer, Layer, LayerSpec, Rounding } from './types.ts';
-import { byggelig_total, fordel_opbygning, oeverste_lag_mm } from './lagfordeling.ts';
+import {
+  byggelig_total,
+  fordel_opbygning,
+  oeverste_lag_mm,
+  soejle_fordeling,
+} from './lagfordeling.ts';
 
 export const TRIN_VALG = [1, 5, 10, 50, 100];
 export const PHI_AFRUNDING_VALG = ['ingen', 'ned', 'naermeste'];
@@ -152,7 +157,11 @@ function anvend_lagminimum(out: CalculationResult, spec: LayerSpec, trin: number
   };
   const uarm = out.t_uarmeret_phi_kor_mm;
   if (uarm != null) {
-    const next = byggelig_total(layers, uarm, trin, { ...kw, oeverst_ref_mm: ref });
+    const next = byggelig_total(layers, uarm, trin, {
+      ...kw,
+      oeverst_ref_mm: ref,
+      ...soejle_fordeling(spec.fordeling, spec.min_mm, false),
+    });
     if (next !== null && next > uarm) {
       out.t_uarmeret_phi_kor_mm = next;
       out.t_uarmeret_phi_kor_til_lagminimum = true;
@@ -162,14 +171,17 @@ function anvend_lagminimum(out: CalculationResult, spec: LayerSpec, trin: number
   }
   const arm = out.t_armeret_mm;
   if (arm != null) {
-    const next = byggelig_total(layers, arm, trin, { ...kw, oeverst_ref_mm: ref });
+    const geonet = soejle_fordeling(spec.fordeling, spec.min_mm, true);
+    const armKw = geonet ? { ...kw, ...geonet } : { ...kw, oeverst_ref_mm: ref };
+    const next = byggelig_total(layers, arm, trin, armKw);
     if (next !== null && next > arm) {
       out.t_armeret_mm = next;
       out.t_armeret_til_lagminimum = true;
       const split = (t: number) =>
-        fordel_opbygning(layers, t, trin, { ...kw, oeverst_ref_mm: ref }).map(
-          ({ navn, tykkelse_mm }) => ({ navn, tykkelse_mm }),
-        );
+        fordel_opbygning(layers, t, trin, armKw).map(({ navn, tykkelse_mm }) => ({
+          navn,
+          tykkelse_mm,
+        }));
       out.t_armeret_lagtillaeg_lag = { foer: split(arm), efter: split(next) };
     }
   }

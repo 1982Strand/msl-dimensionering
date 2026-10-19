@@ -69,7 +69,7 @@ og reduktionen kan dog ændres af reglerne i afsnit 3 og 4. Fordelingen
 fastlægges under Indstillinger, afsnittet Øverste bærelag, og gælder både
 opbygningerne på dimensioneringssiden og rapportens figur.
 
-Der kan vælges mellem tre fordelinger:
+Der kan vælges mellem fire fordelinger:
 
 - **Proportionalt.** Alle lag reduceres i samme forhold som den samlede
   lagtykkelse. Lagforholdet er dermed det indtastede i alle beregnede
@@ -82,10 +82,15 @@ Der kan vælges mellem tre fordelinger:
   alle beregnede opbygninger, dog mindst minimumstykkelsen. De underliggende lag optager
   både forøgelsen til den ustabiliserede lagtykkelse og reduktionen for
   geonet.
+- **Øverste lag sat til minimumstykkelsen.** I opbygningerne med geonet har
+  det øverste lag minimumstykkelsen for belastningsklassen, og geonettets
+  reduktion tages alene i de underliggende lag. Den ustabiliserede opbygning
+  fordeles som ved »Proportionalt, dog mindst minimumstykkelsen«.
 
 :::formel
 t_1  =  min( T ;  max( t_1,prop ;  t_min ) )     proportionalt, dog mindst minimumstykkelsen
 t_1  =  min( T ;  max( t_1,ind ;  t_min ) )      øverste lag fastholdt
+t_1  =  min( T ;  t_min )                       øverste lag sat til minimumstykkelsen, opbygninger med geonet
 --
 t_1       er tykkelsen af det øverste lag [mm]
 T         er den samlede, oprundede lagtykkelse [mm]
@@ -97,7 +102,8 @@ t_min     er minimumstykkelsen for klassen, oprundet til indbygningstrin [mm]
 Resten, T − t_1, fordeles proportionalt på de underliggende lag. Det øverste
 lag kan ikke blive tykkere end den samlede lagtykkelse; er der ingen rest,
 udgør det øverste lag hele opbygningen. Alle beregnede opbygninger, også
-den ustabiliserede, fordeles efter samme regel.
+den ustabiliserede, fordeles efter samme regel; ved »Øverste lag sat til
+minimumstykkelsen« dog kun opbygningerne med geonet.
 
 Er materialelagene angivet i procent, findes der ingen indtastet tykkelse.
 Ved fordelingen »Øverste lag fastholdt« anvendes da det øverste lags
@@ -124,7 +130,7 @@ minimumstykkelsen for belastningsklasse 5. Under Indstillinger kan der i stedet
 vælges den laveste af de to belastningsklasser; ved Eₒ,ækv = 95,3 MPa anvendes
 da klasse 4. Ligger Eₒ,ækv præcis på en klasse, anvendes denne klasse.
 
-Figur 6.2 viser de tre fordelinger for en indtastet opbygning af 300 mm
+Figur 6.2 viser de fire fordelinger for en indtastet opbygning af 300 mm
 stabilgrus over 400 mm bundsikringssand ved belastningsklasse 4 og
 Eᵤ = 16 MPa. Den ustabiliserede opbygning er 700 mm, og opbygningen med 1 lag
 geonet er 500 mm.
@@ -135,6 +141,7 @@ geonet er 500 mm.
 | Proportionalt | 200 | 300 |
 | Mindst minimumstykkelsen | 250 | 250 |
 | Øverste lag fastholdt | 300 | 200 |
+| Øverste lag sat til minimum | 250 | 250 |
 :::
 
 Figur 6.3 viser samme indtastede opbygning ved Eᵤ = 8 MPa. Designdiagrammet
@@ -150,6 +157,7 @@ bundsikringslaget.
 | Proportionalt | 450 / 550 | 300 / 400 | 250 / 350 |
 | Mindst minimumstykkelsen | 450 / 550 | 300 / 400 | 250 / 350 |
 | Øverste lag fastholdt | 300 / 700 | 300 / 400 | 300 / 300 |
+| Øverste lag sat til minimum | 450 / 550 | 250 / 450 | 250 / 350 |
 :::
 
 Under Indstillinger kan det desuden tilvælges, at den samlede

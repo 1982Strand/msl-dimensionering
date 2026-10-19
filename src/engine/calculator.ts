@@ -64,8 +64,8 @@ export function beregn(input: CalculationInput): CalculationResult {
   for (let i = 0; i < 12; i++) {
     const tu = result.t_uarmeret_phi_kor_mm ?? null,
       ta = result.t_armeret_mm ?? null;
-    const nu = tu ? nextPhi(fordel_soejle(spec, tu, step)) : phiInd;
-    const na = nextPhi(fordel_soejle(spec, ta, step, tu));
+    const nu = tu ? nextPhi(fordel_soejle(spec, tu, step, null, false)) : phiInd;
+    const na = nextPhi(fordel_soejle(spec, ta, step, tu, true));
     if (Math.abs(nu - phiU) < 1e-9 && Math.abs(na - phiA) < 1e-9) {
       stable = true;
       break;

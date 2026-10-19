@@ -1,7 +1,19 @@
 import { fordel_lag, rund_op } from './afrunding.ts';
 import { isRecord } from './python-numbers.ts';
 import type { Layer, DistributedLayer, LayerSpec } from './types.ts';
-export const FORDELING_VALG = ['proportional', 'minimum', 'fastholdt'];
+export const FORDELING_VALG = ['proportional', 'minimum', 'fastholdt', 'minimum_geonet'];
+/** Fordelingen for én søjle. Ved 'minimum_geonet' sættes det øverste lag til minimumstykkelsen
+ * i opbygningerne med geonet; den ustabiliserede opbygning fordeles som 'minimum'. */
+export function soejle_fordeling(
+  fordeling: string | null | undefined,
+  min_mm: number | null | undefined,
+  armeret: boolean,
+): { fordeling: string; oeverst_ref_mm: number | null } | null {
+  if (fordeling !== 'minimum_geonet') return null;
+  return armeret && min_mm
+    ? { fordeling: 'fastholdt', oeverst_ref_mm: min_mm }
+    : { fordeling: 'minimum', oeverst_ref_mm: null };
+}
 export const RESTLAG_VALG = ['vis', 'flet', 'vd'];
 export const MINIMUMSKLASSE_VALG = ['hoejeste', 'laveste'];
 export const PHI_VALG = ['indtastet', 'laveste', 'soejle'];
@@ -180,10 +192,19 @@ export function fordel_soejle(
   total_mm: number | null,
   trin: number,
   t_uarm_mm: number | null = null,
+  armeret = t_uarm_mm !== null,
 ): DistributedLayer[] {
   if (!total_mm) return [];
   const lag = spec.lag || [],
-    fordeling = spec.fordeling || 'proportional';
+    soejle = soejle_fordeling(spec.fordeling, spec.min_mm, armeret);
+  if (soejle)
+    return fordel_opbygning(lag, total_mm, trin, {
+      ...soejle,
+      min_mm: spec.min_mm,
+      restlag: spec.restlag || 'vis',
+      restlag_graense_mm: spec.restlag_graense_mm,
+    });
+  const fordeling = spec.fordeling || 'proportional';
   let ref = fordeling === 'fastholdt' ? (spec.oeverst_ref_mm ?? null) : null;
   if (fordeling === 'fastholdt' && ref === null && t_uarm_mm)
     ref = oeverste_lag_mm(lag, t_uarm_mm, trin, { fordeling, min_mm: spec.min_mm });

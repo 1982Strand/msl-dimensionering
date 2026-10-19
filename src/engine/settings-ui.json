@@ -194,7 +194,7 @@
           "label": "Fordeling af lagtykkelsen på materialelagene",
           "kind": "radio",
           "defaultValue": "minimum",
-          "help": "Proportionalt\\*: lagforholdet er det indtastede i alle beregnede opbygninger.\n\nMindst minimumstykkelsen (standard): det øverste lag fordeles proportionalt, men gøres ikke tyndere end minimumstykkelsen for klassen. Resten fordeles proportionalt på de underliggende lag.\n\nFastholdt: det øverste lag har den indtastede tykkelse i alle beregnede opbygninger, dog mindst minimumstykkelsen. De underliggende lag optager både forøgelsen til den ustabiliserede tykkelse og geonettets reduktion. Er lagene angivet i procent, fastholdes det øverste lag på sin tykkelse i den ustabiliserede opbygning.\n\n\\* Appen regner som før disse indstillinger blev indført.",
+          "help": "Proportionalt\\*: lagforholdet er det indtastede i alle beregnede opbygninger.\n\nMindst minimumstykkelsen (standard): det øverste lag fordeles proportionalt, men gøres ikke tyndere end minimumstykkelsen for klassen. Resten fordeles proportionalt på de underliggende lag.\n\nFastholdt: det øverste lag har den indtastede tykkelse i alle beregnede opbygninger, dog mindst minimumstykkelsen. De underliggende lag optager både forøgelsen til den ustabiliserede tykkelse og geonettets reduktion. Er lagene angivet i procent, fastholdes det øverste lag på sin tykkelse i den ustabiliserede opbygning.\n\nSat til minimumstykkelsen: i opbygningerne med geonet har det øverste lag minimumstykkelsen for klassen, og geonettets reduktion tages alene i de underliggende lag. Den ustabiliserede opbygning fordeles proportionalt, dog mindst minimumstykkelsen. Sammenlægning af tynde lag i afsnit 4 kan gøre det viste øverste lag tykkere.\n\n\\* Appen regner som før disse indstillinger blev indført.",
           "options": [
             {
               "value": "proportional",
@@ -207,6 +207,10 @@
             {
               "value": "fastholdt",
               "label": "Det øverste lag fastholdes på den indtastede tykkelse"
+            },
+            {
+              "value": "minimum_geonet",
+              "label": "Det øverste lag sættes til minimumstykkelsen"
             }
           ]
         },

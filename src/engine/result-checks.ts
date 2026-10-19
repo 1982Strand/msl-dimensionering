@@ -356,7 +356,7 @@ export function resultChecks(
     } else {
       const spec = distribution ? lagspec(materialer, distribution) : null;
       sub = spec
-        ? fordel_soejle(spec, total, result!.afrunding.trin_mm, tUarm)
+        ? fordel_soejle(spec, total, result!.afrunding.trin_mm, tUarm, true)
         : fordel_lag(lag_til_fordeling(materialer), total, result!.afrunding.trin_mm);
     }
     return sub.length >= 2 ? sub : null;

@@ -167,6 +167,7 @@ export function constructionData(
   function layers(
     total: number | null,
     unreinforcedReference: number | null = null,
+    reinforced = false,
   ): DistributedLayer[] | null {
     if (!total) return null;
     if (!materials.length && split) {
@@ -182,7 +183,7 @@ export function constructionData(
     }
     const spec = distribution ? lagspec(materials, distribution) : null;
     const distributed = spec
-      ? fordel_soejle(spec, total, step, unreinforcedReference)
+      ? fordel_soejle(spec, total, step, unreinforcedReference, reinforced)
       : fordel_lag(lag_til_fordeling(materials), total, step);
     const count = materials.filter((m) => (m.tykkelse_mm || 0) > 0 || (m.pct || 0) > 0).length;
     return distributed.length >= 2 || (distributed.length && count >= 2) ? distributed : null;
@@ -240,7 +241,7 @@ export function constructionData(
   selected.forEach((p, i) => {
     const total = p && !p.fejl ? (p.t_armeret_mm ?? null) : null;
     const best = p && !p.fejl ? (p.t_armeret_mm_min ?? null) : null;
-    const sub = layers(total, unreinforced);
+    const sub = layers(total, unreinforced, true);
     const placement = check_geonet_placement({
       lag_mode: `${i + 1}_lag`,
       total_mm: total,

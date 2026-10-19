@@ -141,7 +141,11 @@ export function reportFigures(
     (dim.t_uarmeret_mm == null
       ? null
       : rund_op(dim.t_uarmeret_mm * (1 + K_PHI * (dim.phi - PHI_BASIS)), dim.afrunding.trin_mm));
-  function layers(total: number, uarmRef: number | null = null): DistributedLayer[] | null {
+  function layers(
+    total: number,
+    uarmRef: number | null = null,
+    reinforced = false,
+  ): DistributedLayer[] | null {
     if (!materials.length && 'standard_opdeling' in dim && dim.standard_opdeling) {
       const s = dim.standard_opdeling;
       if (
@@ -154,7 +158,7 @@ export function reportFigures(
     }
     const spec = 'fordeling' in dim && dim.fordeling ? lagspec(materials, dim.fordeling) : null;
     const sub = spec
-      ? fordel_soejle(spec, total, dim.afrunding.trin_mm, uarmRef)
+      ? fordel_soejle(spec, total, dim.afrunding.trin_mm, uarmRef, reinforced)
       : fordel_lag(lag_til_fordeling(materials), total, dim.afrunding.trin_mm);
     const count = materials.filter((m) => (m.tykkelse_mm || 0) > 0 || (m.pct || 0) > 0).length;
     return sub.length >= 2 || (sub.length && count >= 2) ? sub : null;
@@ -211,14 +215,14 @@ export function reportFigures(
       null,
     );
   if ((choices.rap_vis_1lag ?? totals[0] !== null) && totals[0] !== null)
-    section('1 lag geonet', totals[0], layers(totals[0], uarm), 0);
+    section('1 lag geonet', totals[0], layers(totals[0], uarm, true), 0);
   if (
     (choices.rap_vis_2lag ?? (totals[0] !== null && totals[0] >= 500)) &&
     totals[0] !== null &&
     totals[0] >= 500 &&
     totals[1] !== null
   )
-    section('2 lag geonet', totals[1], layers(totals[1], uarm), 1);
+    section('2 lag geonet', totals[1], layers(totals[1], uarm, true), 1);
   const constructionCall: ReportConstructionCall | null = snit.length
     ? {
         eu: dim.eu,
