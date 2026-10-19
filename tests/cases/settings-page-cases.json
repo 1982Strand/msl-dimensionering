@@ -400,6 +400,23 @@
               "element_type": "CAPTION"
             },
             {
+              "type": "radio",
+              "key": "ind_lf_minimumsklasse",
+              "label": "Minimumstykkelse ved dimensionering efter trafikklasse",
+              "value": "hoejeste",
+              "options": [
+                "Den højeste af de to belastningsklasser",
+                "Den laveste af de to belastningsklasser"
+              ],
+              "disabled": false,
+              "help": "Ligger opslagspunktet Eₒ,ækv mellem to belastningsklasser, anvendes minimumstykkelsen for den højeste af de to (standard) eller for den laveste af de to. Ved Eₒ,ækv = 95,3 MPa anvendes klasse 5 ved højeste og klasse 4 ved laveste. Ligger Eₒ,ækv præcis på en klasse, anvendes denne klasse.\n\nGælder kun ved dimensionering efter trafikklasse, ikke når belastningsklassen er valgt direkte."
+            },
+            {
+              "type": "caption",
+              "body": "Gælder: Standard og Brugerdefineret",
+              "element_type": "CAPTION"
+            },
+            {
               "block": "flex_container",
               "flex_container": {
                 "gap_config": {
@@ -532,7 +549,7 @@
                   "children": [
                     {
                       "type": "caption",
-                      "body": "Ved dimensionering efter trafikklasse anvendes minimumstykkelsen for den højeste af de to belastningsklasser, som opslagspunktet Eₒ,ækv ligger imellem.",
+                      "body": "Ved dimensionering efter trafikklasse ligger opslagspunktet Eₒ,ækv mellem to belastningsklasser. Indstillingen til venstre bestemmer, om minimumstykkelsen for den højeste eller den laveste af de to anvendes.",
                       "element_type": "CAPTION"
                     },
                     {
@@ -1573,6 +1590,23 @@
               "element_type": "CAPTION"
             },
             {
+              "type": "radio",
+              "key": "ind_lf_minimumsklasse",
+              "label": "Minimumstykkelse ved dimensionering efter trafikklasse",
+              "value": "hoejeste",
+              "options": [
+                "Den højeste af de to belastningsklasser",
+                "Den laveste af de to belastningsklasser"
+              ],
+              "disabled": false,
+              "help": "Ligger opslagspunktet Eₒ,ækv mellem to belastningsklasser, anvendes minimumstykkelsen for den højeste af de to (standard) eller for den laveste af de to. Ved Eₒ,ækv = 95,3 MPa anvendes klasse 5 ved højeste og klasse 4 ved laveste. Ligger Eₒ,ækv præcis på en klasse, anvendes denne klasse.\n\nGælder kun ved dimensionering efter trafikklasse, ikke når belastningsklassen er valgt direkte."
+            },
+            {
+              "type": "caption",
+              "body": "Gælder: Standard og Brugerdefineret",
+              "element_type": "CAPTION"
+            },
+            {
               "block": "flex_container",
               "flex_container": {
                 "gap_config": {
@@ -1705,7 +1739,7 @@
                   "children": [
                     {
                       "type": "caption",
-                      "body": "Ved dimensionering efter trafikklasse anvendes minimumstykkelsen for den højeste af de to belastningsklasser, som opslagspunktet Eₒ,ækv ligger imellem.",
+                      "body": "Ved dimensionering efter trafikklasse ligger opslagspunktet Eₒ,ækv mellem to belastningsklasser. Indstillingen til venstre bestemmer, om minimumstykkelsen for den højeste eller den laveste af de to anvendes.",
                       "element_type": "CAPTION"
                     },
                     {
@@ -2746,6 +2780,23 @@
               "element_type": "CAPTION"
             },
             {
+              "type": "radio",
+              "key": "ind_lf_minimumsklasse",
+              "label": "Minimumstykkelse ved dimensionering efter trafikklasse",
+              "value": "hoejeste",
+              "options": [
+                "Den højeste af de to belastningsklasser",
+                "Den laveste af de to belastningsklasser"
+              ],
+              "disabled": false,
+              "help": "Ligger opslagspunktet Eₒ,ækv mellem to belastningsklasser, anvendes minimumstykkelsen for den højeste af de to (standard) eller for den laveste af de to. Ved Eₒ,ækv = 95,3 MPa anvendes klasse 5 ved højeste og klasse 4 ved laveste. Ligger Eₒ,ækv præcis på en klasse, anvendes denne klasse.\n\nGælder kun ved dimensionering efter trafikklasse, ikke når belastningsklassen er valgt direkte."
+            },
+            {
+              "type": "caption",
+              "body": "Gælder: Standard og Brugerdefineret",
+              "element_type": "CAPTION"
+            },
+            {
               "block": "flex_container",
               "flex_container": {
                 "gap_config": {
@@ -2878,7 +2929,7 @@
                   "children": [
                     {
                       "type": "caption",
-                      "body": "Ved dimensionering efter trafikklasse anvendes minimumstykkelsen for den højeste af de to belastningsklasser, som opslagspunktet Eₒ,ækv ligger imellem.",
+                      "body": "Ved dimensionering efter trafikklasse ligger opslagspunktet Eₒ,ækv mellem to belastningsklasser. Indstillingen til venstre bestemmer, om minimumstykkelsen for den højeste eller den laveste af de to anvendes.",
                       "element_type": "CAPTION"
                     },
                     {
@@ -3919,6 +3970,23 @@
               "element_type": "CAPTION"
             },
             {
+              "type": "radio",
+              "key": "ind_lf_minimumsklasse",
+              "label": "Minimumstykkelse ved dimensionering efter trafikklasse",
+              "value": "hoejeste",
+              "options": [
+                "Den højeste af de to belastningsklasser",
+                "Den laveste af de to belastningsklasser"
+              ],
+              "disabled": false,
+              "help": "Ligger opslagspunktet Eₒ,ækv mellem to belastningsklasser, anvendes minimumstykkelsen for den højeste af de to (standard) eller for den laveste af de to. Ved Eₒ,ækv = 95,3 MPa anvendes klasse 5 ved højeste og klasse 4 ved laveste. Ligger Eₒ,ækv præcis på en klasse, anvendes denne klasse.\n\nGælder kun ved dimensionering efter trafikklasse, ikke når belastningsklassen er valgt direkte."
+            },
+            {
+              "type": "caption",
+              "body": "Gælder: Brugerdefineret · gælder ikke Standard, da klassisk standardberegning er valgt i afsnit 6",
+              "element_type": "CAPTION"
+            },
+            {
               "block": "flex_container",
               "flex_container": {
                 "gap_config": {
@@ -4051,7 +4119,7 @@
                   "children": [
                     {
                       "type": "caption",
-                      "body": "Ved dimensionering efter trafikklasse anvendes minimumstykkelsen for den højeste af de to belastningsklasser, som opslagspunktet Eₒ,ækv ligger imellem.",
+                      "body": "Ved dimensionering efter trafikklasse ligger opslagspunktet Eₒ,ækv mellem to belastningsklasser. Indstillingen til venstre bestemmer, om minimumstykkelsen for den højeste eller den laveste af de to anvendes.",
                       "element_type": "CAPTION"
                     },
                     {

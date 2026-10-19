@@ -16,6 +16,7 @@
     "lagfordeling": {
       "fordeling": "minimum",
       "samlet_minimum": true,
+      "minimumsklasse": "hoejeste",
       "minimum_mm": {
         "1": 200.0,
         "2": 200.0,
@@ -250,6 +251,18 @@
           "value": true,
           "disabled": false,
           "help": "Er den beregnede og oprundede lagtykkelse mindre end minimumstykkelsen for klassen, angives minimumstykkelsen, og reduktionen mindskes tilsvarende. Tillægget står som eget led i mellemregningerne. Er fluebenet fjernet, fastlægger afsnit 6, hvordan Standard-opdelingen behandler en opbygning under stabilgrusminimum.\n\nValgt som standard. Uden flueben opfører appen sig som tidligere."
+        },
+        {
+          "key": "ind_lf_minimumsklasse",
+          "kind": "radio",
+          "label": "Minimumstykkelse ved dimensionering efter trafikklasse",
+          "value": "hoejeste",
+          "disabled": false,
+          "help": "Ligger opslagspunktet Eₒ,ækv mellem to belastningsklasser, anvendes minimumstykkelsen for den højeste af de to (standard) eller for den laveste af de to. Ved Eₒ,ækv = 95,3 MPa anvendes klasse 5 ved højeste og klasse 4 ved laveste. Ligger Eₒ,ækv præcis på en klasse, anvendes denne klasse.\n\nGælder kun ved dimensionering efter trafikklasse, ikke når belastningsklassen er valgt direkte.",
+          "optionLabels": [
+            "Den højeste af de to belastningsklasser",
+            "Den laveste af de to belastningsklasser"
+          ]
         },
         {
           "key": "ind_lf_kraev_bundsikring",

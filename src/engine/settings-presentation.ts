@@ -126,6 +126,7 @@ export function settingsPage(value: unknown, outside: ReturnType<typeof outsideD
     }[lf.fordeling]!,
   ];
   if (lf.samlet_minimum) distribution.push('samlet tykkelse mindst minimum');
+  if (lf.minimumsklasse === 'laveste') distribution.push('minimum for laveste klasse');
   distribution.push(
     `${Object.entries(lf.minimum_mm)
       .sort(([a], [b]) => Number(a) - Number(b))
@@ -210,6 +211,8 @@ export function settingsPage(value: unknown, outside: ReturnType<typeof outsideD
           field(0),
           bd(),
           field(1),
+          both(),
+          field(2),
           both(),
           columns(
             [{ kind: 'minimumTable', table: section.minimumTable as MinimumTable }],

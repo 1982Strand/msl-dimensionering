@@ -79,11 +79,13 @@ export function beregn_grundlag(input: DimensioningInput) {
   };
 }
 type Basis = ReturnType<typeof beregn_grundlag>;
-const minimumsklasse = (g: Basis) =>
-  g.type === 'trafikklasse' ? l.klasse_for_eo(g.eo) : g.valgt_klasse;
+const minimumsklasse = (g: Basis, settings: Settings) =>
+  g.type === 'trafikklasse'
+    ? l.klasse_for_eo(g.eo, l.normaliser(settings.lagfordeling).minimumsklasse)
+    : g.valgt_klasse;
 export function fordelingsgrundlag(g: Basis, settings: Settings) {
   const ind = l.normaliser(settings.lagfordeling),
-    klasse = minimumsklasse(g);
+    klasse = minimumsklasse(g, settings);
   return {
     fordeling: ind.fordeling,
     klasse,
@@ -144,7 +146,7 @@ export function afrunding_til_beregning(
 }
 export function standard_opdeling(g: Basis, settings: Settings) {
   const ind = l.normaliser(settings.lagfordeling),
-    klasse = minimumsklasse(g);
+    klasse = minimumsklasse(g, settings);
   const out: {
     klassisk: boolean;
     spec: LayerSpec | null;

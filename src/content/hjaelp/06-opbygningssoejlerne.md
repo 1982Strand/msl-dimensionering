@@ -117,10 +117,12 @@ indbygningstrinnet; ved standardtrinnet på 50 mm anvendes 275 mm således som
 | 6 | 300 |
 :::
 
-Ved dimensionering efter trafikklasse anvendes minimumstykkelsen for den
-højeste af de to belastningsklasser, som opslagspunktet Eₒ,ækv ligger
+Ved dimensionering efter trafikklasse anvendes som standard minimumstykkelsen
+for den højeste af de to belastningsklasser, som opslagspunktet Eₒ,ækv ligger
 imellem, jf. kapitel 1, afsnit 4. Ved Eₒ,ækv = 95,3 MPa anvendes således
-minimumstykkelsen for belastningsklasse 5.
+minimumstykkelsen for belastningsklasse 5. Under Indstillinger kan der i stedet
+vælges den laveste af de to belastningsklasser; ved Eₒ,ækv = 95,3 MPa anvendes
+da klasse 4. Ligger Eₒ,ækv præcis på en klasse, anvendes denne klasse.
 
 Figur 6.2 viser de tre fordelinger for en indtastet opbygning af 300 mm
 stabilgrus over 400 mm bundsikringssand ved belastningsklasse 4 og

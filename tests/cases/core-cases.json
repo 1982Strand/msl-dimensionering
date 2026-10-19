@@ -4926,6 +4926,7 @@
     "lagfordeling": {
       "fordeling": "minimum",
       "samlet_minimum": true,
+      "minimumsklasse": "hoejeste",
       "minimum_mm": {
         "1": 200.0,
         "2": 200.0,
@@ -123195,6 +123196,7 @@
       "expected": {
         "fordeling": "minimum",
         "samlet_minimum": true,
+        "minimumsklasse": "hoejeste",
         "minimum_mm": {
           "1": 200.0,
           "2": 200.0,
@@ -123227,6 +123229,7 @@
       "expected": {
         "fordeling": "minimum",
         "samlet_minimum": true,
+        "minimumsklasse": "hoejeste",
         "minimum_mm": {
           "1": 200.0,
           "2": 200.0,
@@ -123263,6 +123266,7 @@
       "expected": {
         "fordeling": "minimum",
         "samlet_minimum": true,
+        "minimumsklasse": "hoejeste",
         "minimum_mm": {
           "1": 200.0,
           "2": 200.0,

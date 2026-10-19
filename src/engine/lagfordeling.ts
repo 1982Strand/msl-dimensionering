@@ -3,6 +3,7 @@ import { isRecord } from './python-numbers.ts';
 import type { Layer, DistributedLayer, LayerSpec } from './types.ts';
 export const FORDELING_VALG = ['proportional', 'minimum', 'fastholdt'];
 export const RESTLAG_VALG = ['vis', 'flet', 'vd'];
+export const MINIMUMSKLASSE_VALG = ['hoejeste', 'laveste'];
 export const PHI_VALG = ['indtastet', 'laveste', 'soejle'];
 export const STANDARD_MINIMUM_MM: Record<string, number> = {
   1: 200,
@@ -19,6 +20,7 @@ export function normaliser(value: unknown) {
   const out = {
     fordeling: 'minimum',
     samlet_minimum: true,
+    minimumsklasse: 'hoejeste',
     minimum_mm: { ...STANDARD_MINIMUM_MM },
     restlag: 'vis',
     restlag_graense_mm: 100,
@@ -34,6 +36,7 @@ export function normaliser(value: unknown) {
   for (const [key, options] of [
     ['fordeling', FORDELING_VALG],
     ['restlag', RESTLAG_VALG],
+    ['minimumsklasse', MINIMUMSKLASSE_VALG],
     ['phi_regel', PHI_VALG],
     ['netplacering', ['laggraense', 'daeklag', 'laggraense_min']],
     ['standard_under_minimum', ['stabilgrus', 'loeft', 'ubundet']],
@@ -68,11 +71,13 @@ export const lagtype_noegle = (type?: string | null) =>
     .startsWith('bunds')
     ? 'Bundsikring'
     : 'Bærelag';
-export function klasse_for_eo(eo: number | null): number | null {
+export function klasse_for_eo(eo: number | null, valg = 'hoejeste'): number | null {
   if (eo === null) return null;
   const levels = [30, 45, 60, 80, 120, 150];
   const i = levels.findIndex((v) => v >= eo - 1e-6);
-  return i < 0 ? 6 : i + 1;
+  if (i < 0) return 6;
+  // Ligger Eₒ,ækv mellem to klasser, vælges den højeste (standard) eller den laveste af de to.
+  return valg === 'laveste' && i > 0 && levels[i] > eo + 1e-6 ? i : i + 1;
 }
 export function minimum_for_klasse(indstilling: unknown, klasse: number | null): number | null {
   if (klasse === null) return null;

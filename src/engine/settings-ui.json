@@ -180,7 +180,7 @@
       "title": "Øverste bærelag",
       "texts": [
         "Designdiagrammerne giver én samlet ubunden lagtykkelse. I Brugerdefineret fordeles den på de indtastede materialelag. Fordelingen indgår ikke i diagramopslaget. Den samlede tykkelse og reduktionen kan dog ændres af reglerne i afsnit 4 og 5.\n\nVed proportional fordeling reduceres alle lag i samme forhold, og det øverste lag kan derved blive tyndt. Der kan i stedet fastsættes en minimumstykkelse for det øverste lag pr. belastningsklasse, eller det øverste lag kan fastholdes på den indtastede tykkelse, så ændringer af den samlede tykkelse alene tages i de underliggende lag.",
-        "Ved dimensionering efter trafikklasse anvendes minimumstykkelsen for den højeste af de to belastningsklasser, som opslagspunktet Eₒ,ækv ligger imellem.",
+        "Ved dimensionering efter trafikklasse ligger opslagspunktet Eₒ,ækv mellem to belastningsklasser. Indstillingen til venstre bestemmer, om minimumstykkelsen for den højeste eller den laveste af de to anvendes.",
         "I Brugerdefineret er tabellen minimum for det øverste lag. I Standard er den stabilgruset i opdelingen, uanset fordelingsvalget ovenfor. I begge tilstande er den minimum for den samlede tykkelse, når fluebenet er sat.",
         "Der gøres opmærksom på, at lagforholdet i de beregnede opbygninger ændres, når det øverste lag holdes på minimumstykkelsen eller fastholdes. Om φᵥ regnes af den indtastede opbygning eller af opbygningernes egne lag, fastlægges i afsnit 5."
       ],
@@ -220,6 +220,27 @@
           "kind": "checkbox",
           "defaultValue": true,
           "help": "Er den beregnede og oprundede lagtykkelse mindre end minimumstykkelsen for klassen, angives minimumstykkelsen, og reduktionen mindskes tilsvarende. Tillægget står som eget led i mellemregningerne. Er fluebenet fjernet, fastlægger afsnit 6, hvordan Standard-opdelingen behandler en opbygning under stabilgrusminimum.\n\nValgt som standard. Uden flueben opfører appen sig som tidligere."
+        },
+        {
+          "key": "ind_lf_minimumsklasse",
+          "path": [
+            "lagfordeling",
+            "minimumsklasse"
+          ],
+          "label": "Minimumstykkelse ved dimensionering efter trafikklasse",
+          "kind": "radio",
+          "defaultValue": "hoejeste",
+          "help": "Ligger opslagspunktet Eₒ,ækv mellem to belastningsklasser, anvendes minimumstykkelsen for den højeste af de to (standard) eller for den laveste af de to. Ved Eₒ,ækv = 95,3 MPa anvendes klasse 5 ved højeste og klasse 4 ved laveste. Ligger Eₒ,ækv præcis på en klasse, anvendes denne klasse.\n\nGælder kun ved dimensionering efter trafikklasse, ikke når belastningsklassen er valgt direkte.",
+          "options": [
+            {
+              "value": "hoejeste",
+              "label": "Den højeste af de to belastningsklasser"
+            },
+            {
+              "value": "laveste",
+              "label": "Den laveste af de to belastningsklasser"
+            }
+          ]
         }
       ],
       "minimumTable": {
