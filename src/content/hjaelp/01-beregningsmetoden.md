@@ -266,7 +266,7 @@ T_ind = ⌈T / t⌉ × t
 --
 T_ind er den lagtykkelse, der angives i resultatet [mm]
 T     er den beregnede lagtykkelse efter afsnit 6 [mm]
-t     er oprundingstrinnet: 1, 10, 50 eller 100 mm
+t     er oprundingstrinnet: 1, 5, 10, 50 eller 100 mm
 :::
 
 Trinnet fastlægges under Indstillinger; standardværdien er 50 mm. Ved 1 mm

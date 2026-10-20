@@ -903,7 +903,7 @@
       },
       {
         "type": "html",
-        "value": "<div class=\"hj-formel\"><div class=\"hj-udtryk\">T<sub>ind</sub> = ⌈T / t⌉ × t</div><div class=\"hj-hvor\">hvor:<br>T<sub>ind</sub> er den lagtykkelse, der angives i resultatet [mm]<br>T     er den beregnede lagtykkelse efter afsnit 6 [mm]<br>t     er oprundingstrinnet: 1, 10, 50 eller 100 mm</div></div>"
+        "value": "<div class=\"hj-formel\"><div class=\"hj-udtryk\">T<sub>ind</sub> = ⌈T / t⌉ × t</div><div class=\"hj-hvor\">hvor:<br>T<sub>ind</sub> er den lagtykkelse, der angives i resultatet [mm]<br>T     er den beregnede lagtykkelse efter afsnit 6 [mm]<br>t     er oprundingstrinnet: 1, 5, 10, 50 eller 100 mm</div></div>"
       },
       {
         "type": "markdown",
@@ -1174,7 +1174,7 @@
       },
       {
         "type": "html",
-        "value": "<div class=\"hj-formel\"><div class=\"hj-udtryk\">T<sub>ind</sub> = ⌈T / t⌉ × t</div><div class=\"hj-hvor\">hvor:<br>T<sub>ind</sub> er den lagtykkelse, der angives i resultatet [mm]<br>T     er den beregnede lagtykkelse efter afsnit 6 [mm]<br>t     er oprundingstrinnet: 1, 10, 50 eller 100 mm</div></div>"
+        "value": "<div class=\"hj-formel\"><div class=\"hj-udtryk\">T<sub>ind</sub> = ⌈T / t⌉ × t</div><div class=\"hj-hvor\">hvor:<br>T<sub>ind</sub> er den lagtykkelse, der angives i resultatet [mm]<br>T     er den beregnede lagtykkelse efter afsnit 6 [mm]<br>t     er oprundingstrinnet: 1, 5, 10, 50 eller 100 mm</div></div>"
       },
       {
         "type": "markdown",
@@ -2050,7 +2050,7 @@
                 "hvor": [
                   "T_ind er den lagtykkelse, der angives i resultatet [mm]",
                   "T     er den beregnede lagtykkelse efter afsnit 6 [mm]",
-                  "t     er oprundingstrinnet: 1, 10, 50 eller 100 mm"
+                  "t     er oprundingstrinnet: 1, 5, 10, 50 eller 100 mm"
                 ]
               },
               "Trinnet fastlægges under Indstillinger; standardværdien er 50 mm. Ved 1 mm\nangives lagtykkelsen som beregnet. Er det tilvalgt under Indstillinger,\nsættes den oprundede lagtykkelse desuden mindst til minimumstykkelsen for\nklassen, jf. kapitel 6, afsnit 2, og den kan øges, så de underliggende lag\nkan indbygges, jf. kapitel 6, afsnit 3. Ved klassisk standardberegning\nanvendes alene oprundingen, jf. kapitel 6, afsnit 5. Oprundingen gælder den ustabiliserede og\nde stabiliserede lagtykkelser og anvendes ens i resultatkortet,\nopbygningssøjlerne, produkttabellen og rapporten. Produkter, der efter\noprundingen giver samme lagtykkelse, samles i produkttabellen i én gruppe.\n\nReduktionen i mm og procent opgøres af de oprundede lagtykkelser, så den\nstemmer med de viste tal. Under Indstillinger kan reduktionen i stedet\nopgøres af de beregnede lagtykkelser; den svarer da til designdiagrammets\naflæsning, men afviger fra forskellen mellem de viste tal.\n\nMellemregningerne føres med de beregnede lagtykkelser, og oprundingen står som\nsidste led, så regnestykket kan efterregnes. Markeringerne i designdiagrammet\nsættes ved de beregnede lagtykkelser, idet de angiver aflæsningen på kurverne.\nDen beregnede lagtykkelse kan anføres i parentes efter den oprundede; valget\ntræffes under Indstillinger."
