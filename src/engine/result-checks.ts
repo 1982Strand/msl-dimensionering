@@ -74,6 +74,8 @@ const exactFields = [
   't_uarmeret_phi_kor_til_minimum',
   't_armeret_til_lagminimum',
   't_uarmeret_phi_kor_til_lagminimum',
+  't_armeret_vd_minimum_ikke_opfyldt',
+  't_uarmeret_phi_kor_vd_minimum_ikke_opfyldt',
   't_armeret_lagtillaeg_lag',
   'phi',
   'phi_uarmeret',
@@ -197,6 +199,8 @@ export function sammeProdukter(one: ProductGroup | null, two: ProductGroup | nul
     b = new Set(two.produkter.map((p) => p.navn));
   return a.size === b.size && [...a].every((n) => b.has(n));
 }
+const VD_IKKE_OPFYLDT =
+  "De underliggende lag kan ikke gøres mindst så tykke som VD's mindste lagtykkelse inden for 3000 mm over den oprundede lagtykkelse. Den angivne opbygning opfylder ikke valget under Indstillinger, Underliggende lag.";
 export function advarselMedLagtekst(text: string, mode: string): string {
   const context = mode === '1_lag' ? 'ved 1 lag geonet' : 'ved 2 lag geonet';
   if (
@@ -393,6 +397,18 @@ export function resultChecks(
     }
   }
   const uniqueWarnings = deduplicate(warnings, unit);
+  const vdArm = groups
+    .map((g, i) => (g?.produkter.some((p) => p.t_armeret_vd_minimum_ikke_opfyldt) ? i + 1 : null))
+    .filter((n) => n !== null);
+  if (groups.some((g) => g?.produkter.some((p) => p.t_uarmeret_phi_kor_vd_minimum_ikke_opfyldt)))
+    uniqueWarnings.push(konverter_tekst(`Ustabiliseret opbygning: ${VD_IKKE_OPFYLDT}`, unit));
+  if (vdArm.length)
+    uniqueWarnings.push(
+      konverter_tekst(
+        `${result.geonet_navn} ved ${vdArm.join(' og ')} lag geonet: ${VD_IKKE_OPFYLDT}`,
+        unit,
+      ),
+    );
   const recommendations: CheckNode[][] = deduplicate(placementRecommendations, unit).map((text) => [
     text,
   ]);

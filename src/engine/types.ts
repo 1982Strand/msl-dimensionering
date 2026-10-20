@@ -100,6 +100,8 @@ export interface CalculationResult {
   t_uarmeret_phi_kor_til_minimum?: boolean;
   t_armeret_til_lagminimum?: boolean;
   t_uarmeret_phi_kor_til_lagminimum?: boolean;
+  t_armeret_vd_minimum_ikke_opfyldt?: boolean;
+  t_uarmeret_phi_kor_vd_minimum_ikke_opfyldt?: boolean;
   t_armeret_lagtillaeg_lag?: {
     foer: Pick<DistributedLayer, 'navn' | 'tykkelse_mm'>[];
     efter: Pick<DistributedLayer, 'navn' | 'tykkelse_mm'>[];

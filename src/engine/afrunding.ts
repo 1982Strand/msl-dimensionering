@@ -1,7 +1,7 @@
 import { isRecord, pythonNumber, pythonRound } from './python-numbers.ts';
 import type { CalculationResult, DistributedLayer, Layer, LayerSpec, Rounding } from './types.ts';
 import {
-  byggelig_total,
+  byggelig_total_med_status,
   fordel_opbygning,
   oeverste_lag_mm,
   soejle_fordeling,
@@ -157,11 +157,12 @@ function anvend_lagminimum(out: CalculationResult, spec: LayerSpec, trin: number
   };
   const uarm = out.t_uarmeret_phi_kor_mm;
   if (uarm != null) {
-    const next = byggelig_total(layers, uarm, trin, {
+    const { total_mm: next, vd_minimum_opfyldt } = byggelig_total_med_status(layers, uarm, trin, {
       ...kw,
       oeverst_ref_mm: ref,
       ...soejle_fordeling(spec.fordeling, spec.min_mm, false),
     });
+    if (vd_minimum_opfyldt === false) out.t_uarmeret_phi_kor_vd_minimum_ikke_opfyldt = true;
     if (next !== null && next > uarm) {
       out.t_uarmeret_phi_kor_mm = next;
       out.t_uarmeret_phi_kor_til_lagminimum = true;
@@ -173,7 +174,13 @@ function anvend_lagminimum(out: CalculationResult, spec: LayerSpec, trin: number
   if (arm != null) {
     const geonet = soejle_fordeling(spec.fordeling, spec.min_mm, true);
     const armKw = geonet ? { ...kw, ...geonet } : { ...kw, oeverst_ref_mm: ref };
-    const next = byggelig_total(layers, arm, trin, armKw);
+    const { total_mm: next, vd_minimum_opfyldt } = byggelig_total_med_status(
+      layers,
+      arm,
+      trin,
+      armKw,
+    );
+    if (vd_minimum_opfyldt === false) out.t_armeret_vd_minimum_ikke_opfyldt = true;
     if (next !== null && next > arm) {
       out.t_armeret_mm = next;
       out.t_armeret_til_lagminimum = true;

@@ -145,14 +145,19 @@ export function fordel_opbygning(
   }
   return out;
 }
-export function byggelig_total(
+export interface ByggeligTotalResult {
+  total_mm: number | null;
+  vd_minimum_opfyldt: boolean | null;
+}
+export function byggelig_total_med_status(
   lag: Layer[],
   total_mm: number | null,
   trin: number,
   options: Options = {},
-): number | null {
+): ByggeligTotalResult {
   const vd = options.vd_minimum_mm;
-  if (total_mm === null || total_mm <= 0 || !vd || !Object.keys(vd).length) return total_mm;
+  if (total_mm === null || total_mm <= 0 || !vd || !Object.keys(vd).length)
+    return { total_mm, vd_minimum_opfyldt: null };
   trin = trin ? Math.trunc(trin) : 1;
   const types = Object.fromEntries(lag.map((l) => [l.navn ?? 'Lag', l.lagtype]));
   const count = lag.filter((l) => (l.andel || 0) > 0).length,
@@ -170,9 +175,17 @@ export function byggelig_total(
         .slice(1)
         .every((l) => l.tykkelse_mm >= (vd[lagtype_noegle(l.lagtype || types[l.navn])] ?? 0) - 1e-6)
     )
-      return t > start ? t : total_mm;
+      return { total_mm: t > start ? t : total_mm, vd_minimum_opfyldt: true };
   }
-  return total_mm;
+  return { total_mm, vd_minimum_opfyldt: false };
+}
+export function byggelig_total(
+  lag: Layer[],
+  total_mm: number | null,
+  trin: number,
+  options: Options = {},
+): number | null {
+  return byggelig_total_med_status(lag, total_mm, trin, options).total_mm;
 }
 export function oeverste_lag_mm(
   lag: Layer[],

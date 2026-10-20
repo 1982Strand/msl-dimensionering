@@ -47,6 +47,8 @@ export function beregn_alle_produkter(input: ProductsInput): ProductRow[] {
     't_uarmeret_phi_kor_til_minimum',
     't_armeret_til_lagminimum',
     't_uarmeret_phi_kor_til_lagminimum',
+    't_armeret_vd_minimum_ikke_opfyldt',
+    't_uarmeret_phi_kor_vd_minimum_ikke_opfyldt',
     't_armeret_lagtillaeg_lag',
     'phi',
     'phi_uarmeret',
