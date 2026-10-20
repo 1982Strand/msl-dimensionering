@@ -151,6 +151,53 @@ for (const raw of [
     assert.equal(storage.writes, 0);
   });
 }
+function storedWith(change: (indstillinger: Record<string, Record<string, unknown>>) => void) {
+  const storage = new MemoryStorage(),
+    session = fresh_saved_session();
+  session.data.indstillinger.afrunding.trin_mm = 10;
+  session.data.indstillinger.lagfordeling.fordeling = 'proportional';
+  const raw = structuredClone(session) as unknown as {
+    data: { indstillinger: Record<string, Record<string, unknown>> };
+  };
+  change(raw.data.indstillinger);
+  const text = JSON.stringify({ schema: 1, session: raw });
+  storage.items.set(SESSION_STORAGE_KEY, text);
+  return { storage, session, text };
+}
+for (const [name, change] of [
+  ['minimumsklasse', (s) => delete s.lagfordeling.minimumsklasse],
+  ['phi_afrunding', (s) => delete s.afrunding.phi_afrunding],
+  ['minimum_mm["6"]', (s) => delete (s.lagfordeling.minimum_mm as Record<string, unknown>)['6']],
+  ['yderomraade', (s) => delete s.yderomraade],
+] as [string, (s: Record<string, Record<string, unknown>>) => void][])
+  test('older snapshot without the setting ' + name + ' loads with the default added', () => {
+    const { storage, session, text } = storedWith(change),
+      opened = ready(storage);
+    assert.deepEqual(opened.editor.snapshot(), session);
+    assert.equal(opened.isNew, false);
+    assert.equal(storage.getItem(SESSION_STORAGE_KEY), text);
+    assert.equal(storage.writes, 0);
+  });
+for (const [name, change] of [
+  ['an invalid value', (s) => (s.afrunding.trin_mm = 7)],
+  ['an unknown key', (s) => (s.lagfordeling.ukendt = true)],
+  ['a wrong type', (s) => (s.lagfordeling.minimum_mm = [200])],
+] as [string, (s: Record<string, Record<string, unknown>>) => void][])
+  test('saved settings with ' + name + ' are still rejected without overwriting', () => {
+    const { storage, text } = storedWith(change);
+    assert.equal(open_saved_editor(storage).kind, 'invalid');
+    assert.equal(storage.getItem(SESSION_STORAGE_KEY), text);
+    assert.equal(storage.writes, 0);
+  });
+test('missing fields in other sections are still not backfilled', () => {
+  const storage = new MemoryStorage(),
+    raw = structuredClone(fresh_saved_session()) as unknown as {
+      data: { materialer: Record<string, unknown>[] };
+    };
+  delete raw.data.materialer[0].krav_maskestoerrelse_mm;
+  storage.items.set(SESSION_STORAGE_KEY, JSON.stringify({ schema: 1, session: raw }));
+  assert.equal(open_saved_editor(storage).kind, 'invalid');
+});
 test('blocked reading returns a visible failure instead of fresh defaults', () => {
   const storage = new MemoryStorage();
   storage.failRead = true;

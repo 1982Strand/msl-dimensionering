@@ -34,6 +34,14 @@ function assertJson(value: unknown): void {
   }
   throw new TypeError('Data indeholder en værdi, som ikke kan gemmes som JSON.');
 }
+/** Every saved key must round-trip unchanged; keys missing from an older snapshot may be added. */
+function savedSubset(saved: unknown, normalised: unknown): boolean {
+  if (isRecord(saved) && isRecord(normalised))
+    return Object.keys(saved).every(
+      (k) => Object.hasOwn(normalised, k) && savedSubset(saved[k], normalised[k]),
+    );
+  return e.equalData(saved, normalised);
+}
 function decodeData(value: unknown): DataState {
   if (
     !isRecord(value) ||
@@ -54,7 +62,10 @@ function decodeData(value: unknown): DataState {
   };
   // Versioned app snapshots must round-trip exactly. Legacy JSON loaders remain separate.
   // In particular, do not backfill an intentionally empty material field during reload.
-  if (!e.equalData(data, value))
+  // Settings added in a later version are filled with their defaults (docs/BESLUTNINGER.md, 20. oktober 2026).
+  const { indstillinger, ...rest } = data,
+    { indstillinger: savedSettings, ...savedRest } = value;
+  if (!e.equalData(rest, savedRest) || !savedSubset(savedSettings, indstillinger))
     throw new TypeError('De gemte data svarer ikke til det understøttede format.');
   return data;
 }
