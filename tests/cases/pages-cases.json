@@ -903,7 +903,7 @@
       },
       {
         "type": "html",
-        "value": "<div class=\"hj-formel\"><div class=\"hj-udtryk\">T<sub>ind</sub> = ⌈T / t⌉ × t</div><div class=\"hj-hvor\">hvor:<br>T<sub>ind</sub> er den lagtykkelse, der angives i resultatet [mm]<br>T     er den beregnede lagtykkelse efter afsnit 6 [mm]<br>t     er oprundingstrinnet: 1, 5, 10, 50 eller 100 mm</div></div>"
+        "value": "<div class=\"hj-formel\"><div class=\"hj-udtryk\">T<sub>ind</sub> = ⌈T / t⌉ × t</div><div class=\"hj-hvor\">hvor:<br>T<sub>ind</sub> er den lagtykkelse, der angives i resultatet [mm]<br>T     er den beregnede lagtykkelse efter afsnit 6, afrundet til hele mm [mm]<br>t     er oprundingstrinnet: 1, 5, 10, 50 eller 100 mm</div></div>"
       },
       {
         "type": "markdown",
@@ -1174,7 +1174,7 @@
       },
       {
         "type": "html",
-        "value": "<div class=\"hj-formel\"><div class=\"hj-udtryk\">T<sub>ind</sub> = ⌈T / t⌉ × t</div><div class=\"hj-hvor\">hvor:<br>T<sub>ind</sub> er den lagtykkelse, der angives i resultatet [mm]<br>T     er den beregnede lagtykkelse efter afsnit 6 [mm]<br>t     er oprundingstrinnet: 1, 5, 10, 50 eller 100 mm</div></div>"
+        "value": "<div class=\"hj-formel\"><div class=\"hj-udtryk\">T<sub>ind</sub> = ⌈T / t⌉ × t</div><div class=\"hj-hvor\">hvor:<br>T<sub>ind</sub> er den lagtykkelse, der angives i resultatet [mm]<br>T     er den beregnede lagtykkelse efter afsnit 6, afrundet til hele mm [mm]<br>t     er oprundingstrinnet: 1, 5, 10, 50 eller 100 mm</div></div>"
       },
       {
         "type": "markdown",
@@ -2049,7 +2049,7 @@
                 "udtryk": "T_ind = ⌈T / t⌉ × t",
                 "hvor": [
                   "T_ind er den lagtykkelse, der angives i resultatet [mm]",
-                  "T     er den beregnede lagtykkelse efter afsnit 6 [mm]",
+                  "T     er den beregnede lagtykkelse efter afsnit 6, afrundet til hele mm [mm]",
                   "t     er oprundingstrinnet: 1, 5, 10, 50 eller 100 mm"
                 ]
               },

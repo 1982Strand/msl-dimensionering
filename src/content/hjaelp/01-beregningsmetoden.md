@@ -265,7 +265,7 @@ en nedrundet lagtykkelse ville ligge under den beregnede mindstetykkelse.
 T_ind = ⌈T / t⌉ × t
 --
 T_ind er den lagtykkelse, der angives i resultatet [mm]
-T     er den beregnede lagtykkelse efter afsnit 6 [mm]
+T     er den beregnede lagtykkelse efter afsnit 6, afrundet til hele mm [mm]
 t     er oprundingstrinnet: 1, 5, 10, 50 eller 100 mm
 :::
 
