@@ -159,23 +159,30 @@ export function Settings() {
                 <thead>
                   <tr>
                     <th scope="col">
-                      <span className="sr-only">Opbygning</span>
+                      <span className="sr-only">Lag</span>
                     </th>
-                    {item.model.columns.map((column) => (
-                      <th scope="col" key={column}>
-                        {column}
+                    {item.model.rows.map((row, rowIndex) => (
+                      <th scope="col" key={rowIndex}>
+                        {row.label}
                       </th>
                     ))}
                   </tr>
                 </thead>
                 <tbody>
-                  {item.model.rows.map((row, rowIndex) => (
-                    <tr key={`${row.label}-${rowIndex}`}>
-                      <th scope="row">{row.label}</th>
-                      {row.empty ? (
-                        <td colSpan={item.model.columns.length}>{row.cells[0]}</td>
-                      ) : (
-                        row.cells.map((cell, cellIndex) => <td key={cellIndex}>{cell}</td>)
+                  {/* Opbygningerne står vandret; en tom opbygning får én celle over alle lag. */}
+                  {item.model.columns.map((column, columnIndex) => (
+                    <tr key={columnIndex}>
+                      <th scope="row">{column}</th>
+                      {item.model.rows.map((row, rowIndex) =>
+                        row.empty ? (
+                          columnIndex === 0 && (
+                            <td rowSpan={item.model.columns.length} key={rowIndex}>
+                              {row.cells[0]}
+                            </td>
+                          )
+                        ) : (
+                          <td key={rowIndex}>{row.cells[columnIndex]}</td>
+                        ),
                       )}
                     </tr>
                   ))}

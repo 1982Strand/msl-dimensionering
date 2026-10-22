@@ -144,11 +144,15 @@ test('fordelingsboksen følger straks valget i Standard-sessionen', async ({ pag
   const after = distributionImpact({}, data);
   expect(before).not.toBeNull();
   expect(after).not.toBeNull();
-  const expected = (model: NonNullable<typeof before>) => {
-    const row = model.rows.find((item) => item.label === 'Uden geonet');
-    expect(row).toBeDefined();
-    return `Uden geonet${row!.cells.join('')}`;
-  };
+  // Opbygningerne står vandret; en tom opbygning har kun en celle i første lagrække.
+  const expected = (model: NonNullable<typeof before>) =>
+    model.columns.map(
+      (column, c) =>
+        column +
+        model.rows
+          .map((row) => (row.empty ? (c === 0 ? row.cells[0] : '') : row.cells[c]))
+          .join(''),
+    );
 
   await page.goto('/#indstillinger');
   const table = page.getByRole('table', { name: 'Konsekvens af fordelingsvalget' });
@@ -158,14 +162,21 @@ test('fordelingsboksen følger straks valget i Standard-sessionen', async ({ pag
       'Dimensioneringen står i Standard. Eksemplet viser opbygningen fra Brugerdefineret.',
     ),
   ).toBeVisible();
-  await expect(table.getByRole('row', { name: /^Uden geonet/ })).toHaveText(expected(before!));
+  await expect(table.getByRole('columnheader')).toHaveText([
+    'Lag',
+    'Indtastet',
+    'Uden geonet',
+    '1 lag geonet',
+    '2 lag geonet',
+  ]);
+  await expect(table.locator('tbody tr')).toHaveText(expected(before!));
   await page
     .getByRole('radio', {
       name: 'Det øverste lag fastholdes på den indtastede tykkelse',
       exact: true,
     })
     .check();
-  await expect(table.getByRole('row', { name: /^Uden geonet/ })).toHaveText(expected(after!));
+  await expect(table.locator('tbody tr')).toHaveText(expected(after!));
 });
 
 test('minimum reset is scoped and tolerance changes reach actual correlation after navigation', async ({
