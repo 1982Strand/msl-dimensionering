@@ -7,6 +7,12 @@
 .settings-page .setting-field {
   margin-bottom: 20px;
 }
+.settings-page .rounding-impact p {
+  margin: 4px 0 8px;
+}
+.settings-page .rounding-impact td {
+  white-space: nowrap;
+}
 @media (max-width: 700px) {
   .settings-page .settings-fields {
     grid-template-columns: minmax(0, 1fr);

@@ -1,4 +1,4 @@
-import { type ReactNode } from 'react';
+import { useMemo, type ReactNode } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { standard_indstillinger } from '../engine/editing';
@@ -17,6 +17,7 @@ import {
 import { Notice } from './Notice';
 import { PageFooter, PageHeader } from './page';
 import './Settings.css';
+import { roundingImpact } from '../engine/rounding-impact';
 
 function valueAt(value: unknown, path: string[]): SettingValue {
   for (const key of path) value = (value as Record<string, unknown>)[key];
@@ -30,6 +31,7 @@ export function Settings() {
   const ctx = useEditor();
   const settings = ctx.session.data.indstillinger;
   const lf = settings.lagfordeling;
+  const impact = useMemo(() => roundingImpact(ctx.session.values, ctx.session.data), [ctx.session]);
   const model = settingsPage(
     settings,
     outsideDetails(
@@ -37,6 +39,7 @@ export function Settings() {
       aktivt_beregningsgrundlag(ctx.session.data).t_basis_table,
       settings.yderomraade,
     ),
+    impact,
   );
   function change(path: string[], value: SettingValue) {
     if (ctx.externalChange) return;
@@ -95,6 +98,43 @@ export function Settings() {
         ) : (
           <Notice data-settings-caption key={index}>
             {plain(item.text)}
+          </Notice>
+        );
+      case 'roundingImpact':
+        return (
+          <Notice
+            className="rounding-impact"
+            title="Konsekvens for den aktuelle dimensionering"
+            key={index}
+          >
+            <p>{item.model.context}</p>
+            <div className="table-wrap">
+              <table className="data-table summary-table" aria-label="Konsekvens af afrundingsvalg">
+                <thead>
+                  <tr>
+                    <th scope="col">
+                      <span className="sr-only">Størrelse</span>
+                    </th>
+                    <th scope="col">Valgte indstillinger</th>
+                    <th scope="col">Standardindstillinger</th>
+                    <th scope="col">Forskel</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {item.model.rows.map((row) => (
+                    <tr key={row.label}>
+                      <th scope="row">{row.label}</th>
+                      <td>{row.selected}</td>
+                      <td>{row.standard}</td>
+                      <td>{row.difference}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            {item.model.notes.map((note) => (
+              <p key={note}>{note}</p>
+            ))}
           </Notice>
         );
       case 'info':

@@ -5,7 +5,8 @@ import { pythonFixed } from './python-numbers.ts';
 import type { BasisTable } from './types.ts';
 import schema from './settings-ui.json' with { type: 'json' };
 import { normaliser_indstillinger } from './editing.ts';
-import { rund_op, er_oprundet } from './afrunding.ts';
+import { rund_op } from './afrunding.ts';
+import { roundingExample, type RoundingImpactModel } from './rounding-impact.ts';
 
 export interface SettingsField {
   key: string;
@@ -33,6 +34,7 @@ export type SettingsPageItem =
   | { kind: 'prose' | 'caption' | 'warning' | 'info'; text: string }
   | { kind: 'columns'; columns: SettingsPageItem[][] }
   | { kind: 'minimumTable'; table: MinimumTable }
+  | { kind: 'roundingImpact'; model: RoundingImpactModel }
   | { kind: 'example'; label: string; text: string }
   | {
       kind: 'deviations';
@@ -85,7 +87,11 @@ opbygningen med geonet 200 mm, altså tyndere end stabilgrusminimum:
 Den ustabiliserede opbygning er i alle tilfælde 350 mm, fordelt med 250 mm
 stabilgrus og 100 mm bundsikring.`;
 
-export function settingsPage(value: unknown, outside: ReturnType<typeof outsideDetails>) {
+export function settingsPage(
+  value: unknown,
+  outside: ReturnType<typeof outsideDetails>,
+  impact: RoundingImpactModel | null = null,
+) {
   const {
     afrunding: afr,
     opbygning: opb,
@@ -190,17 +196,14 @@ export function settingsPage(value: unknown, outside: ReturnType<typeof outsideD
     const content: SettingsPageItem[] = [{ kind: 'prose', text: texts[0] }];
     switch (index) {
       case 0: {
-        const rounded = rund_op(532, afr.trin_mm);
         content.push(
           both(true),
           columns([field(0)], [field(1)]),
           field(2),
           field(3),
-          caption(
-            er_oprundet(rounded, 532)
-              ? `Eksempel: en beregnet lagtykkelse på 532 mm angives som ${rounded} mm${afr.vis_eksakt ? ' (532 mm)' : ''}.`
-              : 'Eksempel: en beregnet lagtykkelse på 532 mm angives uændret.',
-          ),
+          impact
+            ? { kind: 'roundingImpact', model: impact }
+            : caption(roundingExample(afr.trin_mm, afr.vis_eksakt)),
         );
         break;
       }

@@ -80,11 +80,13 @@ test('settings retain original defaults, bounds and dependent controls; changes 
     if (widget.kind === 'number') await expect(control).toHaveValue(String(widget.value));
   }
   await chooseOption(page, page.getByLabel('Oprundingstrin', { exact: true }), '100 mm');
-  await expect(
-    page.getByText('Eksempel: en beregnet lagtykkelse på 532 mm angives som 600 mm.', {
-      exact: true,
-    }),
-  ).toBeVisible();
+  const impact = page.getByRole('table', { name: 'Konsekvens af afrundingsvalg' });
+  await expect(impact.getByRole('row', { name: /^1 lag geonet/ })).toHaveText(
+    '1 lag geonet700 mm650 mm+50 mm',
+  );
+  await expect(impact.getByRole('row', { name: /^Reduktion ved 1 lag/ })).toHaveText(
+    'Reduktion ved 1 lag200 mm (22,2 %)250 mm (27,8 %)−50 mm · −5,6 procentpoint',
+  );
   const after = await saved(page);
   expect(after.data.indstillinger).toEqual({
     ...original.defaults,

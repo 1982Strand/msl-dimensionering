@@ -20,12 +20,11 @@ import {
   geonet_valgliste,
   phi_fra_materialer,
 } from '../engine/dimensionering';
-import { beregn_alle_produkter } from '../engine/products';
 import { defaults } from '../engine/data';
 import schema from '../engine/dimensioning-ui.json';
 import { laengde } from '../engine/enhed';
 import { pythonFixed, pythonRound } from '../engine/python-numbers';
-import { dimensioningPage, pageIntroduction } from '../engine/dimensioning-page';
+import { dimensioningPage, pageIntroduction, resultProducts } from '../engine/dimensioning-page';
 import { PageContent, PageResultCards } from './DimensioningPageContent';
 import {
   Accordion,
@@ -66,22 +65,7 @@ export function Dimensioning() {
   const standard = input.tilstand === 'Standard',
     prefix = standard ? 'std' : 'bd';
   const unit = ctx.session.data.indstillinger.opbygning.enhed;
-  const products = useMemo(() => {
-    if (!result) return { one: [], two: [] };
-    const common = {
-      eu: input.eu,
-      eo: result.eo!,
-      phi: result.phi,
-      afrunding: result.afrunding,
-      skala: result.skala,
-      t_basis_table: input.t_basis_table,
-      klasse_for_anbefaling: result.valgt_klasse,
-    };
-    return {
-      one: beregn_alle_produkter({ ...common, lag_mode: '1_lag' }),
-      two: beregn_alle_produkter({ ...common, lag_mode: '2_lag' }),
-    };
-  }, [input, result]);
+  const products = useMemo(() => resultProducts(input, result), [input, result]);
   const page = useMemo(() => dimensioningPage(input, result, products), [input, result, products]);
   const content = (slot: string) => <PageContent model={page} slot={slot} />;
   const options = geonet_valgliste(

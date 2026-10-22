@@ -11,7 +11,7 @@ import { laengde, tal, fortegn, normaliser as unitOf } from './enhed.ts';
 import { pythonFixed } from './python-numbers.ts';
 import { format_trafikklasse, trafikklasse_noegletal, trafik_eu_interval } from './correlation.ts';
 import type { CalculationResult } from './types.ts';
-import type { ProductRow } from './products.ts';
+import { beregn_alle_produkter, type ProductRow } from './products.ts';
 
 export type PageDisplayNode =
   | string
@@ -36,6 +36,60 @@ export interface PageResultCard {
   delta: string | null;
   deltaNote: string | null;
   highlighted: boolean;
+}
+type Dimensioning = NonNullable<ReturnType<typeof dimensioner>>;
+type Products = { one: ProductRow[]; two: ProductRow[] };
+/** Alle produkter ved 1 og 2 lag geonet for resultatkortene og produkttabellen. */
+export function resultProducts(input: DimensioningInput, result: Dimensioning | null): Products {
+  if (!result) return { one: [], two: [] };
+  const common = {
+    eu: input.eu,
+    eo: result.eo!,
+    phi: result.phi,
+    afrunding: result.afrunding,
+    skala: result.skala,
+    t_basis_table: input.t_basis_table,
+    klasse_for_anbefaling: result.valgt_klasse,
+  };
+  return {
+    one: beregn_alle_produkter({ ...common, lag_mode: '1_lag' }),
+    two: beregn_alle_produkter({ ...common, lag_mode: '2_lag' }),
+  };
+}
+/** Talværdierne bag resultatkortene: uden geonet samt 1 og 2 lag geonet (null ved fejl). */
+export function resultCardValues(standard: boolean, result: Dimensioning, products: Products) {
+  const res1 = result.res_1 as CalculationResult,
+    res2 = result.res_2 as CalculationResult;
+  const references = standard
+    ? [...products.one, ...products.two]
+    : [res1, res2].filter((r) => !r.fejl);
+  const ref = references.find((r) => (r.t_uarmeret_phi_kor_mm || r.t_uarmeret_mm) != null);
+  const unreinforced = ref?.t_uarmeret_phi_kor_mm || ref?.t_uarmeret_mm || null;
+  const exact = (
+    r: CalculationResult | null,
+    field: 't_armeret_mm' | 't_uarmeret_phi_kor_mm' | 't_uarmeret_mm',
+  ) => (r?.[eksakt_navn(field) as keyof CalculationResult] as number | null | undefined) ?? null;
+  const resUarm = !res1.fejl ? res1 : !res2.fejl ? res2 : null;
+  const layers = [res1, res2].map((r) => {
+    const t = !r.fejl ? (r.t_armeret_mm ?? null) : null;
+    if (t === null || unreinforced === null) return null;
+    return {
+      t,
+      exact: exact(r, 't_armeret_mm'),
+      reduktion_mm: r.reduktion_mm ?? unreinforced - t,
+      reduktion_pct:
+        r.reduktion_mm == null ? (unreinforced - t) / unreinforced : (r.reduktion_pct ?? 0),
+    };
+  });
+  return {
+    ref,
+    unreinforced,
+    unreinforcedExact: exact(
+      resUarm,
+      resUarm?.t_uarmeret_phi_kor_mm == null ? 't_uarmeret_mm' : 't_uarmeret_phi_kor_mm',
+    ),
+    layers,
+  };
 }
 export interface DimensioningPage {
   elements: PageDisplayElement[];
@@ -414,62 +468,42 @@ export function dimensioningPage(
         ),
       ),
     );
-    const res1 = result.res_1 as CalculationResult,
-      res2 = result.res_2 as CalculationResult;
-    const references = standard
-      ? [...products.one, ...products.two]
-      : [res1, res2].filter((r) => !r.fejl);
-    const ref = references.find((r) => (r.t_uarmeret_phi_kor_mm || r.t_uarmeret_mm) != null);
-    const unreinforced = ref?.t_uarmeret_phi_kor_mm || ref?.t_uarmeret_mm || null;
-    const calculated = (
-      r: CalculationResult | null,
-      field: 't_armeret_mm' | 't_uarmeret_phi_kor_mm' | 't_uarmeret_mm',
-      t: number,
-    ): string | null => {
-      const exact = r?.[eksakt_navn(field) as keyof CalculationResult] as number | null | undefined;
-      return rounding.vis_eksakt && r && er_oprundet(t, exact ?? null)
-        ? `beregnet ${laengde(exact!, unit)}`
-        : null;
-    };
+    const { ref, unreinforced, unreinforcedExact, layers } = resultCardValues(
+      standard,
+      result,
+      products,
+    );
+    const calculated = (t: number, exact: number | null): string | null =>
+      rounding.vis_eksakt && er_oprundet(t, exact) ? `beregnet ${laengde(exact!, unit)}` : null;
     if (unreinforced !== null) {
       let unreinforcedNote = standard
         ? `Ubunden opbygning${g.type === 'trafikklasse' ? ' · interpoleret mellem Eₒ-kurverne' : ''}`
         : `Ustabiliseret opbygning${g.type === 'trafikklasse' ? ' · interpoleret' : ''}${Math.abs(phi - PHI_BASIS) > 0.05 ? ' · φᵥ-korrigeret' : ''}`;
       if (ref?.t_uarmeret_mm != null && Math.abs(ref.t_uarmeret_mm - unreinforced) >= 1)
         unreinforcedNote += ` (${laengde(ref.t_uarmeret_mm, unit)} ukorrigeret)`;
-      const resUarm = !res1.fejl ? res1 : !res2.fejl ? res2 : null;
       cards.push({
         label: 'Nødvendig uden geonet',
         value: tal(unreinforced, unit),
         unit,
-        calculated:
-          calculated(resUarm, 't_uarmeret_phi_kor_mm', unreinforced) ??
-          (resUarm?.t_uarmeret_phi_kor_mm == null
-            ? calculated(resUarm, 't_uarmeret_mm', unreinforced)
-            : null),
+        calculated: calculated(unreinforced, unreinforcedExact),
         note: unreinforcedNote,
         delta: null,
         deltaNote: null,
         highlighted: false,
       });
-      const alternatives = [res1, res2].map((r) => (!r.fejl ? (r.t_armeret_mm ?? null) : null));
       // Original prioritises 2 layers; the badge is not a new recommendation rule.
       const holds = (t: number | null) => t !== null && (standard || total === null || total >= t);
-      const highlighted = holds(alternatives[1]) ? 1 : holds(alternatives[0]) ? 0 : -1;
-      alternatives.forEach((t, i) => {
-        if (t === null) return;
-        const r = [res1, res2][i];
-        const red = r.reduktion_mm ?? unreinforced - t;
-        const redPct =
-          r.reduktion_mm == null ? (unreinforced - t) / unreinforced : (r.reduktion_pct ?? 0);
+      const highlighted = holds(layers[1]?.t ?? null) ? 1 : holds(layers[0]?.t ?? null) ? 0 : -1;
+      layers.forEach((layer, i) => {
+        if (layer === null) return;
         cards.push({
           label: `${i + 1} lag geonet`,
-          value: tal(t, unit),
+          value: tal(layer.t, unit),
           unit,
-          calculated: calculated(r, 't_armeret_mm', t),
+          calculated: calculated(layer.t, layer.exact),
           note: null,
-          delta: fortegn(-red, unit),
-          deltaNote: `${dk(redPct * 100, 0)} % tyndere${highlighted === i && !standard && total !== null ? ` · holder ved ${laengde(total, unit)}` : ''}`,
+          delta: fortegn(-layer.reduktion_mm, unit),
+          deltaNote: `${dk(layer.reduktion_pct * 100, 0)} % tyndere${highlighted === i && !standard && total !== null ? ` · holder ved ${laengde(total, unit)}` : ''}`,
           highlighted: highlighted === i,
         });
       });

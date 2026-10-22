@@ -73,6 +73,8 @@ function modelContent(items: SettingsPageItem[]): Event[] {
           event('markdown', item.text),
           event('/expander', ''),
         ];
+      case 'roundingImpact':
+        return [event('table', '')];
       case 'deviations':
         return [
           event('expander', item.label),
