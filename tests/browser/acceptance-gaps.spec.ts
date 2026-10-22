@@ -54,7 +54,7 @@ for (const c of [
 // Feltkontrakt: src/ui/Dimensioning.tsx:311–419; fejltekst: SettingField.tsx:239–243.
 for (const c of [
   { id: 'bd_antal_lag', min: 1, max: 3, step: 1, invalid: [0, 4, 1.5] },
-  { id: 'bd_t_0', min: 200, max: 2000, step: 50, invalid: [199, 2001] },
+  { id: 'bd_t_0', min: 100, max: 2000, step: 50, invalid: [99, 2001] },
   { id: 'bd_phi_m_0', min: 20, max: 60, step: 0.5, invalid: [19.5, 60.5] },
   { id: 'bd_korn_m_0', min: 0, max: 500, step: 1, invalid: [-1, 501, 0.5] },
   { id: 'bd_phi_man', min: 20, max: 60, step: 0.5, invalid: [19.5, 60.5] },

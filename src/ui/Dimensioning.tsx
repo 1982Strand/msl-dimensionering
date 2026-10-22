@@ -405,7 +405,7 @@ export function Dimensioning() {
                                 key: `bd_t_${i}`,
                                 label: `Tykkelse (mm) · lag ${i + 1}`,
                                 kind: 'number',
-                                min: 200,
+                                min: 100,
                                 max: 2000,
                                 step: 50,
                               })}

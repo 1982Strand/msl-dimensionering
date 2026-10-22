@@ -14,7 +14,11 @@ import {
   type dimensioner,
 } from './dimensionering.ts';
 import { fordel_lag } from './afrunding.ts';
-import { fordel_soejle, normaliser as distributionSettings } from './lagfordeling.ts';
+import {
+  fordel_soejle,
+  lagtype_noegle,
+  normaliser as distributionSettings,
+} from './lagfordeling.ts';
 import { laengde, tal, konverter_tekst } from './enhed.ts';
 import { pythonFixed, pythonRound } from './python-numbers.ts';
 import type { CalculationInput, CalculationResult, Product, Layer } from './types.ts';
@@ -409,6 +413,19 @@ export function resultChecks(
         unit,
       ),
     );
+  if (input.tilstand === 'Brugerdefineret') {
+    const vdMinimum = distributionSettings(input.indstillinger?.lagfordeling).vd_minimum_mm;
+    for (const [i, material] of materialer.entries()) {
+      const thickness = material.tykkelse_mm ?? 0;
+      if (thickness <= 0) continue;
+      const type = lagtype_noegle(material.lagtype);
+      const minimum = vdMinimum[type];
+      if (minimum > 0 && thickness < minimum - 1e-6)
+        uniqueWarnings.push(
+          `Lag ${i + 1} (${material.navn}) er ${laengde(thickness, unit)} og dermed tyndere end VD's mindste lagtykkelse for ${type === 'Bundsikring' ? 'bundsikring' : 'bærelag'} på ${laengde(minimum, unit)}, jf. Indstillinger, Underliggende lag.`,
+        );
+    }
+  }
   const recommendations: CheckNode[][] = deduplicate(placementRecommendations, unit).map((text) => [
     text,
   ]);

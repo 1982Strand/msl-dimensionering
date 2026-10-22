@@ -37,7 +37,7 @@ export function dimensioningValues(values: FormValues, data: DataState): FormVal
     set(`bd_lt_m_${i}`, 'Bærelag');
     if (!data.materialer.some((m) => m.navn === result[`bd_mat_${i}`]))
       result[`bd_mat_${i}`] = MANUAL_MATERIAL;
-    result[`bd_t_${i}`] = Math.max(200, Number(result[`bd_t_${i}`]));
+    result[`bd_t_${i}`] = Math.max(100, Number(result[`bd_t_${i}`]));
   }
   return result;
 }

@@ -101,7 +101,7 @@ test('M9: Standard/belastningsklasse, Brugerdefineret/trafikklasse og afvist dri
   ]);
   await expect(page.locator('.bg-lagtabel-sum')).toHaveText('Samlet700 mm38,3°');
   await expect(page.locator('[data-m9-slot="materialsHelp"]')).toHaveText(
-    'Mindste lagtykkelse der kan indtastes er 200 mm.',
+    'Mindste lagtykkelse der kan indtastes er 100 mm.',
   );
   await expect(page.locator('.dim-results strong')).toHaveText(['110 cm', '65 cm', '60 cm']);
   await expect(page.locator('.m9-result-delta')).toHaveText([

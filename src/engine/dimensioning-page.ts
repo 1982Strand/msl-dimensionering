@@ -374,7 +374,7 @@ export function dimensioningPage(
         s('num', degrees(weighted)),
       ),
     );
-    add('materialsHelp', 'Mindste lagtykkelse der kan indtastes er 200 mm.', 'caption');
+    add('materialsHelp', 'Mindste lagtykkelse der kan indtastes er 100 mm.', 'caption');
   }
   const cards: PageResultCard[] = [];
   let productExpander: DimensioningPage['productExpander'] = null;
