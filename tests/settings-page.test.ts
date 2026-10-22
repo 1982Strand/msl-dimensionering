@@ -74,6 +74,7 @@ function modelContent(items: SettingsPageItem[]): Event[] {
           event('/expander', ''),
         ];
       case 'roundingImpact':
+      case 'distributionImpact':
         return [event('table', '')];
       case 'deviations':
         return [

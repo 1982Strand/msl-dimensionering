@@ -18,6 +18,7 @@ import { Notice } from './Notice';
 import { PageFooter, PageHeader } from './page';
 import './Settings.css';
 import { roundingImpact } from '../engine/rounding-impact';
+import { distributionImpact } from '../engine/distribution-impact';
 
 function valueAt(value: unknown, path: string[]): SettingValue {
   for (const key of path) value = (value as Record<string, unknown>)[key];
@@ -32,6 +33,10 @@ export function Settings() {
   const settings = ctx.session.data.indstillinger;
   const lf = settings.lagfordeling;
   const impact = useMemo(() => roundingImpact(ctx.session.values, ctx.session.data), [ctx.session]);
+  const distribution = useMemo(
+    () => distributionImpact(ctx.session.values, ctx.session.data),
+    [ctx.session],
+  );
   const model = settingsPage(
     settings,
     outsideDetails(
@@ -40,6 +45,7 @@ export function Settings() {
       settings.yderomraade,
     ),
     impact,
+    distribution,
   );
   function change(path: string[], value: SettingValue) {
     if (ctx.externalChange) return;
@@ -127,6 +133,50 @@ export function Settings() {
                       <td>{row.selected}</td>
                       <td>{row.standard}</td>
                       <td>{row.difference}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            {item.model.notes.map((note) => (
+              <p key={note}>{note}</p>
+            ))}
+          </Notice>
+        );
+      case 'distributionImpact':
+        return (
+          <Notice
+            className="distribution-impact"
+            title="Konsekvens for den aktuelle dimensionering"
+            key={index}
+          >
+            <p>{item.model.context}</p>
+            <div className="table-wrap">
+              <table
+                className="data-table summary-table"
+                aria-label="Konsekvens af fordelingsvalget"
+              >
+                <thead>
+                  <tr>
+                    <th scope="col">
+                      <span className="sr-only">Opbygning</span>
+                    </th>
+                    {item.model.columns.map((column) => (
+                      <th scope="col" key={column}>
+                        {column}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {item.model.rows.map((row, rowIndex) => (
+                    <tr key={`${row.label}-${rowIndex}`}>
+                      <th scope="row">{row.label}</th>
+                      {row.empty ? (
+                        <td colSpan={item.model.columns.length}>{row.cells[0]}</td>
+                      ) : (
+                        row.cells.map((cell, cellIndex) => <td key={cellIndex}>{cell}</td>)
+                      )}
                     </tr>
                   ))}
                 </tbody>

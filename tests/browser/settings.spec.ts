@@ -3,6 +3,8 @@ import { test, expect, type Page } from '@playwright/test';
 import { readFileSync } from 'node:fs';
 import { SESSION_STORAGE_KEY } from '../../src/engine/session-storage.ts';
 import { elements, elementText, isBlock, type PageNode } from '../helpers/dimensioning-page.ts';
+import { standard_data_state } from '../../src/engine/auto-edit.ts';
+import { distributionImpact } from '../../src/engine/distribution-impact.ts';
 const pageReference: { cases: { id: string; page: PageNode[] }[] } = JSON.parse(
   readFileSync(new URL('../cases/settings-page-cases.json', import.meta.url), 'utf8'),
 );
@@ -133,6 +135,37 @@ test('settings retain original defaults, bounds and dependent controls; changes 
   await expect(page.locator('#ind_lf_vd_baerelag')).toBeEnabled();
   await page.screenshot({ path: info.outputPath('settings-desktop.png') });
   expect(errors).toEqual([]);
+});
+
+test('fordelingsboksen følger straks valget i Standard-sessionen', async ({ page }) => {
+  const data = standard_data_state();
+  const before = distributionImpact({}, data);
+  data.indstillinger.lagfordeling.fordeling = 'fastholdt';
+  const after = distributionImpact({}, data);
+  expect(before).not.toBeNull();
+  expect(after).not.toBeNull();
+  const expected = (model: NonNullable<typeof before>) => {
+    const row = model.rows.find((item) => item.label === 'Uden geonet');
+    expect(row).toBeDefined();
+    return `Uden geonet${row!.cells.join('')}`;
+  };
+
+  await page.goto('/#indstillinger');
+  const table = page.getByRole('table', { name: 'Konsekvens af fordelingsvalget' });
+  await expect(table).toBeVisible();
+  await expect(
+    page.getByText(
+      'Dimensioneringen står i Standard. Eksemplet viser opbygningen fra Brugerdefineret.',
+    ),
+  ).toBeVisible();
+  await expect(table.getByRole('row', { name: /^Uden geonet/ })).toHaveText(expected(before!));
+  await page
+    .getByRole('radio', {
+      name: 'Det øverste lag fastholdes på den indtastede tykkelse',
+      exact: true,
+    })
+    .check();
+  await expect(table.getByRole('row', { name: /^Uden geonet/ })).toHaveText(expected(after!));
 });
 
 test('minimum reset is scoped and tolerance changes reach actual correlation after navigation', async ({

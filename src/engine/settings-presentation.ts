@@ -7,6 +7,7 @@ import schema from './settings-ui.json' with { type: 'json' };
 import { normaliser_indstillinger } from './editing.ts';
 import { rund_op } from './afrunding.ts';
 import { roundingExample, type RoundingImpactModel } from './rounding-impact.ts';
+import type { DistributionImpactModel } from './distribution-impact.ts';
 
 export interface SettingsField {
   key: string;
@@ -35,6 +36,7 @@ export type SettingsPageItem =
   | { kind: 'columns'; columns: SettingsPageItem[][] }
   | { kind: 'minimumTable'; table: MinimumTable }
   | { kind: 'roundingImpact'; model: RoundingImpactModel }
+  | { kind: 'distributionImpact'; model: DistributionImpactModel }
   | { kind: 'example'; label: string; text: string }
   | {
       kind: 'deviations';
@@ -91,6 +93,7 @@ export function settingsPage(
   value: unknown,
   outside: ReturnType<typeof outsideDetails>,
   impact: RoundingImpactModel | null = null,
+  distributionModel: DistributionImpactModel | null = null,
 ) {
   const {
     afrunding: afr,
@@ -212,8 +215,14 @@ export function settingsPage(
         break;
       case 2: {
         content.push(
-          field(0),
-          bd(),
+          ...(distributionModel
+            ? [
+                columns(
+                  [field(0), bd()],
+                  [{ kind: 'distributionImpact', model: distributionModel }],
+                ),
+              ]
+            : [field(0), bd()]),
           field(1),
           both(),
           field(2),

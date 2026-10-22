@@ -13,6 +13,20 @@
 .settings-page .rounding-impact td {
   white-space: nowrap;
 }
+.settings-page .distribution-impact p {
+  margin: 4px 0 8px;
+}
+.settings-page .distribution-impact .table-wrap {
+  max-width: 100%;
+  overflow-x: auto;
+}
+.settings-page .distribution-impact table {
+  font-size: 0.75rem;
+}
+.settings-page .distribution-impact th,
+.settings-page .distribution-impact td {
+  padding: 4px 6px;
+}
 @media (max-width: 700px) {
   .settings-page .settings-fields {
     grid-template-columns: minmax(0, 1fr);
