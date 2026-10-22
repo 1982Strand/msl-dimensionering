@@ -126,7 +126,13 @@ export function Report({
   );
   const result = useMemo(() => dimensioner(input), [input]);
   const unit = ctx.session.data.indstillinger.opbygning.enhed;
-  const model = reportPage(result, ctx.session.values, date, unit);
+  const model = reportPage(
+    result,
+    ctx.session.values,
+    date,
+    unit,
+    ctx.session.data.indstillinger.opbygning.signatur,
+  );
   const [resetMessages, setResetMessages] = useState<string[]>([]);
   const handledReset = useRef('');
   useEffect(() => {
@@ -358,6 +364,7 @@ export function Report({
             <Checkbox
               id={node.visibilityKey}
               checked={node.shown}
+              disabled={node.disabled}
               onCheckedChange={(checked) =>
                 ctx.remember({ [node.visibilityKey]: checked === true })
               }
@@ -368,17 +375,20 @@ export function Report({
             rows={node.label.includes('\n') ? 2 : 1}
             aria-label={`Tekst: ${label}`}
             value={node.label}
+            disabled={node.disabled}
             onChange={(event) => edit('tekst', event.target.value)}
           />
           <Textarea
             rows={node.value.includes('\n') ? 2 : 1}
             aria-label={`Værdi: ${label}`}
             value={node.value}
+            disabled={node.disabled}
             onChange={(event) => edit('vaerdi', event.target.value)}
           />
           <Button
             type="button"
             variant="outline"
+            disabled={node.disabled}
             onClick={() =>
               ctx.remember({
                 [`rap_linje_${node.key}`]: null,
@@ -389,6 +399,7 @@ export function Report({
             <RotateCcw aria-hidden="true" />
             Nulstil
           </Button>
+          {node.help && <p className="report-caption report-line-help">{node.help}</p>}
         </div>
       );
     }
@@ -767,9 +778,9 @@ export function Report({
                         <Badge variant="outline" className="bg-trin-opsum status-badge">
                           {step.summary}
                         </Badge>
-                      ) : (
+                      ) : step.summary ? (
                         <span className="bg-trin-opsum">{step.summary}</span>
-                      )}
+                      ) : null}
                     </div>
                   </div>
                   <div className={'report-step report-step-' + step.number}>{renderStep(step)}</div>

@@ -236,7 +236,7 @@ test('faste rapportkort og synlige formularer ved 1440 og 390 px', async ({ page
   await page.goto('/#rapport');
   await expect(page.locator('.report-form > .section-card.settings-card')).toHaveCount(4);
   await expect(page.locator('.report-step-2 .dim-expander-card')).toHaveCount(9);
-  for (const name of ['Sagsoplysninger', 'Indhold', 'Gennemsyn', 'Generér']) {
+  for (const name of ['Sagsoplysninger', 'Indhold', 'Figurer og diagrammer', 'Generér']) {
     await expect(page.getByRole('heading', { name: new RegExp(name) }).first()).toBeVisible();
     await expect(page.getByRole('button', { name: new RegExp(`^\\d ${name}`) })).toHaveCount(0);
   }
@@ -271,6 +271,29 @@ test('faste rapportkort og synlige formularer ved 1440 og 390 px', async ({ page
   await page.screenshot({ path: info.outputPath('report-mobile.png'), fullPage: true });
 });
 
+test('standard låser samlet tykkelse, og signaturvalget opdaterer opbygningsfiguren', async ({
+  page,
+}) => {
+  await page.goto('/#rapport');
+  await page.getByRole('button', { name: 'Dimensioneringsresultat', exact: true }).click();
+  const line = page.locator('[data-line="resultat_indtastet"]');
+  await expect(line.getByRole('checkbox')).toBeDisabled();
+  await expect(line.getByLabel('Tekst: Samlet tykkelse af valgt opbygning')).toBeDisabled();
+  await expect(line.getByLabel('Værdi: Samlet tykkelse af valgt opbygning')).toBeDisabled();
+  await expect(line.getByRole('button', { name: 'Nulstil' })).toBeDisabled();
+  await expect(line.getByText('Gælder kun Brugerdefineret med indtastet opbygning.')).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Figurer og diagrammer' })).toBeVisible();
+  await expect(page.getByText('Sådan bliver siderne')).toHaveCount(0);
+  const signature = page.getByLabel('Vis signaturforklaring under figuren', { exact: true });
+  const svg = page.locator('.report-figure-svg svg').first();
+  const heightWithLegend = Number(await svg.getAttribute('height'));
+  await signature.uncheck();
+  await expect
+    .poll(async () => Number(await svg.getAttribute('height')))
+    .toBeLessThan(heightWithLegend);
+  await expect(svg.locator('[data-kind="legend"]')).toHaveCount(0);
+});
+
 test('felter, afsnit, automatisk lagring, dato og de tre nulstillinger', async ({
   page,
   baseURL,
@@ -278,7 +301,7 @@ test('felter, afsnit, automatisk lagring, dato og de tre nulstillinger', async (
   const seen = observe(page, baseURL!);
   await page.goto('/#rapport');
   await expect(page.getByRole('heading', { name: 'Rapport', exact: true })).toBeVisible();
-  for (const name of ['Sagsoplysninger', 'Indhold', 'Gennemsyn', 'Generér'])
+  for (const name of ['Sagsoplysninger', 'Indhold', 'Figurer og diagrammer', 'Generér'])
     await expect(page.getByRole('heading', { name: new RegExp(name) }).first()).toBeVisible();
   const today = await page.getByLabel('Dato', { exact: true }).inputValue();
   for (const [label, value] of [

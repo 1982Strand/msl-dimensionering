@@ -3,6 +3,9 @@
   "cases": [
     {
       "id": "RP-STD",
+      "expected": {
+        "resultat_indtastet": { "shown": false, "disabled": true }
+      },
       "input": {
         "tilstand": "Standard",
         "eu": 10,
@@ -956,7 +959,7 @@
           "children": [
             {
               "type": "html",
-              "value": "<div class=\"bg-trin-hoved\"><div class=\"bg-trin-nr\">3</div><div class=\"bg-trin-titel\">Gennemsyn</div><div class=\"bg-trin-opsum\">Sådan bliver siderne</div></div>"
+              "value": "<div class=\"bg-trin-hoved\"><div class=\"bg-trin-nr\">3</div><div class=\"bg-trin-titel\">Figurer og diagrammer</div></div>"
             },
             {
               "block": "flex_container",
@@ -1124,6 +1127,13 @@
                   "value": "<div class=\"bg-kort-hoved\"><div class=\"bg-kort-titel\">Opbygning</div><div class=\"bg-kort-note\">Snit i samme lodrette skala · forhåndsvisning fra dimensioneringen</div></div>"
                 },
                 {
+                  "type": "checkbox",
+                  "label": "Vis signaturforklaring under figuren",
+                  "value": true,
+                  "disabled": false,
+                  "help": null
+                },
+                {
                   "type": "plotly_chart"
                 }
               ]
@@ -1180,7 +1190,7 @@
           "children": [
             {
               "type": "html",
-              "value": "<div class=\"bg-trin-hoved\"><div class=\"bg-trin-nr\">4</div><div class=\"bg-trin-titel\">Generér</div><div class=\"bg-trin-opsum\"></div></div>"
+              "value": "<div class=\"bg-trin-hoved\"><div class=\"bg-trin-nr\">4</div><div class=\"bg-trin-titel\">Generér</div></div>"
             },
             {
               "type": "button",
@@ -1196,6 +1206,9 @@
     },
     {
       "id": "RP-STD-NX850",
+      "expected": {
+        "resultat_indtastet": { "shown": false, "disabled": true }
+      },
       "input": {
         "tilstand": "Standard",
         "eu": 5,
@@ -2149,7 +2162,7 @@
           "children": [
             {
               "type": "html",
-              "value": "<div class=\"bg-trin-hoved\"><div class=\"bg-trin-nr\">3</div><div class=\"bg-trin-titel\">Gennemsyn</div><div class=\"bg-trin-opsum\">Sådan bliver siderne</div></div>"
+              "value": "<div class=\"bg-trin-hoved\"><div class=\"bg-trin-nr\">3</div><div class=\"bg-trin-titel\">Figurer og diagrammer</div></div>"
             },
             {
               "block": "flex_container",
@@ -2317,6 +2330,13 @@
                   "value": "<div class=\"bg-kort-hoved\"><div class=\"bg-kort-titel\">Opbygning</div><div class=\"bg-kort-note\">Snit i samme lodrette skala · forhåndsvisning fra dimensioneringen</div></div>"
                 },
                 {
+                  "type": "checkbox",
+                  "label": "Vis signaturforklaring under figuren",
+                  "value": true,
+                  "disabled": false,
+                  "help": null
+                },
+                {
                   "type": "plotly_chart"
                 }
               ]
@@ -2373,7 +2393,7 @@
           "children": [
             {
               "type": "html",
-              "value": "<div class=\"bg-trin-hoved\"><div class=\"bg-trin-nr\">4</div><div class=\"bg-trin-titel\">Generér</div><div class=\"bg-trin-opsum\"></div></div>"
+              "value": "<div class=\"bg-trin-hoved\"><div class=\"bg-trin-nr\">4</div><div class=\"bg-trin-titel\">Generér</div></div>"
             },
             {
               "type": "button",
@@ -3284,7 +3304,7 @@
           "children": [
             {
               "type": "html",
-              "value": "<div class=\"bg-trin-hoved\"><div class=\"bg-trin-nr\">3</div><div class=\"bg-trin-titel\">Gennemsyn</div><div class=\"bg-trin-opsum\">Sådan bliver siderne</div></div>"
+              "value": "<div class=\"bg-trin-hoved\"><div class=\"bg-trin-nr\">3</div><div class=\"bg-trin-titel\">Figurer og diagrammer</div></div>"
             },
             {
               "block": "flex_container",
@@ -3452,6 +3472,13 @@
                   "value": "<div class=\"bg-kort-hoved\"><div class=\"bg-kort-titel\">Opbygning</div><div class=\"bg-kort-note\">Snit i samme lodrette skala · forhåndsvisning fra dimensioneringen</div></div>"
                 },
                 {
+                  "type": "checkbox",
+                  "label": "Vis signaturforklaring under figuren",
+                  "value": true,
+                  "disabled": false,
+                  "help": null
+                },
+                {
                   "type": "plotly_chart"
                 }
               ]
@@ -3508,7 +3535,7 @@
           "children": [
             {
               "type": "html",
-              "value": "<div class=\"bg-trin-hoved\"><div class=\"bg-trin-nr\">4</div><div class=\"bg-trin-titel\">Generér</div><div class=\"bg-trin-opsum\"></div></div>"
+              "value": "<div class=\"bg-trin-hoved\"><div class=\"bg-trin-nr\">4</div><div class=\"bg-trin-titel\">Generér</div></div>"
             },
             {
               "type": "button",
@@ -4428,7 +4455,7 @@
           "children": [
             {
               "type": "html",
-              "value": "<div class=\"bg-trin-hoved\"><div class=\"bg-trin-nr\">3</div><div class=\"bg-trin-titel\">Gennemsyn</div><div class=\"bg-trin-opsum\">Sådan bliver siderne</div></div>"
+              "value": "<div class=\"bg-trin-hoved\"><div class=\"bg-trin-nr\">3</div><div class=\"bg-trin-titel\">Figurer og diagrammer</div></div>"
             },
             {
               "block": "flex_container",
@@ -4596,6 +4623,13 @@
                   "value": "<div class=\"bg-kort-hoved\"><div class=\"bg-kort-titel\">Opbygning</div><div class=\"bg-kort-note\">Snit i samme lodrette skala · forhåndsvisning fra dimensioneringen</div></div>"
                 },
                 {
+                  "type": "checkbox",
+                  "label": "Vis signaturforklaring under figuren",
+                  "value": true,
+                  "disabled": false,
+                  "help": null
+                },
+                {
                   "type": "plotly_chart"
                 }
               ]
@@ -4652,7 +4686,7 @@
           "children": [
             {
               "type": "html",
-              "value": "<div class=\"bg-trin-hoved\"><div class=\"bg-trin-nr\">4</div><div class=\"bg-trin-titel\">Generér</div><div class=\"bg-trin-opsum\"></div></div>"
+              "value": "<div class=\"bg-trin-hoved\"><div class=\"bg-trin-nr\">4</div><div class=\"bg-trin-titel\">Generér</div></div>"
             },
             {
               "type": "button",

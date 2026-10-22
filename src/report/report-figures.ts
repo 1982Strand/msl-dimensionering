@@ -21,6 +21,7 @@ export interface ReportFigureChoices {
   rap_vis_1lag?: boolean;
   rap_vis_2lag?: boolean;
   rap_vis_indtastet?: boolean;
+  rap_vis_signatur?: boolean;
   rap_vis_designdiagram?: boolean;
   rap_dd_vis_din_prik?: boolean;
   rap_dd_vis_lag_prikker?: boolean;
@@ -105,6 +106,7 @@ export function reportFigures(
   choices: ReportFigureChoices = {},
 ): ReportFigures {
   const display = normaliser_opbygning(settings.opbygning);
+  const visSignatur = choices.rap_vis_signatur ?? display.signatur;
   const netplacering =
     (settings.lagfordeling as { netplacering?: string } | undefined)?.netplacering ?? 'laggraense';
   const res = [dim.res_1, dim.res_2] as CalculationResult[];
@@ -236,7 +238,7 @@ export function reportFigures(
         geonet_maerkat: null,
         vis_maal_streg: display.maal_streg,
         vis_maal_tal: display.maal_tal,
-        vis_signatur: display.signatur,
+        vis_signatur: visSignatur,
         enhed: unit,
       }
     : null;
@@ -244,6 +246,7 @@ export function reportFigures(
   if (constructionCall) {
     const data: Construction = {
       ...screen,
+      vis_signatur: visSignatur,
       reference_mm: reference,
       kolonner: snit.map((s, i) => ({
         titel: s.titel,
@@ -272,9 +275,9 @@ export function reportFigures(
     };
     const exp = {
       width: 1000,
-      height: display.signatur ? 386 : 340,
+      height: visSignatur ? 386 : 340,
       scale: 2,
-      margin: { l: 10, r: 10, t: 34, b: display.signatur ? 96 : 50 },
+      margin: { l: 10, r: 10, t: 34, b: visSignatur ? 96 : 50 },
     };
     // Originalens eksportflade (Plotly 1000 × 386) registreres i `export` og kontrolleres i
     // testen. Den fælles renderer (B-025) har egne proportioner og en bredde, der følger antallet

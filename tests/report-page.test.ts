@@ -48,6 +48,7 @@ const reference = JSON.parse(
       enhed: string;
       indstillinger: DataState['indstillinger'];
     };
+    expected?: { resultat_indtastet?: { shown: boolean; disabled: boolean } };
     page: PageNode[];
   }[];
 };
@@ -115,6 +116,8 @@ function modelEvents(model: ReturnType<typeof reportPage>): Event[] {
         label: n.label,
         value: n.value,
         shown: n.shown,
+        disabled: n.disabled ?? false,
+        help: n.help ?? null,
       });
     else if (n.kind === 'employee_select')
       events.push({ type: 'employee_select', key: n.key, label: n.label });
@@ -142,7 +145,7 @@ function modelEvents(model: ReturnType<typeof reportPage>): Event[] {
   for (const step of model.steps) {
     events.push({
       type: 'html',
-      text: `<div class="bg-trin-hoved"><div class="bg-trin-nr">${step.number}</div><div class="bg-trin-titel">${step.title}</div><div class="bg-trin-opsum">${step.summary}</div></div>`,
+      text: `<div class="bg-trin-hoved"><div class="bg-trin-nr">${step.number}</div><div class="bg-trin-titel">${step.title}</div>${step.summary ? `<div class="bg-trin-opsum">${step.summary}</div>` : ''}</div>`,
     });
     step.children.forEach(node);
   }
@@ -151,7 +154,13 @@ function modelEvents(model: ReturnType<typeof reportPage>): Event[] {
 
 for (const c of reference.cases)
   test(`R4 ${c.id}: hele indholdsstrømmen matcher originalen præcist`, () => {
-    const model = reportPage(calculation(c), {}, c.input.rap_dato, c.input.enhed);
+    const model = reportPage(
+      calculation(c),
+      {},
+      c.input.rap_dato,
+      c.input.enhed,
+      c.input.indstillinger.opbygning.signatur,
+    );
     const original = originalEvents(c.page);
     const start = original.findIndex(
       (e) => e.type === 'html' && String(e.text).includes('bg-sidehoved'),
@@ -166,6 +175,19 @@ for (const c of reference.cases)
 
     assert.deepEqual(modelEvents(model), original.slice(start));
     if (model.available) {
+      const entered = calculation(c)!.materialer.some((m) => !!m.tykkelse_mm);
+      if (!entered) {
+        const expectedLine = c.expected?.resultat_indtastet;
+        assert.deepEqual(expectedLine, { shown: false, disabled: true });
+        const line = model.steps[1].children
+          .flatMap((node) =>
+            node.kind === 'expander' && node.key === 'results' ? node.children : [],
+          )
+          .find((node) => node.kind === 'table_line' && node.key === 'resultat_indtastet');
+        assert.ok(line?.kind === 'table_line');
+        assert.equal(line.shown, expectedLine.shown);
+        assert.equal(line.disabled, expectedLine.disabled);
+      }
       for (const section of SECTION_KEYS)
         assert.equal(
           model.texts[section],
@@ -383,7 +405,15 @@ function applyB049ApprovedChanges(events: Event[], c: (typeof reference.cases)[n
     assert.ok(index >= 0, label);
     assert.equal(events[index].value, true);
     assert.equal(events[index].disabled, false);
-    events[index] = { type: 'table_line', key: `basis_${key}`, label, value, shown: true };
+    events[index] = {
+      type: 'table_line',
+      key: `basis_${key}`,
+      label,
+      value,
+      shown: true,
+      disabled: false,
+      help: null,
+    };
   }
   const insert = events.findIndex(
     (e) => e.type === 'expander' && e.label === 'Krav til komprimering',
@@ -398,13 +428,26 @@ function applyB049ApprovedChanges(events: Event[], c: (typeof reference.cases)[n
       type: 'caption',
       text: 'Linjerne kan tilpasses og fravælges i rapporten; beregningen berøres ikke.',
     },
-    ...resultat_linjer(dim, { enhed: c.input.enhed }).map(([key, label, value]) => ({
-      type: 'table_line',
-      key: `resultat_${key}`,
-      label,
-      value,
-      shown: key === 'indtastet' ? entered : true,
-    })),
+    ...resultat_linjer(dim, { enhed: c.input.enhed }).map(([key, label, value]) => {
+      const disabled = key === 'indtastet' && !entered;
+      return {
+        type: 'table_line',
+        key: `resultat_${key}`,
+        label,
+        value,
+        shown:
+          key === 'indtastet' && c.expected?.resultat_indtastet
+            ? c.expected.resultat_indtastet.shown
+            : disabled
+              ? false
+              : key === 'indtastet'
+                ? entered
+                : true,
+        disabled:
+          key === 'indtastet' ? (c.expected?.resultat_indtastet?.disabled ?? disabled) : false,
+        help: disabled ? 'Gælder kun Brugerdefineret med indtastet opbygning.' : null,
+      };
+    }),
   );
 }
 
@@ -446,4 +489,49 @@ test('B-049: rettelser huskes, nulstilles ved ændrede værdier og indgår i fæ
     'generelle_forudsaetninger',
     'results',
   ]);
+});
+
+test('R4: samlet tykkelse er låst og fravalgt uden indtastet opbygning', () => {
+  const standard = calculation(reference.cases[0])!;
+  for (const values of [{}, { rap_resultat_indtastet: true }]) {
+    const model = reportPage(standard, values);
+    const line = model.steps[1].children
+      .flatMap((node) => (node.kind === 'expander' && node.key === 'results' ? node.children : []))
+      .find((node) => node.kind === 'table_line' && node.key === 'resultat_indtastet');
+    assert.ok(line?.kind === 'table_line');
+    assert.equal(line.disabled, true);
+    assert.equal(line.shown, false);
+    assert.equal(line.help, 'Gælder kun Brugerdefineret med indtastet opbygning.');
+    assert.equal(model.choices.resultat_linjer?.indtastet, false);
+  }
+});
+
+test('R4: samlet tykkelse er fortsat valgbar i Brugerdefineret med indtastet opbygning', () => {
+  const custom = structuredClone(calculation(reference.cases[2])!);
+  custom.materialer[0] = { ...custom.materialer[0]!, tykkelse_mm: 240 };
+  const model = reportPage(custom, { rap_resultat_indtastet: true });
+  const line = model.steps[1].children
+    .flatMap((node) => (node.kind === 'expander' && node.key === 'results' ? node.children : []))
+    .find((node) => node.kind === 'table_line' && node.key === 'resultat_indtastet');
+  assert.ok(line?.kind === 'table_line');
+  assert.equal(line.disabled, false);
+  assert.equal(line.shown, true);
+  assert.equal(model.choices.resultat_linjer?.indtastet, true);
+});
+
+test('R4: rapportens signaturvalg følger indstillingens standardværdi', () => {
+  const dim = calculation(reference.cases[0])!;
+  for (const signatur of [true, false]) {
+    const model = reportPage(dim, {}, '2026-09-29', 'mm', signatur);
+    const figure = model.steps[2].children.find(
+      (node) => node.kind === 'figure' && node.key === 'visualisering',
+    );
+    const choice = figure?.kind === 'figure' ? figure.children?.[0] : undefined;
+    assert.equal(choice?.kind, 'checkbox');
+    if (choice?.kind === 'checkbox') {
+      assert.equal(choice.key, 'rap_vis_signatur');
+      assert.equal(choice.value, signatur);
+      assert.equal(choice.disabled, false);
+    }
+  }
 });

@@ -82,3 +82,15 @@ test('R3: fravalgt indtastet snit fjerner linje/status, men diagramvalg er uafhÃ
   assert.equal(f.diagramCall!.t_1_lag_mm, null);
   assert.equal(f.diagramCall!.t_2_lag_best_mm, null);
 });
+
+test('R3: fravalgt signaturforklaring fjernes fra rapportfigur og eksportmÃ¥l', () => {
+  const c = cases.find((c) => c.id === 'RFIG-custom-input-pure')!;
+  const f = reportFigures(c.dimensioning, c.settings, table, {
+    ...c.choices,
+    rap_vis_signatur: false,
+  });
+  assert.equal(f.constructionCall!.vis_signatur, false);
+  assert.equal(f.visualisering!.export.height, 340);
+  assert.equal(f.visualisering!.export.margin.b, 50);
+  assert.doesNotMatch(f.visualisering!.svg, /data-kind="legend"/);
+});

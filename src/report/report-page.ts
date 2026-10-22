@@ -84,6 +84,8 @@ export type ReportNode =
       label: string;
       value: string;
       shown: boolean;
+      disabled?: boolean;
+      help?: string | null;
       calculated: ReportLineEdit;
     }
   | { kind: 'employee_select'; key: keyof typeof PERSON_FIELDS; label: string }
@@ -140,6 +142,7 @@ export function reportPage(
   values: ReportValues = {},
   date = localReportDate(),
   unit = 'mm',
+  signatur = true,
 ) {
   const string = (key: string, fallback = '') =>
     typeof values[key] === 'string' ? (values[key] as string) : fallback;
@@ -264,6 +267,8 @@ export function reportPage(
     value: string,
     visibilityKey: string,
     fallback = true,
+    disabled = false,
+    help: string | null = null,
   ): ReportNode {
     const edit = choices.linje_rettelser![key];
     return {
@@ -272,7 +277,9 @@ export function reportPage(
       visibilityKey,
       label: edit?.tekst ?? label,
       value: edit?.vaerdi ?? value,
-      shown: bool(visibilityKey, fallback),
+      shown: disabled ? false : bool(visibilityKey, fallback),
+      disabled,
+      help,
       calculated: { beregnet_tekst: label, beregnet_vaerdi: value, tekst: label, vaerdi: value },
     };
   }
@@ -282,8 +289,17 @@ export function reportPage(
   });
   const resultWidgets = resultLines.map(([key, label, value]) => {
     const fallback = key === 'indtastet' ? choices.vis_indtastet! : true;
-    choices.resultat_linjer![key] = bool(`rap_resultat_${key}`, fallback);
-    return lineNode(`resultat_${key}`, label, value, `rap_resultat_${key}`, fallback);
+    const disabled = key === 'indtastet' && !entered;
+    choices.resultat_linjer![key] = disabled ? false : bool(`rap_resultat_${key}`, fallback);
+    return lineNode(
+      `resultat_${key}`,
+      label,
+      value,
+      `rap_resultat_${key}`,
+      disabled ? false : fallback,
+      disabled,
+      disabled ? 'Gælder kun Brugerdefineret med indtastet opbygning.' : null,
+    );
   });
   const basisChildren: ReportNode[] = [
     caption(
@@ -412,18 +428,28 @@ export function reportPage(
       true,
     ),
   );
+  const sectionsShown =
+    !!figureChoices.rap_vis_indtastet ||
+    !!figureChoices.rap_vis_uarm ||
+    (!!figureChoices.rap_vis_1lag && t1 != null) ||
+    (!!figureChoices.rap_vis_2lag && !r2.fejl && r2.t_armeret_mm != null);
+  const constructionChoices: ReportNode[] = [
+    check(
+      'rap_vis_signatur',
+      'Vis signaturforklaring under figuren',
+      sectionsShown,
+      sectionsShown ? null : 'Vælg mindst ét snit for at vise figuren.',
+      signatur,
+    ),
+  ];
   choices.vis_indtastet = figureChoices.rap_vis_indtastet;
-  if (
-    figureChoices.rap_vis_indtastet ||
-    figureChoices.rap_vis_uarm ||
-    (figureChoices.rap_vis_1lag && t1 != null) ||
-    (figureChoices.rap_vis_2lag && !r2.fejl && r2.t_armeret_mm != null)
-  )
+  if (sectionsShown)
     preview.push({
       kind: 'figure',
       key: 'visualisering',
       title: 'Opbygning',
       note: 'Snit i samme lodrette skala · forhåndsvisning fra dimensioneringen',
+      children: constructionChoices,
     });
   preview.push({
     kind: 'figure',
@@ -433,7 +459,7 @@ export function reportPage(
     children: diagramChoices,
   });
   preview.push({ kind: 'divider' });
-  steps.push({ number: 3, title: 'Gennemsyn', summary: 'Sådan bliver siderne', children: preview });
+  steps.push({ number: 3, title: 'Figurer og diagrammer', summary: '', children: preview });
   const ready = preview.some((n) => n.kind === 'figure' && n.key === 'visualisering');
   steps.push({
     number: 4,

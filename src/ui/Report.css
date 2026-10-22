@@ -150,6 +150,10 @@
   min-height: 36px;
   resize: vertical;
 }
+.report-table-line .report-line-help {
+  grid-column: 1 / -1;
+  margin: -0.25rem 0 0;
+}
 @media (max-width: 700px) {
   .report-table-line {
     grid-template-columns: minmax(0, 1fr);
