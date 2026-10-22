@@ -122,8 +122,9 @@ export function fordel_opbygning(
       top = prop[0].tykkelse_mm,
       min = min_mm ? rund_op(min_mm, trin) : 0;
     const next = Math.min(
+      // Fastholdt: præcis den indtastede tykkelse uden klasseminimum (beslutning 22. oktober 2026).
       fordeling === 'fastholdt' && oeverst_ref_mm
-        ? Math.max(rund_op(oeverst_ref_mm, trin), min)
+        ? rund_op(oeverst_ref_mm, trin)
         : Math.max(top, min),
       total,
     );

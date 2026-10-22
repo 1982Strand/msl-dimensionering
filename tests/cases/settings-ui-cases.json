@@ -108,7 +108,7 @@
           "label": "Fordeling af lagtykkelsen på materialelagene",
           "value": "minimum",
           "disabled": false,
-          "help": "Proportionalt\\*: lagforholdet er det indtastede i alle beregnede opbygninger.\n\nMindst minimumstykkelsen (standard): det øverste lag fordeles proportionalt, men gøres ikke tyndere end minimumstykkelsen for klassen. Resten fordeles proportionalt på de underliggende lag.\n\nFastholdt: det øverste lag har den indtastede tykkelse i alle beregnede opbygninger, dog mindst minimumstykkelsen. De underliggende lag optager både forøgelsen til den ustabiliserede tykkelse og geonettets reduktion. Er lagene angivet i procent, fastholdes det øverste lag på sin tykkelse i den ustabiliserede opbygning.\n\n\\* Appen regner som før disse indstillinger blev indført.",
+          "help": "Proportionalt\\*: lagforholdet er det indtastede i alle beregnede opbygninger.\n\nMindst minimumstykkelsen (standard): det øverste lag fordeles proportionalt, men gøres ikke tyndere end minimumstykkelsen for klassen. Resten fordeles proportionalt på de underliggende lag.\n\nFastholdt: det øverste lag har præcis den indtastede tykkelse i alle beregnede opbygninger, også når den er mindre end minimumstykkelsen for klassen. De underliggende lag optager både forøgelsen til den ustabiliserede tykkelse og geonettets reduktion. Er lagene angivet i procent, fastholdes det øverste lag på sin tykkelse i den ustabiliserede opbygning. Sammenlægning af tynde lag i afsnit 4 kan gøre det viste øverste lag tykkere.\n\n\\* Appen regner som før disse indstillinger blev indført.",
           "optionLabels": [
             "Proportionalt — alle lag reduceres i samme forhold",
             "Proportionalt, dog mindst minimumstykkelsen for det øverste lag",

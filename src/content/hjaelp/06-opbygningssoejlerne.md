@@ -78,10 +78,11 @@ Der kan vælges mellem fire fordelinger:
   proportionalt, men gøres ikke tyndere end minimumstykkelsen for
   belastningsklassen. Resten af lagtykkelsen fordeles proportionalt på de
   underliggende lag.
-- **Øverste lag fastholdt.** Det øverste lag har den indtastede tykkelse i
-  alle beregnede opbygninger, dog mindst minimumstykkelsen. De underliggende lag optager
+- **Øverste lag fastholdt.** Det øverste lag har præcis den indtastede tykkelse
+  i alle beregnede opbygninger, også når den er mindre end minimumstykkelsen. De underliggende lag optager
   både forøgelsen til den ustabiliserede lagtykkelse og reduktionen for
-  geonet.
+  geonet. Sammenlægning af tynde lag, jf. afsnit 3, kan gøre det viste
+  øverste lag tykkere.
 - **Øverste lag sat til minimumstykkelsen.** I opbygningerne med geonet har
   det øverste lag minimumstykkelsen for belastningsklassen, og geonettets
   reduktion tages alene i de underliggende lag. Den ustabiliserede opbygning
@@ -89,7 +90,7 @@ Der kan vælges mellem fire fordelinger:
 
 :::formel
 t_1  =  min( T ;  max( t_1,prop ;  t_min ) )     proportionalt, dog mindst minimumstykkelsen
-t_1  =  min( T ;  max( t_1,ind ;  t_min ) )      øverste lag fastholdt
+t_1  =  min( T ;  t_1,ind )                     øverste lag fastholdt
 t_1  =  min( T ;  t_min )                       øverste lag sat til minimumstykkelsen, opbygninger med geonet
 --
 t_1       er tykkelsen af det øverste lag [mm]
