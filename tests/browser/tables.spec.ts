@@ -51,6 +51,52 @@ test('diagram edits update actual chart, persist selected diagram, and share und
   ).toHaveValue('86.7');
 });
 
+test('one diagram is saved to and loaded from its own file; other diagrams reject the file', async ({
+  page,
+}) => {
+  const cell = '2 lag tykkelse (cm) · Diagram 4 · Eᵤ 9';
+  const d4 = () => saved(page).then((s) => s.data.designdiagrammer[3]);
+  await page.goto('/#diagrammer');
+  await page.getByRole('button', { name: 'Vælg diagram 4', exact: true }).click();
+  await setCell(page, cell, '55.4');
+  const event = page.waitForEvent('download');
+  await page.getByRole('button', { name: 'Gem diagram', exact: true }).click();
+  const download = await event;
+  expect(download.suggestedFilename()).toBe('designdiagram-4.json');
+  const json = readFileSync((await download.path())!, 'utf8');
+  const file = JSON.parse(json);
+  expect(file.diagram_id).toBe('msl-designdiagram-4-eo80-klasse4');
+  expect(file.rows).toEqual((await d4()).rows);
+  await page.getByRole('button', { name: 'Nulstil dette diagram', exact: true }).click();
+  await expect(page.getByLabel(cell, { exact: true })).toHaveValue('');
+  const upload = (label: string) =>
+    page.getByLabel(label, { exact: true }).setInputFiles({
+      name: 'designdiagram-4.json',
+      mimeType: 'application/json',
+      buffer: Buffer.from(json),
+    });
+  await upload('Diagramfil · Diagram 4');
+  await expect(page.getByLabel(cell, { exact: true })).toHaveValue('55.4');
+  await expect(
+    page.getByText(
+      'Diagram 4 er indlæst fra designdiagram-4.json. Fortryd gendanner de forrige værdier.',
+    ),
+  ).toBeVisible();
+  expect((await d4()).rows[8].t_2_lag_cm).toBe(55.4);
+  await page.getByRole('button', { name: 'Fortryd', exact: true }).click();
+  await expect(page.getByLabel(cell, { exact: true })).toHaveValue('');
+  await page.getByRole('button', { name: 'Gentag', exact: true }).click();
+  await page.reload();
+  await expect(page.getByLabel(cell, { exact: true })).toHaveValue('55.4');
+  await page.getByRole('button', { name: 'Vælg diagram 5', exact: true }).click();
+  const before = await saved(page);
+  await upload('Diagramfil · Diagram 5');
+  await expect(page.getByRole('alert')).toHaveText(
+    'designdiagram-4.json er ikke indlæst. Filen er gemt fra diagram 4 og kan kun indlæses i diagram 4. Diagram 5 er valgt.',
+  );
+  expect(await saved(page)).toEqual(before);
+});
+
 test('raw SVG highlights table points with decimal comma, arrow keys and Escape', async ({
   page,
 }) => {

@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { Undo2, Redo2, RotateCcw, Plus, Trash2, Download } from 'lucide-react';
+import { useRef, useState } from 'react';
+import { Undo2, Redo2, RotateCcw, Plus, Trash2, Download, Upload } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Checkbox } from '@/components/ui/checkbox';
@@ -17,6 +17,7 @@ import { outsideRuleLine } from '../engine/table-explanation';
 import { review_table, type ReviewedRow, type TableSelection } from '../engine/edit-review';
 import { berig_koersel_raekker } from '../engine/editing';
 import { aktivt_beregningsgrundlag } from '../engine/auto-edit';
+import { diagram_file_name, diagram_file_text, read_diagram_file } from '../engine/diagram-file';
 import {
   diagramCoverage,
   readPoint,
@@ -76,6 +77,10 @@ export function DataTables({ mode }: { mode: 'diagrammer' | 'vejdim' }) {
   const [onlyChanged, setOnlyChanged] = useState(false),
     [showAll, setShowAll] = useState(false);
   const [draft, setDraft] = useState<Record<string, unknown> | null>(null);
+  const [fileNotice, setFileNotice] = useState<{ kind: 'info' | 'error'; text: string } | null>(
+    null,
+  );
+  const fileInput = useRef<HTMLInputElement>(null);
   const diagram = session.data.designdiagrammer.find((d) => d.diagram_nr === nr)!;
   const table: TableSelection = isDiagram
     ? { section: 'designdiagrammer', diagram_nr: nr }
@@ -118,16 +123,54 @@ export function DataTables({ mode }: { mode: 'diagrammer' | 'vejdim' }) {
     if (ok) setDraft(null);
     return ok;
   }
+  function saveFile(blob: Blob, name: string) {
+    const url = URL.createObjectURL(blob),
+      a = document.createElement('a');
+    a.href = url;
+    a.download = name;
+    a.click();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+  }
   function download() {
     const blob = new Blob(['\uFEFF' + runsCsv(editor.snapshot().data.vejdim_koersel_raekker)], {
       type: 'text/csv;charset=utf-8',
     });
-    const url = URL.createObjectURL(blob),
-      a = document.createElement('a');
-    a.href = url;
-    a.download = 'vejdim_koersler.csv';
-    a.click();
-    setTimeout(() => URL.revokeObjectURL(url), 1000);
+    saveFile(blob, 'vejdim_koersler.csv');
+  }
+  function saveDiagram() {
+    const current = editor.snapshot().data.designdiagrammer.find((d) => d.diagram_nr === nr)!;
+    saveFile(
+      new Blob([diagram_file_text(current)], { type: 'application/json' }),
+      diagram_file_name(current),
+    );
+    setFileNotice(null);
+  }
+  async function loadDiagram(file: File) {
+    const target = diagram;
+    const read = read_diagram_file(await file.text(), target);
+    if (!read.ok) {
+      setFileNotice({ kind: 'error', text: `${file.name} er ikke indlæst. ${read.error}` });
+      return;
+    }
+    const result = editor.edit({
+      section: 'designdiagrammer',
+      value: editor
+        .snapshot()
+        .data.designdiagrammer.map((d) =>
+          d.diagram_nr === target.diagram_nr ? { ...d, rows: read.rows } : d,
+        ),
+    });
+    if (!receive(result, true)) {
+      setFileNotice(null);
+      return;
+    }
+    setDraft(null);
+    setFileNotice({
+      kind: 'info',
+      text: result.changed
+        ? `Diagram ${target.diagram_nr} er indlæst fra ${file.name}. Fortryd gendanner de forrige værdier.`
+        : `${file.name} svarer til diagrammets aktuelle værdier. Intet er ændret.`,
+    });
   }
   const basis = aktivt_beregningsgrundlag(session.data);
   const correlation = !isDiagram
@@ -380,6 +423,7 @@ export function DataTables({ mode }: { mode: 'diagrammer' | 'vejdim' }) {
                     ctx.remember({ diagram_nr: d.diagram_nr });
                     setDraft(null);
                     setOnlyChanged(false);
+                    setFileNotice(null);
                   }}
                 >
                   <span>DIAGRAM {d.diagram_nr}</span>
@@ -395,18 +439,54 @@ export function DataTables({ mode }: { mode: 'diagrammer' | 'vejdim' }) {
                 <h2>
                   Diagram {nr} — Eₒ = {diagram.eo} MPa, belastningsklasse {diagram.klasse}
                 </h2>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  disabled={!!draft}
-                  onClick={() =>
-                    setDraft({ eu: null, t_uarmeret_cm: null, t_1_lag_cm: null, t_2_lag_cm: null })
-                  }
-                >
-                  <Plus />
-                  Tilføj række
-                </Button>
+                <div className="toolbar-group">
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    disabled={!!draft}
+                    onClick={() =>
+                      setDraft({
+                        eu: null,
+                        t_uarmeret_cm: null,
+                        t_1_lag_cm: null,
+                        t_2_lag_cm: null,
+                      })
+                    }
+                  >
+                    <Plus />
+                    Tilføj række
+                  </Button>
+                  <Button variant="ghost" size="sm" onClick={saveDiagram}>
+                    <Download />
+                    Gem diagram
+                  </Button>
+                  <Button variant="ghost" size="sm" onClick={() => fileInput.current?.click()}>
+                    <Upload />
+                    Indlæs diagram …
+                  </Button>
+                  <input
+                    ref={fileInput}
+                    type="file"
+                    hidden
+                    aria-label={`Diagramfil · Diagram ${nr}`}
+                    accept="application/json,.json"
+                    onChange={(e) => {
+                      const file = e.target.files?.[0];
+                      e.target.value = '';
+                      if (file) void loadDiagram(file);
+                    }}
+                  />
+                </div>
               </div>
+              {fileNotice && (
+                <Notice
+                  kind={fileNotice.kind}
+                  className={`message ${fileNotice.kind}`}
+                  role={fileNotice.kind === 'error' ? 'alert' : 'status'}
+                >
+                  {fileNotice.text}
+                </Notice>
+              )}
               <div className="diagram-layout">
                 <div className="diagram-figures">
                   <h3>Optegnet af tabellens værdier</h3>
