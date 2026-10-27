@@ -23,6 +23,9 @@ output/
 *_brugerdefineret.json
 ~$*
 .serena/cache/
+testrapporter/
+Dokumenter og data/
+diagrambilleder
 
 # Privat projekthukommelse
 .serena/memories/
