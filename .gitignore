@@ -28,6 +28,7 @@ output/
 testrapporter/
 Dokumenter og data/
 diagrambilleder
+tmp
 
 # Privat projekthukommelse
 .serena/memories/
