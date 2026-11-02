@@ -9,6 +9,13 @@ export interface Employee {
   telefon: string;
 }
 export interface CompanyProfile {
+  sv: {
+    titel: string;
+    slogan: string;
+    sidefod: string;
+    by: string;
+    afsnit: { noegle: `tekst_${SectionKey}`; titel: string }[];
+  };
   medarbejdere: Employee[];
   logo: string;
   logo_bredde_mm: number;
@@ -44,6 +51,20 @@ export interface CompanyProfile {
 }
 
 export const DEFAULT_COMPANY_PROFILE: CompanyProfile = {
+  sv: {
+    titel: 'NOTAT – MSL-uppbyggnad vägar/ytor',
+    slogan: 'Skapar säkra lösningar',
+    sidefod:
+      'BG Byggros AB | Levins väg 4 | SE-291 73 Önnestad | Tel: +46 771 48 9000 | www.byggros.com',
+    by: 'Önnestad',
+    afsnit: [
+      { noegle: 'tekst_krav_komprimering', titel: 'Krav på komprimering:' },
+      { noegle: 'tekst_dim_sikkerhed', titel: 'Dimensionering och säkerhet:' },
+      { noegle: 'tekst_udfoerelse', titel: 'Utförande:' },
+      { noegle: 'tekst_kontrolplan', titel: 'Kontrollplan:' },
+      { noegle: 'tekst_projekteringsansvar', titel: 'Projekteringsansvar:' },
+    ],
+  },
   medarbejdere: [], // B-048: ingen personer i standardprofilen.
   logo: 'assets/logo.jpeg', // word/header2.xml: rId1 → media/image1.jpeg; public/report/logo/OPRINDELSE.md.
   logo_bredde_mm: 1534537 / 36000, // header2.xml, wp:extent/@cx (EMU).

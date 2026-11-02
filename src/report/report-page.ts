@@ -11,15 +11,24 @@ import {
   type CalculatedReportLine,
   SECTION_KEYS,
   SECTION_TITLER,
-  STANDARD_TEKSTER,
-  STANDARD_MATERIALER_RAPPORT,
   type ReportChoices,
   type ReportMetadata,
 } from './report-data.ts';
 import type { ReportFigureChoices } from './report-figures.ts';
 import { employeeErrors, type Employee } from './company-profile.ts';
+import { reportStrings, type ReportLanguage } from './report-sprog.ts';
 
 export const REPORT_TITLE = 'Rapport';
+/** Dansk bruger de oprindelige nøgler; svensk har sv_ efter feltets navn. */
+export function reportValueKey(
+  felt: 'tekst' | 'linje' | 'std_materiale',
+  key: string | number,
+  sprog: ReportLanguage,
+): string {
+  return `rap_${felt}_${sprog === 'sv' ? 'sv_' : ''}${key}`;
+}
+const SPROGNAVN = { da: 'dansk', sv: 'svensk' } as const;
+const SPROGNAVN_BESTEMT = { da: 'danske', sv: 'svenske' } as const;
 /** Originalens undertekst; Word-eksporten udgår (B-026), så teksten er ændret efter B-043. */
 export const REPORT_INTRO_ORIGINAL =
   'Dokumentation af beregningen til projektmateriale. Rapporten samler forudsætninger, resultat og udførelseskrav i ét dokument i Word og PDF. Standardteksterne kan redigeres pr. rapport.';
@@ -94,7 +103,13 @@ export type ReportNode =
   | { kind: 'success'; text: string }
   | ReportWidget
   | { kind: 'text_toolbar'; key: string }
-  | { kind: 'expander'; key: string; title: string; children: ReportNode[] }
+  | {
+      kind: 'expander';
+      key: string;
+      title: string;
+      children: ReportNode[];
+      marker?: string;
+    }
   | {
       kind: 'figure';
       key: 'visualisering' | 'designdiagram';
@@ -144,6 +159,8 @@ export function reportPage(
   unit = 'mm',
   signatur = true,
 ) {
+  const sprog: ReportLanguage = values.rap_sprog === 'sv' ? 'sv' : 'da';
+  const t = reportStrings(sprog);
   const string = (key: string, fallback = '') =>
     typeof values[key] === 'string' ? (values[key] as string) : fallback;
   const bool = (key: string, fallback: boolean) =>
@@ -154,22 +171,31 @@ export function reportPage(
     kontrollant_i_bunden: bool('rap_kontrollant_i_bunden', false),
   };
   const texts = Object.fromEntries(
-    SECTION_KEYS.map((key) => [key, string(`rap_tekst_${key}`, STANDARD_TEKSTER[key])]),
+    SECTION_KEYS.map((key) => [
+      key,
+      string(reportValueKey('tekst', key, sprog), t.standard_tekster[key]),
+    ]),
   );
+  const other = sprog === 'da' ? 'sv' : 'da';
+  const rettet = (key: (typeof SECTION_KEYS)[number], language: ReportLanguage) => {
+    const standard = reportStrings(language).standard_tekster[key];
+    return string(reportValueKey('tekst', key, language), standard) !== standard;
+  };
   const choices: ReportChoices = {
+    sprog,
     medtag_afsnit: Object.fromEntries(
       SECTION_KEYS.map((key) => [key, bool(`rap_medtag_${key}`, true)]),
     ),
     enhed: unit,
-    standard_materialer: STANDARD_MATERIALER_RAPPORT.map((name, i) =>
-      string(`rap_std_materiale_${i}`, name),
+    standard_materialer: t.standard_materialer.map((name, i) =>
+      string(reportValueKey('std_materiale', i, sprog), name),
     ),
     grundlag_linjer: {},
     resultat_linjer: {},
     linje_rettelser: {},
   };
   const resetLines: { key: ReportLineKey; label: string }[] = [];
-  const figureChoices: ReportFigureChoices = {};
+  const figureChoices: ReportFigureChoices = { sprog };
   const steps: ReportStep[] = [];
   const base = {
     title: REPORT_TITLE,
@@ -180,6 +206,7 @@ export function reportPage(
     figureChoices,
     resetLines,
     steps,
+    sprog,
   };
   if (!dim?.geonet)
     return {
@@ -249,14 +276,18 @@ export function reportPage(
     ]),
   ];
   for (const [key, value] of Object.entries(values)) {
-    if (!key.startsWith('rap_linje_') || !value || typeof value !== 'object') continue;
+    const prefix = reportValueKey('linje', '', sprog);
+    // Den danske nøgle rap_linje_ er også begyndelsen på den svenske rap_linje_sv_.
+    if (sprog === 'da' && key.startsWith(reportValueKey('linje', '', 'sv'))) continue;
+    if (!key.startsWith(prefix) || !value || typeof value !== 'object') continue;
     const edit = value as Record<string, unknown>;
     if (
       ['beregnet_tekst', 'beregnet_vaerdi', 'tekst', 'vaerdi'].every(
         (field) => typeof edit[field] === 'string',
       )
     )
-      choices.linje_rettelser![key.slice(10) as ReportLineKey] = edit as unknown as ReportLineEdit;
+      choices.linje_rettelser![key.slice(prefix.length) as ReportLineKey] =
+        edit as unknown as ReportLineEdit;
   }
   const reconciled = reconcileReportLines(calculated, choices.linje_rettelser);
   choices.linje_rettelser = reconciled.active;
@@ -316,11 +347,11 @@ export function reportPage(
       ...['Øverste lag', 'Nederste lag'].map((label, i) =>
         widget(
           'text_input',
-          `rap_std_materiale_${i}`,
+          reportValueKey('std_materiale', i, sprog),
           label,
           choices.standard_materialer![i]!,
           choices.grundlag_linjer!.materialer === false,
-          `Standard: ${STANDARD_MATERIALER_RAPPORT[i]}.`,
+          `Standard: ${t.standard_materialer[i]}.`,
         ),
       ),
     );
@@ -330,15 +361,26 @@ export function reportPage(
     ),
   ];
   for (const key of SECTION_KEYS) {
+    // Markér afsnittet på det sprog, der stadig har standardteksten, når det andet er rettet.
+    const markeret = !rettet(key, sprog) && rettet(key, other);
     content.push({
       kind: 'expander',
       key,
       title: SECTION_TITLER[key],
+      ...(markeret ? { marker: `Rettet på ${SPROGNAVN[other]}` } : {}),
       children: [
+        ...(markeret
+          ? [
+              {
+                kind: 'info' as const,
+                text: `Afsnittet er rettet på ${SPROGNAVN[other]}, men den ${SPROGNAVN_BESTEMT[sprog]} tekst er standardteksten.`,
+              },
+            ]
+          : []),
         widget('button', `reset-${key}`, 'Nulstil'),
         widget('checkbox', `rap_medtag_${key}`, 'Medtag i rapporten', choices.medtag_afsnit![key]!),
-        { kind: 'text_toolbar', key: `rap_tekst_${key}` },
-        widget('text_area', `rap_tekst_${key}`, 'Tekst', texts[key]),
+        { kind: 'text_toolbar', key: reportValueKey('tekst', key, sprog) },
+        widget('text_area', reportValueKey('tekst', key, sprog), 'Tekst', texts[key]),
         caption(REPORT_FORMAT_HELP),
       ],
     });
@@ -470,7 +512,7 @@ export function reportPage(
       ...(!ready ? [caption('Vælg mindst ét snit for at kunne generere rapporten.')] : []),
     ],
   });
-  return { ...base, available: true, banner, emptyAction: null };
+  return { ...base, available: true, banner, emptyAction: null, sprog };
 }
 
 /** Kun rapporttekster og valg. Projektfelter, dato og øvrige sessionsværdier berøres ikke. */

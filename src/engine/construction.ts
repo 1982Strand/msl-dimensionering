@@ -70,16 +70,19 @@ function status(
     optimal = best !== null && best < required ? input - best : null;
   if (diff >= 0)
     return [
-      `${t.konstruktion.overskud(laengde(diff, unit))}${optimal !== null && optimal > diff ? `\n${t.konstruktion.optimalt(laengde(optimal, unit))}` : ''}`,
+      `${t.konstruktion.overskud(laengde(diff, unit, 0, t.tusindtal))}${optimal !== null && optimal > diff ? `\n${t.konstruktion.optimalt(laengde(optimal, unit, 0, t.tusindtal))}` : ''}`,
       'gron',
     ];
   if (optimal !== null && optimal >= 0)
     return [
-      t.konstruktion.for_lidt_optimal(laengde(-diff, unit), laengde(optimal, unit)),
+      t.konstruktion.for_lidt_optimal(
+        laengde(-diff, unit, 0, t.tusindtal),
+        laengde(optimal, unit, 0, t.tusindtal),
+      ),
       'advarsel',
     ];
   return [
-    `${t.konstruktion.for_lidt(laengde(-diff, unit))}${optimal !== null ? `\n${t.konstruktion.optimalt(laengde(-optimal, unit))}` : ''}`,
+    `${t.konstruktion.for_lidt(laengde(-diff, unit, 0, t.tusindtal))}${optimal !== null ? `\n${t.konstruktion.optimalt(laengde(-optimal, unit, 0, t.tusindtal))}` : ''}`,
     'kritisk',
   ];
 }
@@ -128,7 +131,7 @@ function optimalNote(
   const step = p.afrunding_trin_mm || result.afrunding.trin_mm;
   const additions = tillaeg(best, exact, step, p.t_min_mm);
   [
-    t.konstruktion.note_oprunding(laengde(step, unit)),
+    t.konstruktion.note_oprunding(laengde(step, unit, 0, t.tusindtal)),
     t.konstruktion.note_minimum,
     t.konstruktion.note_mindste_lag,
   ].forEach((label, i) => {
@@ -136,8 +139,10 @@ function optimalNote(
   });
   return [
     t.konstruktion.note_titel(index, pct(p.korrektion_min)),
-    ...lines.map(([sign, label, mm]) => `${sign} ${label}: ${laengde(mm, unit)}`.trim()),
-    t.konstruktion.note_resultat(laengde(best, unit)),
+    ...lines.map(([sign, label, mm]) =>
+      `${sign} ${label}: ${laengde(mm, unit, 0, t.tusindtal)}`.trim(),
+    ),
+    t.konstruktion.note_resultat(laengde(best, unit, 0, t.tusindtal)),
   ].join('\n');
 }
 

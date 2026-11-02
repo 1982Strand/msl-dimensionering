@@ -22,6 +22,7 @@ import { Textarea } from '../components/ui/textarea';
 import { Badge } from '../components/ui/badge';
 import { Checkbox } from '../components/ui/checkbox';
 import { Label } from '../components/ui/label';
+import { RadioGroup, RadioGroupItem } from '../components/ui/radio-group';
 import {
   Select,
   SelectContent,
@@ -45,6 +46,7 @@ import { dimensioningInput } from '../engine/dimensioning-form';
 import { dimensioner } from '../engine/dimensionering';
 import {
   reportPage,
+  reportValueKey,
   reportFilename,
   localReportDate,
   resetReportChoices,
@@ -54,8 +56,9 @@ import {
   type ReportNode,
   type ReportStep,
 } from '../report/report-page';
-import { reportData, STANDARD_TEKSTER, SECTION_KEYS, type SectionKey } from '../report/report-data';
+import { reportData, SECTION_KEYS, type SectionKey } from '../report/report-data';
 import { reportFigures } from '../report/report-figures';
+import { reportStrings } from '../report/report-sprog';
 import { reportDocument, loadReportAssets, type ReportAssets } from '../report/report-document';
 import { logoDataUrl, logoExtension } from '../report/company-profile';
 import layoutSource from '../report/typst/layout.typ?raw';
@@ -133,6 +136,7 @@ export function Report({
     unit,
     ctx.session.data.indstillinger.opbygning.signatur,
   );
+  const sprog = model.sprog;
   const [resetMessages, setResetMessages] = useState<string[]>([]);
   const handledReset = useRef('');
   useEffect(() => {
@@ -147,7 +151,11 @@ export function Report({
         ({ label }) => `Rettelsen af linjen ›${label}‹ er nulstillet, fordi beregningen er ændret.`,
       ),
     ]);
-    ctx.remember(Object.fromEntries(model.resetLines.map(({ key }) => [`rap_linje_${key}`, null])));
+    ctx.remember(
+      Object.fromEntries(
+        model.resetLines.map(({ key }) => [reportValueKey('linje', key, sprog), null]),
+      ),
+    );
   }, [JSON.stringify(model.resetLines), ctx.externalChange]);
   const figures = useMemo(
     () =>
@@ -334,7 +342,10 @@ export function Report({
       setDate(localReportDate());
     } else if (key.startsWith('reset-')) {
       const section = key.slice(6) as SectionKey;
-      ctx.remember({ [`rap_tekst_${section}`]: STANDARD_TEKSTER[section] });
+      const standard = reportStrings(sprog).standard_tekster[section];
+      ctx.remember({
+        [reportValueKey('tekst', section, sprog)]: standard,
+      });
     }
   }
   function renderNode(node: ReportNode, i: number) {
@@ -344,7 +355,7 @@ export function Report({
       const label = node.calculated.beregnet_tekst;
       const edit = (field: 'tekst' | 'vaerdi', value: string) => {
         ctx.remember({
-          [`rap_linje_${node.key}`]: {
+          [reportValueKey('linje', node.key, sprog)]: {
             ...node.calculated,
             tekst: node.label,
             vaerdi: node.value,
@@ -391,7 +402,7 @@ export function Report({
             disabled={node.disabled}
             onClick={() =>
               ctx.remember({
-                [`rap_linje_${node.key}`]: null,
+                [reportValueKey('linje', node.key, sprog)]: null,
                 [node.visibilityKey]: null,
               })
             }
@@ -453,7 +464,10 @@ export function Report({
       return (
         <Accordion key={key} type="multiple" className="dim-expander-card">
           <AccordionItem value={node.key}>
-            <AccordionTrigger>{node.title}</AccordionTrigger>
+            <AccordionTrigger>
+              {node.title}
+              {node.marker && <Badge variant="outline">{node.marker}</Badge>}
+            </AccordionTrigger>
             <AccordionContent>
               <div className="report-editor">
                 {SECTION_KEYS.includes(node.key as SectionKey) ? (
@@ -755,6 +769,24 @@ export function Report({
             {profileLocked ? 'Medarbejdere' : 'Firmaprofil'}
           </TabsTrigger>
         </TabsList>
+        <div className="report-language">
+          <Label id="report-language-label">Rapportsprog</Label>
+          <RadioGroup
+            aria-labelledby="report-language-label"
+            value={sprog}
+            onValueChange={(value) => ctx.remember({ rap_sprog: value === 'sv' ? 'sv' : 'da' })}
+            className="report-language-options"
+          >
+            <div>
+              <RadioGroupItem id="report-lang-da" value="da" />
+              <Label htmlFor="report-lang-da">Dansk</Label>
+            </div>
+            <div>
+              <RadioGroupItem id="report-lang-sv" value="sv" />
+              <Label htmlFor="report-lang-sv">Svensk</Label>
+            </div>
+          </RadioGroup>
+        </div>
         <TabsContent value="report">
           {!model.available ? (
             <Button asChild>
@@ -792,6 +824,7 @@ export function Report({
         <TabsContent value="profile">
           <CompanyProfile
             controller={company}
+            sprog={sprog}
             locked={profileLocked}
             standardLogo={async () => {
               const loaded = await (assets.current ??= loadReportAssets(

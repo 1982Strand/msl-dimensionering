@@ -71,6 +71,10 @@ const editable = new Set([
   'sidetal',
   'titel',
   'by',
+  'sv.titel',
+  'sv.slogan',
+  'sv.sidefod',
+  'sv.by',
 ]);
 export function validateProfileField(path: string, value: unknown): string | null {
   if (!editable.has(path)) return 'Feltet kan ikke ændres i firmaprofilen.';
@@ -129,7 +133,8 @@ export function mergeCompanyProfile(saved: unknown, full = false): CompanyProfil
     keys(patch, Object.keys(base), false);
     if (full)
       for (const k of Object.keys(base))
-        if (k !== 'medarbejdere' && !Object.hasOwn(patch, k)) fail(`Feltet »${k}« mangler.`);
+        if (k !== 'medarbejdere' && k !== 'sv' && !Object.hasOwn(patch, k))
+          fail(`Feltet »${k}« mangler.`);
     for (const [k, value] of Object.entries(patch)) {
       const path = prefix + k;
       if (path === 'afsluttende_afsnit') {
@@ -148,6 +153,25 @@ export function mergeCompanyProfile(saved: unknown, full = false): CompanyProfil
         });
         if (full && sections.length !== standard.length)
           fail('Alle fem afsluttende afsnit skal findes.');
+        base[k] = [
+          ...sections,
+          ...standard.filter((s) => !seen.has(s.noegle)).map((s) => ({ ...s })),
+        ];
+      } else if (path === 'sv.afsnit') {
+        if (!Array.isArray(value)) fail('Den svenske afslutning skal være en liste.');
+        const standard = DEFAULT_COMPANY_PROFILE.sv.afsnit;
+        const seen = new Set<string>();
+        const sections = value.map((section) => {
+          if (!object(section)) fail('Et svensk afsluttende afsnit skal være et objekt.');
+          keys(section, ['noegle', 'titel'], true);
+          const found = standard.find((s) => s.noegle === section.noegle);
+          if (!found || seen.has(found.noegle) || typeof section.titel !== 'string')
+            fail('Den svenske afslutning er ugyldig.');
+          seen.add(found.noegle);
+          return { noegle: found.noegle, titel: section.titel as string };
+        });
+        if (full && sections.length !== standard.length)
+          fail('Alle fem svenske afsnit skal findes.');
         base[k] = [
           ...sections,
           ...standard.filter((s) => !seen.has(s.noegle)).map((s) => ({ ...s })),

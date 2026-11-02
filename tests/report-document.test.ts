@@ -7,6 +7,7 @@ import { reportFigures } from '../src/report/report-figures.ts';
 import { reportDocument, type ReportAssets } from '../src/report/report-document.ts';
 import { DEFAULT_COMPANY_PROFILE, REPORT_FONT_FILES } from '../src/report/profile-defaults.ts';
 import { parseReportText } from '../src/report/text-format.ts';
+import { mergeCompanyProfile } from '../src/report/company-profile.ts';
 const assets: ReportAssets = {
   main: readFileSync(new URL('../src/report/typst/rapport.typ', import.meta.url), 'utf8'),
   layout: readFileSync(new URL('../src/report/typst/layout.typ', import.meta.url), 'utf8'),
@@ -19,6 +20,21 @@ const assets: ReportAssets = {
   ),
 };
 const cases = reportCases();
+test('svensk profiltransport bruger svenske værdier i profil.json', () => {
+  const c = cases[0]!;
+  const data = reportData(c.result, c.metadata, { sprog: 'sv' });
+  const req = reportDocument(
+    data,
+    reportFigures(c.result, c.settings, c.table, { sprog: 'sv' }),
+    assets,
+    mergeCompanyProfile({}),
+  );
+  const profile = JSON.parse(req.files['profil.json'] as string);
+  assert.equal(profile.titel, 'NOTAT – MSL-uppbyggnad vägar/ytor');
+  assert.equal(profile.by, 'Önnestad');
+  assert.equal(profile.afsluttende_afsnit[0].titel, 'Krav på komprimering:');
+  assert.equal(profile.sv.by, 'Önnestad');
+});
 test('B-048 dokument: personlag med initialer/fallback og begge underskriftskolonner transporteres kun som JSON', () => {
   const c = cases[0];
   const special = '#panic("B048") $ [ ]';

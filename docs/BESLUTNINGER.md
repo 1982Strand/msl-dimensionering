@@ -109,3 +109,10 @@ Brugeren har leveret et svensk eksempel, »Dimensioneringsparadima - väg 150317
 - Tal over 1000 i den svenske rapport: »skriv bare tallet ud, altså fx '1230 mm'«, dvs. uden tusindtalsseparator. Den danske rapport skriver fortsat »1.230 mm«.
 
 Claudes valg, som kan ændres: I Standard får figurens lag i den svenske rapport navnene »Obundet bärlager« og »Förstärkningslager« i stedet for »Stabilgrus« og »Bundsikring«. Standardmaterialerne i tabellen er de samme to navne. I Brugerdefineret står materialenavnene, som de er indtastet i appen, også i den svenske rapport.
+
+Gennemført 2. november 2026. Sprogvalget gemmes i `rap_sprog`. De danske nøgler er uændrede, mens de svenske tekster, linjerettelser og standardmaterialer gemmes i `rap_tekst_sv_…`, `rap_linje_sv_…` og `rap_std_materiale_sv_…`. Firmaprofilen har feltet `sv` med de svenske udgaver af titel, slogan, sidefod, by og afsnitsoverskrifter. Profiler fra før ændringen kan stadig indlæses og importeres og får de svenske standardværdier. Den danske rapport er byte-identisk med før (R3 og R6), og `tests/cases/` er uændret.
+
+Claudes valg, som kan ændres:
+
+- Markeringen vises på det sprog, der stadig har standardteksten: står man på svensk, og afsnittet kun er rettet på dansk, viser udvideren »Rettet på dansk« og en forklarende linje. På det sprog, der er rettet, vises intet mærke. Ellers ville alle danske rettelser få et mærke, også hos brugere, der aldrig bruger svensk.
+- »Nulstil tekster og valg til standard« nulstiller tekster, rettelser og valg på begge sprog, men beholder sprogvalget.

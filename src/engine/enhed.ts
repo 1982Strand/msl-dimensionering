@@ -1,7 +1,7 @@
 import { pythonFixed } from './python-numbers.ts';
 export const STANDARD_ENHED = 'mm';
 export const normaliser = (enhed: unknown): 'mm' | 'cm' => (enhed === 'cm' ? 'cm' : 'mm');
-export function tal(v_mm: number | null, enhed = 'mm', decimaler = 0): string {
+export function tal(v_mm: number | null, enhed = 'mm', decimaler = 0, tusindtal = '.'): string {
   if (v_mm === null) return '—';
   let v = v_mm;
   if (normaliser(enhed) === 'cm') {
@@ -10,12 +10,17 @@ export function tal(v_mm: number | null, enhed = 'mm', decimaler = 0): string {
   }
   let [integer, decimal = ''] = pythonFixed(v, decimaler, true).split('.');
   if (normaliser(enhed) === 'cm') decimal = decimal.replace(/0+$/, '');
-  let output = integer.replaceAll(',', '.') + (decimal ? ',' + decimal : '');
+  let output = integer.replaceAll(',', tusindtal) + (decimal ? ',' + decimal : '');
   if (output === '-0' || output === '−0') output = '0';
   return output.startsWith('-') ? '−' + output.slice(1) : output;
 }
-export const laengde = (v_mm: number | null, enhed = 'mm', decimaler = 0): string =>
-  v_mm === null ? '—' : `${tal(v_mm, enhed, decimaler)} ${normaliser(enhed)}`;
+export const laengde = (
+  v_mm: number | null,
+  enhed = 'mm',
+  decimaler = 0,
+  tusindtal = '.',
+): string =>
+  v_mm === null ? '—' : `${tal(v_mm, enhed, decimaler, tusindtal)} ${normaliser(enhed)}`;
 export function fortegn(v_mm: number, enhed = 'mm', decimaler = 0): string {
   let s = tal(v_mm, enhed, decimaler);
   if (!s.startsWith('−') && s !== '0') s = '+' + s;

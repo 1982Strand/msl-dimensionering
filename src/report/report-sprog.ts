@@ -1,6 +1,7 @@
 import type { SectionKey } from './report-data.ts';
 
 export interface ReportStrings {
+  tusindtal: string;
   typst_language: string;
   projekt: string;
   beskrivelse: string;
@@ -284,6 +285,7 @@ const STANDARD_TEKSTER_SV: Readonly<Record<SectionKey, string>> = {
 
 export const REPORT_STRINGS = {
   da: {
+    tusindtal: '.',
     typst_language: 'da',
     projekt: 'Projekt: ',
     beskrivelse: 'Beskrivelse:',
@@ -409,6 +411,7 @@ export const REPORT_STRINGS = {
   },
   // Udkast 2. november 2026: afventer gennemlæsning af en svensk fagperson.
   sv: {
+    tusindtal: '',
     typst_language: 'sv',
     projekt: 'Projekt: ',
     beskrivelse: 'Beskrivning:',

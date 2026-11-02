@@ -135,12 +135,14 @@ export function CompanyProfile({
   preview,
   standardLogo,
   locked = false,
+  sprog = 'da',
 }: {
   controller: ReturnType<typeof useCompanyProfile>;
   preview: ReactNode;
   standardLogo: () => Promise<ProfileLogo>;
   /** B-080: kun medarbejderkartoteket vises; resten af profilen er skjult. */
   locked?: boolean;
+  sprog?: 'da' | 'sv';
 }) {
   const { state, ready, saving, error, reset, update } = controller;
   const [drafts, setDrafts] = useState<Record<string, string>>({});
@@ -155,6 +157,12 @@ export function CompanyProfile({
     setFileError(null);
   }, [reset]);
   const profile = state.profile;
+  const closingSections =
+    sprog === 'sv'
+      ? profile.afsluttende_afsnit.map((section) =>
+          profile.sv.afsnit.find((sv) => sv.noegle === section.noegle)!,
+        )
+      : profile.afsluttende_afsnit;
   const logoSource = useMemo(
     () =>
       state.logo
@@ -367,8 +375,15 @@ export function CompanyProfile({
                 2,
                 'Identitet',
                 <>
-                  {field('slogan', 'Slogan under logoet')}
-                  {field('sidefod', 'Kontaktlinje i sidefoden', 'textarea')}
+                  {field(sprog === 'sv' ? 'sv.slogan' : 'slogan', 'Slogan under logoet')}
+                  {field(
+                    sprog === 'sv' ? 'sv.sidefod' : 'sidefod',
+                    'Kontaktlinje i sidefoden',
+                    'textarea',
+                  )}
+                  {sprog === 'sv' && (
+                    <p className="report-caption">Felterne gælder den svenske rapport.</p>
+                  )}
                   {(['farve', 'sidefod_tekstfarve'] as const).map((path) => (
                     <div className="profile-color" key={path}>
                       {field(path, path === 'farve' ? 'Firmafarve' : 'Tekstfarve i sidefod')}
@@ -426,8 +441,11 @@ export function CompanyProfile({
                 6,
                 'Faste tekster',
                 <>
-                  {field('titel', 'Rapporttitel')}
-                  {field('by', 'By i underskriften')}
+                  {field(sprog === 'sv' ? 'sv.titel' : 'titel', 'Rapporttitel')}
+                  {field(sprog === 'sv' ? 'sv.by' : 'by', 'By i underskriften')}
+                  {sprog === 'sv' && (
+                    <p className="report-caption">Felterne gælder den svenske rapport.</p>
+                  )}
                 </>,
               )}
               {card(
@@ -437,24 +455,39 @@ export function CompanyProfile({
                   <p className="report-caption">
                     Alle fem afsnit indgår altid. Teksterne redigeres under Rapport.
                   </p>
-                  {profile.afsluttende_afsnit.map((section, i, all) => (
+                  {closingSections.map((section, i, all) => (
                     <div className="profile-section-row" key={section.noegle}>
                       <div className="setting-field">
                         <label htmlFor={'profile-' + section.noegle}>Overskrift {i + 1}</label>
                         <Input
                           id={'profile-' + section.noegle}
-                          value={drafts[section.noegle] ?? section.titel}
+                          value={drafts[sprog + ':' + section.noegle] ?? section.titel}
                           onChange={(e) => {
                             const title = e.target.value;
-                            setDrafts((prev) => ({ ...prev, [section.noegle]: title }));
+                            setDrafts((prev) => ({
+                              ...prev,
+                              [sprog + ':' + section.noegle]: title,
+                            }));
                             update((prev) => ({
                               ...prev,
-                              profile: {
-                                ...prev.profile,
-                                afsluttende_afsnit: prev.profile.afsluttende_afsnit.map((s) =>
-                                  s.noegle === section.noegle ? { ...s, titel: title } : s,
-                                ),
-                              },
+                              profile:
+                                sprog === 'sv'
+                                  ? {
+                                      ...prev.profile,
+                                      sv: {
+                                        ...prev.profile.sv,
+                                        afsnit: prev.profile.sv.afsnit.map((s) =>
+                                          s.noegle === section.noegle ? { ...s, titel: title } : s,
+                                        ),
+                                      },
+                                    }
+                                  : {
+                                      ...prev.profile,
+                                      afsluttende_afsnit: prev.profile.afsluttende_afsnit.map(
+                                        (s) =>
+                                          s.noegle === section.noegle ? { ...s, titel: title } : s,
+                                      ),
+                                    },
                             }));
                           }}
                         />
@@ -475,7 +508,18 @@ export function CompanyProfile({
                               ];
                               return {
                                 ...prev,
-                                profile: { ...prev.profile, afsluttende_afsnit: sections },
+                                profile: {
+                                  ...prev.profile,
+                                  afsluttende_afsnit: sections,
+                                  sv: {
+                                    ...prev.profile.sv,
+                                    afsnit: sections.map((section) =>
+                                      prev.profile.sv.afsnit.find(
+                                        (sv) => sv.noegle === section.noegle,
+                                      )!,
+                                    ),
+                                  },
+                                },
                               };
                             })
                           }

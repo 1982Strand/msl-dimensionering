@@ -149,6 +149,7 @@ export interface ReportData {
     side_af_prefix: string;
     side_af_separator: string;
     typst_language: string;
+    report_language: ReportLanguage;
   };
 }
 
@@ -190,7 +191,7 @@ export function _materiale_resume(
     .map((m, i) => {
       const dele = [t.materiale_lag(i + 1, m.navn ?? '?')];
       if (m.phi != null) dele.push(t.materiale_phi(grader(m.phi)));
-      if (m.tykkelse_mm != null) dele.push(laengde(m.tykkelse_mm, unit));
+      if (m.tykkelse_mm != null) dele.push(laengde(m.tykkelse_mm, unit, 0, t.tusindtal));
       else if (m.pct != null) dele.push(`${pythonFixed(m.pct, 0)} %`);
       return dele.join(t.materiale_separator);
     })
@@ -204,7 +205,7 @@ export function _yderomraade_tekst(
 ): string | null {
   if (dim.zone !== 'under' && dim.zone !== 'over') return null;
   const tal = (v: number, dec = 0) =>
-    pythonFixed(v, dec, true).replaceAll(',', 'X').replace('.', ',').replaceAll('X', '.');
+    pythonFixed(v, dec, true).replaceAll(',', 'X').replace('.', ',').replaceAll('X', t.tusindtal);
   const retning = dim.zone === 'over' ? t.yderomraade.over : t.yderomraade.under;
   const yder = dim.yder ?? {};
   const afv = yder.afvigelse_pct;
@@ -220,14 +221,14 @@ export function _yderomraade_tekst(
   );
   if (yder.handling === 'vejdim') {
     tekst += t.yderomraade.vejdim(
-      laengde(Number(yder.t_vejdim_mm || 0), unit),
+      laengde(Number(yder.t_vejdim_mm || 0), unit, 0, t.tusindtal),
       tal(Number(yder.eo_rand || 0)),
     );
     tekst += yder.inden_tolerance ? '.' : t.yderomraade.ekstrapoleret;
   } else if (yder.handling === 'laveste') {
     tekst += t.yderomraade.rand(
       tal(Number(yder.eo_rand || 0)),
-      laengde(Number(yder.t_rand_mm || 0), unit),
+      laengde(Number(yder.t_rand_mm || 0), unit, 0, t.tusindtal),
     );
   }
   return tekst;
@@ -291,7 +292,8 @@ export function resultat_linjer(
   const res1 = dim.res_1,
     res2 = dim.res_2;
   const unit = enhed(valg.enhed);
-  const mm = (v: number | null | undefined) => (typeof v === 'number' ? laengde(v, unit) : t.tom);
+  const mm = (v: number | null | undefined) =>
+    typeof v === 'number' ? laengde(v, unit, 0, t.tusindtal) : t.tom;
   type Felt = 't_armeret_mm' | 't_uarmeret_phi_kor_mm' | 't_uarmeret_mm';
   type Lengths = Pick<
     CalculationResult,
@@ -441,6 +443,7 @@ export function reportDataWithStrings(
       side_af_prefix: t.side_af_prefix,
       side_af_separator: t.side_af_separator,
       typst_language: t.typst_language,
+      report_language: valg.sprog ?? 'da',
     },
   };
 }

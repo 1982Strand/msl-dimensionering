@@ -2,6 +2,77 @@ import { expect, test, type Page } from '@playwright/test';
 import { readFile } from 'node:fs/promises';
 import { execFileSync } from 'node:child_process';
 
+test('rapportsprog og firmaprofil skifter til svenske værdier', async ({ page }) => {
+  await page.goto('/#rapport');
+  const language = page.getByRole('radio', { name: 'Svensk', exact: true });
+  await language.click();
+  await expect(language).toBeChecked();
+  await page.getByRole('tab', { name: 'Firmaprofil', exact: true }).click();
+  await expect(page.getByLabel('Rapporttitel', { exact: true })).toHaveValue(
+    'NOTAT – MSL-uppbyggnad vägar/ytor',
+  );
+  await expect(page.getByLabel('By i underskriften', { exact: true })).toHaveValue('Önnestad');
+  await expect(page.getByText('Felterne gælder den svenske rapport.', { exact: true })).toHaveCount(
+    2,
+  );
+});
+
+test('tekster pr. sprog: svensk rettelse, mærke på det urørte sprog og svensk PDF', async ({
+  page,
+}) => {
+  test.setTimeout(180_000);
+  await page.goto('/#rapport');
+  await page.getByRole('radio', { name: 'Svensk', exact: true }).click();
+  await page.getByRole('button', { name: 'Kontrolplan', exact: true }).click();
+  const sv = page.locator('#rap_tekst_sv_kontrolplan');
+  await expect(sv).toHaveValue(/^Det rekommenderas att utföra kompletterande geoteknisk sondering/);
+  await sv.fill('Kontrollplanen bestäms i projektet.');
+  await page.getByRole('radio', { name: 'Dansk', exact: true }).click();
+  const da = page.locator('#rap_tekst_kontrolplan');
+  await expect(da).toHaveValue(/^Det anbefales at udføre supplerende geoteknisk sondering/);
+  const daSection = page.locator('.report-step-2 .dim-expander-card').filter({ has: da });
+  await expect(daSection.getByText('Rettet på svensk', { exact: true })).toBeVisible();
+  await expect(
+    daSection.getByText('Afsnittet er rettet på svensk, men den danske tekst er standardteksten.', {
+      exact: true,
+    }),
+  ).toBeVisible();
+  await page.getByRole('radio', { name: 'Svensk', exact: true }).click();
+  await expect(sv).toHaveValue('Kontrollplanen bestäms i projektet.');
+  await expect(page.getByText('Rettet på svensk', { exact: true })).toHaveCount(0);
+  await page.getByRole('button', { name: 'Generér rapport', exact: true }).click();
+  await ready(page);
+  const downloadEvent = page.waitForEvent('download');
+  await page.getByRole('link', { name: 'Hent PDF', exact: true }).click();
+  const path = await (await downloadEvent).path();
+  const text = execFileSync('pdftotext', ['-enc', 'UTF-8', path!, '-'], { encoding: 'utf8' });
+  expect(text).toContain('Kontrollplanen bestäms i projektet.');
+  expect(text).toContain('Terrassens E-modul');
+  expect(text).toContain('Valt geonät');
+  expect(text).toContain('Skapar säkra lösningar');
+  expect(text).toContain('Levins väg 4');
+  expect(text).not.toContain('Underbundens');
+  expect(text).not.toContain('Det anbefales');
+});
+
+test('svensk rapport download indeholder svenske standardetiketter og underskrift', async ({
+  page,
+}) => {
+  test.setTimeout(180_000);
+  await page.goto('/#rapport');
+  await page.getByRole('radio', { name: 'Svensk', exact: true }).click();
+  await page.getByRole('button', { name: 'Generér rapport', exact: true }).click();
+  await ready(page);
+  const downloadEvent = page.waitForEvent('download');
+  await page.getByRole('link', { name: 'Hent PDF', exact: true }).click();
+  const path = await (await downloadEvent).path();
+  const text = execFileSync('pdftotext', ['-enc', 'UTF-8', path!, '-'], { encoding: 'utf8' });
+  expect(text).toContain('Dimensioneringsresultat:');
+  expect(text).toContain('Förutsättningar:');
+  expect(text).toContain('Önnestad den');
+  expect(text).toContain('Dimensioneringen av MSL-uppbyggnaden');
+});
+
 function observe(page: Page, baseURL: string) {
   const external: string[] = [],
     errors: string[] = [],

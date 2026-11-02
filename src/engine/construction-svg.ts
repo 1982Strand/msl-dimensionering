@@ -112,7 +112,7 @@ export function constructionSvg(
           short = [name.split(/\s+/)[0]];
         let label: string[] = [];
         for (const candidate of [full, short, []]) {
-          const lines = [...candidate, laengde(mm, data.enhed)];
+          const lines = [...candidate, laengde(mm, data.enhed, 0, strings.tusindtal)];
           if (h >= lines.length * 15 + 6) {
             label = lines;
             break;
@@ -120,7 +120,7 @@ export function constructionSvg(
         }
         parts.push(
           tooltip(
-            `${name} · ${laengde(mm, data.enhed)}`,
+            `${name} · ${laengde(mm, data.enhed, 0, strings.tusindtal)}`,
             `<rect data-thickness-mm="${mm}" x="${x}" y="${y}" width="${rectWidth}" height="${h}" fill="${palette[type]}" stroke="${type === 'baerelag' ? '#B9C0BA' : '#C4CAC5'}"/>`,
             'material',
           ),
@@ -138,7 +138,7 @@ export function constructionSvg(
         );
       if (data.vis_maal_tal)
         parts.push(
-          `<g data-kind="dimension-value">${text(measureX + (data.vis_maal_streg ? 9 : 0), (yTop + base) / 2 + 4, [laengde(column.total_mm, data.enhed)], 12, palette.ink, 'start', 500)}</g>`,
+          `<g data-kind="dimension-value">${text(measureX + (data.vis_maal_streg ? 9 : 0), (yTop + base) / 2 + 4, [laengde(column.total_mm, data.enhed, 0, strings.tusindtal)], 12, palette.ink, 'start', 500)}</g>`,
         );
       for (const elevation of column.geonet_mm) {
         const y = base - elevation * scale;
@@ -148,7 +148,7 @@ export function constructionSvg(
           net += text(x - 14, y - (label.length - 1) * 6.5 + 3, label, 10, palette.net, 'end');
         }
         parts.push(
-          `<g data-elevation-mm="${elevation}">${tooltip(strings.konstruktion.geonet_fra_top(data.geonet_navn, laengde(column.total_mm - elevation, data.enhed)), net, 'geonet')}</g>`,
+          `<g data-elevation-mm="${elevation}">${tooltip(strings.konstruktion.geonet_fra_top(data.geonet_navn, laengde(column.total_mm - elevation, data.enhed, 0, strings.tusindtal)), net, 'geonet')}</g>`,
         );
       }
       if (column.best_case_mm && column.best_case_mm < column.total_mm) {
@@ -156,7 +156,9 @@ export function constructionSvg(
         parts.push(
           tooltip(
             column.best_case_note ||
-              strings.konstruktion.optimal_fallback(laengde(column.best_case_mm, data.enhed)),
+              strings.konstruktion.optimal_fallback(
+                laengde(column.best_case_mm, data.enhed, 0, strings.tusindtal),
+              ),
             line(x - 4, y, x + rectWidth + 4, y, palette.green, 1.5, '2 4') +
               `<rect x="${x - 4}" y="${y - 7}" width="${rectWidth + 8}" height="14" fill="transparent"/>`,
             'optimal',
@@ -168,7 +170,9 @@ export function constructionSvg(
       const y = base - data.reference_mm * scale;
       parts.push(
         tooltip(
-          strings.konstruktion.indtastet_niveau(laengde(data.reference_mm, data.enhed)),
+          strings.konstruktion.indtastet_niveau(
+            laengde(data.reference_mm, data.enhed, 0, strings.tusindtal),
+          ),
           line(left + 10, y, left + columnWidth - 10, y, '#9AA39C', 1.5, '7 5'),
           'reference',
         ),
@@ -214,7 +218,10 @@ export function constructionSvg(
     parts.push('</g>');
   }
   const summary = data.kolonner
-    .map((c) => `${c.titel}: ${c.total_mm ? laengde(c.total_mm, data.enhed) : c.tom_tekst}`)
+    .map(
+      (c) =>
+        `${c.titel}: ${c.total_mm ? laengde(c.total_mm, data.enhed, 0, strings.tusindtal) : c.tom_tekst}`,
+    )
     .join('. ');
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${width} ${height}" width="${width}" height="${height}" role="img" aria-labelledby="${prefix}-title ${prefix}-description" style="font-family:Arial,Helvetica,sans-serif;background:white"><title id="${prefix}-title">${escape(strings.konstruktion.title(data.geonet_navn))}</title><desc id="${prefix}-description">${escape(strings.konstruktion.description(summary))}</desc><defs><pattern id="${prefix}-soil" width="6" height="6" patternUnits="userSpaceOnUse"><rect width="6" height="6" fill="${palette.earth}"/><path d="M-1,1 L1,-1 M0,6 L6,0 M5,7 L7,5" stroke="#6E5A42" stroke-width="1"/></pattern></defs>${parts.join('')}</svg>`;
 }

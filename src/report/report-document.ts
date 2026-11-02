@@ -50,6 +50,21 @@ export function reportDocument(
   assets: ReportAssets,
   profile: CompanyProfile = DEFAULT_COMPANY_PROFILE,
 ): PdfRequest {
+  const reportProfile =
+    data.sprog.report_language === 'sv'
+      ? {
+          ...profile,
+          titel: profile.sv.titel,
+          slogan: profile.sv.slogan,
+          sidefod: profile.sv.sidefod,
+          by: profile.sv.by,
+          // Rækkefølgen er fælles for begge sprog; kun overskrifterne er svenske.
+          afsluttende_afsnit: profile.afsluttende_afsnit.map((s) => ({
+            noegle: s.noegle,
+            titel: profile.sv.afsnit.find((sv) => sv.noegle === s.noegle)?.titel ?? s.titel,
+          })),
+        }
+      : profile;
   // B-046: fravalgte afsnit sendes hverken som rå tekst eller overskrift til dokumentet.
   const context = { ...data.context };
   const sections = { ...data.sections };
@@ -75,7 +90,7 @@ export function reportDocument(
         ? { image: 'figures/personal-diagram.svg', width_mm: figures.designdiagram.width_mm }
         : null,
     }),
-    'profil.json': JSON.stringify({ ...profile, logo: logoPath }),
+    'profil.json': JSON.stringify({ ...reportProfile, logo: logoPath }),
     [logoPath]: assets.logo,
   };
   for (const name of REPORT_FONT_FILES) {

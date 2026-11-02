@@ -346,3 +346,23 @@ test('R5 mistet logorevision genåbner sidste konsistente profil og viser fejl',
   assert.deepEqual(broken.state, defaultProfileState());
   assert.ok(broken.error);
 });
+
+test('svenske profilfelter flettes ind i ældre profiler ved fuld import', () => {
+  const legacy = structuredClone(DEFAULT_COMPANY_PROFILE) as unknown as Record<string, unknown>;
+  delete legacy.sv;
+  const merged = mergeCompanyProfile(legacy, true);
+  assert.equal(merged.sv.titel, 'NOTAT – MSL-uppbyggnad vägar/ytor');
+  assert.equal(merged.sv.by, 'Önnestad');
+  assert.equal(merged.sv.afsnit.length, 5);
+  assert.equal(
+    changeProfileField(merged, 'sv.titel', 'Svenskt notat').profile.sv.titel,
+    'Svenskt notat',
+  );
+  assert.equal(
+    mergeCompanyProfile(
+      JSON.parse(exportCompanyProfile({ profile: merged, logo: png })).profile,
+      true,
+    ).sv.sidefod,
+    merged.sv.sidefod,
+  );
+});
