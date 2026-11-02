@@ -1,0 +1,20 @@
+{
+  "format": "msl-udgaveopsaetning",
+  "version": 1,
+  "udgave": "offentlig",
+  "funktioner": {
+    "rapport": false,
+    "redigerOpslag": false,
+    "redigerMaterialer": true,
+    "diagramfiler": false
+  },
+  "kan_aendres": [
+    "ind_opb_enhed",
+    "ind_opb_paaskrift",
+    "ind_opb_maal_streg",
+    "ind_opb_maal_tal",
+    "ind_opb_signatur",
+    "ind_afr_vis_eksakt"
+  ],
+  "indstillinger": {}
+}

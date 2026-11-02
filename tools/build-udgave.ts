@@ -6,6 +6,7 @@ import { build } from 'vite';
 import type { Employee } from '../src/report/company-profile.ts';
 import { packPdfMotor } from './pak-pdf-motor.ts';
 import { parseEmployeeList } from './employee-list.ts';
+import { INDBYGGET_OPSAETNING, validerOpsaetning } from '../src/ui/udgave-opsaetning.ts';
 
 export async function readEmployeeList(options: {
   file?: string;
@@ -30,6 +31,10 @@ export async function buildEdition(
 ): Promise<number> {
   if (edition === 'offentlig' && options.file)
     throw new Error('Den offentlige udgave kan ikke bygges med et kartotek.');
+  if (edition === 'offentlig') {
+    const checked = validerOpsaetning(INDBYGGET_OPSAETNING);
+    if (!checked.ok) throw new Error(checked.fejl);
+  }
   const employees = edition === 'intern' ? await readEmployeeList(options) : undefined;
 
   process.env.VITE_UDGAVE = edition;

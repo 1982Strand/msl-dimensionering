@@ -1,6 +1,16 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { defaultProfileState, lockedProfileState } from '../src/report/company-profile.ts';
+import {
+  defaultProfileState,
+  employeesForRoster,
+  lockedProfileState,
+} from '../src/report/company-profile.ts';
+
+test('intet kartotek giver en tom indbygget liste; eget kartotek bruger browserprofilen', () => {
+  assert.deepEqual(employeesForRoster('intet', undefined), []);
+  assert.deepEqual(employeesForRoster('indbygget', undefined), []);
+  assert.equal(employeesForRoster('eget', undefined), undefined);
+});
 
 test('B-076: låst profil er standardprofilen med brugerens eget kartotek; den gemte profil røres ikke', () => {
   const stored = defaultProfileState();

@@ -3,7 +3,8 @@ import assert from 'node:assert/strict';
 import { fresh_saved_session } from '../src/engine/session-storage.ts';
 import { standard_data_state } from '../src/engine/auto-edit.ts';
 import { ACCESS } from '../src/ui/udgaver.ts';
-import { sessionForEdition, VISUAL_SETTINGS_FIELDS } from '../src/ui/session-access.ts';
+import { sessionForEdition, OPSAETNINGSFELTER_AENDRBARE } from '../src/ui/session-access.ts';
+import { INDBYGGET_OPSAETNING } from '../src/ui/udgave-opsaetning.ts';
 
 test('lokal og intern beholder den gemte session uændret', () => {
   const session = fresh_saved_session();
@@ -47,7 +48,7 @@ test('offentlig session bruger standarddata, men beholder materialer, værdier o
 
 test('listen over visningsindstillinger indeholder præcis de seks tilladte felter', () => {
   assert.deepEqual(
-    VISUAL_SETTINGS_FIELDS.map(({ key }) => key),
+    OPSAETNINGSFELTER_AENDRBARE.map(({ key }) => key),
     [
       'ind_opb_enhed',
       'ind_opb_paaskrift',
@@ -57,4 +58,36 @@ test('listen over visningsindstillinger indeholder præcis de seks tilladte felt
       'ind_afr_vis_eksakt',
     ],
   );
+});
+
+test('ny offentlig session bruger opsætningens værdier for alle indstillinger', () => {
+  const configuration = structuredClone(INDBYGGET_OPSAETNING);
+  configuration.indstillinger = { afrunding: { trin_mm: 10 }, opbygning: { enhed: 'cm' } };
+  const session = fresh_saved_session();
+  session.data.indstillinger.afrunding.vis_eksakt = true;
+  session.data.indstillinger.opbygning.enhed = 'mm';
+  const prepared = sessionForEdition(session, ACCESS.offentlig, true, configuration);
+  assert.equal(prepared.data.indstillinger.afrunding.trin_mm, 10);
+  assert.equal(prepared.data.indstillinger.opbygning.enhed, 'cm');
+  assert.equal(prepared.data.indstillinger.afrunding.vis_eksakt, false);
+});
+
+test('gemt offentlig session beholder ændrbare værdier og bruger opsætningens låste værdier', () => {
+  const configuration = structuredClone(INDBYGGET_OPSAETNING);
+  configuration.kan_aendres.push('ind_lf_vd_baerelag');
+  configuration.indstillinger = {
+    afrunding: { trin_mm: 10 },
+    opbygning: { enhed: 'cm' },
+    lagfordeling: { vd_minimum_mm: { Bærelag: 150 } },
+  };
+  const session = fresh_saved_session();
+  session.data.indstillinger.afrunding.trin_mm = 5;
+  session.data.indstillinger.opbygning.enhed = 'mm';
+  session.data.indstillinger.lagfordeling.vd_minimum_mm.Bærelag = 250;
+  session.data.indstillinger.afrunding.vis_eksakt = true;
+  const prepared = sessionForEdition(session, ACCESS.offentlig, false, configuration);
+  assert.equal(prepared.data.indstillinger.afrunding.trin_mm, 10);
+  assert.equal(prepared.data.indstillinger.opbygning.enhed, 'mm');
+  assert.equal(prepared.data.indstillinger.lagfordeling.vd_minimum_mm.Bærelag, 250);
+  assert.equal(prepared.data.indstillinger.afrunding.vis_eksakt, true);
 });

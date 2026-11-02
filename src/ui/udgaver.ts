@@ -1,3 +1,5 @@
+import { INDBYGGET_OPSAETNING } from './udgave-opsaetning.ts';
+
 /** Hvad hver udgave må (beslutning 2. november 2026). Uden VITE_UDGAVE bygges den lokale
  * administratorudgave. Dette er en visningsindstilling, ikke en sikkerhedsgrænse. */
 
@@ -44,13 +46,13 @@ export const ACCESS: Record<Udgave, Access> = {
   },
   offentlig: {
     udgave: 'offentlig',
-    rapport: false,
+    rapport: INDBYGGET_OPSAETNING.funktioner.rapport,
     firmaprofil: false,
     kartotek: 'intet',
-    redigerOpslag: false,
-    redigerMaterialer: true,
+    redigerOpslag: INDBYGGET_OPSAETNING.funktioner.redigerOpslag,
+    redigerMaterialer: INDBYGGET_OPSAETNING.funktioner.redigerMaterialer,
     indstillinger: 'visning',
-    diagramfiler: false,
+    diagramfiler: INDBYGGET_OPSAETNING.funktioner.diagramfiler,
   },
 };
 

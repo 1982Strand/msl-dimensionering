@@ -37,6 +37,15 @@ export function readEmbeddedEmployees(value: string | undefined): Employee[] {
     return [];
   }
 }
+
+/** Offentlig rapport bruger standardprofilen uden kartotek eller browserlager. */
+export function employeesForRoster(
+  roster: 'eget' | 'indbygget' | 'intet',
+  embedded: string | undefined,
+): Employee[] | undefined {
+  if (roster === 'intet') return [];
+  return roster === 'indbygget' ? readEmbeddedEmployees(embedded) : undefined;
+}
 export const PROFILE_LIMITS: Readonly<Record<string, readonly [number, number]>> = {
   logo_bredde_mm: [15, 90],
   'skrift.stoerrelse_pt': [9, 13],

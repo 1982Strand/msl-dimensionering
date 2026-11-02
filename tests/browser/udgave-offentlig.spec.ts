@@ -63,7 +63,7 @@ test('materialer kan fortsat redigeres', async ({ page }) => {
 test('kun visningsindstillingerne er aktive', async ({ page }) => {
   await page.goto('/#indstillinger');
   await expect(
-    page.getByText('Kun visningsindstillingerne kan ændres; de øvrige er appens standard.'),
+    page.getByText('Kun visningsindstillingerne kan ændres; de øvrige er faste i denne udgave.'),
   ).toBeVisible();
   // Playwright regner kun formularfelter for låste; derfor kontrolleres radioknapperne.
   const radio = (key: string) =>

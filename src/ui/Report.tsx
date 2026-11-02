@@ -60,7 +60,7 @@ import { reportData, SECTION_KEYS, type SectionKey } from '../report/report-data
 import { reportFigures } from '../report/report-figures';
 import { reportStrings } from '../report/report-sprog';
 import { reportDocument, loadReportAssets, type ReportAssets } from '../report/report-document';
-import { logoDataUrl, logoExtension, readEmbeddedEmployees } from '../report/company-profile';
+import { employeesForRoster, logoDataUrl, logoExtension } from '../report/company-profile';
 import layoutSource from '../report/typst/layout.typ?raw';
 import reportSource from '../report/typst/rapport.typ?raw';
 import {
@@ -96,10 +96,7 @@ export function Report({
   const access = useAccess();
   const profileLocked = !canEditProfile(access);
   const embeddedEmployees = useMemo(
-    () =>
-      access.kartotek === 'indbygget'
-        ? readEmbeddedEmployees(import.meta.env.VITE_MEDARBEJDERE)
-        : undefined,
+    () => employeesForRoster(access.kartotek, import.meta.env.VITE_MEDARBEJDERE),
     [access.kartotek],
   );
   const company = useCompanyProfile(profileLocked, embeddedEmployees);

@@ -5,7 +5,7 @@ import { standard_indstillinger } from '../engine/editing';
 import { useEditor } from './EditorContext';
 import { EditorFeedback, SaveState } from './EditorFeedback';
 import { SettingField, type SettingValue } from './SettingField';
-import { RotateCcw } from 'lucide-react';
+import { Download, RotateCcw } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { aktivt_beregningsgrundlag } from '../engine/auto-edit';
@@ -20,7 +20,8 @@ import './Settings.css';
 import { roundingImpact } from '../engine/rounding-impact';
 import { distributionImpact } from '../engine/distribution-impact';
 import { useAccess } from './access';
-import { VISUAL_SETTINGS_FIELDS } from './session-access';
+import { OPSAETNINGSFELTER_AENDRBARE } from './session-access';
+import { eksporterOpsaetning, indlaesOpsaetning, INDBYGGET_OPSAETNING } from './udgave-opsaetning';
 
 function valueAt(value: unknown, path: string[]): SettingValue {
   for (const key of path) value = (value as Record<string, unknown>)[key];
@@ -28,6 +29,11 @@ function valueAt(value: unknown, path: string[]): SettingValue {
 }
 function plain(text: string) {
   return text.replace(/\*\*(.*?)\*\*/g, '$1').replaceAll('\\*', '*');
+}
+function settingPathEditable(path: string[]) {
+  return OPSAETNINGSFELTER_AENDRBARE.some(
+    (field) => field.path.length <= path.length && field.path.every((part, i) => path[i] === part),
+  );
 }
 
 export function Settings() {
@@ -51,11 +57,7 @@ export function Settings() {
     distribution,
   );
   function change(path: string[], value: SettingValue) {
-    if (
-      ctx.externalChange ||
-      (access.indstillinger === 'visning' &&
-        !VISUAL_SETTINGS_FIELDS.some((field) => field.path.join('.') === path.join('.')))
-    )
+    if (ctx.externalChange || (access.indstillinger === 'visning' && !settingPathEditable(path)))
       return;
     const next = structuredClone(ctx.editor.snapshot().data.indstillinger);
     let node = next as unknown as Record<string, unknown>;
@@ -63,10 +65,12 @@ export function Settings() {
     node[path.at(-1)!] = value;
     ctx.receive(ctx.editor.edit({ section: 'indstillinger', value: next }), true);
   }
-  function disabled(key: string) {
+  function disabled(key: string, path?: string[]) {
     if (
       access.indstillinger === 'visning' &&
-      !VISUAL_SETTINGS_FIELDS.some((field) => field.key === key)
+      !(path
+        ? settingPathEditable(path)
+        : OPSAETNINGSFELTER_AENDRBARE.some((field) => field.key === key))
     )
       return true;
     if (key === 'ind_lf_restlag_graense') return lf.restlag !== 'flet';
@@ -76,6 +80,17 @@ export function Settings() {
     if (key === 'ind_std_under_minimum')
       return lf.standard_klassisk || !lf.standard_opdeling || lf.samlet_minimum;
     return false;
+  }
+  function downloadPublicSetup() {
+    const setup = eksporterOpsaetning(settings, INDBYGGET_OPSAETNING);
+    const url = URL.createObjectURL(
+      new Blob([`${JSON.stringify(setup, null, 2)}\n`], { type: 'application/json' }),
+    );
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'opsaetning-offentlig.json';
+    link.click();
+    URL.revokeObjectURL(url);
   }
   function renderItem(item: SettingsPageItem, index: number): ReactNode {
     switch (item.kind) {
@@ -262,7 +277,11 @@ export function Settings() {
                             }}
                             value={lf.minimum_mm[row.klasse]}
                             refresh={ctx.refresh}
-                            disabled={access.indstillinger === 'visning'}
+                            disabled={disabled('minimum-' + row.klasse, [
+                              'lagfordeling',
+                              'minimum_mm',
+                              String(row.klasse),
+                            ])}
                             change={(value) =>
                               change(['lagfordeling', 'minimum_mm', String(row.klasse)], value)
                             }
@@ -276,10 +295,17 @@ export function Settings() {
               <Button
                 variant="outline"
                 size="sm"
-                disabled={access.indstillinger === 'visning' || ctx.externalChange}
+                disabled={
+                  ctx.externalChange ||
+                  (access.indstillinger === 'visning' &&
+                    !settingPathEditable(['lagfordeling', 'minimum_mm']))
+                }
                 onClick={() => {
                   const next = structuredClone(ctx.editor.snapshot().data.indstillinger);
-                  next.lagfordeling.minimum_mm = standard_indstillinger().lagfordeling.minimum_mm;
+                  next.lagfordeling.minimum_mm =
+                    access.udgave === 'offentlig'
+                      ? indlaesOpsaetning(INDBYGGET_OPSAETNING).lagfordeling.minimum_mm
+                      : standard_indstillinger().lagfordeling.minimum_mm;
                   ctx.receive(ctx.editor.edit({ section: 'indstillinger', value: next }), true);
                 }}
               >
@@ -358,7 +384,7 @@ export function Settings() {
       />
       {access.indstillinger === 'visning' && (
         <Notice className="message" role="note">
-          Kun visningsindstillingerne kan ændres; de øvrige er appens standard.
+          Kun visningsindstillingerne kan ændres; de øvrige er faste i denne udgave.
         </Notice>
       )}
       <div className="settings-start">
@@ -384,6 +410,18 @@ export function Settings() {
           </section>
         ))}
       </fieldset>
+      {access.udgave === 'lokal' && (
+        <div className="public-setup-export">
+          <Button variant="outline" onClick={downloadPublicSetup}>
+            <Download aria-hidden="true" />
+            Eksportér opsætning til offentlig udgave
+          </Button>
+          <p>
+            Filen bruges til den offentlige udgaves faste indstillinger; indlæs med npm run
+            opsaetning -- &lt;fil&gt;.
+          </p>
+        </div>
+      )}
       <PageFooter>Gyldige ændringer gemmes automatisk i denne browser.</PageFooter>
     </main>
   );

@@ -61,7 +61,9 @@ export function EditorProvider({ children }: { children: ReactNode }) {
   const access = useAccess();
   const [opened] = useState(() => {
     try {
-      return open_saved_editor(localStorage, (session) => sessionForEdition(session, access));
+      return open_saved_editor(localStorage, (session, isNew) =>
+        sessionForEdition(session, access, isNew),
+      );
     } catch {
       return { kind: 'unavailable' as const, message: 'Browserens gemte data kunne ikke læses.' };
     }

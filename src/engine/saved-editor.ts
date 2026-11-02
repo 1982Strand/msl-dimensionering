@@ -48,7 +48,7 @@ export class SavedEditor {
 }
 export function open_saved_editor(
   storage: BrowserStorage,
-  prepare: (session: SavedSession) => SavedSession = (session) => session,
+  prepare: (session: SavedSession, isNew: boolean) => SavedSession = (session) => session,
 ) {
   const store = new LocalSessionStore(storage),
     loaded = store.load();
@@ -56,6 +56,6 @@ export function open_saved_editor(
   return {
     kind: 'ready' as const,
     isNew: loaded.kind === 'empty',
-    editor: new SavedEditor(store, prepare(loaded.session)),
+    editor: new SavedEditor(store, prepare(loaded.session, loaded.kind === 'empty')),
   };
 }

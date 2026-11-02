@@ -1,6 +1,18 @@
 .settings-page .settings-fields {
   grid-template-columns: repeat(var(--settings-columns, 2), minmax(0, 1fr));
 }
+.settings-page .public-setup-export {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin: 20px 0;
+}
+.settings-page .public-setup-export p {
+  flex: 1 1 16rem;
+  min-width: 0;
+  margin: 0;
+}
 .settings-page .settings-fields > div {
   min-width: 0;
 }
