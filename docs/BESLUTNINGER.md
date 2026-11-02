@@ -162,3 +162,14 @@ Claudes valg, som kan ændres:
 - Kan udrulningen ikke nå den interne adresse, regnes den som ubeskyttet, og kartoteket udelades.
 
 Adresser: Brugeren omdøbte den interne Worker i Cloudflare til `msl-dimensionering-intern` og spurgte: »kan man ikke lave et kortere navn der er lidt lettere?« Den gamle adresse virker derfor ikke længere. Claude foreslog at ændre kontoens workers.dev-underdomæne til `byggros` og bruge Worker-navnene `msl` og `msl-intern`. Brugerens svar: »msl / msl-intern på byggros«. Offentlig: https://msl.byggros.workers.dev. Intern: https://msl-intern.byggros.workers.dev. Det ændrer det tidligere svar om, at den nuværende adresse bliver den interne. Browserlageret følger adressen, så gemte værdier fra den gamle adresse kommer ikke med.
+
+## 2. november 2026 — opsætningsfil for den offentlige udgave
+
+Brugeren spurgte: »Hvad med styring af hvad der vises, hvilke indstillinger der skal være tilgængelige og hvordan opsætningen skal være i den offentlige udgave, hvordan styrer jeg det?« Claude foreslog én opsætningsfil for den offentlige udgave, lavet i den lokale udgave. Brugerens svar: »Ja, byg den«.
+
+Indhold af forslaget:
+
+- Filen ligger i projektet og samler den offentlige udgaves funktioner, listen over indstillinger, der kan ændres, og faste værdier for indstillingerne. Kun værdier, der afviger fra appens standard, står i filen. Filen indeholder ingen persondata og ligger i Git. Det er en godkendt undtagelse fra reglen om, at lokale brugerfiler ikke bliver indbyggede standarder; den gælder kun den offentlige udgaves indstillinger.
+- I den lokale udgave kan de aktuelle indstillinger eksporteres som opsætning for den offentlige udgave. Filen kontrolleres, før den tages i brug, og en ugyldig opsætning kan ikke bygges.
+- Teksten i den offentlige udgave ændres fra »de øvrige er appens standard« til, at de øvrige er faste i denne udgave.
+- Designdiagrammer og trafikklasse-korrelation følger fortsat appens standard i alle udgaver, fordi de er de godkendte beregningsdata.
