@@ -2,7 +2,7 @@
 
 Cloudflare leverer den byggede app som en Worker med statiske filer, uden serverkode og uden login. Adresse: https://msl-dimensionering.msl-dimensionering.workers.dev.
 
-Opsætningen ligger i `hosting/cloudflare/wrangler.jsonc`. Filstier er relative til konfigurationsfilen. `.github/workflows/cloudflare.yml` bygger med `VITE_UDGAVE=delt`, kontrollerer hostingens filgrænse og udruller med fast wrangler-version. Hovedkontrollen kalder den kun fra main efter beståede tests. Uden API-nøgle springes hosting over.
+Opsætningen ligger i `hosting/cloudflare/wrangler.jsonc`. Filstier er relative til konfigurationsfilen. `.github/workflows/cloudflare.yml` bygger med `VITE_UDGAVE=intern`, kontrollerer hostingens filgrænse og udruller med fast wrangler-version. Hovedkontrollen kalder den kun fra main efter beståede tests. Uden API-nøgle springes hosting over.
 
 GitHub Secrets indeholder `CLOUDFLARE_API_TOKEN` og `CLOUDFLARE_ACCOUNT_ID`. Nøglen begrænses til den nødvendige konto og Workers-udrulning og må aldrig gemmes i kode, logs eller den byggede app. Forhåndsvisningsadresser er slået fra.
 

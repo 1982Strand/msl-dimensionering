@@ -1,6 +1,8 @@
 # Afhængigheder og genererede filer
 node_modules/
 dist/
+dist-intern/
+dist-offentlig/
 coverage/
 playwright-report/
 test-results/

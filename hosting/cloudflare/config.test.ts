@@ -23,7 +23,7 @@ test('B-079: GitHub-kontrollen udruller med fast wrangler-version og den delte b
   const job = read('.github/workflows/cloudflare.yml');
   assert.match(job, /run: npx --yes wrangler@\d+\.\d+\.\d+ deploy --config hosting\/cloudflare\/wrangler\.jsonc\r?$/m);
   assert.doesNotMatch(job, /pages deploy/);
-  assert.match(job, /VITE_UDGAVE: delt/);
+  assert.match(job, /VITE_UDGAVE: intern/);
   assert.match(job, /CLOUDFLARE_API_TOKEN: \$\{\{ secrets\.CLOUDFLARE_API_TOKEN \}\}/);
 });
 

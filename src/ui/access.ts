@@ -1,14 +1,13 @@
-/** Den delte udgave bruger standardfirmaprofilen; lokalt kan profilen redigeres.
+/** Udgaven vælges ved bygningen med VITE_UDGAVE; tabellen står i udgaver.ts.
  * Dette er en visningsindstilling, ikke en sikkerhedsgrænse eller en hostingafhængighed. */
+import { ACCESS, udgaveFra, type Access } from './udgaver';
 
-export interface Access {
-  shared: boolean;
-}
+export type { Access, Udgave } from './udgaver';
 
-const access: Access = { shared: import.meta.env.VITE_UDGAVE === 'delt' };
+const access = ACCESS[udgaveFra(import.meta.env.VITE_UDGAVE)];
 
 export function useAccess(): Access {
   return access;
 }
 
-export const canEditProfile = (access: Access) => !access.shared;
+export const canEditProfile = (access: Access) => access.firmaprofil;

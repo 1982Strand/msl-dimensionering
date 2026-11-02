@@ -118,3 +118,38 @@ Claudes valg, som kan ændres:
 - »Nulstil tekster og valg til standard« nulstiller tekster, rettelser og valg på begge sprog, men beholder sprogvalget.
 
 Offentliggørelse: Brugeren blev spurgt, om ændringen skulle pushes, så den delte udgave får de svenske tekster, før en svensk fagperson har læst dem igennem. Brugerens svar: »Push nu«. De svenske tekster er derfor tilgængelige i den delte udgave som et udkast. Gennemlæsningen er stadig udestående.
+
+## 2. november 2026 — tre udgaver: lokal, intern og offentlig
+
+Appen skal findes i tre udgaver. Brugerens ønske: »Min tanke er, at vi skal have en udgave af appen som er offentlig, som lige skal 'trimmes' i forhold til hvad der er muligt at tilgå. […] Dvs. der i praksis vil være 3 udgaver: 1: Den lokale, på min maskine, 2: Den offentlige på hjemmesiden som alle og enhver kan tilgå og 3: Den udgave firmaets andre medarbejdere kan tilgå.« Beregninger, standarder, afrundinger og rapporter er de samme i alle udgaver; kun adgangen til funktioner er forskellig.
+
+Claudes forslag, som brugeren svarede »ok« til: Én kodebase og én `main`. Udgaven vælges ved bygningen med `VITE_UDGAVE` (`intern` eller `offentlig`; uden værdi er det den lokale). En samlet tabel bestemmer, hvad hver udgave må, og siderne slår op i den. Brugerens tilføjelse: »så den lokale udgave bliver så 'administartor' udgaven«.
+
+| | Lokal | Intern | Offentlig |
+|---|---|---|---|
+| Dimensionering | ja | ja | ja |
+| Designdiagrammer, trafikklasse-korrelation, geonet-database | rediger | rediger | kun læs |
+| Materialer | rediger | rediger | rediger |
+| Indstillinger | alle | alle | kun visning |
+| Import af enkelte diagrammer | ja | ja | nej |
+| Rapport | ja | ja | nej |
+| Firmaprofil | ja | nej | nej |
+| Medarbejderkartotek | eget, i browseren | indbygget liste | — |
+
+Intern udgave. Brugerens svar: »den interne synes jeg egentlig heller ikke skal have adgang til firmaprofilen, så de ikke kommer til at lave noget forkert i pdf-opsætningen. Jeg tænker jeg gerne vil have et standard medarbejder kartotek indlæst, så hvis man bruger den interne udgave kan man vælge en af de forudindstillede medarbejdere, eller selv skrive noget ind. Det skal i den interne udgave ikke være muligt at indlæse eller gemme noget i kartoteket. De medarbejdere der er 'tilgængelige' fra listen, vil være ud fra en liste som jeg gemmer lokalt.« Rapporten i den interne udgave bruger standardprofilen fra koden.
+
+Kartotekets vej til den interne udgave: Brugerens svar: »GitHub-hemmelighed«. Listen gemmes lokalt hos brugeren, sendes med en kommando til GitHub som krypteret hemmelighed og bygges kun ind i den interne udgave. Den ligger ikke i Git. Det er en godkendt undtagelse fra B-048 og fra reglen om, at lokale brugerfiler ikke bliver indbyggede standarder; undtagelsen gælder kun kartoteket i den interne udgave. Alle, der logger ind på den interne udgave, kan se listen.
+
+Adresse og login: Brugerens svar: »Ja, som foreslået«. Den nuværende adresse bliver den interne og kommer bag Cloudflare Access med engangskode til en byggros.com-mail. Den offentlige udgave får en ny adresse uden login. Access sættes op i Cloudflare-kontoen, ikke i appen; appen har fortsat ingen loginendepunkter.
+
+Offentlig udgave: Brugerens svar: »Ja, som foreslået«. Under Indstillinger kan kun gruppen »Visualisering« og »Anfør den beregnede lagtykkelse i parentes efter den oprundede« ændres. Designdiagrammer, trafikklasse-korrelation og geonet-database kan kun læses. Enkelte diagrammer kan ikke indlæses. Det personlige designdiagram kan bruges. Der er ingen rapport og ingen firmaprofil. Opfølgende rettelse fra brugeren: »forresten, 'Materialer' skal være muligt at redigere i den offentlige udgave.« Materialer kan derfor rettes i alle tre udgaver.
+
+Forbehold, som brugeren er gjort opmærksom på: Begrænsningerne er en visningsindstilling, ikke en sikkerhedsgrænse. Appen kører i browseren, og kildekoden er offentlig på GitHub. Den interne udgave beskyttes af login foran den.
+
+Claudes valg, som kan ændres:
+
+- Låste værdier bruger standarden. Den offentlige udgave ser bort fra gemte ændringer af låste data og indstillinger, så ingen regner med ændringer, de ikke kan se eller nulstille.
+- I den offentlige udgave skjules både »Gem diagram« og »Indlæs diagram …«, fordi diagrammerne ikke kan rettes.
+- Den interne udgave bruger ikke længere det kartotek, kolleger har gemt i deres browser. Den bruger kun den indbyggede liste.
+- Byggejobbet lægger kun listen ind i den interne udgave, når den interne adresse kræver login. Ellers bygges den uden liste, og jobbet giver en advarsel.
+- Begge online-udgaver beder fortsat søgemaskiner om ikke at vise dem (`noindex`), indtil andet aftales.

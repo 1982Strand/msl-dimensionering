@@ -31,7 +31,7 @@ jobs:
       - run: npm run build
         if: env.CF_TOKEN != ''
         env:
-          VITE_UDGAVE: delt
+          VITE_UDGAVE: intern
       - name: Kontrollér filstørrelser for hosting
         if: env.CF_TOKEN != ''
         run: node hosting/cloudflare/check-assets.ts
