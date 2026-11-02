@@ -28,7 +28,9 @@ test('offentlig session bruger standarddata, men beholder materialer, værdier o
   session.data.indstillinger.opbygning.signatur = false;
   session.data.indstillinger.afrunding.vis_eksakt = true;
 
-  const prepared = sessionForEdition(session, ACCESS.offentlig);
+  // En neutral opsætning, så testen ikke afhænger af den indbyggede fils faste værdier.
+  const neutral = { ...INDBYGGET_OPSAETNING, indstillinger: {} };
+  const prepared = sessionForEdition(session, ACCESS.offentlig, false, neutral);
   const standard = standard_data_state();
   assert.deepEqual(prepared.data.designdiagrammer, standard.designdiagrammer);
   assert.deepEqual(prepared.data.vejdim_koersel_raekker, standard.vejdim_koersel_raekker);

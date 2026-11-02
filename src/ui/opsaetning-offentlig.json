@@ -16,5 +16,20 @@
     "ind_opb_signatur",
     "ind_afr_vis_eksakt"
   ],
-  "indstillinger": {}
+  "indstillinger": {
+    "afrunding": {
+      "trin_mm": 10,
+      "phi_afrunding": "naermeste"
+    },
+    "opbygning": {
+      "signatur": false,
+      "enhed": "cm"
+    },
+    "lagfordeling": {
+      "minimumsklasse": "laveste",
+      "minimum_mm": {
+        "5": 270
+      }
+    }
+  }
 }
