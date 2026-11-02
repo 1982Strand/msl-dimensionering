@@ -23,12 +23,13 @@ import { Settings } from './Settings';
 import { Dimensioning } from './Dimensioning';
 import { Help } from './Help';
 import { Report } from './Report';
-import { navigationGroups } from './page';
+import { navigationGroupsFor } from './page';
 import { RestartApp } from './RestartApp';
+import { useAccess } from './access';
 
-function currentPage() {
+function currentPage(access: ReturnType<typeof useAccess>) {
   const hash = location.hash.slice(1);
-  return navigationGroups.some((group) => group.items.some(([key]) => key === hash))
+  return navigationGroupsFor(access).some((group) => group.items.some(([key]) => key === hash))
     ? hash
     : 'dimensionering';
 }
@@ -58,6 +59,8 @@ function MenuButton({ returnFocus = false }: { returnFocus?: boolean }) {
 }
 
 function Navigation({ page }: { page: string }) {
+  const access = useAccess();
+  const navigationGroups = navigationGroupsFor(access);
   const { isMobile, setOpenMobile } = useSidebar();
   return (
     <Sidebar collapsible="icon" className="app-sidebar">
@@ -105,21 +108,22 @@ function Navigation({ page }: { page: string }) {
 }
 
 export function App() {
-  const [page, setPage] = useState(currentPage);
+  const access = useAccess();
+  const [page, setPage] = useState(() => currentPage(access));
   // Rapportdato og liveforløb bevares ved navigation i den åbne session,
   // men skrives aldrig til browserlageret.
   const [reportDate, setReportDate] = useState<string | null>(null);
   const [reportLive, setReportLive] = useState(false);
   useEffect(() => {
     const update = () => {
-      const next = currentPage();
+      const next = currentPage(access);
       if (location.hash !== `#${next}`) history.replaceState(null, '', `#${next}`);
       setPage(next);
     };
     update();
     window.addEventListener('hashchange', update);
     return () => window.removeEventListener('hashchange', update);
-  }, []);
+  }, [access]);
   return (
     <SidebarProvider className="app-shell">
       <header className="topbar">

@@ -46,13 +46,16 @@ export class SavedEditor {
     return this.#store.save(this.snapshot());
   }
 }
-export function open_saved_editor(storage: BrowserStorage) {
+export function open_saved_editor(
+  storage: BrowserStorage,
+  prepare: (session: SavedSession) => SavedSession = (session) => session,
+) {
   const store = new LocalSessionStore(storage),
     loaded = store.load();
   if (!('session' in loaded)) return loaded;
   return {
     kind: 'ready' as const,
     isNew: loaded.kind === 'empty',
-    editor: new SavedEditor(store, loaded.session),
+    editor: new SavedEditor(store, prepare(loaded.session)),
   };
 }

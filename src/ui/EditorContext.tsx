@@ -4,6 +4,8 @@ import type { SavedEditor } from '../engine/saved-editor';
 import type { AutoEditResult } from '../engine/auto-edit';
 import type { SaveResult, JsonValue } from '../engine/session-storage';
 import { SESSION_STORAGE_KEY } from '../engine/session-storage';
+import { useAccess } from './access';
+import { sessionForEdition } from './session-access';
 import { Button } from '@/components/ui/button';
 import { Notice } from './Notice';
 type Result = AutoEditResult & { saved: SaveResult | null };
@@ -56,9 +58,10 @@ function useEditorState(editor: SavedEditor, isNew: boolean) {
 }
 const Context = createContext<ReturnType<typeof useEditorState> | null>(null);
 export function EditorProvider({ children }: { children: ReactNode }) {
+  const access = useAccess();
   const [opened] = useState(() => {
     try {
-      return open_saved_editor(localStorage);
+      return open_saved_editor(localStorage, (session) => sessionForEdition(session, access));
     } catch {
       return { kind: 'unavailable' as const, message: 'Browserens gemte data kunne ikke læses.' };
     }

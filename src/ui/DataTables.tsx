@@ -5,6 +5,7 @@ import { Badge } from '@/components/ui/badge';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Label } from '@/components/ui/label';
 import { useEditor } from './EditorContext';
+import { useAccess } from './access';
 import { SaveState } from './EditorFeedback';
 import { HintText, IconTip } from './Hint';
 import { Notice } from './Notice';
@@ -67,6 +68,8 @@ function ReadTable({ rows, label }: { rows: Record<string, unknown>[]; label: st
   );
 }
 export function DataTables({ mode }: { mode: 'diagrammer' | 'vejdim' }) {
+  const access = useAccess();
+  const canEdit = access.redigerOpslag;
   const ctx = useEditor(),
     { editor, session, refresh, receive, externalChange } = ctx;
   const isDiagram = mode === 'diagrammer';
@@ -194,7 +197,17 @@ export function DataTables({ mode }: { mode: 'diagrammer' | 'vejdim' }) {
   }
   const renderTable = () => (
     <>
-      <div className={`table-wrap ${isDiagram ? 'diagram-scroll' : showAll ? '' : 'runs-scroll'}`}>
+      <div
+        className={`table-wrap ${isDiagram ? 'diagram-scroll' : showAll ? '' : 'runs-scroll'}`}
+        // Uden felter skal den rullende tabel selv kunne nås med tastaturet, som ReadTable.
+        {...(canEdit
+          ? {}
+          : {
+              tabIndex: 0,
+              role: 'region',
+              'aria-label': isDiagram ? `Diagram ${nr} data` : 'VejDim-kørsler',
+            })}
+      >
         <table
           className={`data-table ${isDiagram ? 'diagram-table' : 'runs-table'}`}
           aria-label={isDiagram ? `Diagram ${nr} data` : 'VejDim-kørsler'}
@@ -206,9 +219,11 @@ export function DataTables({ mode }: { mode: 'diagrammer' | 'vejdim' }) {
                   {c.help ? <HintText content={c.help}>{c.label}</HintText> : c.label}
                 </th>
               ))}
-              <th>
-                <span className="sr-only">Handlinger</span>
-              </th>
+              {canEdit && (
+                <th>
+                  <span className="sr-only">Handlinger</span>
+                </th>
+              )}
             </tr>
           </thead>
           <tbody>
@@ -230,7 +245,7 @@ export function DataTables({ mode }: { mode: 'diagrammer' | 'vejdim' }) {
                       >
                         {String(current[column.field] ?? '—')}
                       </td>
-                    ) : (
+                    ) : canEdit ? (
                       <Cell
                         key={column.field}
                         column={column}
@@ -251,37 +266,59 @@ export function DataTables({ mode }: { mode: 'diagrammer' | 'vejdim' }) {
                           readPoint(nr, Number(current.eu), column.field)
                         }
                       />
+                    ) : (
+                      // Kun læs: samme værdi og samme markering af aflæsningspunktet som i Cell.
+                      <td
+                        key={column.field}
+                        className={
+                          [
+                            isDiagram && readPoint(nr, Number(current.eu), column.field)
+                              ? 'read-point'
+                              : '',
+                            column.numeric ? 'num' : '',
+                          ]
+                            .filter(Boolean)
+                            .join(' ') || undefined
+                        }
+                        aria-label={`${column.label} · ${key}`}
+                      >
+                        {String(current[column.field] ?? '—')}
+                      </td>
                     ),
                   )}
-                  <td>
-                    <div className="row-actions">
-                      {row.kind === 'added' && <Badge variant="secondary">Ny</Badge>}
-                      {row.kind === 'changed' && (
-                        <IconTip label="Gendan række">
-                          <Button
-                            variant="ghost"
-                            size="icon"
-                            aria-label={`Gendan række · ${key}`}
-                            onClick={() => restore(row)}
-                          >
-                            <RotateCcw />
-                          </Button>
-                        </IconTip>
-                      )}
-                      {isDiagram && (
-                        <IconTip label="Slet række">
-                          <Button
-                            variant="ghost"
-                            size="icon"
-                            aria-label={`Slet · ${key}`}
-                            onClick={() => editRows(activeRows().filter((_, i) => i !== row.index))}
-                          >
-                            <Trash2 />
-                          </Button>
-                        </IconTip>
-                      )}
-                    </div>
-                  </td>
+                  {canEdit && (
+                    <td>
+                      <div className="row-actions">
+                        {row.kind === 'added' && <Badge variant="secondary">Ny</Badge>}
+                        {row.kind === 'changed' && (
+                          <IconTip label="Gendan række">
+                            <Button
+                              variant="ghost"
+                              size="icon"
+                              aria-label={`Gendan række · ${key}`}
+                              onClick={() => restore(row)}
+                            >
+                              <RotateCcw />
+                            </Button>
+                          </IconTip>
+                        )}
+                        {isDiagram && (
+                          <IconTip label="Slet række">
+                            <Button
+                              variant="ghost"
+                              size="icon"
+                              aria-label={`Slet · ${key}`}
+                              onClick={() =>
+                                editRows(activeRows().filter((_, i) => i !== row.index))
+                              }
+                            >
+                              <Trash2 />
+                            </Button>
+                          </IconTip>
+                        )}
+                      </div>
+                    </td>
+                  )}
                 </tr>
               );
             })}
@@ -319,17 +356,18 @@ export function DataTables({ mode }: { mode: 'diagrammer' | 'vejdim' }) {
           {onlyChanged ? 'Ingen ændringer i denne tabel.' : 'Tabellen indeholder ingen rækker.'}
         </p>
       )}
-      {all
-        .filter((r) => r.kind === 'removed')
-        .map((row) => (
-          <div key={row.key} className="removed-row">
-            <span>Eᵤ {row.key} · Fjernet fra standardtabellen</span>
-            <Button variant="ghost" size="sm" onClick={() => restore(row)}>
-              <RotateCcw />
-              Gendan række
-            </Button>
-          </div>
-        ))}
+      {canEdit &&
+        all
+          .filter((r) => r.kind === 'removed')
+          .map((row) => (
+            <div key={row.key} className="removed-row">
+              <span>Eᵤ {row.key} · Fjernet fra standardtabellen</span>
+              <Button variant="ghost" size="sm" onClick={() => restore(row)}>
+                <RotateCcw />
+                Gendan række
+              </Button>
+            </div>
+          ))}
     </>
   );
   return (
@@ -340,30 +378,39 @@ export function DataTables({ mode }: { mode: 'diagrammer' | 'vejdim' }) {
         intro={
           isDiagram
             ? 'Diagrammer fra designmanualerne med tilhørende aflæste data. Tabellerne er bestemt ved lineær interpolation mellem kurvernes aflæste punkter, og beregningerne slår op direkte i dem.'
-            : 'Vejledende kobling mellem Vejdirektoratets trafikklasser og designmanualernes Eₒ-kurver. Kørslerne kan redigeres — den ækvivalente Eₒ genberegnes og anvendes med det samme i dimensioneringen.'
+            : `Vejledende kobling mellem Vejdirektoratets trafikklasser og designmanualernes Eₒ-kurver.${canEdit ? ' Kørslerne kan redigeres — den ækvivalente Eₒ genberegnes og anvendes med det samme i dimensioneringen.' : ''}`
         }
         aside={<SaveState />}
       />
+      {!canEdit && (
+        <Notice className="message" role="note">
+          Tabellerne er appens standard og kan ikke rettes i denne udgave.
+        </Notice>
+      )}
       <div className="toolbar">
         <div className="toolbar-group">
-          <Button
-            variant="outline"
-            size="sm"
-            disabled={!editor.canUndo || externalChange}
-            onClick={() => receive(editor.undo(), true)}
-          >
-            <Undo2 />
-            Fortryd
-          </Button>
-          <Button
-            variant="outline"
-            size="sm"
-            disabled={!editor.canRedo || externalChange}
-            onClick={() => receive(editor.redo(), true)}
-          >
-            <Redo2 />
-            Gentag
-          </Button>
+          {canEdit && (
+            <>
+              <Button
+                variant="outline"
+                size="sm"
+                disabled={!editor.canUndo || externalChange}
+                onClick={() => receive(editor.undo(), true)}
+              >
+                <Undo2 />
+                Fortryd
+              </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                disabled={!editor.canRedo || externalChange}
+                onClick={() => receive(editor.redo(), true)}
+              >
+                <Redo2 />
+                Gentag
+              </Button>
+            </>
+          )}
           <div className="filter">
             <Checkbox
               id="table-only-changed"
@@ -375,10 +422,12 @@ export function DataTables({ mode }: { mode: 'diagrammer' | 'vejdim' }) {
             </Label>
           </div>
         </div>
-        <Button variant="outline" size="sm" disabled={externalChange} onClick={reset}>
-          <RotateCcw />
-          {resetName}
-        </Button>
+        {canEdit && (
+          <Button variant="outline" size="sm" disabled={externalChange} onClick={reset}>
+            <RotateCcw />
+            {resetName}
+          </Button>
+        )}
       </div>
       {externalChange && (
         <Notice kind="warning" className="message warning" role="alert">
@@ -440,42 +489,48 @@ export function DataTables({ mode }: { mode: 'diagrammer' | 'vejdim' }) {
                   Diagram {nr} — Eₒ = {diagram.eo} MPa, belastningsklasse {diagram.klasse}
                 </h2>
                 <div className="toolbar-group">
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    disabled={!!draft}
-                    onClick={() =>
-                      setDraft({
-                        eu: null,
-                        t_uarmeret_cm: null,
-                        t_1_lag_cm: null,
-                        t_2_lag_cm: null,
-                      })
-                    }
-                  >
-                    <Plus />
-                    Tilføj række
-                  </Button>
-                  <Button variant="ghost" size="sm" onClick={saveDiagram}>
-                    <Download />
-                    Gem diagram
-                  </Button>
-                  <Button variant="ghost" size="sm" onClick={() => fileInput.current?.click()}>
-                    <Upload />
-                    Indlæs diagram …
-                  </Button>
-                  <input
-                    ref={fileInput}
-                    type="file"
-                    hidden
-                    aria-label={`Diagramfil · Diagram ${nr}`}
-                    accept="application/json,.json"
-                    onChange={(e) => {
-                      const file = e.target.files?.[0];
-                      e.target.value = '';
-                      if (file) void loadDiagram(file);
-                    }}
-                  />
+                  {canEdit && (
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      disabled={!!draft}
+                      onClick={() =>
+                        setDraft({
+                          eu: null,
+                          t_uarmeret_cm: null,
+                          t_1_lag_cm: null,
+                          t_2_lag_cm: null,
+                        })
+                      }
+                    >
+                      <Plus />
+                      Tilføj række
+                    </Button>
+                  )}
+                  {canEdit && access.diagramfiler && (
+                    <>
+                      <Button variant="ghost" size="sm" onClick={saveDiagram}>
+                        <Download />
+                        Gem diagram
+                      </Button>
+                      <Button variant="ghost" size="sm" onClick={() => fileInput.current?.click()}>
+                        <Upload />
+                        Indlæs diagram …
+                      </Button>
+                      <input
+                        ref={fileInput}
+                        type="file"
+                        hidden
+                        aria-label={`Diagramfil · Diagram ${nr}`}
+                        accept="application/json,.json"
+                        onChange={(e) => {
+                          const file = e.target.files?.[0];
+                          e.target.value = '';
+                          if (file) void loadDiagram(file);
+                        }}
+                      />
+                    </>
+                  )}
                 </div>
               </div>
               {fileNotice && (
@@ -513,16 +568,18 @@ export function DataTables({ mode }: { mode: 'diagrammer' | 'vejdim' }) {
                 </div>
               </div>
             </section>
-            <Button
-              variant="outline"
-              onClick={() => {
-                receive(editor.edit({ reset: 'designdiagrammer' }), true);
-                setDraft(null);
-              }}
-            >
-              <RotateCcw />
-              Nulstil alle diagramdata til standard
-            </Button>
+            {canEdit && (
+              <Button
+                variant="outline"
+                onClick={() => {
+                  receive(editor.edit({ reset: 'designdiagrammer' }), true);
+                  setDraft(null);
+                }}
+              >
+                <RotateCcw />
+                Nulstil alle diagramdata til standard
+              </Button>
+            )}
           </>
         ) : (
           <>
@@ -530,7 +587,9 @@ export function DataTables({ mode }: { mode: 'diagrammer' | 'vejdim' }) {
               <div className="section-heading">
                 <div>
                   <h2>VejDim-kørsler</h2>
-                  <span className="section-meta">{enriched.length} kørsler · redigerbar</span>
+                  <span className="section-meta">
+                    {enriched.length} kørsler{canEdit ? ' · redigerbar' : ''}
+                  </span>
                 </div>
                 <Button variant="outline" size="sm" onClick={download}>
                   <Download />
@@ -623,7 +682,11 @@ export function DataTables({ mode }: { mode: 'diagrammer' | 'vejdim' }) {
           </>
         )}
       </fieldset>
-      <PageFooter>Gyldige ændringer anvendes og gemmes automatisk.</PageFooter>
+      <PageFooter>
+        {canEdit
+          ? 'Gyldige ændringer anvendes og gemmes automatisk.'
+          : 'Appens standardtabeller vises.'}
+      </PageFooter>
     </main>
   );
 }

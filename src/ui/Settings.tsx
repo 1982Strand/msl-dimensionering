@@ -19,6 +19,8 @@ import { PageFooter, PageHeader } from './page';
 import './Settings.css';
 import { roundingImpact } from '../engine/rounding-impact';
 import { distributionImpact } from '../engine/distribution-impact';
+import { useAccess } from './access';
+import { VISUAL_SETTINGS_FIELDS } from './session-access';
 
 function valueAt(value: unknown, path: string[]): SettingValue {
   for (const key of path) value = (value as Record<string, unknown>)[key];
@@ -29,6 +31,7 @@ function plain(text: string) {
 }
 
 export function Settings() {
+  const access = useAccess();
   const ctx = useEditor();
   const settings = ctx.session.data.indstillinger;
   const lf = settings.lagfordeling;
@@ -48,7 +51,12 @@ export function Settings() {
     distribution,
   );
   function change(path: string[], value: SettingValue) {
-    if (ctx.externalChange) return;
+    if (
+      ctx.externalChange ||
+      (access.indstillinger === 'visning' &&
+        !VISUAL_SETTINGS_FIELDS.some((field) => field.path.join('.') === path.join('.')))
+    )
+      return;
     const next = structuredClone(ctx.editor.snapshot().data.indstillinger);
     let node = next as unknown as Record<string, unknown>;
     for (const key of path.slice(0, -1)) node = node[key] as Record<string, unknown>;
@@ -56,6 +64,11 @@ export function Settings() {
     ctx.receive(ctx.editor.edit({ section: 'indstillinger', value: next }), true);
   }
   function disabled(key: string) {
+    if (
+      access.indstillinger === 'visning' &&
+      !VISUAL_SETTINGS_FIELDS.some((field) => field.key === key)
+    )
+      return true;
     if (key === 'ind_lf_restlag_graense') return lf.restlag !== 'flet';
     if (['ind_lf_vd_baerelag', 'ind_lf_vd_bundsikring', 'ind_lf_kraev_bundsikring'].includes(key))
       return lf.restlag !== 'vd';
@@ -213,7 +226,13 @@ export function Settings() {
           <div key={index}>
             <div className="settings-minimums">
               <h3>Minimumstykkelse pr. belastningsklasse</h3>
-              <div className="table-wrap">
+              <div
+                className="table-wrap"
+                // Med låste felter skal den rullende tabel selv kunne nås med tastaturet.
+                {...(access.indstillinger === 'visning'
+                  ? { tabIndex: 0, role: 'region', 'aria-label': 'Minimumstykkelser' }
+                  : {})}
+              >
                 <table
                   className="data-table summary-table minimum-table"
                   aria-label="Minimumstykkelser"
@@ -243,6 +262,7 @@ export function Settings() {
                             }}
                             value={lf.minimum_mm[row.klasse]}
                             refresh={ctx.refresh}
+                            disabled={access.indstillinger === 'visning'}
                             change={(value) =>
                               change(['lagfordeling', 'minimum_mm', String(row.klasse)], value)
                             }
@@ -256,6 +276,7 @@ export function Settings() {
               <Button
                 variant="outline"
                 size="sm"
+                disabled={access.indstillinger === 'visning' || ctx.externalChange}
                 onClick={() => {
                   const next = structuredClone(ctx.editor.snapshot().data.indstillinger);
                   next.lagfordeling.minimum_mm = standard_indstillinger().lagfordeling.minimum_mm;
@@ -335,6 +356,11 @@ export function Settings() {
         intro={model.intro}
         aside={<SaveState />}
       />
+      {access.indstillinger === 'visning' && (
+        <Notice className="message" role="note">
+          Kun visningsindstillingerne kan ændres; de øvrige er appens standard.
+        </Notice>
+      )}
       <div className="settings-start">
         <EditorFeedback />
       </div>

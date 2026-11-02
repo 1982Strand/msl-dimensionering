@@ -1,5 +1,6 @@
 /** Fælles sidehoved, sidefod og menuens grupper (B-058). */
 import type { ReactNode } from 'react';
+import type { Access } from './udgaver';
 import {
   CircleHelp,
   FileText,
@@ -11,7 +12,7 @@ import {
   Table,
 } from 'lucide-react';
 
-export const navigationGroups = [
+const allNavigationGroups = [
   {
     label: 'Beregning',
     items: [
@@ -32,11 +33,18 @@ export const navigationGroups = [
   { label: 'Opsætning', items: [['indstillinger', 'Indstillinger', SettingsIcon]] },
 ] as const;
 
-export type PageKey = (typeof navigationGroups)[number]['items'][number][0];
+export function navigationGroupsFor(access: Access) {
+  return allNavigationGroups.map((group) => ({
+    ...group,
+    items: group.items.filter(([key]) => key !== 'rapport' || access.rapport),
+  }));
+}
+
+export type PageKey = (typeof allNavigationGroups)[number]['items'][number][0];
 
 /** Stien følger menuens grupper, fx »Opslag / Materialer«. */
 export function breadcrumb(page: PageKey) {
-  for (const group of navigationGroups)
+  for (const group of allNavigationGroups)
     for (const [key, name] of group.items) if (key === page) return `${group.label} / ${name}`;
   return '';
 }
