@@ -18,6 +18,7 @@ import {
   geonetDatabaseNotesTitle,
   type GeonetDatabaseRow,
 } from '../engine/geonet-database';
+import { useAccess } from './access';
 import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
 import { Hint } from './Hint';
@@ -43,6 +44,7 @@ const columns: LegacyColumnDef<GeonetDatabaseRow>[] = geonetDatabaseColumns.map(
 );
 
 export function GeonetDatabase() {
+  const access = useAccess();
   const [search, setSearch] = useState('');
   const [sorting, setSorting] = useState<SortingState>([]);
   const data = useMemo(() => {
@@ -157,25 +159,27 @@ export function GeonetDatabase() {
           </TableBody>
         </Table>
       </section>
-      <section aria-labelledby="geonet-notes-heading" className="geonet-notes">
-        <div className="geonet-notes-heading">
-          <h2 id="geonet-notes-heading">{geonetDatabaseNotesTitle}</h2>
-          <p className="section-meta">{geonetDatabaseNotes.length} noter</p>
-        </div>
-        {geonetDatabaseNotes.map((note, index) => (
-          <article
-            key={note.titel}
-            aria-labelledby={`geonet-note-${index}`}
-            className="section-card settings-card geonet-note"
-          >
-            <p className="eyebrow">Note {index + 1}</p>
-            <h3 id={`geonet-note-${index}`}>{note.titel}</h3>
-            <div className="geonet-note-text">
-              <ReactMarkdown remarkPlugins={[remarkGfm]}>{note.tekst}</ReactMarkdown>
-            </div>
-          </article>
-        ))}
-      </section>
+      {access.geonetNoter && (
+        <section aria-labelledby="geonet-notes-heading" className="geonet-notes">
+          <div className="geonet-notes-heading">
+            <h2 id="geonet-notes-heading">{geonetDatabaseNotesTitle}</h2>
+            <p className="section-meta">{geonetDatabaseNotes.length} noter</p>
+          </div>
+          {geonetDatabaseNotes.map((note, index) => (
+            <article
+              key={note.titel}
+              aria-labelledby={`geonet-note-${index}`}
+              className="section-card settings-card geonet-note"
+            >
+              <p className="eyebrow">Note {index + 1}</p>
+              <h3 id={`geonet-note-${index}`}>{note.titel}</h3>
+              <div className="geonet-note-text">
+                <ReactMarkdown remarkPlugins={[remarkGfm]}>{note.tekst}</ReactMarkdown>
+              </div>
+            </article>
+          ))}
+        </section>
+      )}
     </main>
   );
 }

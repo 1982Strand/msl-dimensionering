@@ -26,9 +26,9 @@ test('Rapport er skjult, og et direkte rapportlink går til Dimensionering', asy
 
 test('designdiagrammer og korrelation vises uden redigeringskontroller', async ({ page }) => {
   await page.goto('/#diagrammer');
-  await expect(
-    page.getByText('Tabellerne er appens standard og kan ikke rettes i denne udgave.'),
-  ).toBeVisible();
+  // Ingen infoboks og intet filter for ændringer, når tabellerne ikke kan rettes.
+  await expect(page.getByText('Tabellerne er appens standard', { exact: false })).toHaveCount(0);
+  await expect(page.getByLabel('Vis kun ændringer')).toHaveCount(0);
   await expect(page.getByRole('button', { name: 'Tilføj række', exact: true })).toHaveCount(0);
   await expect(page.getByRole('button', { name: 'Gem diagram', exact: true })).toHaveCount(0);
   await expect(page.getByRole('button', { name: 'Indlæs diagram …', exact: true })).toHaveCount(0);
@@ -40,13 +40,21 @@ test('designdiagrammer og korrelation vises uden redigeringskontroller', async (
   await expect(page.locator('.diagram-table input')).toHaveCount(0);
 
   await page.goto('/#vejdim');
-  await expect(
-    page.getByText('Tabellerne er appens standard og kan ikke rettes i denne udgave.'),
-  ).toBeVisible();
+  // Ingen infoboks og intet filter for ændringer, når tabellerne ikke kan rettes.
+  await expect(page.getByText('Tabellerne er appens standard', { exact: false })).toHaveCount(0);
+  await expect(page.getByLabel('Vis kun ændringer')).toHaveCount(0);
   await expect(page.getByRole('button', { name: 'Fortryd', exact: true })).toHaveCount(0);
   await expect(page.getByRole('button', { name: 'Gentag', exact: true })).toHaveCount(0);
   await expect(page.getByRole('button', { name: 'Nulstil kørsler', exact: true })).toHaveCount(0);
   await expect(page.locator('.runs-table input')).toHaveCount(0);
+});
+
+test('geonet-databasen viser kun produkttabellen', async ({ page }) => {
+  await page.goto('/#geonet-database');
+  await expect(page.getByRole('table').first()).toBeVisible();
+  await expect(
+    page.getByRole('heading', { name: 'Database-noter og kildehenvisninger' }),
+  ).toHaveCount(0);
 });
 
 test('materialer kan fortsat redigeres', async ({ page }) => {

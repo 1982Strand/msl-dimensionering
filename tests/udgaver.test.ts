@@ -21,6 +21,7 @@ test('udgavetabellen svarer til beslutningen 2. november 2026', () => {
       redigerMaterialer: true,
       indstillinger: 'alle',
       diagramfiler: true,
+      geonetNoter: true,
     },
     intern: {
       udgave: 'intern',
@@ -31,6 +32,7 @@ test('udgavetabellen svarer til beslutningen 2. november 2026', () => {
       redigerMaterialer: true,
       indstillinger: 'alle',
       diagramfiler: true,
+      geonetNoter: true,
     },
     offentlig: {
       udgave: 'offentlig',
@@ -41,6 +43,7 @@ test('udgavetabellen svarer til beslutningen 2. november 2026', () => {
       redigerMaterialer: true,
       indstillinger: 'visning',
       diagramfiler: false,
+      geonetNoter: false,
     },
   });
 });

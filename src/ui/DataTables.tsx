@@ -382,53 +382,45 @@ export function DataTables({ mode }: { mode: 'diagrammer' | 'vejdim' }) {
         }
         aside={<SaveState />}
       />
-      {!canEdit && (
-        <Notice className="message" role="note">
-          Tabellerne er appens standard og kan ikke rettes i denne udgave.
-        </Notice>
-      )}
-      <div className="toolbar">
-        <div className="toolbar-group">
-          {canEdit && (
-            <>
-              <Button
-                variant="outline"
-                size="sm"
-                disabled={!editor.canUndo || externalChange}
-                onClick={() => receive(editor.undo(), true)}
-              >
-                <Undo2 />
-                Fortryd
-              </Button>
-              <Button
-                variant="outline"
-                size="sm"
-                disabled={!editor.canRedo || externalChange}
-                onClick={() => receive(editor.redo(), true)}
-              >
-                <Redo2 />
-                Gentag
-              </Button>
-            </>
-          )}
-          <div className="filter">
-            <Checkbox
-              id="table-only-changed"
-              checked={onlyChanged}
-              onCheckedChange={(checked) => setOnlyChanged(checked === true)}
-            />
-            <Label htmlFor="table-only-changed">
-              Vis kun ændringer <Badge variant="secondary">{changed.length}</Badge>
-            </Label>
+      {/* Kan tabellerne ikke rettes, er der hverken ændringer at filtrere eller noget at fortryde. */}
+      {canEdit && (
+        <div className="toolbar">
+          <div className="toolbar-group">
+            <Button
+              variant="outline"
+              size="sm"
+              disabled={!editor.canUndo || externalChange}
+              onClick={() => receive(editor.undo(), true)}
+            >
+              <Undo2 />
+              Fortryd
+            </Button>
+            <Button
+              variant="outline"
+              size="sm"
+              disabled={!editor.canRedo || externalChange}
+              onClick={() => receive(editor.redo(), true)}
+            >
+              <Redo2 />
+              Gentag
+            </Button>
+            <div className="filter">
+              <Checkbox
+                id="table-only-changed"
+                checked={onlyChanged}
+                onCheckedChange={(checked) => setOnlyChanged(checked === true)}
+              />
+              <Label htmlFor="table-only-changed">
+                Vis kun ændringer <Badge variant="secondary">{changed.length}</Badge>
+              </Label>
+            </div>
           </div>
-        </div>
-        {canEdit && (
           <Button variant="outline" size="sm" disabled={externalChange} onClick={reset}>
             <RotateCcw />
             {resetName}
           </Button>
-        )}
-      </div>
+        </div>
+      )}
       {externalChange && (
         <Notice kind="warning" className="message warning" role="alert">
           Data er ændret i en anden fane.{' '}

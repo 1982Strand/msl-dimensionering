@@ -21,6 +21,8 @@ export interface Access {
   indstillinger: 'alle' | 'visning';
   /** Gem og indlæs af enkelte designdiagrammer som fil. */
   diagramfiler: boolean;
+  /** Geonet-databasens noter og kildehenvisninger vises. */
+  geonetNoter: boolean;
 }
 
 export const ACCESS: Record<Udgave, Access> = {
@@ -33,6 +35,7 @@ export const ACCESS: Record<Udgave, Access> = {
     redigerMaterialer: true,
     indstillinger: 'alle',
     diagramfiler: true,
+    geonetNoter: true,
   },
   intern: {
     udgave: 'intern',
@@ -43,6 +46,7 @@ export const ACCESS: Record<Udgave, Access> = {
     redigerMaterialer: true,
     indstillinger: 'alle',
     diagramfiler: true,
+    geonetNoter: true,
   },
   offentlig: {
     udgave: 'offentlig',
@@ -53,6 +57,7 @@ export const ACCESS: Record<Udgave, Access> = {
     redigerMaterialer: INDBYGGET_OPSAETNING.funktioner.redigerMaterialer,
     indstillinger: 'visning',
     diagramfiler: INDBYGGET_OPSAETNING.funktioner.diagramfiler,
+    geonetNoter: false,
   },
 };
 
