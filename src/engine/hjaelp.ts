@@ -1,3 +1,5 @@
+import schema from './settings-ui.json' with { type: 'json' };
+
 export interface Kildedokument {
   titel: string;
   udgiver: string;
@@ -115,6 +117,238 @@ export function laes_kapitler(files: Record<string, string>): Kapitel[] {
   return Object.keys(files)
     .sort()
     .map((file) => laes_kapitel(file, files[file]));
+}
+
+export interface HjaelpKontekst {
+  faste: ReadonlySet<string>;
+  vaerdier: Record<string, unknown>;
+  funktioner: Readonly<Record<'rapport' | 'redigerOpslag' | 'diagramfiler', boolean>>;
+}
+
+type HjaelpFelt = {
+  key: string;
+  path: string[];
+  label: string;
+  options?: { value: string; label: string }[];
+};
+const hjaelpFelter = schema.sections.flatMap((section) => [
+  ...(section.fields ?? []),
+  ...(section.minimumTable
+    ? [
+        {
+          key: section.minimumTable.key,
+          path: section.minimumTable.path,
+          label: section.minimumTable.columns.at(-1) ?? section.minimumTable.key,
+        },
+      ]
+    : []),
+]) as HjaelpFelt[];
+const hjaelpFeltMap = new Map(hjaelpFelter.map((field) => [field.key, field]));
+
+/** Alle indstillingsnøgler, som hjælpens opmærkning kan henvise til. */
+export const HJAELP_INDSTILLINGSNOEGLER = hjaelpFelter.map((field) => field.key);
+
+function vaerdiVedSti(root: unknown, path: string[]): unknown {
+  return path.reduce<unknown>(
+    (value, part) =>
+      value !== null && typeof value === 'object'
+        ? (value as Record<string, unknown>)[part]
+        : undefined,
+    root,
+  );
+}
+
+function indstillingVaerdi(key: string, kontekst: HjaelpKontekst, kapitel: string, linje: number) {
+  const [fieldKey, ...suffix] = key.split('.');
+  const field = hjaelpFeltMap.get(fieldKey);
+  if (!field)
+    throw new Error(`${kapitel}:${linje}: Ukendt indstillingsnøgle i hjælp: ${fieldKey}.`);
+  const value = vaerdiVedSti(kontekst.vaerdier, [...field.path, ...suffix]);
+  if (value === undefined)
+    throw new Error(`${kapitel}:${linje}: Ukendt indstillingsværdi i hjælp: ${key}.`);
+  return { field, value };
+}
+
+function formatHjaelpVaerdi(
+  key: string,
+  unit: string | undefined,
+  kontekst: HjaelpKontekst,
+  kapitel: string,
+  linje: number,
+): string {
+  const { field, value } = indstillingVaerdi(key, kontekst, kapitel, linje);
+  const option = field.options?.find((candidate) => candidate.value === value);
+  if (field.options && !option)
+    throw new Error(`${kapitel}:${linje}: Ukendt værdi for ${field.key}: ${String(value)}.`);
+  if (option) return option.label;
+  if (typeof value === 'number') {
+    return `${new Intl.NumberFormat('da-DK', { maximumFractionDigits: 1 }).format(value)}${unit ? ` ${unit}` : ''}`;
+  }
+  return typeof value === 'boolean' ? (value ? 'ja' : 'nej') : String(value);
+}
+
+/**
+ * Filtrerer hjælpe-markdown før blokparseren. Syntaks: :::vis valgbar nøgle,
+ * :::vis valg nøgle=værdi, :::vis fast nøgle[=værdi] eller :::vis funktion navn; luk
+ * med :::slutvis. Valgbetingelser kan kombineres med &, fx nøgle=værdi&nøgle2=værdi.
+ * Tabelrækker kan slutte med <!-- valg nøgle=værdi -->. Pladsholdere skrives
+ * {{værdi nøgle}} eller {{værdi ind_lf_minimum.5 mm}}. Blokkene kan omslutte
+ * almindelige :::-blokke. Inline-varianter skrives
+ * <!-- vis valgbar nøgle -->tekst<!-- slutvis -->.
+ */
+export function tilpasHjaelpMarkdown(
+  markdown: string,
+  kontekst: HjaelpKontekst,
+  kapitel: string,
+): string {
+  const normaliseret = markdown.replace(/\r\n?/g, '\n');
+  const output: string[] = [];
+  const kildelinjer = normaliseret.split('\n');
+  let aktiv = true;
+  let lukket = false;
+  const test = (regel: string, linje: number): boolean => {
+    // »ikke <regel>« vender betingelsen, fx »ikke funktion rapport«.
+    if (/^ikke\s/.test(regel.trim())) return !test(regel.trim().slice(4), linje);
+    const dele = regel.trim().split(/\s+/);
+    const slags = dele.shift();
+    if (slags === 'valgbar' || slags === 'fast') {
+      if (dele.length !== 1 || !dele[0])
+        throw new Error(`${kapitel}:${linje}: Ugyldig indstillingsbetingelse.`);
+      if (slags === 'valgbar') {
+        const key = dele[0];
+        if (key.includes('=') || !hjaelpFeltMap.has(key))
+          throw new Error(`${kapitel}:${linje}: Ukendt indstillingsnøgle i hjælp: ${key}.`);
+        return !kontekst.faste.has(key);
+      }
+      if (dele[0].includes('='))
+        return dele[0].split('&').every((condition) => {
+          const [key, value, extra] = condition.split('=');
+          if (!key || !value || extra !== undefined)
+            throw new Error(`${kapitel}:${linje}: Ugyldig fast-værdi-betingelse.`);
+          const current = indstillingVaerdi(key, kontekst, kapitel, linje).value;
+          const field = hjaelpFeltMap.get(key.split('.')[0])!;
+          const option = field.options?.some((candidate) => String(candidate.value) === value);
+          const numeric = typeof current === 'number' && /^\d+(?:\.\d+)?$/.test(value);
+          const boolean = typeof current === 'boolean' && (value === 'true' || value === 'false');
+          if (!option && !numeric && !boolean)
+            throw new Error(`${kapitel}:${linje}: Ukendt værdi for ${key}: ${value}.`);
+          return kontekst.faste.has(key.split('.')[0]) && String(current) === value;
+        });
+      if (!hjaelpFeltMap.has(dele[0]))
+        throw new Error(`${kapitel}:${linje}: Ukendt indstillingsnøgle i hjælp: ${dele[0]}.`);
+      return kontekst.faste.has(dele[0]);
+    }
+    if (slags === 'valg') {
+      if (dele.length !== 1 || !dele[0])
+        throw new Error(`${kapitel}:${linje}: Ugyldig valg-betingelse.`);
+      return dele[0].split('&').every((condition) => {
+        const [key, value, extra] = condition.split('=');
+        if (!key || !value || extra !== undefined)
+          throw new Error(`${kapitel}:${linje}: Ugyldig valg-betingelse.`);
+        const current = indstillingVaerdi(key, kontekst, kapitel, linje).value;
+        const field = hjaelpFeltMap.get(key.split('.')[0])!;
+        const option = field.options?.some((candidate) => candidate.value === value);
+        if (
+          !option &&
+          !(
+            (typeof current === 'number' && /^\d+(?:\.\d+)?$/.test(value)) ||
+            (typeof current === 'boolean' && (value === 'true' || value === 'false'))
+          )
+        )
+          throw new Error(`${kapitel}:${linje}: Ukendt værdi for ${key}: ${value}.`);
+        return !kontekst.faste.has(key.split('.')[0]) || String(current) === value;
+      });
+    }
+    if (slags === 'funktion') {
+      const name = dele[0] as keyof HjaelpKontekst['funktioner'];
+      if (dele.length !== 1 || !Object.hasOwn(kontekst.funktioner, name))
+        throw new Error(`${kapitel}:${linje}: Ukendt hjælpefunktion: ${dele[0] ?? ''}.`);
+      return kontekst.funktioner[name];
+    }
+    throw new Error(`${kapitel}:${linje}: Ukendt hjælpepåtegning: ${slags ?? ''}.`);
+  };
+  for (let i = 0; i < kildelinjer.length; i++) {
+    const line = kildelinjer[i];
+    const row = /<!--\s*((?:ikke\s+)?(?:valgbar|fast|valg|funktion))\s+([^>]+?)\s*-->\s*$/.exec(
+      line,
+    );
+    if (row) test(`${row[1]} ${row[2]}`, i + 1);
+  }
+  for (const match of normaliseret.matchAll(/\{\{værdi\s+([^}]+)}}/g)) {
+    const args = match[1].trim().split(/\s+/);
+    const line = normaliseret.slice(0, match.index).split('\n').length;
+    if (args.length > 2 || (args[1] && !['mm', 'cm', 'MPa', '°', '%'].includes(args[1])))
+      throw new Error(`${kapitel}:${line}: Ugyldig hjælpe-pladsholder: ${match[1]}.`);
+    formatHjaelpVaerdi(args[0], args[1], kontekst, kapitel, line);
+  }
+  const medInline = normaliseret.replace(
+    /<!--\s*vis\s+(.+?)\s*-->([\s\S]*?)<!--\s*slutvis\s*-->/g,
+    (_match, regel: string, content: string, offset: number) =>
+      test(regel, normaliseret.slice(0, offset).split('\n').length) ? content : '',
+  );
+  const unmatchedInline = /<!--\s*(?:vis|slutvis)\b/g.exec(medInline);
+  if (unmatchedInline)
+    throw new Error(
+      `${kapitel}:${medInline.slice(0, unmatchedInline.index).split('\n').length}: Ubalanceret inline-hjælpetekstblok.`,
+    );
+  const linjer = medInline.split('\n');
+  for (let i = 0; i < linjer.length; i++) {
+    const line = linjer[i];
+    const start = /^:::vis\s+(.+?)\s*$/.exec(line);
+    if (start) {
+      if (lukket)
+        throw new Error(`${kapitel}:${i + 1}: Betingede hjælpetekstblokke må ikke indlejres.`);
+      aktiv = test(start[1], i + 1);
+      lukket = true;
+      continue;
+    }
+    if (/^:::slutvis\s*$/.test(line)) {
+      if (!lukket) throw new Error(`${kapitel}:${i + 1}: Ubalanceret slut på hjælpetekstblok.`);
+      aktiv = true;
+      lukket = false;
+      continue;
+    }
+    if (!aktiv) continue;
+    const row = /\s*<!--\s*((?:ikke\s+)?(?:valgbar|fast|valg|funktion))\s+([^>]+?)\s*-->\s*$/.exec(
+      line,
+    );
+    if (row && !test(`${row[1]} ${row[2]}`, i + 1)) continue;
+    // Også tabelrækker med betingelse kan indeholde pladsholdere.
+    output.push(
+      (row ? line.slice(0, row.index) : line).replace(
+        /\{\{værdi\s+([^}\s]+)(?:\s+(mm|cm|MPa|°|%))?}}/g,
+        (_match, key: string, unit: string | undefined) =>
+          formatHjaelpVaerdi(key.trim(), unit, kontekst, kapitel, i + 1),
+      ),
+    );
+    if (output.at(-1)?.includes('{{værdi'))
+      throw new Error(`${kapitel}:${i + 1}: Ubalanceret hjælpe-pladsholder.`);
+  }
+  if (lukket) throw new Error(`${kapitel}:${linjer.length}: Ubalanceret hjælpetekstblok.`);
+  // Skjult tekst må ikke efterlade tomme linjer i træk eller mellemrum sidst på linjen;
+  // kildefilerne har ingen af delene, så lokal og intern er uændrede.
+  const tilpasset = output
+    .join('\n')
+    .replace(/[ \t]+$/gm, '')
+    .replace(/\n{3,}/g, '\n\n');
+  const figurer = new Map<string, string>();
+  let figurNr = 0;
+  const udenId = tilpasset.replace(
+    /^:::figur(?:\s+id=([\w-]+))?\s*(.*)$/gm,
+    (_match, id: string | undefined, titel: string) => {
+      figurNr++;
+      if (id) {
+        if (figurer.has(id)) throw new Error(`${kapitel}: Dubleret figur-id i hjælp: ${id}.`);
+        figurer.set(id, `Figur ${kapitel.match(/^0*(\d+)/)?.[1] ?? '0'}.${figurNr}`);
+      }
+      return `:::figur ${titel}`;
+    },
+  );
+  return udenId.replace(/\{\{figur\s+([\w-]+)}}/g, (_match, id: string) => {
+    const number = figurer.get(id);
+    if (!number) throw new Error(`${kapitel}: Ukendt eller skjult figur-id i hjælp: ${id}.`);
+    return number;
+  });
 }
 
 export const HJAELP_STANDARD_KAPITEL = 'beregningsmetoden';

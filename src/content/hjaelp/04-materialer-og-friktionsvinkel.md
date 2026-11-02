@@ -47,12 +47,30 @@ k_φ =  −0,02 × (φᵥ − 37°)
 
 Korrektionen anvendes på samtlige tre kurver, jf. kapitel 1, afsnit 6.
 
+:::vis valgbar ind_afr_phi
 Under Indstillinger, afsnittet Afrunding, kan φᵥ afrundes til hele grader,
 før k_φ bestemmes. Ved nedrunding anvendes 38,6° som 38°, og ved afrunding til
 nærmeste hele grad som 39°. Nedrundingen er på den sikre side, idet en lavere
 φᵥ giver en tykkere opbygning. Afrundingen gælder både den vægtede og en
 manuelt indtastet φᵥ samt φᵥ for hver opbygning, jf. kapitel 6, afsnit 4, og
 den fremgår af mellemregningerne som eget led. Som standard afrundes φᵥ ikke.
+:::slutvis
+:::vis fast ind_afr_phi=ingen
+φᵥ afrundes ikke, før k_φ bestemmes.
+:::slutvis
+:::vis fast ind_afr_phi=ned
+φᵥ nedrundes til hel grad, før k_φ bestemmes; 38,6° anvendes således som 38°.
+Nedrundingen er på den sikre side, idet en lavere φᵥ giver en tykkere
+opbygning. Afrundingen gælder både den vægtede og en manuelt indtastet φᵥ samt
+φᵥ for hver opbygning, jf. kapitel 6, afsnit 4, og den fremgår af
+mellemregningerne som eget led.
+:::slutvis
+:::vis fast ind_afr_phi=naermeste
+φᵥ afrundes til nærmeste hele grad, før k_φ bestemmes; 38,6° anvendes således
+som 39° og 38,4° som 38°. Afrundingen gælder både den vægtede og en manuelt
+indtastet φᵥ samt φᵥ for hver opbygning, jf. kapitel 6, afsnit 4, og den
+fremgår af mellemregningerne som eget led.
+:::slutvis
 
 Der gøres opmærksom på, at korrektionen ikke er begrænset opadtil eller
 nedadtil. Ligger den vægtede vinkel under 37° eller over 50°, gives en advarsel

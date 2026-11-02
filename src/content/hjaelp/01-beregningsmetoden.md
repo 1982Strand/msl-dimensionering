@@ -149,7 +149,7 @@ Så længe lagtykkelsen ligger mellem diagrammernes yderste ustabiliserede
 kurver, bestemmes Eₒ,ækv ved interpolation inden for diagramområdet. Ligger
 lagtykkelsen uden for dette område, findes der ikke et egentligt opslagspunkt.
 Afvigelsen fra den nærmeste kurve holdes da op mod en tolerance, og efter
-reglerne under Indstillinger regnes der med VejDims tykkelse eller med
+<!-- vis valgbar ind_yder_tol_over -->reglerne under Indstillinger<!-- slutvis --><!-- vis fast ind_yder_tol_over -->de gældende regler<!-- slutvis --> regnes der med VejDims tykkelse eller med
 diagrammets laveste kurve, eller beregningen afvises. Ved VejDims tykkelse
 hentes reduktionen fra den nærmeste randkurve og er dermed ikke bestemt i det
 faktiske driftspunkt. Håndteringen er beskrevet nærmere i kapitel 2, afsnit 3.
@@ -243,9 +243,14 @@ k_net   er korrektionen for det valgte geonet, jf. kapitel 5
 T_basis er den aflæste eller interpolerede lagtykkelse fra afsnit 5 [mm]
 :::
 
-Korrektionen for friktionsvinklen anvendes på samtlige tre kurver. Under
+Korrektionen for friktionsvinklen anvendes på samtlige tre kurver. <!-- vis valgbar ind_lf_phi_regel -->Under
 Indstillinger kan det vælges, at hver beregnet opbygning i stedet korrigeres
-med φᵥ for sine egne materialelag, jf. kapitel 6, afsnit 4. Korrektionen
+med φᵥ for sine egne materialelag, jf. kapitel 6, afsnit 4.<!-- slutvis --><!-- vis fast ind_lf_phi_regel=indtastet -->Alle beregnede
+opbygninger korrigeres med φᵥ for den indtastede opbygning, jf. kapitel 6,
+afsnit 4.<!-- slutvis --><!-- vis fast ind_lf_phi_regel=laveste -->Hver beregnet opbygning korrigeres med den laveste af φᵥ for den
+indtastede opbygning og φᵥ for sine egne materialelag, jf. kapitel 6,
+afsnit 4.<!-- slutvis --><!-- vis fast ind_lf_phi_regel=soejle -->Hver beregnet opbygning korrigeres med φᵥ for sine egne materialelag,
+jf. kapitel 6, afsnit 4.<!-- slutvis --> Korrektionen
 for geonet anvendes alene på de armerede kurver, idet den ustabiliserede
 opbygning ikke indeholder geonet; her er k_net = 0. Reduktionen opgøres derfor
 i forhold til den korrigerede ustabiliserede lagtykkelse, således at begge
@@ -266,9 +271,10 @@ T_ind = ⌈T / t⌉ × t
 --
 T_ind er den lagtykkelse, der angives i resultatet [mm]
 T     er den beregnede lagtykkelse efter afsnit 6, afrundet til hele mm [mm]
-t     er oprundingstrinnet: 1, 5, 10, 50 eller 100 mm
+t     er oprundingstrinnet<!-- vis valgbar ind_afr_trin -->: 1, 5, 10, 50 eller 100 mm<!-- slutvis --><!-- vis fast ind_afr_trin -->, {{værdi ind_afr_trin}}<!-- slutvis -->
 :::
 
+:::vis valgbar ind_afr_trin
 Trinnet fastlægges under Indstillinger; standardværdien er 50 mm. Ved 1 mm
 angives lagtykkelsen som beregnet. Er det tilvalgt under Indstillinger,
 sættes den oprundede lagtykkelse desuden mindst til minimumstykkelsen for
@@ -279,16 +285,43 @@ de stabiliserede lagtykkelser og anvendes ens i resultatkortet,
 opbygningssøjlerne, produkttabellen og rapporten. Produkter, der efter
 oprundingen giver samme lagtykkelse, samles i produkttabellen i én gruppe.
 
+:::slutvis
+:::vis fast ind_afr_trin
+Trinnet er {{værdi ind_afr_trin}}.<!-- vis fast ind_afr_trin=1 --> Lagtykkelsen angives da som beregnet.<!-- slutvis --><!-- vis fast ind_lf_samlet=true --> Den
+oprundede lagtykkelse sættes desuden mindst til minimumstykkelsen for
+klassen, jf. kapitel 6, afsnit 2.<!-- slutvis --><!-- vis fast ind_lf_restlag=vd --> Den kan øges, så de underliggende lag kan
+indbygges, jf. kapitel 6, afsnit 3.<!-- slutvis --><!-- vis fast ind_std_klassisk=true --> Ved klassisk standardberegning
+anvendes alene oprundingen, jf. kapitel 6, afsnit 5.<!-- slutvis --> Oprundingen gælder
+den ustabiliserede og de stabiliserede lagtykkelser og anvendes ens i
+resultatkortet, opbygningssøjlerne<!-- vis funktion rapport -->, produkttabellen og rapporten<!-- slutvis --><!-- vis ikke funktion rapport --> og produkttabellen<!-- slutvis -->.
+Produkter, der efter oprundingen giver samme lagtykkelse, samles i
+produkttabellen i én gruppe.
+
+:::slutvis
+:::vis valgbar ind_afr_reduktion
 Reduktionen i mm og procent opgøres af de oprundede lagtykkelser, så den
 stemmer med de viste tal. Under Indstillinger kan reduktionen i stedet
 opgøres af de beregnede lagtykkelser; den svarer da til designdiagrammets
 aflæsning, men afviger fra forskellen mellem de viste tal.
 
+:::slutvis
+:::vis fast ind_afr_reduktion=false
+Reduktionen i mm og procent opgøres af de oprundede lagtykkelser, så den
+stemmer med de viste tal.
+
+:::slutvis
+:::vis fast ind_afr_reduktion=true
+Reduktionen i mm og procent opgøres af de beregnede lagtykkelser. Den svarer
+dermed til designdiagrammets aflæsning, men afviger fra forskellen mellem de
+viste tal.
+
+:::slutvis
 Mellemregningerne føres med de beregnede lagtykkelser, og oprundingen står som
 sidste led, så regnestykket kan efterregnes. Markeringerne i designdiagrammet
 sættes ved de beregnede lagtykkelser, idet de angiver aflæsningen på kurverne.
-Den beregnede lagtykkelse kan anføres i parentes efter den oprundede; valget
-træffes under Indstillinger.
+<!-- vis valgbar ind_afr_vis_eksakt -->Den beregnede lagtykkelse kan anføres i parentes efter den oprundede; valget
+træffes under Indstillinger.<!-- slutvis --><!-- vis fast ind_afr_vis_eksakt=true -->Den beregnede lagtykkelse anføres i parentes
+efter den oprundede.<!-- slutvis -->
 
 :::figur Oprunding ved forskellige trin. Beregnet lagtykkelse 532 mm.
 | Trin | Angivet lagtykkelse |

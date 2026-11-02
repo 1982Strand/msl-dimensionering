@@ -122,11 +122,15 @@ og antal geonetlag. Andre kurver i samme punkt kan dog stadig være tilgængelig
 Forholdet bør ikke forveksles med zonerne under og over, jf. kapitel 2,
 afsnit 2. En zonebetegnelse betyder derimod, at de nødvendige diagramkurver
 findes, men at VejDims krævede samlede tykkelse af de ubundne lag ligger uden
-for diagrammets tykkelsesinterval. Ved trafikklasse kan der i dette tilfælde,
+for diagrammets tykkelsesinterval. <!-- vis valgbar ind_yder_tol_over -->Ved trafikklasse kan der i dette tilfælde,
 hvis tilvalget er aktiveret, dimensioneres på VejDims tykkelse. Reduktionen
 aflæses da på den nærmeste randkurve og er derfor ekstrapoleret, jf. kapitel 2,
-afsnit 3.
+afsnit 3.<!-- slutvis --><!-- vis fast ind_yder_tol_over -->Ved trafikklasse behandles tilfældet efter
+reglerne i kapitel 2, afsnit 3. Regnes der med VejDims tykkelse, aflæses
+reduktionen på den nærmeste randkurve og er derfor ekstrapoleret.<!-- slutvis -->
+:::vis funktion redigerOpslag
 
 De aflæste værdier kan redigeres på siden Designdiagrammer. Ændres en værdi,
 dannes opslagstabellen på ny, og både dimensioneringen og
 Eₒ,ækv-matricen følger med.
+:::slutvis

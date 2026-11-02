@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
@@ -24,19 +25,20 @@ import {
   HJAELP_TRIN,
   HJAELP_BEGREBER_TITEL,
   HJAELP_NOEGLEBEGREBER,
+  tilpasHjaelpMarkdown,
   type Formel,
 } from '../engine/hjaelp';
 import './Help.css';
 import { PageHeader } from './page';
+import { useAccess } from './access';
+import { hjaelpKontekst } from './hjaelp-kontekst';
 
-const kapitler = laes_kapitler(
-  import.meta.glob<string>('../content/hjaelp/*.md', {
-    query: '?raw',
-    eager: true,
-    import: 'default',
-  }),
-);
-function readOpenChapters(saved: unknown): string[] {
+const rawKapitler = import.meta.glob<string>('../content/hjaelp/*.md', {
+  query: '?raw',
+  eager: true,
+  import: 'default',
+});
+function readOpenChapters(saved: unknown, kapitler: ReturnType<typeof laes_kapitler>): string[] {
   if (Array.isArray(saved) && saved.every((key) => typeof key === 'string')) {
     return saved.filter((key) => kapitler.some((k) => k.noegle === key));
   }
@@ -83,8 +85,21 @@ function Formula({ formula }: { formula: Formel }) {
   );
 }
 export function Help() {
+  const access = useAccess();
+  // Udgaven er fast for bygningen; kapitlerne tilpasses derfor kun én gang.
+  const kapitler = useMemo(() => {
+    const context = hjaelpKontekst(access);
+    return laes_kapitler(
+      Object.fromEntries(
+        Object.entries(rawKapitler).map(([filename, markdown]) => [
+          filename,
+          tilpasHjaelpMarkdown(markdown, context, filename.split('/').at(-1) ?? filename),
+        ]),
+      ),
+    );
+  }, [access]);
   const { session, remember, saveError, externalChange } = useEditor();
-  const open = readOpenChapters(session.values.hjaelp_aabne);
+  const open = readOpenChapters(session.values.hjaelp_aabne, kapitler);
   const chapters = helpViewModel(kapitler, open);
   function changeOpen(keys: string[]) {
     remember({ hjaelp_aabne: keys });

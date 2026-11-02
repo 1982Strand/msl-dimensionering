@@ -87,8 +87,8 @@ punkter ligger under eller over diagramområdet. Fordelingen afhænger af de
 aktive VejDim-kørsler og designdiagrammer og kan derfor ændre sig.
 
 Opslagspunkter uden for diagramområdet behandles efter tolerancerne og
-reglerne under Indstillinger. Med standardindstillingerne godtages afvigelser
-op til 5 %, mens større afvigelser afvises. Regnes der med VejDims tykkelse,
+<!-- vis valgbar ind_yder_tol_over -->reglerne under Indstillinger. Med standardindstillingerne godtages afvigelser
+op til 5 %, mens større afvigelser afvises.<!-- slutvis --><!-- vis fast ind_yder_tol_over -->de gældende regler.<!-- slutvis --> Regnes der med VejDims tykkelse,
 hentes reduktionen fra den nærmeste randkurve; den er dermed ikke bestemt i
 det faktiske driftspunkt. Uden for tolerancen er den baseret på en
 ekstrapolation og må forventes at være behæftet med større usikkerhed. Se

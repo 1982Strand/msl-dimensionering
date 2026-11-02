@@ -78,9 +78,11 @@ ved samme Eᵤ og viser, hvorfor T1 ligger uden for diagramområdet i eksemplet.
 Falder VejDims krav uden for de seks tykkelser, findes der intet opslagssted i
 diagrammerne. Afvigelsen fra den nærmeste kurve, randkurven, måles da i
 procent af randkurvens tykkelse og holdes op mod en tolerance for hver
-retning. Tolerancerne og håndteringen fastlægges under Indstillinger,
+retning. <!-- vis valgbar ind_yder_tol_over -->Tolerancerne og håndteringen fastlægges under Indstillinger,
 afsnittet Trafikklasse uden for diagrammet, og gælder både Standard og
-Brugerdefineret.
+Brugerdefineret.<!-- slutvis --><!-- vis fast ind_yder_tol_over -->Tolerancen er {{værdi ind_yder_tol_over %}} over og
+{{værdi ind_yder_tol_under %}} under. Tolerancerne og håndteringen gælder både
+Standard og Brugerdefineret.<!-- slutvis -->
 
 :::formel
 a_over   =  (t_VejDim − t_rand) / t_rand
@@ -101,6 +103,7 @@ Der er tre måder at behandle et opslag uden for kurverne på:
 - **Afvis.** Der er intet driftspunkt, og opbygningen kræver en konkret
   vurdering. Der kan i stedet dimensioneres efter belastningsklasse.
 
+:::vis valgbar ind_yder_tol_over
 :::figur Reglerne uden for diagrammets kurver. Standardtolerancen er 5 % i begge retninger.
 | Situation | Standard | Kan i stedet vælges |
 | --- | --- | --- |
@@ -109,6 +112,21 @@ Der er tre måder at behandle et opslag uden for kurverne på:
 | Under, inden for tolerancen | Laveste kurve | VejDims tykkelse |
 | Under, uden for tolerancen | Afvis | Laveste kurve eller VejDims tykkelse |
 :::
+:::slutvis
+:::vis fast ind_yder_tol_over
+:::figur Reglerne uden for diagrammets kurver.
+| Situation | Regel |
+| --- | --- |
+| Over, inden for tolerancen | VejDims tykkelse |
+| Over, uden for tolerancen | Afvis | <!-- valg ind_yder_over_uden=afvis -->
+| Over, uden for tolerancen | VejDims tykkelse | <!-- valg ind_yder_over_uden=vejdim -->
+| Under, inden for tolerancen | Laveste kurve | <!-- valg ind_yder_under_inden=laveste -->
+| Under, inden for tolerancen | VejDims tykkelse | <!-- valg ind_yder_under_inden=vejdim -->
+| Under, uden for tolerancen | Afvis | <!-- valg ind_yder_under_uden=afvis -->
+| Under, uden for tolerancen | Laveste kurve | <!-- valg ind_yder_under_uden=laveste -->
+| Under, uden for tolerancen | VejDims tykkelse | <!-- valg ind_yder_under_uden=vejdim -->
+:::
+:::slutvis
 
 Reglen er ikke symmetrisk. Over følges VejDims krav opad, idet det er
 konservativt at regne fra den tykkere opbygning. T5 ved Eᵤ = 15 MPa kræver
@@ -177,6 +195,7 @@ Eᵤ = 20 MPa. Inden for kurverne har reglerne ingen betydning.
 
 Forbeholdet ved fremgangsmåden er beskrevet i kapitel 7, afsnit 2.
 
+:::vis funktion redigerOpslag
 ## 4 Redigering af kørslerne
 
 Kørslerne kan overskrives, hvis VejDim-kørslerne ønskes justeret manuelt. Ændres en kørsel, genberegnes Eₒ,ækv-matricen og anvendes med det
@@ -187,3 +206,4 @@ redigeres. Ubundet er summen t_SG + t_BL, som Eₒ,ækv bestemmes ud fra; Samlet
 højde er inklusive de bundne lag øverst.
 
 De oprindelige 48 kørsler gendannes med Nulstil kørsler.
+:::slutvis
