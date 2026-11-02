@@ -1,5 +1,5 @@
 /** npm run kartotek -- <fil> — sender medarbejderlisten som hemmelighed til GitHub. */
-import { readFile, stat } from 'node:fs/promises';
+import { readFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { spawnSync } from 'node:child_process';
@@ -8,16 +8,18 @@ import type { Employee } from '../src/report/company-profile.ts';
 
 export const MAX_SECRET_BYTES = 48 * 1024;
 
+// Grænsen gælder den liste, der sendes; en eksporteret profil med logo må gerne være større.
 export async function readEmployeeSecret(file: string): Promise<Employee[]> {
-  if ((await stat(file)).size > MAX_SECRET_BYTES)
-    throw new Error('Kartoteket er over GitHubs grænse på 48 KB.');
   let parsed: unknown;
   try {
     parsed = JSON.parse(await readFile(file, 'utf8'));
   } catch {
     throw new Error('Kartoteket er ikke gyldig JSON.');
   }
-  return parseEmployeeList(parsed);
+  const employees = parseEmployeeList(parsed);
+  if (Buffer.byteLength(JSON.stringify(employees)) > MAX_SECRET_BYTES)
+    throw new Error('Kartoteket er over GitHubs grænse på 48 KB.');
+  return employees;
 }
 
 export async function sendEmployeeSecret(

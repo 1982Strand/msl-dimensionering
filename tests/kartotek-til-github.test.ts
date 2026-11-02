@@ -35,12 +35,27 @@ test('GitHub-kommandoen sender kompakt JSON på stdin uden at returnere indholde
   }
 });
 
-test('GitHub-kommandoen afviser filer over 48 KB og ugyldige data', async () => {
+test('GitHub-kommandoen afviser lister over 48 KB og ugyldige data', async () => {
   const directory = await mkdtemp(join(tmpdir(), 'msl-kartotek-'));
+  const person = (i: number) => ({
+    navn: 'Person ' + i,
+    initialer: 'P' + i,
+    mail: 'person' + i + '@example.com',
+    telefon: '0000' + i,
+  });
   try {
     const large = join(directory, 'stor.json');
-    await writeFile(large, ' '.repeat(MAX_SECRET_BYTES + 1));
+    const many = Array.from({ length: 1000 }, (_, i) => person(i));
+    assert.ok(Buffer.byteLength(JSON.stringify(many)) > MAX_SECRET_BYTES);
+    await writeFile(large, JSON.stringify(many));
     await assert.rejects(readEmployeeSecret(large), /48 KB/);
+    // En eksporteret profil med stort logo godtages, når selve listen er lille.
+    const profile = join(directory, 'profil.json');
+    await writeFile(
+      profile,
+      JSON.stringify({ logo: 'x'.repeat(MAX_SECRET_BYTES * 2), medarbejdere: [person(1)] }),
+    );
+    assert.deepEqual(await readEmployeeSecret(profile), [person(1)]);
     const invalid = join(directory, 'ugyldig.json');
     await writeFile(invalid, JSON.stringify([{ navn: 'Ugyldig' }]));
     await assert.rejects(readEmployeeSecret(invalid), /Kartoteket er ugyldigt/);
