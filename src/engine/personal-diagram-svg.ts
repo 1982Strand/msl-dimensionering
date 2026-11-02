@@ -1,5 +1,6 @@
 /** B-034/B-035: neutral model og ren SVG fra den godkendte variant 4-demo. */
 import type { PersonalDiagramSpec } from './personal-diagram.ts';
+import { reportStrings } from '../report/report-sprog.ts';
 
 export const TEMA = {
   flade: '#ffffff',
@@ -192,7 +193,7 @@ export function renderPersonalDiagramSvg(
     pts.map(([x, y], i) => `${i ? 'L' : 'M'}${tal(sx(x))} ${tal(sy(y))}`).join('');
   const ud: string[] = [];
   ud.push(
-    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${maal.b} ${maal.h}" width="${maal.b}" height="${maal.h}" font-family="${esc(tema.skrift)}" role="img" aria-label="${esc(options.ariaLabel ?? 'Personligt designdiagram')}">`,
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${maal.b} ${maal.h}" width="${maal.b}" height="${maal.h}" font-family="${esc(tema.skrift)}" role="img" aria-label="${esc(options.ariaLabel ?? reportStrings().diagram.aria)}">`,
   );
   ud.push(`<rect width="${maal.b}" height="${maal.h}" fill="${tema.flade}"/>`);
   ud.push(

@@ -1,6 +1,7 @@
 /** Standalone SVG renderer shared by the screen and future report export. */
 import type { Construction } from './construction.ts';
 import { laengde } from './enhed.ts';
+import { reportStrings, type ReportStrings } from '../report/report-sprog.ts';
 
 const palette = {
   baerelag: '#D9DDD9',
@@ -32,6 +33,7 @@ function wrap(text: string, limit: number): string[] {
 export interface ConstructionSvgOptions {
   blokbredde?: number;
   navnebredde?: number;
+  strings?: ReportStrings;
 }
 export function constructionSvg(
   data: Construction,
@@ -39,6 +41,7 @@ export function constructionSvg(
   options: ConstructionSvgOptions = {},
 ): string {
   const prefix = id.replace(/[^a-zA-Z0-9_-]/g, '');
+  const strings = options.strings ?? reportStrings();
   const maximum = Math.max(
     data.reference_mm || 0,
     ...data.kolonner.flatMap((c) => [c.total_mm || 0, c.best_case_mm || 0]),
@@ -145,7 +148,7 @@ export function constructionSvg(
           net += text(x - 14, y - (label.length - 1) * 6.5 + 3, label, 10, palette.net, 'end');
         }
         parts.push(
-          `<g data-elevation-mm="${elevation}">${tooltip(`${data.geonet_navn} · ${laengde(column.total_mm - elevation, data.enhed)} fra overkant`, net, 'geonet')}</g>`,
+          `<g data-elevation-mm="${elevation}">${tooltip(strings.konstruktion.geonet_fra_top(data.geonet_navn, laengde(column.total_mm - elevation, data.enhed)), net, 'geonet')}</g>`,
         );
       }
       if (column.best_case_mm && column.best_case_mm < column.total_mm) {
@@ -153,7 +156,7 @@ export function constructionSvg(
         parts.push(
           tooltip(
             column.best_case_note ||
-              `Optimal korrektion · ${laengde(column.best_case_mm, data.enhed)}`,
+              strings.konstruktion.optimal_fallback(laengde(column.best_case_mm, data.enhed)),
             line(x - 4, y, x + rectWidth + 4, y, palette.green, 1.5, '2 4') +
               `<rect x="${x - 4}" y="${y - 7}" width="${rectWidth + 8}" height="14" fill="transparent"/>`,
             'optimal',
@@ -165,7 +168,7 @@ export function constructionSvg(
       const y = base - data.reference_mm * scale;
       parts.push(
         tooltip(
-          `Indtastet niveau · ${laengde(data.reference_mm, data.enhed)}`,
+          strings.konstruktion.indtastet_niveau(laengde(data.reference_mm, data.enhed)),
           line(left + 10, y, left + columnWidth - 10, y, '#9AA39C', 1.5, '7 5'),
           'reference',
         ),
@@ -183,14 +186,14 @@ export function constructionSvg(
   });
   if (data.vis_signatur) {
     const legend: [string, string, string][] = [
-      ['Bærelag', palette.baerelag, 'fill'],
-      ['Bundsikring', palette.bundsikring, 'fill'],
+      [strings.konstruktion.legend_baerelag, palette.baerelag, 'fill'],
+      [strings.konstruktion.legend_bundsikring, palette.bundsikring, 'fill'],
     ];
     if (data.kolonner.some((c) => c.geonet_mm.length))
-      legend.push([data.geonet_navn || 'Geonet', palette.net, '']);
+      legend.push([data.geonet_navn || strings.snit.geonet, palette.net, '']);
     if (data.kolonner.some((c) => c.best_case_mm && c.total_mm && c.best_case_mm < c.total_mm))
-      legend.push(['Optimal korrektion', palette.green, '2 4']);
-    if (data.reference_mm) legend.push(['Indtastet niveau', '#9AA39C', '7 5']);
+      legend.push([strings.konstruktion.legend_optimal, palette.green, '2 4']);
+    if (data.reference_mm) legend.push([strings.konstruktion.legend_indtastet, '#9AA39C', '7 5']);
     let x = 20,
       y = legendY;
     parts.push('<g data-kind="legend">');
@@ -210,5 +213,8 @@ export function constructionSvg(
     }
     parts.push('</g>');
   }
-  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${width} ${height}" width="${width}" height="${height}" role="img" aria-labelledby="${prefix}-title ${prefix}-description" style="font-family:Arial,Helvetica,sans-serif;background:white"><title id="${prefix}-title">Opbygningssnit · ${escape(data.geonet_navn)}</title><desc id="${prefix}-description">Snittene vises i samme lodrette skala. ${escape(data.kolonner.map((c) => `${c.titel}: ${c.total_mm ? laengde(c.total_mm, data.enhed) : c.tom_tekst}`).join('. '))}</desc><defs><pattern id="${prefix}-soil" width="6" height="6" patternUnits="userSpaceOnUse"><rect width="6" height="6" fill="${palette.earth}"/><path d="M-1,1 L1,-1 M0,6 L6,0 M5,7 L7,5" stroke="#6E5A42" stroke-width="1"/></pattern></defs>${parts.join('')}</svg>`;
+  const summary = data.kolonner
+    .map((c) => `${c.titel}: ${c.total_mm ? laengde(c.total_mm, data.enhed) : c.tom_tekst}`)
+    .join('. ');
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${width} ${height}" width="${width}" height="${height}" role="img" aria-labelledby="${prefix}-title ${prefix}-description" style="font-family:Arial,Helvetica,sans-serif;background:white"><title id="${prefix}-title">${escape(strings.konstruktion.title(data.geonet_navn))}</title><desc id="${prefix}-description">${escape(strings.konstruktion.description(summary))}</desc><defs><pattern id="${prefix}-soil" width="6" height="6" patternUnits="userSpaceOnUse"><rect width="6" height="6" fill="${palette.earth}"/><path d="M-1,1 L1,-1 M0,6 L6,0 M5,7 L7,5" stroke="#6E5A42" stroke-width="1"/></pattern></defs>${parts.join('')}</svg>`;
 }

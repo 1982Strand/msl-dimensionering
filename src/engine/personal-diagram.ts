@@ -5,8 +5,13 @@ import template from './personal-diagram-template.json' with { type: 'json' };
 import type { BasisTable, Product } from './types.ts';
 import type { ProductRow } from './products.ts';
 import type { DimensioningResult } from './construction.ts';
+import { reportStrings } from '../report/report-sprog.ts';
 
 type Curve = 'uarmeret' | '1_lag' | '2_lag';
+export type PersonalDiagramStrings = Pick<
+  import('../report/report-sprog.ts').ReportStrings['diagram'],
+  'akse_x' | 'akse_y' | 'hover' | 'ustabiliseret' | 'vejdim_tal' | 'lag' | 'optimal' | 'indtastet'
+>;
 export interface PersonalDiagramInput {
   eu: number;
   eo: number;
@@ -20,12 +25,12 @@ export interface PersonalDiagramInput {
   t_2_lag_best_mm?: number | null;
   skala?: number;
   phi_kurver?: Partial<Record<Curve, number | null>> | null;
+  strings?: PersonalDiagramStrings;
 }
 export interface PersonalDiagramSpec {
   data: Record<string, unknown>[];
   layout: Record<string, unknown>;
 }
-const hover = '%{x:.0f} cm · Eᵤ %{y:.1f} MPa<extra>%{fullData.name}</extra>';
 const colors = ['#15211A', '#1F4E9C', '#7B1FA2'];
 
 export function byg_designdiagram(input: PersonalDiagramInput): PersonalDiagramSpec {
@@ -42,6 +47,7 @@ export function byg_designdiagram(input: PersonalDiagramInput): PersonalDiagramS
     t_2_lag_best_mm,
     skala = 1,
     phi_kurver = {},
+    strings = reportStrings().diagram,
   } = input;
   const euValues = Object.keys(t_basis_table)
     .map(Number)
@@ -70,13 +76,13 @@ export function byg_designdiagram(input: PersonalDiagramInput): PersonalDiagramS
       ...unreinforced,
       type: 'scatter',
       mode: 'lines',
-      name: `Ustabiliseret${Math.abs(skala - 1) > 1e-9 ? ' · VejDims tal' : ''}`,
+      name: `${strings.ustabiliseret}${Math.abs(skala - 1) > 1e-9 ? ` · ${strings.vejdim_tal}` : ''}`,
       line: { color: colors[0], width: 2 },
-      hovertemplate: hover,
+      hovertemplate: strings.hover('%{x:.0f}', '%{y:.1f}', '%{fullData.name}'),
     });
   for (const [index, mode] of (['1_lag', '2_lag'] as const).entries()) {
     const color = colors[index + 1],
-      name = `${index + 1} lag geonet`;
+      name = strings.lag(index + 1);
     const conservative = curve(mode, 1 + phiCorrection(mode) + net);
     if (!conservative.x.length) continue;
     if (best !== null) {
@@ -101,9 +107,9 @@ export function byg_designdiagram(input: PersonalDiagramInput): PersonalDiagramS
           ...optimal,
           type: 'scatter',
           mode: 'lines',
-          name: `${name} (optimal)`,
+          name: `${name} (${strings.optimal})`,
           line: { color, width: 1.2, dash: 'dot' },
-          hovertemplate: hover,
+          hovertemplate: strings.hover('%{x:.0f}', '%{y:.1f}', '%{fullData.name}'),
         });
       }
     }
@@ -113,7 +119,7 @@ export function byg_designdiagram(input: PersonalDiagramInput): PersonalDiagramS
       mode: 'lines',
       name,
       line: { color, width: 2 },
-      hovertemplate: hover,
+      hovertemplate: strings.hover('%{x:.0f}', '%{y:.1f}', '%{fullData.name}'),
     });
   }
   for (const [i, thickness] of [t_1_lag_mm, t_2_lag_mm].entries()) {
@@ -123,10 +129,10 @@ export function byg_designdiagram(input: PersonalDiagramInput): PersonalDiagramS
         y: [eu],
         type: 'scatter',
         mode: 'markers',
-        name: `${i + 1} lag geonet`,
+        name: strings.lag(i + 1),
         showlegend: false,
         marker: { color: colors[i + 1], size: 9, line: { color: '#FFFFFF', width: 1.5 } },
-        hovertemplate: hover,
+        hovertemplate: strings.hover('%{x:.0f}', '%{y:.1f}', '%{fullData.name}'),
       });
   }
   for (const [i, thickness] of [t_1_lag_best_mm, t_2_lag_best_mm].entries()) {
@@ -136,10 +142,10 @@ export function byg_designdiagram(input: PersonalDiagramInput): PersonalDiagramS
         y: [eu],
         type: 'scatter',
         mode: 'markers',
-        name: `${i + 1} lag geonet (optimal)`,
+        name: `${strings.lag(i + 1)} (${strings.optimal})`,
         showlegend: false,
         marker: { color: 'rgba(0,0,0,0)', size: 10, line: { color: colors[i + 1], width: 2 } },
-        hovertemplate: hover,
+        hovertemplate: strings.hover('%{x:.0f}', '%{y:.1f}', '%{fullData.name}'),
       });
   }
   const shapes =
@@ -161,10 +167,10 @@ export function byg_designdiagram(input: PersonalDiagramInput): PersonalDiagramS
       y: [eu],
       type: 'scatter',
       mode: 'markers',
-      name: `Indtastet opbygning (${pythonFixed(t_indtastet_mm! / 10, 0)} cm)`,
+      name: strings.indtastet(pythonFixed(t_indtastet_mm! / 10, 0)),
       showlegend: true,
       marker: { color: '#B42318', size: 11, line: { color: '#FFFFFF', width: 1.5 } },
-      hovertemplate: hover,
+      hovertemplate: strings.hover('%{x:.0f}', '%{y:.1f}', '%{fullData.name}'),
     });
   const allX = [...unreinforced.x];
   for (const thickness of [
@@ -211,12 +217,12 @@ export function byg_designdiagram(input: PersonalDiagramInput): PersonalDiagramS
       },
       xaxis: {
         ...axis,
-        title: { text: 'Bærelagstykkelse [cm]' },
+        title: { text: strings.akse_x },
         range: [0, Math.max(allX.length ? Math.max(...allX) * 1.08 : 160, 80)],
       },
       yaxis: {
         ...axis,
-        title: { text: 'Bundmodul Eᵤ [MPa]' },
+        title: { text: strings.akse_y },
         range: [0, Math.max(Math.max(...euValues) * 1.05, eu * 1.2, 50)],
       },
     },

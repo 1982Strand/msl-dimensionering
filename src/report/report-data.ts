@@ -6,6 +6,16 @@ import { normaliser as enhed, laengde } from '../engine/enhed.ts';
 import { pythonFixed } from '../engine/python-numbers.ts';
 import { parseReportText, type FormattedText } from './text-format.ts';
 import { formatPhone } from './phone-format.ts';
+import {
+  reportStrings,
+  SECTION_TITLER,
+  STANDARD_MATERIALER_RAPPORT,
+  STANDARD_TEKSTER,
+  type ReportLanguage,
+  type ReportStrings,
+} from './report-sprog.ts';
+
+export { SECTION_TITLER, STANDARD_MATERIALER_RAPPORT, STANDARD_TEKSTER };
 
 export const SECTION_KEYS = [
   'oplyste_forudsaetninger',
@@ -17,90 +27,7 @@ export const SECTION_KEYS = [
   'projekteringsansvar',
 ] as const;
 export type SectionKey = (typeof SECTION_KEYS)[number];
-export const SECTION_TITLER: Readonly<Record<SectionKey, string>> = {
-  oplyste_forudsaetninger: 'Oplyste forudsætninger',
-  generelle_forudsaetninger: 'Generelle dimensioneringsforudsætninger for MSL opbygning',
-  krav_komprimering: 'Krav til komprimering',
-  dim_sikkerhed: 'Dimensionering og sikkerhed',
-  udfoerelse: 'Udførelse',
-  kontrolplan: 'Kontrolplan',
-  projekteringsansvar: 'Projekteringsansvar',
-};
 
-// Ordlyd, indrykninger og linjeskift fra originalen, også FUND-005/A-006.
-// Standardteksterne tilpasses aldrig til beregningssagen.
-export const STANDARD_TEKSTER: Readonly<Record<SectionKey, string>> = {
-  oplyste_forudsaetninger:
-    '   • Dimensionsgivende trafikbelastning: T6\n' +
-    '   • Vingestyrke, Cv, skønnet i planum: > 100 kPa\n' +
-    '   • Grundvandsspejl: ikke oplyst/ikke relevant\n' +
-    '   • Bærelagsmaterialer:\n' +
-    '           o Genbrugsstabil',
-  generelle_forudsaetninger:
-    'Dimensioneringen af MSL opbygningen (mekanisk stabiliseret bærelag) er ' +
-    'baseret på resultaterne fra mere en 20 års feltforsøg udført i ' +
-    'Skandinavien. Det ubundne bærelag fastholdes af et eller flere lag ' +
-    'geonet, som låser og fastholder bærelaget hvormed trykspredningsvinklen ' +
-    'forøges i lighed. I praksis betyder det, at bærelaget kan reduceres i ' +
-    'forhold til den ikke-stabiliserede ubundne opbygning. Alternativt vil ' +
-    'der kunne opnås en betydelig forøgelse af bæreevne for en MSL opbygning ' +
-    'i forhold til en traditionel opbygning.\n\n' +
-    'Differenssætninger vil i stort omfang blive udjævnet, ligesom den ' +
-    'stabiliserede randzone for specielt flerlagsopbygninger vil blive ' +
-    'mindre sårbar i forhold til sætninger. Selvom erfaringerne viser ' +
-    'betydelige reduktioner i sætninger, så vil der kun sjældent kunne ' +
-    'opnås en sætningsfri ombygning. Ligeledes bør der tages højde for evt. ' +
-    'frostfølsomhed, selvom MSL-opbygningen vil udjævne eventuelle ' +
-    'hævninger.\n\n' +
-    'MSL-løsninger kan kombineres med letfyld, som dermed kan være med til ' +
-    'at kompensere for eventuelle sætninger.\n\n' +
-    'MSL-løsninger kan ligeledes håndtere og kompensere for bæreevnesvigt ' +
-    'forårsaget af midlertidig kortvarig vandpåvirkning, eksempelvis i ' +
-    'forbindelse med LAR-opbygninger.\n\n' +
-    'For særligt sætningsgivende bundforhold vil det være en fordel at ' +
-    'afvente med belægningsarbejde til sætningsforløbet har stabiliseret ' +
-    'sig. Tidshorisonten er variabel, og kan vare op til et år.',
-  krav_komprimering:
-    'Det forudsættes, at der ved indbygning af de ubundne bærelag opnås og ' +
-    'eftervises en komprimeringsgrad på middel 95 % og mindst 92 % målt ved ' +
-    'Vibrationsforsøg.',
-  dim_sikkerhed:
-    'Dimensionering og kontrol af bæreevne kan være forbundet med en nogen ' +
-    'måleusikkerhed.\n\n' +
-    'Ved kontrol af bæreevnen for MSL opbygningen vil en eventuel negativ ' +
-    'variation normalt være maksimalt 10 %.',
-  udfoerelse:
-    'MSL-opbygninger kan udføres hele året. I visse situationer kan det ' +
-    'være en fordel at arbejdet tilrettelægges således, at det udføres i ' +
-    'frostperioder, hvor fremkommeligheden i terrænet kan være mere ' +
-    'gunstig.\n\n' +
-    'Geonettenes formstabile struktur nødvendiggør at udlægningen sker på ' +
-    'et relativt jævnt underlag. Eventuelt bevoksning skal som udgangspunkt ' +
-    'fjernes. På meget sætningsgivende blød underbund kan rødder fra træer ' +
-    'og buske med fordel blive stående, ligesom intakt tørv bør bevares. ' +
-    'Det er dog vigtigt, at rødder og stubbe skæres helt ned, således at ' +
-    'der maksimalt er en terrænforskel på +/- 5 cm.\n\n' +
-    'Overlæg på geonet bør være minimum 0,4 m. Anlæg på udvendige skråninger ' +
-    'bør normalt udføres med maksimalt anlæg 1,5.',
-  kontrolplan:
-    'Det anbefales at udføre supplerende geoteknisk sondering og indmåling ' +
-    'af E-modul på planum, således at eventuelt behov for korrektion af ' +
-    'opbygning kan foretages før indbygning.\n\n' +
-    'Kontrol af bæreevne på oversiden af de indbyggede bærelag kan ske ved ' +
-    'pladebelastningsforsøg suppleret med dynamisk minifaldlodsmåling.\n\n' +
-    'Omfanget af kontrolplan vurderes på det enkelte projekt.',
-  projekteringsansvar:
-    'Såfremt der foreligger skriftligt aftale med præcisering af omfang og ' +
-    'krav til konstruktionen samt honorar og ansvarsforpligtelse for ' +
-    'projekteringen, kan ansvaret for dimensioneringen være omfattet af ' +
-    'vores rådgiveransvarsforsikring.\n\n' +
-    'Såfremt der ikke foreligger en skriftlige aftale omkring ansvarsforhold, ' +
-    'og dersom dimensioneringen i tillæg er udarbejdet som en vederlagsfri ' +
-    'service, fraskriver Byggros sig ansvaret for anvendelsen af ' +
-    'beregninger, konstruktionsforslag og anden relateret rådgivning.',
-};
-
-export const STANDARD_MATERIALER_RAPPORT = ['Stabilgrus SG II', 'Bundsikring BL II'] as const;
 export type BasisLineKey = 'eu' | 'grundlag' | 'eo_aekv' | 'yderomraade' | 'materialer' | 'phi';
 export type ResultLineKey = 'geonet' | 'uarmeret' | 'indtastet' | '1lag' | '2lag';
 export type ReportLineKey = `basis_${BasisLineKey}` | `resultat_${ResultLineKey}`;
@@ -136,6 +63,7 @@ function applyLineEdit(
     : [label, value];
 }
 export interface ReportChoices {
+  sprog?: ReportLanguage;
   linje_rettelser?: ReportLineEdits;
   resultat_linjer?: Partial<Record<ResultLineKey, boolean>>;
   /** B-046: fravalg er adskilt fra bevidst tom tekst. */
@@ -186,7 +114,7 @@ export type ReportContext = Required<{
     dim_resultat: ReportRow[];
   };
 export interface ReportBasis {
-  overskrift: 'Grundlag for beregning';
+  overskrift: string;
   rows: ReportRow[];
 }
 export interface ReportData {
@@ -203,6 +131,25 @@ export interface ReportData {
   formattedTexts: Partial<Record<SectionKey, FormattedText>>;
   /** R3 skal udelade både tabel og overskrift, når grundlag er null. */
   grundlag: ReportBasis | null;
+  /** Faste etiketter til den konstante Typst-skabelon. */
+  sprog: {
+    projekt: string;
+    beskrivelse: string;
+    omfang: string;
+    udfoeres_for: string;
+    udfoert_af: string;
+    kvalitetssikring: string;
+    dimensioneringsgrundlag: string;
+    forudsaetninger: string;
+    generelle_forudsaetninger: string;
+    dimensioneringsresultat: string;
+    resultat_intro: string;
+    by_dato_suffix: string;
+    kolon: string;
+    side_af_prefix: string;
+    side_af_separator: string;
+    typst_language: string;
+  };
 }
 
 // Python str.strip(): JS trim() fjerner også BOM og overser U+001C–001F/U+0085.
@@ -212,10 +159,8 @@ const strip = (s: string): string =>
     '',
   );
 
-export function _format_dato_dk(iso_dato: string): string {
-  const chars = [...iso_dato]; // Python måler og slicer Unicode-kodepunkter.
-  if (!iso_dato || chars.length !== 10 || chars[4] !== '-' || chars[7] !== '-') return iso_dato;
-  return `${chars.slice(8, 10).join('')}/${chars.slice(5, 7).join('')}/${chars.slice(0, 4).join('')}`;
+export function _format_dato_dk(iso_dato: string, t: ReportStrings = reportStrings()): string {
+  return t.dato(iso_dato);
 }
 
 export function upper_geonet_frac_for_sub_lag(
@@ -235,46 +180,55 @@ type ReportMaterial = {
   pct?: number | null;
 };
 const grader = (v: number, decimaler = 1) => `${pythonFixed(v, decimaler)}°`.replace('.', ',');
-export function _materiale_resume(materialer: readonly ReportMaterial[], unit = 'mm'): string {
-  if (!materialer.length) return '—';
+export function _materiale_resume(
+  materialer: readonly ReportMaterial[],
+  unit = 'mm',
+  t: ReportStrings = reportStrings(),
+): string {
+  if (!materialer.length) return t.tom;
   return materialer
     .map((m, i) => {
-      const dele = [`Lag ${i + 1}: ${m.navn ?? '?'}`];
-      if (m.phi != null) dele.push(`φᵢ = ${grader(m.phi)}`);
+      const dele = [t.materiale_lag(i + 1, m.navn ?? '?')];
+      if (m.phi != null) dele.push(t.materiale_phi(grader(m.phi)));
       if (m.tykkelse_mm != null) dele.push(laengde(m.tykkelse_mm, unit));
       else if (m.pct != null) dele.push(`${pythonFixed(m.pct, 0)} %`);
-      return dele.join(' · ');
+      return dele.join(t.materiale_separator);
     })
     .join('\n');
 }
 
-export function _yderomraade_tekst(dim: DimensioningResult, unit = 'mm'): string | null {
+export function _yderomraade_tekst(
+  dim: DimensioningResult,
+  unit = 'mm',
+  t: ReportStrings = reportStrings(),
+): string | null {
   if (dim.zone !== 'under' && dim.zone !== 'over') return null;
   const tal = (v: number, dec = 0) =>
     pythonFixed(v, dec, true).replaceAll(',', 'X').replace('.', ',').replaceAll('X', '.');
-  const retning =
-    dim.zone === 'over' ? 'over diagrammets øverste kurve' : 'under diagrammets laveste kurve';
+  const retning = dim.zone === 'over' ? t.yderomraade.over : t.yderomraade.under;
   const yder = dim.yder ?? {};
   const afv = yder.afvigelse_pct;
   if (afv == null) {
     if (typeof dim.skala !== 'number') return null;
-    return (
-      `VejDims krav ligger ${tal(Math.abs(dim.skala - 1.0) * 100, 1)} % ${retning}. Den ` +
-      'ustabiliserede tykkelse er VejDims, og reduktionen er aflæst på randkurven.'
-    );
+    return t.yderomraade.uden_afvigelse(tal(Math.abs(dim.skala - 1.0) * 100, 1), retning);
   }
-  let tekst =
-    `VejDims krav ligger ${tal(Number(afv), 1)} % ${retning}, ` +
-    `${yder.inden_tolerance ? 'inden for' : 'uden for'} tolerancen på ${tal(Number(yder.tolerance_pct || 0), 1)} %. `;
+  let tekst = t.yderomraade.med_afvigelse(
+    tal(Number(afv), 1),
+    retning,
+    tal(Number(yder.tolerance_pct || 0), 1),
+    yder.inden_tolerance ? t.yderomraade.inden : t.yderomraade.uden,
+  );
   if (yder.handling === 'vejdim') {
-    tekst +=
-      `Den ustabiliserede tykkelse er sat til VejDims ${laengde(Number(yder.t_vejdim_mm || 0), unit)}, og ` +
-      `reduktionen er aflæst på kurven Eₒ = ${tal(Number(yder.eo_rand || 0))} MPa`;
-    tekst += yder.inden_tolerance ? '.' : ' og dermed ekstrapoleret.';
+    tekst += t.yderomraade.vejdim(
+      laengde(Number(yder.t_vejdim_mm || 0), unit),
+      tal(Number(yder.eo_rand || 0)),
+    );
+    tekst += yder.inden_tolerance ? '.' : t.yderomraade.ekstrapoleret;
   } else if (yder.handling === 'laveste') {
-    tekst +=
-      `Der er regnet med diagrammets laveste kurve, Eₒ = ${tal(Number(yder.eo_rand || 0))} MPa, på ` +
-      `${laengde(Number(yder.t_rand_mm || 0), unit)}.`;
+    tekst += t.yderomraade.rand(
+      tal(Number(yder.eo_rand || 0)),
+      laengde(Number(yder.t_rand_mm || 0), unit),
+    );
   }
   return tekst;
 }
@@ -282,29 +236,34 @@ export function _yderomraade_tekst(dim: DimensioningResult, unit = 'mm'): string
 export function grundlag_linjer(
   dim: DimensioningResult,
   valg: ReportChoices = {},
+  t: ReportStrings = reportStrings(valg.sprog),
 ): [BasisLineKey, string, string][] {
   const unit = enhed(valg.enhed);
   const rows: [BasisLineKey, string, string][] = [
-    ['eu', 'Underbundens E-modul (Eᵤ)', `${pythonFixed(dim.eu, 0)} MPa`],
+    ['eu', t.grundlag.eu, `${pythonFixed(dim.eu, 0)} MPa`],
   ];
   if (dim.grundlag_type === 'trafikklasse') {
-    rows.push(['grundlag', 'Dimensioneringsgrundlag', `Trafikklasse ${dim.t_klasse} (VejDim)`]);
+    rows.push([
+      'grundlag',
+      t.grundlag.trafikklasse_label,
+      t.grundlag.trafikklasse(dim.t_klasse as string),
+    ]);
     if (typeof dim.eo_aekv === 'number')
-      rows.push(['eo_aekv', 'Ækvivalent Eₒ (Eₒ,ækv)', `${pythonFixed(dim.eo_aekv, 0)} MPa`]);
-    const yder = _yderomraade_tekst(dim, unit);
-    if (yder) rows.push(['yderomraade', 'Uden for diagrammets område', yder]);
-  } else rows.push(['grundlag', 'Belastningsklasse', String(dim.valgt_klasse)]);
+      rows.push(['eo_aekv', t.grundlag.eo_aekv, `${pythonFixed(dim.eo_aekv, 0)} MPa`]);
+    const yder = _yderomraade_tekst(dim, unit, t);
+    if (yder) rows.push(['yderomraade', t.grundlag.yderomraade, yder]);
+  } else rows.push(['grundlag', t.grundlag.belastningsklasse, String(dim.valgt_klasse)]);
   let materiale: string;
   if (dim.tilstand === 'Standard') {
-    const navne = (valg.standard_materialer ?? STANDARD_MATERIALER_RAPPORT)
+    const navne = (valg.standard_materialer ?? t.standard_materialer)
       .filter((n) => strip(n || ''))
       .map((n) => strip(n!));
-    materiale = navne.length ? navne.join(' og ') : 'Designdiagrammernes referencemateriale';
-  } else materiale = _materiale_resume(dim.materialer, unit);
-  rows.push(['materialer', 'Materialeopbygning', materiale]);
+    materiale = navne.length ? navne.join(t.og) : t.grundlag.standardmaterialer;
+  } else materiale = _materiale_resume(dim.materialer, unit, t);
+  rows.push(['materialer', t.grundlag.materialeopbygning, materiale]);
   rows.push([
     'phi',
-    'Vægtet friktionsvinkel (φᵥ)',
+    t.grundlag.phi,
     grader(dim.phi ?? PHI_BASIS, afrunding(dim.afrunding).phi_afrunding === 'ingen' ? 1 : 0),
   ]);
   return rows;
@@ -313,8 +272,9 @@ export function grundlag_linjer(
 export function formatér_dimensioneringsgrundlag(
   dim: DimensioningResult,
   valg: ReportChoices = {},
+  t: ReportStrings = reportStrings(valg.sprog),
 ): [string, string][] {
-  return grundlag_linjer(dim, valg)
+  return grundlag_linjer(dim, valg, t)
     .filter(
       ([lid]) =>
         (valg.grundlag_linjer?.[lid] ?? true) &&
@@ -326,11 +286,12 @@ export function formatér_dimensioneringsgrundlag(
 export function resultat_linjer(
   dim: DimensioningResult,
   valg: ReportChoices = {},
+  t: ReportStrings = reportStrings(valg.sprog),
 ): [ResultLineKey, string, string][] {
   const res1 = dim.res_1,
     res2 = dim.res_2;
   const unit = enhed(valg.enhed);
-  const mm = (v: number | null | undefined) => (typeof v === 'number' ? laengde(v, unit) : '—');
+  const mm = (v: number | null | undefined) => (typeof v === 'number' ? laengde(v, unit) : t.tom);
   type Felt = 't_armeret_mm' | 't_uarmeret_phi_kor_mm' | 't_uarmeret_mm';
   type Lengths = Pick<
     CalculationResult,
@@ -349,7 +310,7 @@ export function resultat_linjer(
     }
     return tekst;
   };
-  let uarm = '—';
+  let uarm = t.tom;
   const candidates: [Lengths, Felt][] = [
     [res1, 't_uarmeret_phi_kor_mm'],
     [res2, 't_uarmeret_phi_kor_mm'],
@@ -364,13 +325,13 @@ export function resultat_linjer(
   }
   const indtastet = dim.materialer.reduce((sum, m) => sum + (m.tykkelse_mm || 0), 0) || null;
   const rows: [ResultLineKey, string, string][] = [
-    ['geonet', 'Valgt geonet', dim.geonet?.navn ?? '—'],
-    ['uarmeret', 'Ustabiliseret referenceopbygning', uarm],
-    ['indtastet', 'Samlet tykkelse af valgt opbygning', mm(indtastet)],
+    ['geonet', t.resultat.geonet, dim.geonet?.navn ?? t.tom],
+    ['uarmeret', t.resultat.uarmeret, uarm],
+    ['indtastet', t.resultat.indtastet, mm(indtastet)],
   ];
   rows.push(
-    ['1lag', 'Stabiliseret tykkelse — 1 lag', mmRes(res1, 't_armeret_mm')],
-    ['2lag', 'Stabiliseret tykkelse — 2 lag', mmRes(res2, 't_armeret_mm')],
+    ['1lag', t.resultat.lag1, mmRes(res1, 't_armeret_mm')],
+    ['2lag', t.resultat.lag2, mmRes(res2, 't_armeret_mm')],
   );
   return rows;
 }
@@ -378,8 +339,9 @@ export function resultat_linjer(
 export function formatér_dimensioneringsresultat(
   dim: DimensioningResult,
   valg: ReportChoices = {},
+  t: ReportStrings = reportStrings(valg.sprog),
 ): [string, string][] {
-  return resultat_linjer(dim, valg)
+  return resultat_linjer(dim, valg, t)
     .filter(
       ([key]) =>
         valg.resultat_linjer?.[key] ?? (key === 'indtastet' ? (valg.vis_indtastet ?? true) : true),
@@ -390,8 +352,11 @@ export function formatér_dimensioneringsresultat(
 /** Dataækvivalent til originalens fjernelse af den tomme Word-tabel/overskrift.
  * dim_grundlag forbliver [] i context, ligesom originalens render-kontekst.
  */
-export function _fjern_tomt_grundlag(rows: ReportRow[]): ReportBasis | null {
-  return rows.length ? { overskrift: 'Grundlag for beregning', rows } : null;
+export function _fjern_tomt_grundlag(
+  rows: ReportRow[],
+  t: ReportStrings = reportStrings(),
+): ReportBasis | null {
+  return rows.length ? { overskrift: t.grundlag_for_beregning, rows } : null;
 }
 
 export function reportData(
@@ -400,8 +365,20 @@ export function reportData(
   valg: ReportChoices = {},
   tekster: EditedTexts = {},
 ): ReportData {
+  const t = reportStrings(valg.sprog);
+  return reportDataWithStrings(dim, metadata, valg, tekster, t);
+}
+
+/** Bygger data med en eksplicit tabel, så samme model kan bruges til tekstkontrol og nye sprog. */
+export function reportDataWithStrings(
+  dim: DimensioningResult,
+  metadata: ReportMetadata = {},
+  valg: ReportChoices = {},
+  tekster: EditedTexts = {},
+  t: ReportStrings = reportStrings(valg.sprog),
+): ReportData {
   const rows = (par: [string, string][]) => par.map(([label, vaerdi]) => ({ label, vaerdi }));
-  const tekst = (key: SectionKey) => tekster[key] ?? STANDARD_TEKSTER[key];
+  const tekst = (key: SectionKey) => tekster[key] ?? t.standard_tekster[key];
   const context: ReportContext = {
     projekt: strip(metadata.projekt || ''),
     beskrivelse: strip(metadata.beskrivelse || ''),
@@ -410,9 +387,9 @@ export function reportData(
     sagsbehandler: strip(metadata.sagsbehandler || ''),
     sagsbehandler_mail: strip(metadata.sagsbehandler_mail || ''),
     kontrol: strip(metadata.kontrol || ''),
-    dato: _format_dato_dk(metadata.dato ?? ''),
-    dim_grundlag: rows(formatér_dimensioneringsgrundlag(dim, valg)),
-    dim_resultat: rows(formatér_dimensioneringsresultat(dim, valg)),
+    dato: _format_dato_dk(metadata.dato ?? '', t),
+    dim_grundlag: rows(formatér_dimensioneringsgrundlag(dim, valg, t)),
+    dim_resultat: rows(formatér_dimensioneringsresultat(dim, valg, t)),
     tekst_oplyste_forudsaetninger: tekst('oplyste_forudsaetninger'),
     tekst_generelle_forudsaetninger: tekst('generelle_forudsaetninger'),
     tekst_krav_komprimering: tekst('krav_komprimering'),
@@ -439,13 +416,31 @@ export function reportData(
           ].filter(Boolean)
         : null,
     },
-    sections: { ...SECTION_TITLER },
+    sections: { ...t.section_titles },
     formattedTexts: Object.fromEntries(
       SECTION_KEYS.filter((key) => valg.medtag_afsnit?.[key] !== false).map((key) => [
         key,
         parseReportText(context[`tekst_${key}`]),
       ]),
     ),
-    grundlag: _fjern_tomt_grundlag(context.dim_grundlag),
+    grundlag: _fjern_tomt_grundlag(context.dim_grundlag, t),
+    sprog: {
+      projekt: t.projekt,
+      beskrivelse: t.beskrivelse,
+      omfang: t.omfang,
+      udfoeres_for: t.udfoeres_for,
+      udfoert_af: t.udfoert_af,
+      kvalitetssikring: t.kvalitetssikring,
+      dimensioneringsgrundlag: t.dimensioneringsgrundlag,
+      forudsaetninger: t.forudsaetninger,
+      generelle_forudsaetninger: t.section_titles.generelle_forudsaetninger + ':',
+      dimensioneringsresultat: t.dimensioneringsresultat,
+      resultat_intro: t.resultat_intro,
+      by_dato_suffix: t.by_dato_suffix,
+      kolon: t.kolon,
+      side_af_prefix: t.side_af_prefix,
+      side_af_separator: t.side_af_separator,
+      typst_language: t.typst_language,
+    },
   };
 }

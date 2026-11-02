@@ -44,6 +44,7 @@
 }
 #let rapport(profil, report) = context {
   let data = report.context
+  let sprog = report.sprog
   let farve = rgb(profil.farve)
   let m = profil.margener_mm
   let skrift = profil.skrift
@@ -52,13 +53,13 @@
   set document(title: profil.titel, author: data.sagsbehandler, date: none)
   // Words enkelte linjeafstand: linjen fylder skriftens ascender + descender
   // (Carlito 11 pt = 13,4 pt), så linjer, afsnit og tabelrækker følger samme gitter.
-  set text(font: skrift.broedtekst, size: skrift.stoerrelse_pt * 1pt, lang: "da",
+  set text(font: skrift.broedtekst, size: skrift.stoerrelse_pt * 1pt, lang: sprog.typst_language,
     hyphenate: false, ligatures: false, top-edge: "ascender", bottom-edge: "descender")
   set par(leading: 0pt, spacing: 0pt)
   set block(above: 0pt, below: 0pt)
   let sidetal() = {
     let nr = counter(page).display("1")
-    if profil.sidetal == "side-af" { [Side #nr af #counter(page).final().first()] }
+    if profil.sidetal == "side-af" { [#sprog.side_af_prefix#nr#sprog.side_af_separator#counter(page).final().first()] }
     else { [\[#nr\]] }
   }
   set page(paper: "a4",
@@ -159,13 +160,13 @@
   text(size: skrift.titel_pt * 1pt, profil.titel)
   parbreak()
   v(29.3pt, weak: false)
-  text(size: skrift.projekt_pt * 1pt, weight: "bold", "Projekt: " + data.projekt)
+  text(size: skrift.projekt_pt * 1pt, weight: "bold", sprog.projekt + data.projekt)
   parbreak()
   v(29.3pt, weak: false)
-  let felter = (("Beskrivelse:", data.beskrivelse), ("Omfang:", data.omfang),
-    ("Udføres for:", data.udfoeres_for), ("Udført af:", report.medarbejdere.udfoert_af), ("Kvalitetssikring:", report.medarbejdere.kontrol))
+  let felter = ((sprog.beskrivelse, data.beskrivelse), (sprog.omfang, data.omfang),
+    (sprog.udfoeres_for, data.udfoeres_for), (sprog.udfoert_af, report.medarbejdere.udfoert_af), (sprog.kvalitetssikring, report.medarbejdere.kontrol))
   // Originalens tabulatorstop (felt-bredde), dog bred nok til den bredeste etiket plus
-  // luft, så »Kvalitetssikring:« ikke rører værdien ved stor skrift eller Liberation Sans (R6).
+  // luft, så den bredeste etiket ikke rører værdien ved stor skrift eller Liberation Sans (R6).
   context {
     let etiket = calc.max(..felter.map(f => measure(strong(f.at(0))).width))
     let kolonne = calc.max(felt-bredde, etiket + 8pt)
@@ -175,27 +176,27 @@
     }
   }
   v(15.9pt, weak: false)
-  overskrift[Dimensioneringsgrundlag:]
+  overskrift(sprog.dimensioneringsgrundlag)
   blank()
   if "oplyste_forudsaetninger" in report.formattedTexts {
-    underoverskrift[Forudsætninger:]
+    underoverskrift(sprog.forudsaetninger)
     blank()
     formateret(report.formattedTexts.oplyste_forudsaetninger)
     blank()
   }
   if report.grundlag != none {
-    underoverskrift(report.grundlag.overskrift + ":")
+    underoverskrift(report.grundlag.overskrift + sprog.kolon)
     blank()
     tabel(report.grundlag.rows)
   } else { blank() }
   blank()
   if "generelle_forudsaetninger" in report.formattedTexts {
-    overskrift[Generelle dimensioneringsforudsætninger for MSL opbygning:]
+    overskrift(sprog.generelle_forudsaetninger)
     formateret(report.formattedTexts.generelle_forudsaetninger)
     blank()
   }
-  overskrift[Dimensioneringsresultat:]
-  tekst("Baseret på ovennævnte indgangsparametre kan vi foreslå følgende MSL opbygning:")
+  overskrift(sprog.dimensioneringsresultat)
+  tekst(sprog.resultat_intro)
   blank()
   if data.dim_resultat.len() > 0 { tabel(data.dim_resultat) }
   blank()
@@ -212,7 +213,7 @@
   // B-048: underskriftens linjer kommer fra et separat JSON-personlag.
   blank(n: 2)
   block(breakable: false)[
-    #strong(profil.by + " d.") #data.dato
+    #strong(profil.by + sprog.by_dato_suffix) #data.dato
     #parbreak()
     #blank()
     #if report.medarbejdere.kontrollant == none {

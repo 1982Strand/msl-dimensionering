@@ -367,7 +367,7 @@ export function reportPage(
   const t1 = r1.fejl ? null : r1.t_armeret_mm;
   const diagramPossible = !!dim.geonet.navn;
   function check(
-    key: keyof ReportFigureChoices,
+    key: Exclude<keyof ReportFigureChoices, 'sprog'>,
     label: string,
     possible: boolean,
     help: string | null = null,

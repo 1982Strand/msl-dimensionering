@@ -8,6 +8,7 @@ import { pythonFixed, pythonRound } from './python-numbers.ts';
 import { normaliser_opbygning } from './editing.ts';
 import type { ProductRow } from './products.ts';
 import type { CalculationResult, DistributedLayer } from './types.ts';
+import { reportStrings, type ReportStrings } from '../report/report-sprog.ts';
 
 export type DimensioningResult = NonNullable<ReturnType<typeof dimensioner>>;
 export interface ConstructionColumn {
@@ -62,22 +63,23 @@ function status(
   required: number | null,
   best: number | null,
   unit: string,
+  t: ReportStrings = reportStrings(),
 ): ConstructionColumn['status'] {
   if (input === null || required === null) return ['', 'neutral'];
   const diff = input - required,
     optimal = best !== null && best < required ? input - best : null;
   if (diff >= 0)
     return [
-      `${laengde(diff, unit)} i overskud${optimal !== null && optimal > diff ? `\n(${laengde(optimal, unit)} optimalt)` : ''}`,
+      `${t.konstruktion.overskud(laengde(diff, unit))}${optimal !== null && optimal > diff ? `\n${t.konstruktion.optimalt(laengde(optimal, unit))}` : ''}`,
       'gron',
     ];
   if (optimal !== null && optimal >= 0)
     return [
-      `${laengde(-diff, unit)} for lidt (optimalt ${laengde(optimal, unit)} i overskud)`,
+      t.konstruktion.for_lidt_optimal(laengde(-diff, unit), laengde(optimal, unit)),
       'advarsel',
     ];
   return [
-    `${laengde(-diff, unit)} for lidt${optimal !== null ? `\n(${laengde(-optimal, unit)} optimalt)` : ''}`,
+    `${t.konstruktion.for_lidt(laengde(-diff, unit))}${optimal !== null ? `\n${t.konstruktion.optimalt(laengde(-optimal, unit))}` : ''}`,
     'kritisk',
   ];
 }
@@ -87,6 +89,7 @@ function optimalNote(
   p: ProductRow | undefined,
   result: DimensioningResult,
   unit: string,
+  t: ReportStrings = reportStrings(),
 ): string | null {
   if (
     !p ||
@@ -108,29 +111,33 @@ function optimalNote(
   const net = pythonRound(p.t_basis_arm_mm * p.korrektion_min),
     phiMm = pythonRound(p.t_basis_arm_mm * phiCorrection);
   const lines: [string, string, number | null][] = [
-    ['', 'Ustabiliseret bærelagstykkelse', unreinforced],
+    ['', t.konstruktion.note_ustabiliseret, unreinforced],
     [
       '−',
-      'Basisreduktion, referencenet',
+      t.konstruktion.note_basis,
       Math.abs(unreinforced === null ? 0 : pythonRound(unreinforced - p.t_basis_arm_mm)),
     ],
-    [net < 0 ? '−' : '+', `Net-korrektion, indeks ${index}`, Math.abs(net)],
+    [net < 0 ? '−' : '+', t.konstruktion.note_net(index), Math.abs(net)],
   ];
   if (Math.abs(phiCorrection) > 0.0005)
-    lines.push([phiMm < 0 ? '−' : '+', `φᵥ-korrektion, ${pct(phiCorrection, 1)}`, Math.abs(phiMm)]);
+    lines.push([
+      phiMm < 0 ? '−' : '+',
+      t.konstruktion.note_phi(pct(phiCorrection, 1)),
+      Math.abs(phiMm),
+    ]);
   const step = p.afrunding_trin_mm || result.afrunding.trin_mm;
   const additions = tillaeg(best, exact, step, p.t_min_mm);
   [
-    `Oprunding til nærmeste ${laengde(step, unit)}`,
-    'Tillæg til minimumstykkelse',
-    'Tillæg for mindste lagtykkelse',
+    t.konstruktion.note_oprunding(laengde(step, unit)),
+    t.konstruktion.note_minimum,
+    t.konstruktion.note_mindste_lag,
   ].forEach((label, i) => {
     if (pythonRound(additions[i]) > 0) lines.push(['+', label, pythonRound(additions[i])]);
   });
   return [
-    `Optimal korrektion · effektindeks ${index} · net-korrektion ${pct(p.korrektion_min)}`,
+    t.konstruktion.note_titel(index, pct(p.korrektion_min)),
     ...lines.map(([sign, label, mm]) => `${sign} ${label}: ${laengde(mm, unit)}`.trim()),
-    `= Stabiliseret bærelagstykkelse: ${laengde(best, unit)}`,
+    t.konstruktion.note_resultat(laengde(best, unit)),
   ].join('\n');
 }
 
@@ -139,6 +146,7 @@ export function constructionData(
   products: { one: ProductRow[]; two: ProductRow[] },
   display: unknown,
   netplacering = 'laggraense',
+  t: ReportStrings = reportStrings(),
 ): Construction {
   const settings = normaliser_opbygning(display),
     unit = settings.enhed;
@@ -197,7 +205,7 @@ export function constructionData(
     best: number | null = null,
     note: string | null = null,
     state: ConstructionColumn['status'] = ['', 'neutral'],
-    empty = 'Ikke defineret',
+    empty = t.snit.tom,
   ) {
     const lag: ConstructionColumn['lag'] = sub?.length
       ? sub.map((l) => {
@@ -210,7 +218,7 @@ export function constructionData(
           return [l.navn, l.tykkelse_mm, type ? 'bundsikring' : 'baerelag'];
         })
       : total
-        ? [['Ubunden opbygning', total, 'baerelag']]
+        ? [[t.snit.ubunden, total, 'baerelag']]
         : [];
     columns.push({
       titel: title,
@@ -223,20 +231,18 @@ export function constructionData(
       status: state,
     });
   }
-  if (entered) column('Indtastet opbygning', entered, enteredLayers, []);
+  if (entered) column(t.snit.indtastet, entered, enteredLayers, []);
   column(
-    entered && unreinforced !== null
-      ? 'Ustabiliseret bærelagstykkelse (φᵥ-korrigeret)'
-      : 'Ustabiliseret bærelagstykkelse',
+    entered && unreinforced !== null ? t.snit.ustabiliseret_phi : t.snit.ustabiliseret,
     unreinforced,
     layers(unreinforced),
     [],
     null,
     null,
-    status(entered, unreinforced, null, unit),
+    status(entered, unreinforced, null, unit, t),
     unreinforced === null
-      ? `Ustabiliseret bærelag ikke defineret for Eᵤ = ${pythonFixed(result.eu, 0)} MPa`
-      : 'Ikke defineret',
+      ? t.konstruktion.ikke_defineret_eu(pythonFixed(result.eu, 0))
+      : t.konstruktion.ikke_defineret,
   );
   selected.forEach((p, i) => {
     const total = p && !p.fejl ? (p.t_armeret_mm ?? null) : null;
@@ -250,17 +256,17 @@ export function constructionData(
       placering: netplacering,
     });
     column(
-      `${i + 1} lag geonet`,
+      i === 0 ? t.snit.lag1 : t.snit.lag2,
       total,
       sub,
       total ? placement.geonet_y_fracs.map((frac) => total * (1 - frac)) : [],
       best,
-      optimalNote(p, result, unit),
-      status(entered, total, best, unit),
-      total === null ? 'Ikke gyldigt for denne kombination' : 'Ikke defineret',
+      optimalNote(p, result, unit, t),
+      status(entered, total, best, unit, t),
+      total === null ? t.snit.ikke_gyldigt : t.snit.tom,
     );
   });
-  columns[0].underbund_tekst = `Underbund Eᵤ = ${pythonFixed(result.eu, 0)} MPa`;
+  columns[0].underbund_tekst = t.snit.underbund(pythonFixed(result.eu, 0));
   return {
     kolonner: columns,
     reference_mm: entered,

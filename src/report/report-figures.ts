@@ -15,8 +15,10 @@ import { K_PHI, PHI_BASIS } from '../engine/data.ts';
 import { pythonFixed } from '../engine/python-numbers.ts';
 import type { BasisTable, CalculationResult, DistributedLayer } from '../engine/types.ts';
 import type { ProductRow } from '../engine/products.ts';
+import { reportStrings, type ReportLanguage } from './report-sprog.ts';
 
 export interface ReportFigureChoices {
+  sprog?: ReportLanguage;
   rap_vis_uarm?: boolean;
   rap_vis_1lag?: boolean;
   rap_vis_2lag?: boolean;
@@ -105,6 +107,17 @@ export function reportFigures(
   table: BasisTable,
   choices: ReportFigureChoices = {},
 ): ReportFigures {
+  return reportFiguresWithStrings(dim, settings, table, choices, reportStrings(choices.sprog));
+}
+
+/** Bygger rapportfigurer med den valgte tabel, også ved tekstkontrol. */
+export function reportFiguresWithStrings(
+  dim: DimensioningResult,
+  settings: { opbygning?: unknown; lagfordeling?: unknown },
+  table: BasisTable,
+  choices: ReportFigureChoices = {},
+  t = reportStrings(choices.sprog),
+): ReportFigures {
   const display = normaliser_opbygning(settings.opbygning);
   const visSignatur = choices.rap_vis_signatur ?? display.signatur;
   const netplacering =
@@ -136,6 +149,7 @@ export function reportFigures(
     { one: [rows[0]], two: [rows[1]] },
     settings.opbygning,
     netplacering,
+    t,
   );
   const uarm =
     res[0].t_uarmeret_phi_kor_mm ||
@@ -204,32 +218,27 @@ export function reportFigures(
       phi_vaegtet: !!entered,
     });
   }
-  if (activeEntered) section('Indtastet opbygning', entered!, enteredLayers, null, true);
+  if (activeEntered) section(t.snit.indtastet, entered!, enteredLayers, null, true);
   if (
     (choices.rap_vis_uarm ?? dim.t_uarmeret_mm !== null) &&
     dim.t_uarmeret_mm !== null &&
     uarm !== null
   )
-    section(
-      entered ? 'Ustabiliseret bærelagstykkelse (φᵥ-korrigeret)' : 'Ustabiliseret bærelagstykkelse',
-      uarm,
-      layers(uarm),
-      null,
-    );
+    section(entered ? t.snit.ustabiliseret_phi : t.snit.ustabiliseret, uarm, layers(uarm), null);
   if ((choices.rap_vis_1lag ?? totals[0] !== null) && totals[0] !== null)
-    section('1 lag geonet', totals[0], layers(totals[0], uarm, true), 0);
+    section(t.snit.lag1, totals[0], layers(totals[0], uarm, true), 0);
   if (
     (choices.rap_vis_2lag ?? (totals[0] !== null && totals[0] >= 500)) &&
     totals[0] !== null &&
     totals[0] >= 500 &&
     totals[1] !== null
   )
-    section('2 lag geonet', totals[1], layers(totals[1], uarm, true), 1);
+    section(t.snit.lag2, totals[1], layers(totals[1], uarm, true), 1);
   const constructionCall: ReportConstructionCall | null = snit.length
     ? {
         eu: dim.eu,
         snit_liste: snit,
-        geonet_label: dim.geonet?.navn ?? 'Geonet',
+        geonet_label: dim.geonet?.navn ?? t.snit.geonet,
         materialer: materials,
         reference_mm: reference,
         dpi: 200,
@@ -261,7 +270,7 @@ export function reportFigures(
                 ? 'bundsikring'
                 : 'baerelag',
             ])
-          : [['Ubunden opbygning', s.t_baerelag_mm, 'baerelag']],
+          : [[t.snit.ubunden, s.t_baerelag_mm, 'baerelag']],
         geonet_mm: s.geonet_y_fracs.map((f) => s.t_baerelag_mm * (1 - f)),
         tom_tekst: '',
         best_case_mm: s.best_case_mm,
@@ -270,7 +279,7 @@ export function reportFigures(
           reference !== null
             ? (screen.kolonner.find((c) => c.titel === s.titel)?.status ?? ['', 'neutral'])
             : ['', 'neutral'],
-        ...(i === 0 ? { underbund_tekst: `Underbund Eᵤ = ${pythonFixed(dim.eu, 0)} MPa` } : {}),
+        ...(i === 0 ? { underbund_tekst: t.snit.underbund(pythonFixed(dim.eu, 0)) } : {}),
       })),
     };
     const exp = {
@@ -283,7 +292,7 @@ export function reportFigures(
     // testen. Den fælles renderer (B-025) har egne proportioner og en bredde, der følger antallet
     // af snit. Figuren sættes derfor i originalens målestok (0,16 mm/px, højst 16 cm), så
     // teksten får originalens størrelse uanset antallet af snit.
-    const svg = constructionSvg(data, 'report-construction');
+    const svg = constructionSvg(data, 'report-construction', { strings: t });
     const naturalWidth = Number(/width="([\d.]+)"/.exec(svg)![1]);
     visualisering = {
       export: exp,
@@ -309,7 +318,10 @@ export function reportFigures(
       eu: dim.eu,
       eo: dim.eo,
       klasse: dim.valgt_klasse,
-      grundlag_label: dim.grundlag_type === 'trafikklasse' ? `Trafikklasse ${dim.t_klasse}` : null,
+      grundlag_label:
+        dim.grundlag_type === 'trafikklasse'
+          ? t.diagram.titel_trafikklasse(dim.t_klasse as string)
+          : null,
       phi: dim.phi,
       geonet: dim.geonet,
       t_indtastet_mm: (choices.rap_dd_vis_din_prik ?? true) ? entered : null,
@@ -325,9 +337,16 @@ export function reportFigures(
     };
     const label =
       diagramCall.grundlag_label ||
-      (dim.valgt_klasse !== null ? `Klasse ${dim.valgt_klasse}` : `Eₒ = ${pythonFixed(dim.eo, 0)}`);
+      (dim.valgt_klasse !== null
+        ? t.diagram.titel_klasse(dim.valgt_klasse)
+        : t.diagram.titel_eo(pythonFixed(dim.eo, 0)));
     const title = {
-      text: `Eₒ = ${pythonFixed(dim.eo, 0)} MPa · ${label} · φᵥ = ${pythonFixed(dim.phi, 1).replace('.', ',')}° · ${dim.geonet.navn || 'referencenet'}`,
+      text: t.diagram.title(
+        pythonFixed(dim.eo, 0),
+        label,
+        pythonFixed(dim.phi, 1).replace('.', ','),
+        dim.geonet.navn || t.diagram.titel_reference,
+      ),
       x: 0,
       xanchor: 'left',
       y: 0.98,
@@ -343,12 +362,16 @@ export function reportFigures(
     };
     // Den fælles SVG har faste interne margener 58/18/18/46. En ydre SVG
     // tilfører rapporttitlen og oversætter fladen til rapportens 70/20/70/60.
-    const inner = renderPersonalDiagramSvg(diagramModel(byg_designdiagram(diagramCall)), {
-      width: 886,
-      height: 484,
-      fontFamily: 'Carlito',
-      idPrefix: 'report-diagram',
-    }).replace('<svg ', '<svg x="12" y="52" ');
+    const inner = renderPersonalDiagramSvg(
+      diagramModel(byg_designdiagram({ ...diagramCall, strings: t.diagram })),
+      {
+        width: 886,
+        height: 484,
+        fontFamily: 'Carlito',
+        idPrefix: 'report-diagram',
+        ariaLabel: t.diagram.aria,
+      },
+    ).replace('<svg ', '<svg x="12" y="52" ');
     designdiagram = {
       export: exp,
       svg: `<svg xmlns="http://www.w3.org/2000/svg" width="900" height="550" viewBox="0 0 900 550"><rect width="900" height="550" fill="white"/><text x="0" y="26" font-family="Carlito" font-size="13" fill="#263a32">${xml(title.text)}</text>${inner}</svg>`,
