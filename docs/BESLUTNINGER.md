@@ -116,3 +116,5 @@ Claudes valg, som kan ændres:
 
 - Markeringen vises på det sprog, der stadig har standardteksten: står man på svensk, og afsnittet kun er rettet på dansk, viser udvideren »Rettet på dansk« og en forklarende linje. På det sprog, der er rettet, vises intet mærke. Ellers ville alle danske rettelser få et mærke, også hos brugere, der aldrig bruger svensk.
 - »Nulstil tekster og valg til standard« nulstiller tekster, rettelser og valg på begge sprog, men beholder sprogvalget.
+
+Offentliggørelse: Brugeren blev spurgt, om ændringen skulle pushes, så den delte udgave får de svenske tekster, før en svensk fagperson har læst dem igennem. Brugerens svar: »Push nu«. De svenske tekster er derfor tilgængelige i den delte udgave som et udkast. Gennemlæsningen er stadig udestående.
