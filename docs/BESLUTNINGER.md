@@ -84,3 +84,25 @@ På Designdiagrammer har hvert diagram knapperne »Gem diagram« og »Indlæs di
 Filen indeholder `format`, `version`, `diagram_id`, `diagram_nr`, `eo`, `klasse` og `rows`. Id'et er fast for hvert diagram, fx `msl-designdiagram-4-eo80-klasse4`, og en fil kan kun indlæses i det diagram, den er gemt fra. Indlæsningen afvises med en besked, og intet ændres, hvis filen er gemt fra et andet diagram, har et andet format eller en anden version, er tom, har ukendte felter, mangler Eᵤ, har dobbelte Eᵤ eller har værdier, der ikke er tal fra 0 eller tomme (null). Værdier omregnes ikke. Den gamle samlede fil `designdiagrammer_brugerdefineret.json` kan ikke indlæses.
 
 Anledning: Brugeren spurgte, om rettelser foretaget lokalt kommer med, når andre åbner appen via Cloudflare-linket. Rettelserne ligger kun i den enkelte browser. Brugerens ønske: »ok. så vil jeg gerne lave funktionen. man skal stadig kunne redigere som man har lyst, som gemmes lokalt i den samlede fil. man skal kunne gemme diagrammer enkeltvist og indlæse diagramværdier enkeltvist (json format). Der skal være et eller andet unikt id for de gemte filer, så man ikke kan indlæse en fil fra diagram 4 ind i diagram 5 fx. knapper til gem og indlæs skal stå på samme linje som 'Tilføj række' ved hvert diagram.« Filnavn, id'ets opbygning, knappernes tekst og afvisningsreglerne er valgt af Claude og kan ændres. `tests/cases/` er uændret, og der er tilføjet nye tests.
+
+## 2. november 2026 — rapport på svensk med tekster pr. sprog
+
+Rapporten skal kunne genereres som PDF på svensk. Appen forbliver på dansk; kun PDF-rapporten får et sprogvalg. Beregninger, gyldighedsområder, afrundinger og advarsler er uændrede. Brugerens ønske: »I rapport-delen, vil jeg gerne indføre muligheden at få rapporten på svensk. Appen i sig selv skal stadig være på dansk, det er bare rapporten jeg gerne vil have mulighed for at generere en pdf på svensk.«
+
+Redigerede tekster gemmes pr. sprog. Hvert afsnit har en dansk og en svensk tekst. En rettelse på det ene sprog ændrer ikke det andet, og Nulstil går til standardteksten på det valgte sprog. Rettede tabellinjer gemmes ligeledes pr. sprog. Er et afsnit rettet på det ene sprog, men ikke på det andet, vises en markering ved afsnittet. Brugerens svar på forslaget om én tekst pr. sprog eller én fælles tekst: »Tekst pr. sprog«. Markeringen og tabellinjerne pr. sprog indgik i forslaget og er formuleret af Claude.
+
+Det svenske omfatter rapportens faste overskrifter og etiketter, tabellinjerne, figurernes tekster, standardteksterne, standardmaterialerne og firmaprofilens tekster. Figurerne tegnes som på skærmen med samme opbygning; kun teksterne skifter. Den danske rapport skal være uændret, og `tests/cases/` ændres ikke.
+
+Brugerens svar på de opfølgende spørgsmål:
+
+- Svenske tekster: »Claude skriver udkast«. Claude skriver et komplet udkast til de svenske tekster, og en svensk fagperson læser det igennem, før det tages i brug. Indtil da er de svenske tekster et udkast.
+- Firmaprofilen: »Alt i svensk udgave«. Profilen får svenske udgaver af titel, slogan, by, afsnitsoverskrifter og en særskilt svensk sidefod, fx med svensk adresse og telefon.
+- Datoformat i den svenske rapport: »2 november 2026«, altså dato med svensk månedsnavn.
+- Placering: »Øverst på rapportsiden«, over trin 1, fordi valget skifter teksterne i trin 2 og figurerne i trin 3. Valget huskes som de øvrige rapportvalg.
+
+Brugeren har leveret et svensk eksempel, »Dimensioneringsparadima - väg 150317-SE.docx« (BG Byggros AB, 2017). Det bruges som kilde til terminologi, slogan og sidefod. Opfølgende svar:
+
+- Indhold: »De nuværende danske«. De svenske standardtekster er en oversættelse af de gældende danske standardtekster. Hvor 2017-dokumentet afviger fagligt, fx »minst 95 %« mod »middel 95 % og mindst 92 %« og »upp till flera år« mod »op til et år«, følges den danske tekst.
+- Sidefod: »Ja, brug den«. Standarden for den svenske sidefod er »BG Byggros AB | Levins väg 4 | SE-291 73 Önnestad | Tel: +46 771 48 9000 | www.byggros.com«, og byen i underskriften er Önnestad. Begge kan rettes i firmaprofilen.
+- Firmaprofilen: »Profilen følger sprogvalget«. Felterne for titel, slogan, sidefod, by og afsnitsoverskrifter viser dansk eller svensk efter det valgte rapportsprog. Afsnittenes rækkefølge er fælles for begge sprog; det er Claudes valg.
+- Sprogvalget: »To valgknapper«, dvs. »Rapportsprog: Dansk / Svensk« som radioknapper på én linje under fanerne Rapport og Firmaprofil, så valget også ses i firmaprofilen.
