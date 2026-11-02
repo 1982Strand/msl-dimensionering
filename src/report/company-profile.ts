@@ -26,6 +26,17 @@ export function validateEmployees(value: unknown): string | null {
   }
   return null;
 }
+
+/** Kontrollerer medarbejderlisten fra bygningen uden at afsløre ugyldige data. */
+export function readEmbeddedEmployees(value: string | undefined): Employee[] {
+  if (value === undefined) return [];
+  try {
+    const employees: unknown = JSON.parse(value);
+    return validateEmployees(employees) === null ? (employees as Employee[]) : [];
+  } catch {
+    return [];
+  }
+}
 export const PROFILE_LIMITS: Readonly<Record<string, readonly [number, number]>> = {
   logo_bredde_mm: [15, 90],
   'skrift.stoerrelse_pt': [9, 13],

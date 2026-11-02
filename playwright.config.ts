@@ -9,7 +9,7 @@ import { defineConfig, devices } from '@playwright/test';
 const port = Number(process.env.PW_PORT ?? 5184);
 
 // Den lokale udgave bygges af `npm run build` til dist; de to andre af `npm run build:udgaver`.
-// Udgavernes egne tests ligger i udgave-intern.spec.ts og udgave-offentlig.spec.ts.
+// Udgavernes egne tests følger navnet udgave-<udgave>-*.spec.ts.
 const udgaver = [
   { name: 'lokal', dir: 'dist', port },
   { name: 'intern', dir: 'dist-intern', port: port + 1 },
@@ -33,7 +33,7 @@ export default defineConfig({
     use: { baseURL: url(udgave.port) },
     ...(udgave.name === 'lokal'
       ? { testIgnore: /udgave-[^/\\]+\.spec\.ts$/ }
-      : { testMatch: new RegExp(`udgave-${udgave.name}\\.spec\\.ts$`) }),
+      : { testMatch: new RegExp(`udgave-${udgave.name}(-[^/\\\\]+)?\\.spec\\.ts$`) }),
   })),
   webServer: udgaver.map((udgave) => ({
     command: `npm run preview -- --outDir ${udgave.dir} --port ${udgave.port}`,

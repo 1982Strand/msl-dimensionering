@@ -2,7 +2,7 @@
 {
   "name": "msl-dimensionering",
   "compatibility_date": "2026-10-01",
-  "assets": { "directory": "../../dist" },
+  "assets": { "directory": "../../dist-intern" },
   "workers_dev": true,
   "preview_urls": false
 }

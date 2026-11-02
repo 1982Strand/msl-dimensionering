@@ -1,0 +1,14 @@
+[
+  {
+    "navn": "Ada Eksempel",
+    "initialer": "AE",
+    "mail": "ada@example.com",
+    "telefon": "00000001"
+  },
+  {
+    "navn": "Bertil Prøve",
+    "initialer": "BP",
+    "mail": "bertil@example.com",
+    "telefon": "00000002"
+  }
+]

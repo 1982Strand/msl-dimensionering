@@ -52,7 +52,7 @@ import { CompanyProfileStorage, IndexedDbLogoStorage } from '../report/profile-s
 import './CompanyProfile.css';
 
 /** `locked` (B-076): rapporten og formularen ser standardprofilen med brugerens eget kartotek. */
-export function useCompanyProfile(locked = false) {
+export function useCompanyProfile(locked = false, embeddedEmployees?: Employee[]) {
   const [state, setState] = useState(defaultProfileState);
   const [ready, setReady] = useState(false);
   const [saving, setSaving] = useState(false);
@@ -66,6 +66,17 @@ export function useCompanyProfile(locked = false) {
   useEffect(() => {
     mounted.current = true;
     let active = true;
+    if (embeddedEmployees !== undefined) {
+      const initial = defaultProfileState();
+      initial.profile.medarbejdere = structuredClone(embeddedEmployees);
+      desired.current = initial;
+      setState(initial);
+      setReady(true);
+      return () => {
+        active = false;
+        mounted.current = false;
+      };
+    }
     try {
       const storage = new CompanyProfileStorage(localStorage, new IndexedDbLogoStorage());
       store.current = storage;
@@ -84,7 +95,7 @@ export function useCompanyProfile(locked = false) {
       active = false;
       mounted.current = false;
     };
-  }, []);
+  }, [embeddedEmployees]);
   function update(producer: (previous: ProfileState) => ProfileState, clearDraft = false) {
     const next = producer(desired.current);
     desired.current = next;

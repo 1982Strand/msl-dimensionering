@@ -15,7 +15,7 @@ npm run test:browser
 
 Playwright afprøver brugerforløb, rapporter og tilgængelighed på port 5184, adskilt fra den lokale app. Brugeren foretager visuel kontrol.
 
-Playwright kører tre projekter, ét pr. udgave. Den lokale udgave testes mod `dist` på port 5184; den interne mod `dist-intern` på 5185 og den offentlige mod `dist-offentlig` på 5186. Udgavernes egne tests ligger i `tests/browser/udgave-intern.spec.ts` og `udgave-offentlig.spec.ts`. `npm run build:udgaver` bygger de to udgaver. Med `PW_PORT` flyttes alle tre porte.
+Playwright kører tre projekter, ét pr. udgave. Den lokale udgave testes mod `dist` på port 5184; den interne mod `dist-intern` på 5185 og den offentlige mod `dist-offentlig` på 5186. Udgavernes egne tests hedder `tests/browser/udgave-<udgave>.spec.ts` eller `udgave-<udgave>-<emne>.spec.ts`. `npm run build:udgaver` bygger udgaverne; intern bygning bruger den syntetiske liste `tests/fixtures/medarbejdere-syntetisk.json`. Med `PW_PORT` flyttes alle tre porte.
 
 `node tools/build-r6-pdfs.ts` kontrollerer det godkendte rapportlayout, tekstindhold, sideantal og PDF-kontrolsummer. Det kræver `pdftotext` på PATH eller angivet i `PDFTOTEXT`. Output ligger i den Git-ignorerede `.local/`-mappe.
 

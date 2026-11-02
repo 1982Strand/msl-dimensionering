@@ -60,7 +60,7 @@ import { reportData, SECTION_KEYS, type SectionKey } from '../report/report-data
 import { reportFigures } from '../report/report-figures';
 import { reportStrings } from '../report/report-sprog';
 import { reportDocument, loadReportAssets, type ReportAssets } from '../report/report-document';
-import { logoDataUrl, logoExtension } from '../report/company-profile';
+import { logoDataUrl, logoExtension, readEmbeddedEmployees } from '../report/company-profile';
 import layoutSource from '../report/typst/layout.typ?raw';
 import reportSource from '../report/typst/rapport.typ?raw';
 import {
@@ -93,12 +93,22 @@ export function Report({
   startLive: () => void;
 }) {
   const ctx = useEditor();
-  // I den delte udgave vises medarbejderkartoteket; firmaprofilen redigeres lokalt.
-  const profileLocked = !canEditProfile(useAccess());
-  const company = useCompanyProfile(profileLocked);
+  const access = useAccess();
+  const profileLocked = !canEditProfile(access);
+  const embeddedEmployees = useMemo(
+    () =>
+      access.kartotek === 'indbygget'
+        ? readEmbeddedEmployees(import.meta.env.VITE_MEDARBEJDERE)
+        : undefined,
+    [access.kartotek],
+  );
+  const company = useCompanyProfile(profileLocked, embeddedEmployees);
   const [tab, setTab] = useState(() => {
     try {
-      return sessionStorage.getItem('msl.report-tab') === 'profile' ? 'profile' : 'report';
+      return access.kartotek !== 'indbygget' &&
+        sessionStorage.getItem('msl.report-tab') === 'profile'
+        ? 'profile'
+        : 'report';
     } catch {
       return 'report';
     }
@@ -442,9 +452,11 @@ export function Report({
         </div>
       ) : (
         <p key={key} className="report-caption">
-          {profileLocked
-            ? 'Kartoteket er tomt. Tilføj personer under Medarbejdere.'
-            : 'Kartoteket er tomt. Tilføj personer under Firmaprofil → Medarbejdere.'}
+          {access.kartotek === 'indbygget'
+            ? 'Kartoteket er tomt. Oplysningerne skrives i felterne.'
+            : profileLocked
+              ? 'Kartoteket er tomt. Tilføj personer under Medarbejdere.'
+              : 'Kartoteket er tomt. Tilføj personer under Firmaprofil → Medarbejdere.'}
         </p>
       );
     }
@@ -758,17 +770,18 @@ export function Report({
           }
         }}
       >
-        <TabsList aria-label={profileLocked ? 'Rapport og medarbejdere' : 'Rapport og firmaprofil'}>
-          <TabsTrigger value="report">
-            <FileText aria-hidden="true" />
-            Rapport
-          </TabsTrigger>
-          {/* B-080: i den delte udgave ses kun medarbejderkartoteket. */}
-          <TabsTrigger value="profile">
-            {profileLocked ? <Users aria-hidden="true" /> : <Building2 aria-hidden="true" />}
-            {profileLocked ? 'Medarbejdere' : 'Firmaprofil'}
-          </TabsTrigger>
-        </TabsList>
+        {(access.firmaprofil || access.kartotek === 'eget') && (
+          <TabsList aria-label="Rapport og firmaprofil">
+            <TabsTrigger value="report">
+              <FileText aria-hidden="true" />
+              Rapport
+            </TabsTrigger>
+            <TabsTrigger value="profile">
+              {profileLocked ? <Users aria-hidden="true" /> : <Building2 aria-hidden="true" />}
+              {profileLocked ? 'Medarbejdere' : 'Firmaprofil'}
+            </TabsTrigger>
+          </TabsList>
+        )}
         <div className="report-language">
           <Label id="report-language-label">Rapportsprog</Label>
           <RadioGroup
@@ -821,32 +834,34 @@ export function Report({
             </fieldset>
           )}
         </TabsContent>
-        <TabsContent value="profile">
-          <CompanyProfile
-            controller={company}
-            sprog={sprog}
-            locked={profileLocked}
-            standardLogo={async () => {
-              const loaded = await (assets.current ??= loadReportAssets(
-                import.meta.env.BASE_URL,
-              ).catch((error) => {
-                assets.current = null;
-                throw error;
-              }));
-              return { mime: 'image/jpeg', bytes: loaded.logo };
-            }}
-            preview={
-              model.available ? (
-                renderPdf()
-              ) : (
-                <Notice>
-                  {model.emptyAction &&
-                    'Der skal først foretages en dimensionering med et valgt geonet, før rapporten kan genereres.'}
-                </Notice>
-              )
-            }
-          />
-        </TabsContent>
+        {(access.firmaprofil || access.kartotek === 'eget') && (
+          <TabsContent value="profile">
+            <CompanyProfile
+              controller={company}
+              sprog={sprog}
+              locked={profileLocked}
+              standardLogo={async () => {
+                const loaded = await (assets.current ??= loadReportAssets(
+                  import.meta.env.BASE_URL,
+                ).catch((error) => {
+                  assets.current = null;
+                  throw error;
+                }));
+                return { mime: 'image/jpeg', bytes: loaded.logo };
+              }}
+              preview={
+                model.available ? (
+                  renderPdf()
+                ) : (
+                  <Notice>
+                    {model.emptyAction &&
+                      'Der skal først foretages en dimensionering med et valgt geonet, før rapporten kan genereres.'}
+                  </Notice>
+                )
+              }
+            />
+          </TabsContent>
+        )}
       </Tabs>
     </main>
   );
