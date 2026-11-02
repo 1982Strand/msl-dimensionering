@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import test from 'node:test';
 import { REPORT_FONT_FILES, DEFAULT_COMPANY_PROFILE } from '../src/report/profile-defaults.ts';
-import { reportData, reportDataWithStrings } from '../src/report/report-data.ts';
+import { reportData, reportDataWithStrings, SECTION_KEYS } from '../src/report/report-data.ts';
 import { reportDocument, type ReportAssets } from '../src/report/report-document.ts';
 import { reportFigures, reportFiguresWithStrings } from '../src/report/report-figures.ts';
 import { REPORT_STRINGS, reportStrings, type ReportStrings } from '../src/report/report-sprog.ts';
@@ -112,4 +112,90 @@ test('Typst-layout har ingen faste danske rapportetiketter', () => {
   ];
   for (const label of labels) assert.ok(!layout.includes(label), `Fundet i layout.typ: ${label}`);
   assert.equal(reportStrings().typst_language, 'da');
+});
+
+// Danske ord fra de faste tekster, som ikke må optræde i den svenske rapport.
+const DANSKE_ORD = [
+  'Bærelag',
+  'bærelag',
+  'Bundsikring',
+  'Underbund',
+  'Ustabiliseret',
+  'Stabiliseret',
+  'Stabilgrus',
+  'Indtastet',
+  'Ikke ',
+  'Valgt',
+  'Trafikklasse',
+  'Belastningsklasse',
+  'Materialeopbygning',
+  'Vægtet',
+  ' og ',
+  'lag geonet',
+  'Klasse ',
+  'Forudsætning',
+  'forudsætning',
+  'Udførelse',
+  'Kontrolplan',
+  'Beskrivelse',
+  'Omfang',
+  'Kvalitetssikring',
+  'Baseret',
+];
+
+test('svensk rapport: data og figurer har ingen danske faste tekster', () => {
+  for (const item of pseudoCases) {
+    const valg = { ...item.valg, sprog: 'sv' as const };
+    delete valg.standard_materialer;
+    delete valg.linje_rettelser;
+    const data = reportData(item.result, {}, valg, {});
+    const figures = reportFigures(item.result, item.settings, item.table, {
+      sprog: 'sv',
+      rap_vis_signatur: true,
+      rap_vis_designdiagram: true,
+    });
+    // Brugerdefinerede materialenavne er brugerdata og må stå, som de er indtastet.
+    const kunFaste = item.result.tilstand === 'Standard';
+    const tekst = JSON.stringify({
+      sprog: data.sprog,
+      sections: data.sections,
+      grundlag: data.grundlag?.overskrift,
+      labels: [...data.context.dim_grundlag, ...data.context.dim_resultat].map((r) => r.label),
+      vaerdier: kunFaste ? data.context.dim_grundlag.map((r) => r.vaerdi) : [],
+      afsnit: SECTION_KEYS.map((key) => data.context[`tekst_${key}`]),
+      dato: reportData(item.result, { dato: '2026-11-02' }, valg).context.dato,
+    });
+    const svg = kunFaste
+      ? `${figures.visualisering?.svg}${figures.designdiagram?.svg}`
+      : `${figures.designdiagram?.svg}`;
+    for (const ord of DANSKE_ORD) {
+      assert.ok(!tekst.includes(ord), `${item.name}: »${ord}« i svenske data`);
+      assert.ok(!svg.includes(ord), `${item.name}: »${ord}« i svenske figurer`);
+    }
+    assert.equal(data.sprog.typst_language, 'sv');
+    assert.ok(tekst.includes('2 november 2026'));
+  }
+});
+
+test('svensk dato skrives med månedsnavn; ugyldige datoer gengives uændret', () => {
+  const dato = REPORT_STRINGS.sv.dato;
+  assert.equal(dato('2026-11-02'), '2 november 2026');
+  assert.equal(dato('2027-01-09'), '9 januari 2027');
+  assert.equal(dato('2026-03-31'), '31 mars 2026');
+  for (const ugyldig of ['', '2026-13-01', '2026-1-1', '02/11/2026'])
+    assert.equal(dato(ugyldig), ugyldig);
+});
+
+test('svenske standardtekster og -materialer findes for alle afsnit og adskiller sig fra dansk', () => {
+  for (const key of SECTION_KEYS) {
+    assert.ok(REPORT_STRINGS.sv.standard_tekster[key].length > 20, key);
+    assert.notEqual(
+      REPORT_STRINGS.sv.standard_tekster[key],
+      REPORT_STRINGS.da.standard_tekster[key],
+    );
+  }
+  assert.deepEqual(REPORT_STRINGS.sv.standard_materialer, [
+    'Obundet bärlager',
+    'Förstärkningslager',
+  ]);
 });

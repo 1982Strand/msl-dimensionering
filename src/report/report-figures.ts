@@ -169,7 +169,10 @@ export function reportFiguresWithStrings(
         (s.under_minimum === 'ubundet' && s.stabilgrus_mm && total < s.stabilgrus_mm - 0.5)
       )
         return null;
-      const sub = fordel_soejle(s.spec, total, dim.afrunding.trin_mm);
+      const sub = fordel_soejle(s.spec, total, dim.afrunding.trin_mm).map((l) => ({
+        ...l,
+        navn: t.snit.standard_lag[l.navn] ?? l.navn,
+      }));
       return sub.length ? sub : null;
     }
     const spec = 'fordeling' in dim && dim.fordeling ? lagspec(materials, dim.fordeling) : null;

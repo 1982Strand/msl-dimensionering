@@ -60,6 +60,8 @@ export interface ReportStrings {
     underbund: (eu: string) => string;
     tom: string;
     ikke_gyldigt: string;
+    /** Standardopbygningens lagnavne fra beregningen, oversat i rapportfiguren. */
+    standard_lag: Readonly<Record<string, string>>;
   };
   konstruktion: {
     title: (geonet: string) => string;
@@ -188,6 +190,98 @@ const STANDARD_TEKSTER_DK: Readonly<Record<SectionKey, string>> = {
     'beregninger, konstruktionsforslag og anden relateret rådgivning.',
 };
 
+const MAANEDER_SV = [
+  'januari',
+  'februari',
+  'mars',
+  'april',
+  'maj',
+  'juni',
+  'juli',
+  'augusti',
+  'september',
+  'oktober',
+  'november',
+  'december',
+];
+const SECTION_TITLER_SV = {
+  oplyste_forudsaetninger: 'Angivna förutsättningar',
+  generelle_forudsaetninger: 'Generella dimensioneringsförutsättningar för MSL-uppbyggnad',
+  krav_komprimering: 'Krav på komprimering',
+  dim_sikkerhed: 'Dimensionering och säkerhet',
+  udfoerelse: 'Utförande',
+  kontrolplan: 'Kontrollplan',
+  projekteringsansvar: 'Projekteringsansvar',
+} satisfies Record<SectionKey, string>;
+// Oversættelse af de danske standardtekster; terminologi fra BG Byggros AB's svenske notat (2017).
+const STANDARD_TEKSTER_SV: Readonly<Record<SectionKey, string>> = {
+  oplyste_forudsaetninger:
+    '   • Dimensionerande trafikbelastning: T6\n' +
+    '   • Vingförsökets skjuvhållfasthet, Cv, uppskattad på terrass: > 100 kPa\n' +
+    '   • Grundvattenyta: ej angiven/ej relevant\n' +
+    '   • Bärlagermaterial:\n' +
+    '           o Återvunnet krossmaterial',
+  generelle_forudsaetninger:
+    'Dimensioneringen av MSL-uppbyggnaden (mekaniskt stabiliserat bärlager) är ' +
+    'baserad på resultaten från mer än 20 års fältförsök utförda i Skandinavien. ' +
+    'Det obundna bärlagret hålls fast av ett eller flera lager geonät, som låser ' +
+    'och håller fast bärlagret, varigenom tryckspridningsvinkeln ökar. I praktiken ' +
+    'betyder det att bärlagret kan reduceras i förhållande till den icke ' +
+    'stabiliserade obundna uppbyggnaden. Alternativt kan en betydande ökning av ' +
+    'bärförmågan uppnås för en MSL-uppbyggnad i förhållande till en traditionell ' +
+    'uppbyggnad.\n\n' +
+    'Differenssättningar utjämnas i stor utsträckning, och den stabiliserade ' +
+    'randzonen blir, särskilt för flerlagerskonstruktioner, mindre känslig för ' +
+    'sättningar. Även om erfarenheterna visar betydande minskningar av ' +
+    'sättningarna kan en sättningsfri ombyggnad endast sällan uppnås. Likaså bör ' +
+    'hänsyn tas till eventuell tjälfarlighet, även om MSL-uppbyggnaden utjämnar ' +
+    'eventuella tjällyftningar.\n\n' +
+    'MSL-lösningar kan kombineras med lättfyllning, som därmed kan bidra till att ' +
+    'kompensera för eventuella sättningar.\n\n' +
+    'MSL-lösningar kan likaså hantera och kompensera för bärighetsbrist orsakad av ' +
+    'tillfällig, kortvarig vattenpåverkan, exempelvis i samband med ' +
+    'LOD-anläggningar.\n\n' +
+    'För särskilt sättningsbenägen undergrund är det en fördel att vänta med ' +
+    'beläggningsarbetet tills sättningsförloppet har stabiliserats. Tidshorisonten ' +
+    'varierar och kan vara upp till ett år.',
+  krav_komprimering:
+    'Det förutsätts att det vid utläggning av de obundna bärlagren uppnås och ' +
+    'verifieras en komprimeringsgrad på i medeltal 95 % och minst 92 % mätt med ' +
+    'vibrationsförsök.',
+  dim_sikkerhed:
+    'Dimensionering och kontroll av bärförmåga kan vara förenade med en viss ' +
+    'mätosäkerhet.\n\n' +
+    'Vid kontroll av bärförmågan för MSL-uppbyggnaden är en eventuell negativ ' +
+    'avvikelse normalt högst 10 %.',
+  udfoerelse:
+    'MSL-uppbyggnader kan utföras året runt. I vissa situationer kan det vara en ' +
+    'fördel att planera arbetet så att det utförs under perioder med tjäle, då ' +
+    'framkomligheten i terrängen kan vara gynnsammare.\n\n' +
+    'Geonätens formstabila struktur gör att utläggningen måste ske på ett relativt ' +
+    'jämnt underlag. Eventuell växtlighet ska som utgångspunkt tas bort. På mycket ' +
+    'sättningsbenägen mjuk undergrund kan rötter från träd och buskar med fördel ' +
+    'lämnas kvar, liksom intakt torv bör bevaras. Det är dock viktigt att rötter ' +
+    'och stubbar kapas helt ned, så att nivåskillnaden i terrängen är högst ' +
+    '+/- 5 cm.\n\n' +
+    'Överlappet på geonät bör vara minst 0,4 m. Utvändiga slänter bör normalt ' +
+    'utföras med en lutning på högst 1:1,5.',
+  kontrolplan:
+    'Det rekommenderas att utföra kompletterande geoteknisk sondering och mätning ' +
+    'av E-modul på terrassen, så att ett eventuellt behov av att korrigera ' +
+    'uppbyggnaden kan hanteras före utläggning.\n\n' +
+    'Kontroll av bärförmågan på ovansidan av de utlagda bärlagren kan göras med ' +
+    'statisk plattbelastning kompletterad med dynamisk lätt fallviktsmätning.\n\n' +
+    'Kontrollplanens omfattning bedöms för det enskilda projektet.',
+  projekteringsansvar:
+    'Om det finns ett skriftligt avtal som preciserar omfattning och krav på ' +
+    'konstruktionen samt arvode och ansvar för projekteringen, kan ansvaret för ' +
+    'dimensioneringen omfattas av vår konsultansvarsförsäkring.\n\n' +
+    'Om det inte finns något skriftligt avtal om ansvarsförhållanden, och om ' +
+    'dimensioneringen dessutom är utförd som en kostnadsfri tjänst, frånsäger sig ' +
+    'BG Byggros AB ansvaret för användningen av beräkningar, konstruktionsförslag ' +
+    'och annan relaterad rådgivning.',
+};
+
 export const REPORT_STRINGS = {
   da: {
     typst_language: 'da',
@@ -265,6 +359,7 @@ export const REPORT_STRINGS = {
       underbund: (eu: string) => `Underbund Eᵤ = ${eu} MPa`,
       tom: 'Ikke defineret',
       ikke_gyldigt: 'Ikke gyldigt for denne kombination',
+      standard_lag: { Stabilgrus: 'Stabilgrus', Bundsikring: 'Bundsikring' },
     },
     konstruktion: {
       title: (n: string) => `Opbygningssnit · ${n}`,
@@ -307,6 +402,131 @@ export const REPORT_STRINGS = {
       titel_klasse: (k: number) => `Klasse ${k}`,
       titel_trafikklasse: (k: string | number) => `Trafikklasse ${k}`,
       titel_reference: 'referencenet',
+      titel_eo: (eo: string) => `Eₒ = ${eo}`,
+      title: (eo: string, klasse: string, phi: string, geonet: string) =>
+        `Eₒ = ${eo} MPa · ${klasse} · φᵥ = ${phi}° · ${geonet}`,
+    },
+  },
+  // Udkast 2. november 2026: afventer gennemlæsning af en svensk fagperson.
+  sv: {
+    typst_language: 'sv',
+    projekt: 'Projekt: ',
+    beskrivelse: 'Beskrivning:',
+    omfang: 'Omfattning:',
+    udfoeres_for: 'Utförs för:',
+    udfoert_af: 'Utförd av:',
+    kvalitetssikring: 'Kvalitetssäkring:',
+    dimensioneringsgrundlag: 'Dimensioneringsunderlag:',
+    forudsaetninger: 'Förutsättningar:',
+    grundlag_for_beregning: 'Beräkningsunderlag',
+    dimensioneringsresultat: 'Dimensioneringsresultat:',
+    resultat_intro:
+      'Baserat på ovanstående ingångsparametrar kan vi föreslå följande MSL-uppbyggnad:',
+    by_dato_suffix: ' den',
+    kolon: ':',
+    side_af_prefix: 'Sida ',
+    side_af_separator: ' av ',
+    dato: (iso: string) => {
+      const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso);
+      const maaned = m ? MAANEDER_SV[Number(m[2]) - 1] : undefined;
+      return m && maaned ? `${Number(m[3])} ${maaned} ${m[1]}` : iso;
+    },
+    grundlag: {
+      eu: 'Terrassens E-modul (Eᵤ)',
+      trafikklasse_label: 'Dimensioneringsunderlag',
+      trafikklasse: (t: string | number) => `Trafikklass ${t} (VejDim)`,
+      eo_aekv: 'Ekvivalent Eₒ (Eₒ,ekv)',
+      yderomraade: 'Utanför diagrammets område',
+      belastningsklasse: 'Belastningsklass',
+      materialeopbygning: 'Materialuppbyggnad',
+      standardmaterialer: 'Designdiagrammens referensmaterial',
+      phi: 'Viktad friktionsvinkel (φᵥ)',
+    },
+    resultat: {
+      geonet: 'Valt geonät',
+      uarmeret: 'Ostabiliserad referensuppbyggnad',
+      indtastet: 'Total tjocklek för vald uppbyggnad',
+      lag1: 'Stabiliserad tjocklek — 1 lager',
+      lag2: 'Stabiliserad tjocklek — 2 lager',
+    },
+    yderomraade: {
+      over: 'över diagrammets översta kurva',
+      under: 'under diagrammets lägsta kurva',
+      inden: 'inom',
+      uden: 'utanför',
+      uden_afvigelse: (p: string, r: string) =>
+        `VejDims krav ligger ${p} % ${r}. Den ostabiliserade tjockleken är VejDims, och reduktionen är avläst på randkurvan.`,
+      med_afvigelse: (p: string, r: string, t: string, l: string) =>
+        `VejDims krav ligger ${p} % ${r}, ${l} toleransen på ${t} %. `,
+      vejdim: (t: string, eo: string) =>
+        `Den ostabiliserade tjockleken är satt till VejDims ${t}, och reduktionen är avläst på kurvan Eₒ = ${eo} MPa`,
+      rand: (eo: string, t: string) =>
+        `Beräkningen bygger på diagrammets lägsta kurva, Eₒ = ${eo} MPa, på ${t}.`,
+      ekstrapoleret: ' och därmed extrapolerad.',
+    },
+    materiale_lag: (n: number, navn: string) => `Lager ${n}: ${navn}`,
+    materiale_phi: (phi: string) => `φᵢ = ${phi}`,
+    materiale_separator: ' · ',
+    og: ' och ',
+    tom: '—',
+    section_titles: SECTION_TITLER_SV,
+    standard_tekster: STANDARD_TEKSTER_SV,
+    standard_materialer: ['Obundet bärlager', 'Förstärkningslager'] as const,
+    snit: {
+      indtastet: 'Angiven uppbyggnad',
+      ustabiliseret: 'Ostabiliserad bärlagertjocklek',
+      ustabiliseret_phi: 'Ostabiliserad bärlagertjocklek (φᵥ-korrigerad)',
+      lag1: '1 lager geonät',
+      lag2: '2 lager geonät',
+      ubunden: 'Obunden uppbyggnad',
+      geonet: 'Geonät',
+      underbund: (eu: string) => `Terrass Eᵤ = ${eu} MPa`,
+      tom: 'Inte definierad',
+      ikke_gyldigt: 'Inte giltig för denna kombination',
+      standard_lag: { Stabilgrus: 'Obundet bärlager', Bundsikring: 'Förstärkningslager' },
+    },
+    konstruktion: {
+      title: (n: string) => `Uppbyggnad i snitt · ${n}`,
+      description: (s: string) => `Snitten visas i samma vertikala skala. ${s}`,
+      legend_baerelag: 'Bärlager',
+      legend_bundsikring: 'Förstärkningslager',
+      legend_optimal: 'Optimal korrektion',
+      legend_indtastet: 'Angiven nivå',
+      overskud: (t: string) => `${t} i överskott`,
+      optimalt: (t: string) => `(${t} optimalt)`,
+      for_lidt: (t: string) => `${t} för lite`,
+      for_lidt_optimal: (m: string, o: string) => `${m} för lite (optimalt ${o} i överskott)`,
+      ikke_defineret: 'Inte definierad',
+      ikke_defineret_eu: (eu: string) =>
+        `Ostabiliserat bärlager inte definierat för Eᵤ = ${eu} MPa`,
+      ikke_gyldigt: 'Inte giltig för denna kombination',
+      note_ustabiliseret: 'Ostabiliserad bärlagertjocklek',
+      note_basis: 'Basreduktion, referensnät',
+      note_net: (i: string) => `Nätkorrektion, index ${i}`,
+      note_phi: (p: string) => `φᵥ-korrektion, ${p}`,
+      note_oprunding: (t: string) => `Avrundning uppåt till närmaste ${t}`,
+      note_minimum: 'Tillägg till minimitjocklek',
+      note_mindste_lag: 'Tillägg för minsta lagertjocklek',
+      note_titel: (i: string, p: string) =>
+        `Optimal korrektion · effektindex ${i} · nätkorrektion ${p}`,
+      note_resultat: (t: string) => `= Stabiliserad bärlagertjocklek: ${t}`,
+      optimal_fallback: (t: string) => `Optimal korrektion · ${t}`,
+      indtastet_niveau: (t: string) => `Angiven nivå · ${t}`,
+      geonet_fra_top: (n: string, t: string) => `${n} · ${t} från överkant`,
+    },
+    diagram: {
+      akse_x: 'Bärlagertjocklek [cm]',
+      akse_y: 'Terrassmodul Eᵤ [MPa]',
+      hover: (x: string, eu: string, n: string) => `${x} cm · Eᵤ ${eu} MPa<extra>${n}</extra>`,
+      ustabiliseret: 'Ostabiliserad',
+      vejdim_tal: 'VejDims värden',
+      lag: (n: number) => `${n} lager geonät`,
+      optimal: 'optimal',
+      indtastet: (cm: string) => `Angiven uppbyggnad (${cm} cm)`,
+      aria: 'Personligt designdiagram',
+      titel_klasse: (k: number) => `Klass ${k}`,
+      titel_trafikklasse: (k: string | number) => `Trafikklass ${k}`,
+      titel_reference: 'referensnät',
       titel_eo: (eo: string) => `Eₒ = ${eo}`,
       title: (eo: string, klasse: string, phi: string, geonet: string) =>
         `Eₒ = ${eo} MPa · ${klasse} · φᵥ = ${phi}° · ${geonet}`,

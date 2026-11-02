@@ -106,3 +106,6 @@ Brugeren har leveret et svensk eksempel, »Dimensioneringsparadima - väg 150317
 - Sidefod: »Ja, brug den«. Standarden for den svenske sidefod er »BG Byggros AB | Levins väg 4 | SE-291 73 Önnestad | Tel: +46 771 48 9000 | www.byggros.com«, og byen i underskriften er Önnestad. Begge kan rettes i firmaprofilen.
 - Firmaprofilen: »Profilen følger sprogvalget«. Felterne for titel, slogan, sidefod, by og afsnitsoverskrifter viser dansk eller svensk efter det valgte rapportsprog. Afsnittenes rækkefølge er fælles for begge sprog; det er Claudes valg.
 - Sprogvalget: »To valgknapper«, dvs. »Rapportsprog: Dansk / Svensk« som radioknapper på én linje under fanerne Rapport og Firmaprofil, så valget også ses i firmaprofilen.
+- Tal over 1000 i den svenske rapport: »skriv bare tallet ud, altså fx '1230 mm'«, dvs. uden tusindtalsseparator. Den danske rapport skriver fortsat »1.230 mm«.
+
+Claudes valg, som kan ændres: I Standard får figurens lag i den svenske rapport navnene »Obundet bärlager« og »Förstärkningslager« i stedet for »Stabilgrus« og »Bundsikring«. Standardmaterialerne i tabellen er de samme to navne. I Brugerdefineret står materialenavnene, som de er indtastet i appen, også i den svenske rapport.
