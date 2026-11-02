@@ -173,3 +173,17 @@ Indhold af forslaget:
 - I den lokale udgave kan de aktuelle indstillinger eksporteres som opsætning for den offentlige udgave. Filen kontrolleres, før den tages i brug, og en ugyldig opsætning kan ikke bygges.
 - Teksten i den offentlige udgave ændres fra »de øvrige er appens standard« til, at de øvrige er faste i denne udgave.
 - Designdiagrammer og trafikklasse-korrelation følger fortsat appens standard i alle udgaver, fordi de er de godkendte beregningsdata.
+
+## 2. november 2026 — hjælpen følger den offentlige udgaves opsætning
+
+Brugeren spurgte: »kan man gøre sådan, at hjælp-sektionen tilpasses automatisk, alt efter hvad der er valgt af indstillinger, kun for den offentlige udgave? Altså, så der ikke beskrives indstillinger man alligevel ikke kan vælge? Fx hvis jeg i afsnit 3 i indstillingerne har valgt fordelingen af lagtykkelserne til: 'proportiponalt, dog mindst minimumstykkelsen for det øverste lag', så skal der ikke i hjælp, sektion 6.2 stå der kan vælges imellem fire fordelinger..« Claude foreslog at mærke hjælpeteksterne op én gang, så den offentlige udgaves hjælp derefter følger opsætningsfilen automatisk. Brugerens svar: »Ja, byg den«.
+
+Indhold af forslaget:
+
+- Tekst om valgmuligheder skjules i den offentlige udgave, når indstillingen er fast. Af beskrivelserne af de enkelte valgmuligheder vises kun den valgte.
+- Hvor det er nødvendigt, står en kort tekst om den faste værdi i denne udgave. Værdier som oprundingstrin og minimumstykkelser indsættes automatisk fra opsætningen.
+- Sammenligningstabeller over valgmuligheder viser i den offentlige udgave kun rækken for det valgte.
+- Hjælpen i den lokale og den interne udgave er uændret.
+- I den offentlige udgave er alle indstillinger uden for listen `kan_aendres` faste, også dem, der er lig appens standard.
+
+Claudes valg, som kan ændres: Tekst, der kun handler om funktioner, den offentlige udgave ikke har (rapport, firmaprofil, redigering af designdiagrammer og korrelation), skjules også i den offentlige udgave. De nye sætninger til de faste tilfælde formuleres i hjælpens stil, og brugeren ser dem igennem i den offentlige udgave.
