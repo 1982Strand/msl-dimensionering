@@ -1,6 +1,6 @@
 // Offentlig app uden serverkode.
 {
-  "name": "msl-dimensionering-offentlig",
+  "name": "msl",
   "compatibility_date": "2026-10-01",
   "assets": { "directory": "../../dist-offentlig" },
   "workers_dev": true,

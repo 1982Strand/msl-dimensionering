@@ -1,6 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
+import { INTERNAL_URL } from './check-access.ts';
 
 const read = (path: string) => readFileSync(new URL(`../../${path}`, import.meta.url), 'utf8');
 const config = (path: string) =>
@@ -14,12 +15,14 @@ const config = (path: string) =>
 test('B-079: Cloudflare har to statiske konfigurationer uden serverkode', () => {
   const internal = config('hosting/cloudflare/wrangler.jsonc');
   const publicEdition = config('hosting/cloudflare/wrangler-offentlig.jsonc');
-  assert.equal(internal.name, 'msl-dimensionering');
+  assert.equal(internal.name, 'msl-intern');
+  // Access-kontrollen skal ramme den Worker, der udrulles som intern udgave.
+  assert.equal(new URL(INTERNAL_URL).hostname, `${internal.name}.byggros.workers.dev`);
   assert.deepEqual(internal.assets, { directory: '../../dist-intern' });
   assert.equal(internal.main, undefined);
   assert.equal(internal.workers_dev, true);
   assert.equal(internal.preview_urls, false);
-  assert.equal(publicEdition.name, 'msl-dimensionering-offentlig');
+  assert.equal(publicEdition.name, 'msl');
   assert.deepEqual(publicEdition.assets, { directory: '../../dist-offentlig' });
   assert.equal(publicEdition.main, undefined);
   assert.equal(publicEdition.workers_dev, true);

@@ -154,9 +154,11 @@ Claudes valg, som kan ændres:
 - Byggejobbet lægger kun listen ind i den interne udgave, når den interne adresse kræver login. Ellers bygges den uden liste, og jobbet giver en advarsel.
 - Begge online-udgaver beder fortsat søgemaskiner om ikke at vise dem (`noindex`), indtil andet aftales.
 
-Gennemført 2. november 2026. Udgavetabellen ligger i `src/ui/udgaver.ts`. `npm run build:udgaver` bygger `dist-intern` med en syntetisk testliste og `dist-offentlig`, og Playwright tester hver udgave for sig. Udrulningen bygger og udruller begge udgaver. Den offentlige hedder `msl-dimensionering-offentlig` i Cloudflare. Kartoteket sendes med `npm run kartotek -- <fil>` som hemmeligheden `MEDARBEJDERE_JSON`. Den lokale udgave og den danske rapport er uændrede (R3 og R6 byte-identiske), og `tests/cases/` er uændret.
+Gennemført 2. november 2026. Udgavetabellen ligger i `src/ui/udgaver.ts`. `npm run build:udgaver` bygger `dist-intern` med en syntetisk testliste og `dist-offentlig`, og Playwright tester hver udgave for sig. Udrulningen bygger og udruller begge udgaver. Adresserne er ændret samme dag, se nedenfor. Kartoteket sendes med `npm run kartotek -- <fil>` som hemmeligheden `MEDARBEJDERE_JSON`. Den lokale udgave og den danske rapport er uændrede (R3 og R6 byte-identiske), og `tests/cases/` er uændret.
 
 Claudes valg, som kan ændres:
 
 - Teksterne »Tabellerne er appens standard og kan ikke rettes i denne udgave.«, »Kun visningsindstillingerne kan ændres; de øvrige er appens standard.« og, i den interne udgave, »Kartoteket er tomt. Oplysningerne skrives i felterne.«
 - Kan udrulningen ikke nå den interne adresse, regnes den som ubeskyttet, og kartoteket udelades.
+
+Adresser: Brugeren omdøbte den interne Worker i Cloudflare til `msl-dimensionering-intern` og spurgte: »kan man ikke lave et kortere navn der er lidt lettere?« Den gamle adresse virker derfor ikke længere. Claude foreslog at ændre kontoens workers.dev-underdomæne til `byggros` og bruge Worker-navnene `msl` og `msl-intern`. Brugerens svar: »msl / msl-intern på byggros«. Offentlig: https://msl.byggros.workers.dev. Intern: https://msl-intern.byggros.workers.dev. Det ændrer det tidligere svar om, at den nuværende adresse bliver den interne. Browserlageret følger adressen, så gemte værdier fra den gamle adresse kommer ikke med.

@@ -2,8 +2,10 @@
 
 Cloudflare leverer to statiske udgaver uden serverkode:
 
-- Intern: https://msl-dimensionering.msl-dimensionering.workers.dev. Den eksisterende adresse bevares.
-- Offentlig: https://msl-dimensionering-offentlig.msl-dimensionering.workers.dev.
+- Intern: https://msl-intern.byggros.workers.dev (Worker `msl-intern`).
+- Offentlig: https://msl.byggros.workers.dev (Worker `msl`).
+
+Adressen er `<Worker-navn>.<kontoens underdomæne>.workers.dev`. Ændres et Worker-navn eller kontoens underdomæne i Cloudflare, skal navnene i de to wrangler-filer og `INTERNAL_URL` i `hosting/cloudflare/check-access.ts` ændres tilsvarende. Ellers opretter udrulningen en ny Worker uden Access.
 
 Opsætningen ligger i `hosting/cloudflare/wrangler.jsonc` og `wrangler-offentlig.jsonc`. Filstier er relative til konfigurationsfilerne. `.github/workflows/cloudflare.yml` bygger begge udgaver, kontrollerer hostingens filgrænse og udruller med fast wrangler-version. Hovedkontrollen kalder den kun fra main efter beståede tests. Uden API-nøgle springes hosting over.
 

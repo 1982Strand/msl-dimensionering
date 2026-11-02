@@ -1,6 +1,6 @@
 // Midlertidig hosting af den færdige statiske app. Ingen serverkode.
 {
-  "name": "msl-dimensionering",
+  "name": "msl-intern",
   "compatibility_date": "2026-10-01",
   "assets": { "directory": "../../dist-intern" },
   "workers_dev": true,

@@ -2,7 +2,8 @@ import { appendFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-export const INTERNAL_URL = 'https://msl-dimensionering.msl-dimensionering.workers.dev/';
+// Følger Worker-navnet i wrangler.jsonc og kontoens workers.dev-underdomæne.
+export const INTERNAL_URL = 'https://msl-intern.byggros.workers.dev/';
 
 export async function requiresCloudflareAccess(
   fetcher: typeof fetch = fetch,
