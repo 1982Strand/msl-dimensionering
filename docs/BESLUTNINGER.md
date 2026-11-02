@@ -187,3 +187,7 @@ Indhold af forslaget:
 - I den offentlige udgave er alle indstillinger uden for listen `kan_aendres` faste, også dem, der er lig appens standard.
 
 Claudes valg, som kan ændres: Tekst, der kun handler om funktioner, den offentlige udgave ikke har (rapport, firmaprofil, redigering af designdiagrammer og korrelation), skjules også i den offentlige udgave. De nye sætninger til de faste tilfælde formuleres i hjælpens stil, og brugeren ser dem igennem i den offentlige udgave.
+
+Gennemført 2. november 2026. Hjælpeteksterne er mærket op med `:::vis`-blokke, `<!-- vis … -->`-indskud, rækkemærker og pladsholdere for værdier og figurnumre; filteret ligger i `src/engine/hjaelp.ts`, og udgavens kontekst i `src/ui/hjaelp-kontekst.ts`. Hjælpen i den lokale og den interne udgave er tegn for tegn som før, kontrolleret mod de oprindelige filers kontrolsummer og mod `tests/cases/`. En test danner den offentlige hjælp for hver værdi af de opmærkede indstillinger og kontrollerer, at den er velformet.
+
+Claudes valg, som kan ændres: Kapitel 2, afsnit 4 (redigering af kørslerne) vises ikke i den offentlige udgave. I kapitel 6 står en note om, at eksemplerne er regnet med appens standardindstillinger, når oprundingstrinnet ikke er 50 mm. Rækken »1–3« i figuren over minimumstykkelser viser værdien for klasse 3.
