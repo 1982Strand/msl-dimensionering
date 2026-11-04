@@ -4,7 +4,7 @@ Appen er statisk. `npm run build` danner `dist`, som kan leveres af en almindeli
 
 Uden `VITE_UDGAVE` bygges den lokale udgave, hvor firmaprofilen og eget kartotek er redigerbare i browseren. `node tools/build-udgave.ts intern` bygger den interne udgave med standardprofilen og indbygget kartotek; listen læses fra `--kartotek <fil>` eller `MEDARBEJDERE_JSON`. `node tools/build-udgave.ts offentlig` bygger den offentlige udgave uden kartotek. Udgaverne beskrives i `src/ui/udgaver.ts`.
 
-Cloudflare leverer den interne udgave på den eksisterende adresse bag Cloudflare Access og den offentlige udgave på sin egen adresse. Se [Cloudflare](CLOUDFLARE.md). Den interne udgave må kun få medarbejderlisten, når Access-kontrollen bekræfter loginbeskyttelse.
+Cloudflare leverer den interne og den offentlige udgave på hver sin adresse, begge uden login. Den interne udgave indeholder medarbejderlisten, som derfor kan læses af alle med adressen. Se [Cloudflare](CLOUDFLARE.md).
 
 En statisk server skal levere filerne i den valgte udgaves mappe (`dist`, `dist-intern` eller `dist-offentlig`), herunder billeder, skrifttyper og PDF-motorens `.wasm.gz`. Browseren pakker selv motoren ud; filen skal leveres som gzip og ikke som en HTML-fejlside. Hash-navigation kræver ingen serverruter til de enkelte sider.
 

@@ -1,7 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { INTERNAL_URL } from './check-access.ts';
 
 const read = (path: string) => readFileSync(new URL(`../../${path}`, import.meta.url), 'utf8');
 const config = (path: string) =>
@@ -16,8 +15,6 @@ test('B-079: Cloudflare har to statiske konfigurationer uden serverkode', () => 
   const internal = config('hosting/cloudflare/wrangler.jsonc');
   const publicEdition = config('hosting/cloudflare/wrangler-offentlig.jsonc');
   assert.equal(internal.name, 'msl-intern');
-  // Access-kontrollen skal ramme den Worker, der udrulles som intern udgave.
-  assert.equal(new URL(INTERNAL_URL).hostname, `${internal.name}.byggros.workers.dev`);
   assert.deepEqual(internal.assets, { directory: '../../dist-intern' });
   assert.equal(internal.main, undefined);
   assert.equal(internal.workers_dev, true);
@@ -29,10 +26,9 @@ test('B-079: Cloudflare har to statiske konfigurationer uden serverkode', () => 
   assert.equal(publicEdition.preview_urls, false);
 });
 
-test('B-079: workflow kontrollerer Access og bygger kartotek kun i intern udgave', () => {
+test('B-079: workflow bygger kartotek kun i intern udgave', () => {
   const job = read('.github/workflows/cloudflare.yml');
   assert.match(job, /node tools\/build-udgave\.ts offentlig/);
-  assert.match(job, /node hosting\/cloudflare\/check-access\.ts/);
   assert.match(job, /node tools\/build-udgave\.ts intern/);
   assert.match(job, /MEDARBEJDERE_JSON: \$\{\{ secrets\.MEDARBEJDERE_JSON \}\}/);
   assert.equal((job.match(/secrets\.MEDARBEJDERE_JSON/g) ?? []).length, 1);
@@ -42,7 +38,6 @@ test('B-079: workflow kontrollerer Access og bygger kartotek kun i intern udgave
     job,
     /wrangler@\d+\.\d+\.\d+ deploy --config hosting\/cloudflare\/wrangler-offentlig\.jsonc/,
   );
-  assert.match(job, /Cloudflare Access er ikke slået til[\s\S]*indbyggede kartotek er udeladt/);
   assert.doesNotMatch(job, /pages deploy/);
   const engine = read('.github/workflows/engine.yml');
   assert.match(engine, /MEDARBEJDERE_JSON: \$\{\{ secrets\.MEDARBEJDERE_JSON \}\}/);

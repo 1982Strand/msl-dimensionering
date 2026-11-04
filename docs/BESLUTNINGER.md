@@ -193,3 +193,9 @@ Gennemført 2. november 2026. Hjælpeteksterne er mærket op med `:::vis`-blokke
 Claudes valg, som kan ændres: Kapitel 2, afsnit 4 (redigering af kørslerne) vises ikke i den offentlige udgave. I kapitel 6 står en note om, at eksemplerne er regnet med appens standardindstillinger, når oprundingstrinnet ikke er 50 mm. Rækken »1–3« i figuren over minimumstykkelser viser værdien for klasse 3.
 
 Opfølgning samme dag. Brugerens ønske: »Når man bruger den offentlige udgave, behøver der ikke være info-boksen med 'Tabellerne er appens standard og kan ikke rettes i denne udgave.', og afkrydsningsfeltet 'vis kun ændringer' behøver ikke vises heller da det jo ikke er relevant i den offentlige udgave. i geonet databasen, skal sektionen med 'database-noter og kildehenvisninger' skjules, så man kun kan se produkt tabellen.« Infoboksen og filteret er fjernet fra Designdiagrammer og Trafikklasse-korrelation i den offentlige udgave, og geonet-databasens noter vises ikke der (`geonetNoter` i udgavetabellen). Lokal og intern er uændrede.
+
+## 4. november 2026 — den interne udgave uden login
+
+Brugeren spurgte, hvordan den interne udgave kan være uden login som den offentlige. Claude forklarede, at medarbejderlisten ligger i appens filer, så navne, mails og telefonnumre kan læses af alle med adressen, og at adressen er nem at gætte. Claude frarådede at beholde listen uden login og foreslog at fjerne listen eller at beholde login med længere gyldighed. Brugerens svar: »behold listen, og slå login fra«.
+
+Dette erstatter svaret om login i afsnittet »tre udgaver: lokal, intern og offentlig« og Claudes valg om, at listen kun bygges ind, når adressen kræver login. Udrulningen bygger nu altid listen ind i den interne udgave, og kontrollen af Cloudflare Access er fjernet. Listen ligger fortsat ikke i Git, og den offentlige udgave får den ikke. Brugeren slår selv login fra i Cloudflare-kontoen.

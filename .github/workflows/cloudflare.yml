@@ -33,20 +33,11 @@ jobs:
       - name: Byg offentlig udgave
         if: env.CF_TOKEN != ''
         run: node tools/build-udgave.ts offentlig
-      - name: Kontrollér Cloudflare Access
-        if: env.CF_TOKEN != ''
-        id: access
-        run: node hosting/cloudflare/check-access.ts
       - name: Byg intern udgave med kartotek
-        if: env.CF_TOKEN != '' && steps.access.outputs.enabled == 'true'
+        if: env.CF_TOKEN != ''
         run: node tools/build-udgave.ts intern
         env:
           MEDARBEJDERE_JSON: ${{ secrets.MEDARBEJDERE_JSON }}
-      - name: Byg intern udgave uden kartotek
-        if: env.CF_TOKEN != '' && steps.access.outputs.enabled != 'true'
-        run: |
-          echo "::warning::Cloudflare Access er ikke slået til; det indbyggede kartotek er udeladt."
-          node tools/build-udgave.ts intern
       - name: Kontrollér filstørrelser for hosting
         if: env.CF_TOKEN != ''
         run: |

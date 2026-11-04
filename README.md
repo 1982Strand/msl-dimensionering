@@ -28,11 +28,11 @@ node tools/build-r6-pdfs.ts
 
 Browsertests bruger port 5184 og genbruger ikke den lokale appserver. Godkendte beregningscases ligger i `tests/cases/` og bruges kun til test, aldrig som beregningsmotor.
 
-## Delt udgave
+## Udgaver
 
-Byg med `VITE_UDGAVE=delt` for en delt udgave med skjult firmaprofil og standardprofil i rapporterne. Medarbejderkartoteket er fortsat personligt og redigerbart. Denne visning er uafhængig af hostingudbyderen.
+`npm run build:udgaver` bygger den interne og den offentlige udgave. Forskellene mellem udgaverne står i `src/ui/udgaver.ts`. Denne visning er uafhængig af hostingudbyderen.
 
-Cloudflare er midlertidig hosting af de statiske filer i `dist`. Appen kan anvendes hos en anden udbyder uden Cloudflare.
+Cloudflare er midlertidig hosting af de statiske filer i `dist-intern` og `dist-offentlig`. Appen kan anvendes hos en anden udbyder uden Cloudflare.
 
 ## Vejledninger
 
