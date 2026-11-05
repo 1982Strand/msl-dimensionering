@@ -211,3 +211,9 @@ Valgt af Claude og kan ændres:
 - Filen hedder `medarbejderkartotek.json` og er en ren liste, som også kan sendes til GitHub med `npm run kartotek -- <fil>`.
 - Importen erstatter det nuværende kartotek og spørger først, hvis der allerede er personer i det.
 - Importen tager også medarbejderne fra en ældre firmaprofil, der har dem med.
+
+## 5. november 2026 — profil- og kartoteksfiler ignoreres af Git
+
+Claude oplyste, at eksporterede filer ikke var beskyttet, hvis de blev gemt i projektmappen, og foreslog at ignorere filnavnene. Brugerens svar: »Ja, tilføj reglerne«.
+
+- `.gitignore` udelader `firmaprofil*.json` og `medarbejderkartotek*.json` overalt i repoet. Reglerne gælder kun filer med de navne og beskytter ikke en fil, der er omdøbt.
