@@ -199,3 +199,15 @@ Opfølgning samme dag. Brugerens ønske: »Når man bruger den offentlige udgave
 Brugeren spurgte, hvordan den interne udgave kan være uden login som den offentlige. Claude forklarede, at medarbejderlisten ligger i appens filer, så navne, mails og telefonnumre kan læses af alle med adressen, og at adressen er nem at gætte. Claude frarådede at beholde listen uden login og foreslog at fjerne listen eller at beholde login med længere gyldighed. Brugerens svar: »behold listen, og slå login fra«.
 
 Dette erstatter svaret om login i afsnittet »tre udgaver: lokal, intern og offentlig« og Claudes valg om, at listen kun bygges ind, når adressen kræver login. Udrulningen bygger nu altid listen ind i den interne udgave, og kontrollen af Cloudflare Access er fjernet. Listen ligger fortsat ikke i Git, og den offentlige udgave får den ikke. Brugeren slår selv login fra i Cloudflare-kontoen.
+
+## 5. november 2026 — kartotek og firmaprofil adskilt
+
+Brugerens ønske: »der skal man have mulighed for at gemme og indlæse kartoteket alene, og selve firmaprofilen alene. kartoteket skal kunne importeres frit imellem de to apps. firmaprofilen er jo så alt hvad der har med rapportopsætningen at gøre og er individuel pr. app. Dvs. der skal tilføjes to knapper i MSL-appen med 'importer' og 'eksporter' kartotek også. Det skal også være sådan i opdrift-appen.«
+
+- Under Medarbejdere er der nu »Eksportér kartotek« og »Importér kartotek« i begge apps, og filen kan flyttes frit mellem MSL Dimensionering og Opdriftssikring.
+- Firmaprofilen er særskilt for hver app. »Eksportér profil« tager ikke kartoteket med, og »Importér profil« og »Nulstil firmaprofil« bevarer kartoteket. Tidligere fulgte kartoteket med profilen.
+
+Valgt af Claude og kan ændres:
+- Filen hedder `medarbejderkartotek.json` og er en ren liste, som også kan sendes til GitHub med `npm run kartotek -- <fil>`.
+- Importen erstatter det nuværende kartotek og spørger først, hvis der allerede er personer i det.
+- Importen tager også medarbejderne fra en ældre firmaprofil, der har dem med.
