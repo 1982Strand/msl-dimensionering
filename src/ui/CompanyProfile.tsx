@@ -37,9 +37,11 @@ import {
   defaultProfileState,
   exportCompanyProfile,
   importCompanyProfile,
+  keepEmployees,
   lockedProfileState,
   logoDataUrl,
   MAX_LOGO_BYTES,
+  parseEmployeeFile,
   PROFILE_LIMITS,
   profileValue,
   validateLogo,
@@ -567,10 +569,10 @@ export function CompanyProfile({
                 onClick={() => {
                   if (
                     window.confirm(
-                      'Nulstil firmaprofilen til standard? Eget logo og ændrede værdier fjernes.',
+                      'Nulstil firmaprofilen til standard? Eget logo og ændrede værdier fjernes. Medarbejderkartoteket bevares.',
                     )
                   )
-                    update(defaultProfileState, true);
+                    update((prev) => keepEmployees(defaultProfileState(), prev), true);
                 }}
               >
                 <RotateCcw aria-hidden="true" />
@@ -623,7 +625,7 @@ export function CompanyProfile({
                         await standardLogo(),
                       );
                       if (imported.logo) await checkImage(imported.logo);
-                      update(() => imported, true);
+                      update((prev) => keepEmployees(imported, prev), true);
                     });
                 }}
               />
@@ -825,7 +827,34 @@ function Employees({
   const [editing, setEditing] = useState<number | null>(null);
   const [person, setPerson] = useState<Employee>(emptyEmployee);
   const [errors, setErrors] = useState<Partial<Record<keyof Employee, string>>>({});
+  const [fileError, setFileError] = useState<string | null>(null);
   const nameInput = useRef<HTMLInputElement>(null);
+  const fileInput = useRef<HTMLInputElement>(null);
+  function saveFile() {
+    const url = URL.createObjectURL(
+      new Blob([JSON.stringify(profile, null, 2)], { type: 'application/json' }),
+    );
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'medarbejderkartotek.json';
+    a.click();
+    window.setTimeout(() => URL.revokeObjectURL(url), 1000);
+  }
+  async function loadFile(file: File) {
+    setFileError(null);
+    try {
+      const people = parseEmployeeFile(await file.text());
+      if (
+        profile.length === 0 ||
+        window.confirm(
+          `Erstat kartotekets ${profile.length} personer med de ${people.length} personer fra filen?`,
+        )
+      )
+        onChange(people);
+    } catch (e) {
+      setFileError(e instanceof Error ? e.message : 'Filen kunne ikke læses.');
+    }
+  }
   function add() {
     const next = { ...person, telefon: formatPhone(person.telefon) };
     const invalid = employeeErrors(next);
@@ -840,7 +869,8 @@ function Employees({
     <>
       <p className="report-caption">
         Personerne kan vælges som sagsbehandler og kvalitetssikring under Sagsoplysninger.
-        Oplysninger gemmes i denne browser.
+        Oplysninger gemmes i denne browser. Kartoteket eksporteres og importeres for sig og kan
+        flyttes mellem de to apps.
       </p>
       <div className="profile-actions">
         <Popover open={adding} onOpenChange={setAdding}>
@@ -948,7 +978,42 @@ function Employees({
             </div>
           </SheetContent>
         </Sheet>
+        <Button
+          type="button"
+          variant="outline"
+          disabled={disabled || profile.length === 0}
+          onClick={saveFile}
+        >
+          <Download aria-hidden="true" />
+          Eksportér kartotek
+        </Button>
+        <Button
+          type="button"
+          variant="outline"
+          disabled={disabled}
+          onClick={() => fileInput.current?.click()}
+        >
+          <Upload aria-hidden="true" />
+          Importér kartotek …
+        </Button>
+        <input
+          ref={fileInput}
+          type="file"
+          hidden
+          aria-label="Kartoteksfil"
+          accept="application/json,.json"
+          onChange={(e) => {
+            const file = e.target.files?.[0];
+            e.target.value = '';
+            if (file) void loadFile(file);
+          }}
+        />
       </div>
+      {fileError && (
+        <Notice kind="error" role="alert">
+          {fileError}
+        </Notice>
+      )}
     </>
   );
 }

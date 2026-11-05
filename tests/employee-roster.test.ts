@@ -28,7 +28,7 @@ test('bygningen læser ren liste og eksporteret firmaprofil fra filer', async ()
     const list = join(directory, 'liste.json');
     const profile = join(directory, 'profil.json');
     await writeFile(list, JSON.stringify(employees));
-    // Samme fil som »Eksportér profil«: medarbejderne ligger i profile.medarbejdere.
+    // En ældre fil fra »Eksportér profil«: medarbejderne ligger i profile.medarbejdere.
     const state = defaultProfileState();
     state.profile.medarbejdere = employees;
     const logo = {
@@ -37,7 +37,12 @@ test('bygningen læser ren liste og eksporteret firmaprofil fra filer', async ()
         readFileSync(new URL('../public/report/logo/byggros_logo.jpeg', import.meta.url)),
       ),
     };
-    await writeFile(profile, exportCompanyProfile(state, logo));
+    const nyProfil = exportCompanyProfile(state, logo);
+    const aeldre = JSON.parse(nyProfil);
+    aeldre.profile.medarbejdere = employees;
+    await writeFile(profile, JSON.stringify(aeldre));
+    // En ny profilfil har ikke kartoteket med, så den kan ikke tømme listen ved en fejl.
+    await assert.rejects(readEmployeeList({ environment: nyProfil }), /ugyldigt/);
     assert.deepEqual(await readEmployeeList({ file: list }), employees);
     assert.deepEqual(await readEmployeeList({ file: profile }), employees);
     assert.deepEqual(await readEmployeeList({ environment: JSON.stringify(employees) }), employees);

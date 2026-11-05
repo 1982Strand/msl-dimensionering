@@ -6,6 +6,8 @@ import {
   defaultProfileState,
   exportCompanyProfile,
   importCompanyProfile,
+  keepEmployees,
+  parseEmployeeFile,
   logoDataUrl,
   MAX_LOGO_BYTES,
   mergeCompanyProfile,
@@ -57,7 +59,10 @@ test('B-048: kartotek valideres, rundtur/gem/genåbn/nulstil og ældre profil ud
   assert.equal(changed.error, null);
   const state = { ...standard, profile: changed.profile };
   const json = exportCompanyProfile(state, jpeg);
-  assert.deepEqual(importCompanyProfile(json, jpeg), state);
+  // Kartoteket følger ikke med firmaprofilen; import bevarer det aktuelle kartotek.
+  assert.ok(!('medarbejdere' in JSON.parse(json).profile));
+  assert.deepEqual(importCompanyProfile(json, jpeg), standard);
+  assert.deepEqual(keepEmployees(importCompanyProfile(json, jpeg), state), state);
   const s = stores();
   const store = new CompanyProfileStorage(s.valueStorage, s.logoStorage);
   await store.save(state);
@@ -223,6 +228,15 @@ test('R5 ugyldig import afvises samlet uden mutation af den aktive profil', () =
       p.logo = logo;
     });
   assert.throws(() => importCompanyProfile('{'), /JSON/);
+});
+test('kartoteket indlæses fra en ren liste eller en profil fra en af de to apps', () => {
+  const ada = { navn: 'Ada Eksempel', initialer: 'AE', mail: '', telefon: '' };
+  assert.deepEqual(parseEmployeeFile(JSON.stringify([ada])), [ada]);
+  // En profil fra den anden app har andre felter; kun medarbejderne bruges.
+  const profil = { version: 1, profile: { sv: {}, afsluttende_afsnit: [], medarbejdere: [ada] } };
+  assert.deepEqual(parseEmployeeFile(JSON.stringify(profil)), [ada]);
+  assert.throws(() => parseEmployeeFile('{'), /JSON/);
+  assert.throws(() => parseEmployeeFile('[{"navn":""}]'), /ugyldigt/);
 });
 test('R5 logoformat, tomme/afbrudte filer, eksterne SVG-aktiver og størrelsesgrænse', () => {
   for (const logo of [png, svg, jpeg]) assert.doesNotThrow(() => validateLogo(logo));

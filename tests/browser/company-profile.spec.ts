@@ -132,7 +132,7 @@ test('B-048/B-050/B-051: Popover, kartotek, rapportkopier og profilrundtur', asy
   }
   await catalogue.getByRole('button', { name: 'Luk kartotek', exact: true }).click();
   const json = await exported(page);
-  expect(JSON.parse(json).profile.medarbejdere).toEqual(people);
+  expect(JSON.parse(json).profile).not.toHaveProperty('medarbejdere');
   await page.getByRole('tab', { name: 'Rapport', exact: true }).click();
   for (const [role, person] of [
     ['Sagsbehandler', people[0]],
@@ -260,17 +260,15 @@ test('B-048/B-050/B-051: Popover, kartotek, rapportkopier og profilrundtur', asy
   page.once('dialog', (d) => void d.accept());
   await page.getByRole('button', { name: 'Nulstil firmaprofil til standard', exact: true }).click();
   await ready(page);
-  expect((await stored(page)).medarbejdere).toEqual([]);
-  await page.getByRole('button', { name: 'Åbn kartotek (0)', exact: true }).click();
-  await expect(catalogue.getByText('Kartoteket er tomt.', { exact: true })).toBeVisible();
-  await catalogue.getByRole('button', { name: 'Luk kartotek', exact: true }).click();
+  // Firmaprofilen og kartoteket er adskilt: nulstilling og import af profilen bevarer kartoteket.
+  expect((await stored(page)).medarbejdere).toEqual([changed]);
   await page
     .getByLabel('Profilfil', { exact: true })
     .setInputFiles({ name: 'b048.json', mimeType: 'application/json', buffer: Buffer.from(json) });
   await ready(page);
-  expect((await stored(page)).medarbejdere).toEqual(people);
+  expect((await stored(page)).medarbejdere).toEqual([changed]);
   expect(JSON.parse(await exported(page))).toEqual(JSON.parse(json));
-  await page.getByRole('button', { name: 'Åbn kartotek (2)', exact: true }).click();
+  await page.getByRole('button', { name: 'Åbn kartotek (1)', exact: true }).click();
   await page.screenshot({ path: info.outputPath('b050-kartotek.png'), fullPage: true });
   await catalogue.getByRole('button', { name: 'Luk kartotek', exact: true }).click();
   await page.getByRole('tab', { name: 'Rapport', exact: true }).click();
@@ -456,4 +454,29 @@ test('R5 faktisk IndexedDB-fejl bevarer profil og logo i aktiv visning og efter 
   expect(await stored(page)).toEqual(before);
   expect(seen.errors).toEqual([]);
   expect(seen.external).toEqual([]);
+});
+
+test('kartoteket kan eksporteres og importeres for sig', async ({ page }) => {
+  await page.goto('/#rapport');
+  await page.getByRole('tab', { name: 'Firmaprofil', exact: true }).click();
+  await expect(page.getByRole('button', { name: 'Eksportér kartotek' })).toBeDisabled();
+  const fil = page.getByLabel('Kartoteksfil');
+  await fil.setInputFiles({
+    name: 'liste.json',
+    mimeType: 'application/json',
+    buffer: Buffer.from(
+      JSON.stringify([{ navn: 'Ada Eksempel', initialer: 'AE', mail: '', telefon: '' }]),
+    ),
+  });
+  await expect(page.getByRole('button', { name: 'Åbn kartotek (1)' })).toBeVisible();
+  const download = page.waitForEvent('download');
+  await page.getByRole('button', { name: 'Eksportér kartotek' }).click();
+  expect((await download).suggestedFilename()).toBe('medarbejderkartotek.json');
+  await fil.setInputFiles({
+    name: 'x.json',
+    mimeType: 'application/json',
+    buffer: Buffer.from('{'),
+  });
+  await expect(page.getByText('Filen kunne ikke læses som JSON.')).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Åbn kartotek (1)' })).toBeVisible();
 });

@@ -13,7 +13,7 @@ GitHub Secrets indeholder `CLOUDFLARE_API_TOKEN` og `CLOUDFLARE_ACCOUNT_ID`. Nø
 
 Ingen af adresserne har login, og appen har ingen loginendepunkter. Medarbejderkartoteket er bygget ind i den interne udgaves filer, så navne, mails og telefonnumre kan læses af alle, der har eller gætter adressen. Brugeren har valgt dette, se beslutningen af 4. november 2026 i [Beslutninger](BESLUTNINGER.md). Kartoteket fjernes ved at slette hemmeligheden `MEDARBEJDERE_JSON` og udrulle igen.
 
-Kartoteket sendes til GitHub som hemmeligheden `MEDARBEJDERE_JSON` med `npm run kartotek -- <fil>`. Filen kan være en eksporteret firmaprofil eller en ren medarbejderliste. Hemmeligheden bruges kun i trinnet, der bygger den interne udgave, og kommer med ved næste udrulning.
+Kartoteket sendes til GitHub som hemmeligheden `MEDARBEJDERE_JSON` med `npm run kartotek -- <fil>`. Filen er det kartotek, der er eksporteret med »Eksportér kartotek« under Firmaprofil. En ældre firmaprofil med medarbejdere kan også bruges. Hemmeligheden bruges kun i trinnet, der bygger den interne udgave, og kommer med ved næste udrulning.
 
 `noindex` er en anmodning til søgemaskiner, ikke adgangskontrol. HTTP-overskrifter ligger i `public/_headers`.
 
