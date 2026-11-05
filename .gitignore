@@ -23,6 +23,9 @@ Thumbs.db
 reference-private/
 output/
 *_brugerdefineret.json
+# Eksporterede firmaprofiler og medarbejderkartoteker indeholder personoplysninger.
+firmaprofil*.json
+medarbejderkartotek*.json
 ~$*
 .serena/cache/
 testrapporter/
