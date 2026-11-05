@@ -48,9 +48,14 @@ test('Hjælp: kapitler, formler, figurer, gå-til og gemte åbne kapitler', asyn
     .locator('.help-section')
     .filter({ has: page.getByText('Figur 1.1', { exact: true }) });
   const columns = section.locator(':scope > div');
-  const left = await columns.nth(0).boundingBox();
-  const right = await columns.nth(1).boundingBox();
-  expect(right!.y).toBeGreaterThanOrEqual(left!.y + left!.height);
+  // Opstillingen skal have sat sig efter skiftet af skærmbredde, før kolonnerne måles.
+  await expect
+    .poll(async () => {
+      const left = await columns.nth(0).boundingBox();
+      const right = await columns.nth(1).boundingBox();
+      return right!.y - (left!.y + left!.height);
+    })
+    .toBeGreaterThanOrEqual(0);
   await first.click();
   await page.getByRole('button', { name: /^Luk kapitel 2:/ }).click();
   await page.reload();
