@@ -17,10 +17,6 @@ Playwright afprøver brugerforløb, rapporter og tilgængelighed på port 5184, 
 
 Playwright kører tre projekter, ét pr. udgave. Den lokale udgave testes mod `dist` på port 5184; den interne mod `dist-intern` på 5185 og den offentlige mod `dist-offentlig` på 5186. Udgavernes egne tests hedder `tests/browser/udgave-<udgave>.spec.ts` eller `udgave-<udgave>-<emne>.spec.ts`. `npm run build:udgaver` bygger udgaverne; intern bygning bruger den syntetiske liste `tests/fixtures/medarbejdere-syntetisk.json`. Med `PW_PORT` flyttes alle tre porte.
 
-`node tools/build-r6-pdfs.ts` kontrollerer det godkendte rapportlayout, tekstindhold, sideantal og PDF-kontrolsummer. Det kræver `pdftotext` på PATH eller angivet i `PDFTOTEXT`. Output ligger i den Git-ignorerede `.local/`-mappe.
+`node tools/build-r6-pdfs.ts` kontrollerer det godkendte rapportlayout, tekstindhold, sideantal og PDF-kontrolsummer. Kontrolsummerne er senest godkendt af brugeren 6. november 2026. Det kræver `pdftotext` på PATH eller angivet i `PDFTOTEXT`. Output ligger i den Git-ignorerede `.local/`-mappe.
 
 Hosting afprøves særskilt med `node --test hosting/cloudflare/*.test.ts`. Appens normale kontroller kræver ingen hostingkonfiguration eller nøgler.
-
-## Eksisterende afvigelse i PDF-kontrolsummer
-
-Ved gennemgangen 10. oktober 2026 afviger alle 31 PDF-kontrolsummer fra det gemte godkendelsessæt, også når versionen før oprydningen køres uændret. Rapporterne efter oprydningen er byte-identiske med denne version; tekstindhold, sideantal og automatiske layoutkontroller stemmer. De gemte forventninger er bevaret. Kontrollens afvigelse skal undersøges særskilt, før godkendelsessættet eventuelt ændres.

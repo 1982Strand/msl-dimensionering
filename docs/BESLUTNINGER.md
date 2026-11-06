@@ -236,3 +236,12 @@ Claude og Codex gennemgik arbejdsmappen og fremlagde anbefalinger. Brugerens sva
 - `MSL-layers-transparent.ico` ligger nu i Git, fordi skrivebordsgenvejen bruger den.
 
 Claudes valg, som kan ændres: seks ubrugte funktioner i beregnings- og rapportkoden er bevaret, fordi gevinsten er lille.
+
+## 6. november 2026 — R6-rapportsættet godkendt igen med MPa
+
+`node tools/build-r6-pdfs.ts` har fejlet på alle 31 kontrolsummer siden 6. oktober 2026. Årsagen er commit `be6cd09` (B-084), som ændrede MN/m² til MPa i hele appen uden ny godkendelse af rapportsættet fra B-055. En kørsel af det godkendte commit `887dc11` gav fortsat præcis de godkendte PDF'er, og gennemgang af de 37 efterfølgende commits viste, at kontrolsummerne skiftede netop ved `be6cd09`.
+
+Claude forelagde begge PDF-sæt. Tekstsammenligningen viste 62 forekomster af MN/m², der er blevet til MPa; øvrige ord og linjeskift er ens, og begge sæt har 99 sider. Figurernes udseende blev ikke sammenlignet automatisk. Brugerens svar: »Godkendt, opdatér R6«.
+
+- `tools/r6-godkendt.json` indeholder nu kontrolsummerne for det aktuelle sæt. Fremtidige afvigelser kræver fortsat ny forelæggelse.
+- Afsnittet om den uafklarede afvigelse er fjernet fra `docs/TEST.md`, og noterne om den er fjernet fra `README.md` og `docs/PDF_MOTOR.md`.
