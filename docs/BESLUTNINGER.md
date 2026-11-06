@@ -225,3 +225,14 @@ Afløser aftalerne fra 10. oktober 2026 om at bevare historiske dokumenter, vær
 - `.local/publication-backup-2026-10-10/` og `reference-private/` er fjernet fra arbejdsmappen. Ingen kode, test eller byggetrin bruger dem.
 - Reglen i `AGENTS.md` om at bevare private arkiver lokalt med backup er taget ud. Forbuddet mod at lægge arkiver og sikkerhedskopier i Git gælder fortsat, og de to mapper forbliver ignoreret.
 - Mapperne er lagt i papirkurven, og brugeren tømmer den selv. Derefter kan den gamle historik og den gamle Python-app ikke hentes fra denne computer, medmindre der findes en anden kopi.
+
+## 6. november 2026 — oprydning i kode, tests og dokumentation
+
+Claude og Codex gennemgik arbejdsmappen og fremlagde anbefalinger. Brugerens svar: »Ja, alle anbefalinger«.
+
+- `tools/dimensioning-page-inventory.ts`, `tools/build-report-pdfs.ts` og `src/lib/utils.ts` er fjernet sammen med pakkerne `clsx` og `tailwind-merge`. Nye shadcn-komponenter skal importere `cn` fra pakken `cn`, selv om `components.json` stadig nævner `@/lib/utils`.
+- Godkendte testændringer: `tests/browser/materials.spec.ts` gemmer ikke længere skærmbilleder, som ingen kontrol sammenligner, og `tests/formula-layout.test.ts` læser ikke længere den ikke-eksisterende `.local/kob-steps.json`. Testens øvrige kontroller og `tests/cases/` er uændrede.
+- `.gitignore` udelader alle ZIP-filer. `tmp` og `output` gælder kun i roden, og reglen for `diagrambilleder` er væk, så nye filer i `public/diagrambilleder/` ikke ignoreres.
+- `MSL-layers-transparent.ico` ligger nu i Git, fordi skrivebordsgenvejen bruger den.
+
+Claudes valg, som kan ændres: seks ubrugte funktioner i beregnings- og rapportkoden er bevaret, fordi gevinsten er lille.

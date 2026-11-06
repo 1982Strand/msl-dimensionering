@@ -157,11 +157,9 @@ test('desktop preview renders without page errors and mobile has contained table
   page.on('pageerror', (error) => errors.push(error.message));
   await page.goto('/#materialer');
   await expect(page.getByRole('heading', { name: 'Materialer', exact: true })).toBeVisible();
-  await page.screenshot({ path: 'output/materialer-desktop.png', fullPage: true });
   await page.setViewportSize({ width: 390, height: 844 });
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(
     true,
   );
-  await page.screenshot({ path: 'output/materialer-mobile.png', fullPage: true });
   expect(errors).toEqual([]);
 });

@@ -26,6 +26,8 @@ npm run test:browser
 node tools/build-r6-pdfs.ts
 ```
 
+`node tools/build-r6-pdfs.ts` afslutter i øjeblikket med fejl, fordi PDF-kontrolsummerne afviger fra det gemte godkendelsessæt; se [Test](docs/TEST.md).
+
 Browsertests bruger port 5184 og genbruger ikke den lokale appserver. Godkendte beregningscases ligger i `tests/cases/` og bruges kun til test, aldrig som beregningsmotor.
 
 ## Udgaver

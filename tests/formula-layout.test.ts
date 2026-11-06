@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync, existsSync } from 'node:fs';
+import { readFileSync } from 'node:fs';
 import { dimensioner, type DimensioningInput } from '../src/engine/dimensionering.ts';
 import {
   couplingText,
@@ -353,19 +353,6 @@ test('B-070: godkendt T2/Eᵤ 11-udkast, trin 2/4/5/6 har brøker, indeks, gitte
   const { explanation } = verifyInput(input, 'udkast B');
   const step = (n: number) =>
     formulaLayout(blocks(explanation.steps.find((s) => s.number === n)!.body)[0].children);
-  const localPath = new URL('../.local/kob-steps.json', import.meta.url);
-  if (existsSync(localPath)) {
-    for (const local of read('../.local/kob-steps.json')) {
-      const actual = explanation.steps.find((s) => s.number === Number(local.nr))!;
-      assert.deepEqual(
-        blocks(actual.body).map((b) => normalize(couplingText(b))),
-        local.formler.map((html: string) =>
-          normalize(formulaHtmlNodes(html).map(couplingText).join('')),
-        ),
-        `lokalt udkast, trin ${local.nr}`,
-      );
-    }
-  }
   assert.deepEqual(
     step(2).lines.map((l) => l.kind),
     ['equation', 'equation'],

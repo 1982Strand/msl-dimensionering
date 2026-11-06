@@ -6,4 +6,4 @@ Efter Vite pakker `tools/pak-pdf-motor.ts` compilerens WASM med gzip og kontroll
 
 Motoren fylder ca. 27,01 MiB udpakket og 10,34 MiB pakket. Komprimeringen mindsker overførsel hos enhver udbyder; udbyderspecifikke filgrænser kontrolleres særskilt under `hosting/`.
 
-`tests/pdf-motor.test.ts` afprøver gzip, byte-identitet og fejltilstande. `tools/build-r6-pdfs.ts` kontrollerer det godkendte rapportsæt. Kontrolsummerne i `tools/r6-godkendt.json` må ikke overskrives for at acceptere en ændring.
+`tests/pdf-motor.test.ts` afprøver gzip, byte-identitet og fejltilstande. `tools/build-r6-pdfs.ts` kontrollerer det godkendte rapportsæt. Kontrollen afslutter i øjeblikket med fejl, fordi alle 31 PDF-kontrolsummer afviger; se [Test](TEST.md). Kontrolsummerne i `tools/r6-godkendt.json` må ikke overskrives for at acceptere en ændring.
