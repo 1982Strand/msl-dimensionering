@@ -21,7 +21,8 @@ Thumbs.db
 # Lokale referencekopier og brugerdata
 .local/
 reference-private/
-output/
+*.zip
+/output/
 *_brugerdefineret.json
 # Eksporterede firmaprofiler og medarbejderkartoteker indeholder personoplysninger.
 firmaprofil*.json
@@ -30,8 +31,7 @@ medarbejderkartotek*.json
 .serena/cache/
 testrapporter/
 Dokumenter og data/
-diagrambilleder
-tmp
+/tmp/
 
 # Privat projekthukommelse
 .serena/memories/

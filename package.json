@@ -37,7 +37,6 @@
     "@myriaddreamin/typst.ts": "0.7.0",
     "@tanstack/react-table": "9.2.4",
     "class-variance-authority": "0.7.1",
-    "clsx": "2.1.1",
     "cmdk": "1.1.1",
     "cn": "0.4.0",
     "lucide-react": "1.49.0",
@@ -46,7 +45,6 @@
     "react-dom": "19.3.0",
     "react-markdown": "10.1.0",
     "rehype-raw": "7.0.0",
-    "remark-gfm": "4.0.1",
-    "tailwind-merge": "3.7.0"
+    "remark-gfm": "4.0.1"
   }
 }
