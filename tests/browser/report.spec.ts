@@ -2,6 +2,9 @@ import { expect, test, type Page } from '@playwright/test';
 import { readFile } from 'node:fs/promises';
 import { execFileSync } from 'node:child_process';
 
+// Samme valg af program som tools/build-r6-pdfs.ts.
+const pdftotext = process.env.PDFTOTEXT ?? 'pdftotext';
+
 test('rapportsprog og firmaprofil skifter til svenske værdier', async ({ page }) => {
   await page.goto('/#rapport');
   const language = page.getByRole('radio', { name: 'Svensk', exact: true });
@@ -45,7 +48,7 @@ test('tekster pr. sprog: svensk rettelse, mærke på det urørte sprog og svensk
   const downloadEvent = page.waitForEvent('download');
   await page.getByRole('link', { name: 'Hent PDF', exact: true }).click();
   const path = await (await downloadEvent).path();
-  const text = execFileSync('pdftotext', ['-enc', 'UTF-8', path!, '-'], { encoding: 'utf8' });
+  const text = execFileSync(pdftotext, ['-enc', 'UTF-8', path!, '-'], { encoding: 'utf8' });
   expect(text).toContain('Kontrollplanen bestäms i projektet.');
   expect(text).toContain('Terrassens E-modul');
   expect(text).toContain('Valt geonät');
@@ -66,7 +69,7 @@ test('svensk rapport download indeholder svenske standardetiketter og underskrif
   const downloadEvent = page.waitForEvent('download');
   await page.getByRole('link', { name: 'Hent PDF', exact: true }).click();
   const path = await (await downloadEvent).path();
-  const text = execFileSync('pdftotext', ['-enc', 'UTF-8', path!, '-'], { encoding: 'utf8' });
+  const text = execFileSync(pdftotext, ['-enc', 'UTF-8', path!, '-'], { encoding: 'utf8' });
   expect(text).toContain('Dimensioneringsresultat:');
   expect(text).toContain('Förutsättningar:');
   expect(text).toContain('Önnestad den');
@@ -167,7 +170,7 @@ test('B-049: resultatlinjer i PDF, revisionsspærring, genåbning, automatisk nu
   });
   await page.getByRole('link', { name: 'Hent PDF', exact: true }).click();
   const path = (await (await downloading).path())!;
-  const text = execFileSync('pdftotext', ['-enc', 'UTF-8', path, '-'], { encoding: 'utf8' });
+  const text = execFileSync(pdftotext, ['-enc', 'UTF-8', path, '-'], { encoding: 'utf8' });
   expect(text).toContain('Tilpasset MSL-opbygning');
   expect(text).toContain('450 mm (prøvesag)');
   expect(text).not.toContain('Stabiliseret tykkelse — 2 lag');

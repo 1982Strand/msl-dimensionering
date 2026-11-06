@@ -245,3 +245,10 @@ Claude forelagde begge PDF-sæt. Tekstsammenligningen viste 62 forekomster af MN
 
 - `tools/r6-godkendt.json` indeholder nu kontrolsummerne for det aktuelle sæt. Fremtidige afvigelser kræver fortsat ny forelæggelse.
 - Afsnittet om den uafklarede afvigelse er fjernet fra `docs/TEST.md`, og noterne om den er fjernet fra `README.md` og `docs/PDF_MOTOR.md`.
+
+## 6. november 2026 — rapporttests kan køres fra PowerShell
+
+Tre tests i `tests/browser/report.spec.ts` fejlede fra PowerShell, fordi `pdftotext` kun findes på PATH i Git Bash. Claude foreslog, at testen læser `PDFTOTEXT` ligesom `tools/build-r6-pdfs.ts`. Brugerens svar: »Ja, ret og push«.
+
+- Testen vælger programmet med `PDFTOTEXT` og bruger ellers `pdftotext` på PATH. Testens kontroller er uændrede.
+- `README.md` og `docs/TEST.md` beskriver indstillingen, og `README.md` nævner nu også `npm run build:udgaver`, som browsertestene kræver.

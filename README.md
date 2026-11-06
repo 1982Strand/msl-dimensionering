@@ -22,9 +22,12 @@ npm run typecheck
 npm run format:check
 npm test
 npm run build
+npm run build:udgaver
 npm run test:browser
 node tools/build-r6-pdfs.ts
 ```
+
+Rapporttestene og `tools/build-r6-pdfs.ts` bruger `pdftotext`. Er programmet ikke på PATH, angives det først, fx i PowerShell med Git for Windows: `$env:PDFTOTEXT = 'C:\Program Files\Git\ucrt64\bin\pdftotext.exe'`.
 
 Browsertests bruger port 5184 og genbruger ikke den lokale appserver. Godkendte beregningscases ligger i `tests/cases/` og bruges kun til test, aldrig som beregningsmotor.
 
