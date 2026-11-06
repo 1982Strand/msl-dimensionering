@@ -27,4 +27,4 @@ CLI-fallback: `semble search "beskrivelse" C:\MSL-Dimensionering --max-snippet-l
 
 Dialog og projektdokumentation er på dansk. Bevar fagterminologi og hjælpeteksters betydning. Brugervendt fagtekst er upersonlig og konstaterende med præcise symboler og enheder.
 
-Kundedata, personlige rapportmetadata, medarbejderoplysninger, adgangsnøgler, interne arkiver og sikkerhedskopier må ikke tilføjes til Git. Brug syntetiske testdata. `.local/`, `reference-private/`, brugerdefinerede JSON-filer og miljøfiler forbliver ignoreret. Private arkiver bevares lokalt med backup. Sletning af aktuelle filer renser ikke Git-historik eller GitHub-logs.
+Kundedata, personlige rapportmetadata, medarbejderoplysninger, adgangsnøgler, interne arkiver og sikkerhedskopier må ikke tilføjes til Git. Brug syntetiske testdata. `.local/`, `reference-private/`, brugerdefinerede JSON-filer og miljøfiler forbliver ignoreret. Sletning af aktuelle filer renser ikke Git-historik eller GitHub-logs.
