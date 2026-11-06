@@ -217,3 +217,11 @@ Valgt af Claude og kan ændres:
 Claude oplyste, at eksporterede filer ikke var beskyttet, hvis de blev gemt i projektmappen, og foreslog at ignorere filnavnene. Brugerens svar: »Ja, tilføj reglerne«.
 
 - `.gitignore` udelader `firmaprofil*.json` og `medarbejderkartotek*.json` overalt i repoet. Reglerne gælder kun filer med de navne og beskytter ikke en fil, der er omdøbt.
+
+## 6. november 2026 — gamle sikkerhedskopier og private arkiver bevares ikke
+
+Afløser aftalerne fra 10. oktober 2026 om at bevare historiske dokumenter, værktøjer og den gamle historik i et privat lokalt arkiv. Claude oplyste, at dele af arkiverne ikke findes andre steder, og at appen ikke bruger dem. Brugerens svar om backuppen: »bare slet det. Den nye app virker fint nu, og der er ikke længere behov for at gemme gamle sikkerhedskopier«. Om den gamle app: »bruges det til noget i appen idag? Hvis ikke, så bare slet det«.
+
+- `.local/publication-backup-2026-10-10/` og `reference-private/` er fjernet fra arbejdsmappen. Ingen kode, test eller byggetrin bruger dem.
+- Reglen i `AGENTS.md` om at bevare private arkiver lokalt med backup er taget ud. Forbuddet mod at lægge arkiver og sikkerhedskopier i Git gælder fortsat, og de to mapper forbliver ignoreret.
+- Mapperne er lagt i papirkurven, og brugeren tømmer den selv. Derefter kan den gamle historik og den gamle Python-app ikke hentes fra denne computer, medmindre der findes en anden kopi.
